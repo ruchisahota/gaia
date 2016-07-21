@@ -22,7 +22,7 @@ func init() {
 	elemental.RegisterIdentity(UserIdentity)
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(RenderedPoliciesIdentity)
+	elemental.RegisterIdentity(FlowStatisticIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
-	elemental.RegisterIdentity(FlowStatisticIdentity)
 }
