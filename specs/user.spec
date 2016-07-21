@@ -78,7 +78,7 @@
             "default_value": null,
             "deprecated": null,
             "description": "ParentID is an internal reference to the parent object that is an authenticator. ",
-            "exposed": false,
+            "exposed": true,
             "filterable": true,
             "foreign_key": null,
             "format": "free",
