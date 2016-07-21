@@ -15,6 +15,7 @@ const (
 	CertificateAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "certificate/createdAt"
 	CertificateAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "certificate/deleted"
 	CertificateAttributeNameDescription    elemental.AttributeSpecificationNameKey = "certificate/description"
+	CertificateAttributeNameExpirationDate elemental.AttributeSpecificationNameKey = "certificate/expirationDate"
 	CertificateAttributeNameKey            elemental.AttributeSpecificationNameKey = "certificate/key"
 	CertificateAttributeNameName           elemental.AttributeSpecificationNameKey = "certificate/name"
 	CertificateAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "certificate/namespace"
@@ -42,6 +43,7 @@ type Certificate struct {
 	CreatedAt      time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
 	Deleted        bool              `json:"-" cql:"deleted,omitempty"`
 	Description    string            `json:"description,omitempty" cql:"description,omitempty"`
+	ExpirationDate time.Time         `json:"expirationDate,omitempty" cql:"expirationdate,omitempty"`
 	Key            string            `json:"key,omitempty" cql:"-"`
 	Name           string            `json:"name,omitempty" cql:"name,omitempty"`
 	Namespace      string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
@@ -221,6 +223,17 @@ var CertificateAttributesMap = map[elemental.AttributeSpecificationNameKey]eleme
 		Name:           "description",
 		Stored:         true,
 		Type:           "string",
+	},
+	CertificateAttributeNameExpirationDate: elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "expirationDate",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "time",
 	},
 	CertificateAttributeNameKey: elemental.AttributeSpecification{
 		AllowedChoices: []string{},
