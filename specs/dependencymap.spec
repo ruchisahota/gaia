@@ -110,7 +110,7 @@
         "description": "dependencymap creates a map of dependencies.",
         "entity_name": "DependencyMap",
         "extends": [],
-        "get": false,
+        "get": true,
         "package": "Visualization",
         "resource_name": "dependencymaps",
         "rest_name": "dependencymap",

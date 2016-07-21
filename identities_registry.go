@@ -24,4 +24,5 @@ func init() {
 	elemental.RegisterIdentity(RenderedPoliciesIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
+	elemental.RegisterIdentity(FlowStatisticIdentity)
 }
