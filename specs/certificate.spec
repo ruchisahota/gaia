@@ -112,7 +112,7 @@
             "default_value": null,
             "deprecated": null,
             "description": "ParentID is an internal object that refers to the parrent of the certificate. ",
-            "exposed": false,
+            "exposed": true,
             "filterable": false,
             "foreign_key": true,
             "format": "free",
