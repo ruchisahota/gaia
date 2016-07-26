@@ -3,15 +3,15 @@
     "children": [],
     "model": {
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "A HealthReport contains the health status and various information about the Server.",
         "entity_name": "HealthReport",
         "extends": [],
         "get": true,
-        "package": null,
+        "package": "Health",
         "resource_name": "healthreports",
         "rest_name": "healthreport",
         "root": null,
-        "update": true
+        "update": false
     }
 }
