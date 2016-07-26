@@ -179,7 +179,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "SquallVersion is the version of Squall.",
+            "description": "SquallVersion is the version of server.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
