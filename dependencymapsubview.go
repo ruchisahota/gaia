@@ -2,8 +2,6 @@ package gaia
 
 import "github.com/aporeto-inc/elemental"
 
-import "github.com/aporeto-inc/gaia/enum"
-
 const (
 	DependencyMapSubviewAttributeNameID           elemental.AttributeSpecificationNameKey = "dependencymapsubview/ID"
 	DependencyMapSubviewAttributeNameSelector     elemental.AttributeSpecificationNameKey = "dependencymapsubview/selector"
@@ -22,19 +20,19 @@ type DependencyMapSubviewsList []*DependencyMapSubview
 
 // DependencyMapSubview represents the model of a dependencymapsubview
 type DependencyMapSubview struct {
-	ID           string                            `json:"ID,omitempty" cql:"id,omitempty"`
-	Selector     enum.DependencyMapViewSelector    `json:"selector,omitempty" cql:"selector,omitempty"`
-	SubSelectors enum.DependencyMapViewSubSelector `json:"subSelectors,omitempty" cql:"subselectors,omitempty"`
-	Tonality     string                            `json:"tonality,omitempty" cql:"tonality,omitempty"`
+	ID           string              `json:"ID,omitempty" cql:"id,omitempty"`
+	Selector     []string            `json:"selector,omitempty" cql:"selector,omitempty"`
+	SubSelectors map[string][]string `json:"subSelectors,omitempty" cql:"subselectors,omitempty"`
+	Tonality     string              `json:"tonality,omitempty" cql:"tonality,omitempty"`
 }
 
 // NewDependencyMapSubview returns a new *DependencyMapSubview
 func NewDependencyMapSubview() *DependencyMapSubview {
 
 	return &DependencyMapSubview{
-		Selector: enum.DependencyMapViewSelector{},
+		Selector: []string{},
 
-		SubSelectors: enum.DependencyMapViewSubSelector{},
+		SubSelectors: map[string][]string{},
 	}
 }
 
