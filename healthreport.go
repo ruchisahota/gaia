@@ -34,13 +34,13 @@ type HealthReportsList []*HealthReport
 
 // HealthReport represents the model of a healthreport
 type HealthReport struct {
-	APIVersion       string                  `json:"APIVersion,omitempty" cql:"apiversion,omitempty"`
-	ID               string                  `json:"ID,omitempty" cql:"id,omitempty"`
-	BahamutVersion   string                  `json:"bahamutVersion,omitempty" cql:"bahamutversion,omitempty"`
-	ElementalVersion string                  `json:"elementalVersion,omitempty" cql:"elementalversion,omitempty"`
-	GaiaVersion      string                  `json:"gaiaVersion,omitempty" cql:"gaiaversion,omitempty"`
-	SquallVersion    string                  `json:"squallVersion,omitempty" cql:"squallversion,omitempty"`
-	Status           HealthReportStatusValue `json:"status,omitempty" cql:"status,omitempty"`
+	APIVersion       string                  `json:"APIVersion,omitempty" cql:"-"`
+	ID               string                  `json:"ID,omitempty" cql:"-"`
+	BahamutVersion   string                  `json:"bahamutVersion,omitempty" cql:"-"`
+	ElementalVersion string                  `json:"elementalVersion,omitempty" cql:"-"`
+	GaiaVersion      string                  `json:"gaiaVersion,omitempty" cql:"-"`
+	SquallVersion    string                  `json:"squallVersion,omitempty" cql:"-"`
+	Status           HealthReportStatusValue `json:"status,omitempty" cql:"-"`
 }
 
 // NewHealthReport returns a new *HealthReport
@@ -93,7 +93,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Format:         "free",
 		Name:           "APIVersion",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	HealthReportAttributeNameID: elemental.AttributeSpecification{
@@ -105,7 +104,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	HealthReportAttributeNameBahamutVersion: elemental.AttributeSpecification{
@@ -116,7 +114,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Format:         "free",
 		Name:           "bahamutVersion",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	HealthReportAttributeNameElementalVersion: elemental.AttributeSpecification{
@@ -127,7 +124,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Format:         "free",
 		Name:           "elementalVersion",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	HealthReportAttributeNameGaiaVersion: elemental.AttributeSpecification{
@@ -138,7 +134,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Format:         "free",
 		Name:           "gaiaVersion",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	HealthReportAttributeNameSquallVersion: elemental.AttributeSpecification{
@@ -148,7 +143,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Format:         "free",
 		Name:           "squallVersion",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	HealthReportAttributeNameStatus: elemental.AttributeSpecification{
@@ -158,7 +152,6 @@ var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elem
 		Filterable:     true,
 		Name:           "status",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "enum",
 	},
 }
