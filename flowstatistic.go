@@ -1,5 +1,6 @@
 package gaia
 
+import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "github.com/aporeto-inc/go-kairosdb/builder"
@@ -40,6 +41,11 @@ func (o *FlowStatistic) Identity() elemental.Identity {
 func (o *FlowStatistic) Identifier() string {
 
 	return o.ID
+}
+
+func (o *FlowStatistic) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.

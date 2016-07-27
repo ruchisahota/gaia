@@ -1,5 +1,6 @@
 package gaia
 
+import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
@@ -44,6 +45,11 @@ func (o *MapEdge) Identity() elemental.Identity {
 func (o *MapEdge) Identifier() string {
 
 	return o.ID
+}
+
+func (o *MapEdge) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.

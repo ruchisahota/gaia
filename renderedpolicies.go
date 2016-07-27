@@ -1,5 +1,6 @@
 package gaia
 
+import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
@@ -42,6 +43,11 @@ func (o *RenderedPolicies) Identity() elemental.Identity {
 func (o *RenderedPolicies) Identifier() string {
 
 	return o.ProcessingUnitID
+}
+
+func (o *RenderedPolicies) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
