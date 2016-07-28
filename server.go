@@ -245,7 +245,11 @@ func (o *Server) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	return errors
+	if len(errors) > 0 {
+		return errors
+	}
+
+	return nil
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.

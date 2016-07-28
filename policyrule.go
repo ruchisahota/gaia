@@ -99,7 +99,11 @@ func (o *PolicyRule) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	return errors
+	if len(errors) > 0 {
+		return errors
+	}
+
+	return nil
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.

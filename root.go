@@ -57,7 +57,11 @@ func (o *Root) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	return errors
+	if len(errors) > 0 {
+		return errors
+	}
+
+	return nil
 }
 
 // APIKey returns a the API Key
