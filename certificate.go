@@ -53,7 +53,9 @@ type Certificate struct {
 // NewCertificate returns a new *Certificate
 func NewCertificate() *Certificate {
 
-	return &Certificate{}
+	return &Certificate{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -51,7 +51,9 @@ type ExternalService struct {
 // NewExternalService returns a new *ExternalService
 func NewExternalService() *ExternalService {
 
-	return &ExternalService{}
+	return &ExternalService{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

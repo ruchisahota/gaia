@@ -49,7 +49,9 @@ type FilePath struct {
 // NewFilePath returns a new *FilePath
 func NewFilePath() *FilePath {
 
-	return &FilePath{}
+	return &FilePath{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -72,8 +72,8 @@ type Server struct {
 func NewServer() *Server {
 
 	return &Server{
-
 		OperationalStatus: "UNKNOWN",
+		Status:            enum.Active,
 	}
 }
 

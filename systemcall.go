@@ -45,7 +45,9 @@ type SystemCall struct {
 // NewSystemCall returns a new *SystemCall
 func NewSystemCall() *SystemCall {
 
-	return &SystemCall{}
+	return &SystemCall{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

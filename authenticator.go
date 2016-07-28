@@ -61,7 +61,9 @@ type Authenticator struct {
 // NewAuthenticator returns a new *Authenticator
 func NewAuthenticator() *Authenticator {
 
-	return &Authenticator{}
+	return &Authenticator{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

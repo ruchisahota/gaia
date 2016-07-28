@@ -31,8 +31,7 @@ type DependencyMapSubview struct {
 func NewDependencyMapSubview() *DependencyMapSubview {
 
 	return &DependencyMapSubview{
-		Selector: []string{},
-
+		Selector:     []string{},
 		SubSelectors: map[string][]string{},
 	}
 }

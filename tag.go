@@ -45,7 +45,9 @@ type Tag struct {
 // NewTag returns a new *Tag
 func NewTag() *Tag {
 
-	return &Tag{}
+	return &Tag{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

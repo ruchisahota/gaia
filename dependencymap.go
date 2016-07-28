@@ -30,7 +30,6 @@ func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
 		Edges: []MapEdge{},
-
 		Nodes: []MapNode{},
 	}
 }

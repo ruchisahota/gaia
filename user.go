@@ -53,7 +53,9 @@ type User struct {
 // NewUser returns a new *User
 func NewUser() *User {
 
-	return &User{}
+	return &User{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

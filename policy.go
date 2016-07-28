@@ -59,7 +59,9 @@ type Policy struct {
 // NewPolicy returns a new *Policy
 func NewPolicy() *Policy {
 
-	return &Policy{}
+	return &Policy{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

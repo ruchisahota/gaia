@@ -47,7 +47,9 @@ type Namespace struct {
 // NewNamespace returns a new *Namespace
 func NewNamespace() *Namespace {
 
-	return &Namespace{}
+	return &Namespace{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

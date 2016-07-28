@@ -84,7 +84,9 @@ type ProcessingUnit struct {
 // NewProcessingUnit returns a new *ProcessingUnit
 func NewProcessingUnit() *ProcessingUnit {
 
-	return &ProcessingUnit{}
+	return &ProcessingUnit{
+		Status: enum.Active,
+	}
 }
 
 // Identity returns the Identity of the object.

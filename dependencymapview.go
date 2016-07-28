@@ -48,7 +48,7 @@ type DependencyMapView struct {
 func NewDependencyMapView() *DependencyMapView {
 
 	return &DependencyMapView{
-
+		Status:   enum.Active,
 		Subviews: DependencyMapSubviewsList{},
 	}
 }
