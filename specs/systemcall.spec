@@ -20,7 +20,10 @@
         "description": "SystemCall represents a system call.",
         "entity_name": "SystemCall",
         "extends": [
-            "@base"
+            "@base",
+            "@described",
+            "@identifiable-pk-stored",
+            "@named"
         ],
         "get": true,
         "package": "Policies",

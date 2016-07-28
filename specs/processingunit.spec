@@ -269,7 +269,10 @@
         "description": "ProcessingUnits is the container that gets instantiated on the server.",
         "entity_name": "ProcessingUnit",
         "extends": [
-            "@base"
+            "@base",
+            "@described",
+            "@identifiable-pk-stored",
+            "@named"
         ],
         "get": true,
         "package": "Processing Units",

@@ -144,7 +144,10 @@
         "description": "Certificate manages certificate creation for users.",
         "entity_name": "Certificate",
         "extends": [
-            "@base"
+            "@base",
+            "@described",
+            "@identifiable-pk-stored",
+            "@named"
         ],
         "get": true,
         "package": "Security",
