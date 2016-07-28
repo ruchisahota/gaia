@@ -7,28 +7,60 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	ServerAttributeNameID                elemental.AttributeSpecificationNameKey = "server/ID"
-	ServerAttributeNameAddress           elemental.AttributeSpecificationNameKey = "server/address"
-	ServerAttributeNameAnnotation        elemental.AttributeSpecificationNameKey = "server/annotation"
-	ServerAttributeNameAssociatedTags    elemental.AttributeSpecificationNameKey = "server/associatedTags"
-	ServerAttributeNameCreatedAt         elemental.AttributeSpecificationNameKey = "server/createdAt"
-	ServerAttributeNameDeleted           elemental.AttributeSpecificationNameKey = "server/deleted"
-	ServerAttributeNameDescription       elemental.AttributeSpecificationNameKey = "server/description"
-	ServerAttributeNameDomain            elemental.AttributeSpecificationNameKey = "server/domain"
-	ServerAttributeNameEnvironment       elemental.AttributeSpecificationNameKey = "server/environment"
-	ServerAttributeNameName              elemental.AttributeSpecificationNameKey = "server/name"
-	ServerAttributeNameNamespace         elemental.AttributeSpecificationNameKey = "server/namespace"
+	// ServerAttributeNameID represents the attribute ID.
+	ServerAttributeNameID elemental.AttributeSpecificationNameKey = "server/ID"
+
+	// ServerAttributeNameAddress represents the attribute address.
+	ServerAttributeNameAddress elemental.AttributeSpecificationNameKey = "server/address"
+
+	// ServerAttributeNameAnnotation represents the attribute annotation.
+	ServerAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "server/annotation"
+
+	// ServerAttributeNameAssociatedTags represents the attribute associatedTags.
+	ServerAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "server/associatedTags"
+
+	// ServerAttributeNameCreatedAt represents the attribute createdAt.
+	ServerAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "server/createdAt"
+
+	// ServerAttributeNameDeleted represents the attribute deleted.
+	ServerAttributeNameDeleted elemental.AttributeSpecificationNameKey = "server/deleted"
+
+	// ServerAttributeNameDescription represents the attribute description.
+	ServerAttributeNameDescription elemental.AttributeSpecificationNameKey = "server/description"
+
+	// ServerAttributeNameDomain represents the attribute domain.
+	ServerAttributeNameDomain elemental.AttributeSpecificationNameKey = "server/domain"
+
+	// ServerAttributeNameEnvironment represents the attribute environment.
+	ServerAttributeNameEnvironment elemental.AttributeSpecificationNameKey = "server/environment"
+
+	// ServerAttributeNameName represents the attribute name.
+	ServerAttributeNameName elemental.AttributeSpecificationNameKey = "server/name"
+
+	// ServerAttributeNameNamespace represents the attribute namespace.
+	ServerAttributeNameNamespace elemental.AttributeSpecificationNameKey = "server/namespace"
+
+	// ServerAttributeNameOperationalStatus represents the attribute operationalStatus.
 	ServerAttributeNameOperationalStatus elemental.AttributeSpecificationNameKey = "server/operationalStatus"
-	ServerAttributeNameStatus            elemental.AttributeSpecificationNameKey = "server/status"
-	ServerAttributeNameUpdatedAt         elemental.AttributeSpecificationNameKey = "server/updatedAt"
+
+	// ServerAttributeNameStatus represents the attribute status.
+	ServerAttributeNameStatus elemental.AttributeSpecificationNameKey = "server/status"
+
+	// ServerAttributeNameUpdatedAt represents the attribute updatedAt.
+	ServerAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "server/updatedAt"
 )
 
 // ServerEnvironmentValue represents the possible values for attribute "environment".
 type ServerEnvironmentValue string
 
 const (
-	ServerEnvironmentAws     ServerEnvironmentValue = "AWS"
-	ServerEnvironmentGcp     ServerEnvironmentValue = "GCP"
+	// ServerEnvironmentAws represents the value AWS.
+	ServerEnvironmentAws ServerEnvironmentValue = "AWS"
+
+	// ServerEnvironmentGcp represents the value GCP.
+	ServerEnvironmentGcp ServerEnvironmentValue = "GCP"
+
+	// ServerEnvironmentPrivate represents the value Private.
 	ServerEnvironmentPrivate ServerEnvironmentValue = "Private"
 )
 
@@ -36,9 +68,14 @@ const (
 type ServerOperationalStatusValue string
 
 const (
-	ServerOperationalStatusConnected   ServerOperationalStatusValue = "CONNECTED"
+	// ServerOperationalStatusConnected represents the value CONNECTED.
+	ServerOperationalStatusConnected ServerOperationalStatusValue = "CONNECTED"
+
+	// ServerOperationalStatusInitialized represents the value INITIALIZED.
 	ServerOperationalStatusInitialized ServerOperationalStatusValue = "INITIALIZED"
-	ServerOperationalStatusUnknown     ServerOperationalStatusValue = "UNKNOWN"
+
+	// ServerOperationalStatusUnknown represents the value UNKNOWN.
+	ServerOperationalStatusUnknown ServerOperationalStatusValue = "UNKNOWN"
 )
 
 // ServerIdentity represents the Identity of the object
@@ -52,20 +89,47 @@ type ServersList []*Server
 
 // Server represents the model of a server
 type Server struct {
-	ID                string                       `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Address           string                       `json:"address,omitempty" cql:"address,omitempty"`
-	Annotation        map[string]string            `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags    []string                     `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt         time.Time                    `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted           bool                         `json:"-" cql:"deleted,omitempty"`
-	Description       string                       `json:"description,omitempty" cql:"description,omitempty"`
-	Domain            string                       `json:"domain,omitempty" cql:"domain,omitempty"`
-	Environment       ServerEnvironmentValue       `json:"environment,omitempty" cql:"environment,omitempty"`
-	Name              string                       `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace         string                       `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Address provides the current IP address of the server after its initialized.
+	Address string `json:"address,omitempty" cql:"address,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Domain refers to the discovered domain name of the server
+	Domain string `json:"domain,omitempty" cql:"domain,omitempty"`
+
+	// Environment describes where the server will be running.
+	Environment ServerEnvironmentValue `json:"environment,omitempty" cql:"environment,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Operational status of the server
 	OperationalStatus ServerOperationalStatusValue `json:"operationalStatus,omitempty" cql:"operationalstatus,omitempty"`
-	Status            enum.EntityStatus            `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt         time.Time                    `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewServer returns a new *Server
@@ -190,6 +254,7 @@ func (o Server) SpecificationForAttribute(name elemental.AttributeSpecificationN
 	return ServerAttributesMap[name]
 }
 
+// ServerAttributesMap represents the map of attribute for Server.
 var ServerAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	ServerAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

@@ -4,11 +4,20 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	MapEdgeAttributeNameID            elemental.AttributeSpecificationNameKey = "mapedge/ID"
+	// MapEdgeAttributeNameID represents the attribute ID.
+	MapEdgeAttributeNameID elemental.AttributeSpecificationNameKey = "mapedge/ID"
+
+	// MapEdgeAttributeNameDestinationID represents the attribute destinationID.
 	MapEdgeAttributeNameDestinationID elemental.AttributeSpecificationNameKey = "mapedge/destinationID"
-	MapEdgeAttributeNameLabels        elemental.AttributeSpecificationNameKey = "mapedge/labels"
-	MapEdgeAttributeNameName          elemental.AttributeSpecificationNameKey = "mapedge/name"
-	MapEdgeAttributeNameSourceID      elemental.AttributeSpecificationNameKey = "mapedge/sourceID"
+
+	// MapEdgeAttributeNameLabels represents the attribute labels.
+	MapEdgeAttributeNameLabels elemental.AttributeSpecificationNameKey = "mapedge/labels"
+
+	// MapEdgeAttributeNameName represents the attribute name.
+	MapEdgeAttributeNameName elemental.AttributeSpecificationNameKey = "mapedge/name"
+
+	// MapEdgeAttributeNameSourceID represents the attribute sourceID.
+	MapEdgeAttributeNameSourceID elemental.AttributeSpecificationNameKey = "mapedge/sourceID"
 )
 
 // MapEdgeIdentity represents the Identity of the object
@@ -22,11 +31,20 @@ type MapEdgesList []*MapEdge
 
 // MapEdge represents the model of a mapedge
 type MapEdge struct {
-	ID            string   `json:"ID,omitempty" cql:"-"`
-	DestinationID string   `json:"destinationID,omitempty" cql:"-"`
-	Labels        []string `json:"labels,omitempty" cql:"-"`
-	Name          string   `json:"name,omitempty" cql:"name,omitempty"`
-	SourceID      string   `json:"sourceID,omitempty" cql:"-"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// ID of the destination resource
+	DestinationID string `json:"destinationID,omitempty" cql:"-"`
+
+	// Labels provide grouping parameters
+	Labels []string `json:"labels,omitempty" cql:"-"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// ID of the source resource
+	SourceID string `json:"sourceID,omitempty" cql:"-"`
 }
 
 // NewMapEdge returns a new *MapEdge
@@ -94,6 +112,7 @@ func (o MapEdge) SpecificationForAttribute(name elemental.AttributeSpecification
 	return MapEdgeAttributesMap[name]
 }
 
+// MapEdgeAttributesMap represents the map of attribute for MapEdge.
 var MapEdgeAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	MapEdgeAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

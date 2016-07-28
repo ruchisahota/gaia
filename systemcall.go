@@ -7,16 +7,35 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	SystemCallAttributeNameID             elemental.AttributeSpecificationNameKey = "systemcall/ID"
-	SystemCallAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "systemcall/annotation"
+	// SystemCallAttributeNameID represents the attribute ID.
+	SystemCallAttributeNameID elemental.AttributeSpecificationNameKey = "systemcall/ID"
+
+	// SystemCallAttributeNameAnnotation represents the attribute annotation.
+	SystemCallAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "systemcall/annotation"
+
+	// SystemCallAttributeNameAssociatedTags represents the attribute associatedTags.
 	SystemCallAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "systemcall/associatedTags"
-	SystemCallAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "systemcall/createdAt"
-	SystemCallAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "systemcall/deleted"
-	SystemCallAttributeNameDescription    elemental.AttributeSpecificationNameKey = "systemcall/description"
-	SystemCallAttributeNameName           elemental.AttributeSpecificationNameKey = "systemcall/name"
-	SystemCallAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "systemcall/namespace"
-	SystemCallAttributeNameStatus         elemental.AttributeSpecificationNameKey = "systemcall/status"
-	SystemCallAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "systemcall/updatedAt"
+
+	// SystemCallAttributeNameCreatedAt represents the attribute createdAt.
+	SystemCallAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "systemcall/createdAt"
+
+	// SystemCallAttributeNameDeleted represents the attribute deleted.
+	SystemCallAttributeNameDeleted elemental.AttributeSpecificationNameKey = "systemcall/deleted"
+
+	// SystemCallAttributeNameDescription represents the attribute description.
+	SystemCallAttributeNameDescription elemental.AttributeSpecificationNameKey = "systemcall/description"
+
+	// SystemCallAttributeNameName represents the attribute name.
+	SystemCallAttributeNameName elemental.AttributeSpecificationNameKey = "systemcall/name"
+
+	// SystemCallAttributeNameNamespace represents the attribute namespace.
+	SystemCallAttributeNameNamespace elemental.AttributeSpecificationNameKey = "systemcall/namespace"
+
+	// SystemCallAttributeNameStatus represents the attribute status.
+	SystemCallAttributeNameStatus elemental.AttributeSpecificationNameKey = "systemcall/status"
+
+	// SystemCallAttributeNameUpdatedAt represents the attribute updatedAt.
+	SystemCallAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "systemcall/updatedAt"
 )
 
 // SystemCallIdentity represents the Identity of the object
@@ -30,16 +49,35 @@ type SystemCallsList []*SystemCall
 
 // SystemCall represents the model of a systemcall
 type SystemCall struct {
-	ID             string            `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Annotation     map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string          `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt      time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool              `json:"-" cql:"deleted,omitempty"`
-	Description    string            `json:"description,omitempty" cql:"description,omitempty"`
-	Name           string            `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace      string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Status         enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt      time.Time         `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewSystemCall returns a new *SystemCall
@@ -155,6 +193,7 @@ func (o SystemCall) SpecificationForAttribute(name elemental.AttributeSpecificat
 	return SystemCallAttributesMap[name]
 }
 
+// SystemCallAttributesMap represents the map of attribute for SystemCall.
 var SystemCallAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	SystemCallAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

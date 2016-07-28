@@ -7,29 +7,61 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	AuthenticatorAttributeNameID               elemental.AttributeSpecificationNameKey = "authenticator/ID"
-	AuthenticatorAttributeNameAnnotation       elemental.AttributeSpecificationNameKey = "authenticator/annotation"
-	AuthenticatorAttributeNameAssociatedTags   elemental.AttributeSpecificationNameKey = "authenticator/associatedTags"
-	AuthenticatorAttributeNameConfiguration    elemental.AttributeSpecificationNameKey = "authenticator/configuration"
-	AuthenticatorAttributeNameCreatedAt        elemental.AttributeSpecificationNameKey = "authenticator/createdAt"
+	// AuthenticatorAttributeNameID represents the attribute ID.
+	AuthenticatorAttributeNameID elemental.AttributeSpecificationNameKey = "authenticator/ID"
+
+	// AuthenticatorAttributeNameAnnotation represents the attribute annotation.
+	AuthenticatorAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "authenticator/annotation"
+
+	// AuthenticatorAttributeNameAssociatedTags represents the attribute associatedTags.
+	AuthenticatorAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "authenticator/associatedTags"
+
+	// AuthenticatorAttributeNameConfiguration represents the attribute configuration.
+	AuthenticatorAttributeNameConfiguration elemental.AttributeSpecificationNameKey = "authenticator/configuration"
+
+	// AuthenticatorAttributeNameCreatedAt represents the attribute createdAt.
+	AuthenticatorAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "authenticator/createdAt"
+
+	// AuthenticatorAttributeNameDefaultNamespace represents the attribute defaultNamespace.
 	AuthenticatorAttributeNameDefaultNamespace elemental.AttributeSpecificationNameKey = "authenticator/defaultNamespace"
-	AuthenticatorAttributeNameDeleted          elemental.AttributeSpecificationNameKey = "authenticator/deleted"
-	AuthenticatorAttributeNameDescription      elemental.AttributeSpecificationNameKey = "authenticator/description"
-	AuthenticatorAttributeNameMethod           elemental.AttributeSpecificationNameKey = "authenticator/method"
-	AuthenticatorAttributeNameName             elemental.AttributeSpecificationNameKey = "authenticator/name"
-	AuthenticatorAttributeNameNamespace        elemental.AttributeSpecificationNameKey = "authenticator/namespace"
-	AuthenticatorAttributeNameStatus           elemental.AttributeSpecificationNameKey = "authenticator/status"
-	AuthenticatorAttributeNameUpdatedAt        elemental.AttributeSpecificationNameKey = "authenticator/updatedAt"
+
+	// AuthenticatorAttributeNameDeleted represents the attribute deleted.
+	AuthenticatorAttributeNameDeleted elemental.AttributeSpecificationNameKey = "authenticator/deleted"
+
+	// AuthenticatorAttributeNameDescription represents the attribute description.
+	AuthenticatorAttributeNameDescription elemental.AttributeSpecificationNameKey = "authenticator/description"
+
+	// AuthenticatorAttributeNameMethod represents the attribute method.
+	AuthenticatorAttributeNameMethod elemental.AttributeSpecificationNameKey = "authenticator/method"
+
+	// AuthenticatorAttributeNameName represents the attribute name.
+	AuthenticatorAttributeNameName elemental.AttributeSpecificationNameKey = "authenticator/name"
+
+	// AuthenticatorAttributeNameNamespace represents the attribute namespace.
+	AuthenticatorAttributeNameNamespace elemental.AttributeSpecificationNameKey = "authenticator/namespace"
+
+	// AuthenticatorAttributeNameStatus represents the attribute status.
+	AuthenticatorAttributeNameStatus elemental.AttributeSpecificationNameKey = "authenticator/status"
+
+	// AuthenticatorAttributeNameUpdatedAt represents the attribute updatedAt.
+	AuthenticatorAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "authenticator/updatedAt"
 )
 
 // AuthenticatorMethodValue represents the possible values for attribute "method".
 type AuthenticatorMethodValue string
 
 const (
+	// AuthenticatorMethodCertificate represents the value Certificate.
 	AuthenticatorMethodCertificate AuthenticatorMethodValue = "Certificate"
-	AuthenticatorMethodKey         AuthenticatorMethodValue = "Key"
-	AuthenticatorMethodLdap        AuthenticatorMethodValue = "LDAP"
-	AuthenticatorMethodOauth       AuthenticatorMethodValue = "OAUTH"
+
+	// AuthenticatorMethodKey represents the value Key.
+	AuthenticatorMethodKey AuthenticatorMethodValue = "Key"
+
+	// AuthenticatorMethodLdap represents the value LDAP.
+	AuthenticatorMethodLdap AuthenticatorMethodValue = "LDAP"
+
+	// AuthenticatorMethodOauth represents the value OAUTH.
+	AuthenticatorMethodOauth AuthenticatorMethodValue = "OAUTH"
 )
 
 // AuthenticatorIdentity represents the Identity of the object
@@ -43,19 +75,44 @@ type AuthenticatorsList []*Authenticator
 
 // Authenticator represents the model of a authenticator
 type Authenticator struct {
-	ID               string                   `json:"ID,omitempty" cql:"id,omitempty"`
-	Annotation       map[string]string        `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags   []string                 `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	Configuration    map[string]string        `json:"configuration,omitempty" cql:"configuration,omitempty"`
-	CreatedAt        time.Time                `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	DefaultNamespace string                   `json:"defaultNamespace,omitempty" cql:"defaultnamespace,primarykey,omitempty"`
-	Deleted          bool                     `json:"-" cql:"deleted,omitempty"`
-	Description      string                   `json:"description,omitempty" cql:"description,omitempty"`
-	Method           AuthenticatorMethodValue `json:"method,omitempty" cql:"method,omitempty"`
-	Name             string                   `json:"name,omitempty" cql:"name,primarykey,omitempty"`
-	Namespace        string                   `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Status           enum.EntityStatus        `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt        time.Time                `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// Configuration stores information needed to authenticate an user using any servers like LDAP/Google/Certificate
+	Configuration map[string]string `json:"configuration,omitempty" cql:"configuration,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Namespace is the default namespace of the Authenticator
+	DefaultNamespace string `json:"defaultNamespace,omitempty" cql:"defaultnamespace,primarykey,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Method for authenticator (Certificate, Key, LDAP, Google, etc)
+	Method AuthenticatorMethodValue `json:"method,omitempty" cql:"method,omitempty"`
+
+	// Name of the authenticator
+	Name string `json:"name,omitempty" cql:"name,primarykey,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewAuthenticator returns a new *Authenticator
@@ -170,6 +227,7 @@ func (o Authenticator) SpecificationForAttribute(name elemental.AttributeSpecifi
 	return AuthenticatorAttributesMap[name]
 }
 
+// AuthenticatorAttributesMap represents the map of attribute for Authenticator.
 var AuthenticatorAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	AuthenticatorAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

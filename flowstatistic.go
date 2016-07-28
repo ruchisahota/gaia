@@ -6,7 +6,10 @@ import "github.com/aporeto-inc/elemental"
 import "github.com/aporeto-inc/go-kairosdb/builder"
 
 const (
-	FlowStatisticAttributeNameID         elemental.AttributeSpecificationNameKey = "flowstatistic/ID"
+	// FlowStatisticAttributeNameID represents the attribute ID.
+	FlowStatisticAttributeNameID elemental.AttributeSpecificationNameKey = "flowstatistic/ID"
+
+	// FlowStatisticAttributeNameDatapoints represents the attribute datapoints.
 	FlowStatisticAttributeNameDatapoints elemental.AttributeSpecificationNameKey = "flowstatistic/datapoints"
 )
 
@@ -21,7 +24,10 @@ type FlowStatisticsList []*FlowStatistic
 
 // FlowStatistic represents the model of a flowstatistic
 type FlowStatistic struct {
-	ID         string              `json:"ID,omitempty" cql:"-"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// Datapoints is a list of time/value pairs that represent the flow events over time.
 	Datapoints []builder.DataPoint `json:"datapoints,omitempty" cql:"-"`
 }
 
@@ -68,6 +74,7 @@ func (o FlowStatistic) SpecificationForAttribute(name elemental.AttributeSpecifi
 	return FlowStatisticAttributesMap[name]
 }
 
+// FlowStatisticAttributesMap represents the map of attribute for FlowStatistic.
 var FlowStatisticAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	FlowStatisticAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

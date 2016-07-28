@@ -7,23 +7,56 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	PolicyAttributeNameID             elemental.AttributeSpecificationNameKey = "policy/ID"
-	PolicyAttributeNameAction         elemental.AttributeSpecificationNameKey = "policy/action"
-	PolicyAttributeNameAllObjectTags  elemental.AttributeSpecificationNameKey = "policy/allObjectTags"
+	// PolicyAttributeNameID represents the attribute ID.
+	PolicyAttributeNameID elemental.AttributeSpecificationNameKey = "policy/ID"
+
+	// PolicyAttributeNameAction represents the attribute action.
+	PolicyAttributeNameAction elemental.AttributeSpecificationNameKey = "policy/action"
+
+	// PolicyAttributeNameAllObjectTags represents the attribute allObjectTags.
+	PolicyAttributeNameAllObjectTags elemental.AttributeSpecificationNameKey = "policy/allObjectTags"
+
+	// PolicyAttributeNameAllSubjectTags represents the attribute allSubjectTags.
 	PolicyAttributeNameAllSubjectTags elemental.AttributeSpecificationNameKey = "policy/allSubjectTags"
-	PolicyAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "policy/annotation"
+
+	// PolicyAttributeNameAnnotation represents the attribute annotation.
+	PolicyAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "policy/annotation"
+
+	// PolicyAttributeNameAssociatedTags represents the attribute associatedTags.
 	PolicyAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "policy/associatedTags"
-	PolicyAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "policy/createdAt"
-	PolicyAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "policy/deleted"
-	PolicyAttributeNameDescription    elemental.AttributeSpecificationNameKey = "policy/description"
-	PolicyAttributeNameName           elemental.AttributeSpecificationNameKey = "policy/name"
-	PolicyAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "policy/namespace"
-	PolicyAttributeNameObject         elemental.AttributeSpecificationNameKey = "policy/object"
-	PolicyAttributeNameRelation       elemental.AttributeSpecificationNameKey = "policy/relation"
-	PolicyAttributeNameStatus         elemental.AttributeSpecificationNameKey = "policy/status"
-	PolicyAttributeNameSubject        elemental.AttributeSpecificationNameKey = "policy/subject"
-	PolicyAttributeNameType           elemental.AttributeSpecificationNameKey = "policy/type"
-	PolicyAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "policy/updatedAt"
+
+	// PolicyAttributeNameCreatedAt represents the attribute createdAt.
+	PolicyAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "policy/createdAt"
+
+	// PolicyAttributeNameDeleted represents the attribute deleted.
+	PolicyAttributeNameDeleted elemental.AttributeSpecificationNameKey = "policy/deleted"
+
+	// PolicyAttributeNameDescription represents the attribute description.
+	PolicyAttributeNameDescription elemental.AttributeSpecificationNameKey = "policy/description"
+
+	// PolicyAttributeNameName represents the attribute name.
+	PolicyAttributeNameName elemental.AttributeSpecificationNameKey = "policy/name"
+
+	// PolicyAttributeNameNamespace represents the attribute namespace.
+	PolicyAttributeNameNamespace elemental.AttributeSpecificationNameKey = "policy/namespace"
+
+	// PolicyAttributeNameObject represents the attribute object.
+	PolicyAttributeNameObject elemental.AttributeSpecificationNameKey = "policy/object"
+
+	// PolicyAttributeNameRelation represents the attribute relation.
+	PolicyAttributeNameRelation elemental.AttributeSpecificationNameKey = "policy/relation"
+
+	// PolicyAttributeNameStatus represents the attribute status.
+	PolicyAttributeNameStatus elemental.AttributeSpecificationNameKey = "policy/status"
+
+	// PolicyAttributeNameSubject represents the attribute subject.
+	PolicyAttributeNameSubject elemental.AttributeSpecificationNameKey = "policy/subject"
+
+	// PolicyAttributeNameType represents the attribute type.
+	PolicyAttributeNameType elemental.AttributeSpecificationNameKey = "policy/type"
+
+	// PolicyAttributeNameUpdatedAt represents the attribute updatedAt.
+	PolicyAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "policy/updatedAt"
 )
 
 // PolicyIdentity represents the Identity of the object
@@ -37,23 +70,56 @@ type PoliciesList []*Policy
 
 // Policy represents the model of a policy
 type Policy struct {
-	ID             string                       `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Action         map[string]map[string]string `json:"action,omitempty" cql:"action,omitempty"`
-	AllObjectTags  []string                     `json:"-" cql:"allobjecttags,omitempty"`
-	AllSubjectTags []string                     `json:"-" cql:"allsubjecttags,omitempty"`
-	Annotation     map[string]string            `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string                     `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt      time.Time                    `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool                         `json:"-" cql:"deleted,omitempty"`
-	Description    string                       `json:"description,omitempty" cql:"description,omitempty"`
-	Name           string                       `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace      string                       `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Object         [][]string                   `json:"object,omitempty" cql:"object,omitempty"`
-	Relation       []string                     `json:"relation,omitempty" cql:"relation,omitempty"`
-	Status         enum.EntityStatus            `json:"status,omitempty" cql:"status,omitempty"`
-	Subject        [][]string                   `json:"subject,omitempty" cql:"subject,omitempty"`
-	Type           enum.PolicyType              `json:"type,omitempty" cql:"type,primarykey,omitempty"`
-	UpdatedAt      time.Time                    `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Action defines set of actions that must be enforced when a dependency is met.
+	Action map[string]map[string]string `json:"action,omitempty" cql:"action,omitempty"`
+
+	// This is a set of all object tags for matching in the DB
+	AllObjectTags []string `json:"-" cql:"allobjecttags,omitempty"`
+
+	// This is a set of all subject tags for matching in the DB
+	AllSubjectTags []string `json:"-" cql:"allsubjecttags,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.
+	Object [][]string `json:"object,omitempty" cql:"object,omitempty"`
+
+	// Relation describes the required operation to be performed between subjects and objects
+	Relation []string `json:"relation,omitempty" cql:"relation,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
+	Subject [][]string `json:"subject,omitempty" cql:"subject,omitempty"`
+
+	// Type of the policy
+	Type enum.PolicyType `json:"type,omitempty" cql:"type,primarykey,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewPolicy returns a new *Policy
@@ -173,6 +239,7 @@ func (o Policy) SpecificationForAttribute(name elemental.AttributeSpecificationN
 	return PolicyAttributesMap[name]
 }
 
+// PolicyAttributesMap represents the map of attribute for Policy.
 var PolicyAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	PolicyAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

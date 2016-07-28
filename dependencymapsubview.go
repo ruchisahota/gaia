@@ -4,10 +4,17 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	DependencyMapSubviewAttributeNameID           elemental.AttributeSpecificationNameKey = "dependencymapsubview/ID"
-	DependencyMapSubviewAttributeNameSelector     elemental.AttributeSpecificationNameKey = "dependencymapsubview/selector"
+	// DependencyMapSubviewAttributeNameID represents the attribute ID.
+	DependencyMapSubviewAttributeNameID elemental.AttributeSpecificationNameKey = "dependencymapsubview/ID"
+
+	// DependencyMapSubviewAttributeNameSelector represents the attribute selector.
+	DependencyMapSubviewAttributeNameSelector elemental.AttributeSpecificationNameKey = "dependencymapsubview/selector"
+
+	// DependencyMapSubviewAttributeNameSubSelectors represents the attribute subSelectors.
 	DependencyMapSubviewAttributeNameSubSelectors elemental.AttributeSpecificationNameKey = "dependencymapsubview/subSelectors"
-	DependencyMapSubviewAttributeNameTonality     elemental.AttributeSpecificationNameKey = "dependencymapsubview/tonality"
+
+	// DependencyMapSubviewAttributeNameTonality represents the attribute tonality.
+	DependencyMapSubviewAttributeNameTonality elemental.AttributeSpecificationNameKey = "dependencymapsubview/tonality"
 )
 
 // DependencyMapSubviewIdentity represents the Identity of the object
@@ -21,10 +28,17 @@ type DependencyMapSubviewsList []*DependencyMapSubview
 
 // DependencyMapSubview represents the model of a dependencymapsubview
 type DependencyMapSubview struct {
-	ID           string              `json:"ID,omitempty" cql:"-"`
-	Selector     []string            `json:"selector,omitempty" cql:"selector,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// Selector is the main selector for the DependencyMapSubview.
+	Selector []string `json:"selector,omitempty" cql:"selector,omitempty"`
+
+	// SubSelectors are the selector to apply inside the main selector.
 	SubSelectors map[string][]string `json:"subSelectors,omitempty" cql:"subselectors,omitempty"`
-	Tonality     string              `json:"tonality,omitempty" cql:"tonality,omitempty"`
+
+	// Tonality sets the color tonality to use for the DependencyMapSubView.
+	Tonality string `json:"tonality,omitempty" cql:"tonality,omitempty"`
 }
 
 // NewDependencyMapSubview returns a new *DependencyMapSubview
@@ -73,6 +87,7 @@ func (o DependencyMapSubview) SpecificationForAttribute(name elemental.Attribute
 	return DependencyMapSubviewAttributesMap[name]
 }
 
+// DependencyMapSubviewAttributesMap represents the map of attribute for DependencyMapSubview.
 var DependencyMapSubviewAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	DependencyMapSubviewAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

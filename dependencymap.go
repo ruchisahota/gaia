@@ -4,8 +4,13 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	DependencyMapAttributeNameID    elemental.AttributeSpecificationNameKey = "dependencymap/ID"
+	// DependencyMapAttributeNameID represents the attribute ID.
+	DependencyMapAttributeNameID elemental.AttributeSpecificationNameKey = "dependencymap/ID"
+
+	// DependencyMapAttributeNameEdges represents the attribute edges.
 	DependencyMapAttributeNameEdges elemental.AttributeSpecificationNameKey = "dependencymap/edges"
+
+	// DependencyMapAttributeNameNodes represents the attribute nodes.
 	DependencyMapAttributeNameNodes elemental.AttributeSpecificationNameKey = "dependencymap/nodes"
 )
 
@@ -20,8 +25,13 @@ type DependencyMapsList []*DependencyMap
 
 // DependencyMap represents the model of a dependencymap
 type DependencyMap struct {
-	ID    string    `json:"ID,omitempty" cql:"-"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// edges are the edges of the map
 	Edges []MapEdge `json:"edges,omitempty" cql:"-"`
+
+	// nodes refers to the nodes of the map
 	Nodes []MapNode `json:"nodes,omitempty" cql:"-"`
 }
 
@@ -71,6 +81,7 @@ func (o DependencyMap) SpecificationForAttribute(name elemental.AttributeSpecifi
 	return DependencyMapAttributesMap[name]
 }
 
+// DependencyMapAttributesMap represents the map of attribute for DependencyMap.
 var DependencyMapAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	DependencyMapAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

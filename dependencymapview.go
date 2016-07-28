@@ -7,17 +7,38 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	DependencyMapViewAttributeNameID             elemental.AttributeSpecificationNameKey = "dependencymapview/ID"
-	DependencyMapViewAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "dependencymapview/annotation"
+	// DependencyMapViewAttributeNameID represents the attribute ID.
+	DependencyMapViewAttributeNameID elemental.AttributeSpecificationNameKey = "dependencymapview/ID"
+
+	// DependencyMapViewAttributeNameAnnotation represents the attribute annotation.
+	DependencyMapViewAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "dependencymapview/annotation"
+
+	// DependencyMapViewAttributeNameAssociatedTags represents the attribute associatedTags.
 	DependencyMapViewAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "dependencymapview/associatedTags"
-	DependencyMapViewAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "dependencymapview/createdAt"
-	DependencyMapViewAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "dependencymapview/deleted"
-	DependencyMapViewAttributeNameDescription    elemental.AttributeSpecificationNameKey = "dependencymapview/description"
-	DependencyMapViewAttributeNameName           elemental.AttributeSpecificationNameKey = "dependencymapview/name"
-	DependencyMapViewAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "dependencymapview/namespace"
-	DependencyMapViewAttributeNameStatus         elemental.AttributeSpecificationNameKey = "dependencymapview/status"
-	DependencyMapViewAttributeNameSubviews       elemental.AttributeSpecificationNameKey = "dependencymapview/subviews"
-	DependencyMapViewAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "dependencymapview/updatedAt"
+
+	// DependencyMapViewAttributeNameCreatedAt represents the attribute createdAt.
+	DependencyMapViewAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "dependencymapview/createdAt"
+
+	// DependencyMapViewAttributeNameDeleted represents the attribute deleted.
+	DependencyMapViewAttributeNameDeleted elemental.AttributeSpecificationNameKey = "dependencymapview/deleted"
+
+	// DependencyMapViewAttributeNameDescription represents the attribute description.
+	DependencyMapViewAttributeNameDescription elemental.AttributeSpecificationNameKey = "dependencymapview/description"
+
+	// DependencyMapViewAttributeNameName represents the attribute name.
+	DependencyMapViewAttributeNameName elemental.AttributeSpecificationNameKey = "dependencymapview/name"
+
+	// DependencyMapViewAttributeNameNamespace represents the attribute namespace.
+	DependencyMapViewAttributeNameNamespace elemental.AttributeSpecificationNameKey = "dependencymapview/namespace"
+
+	// DependencyMapViewAttributeNameStatus represents the attribute status.
+	DependencyMapViewAttributeNameStatus elemental.AttributeSpecificationNameKey = "dependencymapview/status"
+
+	// DependencyMapViewAttributeNameSubviews represents the attribute subviews.
+	DependencyMapViewAttributeNameSubviews elemental.AttributeSpecificationNameKey = "dependencymapview/subviews"
+
+	// DependencyMapViewAttributeNameUpdatedAt represents the attribute updatedAt.
+	DependencyMapViewAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "dependencymapview/updatedAt"
 )
 
 // DependencyMapViewIdentity represents the Identity of the object
@@ -31,17 +52,38 @@ type DependencyMapViewsList []*DependencyMapView
 
 // DependencyMapView represents the model of a dependencymapview
 type DependencyMapView struct {
-	ID             string                    `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Annotation     map[string]string         `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string                  `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt      time.Time                 `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool                      `json:"-" cql:"deleted,omitempty"`
-	Description    string                    `json:"description,omitempty" cql:"description,omitempty"`
-	Name           string                    `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace      string                    `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Status         enum.EntityStatus         `json:"status,omitempty" cql:"status,omitempty"`
-	Subviews       DependencyMapSubviewsList `json:"subviews,omitempty" cql:"subviews,omitempty"`
-	UpdatedAt      time.Time                 `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// Values used by the dependency map group
+	Subviews DependencyMapSubviewsList `json:"subviews,omitempty" cql:"subviews,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewDependencyMapView returns a new *DependencyMapView
@@ -158,6 +200,7 @@ func (o DependencyMapView) SpecificationForAttribute(name elemental.AttributeSpe
 	return DependencyMapViewAttributesMap[name]
 }
 
+// DependencyMapViewAttributesMap represents the map of attribute for DependencyMapView.
 var DependencyMapViewAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	DependencyMapViewAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

@@ -4,6 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
+	// RootAttributeNameID represents the attribute ID.
 	RootAttributeNameID elemental.AttributeSpecificationNameKey = "root/ID"
 )
 
@@ -15,6 +16,7 @@ var RootIdentity = elemental.Identity{
 
 // Root represents the model of a root
 type Root struct {
+	// ID is the identifier of the object.
 	ID string `json:"ID,omitempty" cql:"-"`
 
 	Token        string `json:"APIKey,omitempty"`
@@ -76,6 +78,7 @@ func (o Root) SpecificationForAttribute(name elemental.AttributeSpecificationNam
 	return RootAttributesMap[name]
 }
 
+// RootAttributesMap represents the map of attribute for Root.
 var RootAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	RootAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

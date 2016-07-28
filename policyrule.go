@@ -4,13 +4,28 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	PolicyRuleAttributeNameID         elemental.AttributeSpecificationNameKey = "policyrule/ID"
-	PolicyRuleAttributeNameAction     elemental.AttributeSpecificationNameKey = "policyrule/action"
-	PolicyRuleAttributeNameFiles      elemental.AttributeSpecificationNameKey = "policyrule/files"
+	// PolicyRuleAttributeNameID represents the attribute ID.
+	PolicyRuleAttributeNameID elemental.AttributeSpecificationNameKey = "policyrule/ID"
+
+	// PolicyRuleAttributeNameAction represents the attribute action.
+	PolicyRuleAttributeNameAction elemental.AttributeSpecificationNameKey = "policyrule/action"
+
+	// PolicyRuleAttributeNameFiles represents the attribute files.
+	PolicyRuleAttributeNameFiles elemental.AttributeSpecificationNameKey = "policyrule/files"
+
+	// PolicyRuleAttributeNameNamespaces represents the attribute namespaces.
 	PolicyRuleAttributeNameNamespaces elemental.AttributeSpecificationNameKey = "policyrule/namespaces"
-	PolicyRuleAttributeNameNetworks   elemental.AttributeSpecificationNameKey = "policyrule/networks"
-	PolicyRuleAttributeNameRelation   elemental.AttributeSpecificationNameKey = "policyrule/relation"
-	PolicyRuleAttributeNameSyscalls   elemental.AttributeSpecificationNameKey = "policyrule/syscalls"
+
+	// PolicyRuleAttributeNameNetworks represents the attribute networks.
+	PolicyRuleAttributeNameNetworks elemental.AttributeSpecificationNameKey = "policyrule/networks"
+
+	// PolicyRuleAttributeNameRelation represents the attribute relation.
+	PolicyRuleAttributeNameRelation elemental.AttributeSpecificationNameKey = "policyrule/relation"
+
+	// PolicyRuleAttributeNameSyscalls represents the attribute syscalls.
+	PolicyRuleAttributeNameSyscalls elemental.AttributeSpecificationNameKey = "policyrule/syscalls"
+
+	// PolicyRuleAttributeNameTagclauses represents the attribute tagclauses.
 	PolicyRuleAttributeNameTagclauses elemental.AttributeSpecificationNameKey = "policyrule/tagclauses"
 )
 
@@ -25,14 +40,29 @@ type PolicyRulesList []*PolicyRule
 
 // PolicyRule represents the model of a policyrule
 type PolicyRule struct {
-	ID         string                       `json:"ID,omitempty" cql:"-"`
-	Action     map[string]map[string]string `json:"action,omitempty" cql:"action,omitempty"`
-	Files      FilePathsList                `json:"files,omitempty" cql:"files,omitempty"`
-	Namespaces NamespacesList               `json:"namespaces,omitempty" cql:"namespaces,omitempty"`
-	Networks   ExternalServicesList         `json:"networks,omitempty" cql:"networks,omitempty"`
-	Relation   []string                     `json:"relation,omitempty" cql:"relation,omitempty"`
-	Syscalls   SystemCallsList              `json:"syscalls,omitempty" cql:"syscalls,omitempty"`
-	Tagclauses [][]string                   `json:"tagclauses,omitempty" cql:"tagclauses,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// Action defines set of actions that must be enforced when a dependency is met.
+	Action map[string]map[string]string `json:"action,omitempty" cql:"action,omitempty"`
+
+	// Policy target networks
+	Files FilePathsList `json:"files,omitempty" cql:"files,omitempty"`
+
+	// Policy target networks
+	Namespaces NamespacesList `json:"namespaces,omitempty" cql:"namespaces,omitempty"`
+
+	// Policy target networks
+	Networks ExternalServicesList `json:"networks,omitempty" cql:"networks,omitempty"`
+
+	// Relation describes the required operation to be performed between subjects and objects
+	Relation []string `json:"relation,omitempty" cql:"relation,omitempty"`
+
+	// Policy target networks
+	Syscalls SystemCallsList `json:"syscalls,omitempty" cql:"syscalls,omitempty"`
+
+	// Policy target tags
+	Tagclauses [][]string `json:"tagclauses,omitempty" cql:"tagclauses,omitempty"`
 }
 
 // NewPolicyRule returns a new *PolicyRule
@@ -78,6 +108,7 @@ func (o PolicyRule) SpecificationForAttribute(name elemental.AttributeSpecificat
 	return PolicyRuleAttributesMap[name]
 }
 
+// PolicyRuleAttributesMap represents the map of attribute for PolicyRule.
 var PolicyRuleAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	PolicyRuleAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

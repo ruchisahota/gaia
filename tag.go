@@ -7,16 +7,35 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	TagAttributeNameID             elemental.AttributeSpecificationNameKey = "tag/ID"
-	TagAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "tag/annotation"
+	// TagAttributeNameID represents the attribute ID.
+	TagAttributeNameID elemental.AttributeSpecificationNameKey = "tag/ID"
+
+	// TagAttributeNameAnnotation represents the attribute annotation.
+	TagAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "tag/annotation"
+
+	// TagAttributeNameAssociatedTags represents the attribute associatedTags.
 	TagAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "tag/associatedTags"
-	TagAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "tag/createdAt"
-	TagAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "tag/deleted"
-	TagAttributeNameDescription    elemental.AttributeSpecificationNameKey = "tag/description"
-	TagAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "tag/namespace"
-	TagAttributeNameStatus         elemental.AttributeSpecificationNameKey = "tag/status"
-	TagAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "tag/updatedAt"
-	TagAttributeNameValue          elemental.AttributeSpecificationNameKey = "tag/value"
+
+	// TagAttributeNameCreatedAt represents the attribute createdAt.
+	TagAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "tag/createdAt"
+
+	// TagAttributeNameDeleted represents the attribute deleted.
+	TagAttributeNameDeleted elemental.AttributeSpecificationNameKey = "tag/deleted"
+
+	// TagAttributeNameDescription represents the attribute description.
+	TagAttributeNameDescription elemental.AttributeSpecificationNameKey = "tag/description"
+
+	// TagAttributeNameNamespace represents the attribute namespace.
+	TagAttributeNameNamespace elemental.AttributeSpecificationNameKey = "tag/namespace"
+
+	// TagAttributeNameStatus represents the attribute status.
+	TagAttributeNameStatus elemental.AttributeSpecificationNameKey = "tag/status"
+
+	// TagAttributeNameUpdatedAt represents the attribute updatedAt.
+	TagAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "tag/updatedAt"
+
+	// TagAttributeNameValue represents the attribute value.
+	TagAttributeNameValue elemental.AttributeSpecificationNameKey = "tag/value"
 )
 
 // TagIdentity represents the Identity of the object
@@ -30,16 +49,35 @@ type TagsList []*Tag
 
 // Tag represents the model of a tag
 type Tag struct {
-	ID             string            `json:"ID,omitempty" cql:"id,omitempty"`
-	Annotation     map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string          `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt      time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool              `json:"-" cql:"deleted,omitempty"`
-	Description    string            `json:"description,omitempty" cql:"description,omitempty"`
-	Namespace      string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Status         enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt      time.Time         `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
-	Value          string            `json:"value,omitempty" cql:"value,primarykey,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+
+	// Value stores the value of the tag in `<key>=<value>` format.
+	Value string `json:"value,omitempty" cql:"value,primarykey,omitempty"`
 }
 
 // NewTag returns a new *Tag
@@ -145,6 +183,7 @@ func (o Tag) SpecificationForAttribute(name elemental.AttributeSpecificationName
 	return TagAttributesMap[name]
 }
 
+// TagAttributesMap represents the map of attribute for Tag.
 var TagAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	TagAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

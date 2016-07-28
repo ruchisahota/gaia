@@ -7,17 +7,38 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	NamespaceAttributeNameID             elemental.AttributeSpecificationNameKey = "namespace/ID"
-	NamespaceAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "namespace/annotation"
+	// NamespaceAttributeNameID represents the attribute ID.
+	NamespaceAttributeNameID elemental.AttributeSpecificationNameKey = "namespace/ID"
+
+	// NamespaceAttributeNameAnnotation represents the attribute annotation.
+	NamespaceAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "namespace/annotation"
+
+	// NamespaceAttributeNameAssociatedTags represents the attribute associatedTags.
 	NamespaceAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "namespace/associatedTags"
-	NamespaceAttributeNameAuthenticator  elemental.AttributeSpecificationNameKey = "namespace/authenticator"
-	NamespaceAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "namespace/createdAt"
-	NamespaceAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "namespace/deleted"
-	NamespaceAttributeNameDescription    elemental.AttributeSpecificationNameKey = "namespace/description"
-	NamespaceAttributeNameName           elemental.AttributeSpecificationNameKey = "namespace/name"
-	NamespaceAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "namespace/namespace"
-	NamespaceAttributeNameStatus         elemental.AttributeSpecificationNameKey = "namespace/status"
-	NamespaceAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "namespace/updatedAt"
+
+	// NamespaceAttributeNameAuthenticator represents the attribute authenticator.
+	NamespaceAttributeNameAuthenticator elemental.AttributeSpecificationNameKey = "namespace/authenticator"
+
+	// NamespaceAttributeNameCreatedAt represents the attribute createdAt.
+	NamespaceAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "namespace/createdAt"
+
+	// NamespaceAttributeNameDeleted represents the attribute deleted.
+	NamespaceAttributeNameDeleted elemental.AttributeSpecificationNameKey = "namespace/deleted"
+
+	// NamespaceAttributeNameDescription represents the attribute description.
+	NamespaceAttributeNameDescription elemental.AttributeSpecificationNameKey = "namespace/description"
+
+	// NamespaceAttributeNameName represents the attribute name.
+	NamespaceAttributeNameName elemental.AttributeSpecificationNameKey = "namespace/name"
+
+	// NamespaceAttributeNameNamespace represents the attribute namespace.
+	NamespaceAttributeNameNamespace elemental.AttributeSpecificationNameKey = "namespace/namespace"
+
+	// NamespaceAttributeNameStatus represents the attribute status.
+	NamespaceAttributeNameStatus elemental.AttributeSpecificationNameKey = "namespace/status"
+
+	// NamespaceAttributeNameUpdatedAt represents the attribute updatedAt.
+	NamespaceAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "namespace/updatedAt"
 )
 
 // NamespaceIdentity represents the Identity of the object
@@ -31,17 +52,38 @@ type NamespacesList []*Namespace
 
 // Namespace represents the model of a namespace
 type Namespace struct {
-	ID             string            `json:"ID,omitempty" cql:"id,omitempty"`
-	Annotation     map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string          `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	Authenticator  string            `json:"authenticator,omitempty" cql:"authenticator,omitempty"`
-	CreatedAt      time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool              `json:"-" cql:"deleted,omitempty"`
-	Description    string            `json:"description,omitempty" cql:"description,omitempty"`
-	Name           string            `json:"name,omitempty" cql:"name,primarykey,omitempty"`
-	Namespace      string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Status         enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt      time.Time         `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// Authenticator for this namespace
+	Authenticator string `json:"authenticator,omitempty" cql:"authenticator,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Name is the name of the namespace.
+	Name string `json:"name,omitempty" cql:"name,primarykey,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewNamespace returns a new *Namespace
@@ -152,6 +194,7 @@ func (o Namespace) SpecificationForAttribute(name elemental.AttributeSpecificati
 	return NamespaceAttributesMap[name]
 }
 
+// NamespaceAttributesMap represents the map of attribute for Namespace.
 var NamespaceAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	NamespaceAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

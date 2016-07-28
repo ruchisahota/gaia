@@ -7,19 +7,44 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	ExternalServiceAttributeNameID             elemental.AttributeSpecificationNameKey = "externalservice/ID"
-	ExternalServiceAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "externalservice/annotation"
+	// ExternalServiceAttributeNameID represents the attribute ID.
+	ExternalServiceAttributeNameID elemental.AttributeSpecificationNameKey = "externalservice/ID"
+
+	// ExternalServiceAttributeNameAnnotation represents the attribute annotation.
+	ExternalServiceAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "externalservice/annotation"
+
+	// ExternalServiceAttributeNameAssociatedTags represents the attribute associatedTags.
 	ExternalServiceAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "externalservice/associatedTags"
-	ExternalServiceAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "externalservice/createdAt"
-	ExternalServiceAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "externalservice/deleted"
-	ExternalServiceAttributeNameDescription    elemental.AttributeSpecificationNameKey = "externalservice/description"
-	ExternalServiceAttributeNameName           elemental.AttributeSpecificationNameKey = "externalservice/name"
-	ExternalServiceAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "externalservice/namespace"
-	ExternalServiceAttributeNameNetwork        elemental.AttributeSpecificationNameKey = "externalservice/network"
-	ExternalServiceAttributeNamePort           elemental.AttributeSpecificationNameKey = "externalservice/port"
-	ExternalServiceAttributeNameProtocol       elemental.AttributeSpecificationNameKey = "externalservice/protocol"
-	ExternalServiceAttributeNameStatus         elemental.AttributeSpecificationNameKey = "externalservice/status"
-	ExternalServiceAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "externalservice/updatedAt"
+
+	// ExternalServiceAttributeNameCreatedAt represents the attribute createdAt.
+	ExternalServiceAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "externalservice/createdAt"
+
+	// ExternalServiceAttributeNameDeleted represents the attribute deleted.
+	ExternalServiceAttributeNameDeleted elemental.AttributeSpecificationNameKey = "externalservice/deleted"
+
+	// ExternalServiceAttributeNameDescription represents the attribute description.
+	ExternalServiceAttributeNameDescription elemental.AttributeSpecificationNameKey = "externalservice/description"
+
+	// ExternalServiceAttributeNameName represents the attribute name.
+	ExternalServiceAttributeNameName elemental.AttributeSpecificationNameKey = "externalservice/name"
+
+	// ExternalServiceAttributeNameNamespace represents the attribute namespace.
+	ExternalServiceAttributeNameNamespace elemental.AttributeSpecificationNameKey = "externalservice/namespace"
+
+	// ExternalServiceAttributeNameNetwork represents the attribute network.
+	ExternalServiceAttributeNameNetwork elemental.AttributeSpecificationNameKey = "externalservice/network"
+
+	// ExternalServiceAttributeNamePort represents the attribute port.
+	ExternalServiceAttributeNamePort elemental.AttributeSpecificationNameKey = "externalservice/port"
+
+	// ExternalServiceAttributeNameProtocol represents the attribute protocol.
+	ExternalServiceAttributeNameProtocol elemental.AttributeSpecificationNameKey = "externalservice/protocol"
+
+	// ExternalServiceAttributeNameStatus represents the attribute status.
+	ExternalServiceAttributeNameStatus elemental.AttributeSpecificationNameKey = "externalservice/status"
+
+	// ExternalServiceAttributeNameUpdatedAt represents the attribute updatedAt.
+	ExternalServiceAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "externalservice/updatedAt"
 )
 
 // ExternalServiceIdentity represents the Identity of the object
@@ -33,19 +58,44 @@ type ExternalServicesList []*ExternalService
 
 // ExternalService represents the model of a externalservice
 type ExternalService struct {
-	ID             string            `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Annotation     map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string          `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt      time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool              `json:"-" cql:"deleted,omitempty"`
-	Description    string            `json:"description,omitempty" cql:"description,omitempty"`
-	Name           string            `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace      string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	Network        string            `json:"network,omitempty" cql:"network,omitempty"`
-	Port           string            `json:"port,omitempty" cql:"port,omitempty"`
-	Protocol       string            `json:"protocol,omitempty" cql:"protocol,omitempty"`
-	Status         enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt      time.Time         `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// Network refers to either CIDR or domain name
+	Network string `json:"network,omitempty" cql:"network,omitempty"`
+
+	// Port refers to network port which could be 100-2000 or * to represent all ports
+	Port string `json:"port,omitempty" cql:"port,omitempty"`
+
+	// Protocol refers to network protocol like TCP/UDP etc or * to represent all protocols
+	Protocol string `json:"protocol,omitempty" cql:"protocol,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewExternalService returns a new *ExternalService
@@ -173,6 +223,7 @@ func (o ExternalService) SpecificationForAttribute(name elemental.AttributeSpeci
 	return ExternalServiceAttributesMap[name]
 }
 
+// ExternalServiceAttributesMap represents the map of attribute for ExternalService.
 var ExternalServiceAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	ExternalServiceAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

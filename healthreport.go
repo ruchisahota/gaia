@@ -4,22 +4,40 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	HealthReportAttributeNameAPIVersion       elemental.AttributeSpecificationNameKey = "healthreport/APIVersion"
-	HealthReportAttributeNameID               elemental.AttributeSpecificationNameKey = "healthreport/ID"
-	HealthReportAttributeNameBahamutVersion   elemental.AttributeSpecificationNameKey = "healthreport/bahamutVersion"
+	// HealthReportAttributeNameAPIVersion represents the attribute APIVersion.
+	HealthReportAttributeNameAPIVersion elemental.AttributeSpecificationNameKey = "healthreport/APIVersion"
+
+	// HealthReportAttributeNameID represents the attribute ID.
+	HealthReportAttributeNameID elemental.AttributeSpecificationNameKey = "healthreport/ID"
+
+	// HealthReportAttributeNameBahamutVersion represents the attribute bahamutVersion.
+	HealthReportAttributeNameBahamutVersion elemental.AttributeSpecificationNameKey = "healthreport/bahamutVersion"
+
+	// HealthReportAttributeNameElementalVersion represents the attribute elementalVersion.
 	HealthReportAttributeNameElementalVersion elemental.AttributeSpecificationNameKey = "healthreport/elementalVersion"
-	HealthReportAttributeNameGaiaVersion      elemental.AttributeSpecificationNameKey = "healthreport/gaiaVersion"
-	HealthReportAttributeNameSquallVersion    elemental.AttributeSpecificationNameKey = "healthreport/squallVersion"
-	HealthReportAttributeNameStatus           elemental.AttributeSpecificationNameKey = "healthreport/status"
+
+	// HealthReportAttributeNameGaiaVersion represents the attribute gaiaVersion.
+	HealthReportAttributeNameGaiaVersion elemental.AttributeSpecificationNameKey = "healthreport/gaiaVersion"
+
+	// HealthReportAttributeNameSquallVersion represents the attribute squallVersion.
+	HealthReportAttributeNameSquallVersion elemental.AttributeSpecificationNameKey = "healthreport/squallVersion"
+
+	// HealthReportAttributeNameStatus represents the attribute status.
+	HealthReportAttributeNameStatus elemental.AttributeSpecificationNameKey = "healthreport/status"
 )
 
 // HealthReportStatusValue represents the possible values for attribute "status".
 type HealthReportStatusValue string
 
 const (
+	// HealthReportStatusDegraded represents the value Degraded.
 	HealthReportStatusDegraded HealthReportStatusValue = "Degraded"
-	HealthReportStatusFailure  HealthReportStatusValue = "Failure"
-	HealthReportStatusOk       HealthReportStatusValue = "Ok"
+
+	// HealthReportStatusFailure represents the value Failure.
+	HealthReportStatusFailure HealthReportStatusValue = "Failure"
+
+	// HealthReportStatusOk represents the value Ok.
+	HealthReportStatusOk HealthReportStatusValue = "Ok"
 )
 
 // HealthReportIdentity represents the Identity of the object
@@ -33,13 +51,26 @@ type HealthReportsList []*HealthReport
 
 // HealthReport represents the model of a healthreport
 type HealthReport struct {
-	APIVersion       string                  `json:"APIVersion,omitempty" cql:"-"`
-	ID               string                  `json:"ID,omitempty" cql:"-"`
-	BahamutVersion   string                  `json:"bahamutVersion,omitempty" cql:"-"`
-	ElementalVersion string                  `json:"elementalVersion,omitempty" cql:"-"`
-	GaiaVersion      string                  `json:"gaiaVersion,omitempty" cql:"-"`
-	SquallVersion    string                  `json:"squallVersion,omitempty" cql:"-"`
-	Status           HealthReportStatusValue `json:"status,omitempty" cql:"-"`
+	// APIVersion is the API version served by the server.
+	APIVersion string `json:"APIVersion,omitempty" cql:"-"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// bahamutVersion is the version of Bahamut used by the server.
+	BahamutVersion string `json:"bahamutVersion,omitempty" cql:"-"`
+
+	// elementalVersion is the version of Elemental used by the server.
+	ElementalVersion string `json:"elementalVersion,omitempty" cql:"-"`
+
+	// gaiaVersion is the version of Gaia used by the server.
+	GaiaVersion string `json:"gaiaVersion,omitempty" cql:"-"`
+
+	// SquallVersion is the version of server.
+	SquallVersion string `json:"squallVersion,omitempty" cql:"-"`
+
+	// Status is the overall health status of the server.
+	Status HealthReportStatusValue `json:"status,omitempty" cql:"-"`
 }
 
 // NewHealthReport returns a new *HealthReport
@@ -89,6 +120,7 @@ func (o HealthReport) SpecificationForAttribute(name elemental.AttributeSpecific
 	return HealthReportAttributesMap[name]
 }
 
+// HealthReportAttributesMap represents the map of attribute for HealthReport.
 var HealthReportAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	HealthReportAttributeNameAPIVersion: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

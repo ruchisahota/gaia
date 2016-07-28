@@ -4,9 +4,16 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	RenderedPoliciesAttributeNameID               elemental.AttributeSpecificationNameKey = "renderedpolicies/ID"
-	RenderedPoliciesAttributeNameEgressPolicies   elemental.AttributeSpecificationNameKey = "renderedpolicies/egressPolicies"
-	RenderedPoliciesAttributeNameIngressPolicies  elemental.AttributeSpecificationNameKey = "renderedpolicies/ingressPolicies"
+	// RenderedPoliciesAttributeNameID represents the attribute ID.
+	RenderedPoliciesAttributeNameID elemental.AttributeSpecificationNameKey = "renderedpolicies/ID"
+
+	// RenderedPoliciesAttributeNameEgressPolicies represents the attribute egressPolicies.
+	RenderedPoliciesAttributeNameEgressPolicies elemental.AttributeSpecificationNameKey = "renderedpolicies/egressPolicies"
+
+	// RenderedPoliciesAttributeNameIngressPolicies represents the attribute ingressPolicies.
+	RenderedPoliciesAttributeNameIngressPolicies elemental.AttributeSpecificationNameKey = "renderedpolicies/ingressPolicies"
+
+	// RenderedPoliciesAttributeNameProcessingUnitID represents the attribute processingUnitID.
 	RenderedPoliciesAttributeNameProcessingUnitID elemental.AttributeSpecificationNameKey = "renderedpolicies/processingUnitID"
 )
 
@@ -21,10 +28,17 @@ type RenderedPoliciesList []*RenderedPolicies
 
 // RenderedPolicies represents the model of a renderedpolicies
 type RenderedPolicies struct {
-	ID               string                  `json:"ID,omitempty" cql:"-"`
-	EgressPolicies   map[string][]PolicyRule `json:"egressPolicies,omitempty" cql:"-"`
-	IngressPolicies  map[string][]PolicyRule `json:"ingressPolicies,omitempty" cql:"-"`
-	ProcessingUnitID string                  `json:"processingUnitID,omitempty" cql:"-"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// EgressPolicies lists all the egress policies attached to ProcessingUnit
+	EgressPolicies map[string][]PolicyRule `json:"egressPolicies,omitempty" cql:"-"`
+
+	// IngressPolicies lists all the ingress policies attached to ProcessingUnit
+	IngressPolicies map[string][]PolicyRule `json:"ingressPolicies,omitempty" cql:"-"`
+
+	// Identifier of the ProcessingUnit
+	ProcessingUnitID string `json:"processingUnitID,omitempty" cql:"-"`
 }
 
 // NewRenderedPolicies returns a new *RenderedPolicies
@@ -70,6 +84,7 @@ func (o RenderedPolicies) SpecificationForAttribute(name elemental.AttributeSpec
 	return RenderedPoliciesAttributesMap[name]
 }
 
+// RenderedPoliciesAttributesMap represents the map of attribute for RenderedPolicies.
 var RenderedPoliciesAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	RenderedPoliciesAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

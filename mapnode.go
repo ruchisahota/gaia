@@ -4,18 +4,28 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	MapNodeAttributeNameID     elemental.AttributeSpecificationNameKey = "mapnode/ID"
+	// MapNodeAttributeNameID represents the attribute ID.
+	MapNodeAttributeNameID elemental.AttributeSpecificationNameKey = "mapnode/ID"
+
+	// MapNodeAttributeNameLabels represents the attribute labels.
 	MapNodeAttributeNameLabels elemental.AttributeSpecificationNameKey = "mapnode/labels"
-	MapNodeAttributeNameName   elemental.AttributeSpecificationNameKey = "mapnode/name"
-	MapNodeAttributeNameType   elemental.AttributeSpecificationNameKey = "mapnode/type"
+
+	// MapNodeAttributeNameName represents the attribute name.
+	MapNodeAttributeNameName elemental.AttributeSpecificationNameKey = "mapnode/name"
+
+	// MapNodeAttributeNameType represents the attribute type.
+	MapNodeAttributeNameType elemental.AttributeSpecificationNameKey = "mapnode/type"
 )
 
 // MapNodeTypeValue represents the possible values for attribute "type".
 type MapNodeTypeValue string
 
 const (
+	// MapNodeTypeContainer represents the value Container.
 	MapNodeTypeContainer MapNodeTypeValue = "Container"
-	MapNodeTypeVolume    MapNodeTypeValue = "Volume"
+
+	// MapNodeTypeVolume represents the value Volume.
+	MapNodeTypeVolume MapNodeTypeValue = "Volume"
 )
 
 // MapNodeIdentity represents the Identity of the object
@@ -29,10 +39,17 @@ type MapNodesList []*MapNode
 
 // MapNode represents the model of a mapnode
 type MapNode struct {
-	ID     string           `json:"ID,omitempty" cql:"-"`
-	Labels []string         `json:"labels,omitempty" cql:"-"`
-	Name   string           `json:"name,omitempty" cql:"name,omitempty"`
-	Type   MapNodeTypeValue `json:"type,omitempty" cql:"-"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// Labels for organizing resources
+	Labels []string `json:"labels,omitempty" cql:"-"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Type of the resource represented in the map
+	Type MapNodeTypeValue `json:"type,omitempty" cql:"-"`
 }
 
 // NewMapNode returns a new *MapNode
@@ -96,6 +113,7 @@ func (o MapNode) SpecificationForAttribute(name elemental.AttributeSpecification
 	return MapNodeAttributesMap[name]
 }
 
+// MapNodeAttributesMap represents the map of attribute for MapNode.
 var MapNodeAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	MapNodeAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

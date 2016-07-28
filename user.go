@@ -7,20 +7,47 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	UserAttributeNameID                  elemental.AttributeSpecificationNameKey = "user/ID"
-	UserAttributeNameAnnotation          elemental.AttributeSpecificationNameKey = "user/annotation"
-	UserAttributeNameAssociatedTags      elemental.AttributeSpecificationNameKey = "user/associatedTags"
-	UserAttributeNameCreatedAt           elemental.AttributeSpecificationNameKey = "user/createdAt"
-	UserAttributeNameDeleted             elemental.AttributeSpecificationNameKey = "user/deleted"
-	UserAttributeNameEmail               elemental.AttributeSpecificationNameKey = "user/email"
-	UserAttributeNameName                elemental.AttributeSpecificationNameKey = "user/name"
-	UserAttributeNameNamespace           elemental.AttributeSpecificationNameKey = "user/namespace"
+	// UserAttributeNameID represents the attribute ID.
+	UserAttributeNameID elemental.AttributeSpecificationNameKey = "user/ID"
+
+	// UserAttributeNameAnnotation represents the attribute annotation.
+	UserAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "user/annotation"
+
+	// UserAttributeNameAssociatedTags represents the attribute associatedTags.
+	UserAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "user/associatedTags"
+
+	// UserAttributeNameCreatedAt represents the attribute createdAt.
+	UserAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "user/createdAt"
+
+	// UserAttributeNameDeleted represents the attribute deleted.
+	UserAttributeNameDeleted elemental.AttributeSpecificationNameKey = "user/deleted"
+
+	// UserAttributeNameEmail represents the attribute email.
+	UserAttributeNameEmail elemental.AttributeSpecificationNameKey = "user/email"
+
+	// UserAttributeNameName represents the attribute name.
+	UserAttributeNameName elemental.AttributeSpecificationNameKey = "user/name"
+
+	// UserAttributeNameNamespace represents the attribute namespace.
+	UserAttributeNameNamespace elemental.AttributeSpecificationNameKey = "user/namespace"
+
+	// UserAttributeNameParentAuthenticator represents the attribute parentAuthenticator.
 	UserAttributeNameParentAuthenticator elemental.AttributeSpecificationNameKey = "user/parentAuthenticator"
-	UserAttributeNameParentID            elemental.AttributeSpecificationNameKey = "user/parentID"
-	UserAttributeNameStatus              elemental.AttributeSpecificationNameKey = "user/status"
-	UserAttributeNameSubOrganizations    elemental.AttributeSpecificationNameKey = "user/subOrganizations"
-	UserAttributeNameUpdatedAt           elemental.AttributeSpecificationNameKey = "user/updatedAt"
-	UserAttributeNameUserName            elemental.AttributeSpecificationNameKey = "user/userName"
+
+	// UserAttributeNameParentID represents the attribute parentID.
+	UserAttributeNameParentID elemental.AttributeSpecificationNameKey = "user/parentID"
+
+	// UserAttributeNameStatus represents the attribute status.
+	UserAttributeNameStatus elemental.AttributeSpecificationNameKey = "user/status"
+
+	// UserAttributeNameSubOrganizations represents the attribute subOrganizations.
+	UserAttributeNameSubOrganizations elemental.AttributeSpecificationNameKey = "user/subOrganizations"
+
+	// UserAttributeNameUpdatedAt represents the attribute updatedAt.
+	UserAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "user/updatedAt"
+
+	// UserAttributeNameUserName represents the attribute userName.
+	UserAttributeNameUserName elemental.AttributeSpecificationNameKey = "user/userName"
 )
 
 // UserIdentity represents the Identity of the object
@@ -34,20 +61,47 @@ type UsersList []*User
 
 // User represents the model of a user
 type User struct {
-	ID                  string            `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Annotation          map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags      []string          `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt           time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted             bool              `json:"-" cql:"deleted,omitempty"`
-	Email               string            `json:"email,omitempty" cql:"email,primarykey,omitempty"`
-	Name                string            `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace           string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	ParentAuthenticator string            `json:"-" cql:"parentauthenticator,primarykey,omitempty"`
-	ParentID            string            `json:"parentID,omitempty" cql:"parentid,omitempty"`
-	Status              enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
-	SubOrganizations    []string          `json:"subOrganizations,omitempty" cql:"suborganizations,omitempty"`
-	UpdatedAt           time.Time         `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
-	UserName            string            `json:"userName,omitempty" cql:"username,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// e-mail address of the user
+	Email string `json:"email,omitempty" cql:"email,primarykey,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// ParentAuthenticator is an Internal attribute that points to the parent authenticator.
+	ParentAuthenticator string `json:"-" cql:"parentauthenticator,primarykey,omitempty"`
+
+	// ParentID is an internal reference to the parent object that is an authenticator.
+	ParentID string `json:"parentID,omitempty" cql:"parentid,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// OU attribute for the generated certificates
+	SubOrganizations []string `json:"subOrganizations,omitempty" cql:"suborganizations,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+
+	// CommonName (CN) for the user certificate
+	UserName string `json:"userName,omitempty" cql:"username,omitempty"`
 }
 
 // NewUser returns a new *User
@@ -167,6 +221,7 @@ func (o User) SpecificationForAttribute(name elemental.AttributeSpecificationNam
 	return UserAttributesMap[name]
 }
 
+// UserAttributesMap represents the map of attribute for User.
 var UserAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	UserAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

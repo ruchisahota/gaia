@@ -7,47 +7,91 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	ProcessingUnitAttributeNameID                elemental.AttributeSpecificationNameKey = "processingunit/ID"
-	ProcessingUnitAttributeNameAnnotation        elemental.AttributeSpecificationNameKey = "processingunit/annotation"
-	ProcessingUnitAttributeNameAssociatedTags    elemental.AttributeSpecificationNameKey = "processingunit/associatedTags"
-	ProcessingUnitAttributeNameCreatedAt         elemental.AttributeSpecificationNameKey = "processingunit/createdAt"
-	ProcessingUnitAttributeNameDeleted           elemental.AttributeSpecificationNameKey = "processingunit/deleted"
-	ProcessingUnitAttributeNameDescription       elemental.AttributeSpecificationNameKey = "processingunit/description"
-	ProcessingUnitAttributeNameLastSyncTime      elemental.AttributeSpecificationNameKey = "processingunit/lastSyncTime"
-	ProcessingUnitAttributeNameMetadata          elemental.AttributeSpecificationNameKey = "processingunit/metadata"
-	ProcessingUnitAttributeNameName              elemental.AttributeSpecificationNameKey = "processingunit/name"
-	ProcessingUnitAttributeNameNamespace         elemental.AttributeSpecificationNameKey = "processingunit/namespace"
-	ProcessingUnitAttributeNameNativeContextID   elemental.AttributeSpecificationNameKey = "processingunit/nativeContextID"
+	// ProcessingUnitAttributeNameID represents the attribute ID.
+	ProcessingUnitAttributeNameID elemental.AttributeSpecificationNameKey = "processingunit/ID"
+
+	// ProcessingUnitAttributeNameAnnotation represents the attribute annotation.
+	ProcessingUnitAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "processingunit/annotation"
+
+	// ProcessingUnitAttributeNameAssociatedTags represents the attribute associatedTags.
+	ProcessingUnitAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "processingunit/associatedTags"
+
+	// ProcessingUnitAttributeNameCreatedAt represents the attribute createdAt.
+	ProcessingUnitAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "processingunit/createdAt"
+
+	// ProcessingUnitAttributeNameDeleted represents the attribute deleted.
+	ProcessingUnitAttributeNameDeleted elemental.AttributeSpecificationNameKey = "processingunit/deleted"
+
+	// ProcessingUnitAttributeNameDescription represents the attribute description.
+	ProcessingUnitAttributeNameDescription elemental.AttributeSpecificationNameKey = "processingunit/description"
+
+	// ProcessingUnitAttributeNameLastSyncTime represents the attribute lastSyncTime.
+	ProcessingUnitAttributeNameLastSyncTime elemental.AttributeSpecificationNameKey = "processingunit/lastSyncTime"
+
+	// ProcessingUnitAttributeNameMetadata represents the attribute metadata.
+	ProcessingUnitAttributeNameMetadata elemental.AttributeSpecificationNameKey = "processingunit/metadata"
+
+	// ProcessingUnitAttributeNameName represents the attribute name.
+	ProcessingUnitAttributeNameName elemental.AttributeSpecificationNameKey = "processingunit/name"
+
+	// ProcessingUnitAttributeNameNamespace represents the attribute namespace.
+	ProcessingUnitAttributeNameNamespace elemental.AttributeSpecificationNameKey = "processingunit/namespace"
+
+	// ProcessingUnitAttributeNameNativeContextID represents the attribute nativeContextID.
+	ProcessingUnitAttributeNameNativeContextID elemental.AttributeSpecificationNameKey = "processingunit/nativeContextID"
+
+	// ProcessingUnitAttributeNameOperationalStatus represents the attribute operationalStatus.
 	ProcessingUnitAttributeNameOperationalStatus elemental.AttributeSpecificationNameKey = "processingunit/operationalStatus"
-	ProcessingUnitAttributeNamePolicyState       elemental.AttributeSpecificationNameKey = "processingunit/policyState"
-	ProcessingUnitAttributeNameServerID          elemental.AttributeSpecificationNameKey = "processingunit/serverID"
-	ProcessingUnitAttributeNameStatus            elemental.AttributeSpecificationNameKey = "processingunit/status"
-	ProcessingUnitAttributeNameType              elemental.AttributeSpecificationNameKey = "processingunit/type"
-	ProcessingUnitAttributeNameUpdatedAt         elemental.AttributeSpecificationNameKey = "processingunit/updatedAt"
+
+	// ProcessingUnitAttributeNamePolicyState represents the attribute policyState.
+	ProcessingUnitAttributeNamePolicyState elemental.AttributeSpecificationNameKey = "processingunit/policyState"
+
+	// ProcessingUnitAttributeNameServerID represents the attribute serverID.
+	ProcessingUnitAttributeNameServerID elemental.AttributeSpecificationNameKey = "processingunit/serverID"
+
+	// ProcessingUnitAttributeNameStatus represents the attribute status.
+	ProcessingUnitAttributeNameStatus elemental.AttributeSpecificationNameKey = "processingunit/status"
+
+	// ProcessingUnitAttributeNameType represents the attribute type.
+	ProcessingUnitAttributeNameType elemental.AttributeSpecificationNameKey = "processingunit/type"
+
+	// ProcessingUnitAttributeNameUpdatedAt represents the attribute updatedAt.
+	ProcessingUnitAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "processingunit/updatedAt"
 )
 
 // ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
 type ProcessingUnitOperationalStatusValue string
 
 const (
+	// ProcessingUnitOperationalStatusActive represents the value Active.
 	ProcessingUnitOperationalStatusActive ProcessingUnitOperationalStatusValue = "Active"
-	ProcessingUnitOperationalStatusDead   ProcessingUnitOperationalStatusValue = "Dead"
+
+	// ProcessingUnitOperationalStatusDead represents the value Dead.
+	ProcessingUnitOperationalStatusDead ProcessingUnitOperationalStatusValue = "Dead"
 )
 
 // ProcessingUnitTypeValue represents the possible values for attribute "type".
 type ProcessingUnitTypeValue string
 
 const (
-	ProcessingUnitTypeDocker       ProcessingUnitTypeValue = "Docker"
+	// ProcessingUnitTypeDocker represents the value Docker.
+	ProcessingUnitTypeDocker ProcessingUnitTypeValue = "Docker"
+
+	// ProcessingUnitTypeLinuxservice represents the value LinuxService.
 	ProcessingUnitTypeLinuxservice ProcessingUnitTypeValue = "LinuxService"
-	ProcessingUnitTypeRkt          ProcessingUnitTypeValue = "RKT"
+
+	// ProcessingUnitTypeRkt represents the value RKT.
+	ProcessingUnitTypeRkt ProcessingUnitTypeValue = "RKT"
 )
 
 // ProcessingUnitPolicyStateValue represents the possible values for attribute "policyState".
 type ProcessingUnitPolicyStateValue string
 
 const (
-	ProcessingUnitPolicyStateDirty        ProcessingUnitPolicyStateValue = "Dirty"
+	// ProcessingUnitPolicyStateDirty represents the value Dirty.
+	ProcessingUnitPolicyStateDirty ProcessingUnitPolicyStateValue = "Dirty"
+
+	// ProcessingUnitPolicyStateSynchronized represents the value Synchronized.
 	ProcessingUnitPolicyStateSynchronized ProcessingUnitPolicyStateValue = "Synchronized"
 )
 
@@ -62,23 +106,56 @@ type ProcessingUnitsList []*ProcessingUnit
 
 // ProcessingUnit represents the model of a processingunit
 type ProcessingUnit struct {
-	ID                string                               `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Annotation        map[string]string                    `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags    []string                             `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	CreatedAt         time.Time                            `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted           bool                                 `json:"-" cql:"deleted,omitempty"`
-	Description       string                               `json:"description,omitempty" cql:"description,omitempty"`
-	LastSyncTime      time.Time                            `json:"lastSyncTime,omitempty" cql:"lastsynctime,omitempty"`
-	Metadata          []string                             `json:"metadata,omitempty" cql:"metadata,omitempty"`
-	Name              string                               `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace         string                               `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	NativeContextID   string                               `json:"nativeContextID,omitempty" cql:"nativecontextid,primarykey,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// LastSyncTime is the time when the policy was last resolved
+	LastSyncTime time.Time `json:"lastSyncTime,omitempty" cql:"lastsynctime,omitempty"`
+
+	// Metadata are list of tags associated to the processing unit
+	Metadata []string `json:"metadata,omitempty" cql:"metadata,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// NativeContextID is the Docker UUID or service PID
+	NativeContextID string `json:"nativeContextID,omitempty" cql:"nativecontextid,primarykey,omitempty"`
+
+	// OperationalStatus of the processing unit
 	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus,omitempty" cql:"operationalstatus,omitempty"`
-	PolicyState       ProcessingUnitPolicyStateValue       `json:"policyState,omitempty" cql:"policystate,omitempty"`
-	ServerID          string                               `json:"serverID,omitempty" cql:"serverid,primarykey,omitempty"`
-	Status            enum.EntityStatus                    `json:"status,omitempty" cql:"status,omitempty"`
-	Type              ProcessingUnitTypeValue              `json:"type,omitempty" cql:"type,omitempty"`
-	UpdatedAt         time.Time                            `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+
+	// PolicyState is the state of the policy
+	PolicyState ProcessingUnitPolicyStateValue `json:"policyState,omitempty" cql:"policystate,omitempty"`
+
+	// serverID is the ID of the server associated with the processing unit
+	ServerID string `json:"serverID,omitempty" cql:"serverid,primarykey,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// Type of the container ecosystem
+	Type ProcessingUnitTypeValue `json:"type,omitempty" cql:"type,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewProcessingUnit returns a new *ProcessingUnit
@@ -214,6 +291,7 @@ func (o ProcessingUnit) SpecificationForAttribute(name elemental.AttributeSpecif
 	return ProcessingUnitAttributesMap[name]
 }
 
+// ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
 var ProcessingUnitAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	ProcessingUnitAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

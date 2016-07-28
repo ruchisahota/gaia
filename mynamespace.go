@@ -4,7 +4,10 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 const (
-	MyNamespaceAttributeNameID         elemental.AttributeSpecificationNameKey = "mynamespace/ID"
+	// MyNamespaceAttributeNameID represents the attribute ID.
+	MyNamespaceAttributeNameID elemental.AttributeSpecificationNameKey = "mynamespace/ID"
+
+	// MyNamespaceAttributeNameNamespaces represents the attribute namespaces.
 	MyNamespaceAttributeNameNamespaces elemental.AttributeSpecificationNameKey = "mynamespace/namespaces"
 )
 
@@ -19,7 +22,10 @@ type MyNamespacesList []*MyNamespace
 
 // MyNamespace represents the model of a mynamespace
 type MyNamespace struct {
-	ID         string        `json:"ID,omitempty" cql:"-"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"-"`
+
+	// List of namespaces that an user is authorized to use
 	Namespaces []interface{} `json:"namespaces,omitempty" cql:"-"`
 }
 
@@ -66,6 +72,7 @@ func (o MyNamespace) SpecificationForAttribute(name elemental.AttributeSpecifica
 	return MyNamespaceAttributesMap[name]
 }
 
+// MyNamespaceAttributesMap represents the map of attribute for MyNamespace.
 var MyNamespaceAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	MyNamespaceAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},

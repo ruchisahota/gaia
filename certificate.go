@@ -7,20 +7,47 @@ import "time"
 import "github.com/aporeto-inc/gaia/enum"
 
 const (
-	CertificateAttributeNameID             elemental.AttributeSpecificationNameKey = "certificate/ID"
-	CertificateAttributeNameAnnotation     elemental.AttributeSpecificationNameKey = "certificate/annotation"
+	// CertificateAttributeNameID represents the attribute ID.
+	CertificateAttributeNameID elemental.AttributeSpecificationNameKey = "certificate/ID"
+
+	// CertificateAttributeNameAnnotation represents the attribute annotation.
+	CertificateAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "certificate/annotation"
+
+	// CertificateAttributeNameAssociatedTags represents the attribute associatedTags.
 	CertificateAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "certificate/associatedTags"
-	CertificateAttributeNameCertificate    elemental.AttributeSpecificationNameKey = "certificate/certificate"
-	CertificateAttributeNameCreatedAt      elemental.AttributeSpecificationNameKey = "certificate/createdAt"
-	CertificateAttributeNameDeleted        elemental.AttributeSpecificationNameKey = "certificate/deleted"
-	CertificateAttributeNameDescription    elemental.AttributeSpecificationNameKey = "certificate/description"
+
+	// CertificateAttributeNameCertificate represents the attribute certificate.
+	CertificateAttributeNameCertificate elemental.AttributeSpecificationNameKey = "certificate/certificate"
+
+	// CertificateAttributeNameCreatedAt represents the attribute createdAt.
+	CertificateAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "certificate/createdAt"
+
+	// CertificateAttributeNameDeleted represents the attribute deleted.
+	CertificateAttributeNameDeleted elemental.AttributeSpecificationNameKey = "certificate/deleted"
+
+	// CertificateAttributeNameDescription represents the attribute description.
+	CertificateAttributeNameDescription elemental.AttributeSpecificationNameKey = "certificate/description"
+
+	// CertificateAttributeNameExpirationDate represents the attribute expirationDate.
 	CertificateAttributeNameExpirationDate elemental.AttributeSpecificationNameKey = "certificate/expirationDate"
-	CertificateAttributeNameKey            elemental.AttributeSpecificationNameKey = "certificate/key"
-	CertificateAttributeNameName           elemental.AttributeSpecificationNameKey = "certificate/name"
-	CertificateAttributeNameNamespace      elemental.AttributeSpecificationNameKey = "certificate/namespace"
-	CertificateAttributeNameParentID       elemental.AttributeSpecificationNameKey = "certificate/parentID"
-	CertificateAttributeNameStatus         elemental.AttributeSpecificationNameKey = "certificate/status"
-	CertificateAttributeNameUpdatedAt      elemental.AttributeSpecificationNameKey = "certificate/updatedAt"
+
+	// CertificateAttributeNameKey represents the attribute key.
+	CertificateAttributeNameKey elemental.AttributeSpecificationNameKey = "certificate/key"
+
+	// CertificateAttributeNameName represents the attribute name.
+	CertificateAttributeNameName elemental.AttributeSpecificationNameKey = "certificate/name"
+
+	// CertificateAttributeNameNamespace represents the attribute namespace.
+	CertificateAttributeNameNamespace elemental.AttributeSpecificationNameKey = "certificate/namespace"
+
+	// CertificateAttributeNameParentID represents the attribute parentID.
+	CertificateAttributeNameParentID elemental.AttributeSpecificationNameKey = "certificate/parentID"
+
+	// CertificateAttributeNameStatus represents the attribute status.
+	CertificateAttributeNameStatus elemental.AttributeSpecificationNameKey = "certificate/status"
+
+	// CertificateAttributeNameUpdatedAt represents the attribute updatedAt.
+	CertificateAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "certificate/updatedAt"
 )
 
 // CertificateIdentity represents the Identity of the object
@@ -34,20 +61,47 @@ type CertificatesList []*Certificate
 
 // Certificate represents the model of a certificate
 type Certificate struct {
-	ID             string            `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
-	Annotation     map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
-	AssociatedTags []string          `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
-	Certificate    string            `json:"certificate,omitempty" cql:"certificate,omitempty"`
-	CreatedAt      time.Time         `json:"createdAt,omitempty" cql:"createdat,omitempty"`
-	Deleted        bool              `json:"-" cql:"deleted,omitempty"`
-	Description    string            `json:"description,omitempty" cql:"description,omitempty"`
-	ExpirationDate time.Time         `json:"expirationDate,omitempty" cql:"expirationdate,omitempty"`
-	Key            string            `json:"key,omitempty" cql:"-"`
-	Name           string            `json:"name,omitempty" cql:"name,omitempty"`
-	Namespace      string            `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
-	ParentID       string            `json:"parentID,omitempty" cql:"parentid,omitempty"`
-	Status         enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
-	UpdatedAt      time.Time         `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
+	// ID is the identifier of the object.
+	ID string `json:"ID,omitempty" cql:"id,primarykey,omitempty"`
+
+	// Annotation stores additional information about an entity
+	Annotation map[string]string `json:"annotation,omitempty" cql:"annotation,omitempty"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags,omitempty" cql:"associatedtags,omitempty"`
+
+	// Certificate for the user
+	Certificate string `json:"certificate,omitempty" cql:"certificate,omitempty"`
+
+	// CreatedAt is the time at which an entity was created
+	CreatedAt time.Time `json:"createdAt,omitempty" cql:"createdat,omitempty"`
+
+	// Deleted marks if the entity has been deleted.
+	Deleted bool `json:"-" cql:"deleted,omitempty"`
+
+	// Description is the description of the object.
+	Description string `json:"description,omitempty" cql:"description,omitempty"`
+
+	// ExpirationDate is the date that the certificate must expire.
+	ExpirationDate time.Time `json:"expirationDate,omitempty" cql:"expirationdate,omitempty"`
+
+	// Key generated for the user
+	Key string `json:"key,omitempty" cql:"-"`
+
+	// Name is the name of the entity
+	Name string `json:"name,omitempty" cql:"name,omitempty"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace,omitempty" cql:"namespace,primarykey,omitempty"`
+
+	// ParentID is an internal object that refers to the parrent of the certificate.
+	ParentID string `json:"parentID,omitempty" cql:"parentid,omitempty"`
+
+	// Status of an entity
+	Status enum.EntityStatus `json:"status,omitempty" cql:"status,omitempty"`
+
+	// UpdatedAt is the time at which an entity was updated.
+	UpdatedAt time.Time `json:"updatedAt,omitempty" cql:"updatedat,omitempty"`
 }
 
 // NewCertificate returns a new *Certificate
@@ -163,6 +217,7 @@ func (o Certificate) SpecificationForAttribute(name elemental.AttributeSpecifica
 	return CertificateAttributesMap[name]
 }
 
+// CertificateAttributesMap represents the map of attribute for Certificate.
 var CertificateAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.AttributeSpecification{
 	CertificateAttributeNameID: elemental.AttributeSpecification{
 		AllowedChoices: []string{},
