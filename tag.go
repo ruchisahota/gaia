@@ -170,6 +170,10 @@ func (o *Tag) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidatePattern("value", o.Value, `^[^\s=]+=[^\s=]+$`); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("value", o.Value); err != nil {
 		errors = append(errors, err)
 	}
@@ -279,6 +283,7 @@ var TagAttributesMap = map[elemental.AttributeSpecificationNameKey]elemental.Att
 		Type:           "time",
 	},
 	TagAttributeNameValue: elemental.AttributeSpecification{
+		AllowedChars:   `^[^\s=]+=[^\s=]+$`,
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Format:         "free",
