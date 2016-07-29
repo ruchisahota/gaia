@@ -8,49 +8,49 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// AuthenticatorAttributeNameID represents the attribute ID.
-	AuthenticatorAttributeNameID elemental.AttributeSpecificationNameKey = "authenticator/ID"
+	AuthenticatorAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// AuthenticatorAttributeNameAnnotation represents the attribute annotation.
-	AuthenticatorAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "authenticator/annotation"
+	AuthenticatorAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// AuthenticatorAttributeNameAssociatedTags represents the attribute associatedTags.
-	AuthenticatorAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "authenticator/associatedTags"
+	AuthenticatorAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// AuthenticatorAttributeNameConfiguration represents the attribute configuration.
-	AuthenticatorAttributeNameConfiguration elemental.AttributeSpecificationNameKey = "authenticator/configuration"
+	AuthenticatorAttributeNameConfiguration elemental.AttributeSpecificationNameKey = "Configuration"
 
 	// AuthenticatorAttributeNameCreatedAt represents the attribute createdAt.
-	AuthenticatorAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "authenticator/createdAt"
+	AuthenticatorAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// AuthenticatorAttributeNameDefaultNamespace represents the attribute defaultNamespace.
-	AuthenticatorAttributeNameDefaultNamespace elemental.AttributeSpecificationNameKey = "authenticator/defaultNamespace"
+	AuthenticatorAttributeNameDefaultNamespace elemental.AttributeSpecificationNameKey = "DefaultNamespace"
 
 	// AuthenticatorAttributeNameDeleted represents the attribute deleted.
-	AuthenticatorAttributeNameDeleted elemental.AttributeSpecificationNameKey = "authenticator/deleted"
+	AuthenticatorAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// AuthenticatorAttributeNameDescription represents the attribute description.
-	AuthenticatorAttributeNameDescription elemental.AttributeSpecificationNameKey = "authenticator/description"
+	AuthenticatorAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// AuthenticatorAttributeNameMethod represents the attribute method.
-	AuthenticatorAttributeNameMethod elemental.AttributeSpecificationNameKey = "authenticator/method"
+	AuthenticatorAttributeNameMethod elemental.AttributeSpecificationNameKey = "Method"
 
 	// AuthenticatorAttributeNameName represents the attribute name.
-	AuthenticatorAttributeNameName elemental.AttributeSpecificationNameKey = "authenticator/name"
+	AuthenticatorAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// AuthenticatorAttributeNameNamespace represents the attribute namespace.
-	AuthenticatorAttributeNameNamespace elemental.AttributeSpecificationNameKey = "authenticator/namespace"
+	AuthenticatorAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// AuthenticatorAttributeNameParentID represents the attribute parentID.
-	AuthenticatorAttributeNameParentID elemental.AttributeSpecificationNameKey = "authenticator/parentID"
+	AuthenticatorAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// AuthenticatorAttributeNameParentType represents the attribute parentType.
-	AuthenticatorAttributeNameParentType elemental.AttributeSpecificationNameKey = "authenticator/parentType"
+	AuthenticatorAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// AuthenticatorAttributeNameStatus represents the attribute status.
-	AuthenticatorAttributeNameStatus elemental.AttributeSpecificationNameKey = "authenticator/status"
+	AuthenticatorAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// AuthenticatorAttributeNameUpdatedAt represents the attribute updatedAt.
-	AuthenticatorAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "authenticator/updatedAt"
+	AuthenticatorAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // AuthenticatorMethodValue represents the possible values for attribute "method".

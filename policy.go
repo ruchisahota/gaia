@@ -8,61 +8,61 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// PolicyAttributeNameID represents the attribute ID.
-	PolicyAttributeNameID elemental.AttributeSpecificationNameKey = "policy/ID"
+	PolicyAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// PolicyAttributeNameAction represents the attribute action.
-	PolicyAttributeNameAction elemental.AttributeSpecificationNameKey = "policy/action"
+	PolicyAttributeNameAction elemental.AttributeSpecificationNameKey = "Action"
 
 	// PolicyAttributeNameAllObjectTags represents the attribute allObjectTags.
-	PolicyAttributeNameAllObjectTags elemental.AttributeSpecificationNameKey = "policy/allObjectTags"
+	PolicyAttributeNameAllObjectTags elemental.AttributeSpecificationNameKey = "AllObjectTags"
 
 	// PolicyAttributeNameAllSubjectTags represents the attribute allSubjectTags.
-	PolicyAttributeNameAllSubjectTags elemental.AttributeSpecificationNameKey = "policy/allSubjectTags"
+	PolicyAttributeNameAllSubjectTags elemental.AttributeSpecificationNameKey = "AllSubjectTags"
 
 	// PolicyAttributeNameAnnotation represents the attribute annotation.
-	PolicyAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "policy/annotation"
+	PolicyAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// PolicyAttributeNameAssociatedTags represents the attribute associatedTags.
-	PolicyAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "policy/associatedTags"
+	PolicyAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// PolicyAttributeNameCreatedAt represents the attribute createdAt.
-	PolicyAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "policy/createdAt"
+	PolicyAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// PolicyAttributeNameDeleted represents the attribute deleted.
-	PolicyAttributeNameDeleted elemental.AttributeSpecificationNameKey = "policy/deleted"
+	PolicyAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// PolicyAttributeNameDescription represents the attribute description.
-	PolicyAttributeNameDescription elemental.AttributeSpecificationNameKey = "policy/description"
+	PolicyAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// PolicyAttributeNameName represents the attribute name.
-	PolicyAttributeNameName elemental.AttributeSpecificationNameKey = "policy/name"
+	PolicyAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// PolicyAttributeNameNamespace represents the attribute namespace.
-	PolicyAttributeNameNamespace elemental.AttributeSpecificationNameKey = "policy/namespace"
+	PolicyAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// PolicyAttributeNameObject represents the attribute object.
-	PolicyAttributeNameObject elemental.AttributeSpecificationNameKey = "policy/object"
+	PolicyAttributeNameObject elemental.AttributeSpecificationNameKey = "Object"
 
 	// PolicyAttributeNameParentID represents the attribute parentID.
-	PolicyAttributeNameParentID elemental.AttributeSpecificationNameKey = "policy/parentID"
+	PolicyAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// PolicyAttributeNameParentType represents the attribute parentType.
-	PolicyAttributeNameParentType elemental.AttributeSpecificationNameKey = "policy/parentType"
+	PolicyAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// PolicyAttributeNameRelation represents the attribute relation.
-	PolicyAttributeNameRelation elemental.AttributeSpecificationNameKey = "policy/relation"
+	PolicyAttributeNameRelation elemental.AttributeSpecificationNameKey = "Relation"
 
 	// PolicyAttributeNameStatus represents the attribute status.
-	PolicyAttributeNameStatus elemental.AttributeSpecificationNameKey = "policy/status"
+	PolicyAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// PolicyAttributeNameSubject represents the attribute subject.
-	PolicyAttributeNameSubject elemental.AttributeSpecificationNameKey = "policy/subject"
+	PolicyAttributeNameSubject elemental.AttributeSpecificationNameKey = "Subject"
 
 	// PolicyAttributeNameType represents the attribute type.
-	PolicyAttributeNameType elemental.AttributeSpecificationNameKey = "policy/type"
+	PolicyAttributeNameType elemental.AttributeSpecificationNameKey = "Type"
 
 	// PolicyAttributeNameUpdatedAt represents the attribute updatedAt.
-	PolicyAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "policy/updatedAt"
+	PolicyAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // PolicyIdentity represents the Identity of the object

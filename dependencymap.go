@@ -5,13 +5,13 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// DependencyMapAttributeNameID represents the attribute ID.
-	DependencyMapAttributeNameID elemental.AttributeSpecificationNameKey = "dependencymap/ID"
+	DependencyMapAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// DependencyMapAttributeNameEdges represents the attribute edges.
-	DependencyMapAttributeNameEdges elemental.AttributeSpecificationNameKey = "dependencymap/edges"
+	DependencyMapAttributeNameEdges elemental.AttributeSpecificationNameKey = "Edges"
 
 	// DependencyMapAttributeNameNodes represents the attribute nodes.
-	DependencyMapAttributeNameNodes elemental.AttributeSpecificationNameKey = "dependencymap/nodes"
+	DependencyMapAttributeNameNodes elemental.AttributeSpecificationNameKey = "Nodes"
 )
 
 // DependencyMapIdentity represents the Identity of the object

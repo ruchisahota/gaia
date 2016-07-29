@@ -8,49 +8,49 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// CertificateAttributeNameID represents the attribute ID.
-	CertificateAttributeNameID elemental.AttributeSpecificationNameKey = "certificate/ID"
+	CertificateAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// CertificateAttributeNameAnnotation represents the attribute annotation.
-	CertificateAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "certificate/annotation"
+	CertificateAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// CertificateAttributeNameAssociatedTags represents the attribute associatedTags.
-	CertificateAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "certificate/associatedTags"
+	CertificateAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// CertificateAttributeNameCertificate represents the attribute certificate.
-	CertificateAttributeNameCertificate elemental.AttributeSpecificationNameKey = "certificate/certificate"
+	CertificateAttributeNameCertificate elemental.AttributeSpecificationNameKey = "Certificate"
 
 	// CertificateAttributeNameCreatedAt represents the attribute createdAt.
-	CertificateAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "certificate/createdAt"
+	CertificateAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// CertificateAttributeNameDeleted represents the attribute deleted.
-	CertificateAttributeNameDeleted elemental.AttributeSpecificationNameKey = "certificate/deleted"
+	CertificateAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// CertificateAttributeNameDescription represents the attribute description.
-	CertificateAttributeNameDescription elemental.AttributeSpecificationNameKey = "certificate/description"
+	CertificateAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// CertificateAttributeNameExpirationDate represents the attribute expirationDate.
-	CertificateAttributeNameExpirationDate elemental.AttributeSpecificationNameKey = "certificate/expirationDate"
+	CertificateAttributeNameExpirationDate elemental.AttributeSpecificationNameKey = "ExpirationDate"
 
 	// CertificateAttributeNameKey represents the attribute key.
-	CertificateAttributeNameKey elemental.AttributeSpecificationNameKey = "certificate/key"
+	CertificateAttributeNameKey elemental.AttributeSpecificationNameKey = "Key"
 
 	// CertificateAttributeNameName represents the attribute name.
-	CertificateAttributeNameName elemental.AttributeSpecificationNameKey = "certificate/name"
+	CertificateAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// CertificateAttributeNameNamespace represents the attribute namespace.
-	CertificateAttributeNameNamespace elemental.AttributeSpecificationNameKey = "certificate/namespace"
+	CertificateAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// CertificateAttributeNameParentID represents the attribute parentID.
-	CertificateAttributeNameParentID elemental.AttributeSpecificationNameKey = "certificate/parentID"
+	CertificateAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// CertificateAttributeNameParentType represents the attribute parentType.
-	CertificateAttributeNameParentType elemental.AttributeSpecificationNameKey = "certificate/parentType"
+	CertificateAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// CertificateAttributeNameStatus represents the attribute status.
-	CertificateAttributeNameStatus elemental.AttributeSpecificationNameKey = "certificate/status"
+	CertificateAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// CertificateAttributeNameUpdatedAt represents the attribute updatedAt.
-	CertificateAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "certificate/updatedAt"
+	CertificateAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // CertificateIdentity represents the Identity of the object

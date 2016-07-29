@@ -8,43 +8,43 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// DependencyMapViewAttributeNameID represents the attribute ID.
-	DependencyMapViewAttributeNameID elemental.AttributeSpecificationNameKey = "dependencymapview/ID"
+	DependencyMapViewAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// DependencyMapViewAttributeNameAnnotation represents the attribute annotation.
-	DependencyMapViewAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "dependencymapview/annotation"
+	DependencyMapViewAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// DependencyMapViewAttributeNameAssociatedTags represents the attribute associatedTags.
-	DependencyMapViewAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "dependencymapview/associatedTags"
+	DependencyMapViewAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// DependencyMapViewAttributeNameCreatedAt represents the attribute createdAt.
-	DependencyMapViewAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "dependencymapview/createdAt"
+	DependencyMapViewAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// DependencyMapViewAttributeNameDeleted represents the attribute deleted.
-	DependencyMapViewAttributeNameDeleted elemental.AttributeSpecificationNameKey = "dependencymapview/deleted"
+	DependencyMapViewAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// DependencyMapViewAttributeNameDescription represents the attribute description.
-	DependencyMapViewAttributeNameDescription elemental.AttributeSpecificationNameKey = "dependencymapview/description"
+	DependencyMapViewAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// DependencyMapViewAttributeNameName represents the attribute name.
-	DependencyMapViewAttributeNameName elemental.AttributeSpecificationNameKey = "dependencymapview/name"
+	DependencyMapViewAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// DependencyMapViewAttributeNameNamespace represents the attribute namespace.
-	DependencyMapViewAttributeNameNamespace elemental.AttributeSpecificationNameKey = "dependencymapview/namespace"
+	DependencyMapViewAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// DependencyMapViewAttributeNameParentID represents the attribute parentID.
-	DependencyMapViewAttributeNameParentID elemental.AttributeSpecificationNameKey = "dependencymapview/parentID"
+	DependencyMapViewAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// DependencyMapViewAttributeNameParentType represents the attribute parentType.
-	DependencyMapViewAttributeNameParentType elemental.AttributeSpecificationNameKey = "dependencymapview/parentType"
+	DependencyMapViewAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// DependencyMapViewAttributeNameStatus represents the attribute status.
-	DependencyMapViewAttributeNameStatus elemental.AttributeSpecificationNameKey = "dependencymapview/status"
+	DependencyMapViewAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// DependencyMapViewAttributeNameSubviews represents the attribute subviews.
-	DependencyMapViewAttributeNameSubviews elemental.AttributeSpecificationNameKey = "dependencymapview/subviews"
+	DependencyMapViewAttributeNameSubviews elemental.AttributeSpecificationNameKey = "Subviews"
 
 	// DependencyMapViewAttributeNameUpdatedAt represents the attribute updatedAt.
-	DependencyMapViewAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "dependencymapview/updatedAt"
+	DependencyMapViewAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // DependencyMapViewIdentity represents the Identity of the object

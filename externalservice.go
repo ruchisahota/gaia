@@ -8,49 +8,49 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// ExternalServiceAttributeNameID represents the attribute ID.
-	ExternalServiceAttributeNameID elemental.AttributeSpecificationNameKey = "externalservice/ID"
+	ExternalServiceAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// ExternalServiceAttributeNameAnnotation represents the attribute annotation.
-	ExternalServiceAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "externalservice/annotation"
+	ExternalServiceAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// ExternalServiceAttributeNameAssociatedTags represents the attribute associatedTags.
-	ExternalServiceAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "externalservice/associatedTags"
+	ExternalServiceAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// ExternalServiceAttributeNameCreatedAt represents the attribute createdAt.
-	ExternalServiceAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "externalservice/createdAt"
+	ExternalServiceAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// ExternalServiceAttributeNameDeleted represents the attribute deleted.
-	ExternalServiceAttributeNameDeleted elemental.AttributeSpecificationNameKey = "externalservice/deleted"
+	ExternalServiceAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// ExternalServiceAttributeNameDescription represents the attribute description.
-	ExternalServiceAttributeNameDescription elemental.AttributeSpecificationNameKey = "externalservice/description"
+	ExternalServiceAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// ExternalServiceAttributeNameName represents the attribute name.
-	ExternalServiceAttributeNameName elemental.AttributeSpecificationNameKey = "externalservice/name"
+	ExternalServiceAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// ExternalServiceAttributeNameNamespace represents the attribute namespace.
-	ExternalServiceAttributeNameNamespace elemental.AttributeSpecificationNameKey = "externalservice/namespace"
+	ExternalServiceAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// ExternalServiceAttributeNameNetwork represents the attribute network.
-	ExternalServiceAttributeNameNetwork elemental.AttributeSpecificationNameKey = "externalservice/network"
+	ExternalServiceAttributeNameNetwork elemental.AttributeSpecificationNameKey = "Network"
 
 	// ExternalServiceAttributeNameParentID represents the attribute parentID.
-	ExternalServiceAttributeNameParentID elemental.AttributeSpecificationNameKey = "externalservice/parentID"
+	ExternalServiceAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// ExternalServiceAttributeNameParentType represents the attribute parentType.
-	ExternalServiceAttributeNameParentType elemental.AttributeSpecificationNameKey = "externalservice/parentType"
+	ExternalServiceAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// ExternalServiceAttributeNamePort represents the attribute port.
-	ExternalServiceAttributeNamePort elemental.AttributeSpecificationNameKey = "externalservice/port"
+	ExternalServiceAttributeNamePort elemental.AttributeSpecificationNameKey = "Port"
 
 	// ExternalServiceAttributeNameProtocol represents the attribute protocol.
-	ExternalServiceAttributeNameProtocol elemental.AttributeSpecificationNameKey = "externalservice/protocol"
+	ExternalServiceAttributeNameProtocol elemental.AttributeSpecificationNameKey = "Protocol"
 
 	// ExternalServiceAttributeNameStatus represents the attribute status.
-	ExternalServiceAttributeNameStatus elemental.AttributeSpecificationNameKey = "externalservice/status"
+	ExternalServiceAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// ExternalServiceAttributeNameUpdatedAt represents the attribute updatedAt.
-	ExternalServiceAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "externalservice/updatedAt"
+	ExternalServiceAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // ExternalServiceIdentity represents the Identity of the object

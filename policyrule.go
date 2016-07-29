@@ -5,28 +5,28 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// PolicyRuleAttributeNameID represents the attribute ID.
-	PolicyRuleAttributeNameID elemental.AttributeSpecificationNameKey = "policyrule/ID"
+	PolicyRuleAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// PolicyRuleAttributeNameAction represents the attribute action.
-	PolicyRuleAttributeNameAction elemental.AttributeSpecificationNameKey = "policyrule/action"
+	PolicyRuleAttributeNameAction elemental.AttributeSpecificationNameKey = "Action"
 
 	// PolicyRuleAttributeNameFiles represents the attribute files.
-	PolicyRuleAttributeNameFiles elemental.AttributeSpecificationNameKey = "policyrule/files"
+	PolicyRuleAttributeNameFiles elemental.AttributeSpecificationNameKey = "Files"
 
 	// PolicyRuleAttributeNameNamespaces represents the attribute namespaces.
-	PolicyRuleAttributeNameNamespaces elemental.AttributeSpecificationNameKey = "policyrule/namespaces"
+	PolicyRuleAttributeNameNamespaces elemental.AttributeSpecificationNameKey = "Namespaces"
 
 	// PolicyRuleAttributeNameNetworks represents the attribute networks.
-	PolicyRuleAttributeNameNetworks elemental.AttributeSpecificationNameKey = "policyrule/networks"
+	PolicyRuleAttributeNameNetworks elemental.AttributeSpecificationNameKey = "Networks"
 
 	// PolicyRuleAttributeNameRelation represents the attribute relation.
-	PolicyRuleAttributeNameRelation elemental.AttributeSpecificationNameKey = "policyrule/relation"
+	PolicyRuleAttributeNameRelation elemental.AttributeSpecificationNameKey = "Relation"
 
 	// PolicyRuleAttributeNameSyscalls represents the attribute syscalls.
-	PolicyRuleAttributeNameSyscalls elemental.AttributeSpecificationNameKey = "policyrule/syscalls"
+	PolicyRuleAttributeNameSyscalls elemental.AttributeSpecificationNameKey = "Syscalls"
 
 	// PolicyRuleAttributeNameTagclauses represents the attribute tagclauses.
-	PolicyRuleAttributeNameTagclauses elemental.AttributeSpecificationNameKey = "policyrule/tagclauses"
+	PolicyRuleAttributeNameTagclauses elemental.AttributeSpecificationNameKey = "Tagclauses"
 )
 
 // PolicyRuleIdentity represents the Identity of the object

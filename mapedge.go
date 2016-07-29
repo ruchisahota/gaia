@@ -5,19 +5,19 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// MapEdgeAttributeNameID represents the attribute ID.
-	MapEdgeAttributeNameID elemental.AttributeSpecificationNameKey = "mapedge/ID"
+	MapEdgeAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// MapEdgeAttributeNameDestinationID represents the attribute destinationID.
-	MapEdgeAttributeNameDestinationID elemental.AttributeSpecificationNameKey = "mapedge/destinationID"
+	MapEdgeAttributeNameDestinationID elemental.AttributeSpecificationNameKey = "DestinationID"
 
 	// MapEdgeAttributeNameLabels represents the attribute labels.
-	MapEdgeAttributeNameLabels elemental.AttributeSpecificationNameKey = "mapedge/labels"
+	MapEdgeAttributeNameLabels elemental.AttributeSpecificationNameKey = "Labels"
 
 	// MapEdgeAttributeNameName represents the attribute name.
-	MapEdgeAttributeNameName elemental.AttributeSpecificationNameKey = "mapedge/name"
+	MapEdgeAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// MapEdgeAttributeNameSourceID represents the attribute sourceID.
-	MapEdgeAttributeNameSourceID elemental.AttributeSpecificationNameKey = "mapedge/sourceID"
+	MapEdgeAttributeNameSourceID elemental.AttributeSpecificationNameKey = "SourceID"
 )
 
 // MapEdgeIdentity represents the Identity of the object

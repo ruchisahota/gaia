@@ -8,49 +8,49 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// UserAttributeNameID represents the attribute ID.
-	UserAttributeNameID elemental.AttributeSpecificationNameKey = "user/ID"
+	UserAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// UserAttributeNameAnnotation represents the attribute annotation.
-	UserAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "user/annotation"
+	UserAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// UserAttributeNameAssociatedTags represents the attribute associatedTags.
-	UserAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "user/associatedTags"
+	UserAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// UserAttributeNameCreatedAt represents the attribute createdAt.
-	UserAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "user/createdAt"
+	UserAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// UserAttributeNameDeleted represents the attribute deleted.
-	UserAttributeNameDeleted elemental.AttributeSpecificationNameKey = "user/deleted"
+	UserAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// UserAttributeNameEmail represents the attribute email.
-	UserAttributeNameEmail elemental.AttributeSpecificationNameKey = "user/email"
+	UserAttributeNameEmail elemental.AttributeSpecificationNameKey = "Email"
 
 	// UserAttributeNameName represents the attribute name.
-	UserAttributeNameName elemental.AttributeSpecificationNameKey = "user/name"
+	UserAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// UserAttributeNameNamespace represents the attribute namespace.
-	UserAttributeNameNamespace elemental.AttributeSpecificationNameKey = "user/namespace"
+	UserAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// UserAttributeNameParentAuthenticator represents the attribute parentAuthenticator.
-	UserAttributeNameParentAuthenticator elemental.AttributeSpecificationNameKey = "user/parentAuthenticator"
+	UserAttributeNameParentAuthenticator elemental.AttributeSpecificationNameKey = "ParentAuthenticator"
 
 	// UserAttributeNameParentID represents the attribute parentID.
-	UserAttributeNameParentID elemental.AttributeSpecificationNameKey = "user/parentID"
+	UserAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// UserAttributeNameParentType represents the attribute parentType.
-	UserAttributeNameParentType elemental.AttributeSpecificationNameKey = "user/parentType"
+	UserAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// UserAttributeNameStatus represents the attribute status.
-	UserAttributeNameStatus elemental.AttributeSpecificationNameKey = "user/status"
+	UserAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// UserAttributeNameSubOrganizations represents the attribute subOrganizations.
-	UserAttributeNameSubOrganizations elemental.AttributeSpecificationNameKey = "user/subOrganizations"
+	UserAttributeNameSubOrganizations elemental.AttributeSpecificationNameKey = "SubOrganizations"
 
 	// UserAttributeNameUpdatedAt represents the attribute updatedAt.
-	UserAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "user/updatedAt"
+	UserAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 
 	// UserAttributeNameUserName represents the attribute userName.
-	UserAttributeNameUserName elemental.AttributeSpecificationNameKey = "user/userName"
+	UserAttributeNameUserName elemental.AttributeSpecificationNameKey = "UserName"
 )
 
 // UserIdentity represents the Identity of the object

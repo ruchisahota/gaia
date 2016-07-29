@@ -8,52 +8,52 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// ServerAttributeNameID represents the attribute ID.
-	ServerAttributeNameID elemental.AttributeSpecificationNameKey = "server/ID"
+	ServerAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// ServerAttributeNameAddress represents the attribute address.
-	ServerAttributeNameAddress elemental.AttributeSpecificationNameKey = "server/address"
+	ServerAttributeNameAddress elemental.AttributeSpecificationNameKey = "Address"
 
 	// ServerAttributeNameAnnotation represents the attribute annotation.
-	ServerAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "server/annotation"
+	ServerAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// ServerAttributeNameAssociatedTags represents the attribute associatedTags.
-	ServerAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "server/associatedTags"
+	ServerAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// ServerAttributeNameCreatedAt represents the attribute createdAt.
-	ServerAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "server/createdAt"
+	ServerAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// ServerAttributeNameDeleted represents the attribute deleted.
-	ServerAttributeNameDeleted elemental.AttributeSpecificationNameKey = "server/deleted"
+	ServerAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// ServerAttributeNameDescription represents the attribute description.
-	ServerAttributeNameDescription elemental.AttributeSpecificationNameKey = "server/description"
+	ServerAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// ServerAttributeNameDomain represents the attribute domain.
-	ServerAttributeNameDomain elemental.AttributeSpecificationNameKey = "server/domain"
+	ServerAttributeNameDomain elemental.AttributeSpecificationNameKey = "Domain"
 
 	// ServerAttributeNameEnvironment represents the attribute environment.
-	ServerAttributeNameEnvironment elemental.AttributeSpecificationNameKey = "server/environment"
+	ServerAttributeNameEnvironment elemental.AttributeSpecificationNameKey = "Environment"
 
 	// ServerAttributeNameName represents the attribute name.
-	ServerAttributeNameName elemental.AttributeSpecificationNameKey = "server/name"
+	ServerAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// ServerAttributeNameNamespace represents the attribute namespace.
-	ServerAttributeNameNamespace elemental.AttributeSpecificationNameKey = "server/namespace"
+	ServerAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// ServerAttributeNameOperationalStatus represents the attribute operationalStatus.
-	ServerAttributeNameOperationalStatus elemental.AttributeSpecificationNameKey = "server/operationalStatus"
+	ServerAttributeNameOperationalStatus elemental.AttributeSpecificationNameKey = "OperationalStatus"
 
 	// ServerAttributeNameParentID represents the attribute parentID.
-	ServerAttributeNameParentID elemental.AttributeSpecificationNameKey = "server/parentID"
+	ServerAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// ServerAttributeNameParentType represents the attribute parentType.
-	ServerAttributeNameParentType elemental.AttributeSpecificationNameKey = "server/parentType"
+	ServerAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// ServerAttributeNameStatus represents the attribute status.
-	ServerAttributeNameStatus elemental.AttributeSpecificationNameKey = "server/status"
+	ServerAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// ServerAttributeNameUpdatedAt represents the attribute updatedAt.
-	ServerAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "server/updatedAt"
+	ServerAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // ServerEnvironmentValue represents the possible values for attribute "environment".

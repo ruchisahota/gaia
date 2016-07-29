@@ -8,40 +8,40 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// SystemCallAttributeNameID represents the attribute ID.
-	SystemCallAttributeNameID elemental.AttributeSpecificationNameKey = "systemcall/ID"
+	SystemCallAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// SystemCallAttributeNameAnnotation represents the attribute annotation.
-	SystemCallAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "systemcall/annotation"
+	SystemCallAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// SystemCallAttributeNameAssociatedTags represents the attribute associatedTags.
-	SystemCallAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "systemcall/associatedTags"
+	SystemCallAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// SystemCallAttributeNameCreatedAt represents the attribute createdAt.
-	SystemCallAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "systemcall/createdAt"
+	SystemCallAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// SystemCallAttributeNameDeleted represents the attribute deleted.
-	SystemCallAttributeNameDeleted elemental.AttributeSpecificationNameKey = "systemcall/deleted"
+	SystemCallAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// SystemCallAttributeNameDescription represents the attribute description.
-	SystemCallAttributeNameDescription elemental.AttributeSpecificationNameKey = "systemcall/description"
+	SystemCallAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// SystemCallAttributeNameName represents the attribute name.
-	SystemCallAttributeNameName elemental.AttributeSpecificationNameKey = "systemcall/name"
+	SystemCallAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// SystemCallAttributeNameNamespace represents the attribute namespace.
-	SystemCallAttributeNameNamespace elemental.AttributeSpecificationNameKey = "systemcall/namespace"
+	SystemCallAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// SystemCallAttributeNameParentID represents the attribute parentID.
-	SystemCallAttributeNameParentID elemental.AttributeSpecificationNameKey = "systemcall/parentID"
+	SystemCallAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// SystemCallAttributeNameParentType represents the attribute parentType.
-	SystemCallAttributeNameParentType elemental.AttributeSpecificationNameKey = "systemcall/parentType"
+	SystemCallAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// SystemCallAttributeNameStatus represents the attribute status.
-	SystemCallAttributeNameStatus elemental.AttributeSpecificationNameKey = "systemcall/status"
+	SystemCallAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// SystemCallAttributeNameUpdatedAt represents the attribute updatedAt.
-	SystemCallAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "systemcall/updatedAt"
+	SystemCallAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // SystemCallIdentity represents the Identity of the object

@@ -5,7 +5,7 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// RootAttributeNameID represents the attribute ID.
-	RootAttributeNameID elemental.AttributeSpecificationNameKey = "root/ID"
+	RootAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 )
 
 // RootIdentity represents the Identity of the object

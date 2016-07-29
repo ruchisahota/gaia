@@ -8,43 +8,43 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// NamespaceAttributeNameID represents the attribute ID.
-	NamespaceAttributeNameID elemental.AttributeSpecificationNameKey = "namespace/ID"
+	NamespaceAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// NamespaceAttributeNameAnnotation represents the attribute annotation.
-	NamespaceAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "namespace/annotation"
+	NamespaceAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// NamespaceAttributeNameAssociatedTags represents the attribute associatedTags.
-	NamespaceAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "namespace/associatedTags"
+	NamespaceAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// NamespaceAttributeNameAuthenticator represents the attribute authenticator.
-	NamespaceAttributeNameAuthenticator elemental.AttributeSpecificationNameKey = "namespace/authenticator"
+	NamespaceAttributeNameAuthenticator elemental.AttributeSpecificationNameKey = "Authenticator"
 
 	// NamespaceAttributeNameCreatedAt represents the attribute createdAt.
-	NamespaceAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "namespace/createdAt"
+	NamespaceAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// NamespaceAttributeNameDeleted represents the attribute deleted.
-	NamespaceAttributeNameDeleted elemental.AttributeSpecificationNameKey = "namespace/deleted"
+	NamespaceAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// NamespaceAttributeNameDescription represents the attribute description.
-	NamespaceAttributeNameDescription elemental.AttributeSpecificationNameKey = "namespace/description"
+	NamespaceAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// NamespaceAttributeNameName represents the attribute name.
-	NamespaceAttributeNameName elemental.AttributeSpecificationNameKey = "namespace/name"
+	NamespaceAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// NamespaceAttributeNameNamespace represents the attribute namespace.
-	NamespaceAttributeNameNamespace elemental.AttributeSpecificationNameKey = "namespace/namespace"
+	NamespaceAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// NamespaceAttributeNameParentID represents the attribute parentID.
-	NamespaceAttributeNameParentID elemental.AttributeSpecificationNameKey = "namespace/parentID"
+	NamespaceAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// NamespaceAttributeNameParentType represents the attribute parentType.
-	NamespaceAttributeNameParentType elemental.AttributeSpecificationNameKey = "namespace/parentType"
+	NamespaceAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// NamespaceAttributeNameStatus represents the attribute status.
-	NamespaceAttributeNameStatus elemental.AttributeSpecificationNameKey = "namespace/status"
+	NamespaceAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// NamespaceAttributeNameUpdatedAt represents the attribute updatedAt.
-	NamespaceAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "namespace/updatedAt"
+	NamespaceAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // NamespaceIdentity represents the Identity of the object

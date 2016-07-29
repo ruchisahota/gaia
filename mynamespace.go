@@ -5,10 +5,10 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// MyNamespaceAttributeNameID represents the attribute ID.
-	MyNamespaceAttributeNameID elemental.AttributeSpecificationNameKey = "mynamespace/ID"
+	MyNamespaceAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// MyNamespaceAttributeNameNamespaces represents the attribute namespaces.
-	MyNamespaceAttributeNameNamespaces elemental.AttributeSpecificationNameKey = "mynamespace/namespaces"
+	MyNamespaceAttributeNameNamespaces elemental.AttributeSpecificationNameKey = "Namespaces"
 )
 
 // MyNamespaceIdentity represents the Identity of the object

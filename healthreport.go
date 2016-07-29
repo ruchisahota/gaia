@@ -5,25 +5,25 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// HealthReportAttributeNameAPIVersion represents the attribute APIVersion.
-	HealthReportAttributeNameAPIVersion elemental.AttributeSpecificationNameKey = "healthreport/APIVersion"
+	HealthReportAttributeNameAPIVersion elemental.AttributeSpecificationNameKey = "APIVersion"
 
 	// HealthReportAttributeNameID represents the attribute ID.
-	HealthReportAttributeNameID elemental.AttributeSpecificationNameKey = "healthreport/ID"
+	HealthReportAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// HealthReportAttributeNameBahamutVersion represents the attribute bahamutVersion.
-	HealthReportAttributeNameBahamutVersion elemental.AttributeSpecificationNameKey = "healthreport/bahamutVersion"
+	HealthReportAttributeNameBahamutVersion elemental.AttributeSpecificationNameKey = "BahamutVersion"
 
 	// HealthReportAttributeNameElementalVersion represents the attribute elementalVersion.
-	HealthReportAttributeNameElementalVersion elemental.AttributeSpecificationNameKey = "healthreport/elementalVersion"
+	HealthReportAttributeNameElementalVersion elemental.AttributeSpecificationNameKey = "ElementalVersion"
 
 	// HealthReportAttributeNameGaiaVersion represents the attribute gaiaVersion.
-	HealthReportAttributeNameGaiaVersion elemental.AttributeSpecificationNameKey = "healthreport/gaiaVersion"
+	HealthReportAttributeNameGaiaVersion elemental.AttributeSpecificationNameKey = "GaiaVersion"
 
 	// HealthReportAttributeNameSquallVersion represents the attribute squallVersion.
-	HealthReportAttributeNameSquallVersion elemental.AttributeSpecificationNameKey = "healthreport/squallVersion"
+	HealthReportAttributeNameSquallVersion elemental.AttributeSpecificationNameKey = "SquallVersion"
 
 	// HealthReportAttributeNameStatus represents the attribute status.
-	HealthReportAttributeNameStatus elemental.AttributeSpecificationNameKey = "healthreport/status"
+	HealthReportAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 )
 
 // HealthReportStatusValue represents the possible values for attribute "status".

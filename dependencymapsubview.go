@@ -5,16 +5,16 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// DependencyMapSubviewAttributeNameID represents the attribute ID.
-	DependencyMapSubviewAttributeNameID elemental.AttributeSpecificationNameKey = "dependencymapsubview/ID"
+	DependencyMapSubviewAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// DependencyMapSubviewAttributeNameSelector represents the attribute selector.
-	DependencyMapSubviewAttributeNameSelector elemental.AttributeSpecificationNameKey = "dependencymapsubview/selector"
+	DependencyMapSubviewAttributeNameSelector elemental.AttributeSpecificationNameKey = "Selector"
 
 	// DependencyMapSubviewAttributeNameSubSelectors represents the attribute subSelectors.
-	DependencyMapSubviewAttributeNameSubSelectors elemental.AttributeSpecificationNameKey = "dependencymapsubview/subSelectors"
+	DependencyMapSubviewAttributeNameSubSelectors elemental.AttributeSpecificationNameKey = "SubSelectors"
 
 	// DependencyMapSubviewAttributeNameTonality represents the attribute tonality.
-	DependencyMapSubviewAttributeNameTonality elemental.AttributeSpecificationNameKey = "dependencymapsubview/tonality"
+	DependencyMapSubviewAttributeNameTonality elemental.AttributeSpecificationNameKey = "Tonality"
 )
 
 // DependencyMapSubviewIdentity represents the Identity of the object

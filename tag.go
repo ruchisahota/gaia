@@ -8,40 +8,40 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// TagAttributeNameID represents the attribute ID.
-	TagAttributeNameID elemental.AttributeSpecificationNameKey = "tag/ID"
+	TagAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// TagAttributeNameAnnotation represents the attribute annotation.
-	TagAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "tag/annotation"
+	TagAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// TagAttributeNameAssociatedTags represents the attribute associatedTags.
-	TagAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "tag/associatedTags"
+	TagAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// TagAttributeNameCreatedAt represents the attribute createdAt.
-	TagAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "tag/createdAt"
+	TagAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// TagAttributeNameDeleted represents the attribute deleted.
-	TagAttributeNameDeleted elemental.AttributeSpecificationNameKey = "tag/deleted"
+	TagAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// TagAttributeNameDescription represents the attribute description.
-	TagAttributeNameDescription elemental.AttributeSpecificationNameKey = "tag/description"
+	TagAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// TagAttributeNameNamespace represents the attribute namespace.
-	TagAttributeNameNamespace elemental.AttributeSpecificationNameKey = "tag/namespace"
+	TagAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// TagAttributeNameParentID represents the attribute parentID.
-	TagAttributeNameParentID elemental.AttributeSpecificationNameKey = "tag/parentID"
+	TagAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// TagAttributeNameParentType represents the attribute parentType.
-	TagAttributeNameParentType elemental.AttributeSpecificationNameKey = "tag/parentType"
+	TagAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// TagAttributeNameStatus represents the attribute status.
-	TagAttributeNameStatus elemental.AttributeSpecificationNameKey = "tag/status"
+	TagAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// TagAttributeNameUpdatedAt represents the attribute updatedAt.
-	TagAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "tag/updatedAt"
+	TagAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 
 	// TagAttributeNameValue represents the attribute value.
-	TagAttributeNameValue elemental.AttributeSpecificationNameKey = "tag/value"
+	TagAttributeNameValue elemental.AttributeSpecificationNameKey = "Value"
 )
 
 // TagIdentity represents the Identity of the object

@@ -8,46 +8,46 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// FilePathAttributeNameID represents the attribute ID.
-	FilePathAttributeNameID elemental.AttributeSpecificationNameKey = "filepath/ID"
+	FilePathAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// FilePathAttributeNameAnnotation represents the attribute annotation.
-	FilePathAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "filepath/annotation"
+	FilePathAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// FilePathAttributeNameAssociatedTags represents the attribute associatedTags.
-	FilePathAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "filepath/associatedTags"
+	FilePathAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// FilePathAttributeNameCreatedAt represents the attribute createdAt.
-	FilePathAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "filepath/createdAt"
+	FilePathAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// FilePathAttributeNameDeleted represents the attribute deleted.
-	FilePathAttributeNameDeleted elemental.AttributeSpecificationNameKey = "filepath/deleted"
+	FilePathAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// FilePathAttributeNameDescription represents the attribute description.
-	FilePathAttributeNameDescription elemental.AttributeSpecificationNameKey = "filepath/description"
+	FilePathAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// FilePathAttributeNameFilepath represents the attribute filepath.
-	FilePathAttributeNameFilepath elemental.AttributeSpecificationNameKey = "filepath/filepath"
+	FilePathAttributeNameFilepath elemental.AttributeSpecificationNameKey = "Filepath"
 
 	// FilePathAttributeNameName represents the attribute name.
-	FilePathAttributeNameName elemental.AttributeSpecificationNameKey = "filepath/name"
+	FilePathAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// FilePathAttributeNameNamespace represents the attribute namespace.
-	FilePathAttributeNameNamespace elemental.AttributeSpecificationNameKey = "filepath/namespace"
+	FilePathAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// FilePathAttributeNameParentID represents the attribute parentID.
-	FilePathAttributeNameParentID elemental.AttributeSpecificationNameKey = "filepath/parentID"
+	FilePathAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// FilePathAttributeNameParentType represents the attribute parentType.
-	FilePathAttributeNameParentType elemental.AttributeSpecificationNameKey = "filepath/parentType"
+	FilePathAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// FilePathAttributeNameServer represents the attribute server.
-	FilePathAttributeNameServer elemental.AttributeSpecificationNameKey = "filepath/server"
+	FilePathAttributeNameServer elemental.AttributeSpecificationNameKey = "Server"
 
 	// FilePathAttributeNameStatus represents the attribute status.
-	FilePathAttributeNameStatus elemental.AttributeSpecificationNameKey = "filepath/status"
+	FilePathAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// FilePathAttributeNameUpdatedAt represents the attribute updatedAt.
-	FilePathAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "filepath/updatedAt"
+	FilePathAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // FilePathIdentity represents the Identity of the object

@@ -5,16 +5,16 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// RenderedPoliciesAttributeNameID represents the attribute ID.
-	RenderedPoliciesAttributeNameID elemental.AttributeSpecificationNameKey = "renderedpolicies/ID"
+	RenderedPoliciesAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// RenderedPoliciesAttributeNameEgressPolicies represents the attribute egressPolicies.
-	RenderedPoliciesAttributeNameEgressPolicies elemental.AttributeSpecificationNameKey = "renderedpolicies/egressPolicies"
+	RenderedPoliciesAttributeNameEgressPolicies elemental.AttributeSpecificationNameKey = "EgressPolicies"
 
 	// RenderedPoliciesAttributeNameIngressPolicies represents the attribute ingressPolicies.
-	RenderedPoliciesAttributeNameIngressPolicies elemental.AttributeSpecificationNameKey = "renderedpolicies/ingressPolicies"
+	RenderedPoliciesAttributeNameIngressPolicies elemental.AttributeSpecificationNameKey = "IngressPolicies"
 
 	// RenderedPoliciesAttributeNameProcessingUnitID represents the attribute processingUnitID.
-	RenderedPoliciesAttributeNameProcessingUnitID elemental.AttributeSpecificationNameKey = "renderedpolicies/processingUnitID"
+	RenderedPoliciesAttributeNameProcessingUnitID elemental.AttributeSpecificationNameKey = "ProcessingUnitID"
 )
 
 // RenderedPoliciesIdentity represents the Identity of the object

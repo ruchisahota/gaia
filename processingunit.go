@@ -8,61 +8,61 @@ import "github.com/aporeto-inc/gaia/enum"
 
 const (
 	// ProcessingUnitAttributeNameID represents the attribute ID.
-	ProcessingUnitAttributeNameID elemental.AttributeSpecificationNameKey = "processingunit/ID"
+	ProcessingUnitAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// ProcessingUnitAttributeNameAnnotation represents the attribute annotation.
-	ProcessingUnitAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "processingunit/annotation"
+	ProcessingUnitAttributeNameAnnotation elemental.AttributeSpecificationNameKey = "Annotation"
 
 	// ProcessingUnitAttributeNameAssociatedTags represents the attribute associatedTags.
-	ProcessingUnitAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "processingunit/associatedTags"
+	ProcessingUnitAttributeNameAssociatedTags elemental.AttributeSpecificationNameKey = "AssociatedTags"
 
 	// ProcessingUnitAttributeNameCreatedAt represents the attribute createdAt.
-	ProcessingUnitAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "processingunit/createdAt"
+	ProcessingUnitAttributeNameCreatedAt elemental.AttributeSpecificationNameKey = "CreatedAt"
 
 	// ProcessingUnitAttributeNameDeleted represents the attribute deleted.
-	ProcessingUnitAttributeNameDeleted elemental.AttributeSpecificationNameKey = "processingunit/deleted"
+	ProcessingUnitAttributeNameDeleted elemental.AttributeSpecificationNameKey = "Deleted"
 
 	// ProcessingUnitAttributeNameDescription represents the attribute description.
-	ProcessingUnitAttributeNameDescription elemental.AttributeSpecificationNameKey = "processingunit/description"
+	ProcessingUnitAttributeNameDescription elemental.AttributeSpecificationNameKey = "Description"
 
 	// ProcessingUnitAttributeNameLastSyncTime represents the attribute lastSyncTime.
-	ProcessingUnitAttributeNameLastSyncTime elemental.AttributeSpecificationNameKey = "processingunit/lastSyncTime"
+	ProcessingUnitAttributeNameLastSyncTime elemental.AttributeSpecificationNameKey = "LastSyncTime"
 
 	// ProcessingUnitAttributeNameMetadata represents the attribute metadata.
-	ProcessingUnitAttributeNameMetadata elemental.AttributeSpecificationNameKey = "processingunit/metadata"
+	ProcessingUnitAttributeNameMetadata elemental.AttributeSpecificationNameKey = "Metadata"
 
 	// ProcessingUnitAttributeNameName represents the attribute name.
-	ProcessingUnitAttributeNameName elemental.AttributeSpecificationNameKey = "processingunit/name"
+	ProcessingUnitAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// ProcessingUnitAttributeNameNamespace represents the attribute namespace.
-	ProcessingUnitAttributeNameNamespace elemental.AttributeSpecificationNameKey = "processingunit/namespace"
+	ProcessingUnitAttributeNameNamespace elemental.AttributeSpecificationNameKey = "Namespace"
 
 	// ProcessingUnitAttributeNameNativeContextID represents the attribute nativeContextID.
-	ProcessingUnitAttributeNameNativeContextID elemental.AttributeSpecificationNameKey = "processingunit/nativeContextID"
+	ProcessingUnitAttributeNameNativeContextID elemental.AttributeSpecificationNameKey = "NativeContextID"
 
 	// ProcessingUnitAttributeNameOperationalStatus represents the attribute operationalStatus.
-	ProcessingUnitAttributeNameOperationalStatus elemental.AttributeSpecificationNameKey = "processingunit/operationalStatus"
+	ProcessingUnitAttributeNameOperationalStatus elemental.AttributeSpecificationNameKey = "OperationalStatus"
 
 	// ProcessingUnitAttributeNameParentID represents the attribute parentID.
-	ProcessingUnitAttributeNameParentID elemental.AttributeSpecificationNameKey = "processingunit/parentID"
+	ProcessingUnitAttributeNameParentID elemental.AttributeSpecificationNameKey = "ParentID"
 
 	// ProcessingUnitAttributeNameParentType represents the attribute parentType.
-	ProcessingUnitAttributeNameParentType elemental.AttributeSpecificationNameKey = "processingunit/parentType"
+	ProcessingUnitAttributeNameParentType elemental.AttributeSpecificationNameKey = "ParentType"
 
 	// ProcessingUnitAttributeNamePolicyState represents the attribute policyState.
-	ProcessingUnitAttributeNamePolicyState elemental.AttributeSpecificationNameKey = "processingunit/policyState"
+	ProcessingUnitAttributeNamePolicyState elemental.AttributeSpecificationNameKey = "PolicyState"
 
 	// ProcessingUnitAttributeNameServerID represents the attribute serverID.
-	ProcessingUnitAttributeNameServerID elemental.AttributeSpecificationNameKey = "processingunit/serverID"
+	ProcessingUnitAttributeNameServerID elemental.AttributeSpecificationNameKey = "ServerID"
 
 	// ProcessingUnitAttributeNameStatus represents the attribute status.
-	ProcessingUnitAttributeNameStatus elemental.AttributeSpecificationNameKey = "processingunit/status"
+	ProcessingUnitAttributeNameStatus elemental.AttributeSpecificationNameKey = "Status"
 
 	// ProcessingUnitAttributeNameType represents the attribute type.
-	ProcessingUnitAttributeNameType elemental.AttributeSpecificationNameKey = "processingunit/type"
+	ProcessingUnitAttributeNameType elemental.AttributeSpecificationNameKey = "Type"
 
 	// ProcessingUnitAttributeNameUpdatedAt represents the attribute updatedAt.
-	ProcessingUnitAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "processingunit/updatedAt"
+	ProcessingUnitAttributeNameUpdatedAt elemental.AttributeSpecificationNameKey = "UpdatedAt"
 )
 
 // ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".

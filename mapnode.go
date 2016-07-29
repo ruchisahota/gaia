@@ -5,16 +5,16 @@ import "github.com/aporeto-inc/elemental"
 
 const (
 	// MapNodeAttributeNameID represents the attribute ID.
-	MapNodeAttributeNameID elemental.AttributeSpecificationNameKey = "mapnode/ID"
+	MapNodeAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// MapNodeAttributeNameLabels represents the attribute labels.
-	MapNodeAttributeNameLabels elemental.AttributeSpecificationNameKey = "mapnode/labels"
+	MapNodeAttributeNameLabels elemental.AttributeSpecificationNameKey = "Labels"
 
 	// MapNodeAttributeNameName represents the attribute name.
-	MapNodeAttributeNameName elemental.AttributeSpecificationNameKey = "mapnode/name"
+	MapNodeAttributeNameName elemental.AttributeSpecificationNameKey = "Name"
 
 	// MapNodeAttributeNameType represents the attribute type.
-	MapNodeAttributeNameType elemental.AttributeSpecificationNameKey = "mapnode/type"
+	MapNodeAttributeNameType elemental.AttributeSpecificationNameKey = "Type"
 )
 
 // MapNodeTypeValue represents the possible values for attribute "type".

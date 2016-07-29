@@ -7,10 +7,10 @@ import "github.com/aporeto-inc/go-kairosdb/builder"
 
 const (
 	// FlowStatisticAttributeNameID represents the attribute ID.
-	FlowStatisticAttributeNameID elemental.AttributeSpecificationNameKey = "flowstatistic/ID"
+	FlowStatisticAttributeNameID elemental.AttributeSpecificationNameKey = "ID"
 
 	// FlowStatisticAttributeNameDatapoints represents the attribute datapoints.
-	FlowStatisticAttributeNameDatapoints elemental.AttributeSpecificationNameKey = "flowstatistic/datapoints"
+	FlowStatisticAttributeNameDatapoints elemental.AttributeSpecificationNameKey = "Datapoints"
 )
 
 // FlowStatisticIdentity represents the Identity of the object
