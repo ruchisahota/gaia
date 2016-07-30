@@ -88,6 +88,7 @@ var DependencyMapSubviewAttributesMap = map[string]elemental.AttributeSpecificat
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
 	},

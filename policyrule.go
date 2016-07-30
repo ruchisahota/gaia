@@ -97,6 +97,7 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
 	},
