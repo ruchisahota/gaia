@@ -108,14 +108,14 @@
         "create": false,
         "delete": false,
         "description": "RenderedPolicies attached to the given set of Subjects.",
-        "entity_name": "RenderedPolicies",
+        "entity_name": "RenderedPolicy",
         "extends": [
             "@identifiable-nopk-nostored"
         ],
         "get": false,
         "package": "Policies",
         "resource_name": "renderedpolicies",
-        "rest_name": "renderedpolicies",
+        "rest_name": "renderedpolicy",
         "root": false,
         "update": false
     }

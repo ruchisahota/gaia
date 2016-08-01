@@ -142,7 +142,7 @@
             "deprecated": null,
             "get": true,
             "relationship": "root",
-            "rest_name": "renderedpolicies",
+            "rest_name": "renderedpolicy",
             "update": false
         },
         {
