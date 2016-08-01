@@ -44,7 +44,7 @@
         "extends": [
             "@identifiable-nopk-nostored"
         ],
-        "get": true,
+        "get": false,
         "package": "Infrastructure",
         "resource_name": "mynamespaces",
         "rest_name": "mynamespace",
