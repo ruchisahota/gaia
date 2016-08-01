@@ -23,7 +23,7 @@
             "min_value": null,
             "name": "email",
             "orderable": true,
-            "primary_key": true,
+            "primary_key": false,
             "read_only": false,
             "required": false,
             "setter": null,
