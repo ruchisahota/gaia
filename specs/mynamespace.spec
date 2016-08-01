@@ -37,18 +37,18 @@
     ],
     "children": [],
     "model": {
-        "create": null,
-        "delete": null,
+        "create": false,
+        "delete": false,
         "description": "mynamespaces returns the user's authorized namespaces. ",
         "entity_name": "MyNamespace",
         "extends": [
             "@identifiable-nopk-nostored"
         ],
-        "get": null,
+        "get": true,
         "package": "Infrastructure",
         "resource_name": "mynamespaces",
         "rest_name": "mynamespace",
-        "root": null,
-        "update": null
+        "root": false,
+        "update": false
     }
 }

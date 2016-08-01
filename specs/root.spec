@@ -18,12 +18,12 @@
             "bulk_delete": false,
             "bulk_update": false,
             "create": false,
-            "delete": true,
+            "delete": false,
             "deprecated": null,
             "get": true,
             "relationship": "root",
             "rest_name": "certificate",
-            "update": true
+            "update": false
         },
         {
             "bulk_create": false,
