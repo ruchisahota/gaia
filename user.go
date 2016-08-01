@@ -33,7 +33,7 @@ type User struct {
 	Deleted bool `json:"-" cql:"deleted,omitempty"`
 
 	// e-mail address of the user
-	Email string `json:"email,omitempty" cql:"email,primarykey,omitempty"`
+	Email string `json:"email,omitempty" cql:"email,omitempty"`
 
 	// Name is the name of the entity
 	Name string `json:"name,omitempty" cql:"name,omitempty"`
@@ -269,7 +269,6 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "email",
 		Name:           "email",
 		Orderable:      true,
-		PrimaryKey:     true,
 		Stored:         true,
 		Type:           "string",
 	},
