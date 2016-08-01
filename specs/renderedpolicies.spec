@@ -105,8 +105,8 @@
     ],
     "children": [],
     "model": {
-        "create": null,
-        "delete": null,
+        "create": false,
+        "delete": false,
         "description": "RenderedPolicies attached to the given set of Subjects.",
         "entity_name": "RenderedPolicies",
         "extends": [
@@ -116,7 +116,7 @@
         "package": "Policies",
         "resource_name": "renderedpolicies",
         "rest_name": "renderedpolicies",
-        "root": null,
-        "update": null
+        "root": false,
+        "update": false
     }
 }
