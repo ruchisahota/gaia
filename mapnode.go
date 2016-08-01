@@ -86,7 +86,7 @@ func (o *MapNode) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Container", "Volume"}); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Container", "Volume"}, true); err != nil {
 		errors = append(errors, err)
 	}
 

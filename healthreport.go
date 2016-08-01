@@ -84,7 +84,7 @@ func (o *HealthReport) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Degraded", "Failure", "Ok"}); err != nil {
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Degraded", "Failure", "Ok"}, true); err != nil {
 		errors = append(errors, err)
 	}
 

@@ -172,7 +172,7 @@ func (o *Namespace) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}); err != nil {
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}, true); err != nil {
 		errors = append(errors, err)
 	}
 

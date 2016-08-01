@@ -231,11 +231,11 @@ func (o *ProcessingUnit) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Active", "Dead"}); err != nil {
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Active", "Dead"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("policyState", string(o.PolicyState), []string{"Dirty", "Synchronized"}); err != nil {
+	if err := elemental.ValidateStringInList("policyState", string(o.PolicyState), []string{"Dirty", "Synchronized"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -243,11 +243,11 @@ func (o *ProcessingUnit) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}); err != nil {
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT"}); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT"}, false); err != nil {
 		errors = append(errors, err)
 	}
 

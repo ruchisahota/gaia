@@ -191,7 +191,7 @@ func (o *Authenticator) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("method", string(o.Method), []string{"Certificate", "Key", "LDAP", "OAUTH"}); err != nil {
+	if err := elemental.ValidateStringInList("method", string(o.Method), []string{"Certificate", "Key", "LDAP", "OAUTH"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -199,7 +199,7 @@ func (o *Authenticator) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}); err != nil {
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}, true); err != nil {
 		errors = append(errors, err)
 	}
 

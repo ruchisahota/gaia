@@ -211,7 +211,7 @@ func (o *Server) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("environment", string(o.Environment), []string{"AWS", "GCP", "Private"}); err != nil {
+	if err := elemental.ValidateStringInList("environment", string(o.Environment), []string{"AWS", "GCP", "Private"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -219,11 +219,11 @@ func (o *Server) Validate() elemental.Errors {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"CONNECTED", "INITIALIZED", "UNKNOWN"}); err != nil {
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"CONNECTED", "INITIALIZED", "UNKNOWN"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}); err != nil {
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Active", "Candidate", "Disabled"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
