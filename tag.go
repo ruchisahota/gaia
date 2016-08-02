@@ -326,6 +326,7 @@ var TagAttributesMap = map[string]elemental.AttributeSpecification{
 	"Value": elemental.AttributeSpecification{
 		AllowedChars:   `^[^\s=]+=[^\s=]+$`,
 		AllowedChoices: []string{},
+		CreationOnly:   true,
 		Exposed:        true,
 		Format:         "free",
 		Name:           "value",
