@@ -80,7 +80,7 @@
             "channel": null,
             "creation_only": true,
             "default_order": false,
-            "default_value": "Certificate",
+            "default_value": null,
             "deprecated": false,
             "description": "Method for authenticator (Certificate, Key, LDAP, Google, etc)",
             "exposed": true,
