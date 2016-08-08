@@ -15,16 +15,16 @@ type DependencyMapSubviewsList []*DependencyMapSubview
 // DependencyMapSubview represents the model of a dependencymapsubview
 type DependencyMapSubview struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID,omitempty" cql:"-"`
+	ID string `json:"ID" cql:"-"`
 
 	// Selector is the main selector for the DependencyMapSubview.
-	Selector []string `json:"selector,omitempty" cql:"selector,omitempty"`
+	Selector []string `json:"selector" cql:"selector,omitempty"`
 
 	// SubSelectors are the selector to apply inside the main selector.
-	SubSelectors map[string][]string `json:"subSelectors,omitempty" cql:"subselectors,omitempty"`
+	SubSelectors map[string][]string `json:"subSelectors" cql:"subselectors,omitempty"`
 
 	// Tonality sets the color tonality to use for the DependencyMapSubView.
-	Tonality string `json:"tonality,omitempty" cql:"tonality,omitempty"`
+	Tonality string `json:"tonality" cql:"tonality,omitempty"`
 }
 
 // NewDependencyMapSubview returns a new *DependencyMapSubview

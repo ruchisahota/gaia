@@ -15,16 +15,16 @@ type TagCountersList []*TagCounter
 // TagCounter represents the model of a tagcounter
 type TagCounter struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID,omitempty" cql:"-"`
+	ID string `json:"ID" cql:"-"`
 
 	// Count represents the number of time the represented tag is used.
 	Count int `json:"-" cql:"count,omitempty"`
 
 	// Namespace represents the namespace of the counted tag.
-	Namespace string `json:"-" cql:"namespace,omitempty"`
+	Namespace string `json:"-" cql:"namespace,primarykey,omitempty"`
 
 	// Value represents the value of the counted tag.
-	Value string `json:"-" cql:"value,omitempty"`
+	Value string `json:"-" cql:"value,primarykey,omitempty"`
 }
 
 // NewTagCounter returns a new *TagCounter
@@ -99,6 +99,7 @@ var TagCounterAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Format:         "free",
 		Name:           "namespace",
+		PrimaryKey:     true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -106,6 +107,7 @@ var TagCounterAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Format:         "free",
 		Name:           "value",
+		PrimaryKey:     true,
 		Stored:         true,
 		Type:           "string",
 	},

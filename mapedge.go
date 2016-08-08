@@ -15,19 +15,19 @@ type MapEdgesList []*MapEdge
 // MapEdge represents the model of a mapedge
 type MapEdge struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID,omitempty" cql:"-"`
+	ID string `json:"ID" cql:"-"`
 
 	// ID of the destination resource
-	DestinationID string `json:"destinationID,omitempty" cql:"-"`
+	DestinationID string `json:"destinationID" cql:"-"`
 
 	// Labels provide grouping parameters
-	Labels []string `json:"labels,omitempty" cql:"-"`
+	Labels []string `json:"labels" cql:"-"`
 
 	// Name is the name of the entity
-	Name string `json:"name,omitempty" cql:"name,omitempty"`
+	Name string `json:"name" cql:"name,omitempty"`
 
 	// ID of the source resource
-	SourceID string `json:"sourceID,omitempty" cql:"-"`
+	SourceID string `json:"sourceID" cql:"-"`
 }
 
 // NewMapEdge returns a new *MapEdge

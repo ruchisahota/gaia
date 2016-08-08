@@ -17,10 +17,10 @@ type FlowStatisticsList []*FlowStatistic
 // FlowStatistic represents the model of a flowstatistic
 type FlowStatistic struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID,omitempty" cql:"-"`
+	ID string `json:"ID" cql:"-"`
 
 	// Datapoints is a list of time/value pairs that represent the flow events over time.
-	Datapoints []builder.DataPoint `json:"datapoints,omitempty" cql:"-"`
+	Datapoints []builder.DataPoint `json:"datapoints" cql:"-"`
 }
 
 // NewFlowStatistic returns a new *FlowStatistic
