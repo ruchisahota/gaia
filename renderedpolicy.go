@@ -18,10 +18,10 @@ type RenderedPolicy struct {
 	ID string `json:"ID" cql:"-"`
 
 	// EgressPolicies lists all the egress policies attached to ProcessingUnit
-	EgressPolicies map[string][]PolicyRule `json:"egressPolicies" cql:"-"`
+	EgressPolicies map[string]PolicyRulesList `json:"egressPolicies" cql:"-"`
 
 	// IngressPolicies lists all the ingress policies attached to ProcessingUnit
-	IngressPolicies map[string][]PolicyRule `json:"ingressPolicies" cql:"-"`
+	IngressPolicies map[string]PolicyRulesList `json:"ingressPolicies" cql:"-"`
 
 	// Identifier of the ProcessingUnit
 	ProcessingUnitID string `json:"processingUnitID" cql:"-"`
