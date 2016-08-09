@@ -101,7 +101,8 @@ type ProcessingUnit struct {
 func NewProcessingUnit() *ProcessingUnit {
 
 	return &ProcessingUnit{
-		Status: enum.Active,
+		OperationalStatus: "Active",
+		Status:            enum.Active,
 	}
 }
 
