@@ -219,11 +219,11 @@
             "bulk_update": false,
             "create": false,
             "delete": false,
-            "deprecated": false,
-            "get": false,
-            "relationship": "member",
-            "rest_name": "tag",
-            "update": true
+            "deprecated": null,
+            "get": true,
+            "relationship": "child",
+            "rest_name": "renderedpolicy",
+            "update": false
         }
     ],
     "model": {
