@@ -91,7 +91,7 @@
             "min_value": null,
             "name": "nativeContextID",
             "orderable": false,
-            "primary_key": true,
+            "primary_key": false,
             "read_only": true,
             "required": false,
             "setter": false,
