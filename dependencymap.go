@@ -18,18 +18,21 @@ type DependencyMap struct {
 	ID string `json:"ID" cql:"-"`
 
 	// edges are the edges of the map
-	Edges []MapEdge `json:"edges" cql:"-"`
+	Edges map[string]*MapEdge `json:"edges" cql:"-"`
+
+	// Groups provide information about the group values
+	Groups map[string]map[string]string `json:"groups" cql:"-"`
 
 	// nodes refers to the nodes of the map
-	Nodes []MapNode `json:"nodes" cql:"-"`
+	Nodes map[string]*MapNode `json:"nodes" cql:"-"`
 }
 
 // NewDependencyMap returns a new *DependencyMap
 func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
-		Edges: []MapEdge{},
-		Nodes: []MapNode{},
+		Edges: map[string]*MapEdge{},
+		Nodes: map[string]*MapNode{},
 	}
 }
 
@@ -96,7 +99,17 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "edges",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "edges_list",
+		SubType:        "edges_map",
+		Type:           "external",
+	},
+	"Groups": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Name:           "groups",
+		ReadOnly:       true,
+		Required:       true,
+		SubType:        "group_description_map",
 		Type:           "external",
 	},
 	"Nodes": elemental.AttributeSpecification{
@@ -106,7 +119,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "nodes",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "nodes_list",
+		SubType:        "nodes_map",
 		Type:           "external",
 	},
 }
