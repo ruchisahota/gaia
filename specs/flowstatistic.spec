@@ -115,7 +115,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": "Time",
+            "default_value": "Serie",
             "deprecated": null,
             "description": "Type is the type of represenation",
             "exposed": true,
