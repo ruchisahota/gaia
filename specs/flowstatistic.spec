@@ -77,7 +77,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "DestinationTags contains the tags used as destination",
+            "description": "DestinationTags contains the tags used to identify destination",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
