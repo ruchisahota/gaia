@@ -238,7 +238,7 @@
             "required": null,
             "setter": null,
             "stored": false,
-            "subtype": "tags_list",
+            "subtype": "selectors_list",
             "transient": false,
             "type": "external",
             "unique": null,
