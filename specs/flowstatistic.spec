@@ -219,7 +219,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "SourceTags contains the tags used to identify the source.",
+            "description": "SourceTags contains the tags used to identify the source. ",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
