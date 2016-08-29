@@ -57,7 +57,7 @@ type FlowStatistic struct {
 	DestinationID string `json:"destinationID" cql:"-"`
 
 	// DestinationTags contains the tags used to identify destination
-	DestinationTags []string `json:"destinationTags" cql:"-"`
+	DestinationTags map[string]string `json:"destinationTags" cql:"-"`
 
 	// Metric is the kind of metric the statistic represents.
 	Metric FlowStatisticMetricValue `json:"metric" cql:"-"`
@@ -69,7 +69,7 @@ type FlowStatistic struct {
 	SourceID string `json:"sourceID" cql:"-"`
 
 	// SourceTags contains the tags used to identify the source.
-	SourceTags []string `json:"sourceTags" cql:"-"`
+	SourceTags map[string]string `json:"sourceTags" cql:"-"`
 
 	// Type is the type of represenation
 	Type FlowStatisticTypeValue `json:"type" cql:"-"`
@@ -178,7 +178,7 @@ var FlowStatisticAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "destinationTags",
 		ReadOnly:       true,
-		SubType:        "tags_list",
+		SubType:        "selectors_list",
 		Type:           "external",
 	},
 	"Metric": elemental.AttributeSpecification{
@@ -212,7 +212,7 @@ var FlowStatisticAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "sourceTags",
 		ReadOnly:       true,
-		SubType:        "tags_list",
+		SubType:        "selectors_list",
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
