@@ -247,6 +247,7 @@
         "entity_name": "FilePolicy",
         "extends": [
             "@base",
+            "@described",
             "@named"
         ],
         "get": true,
