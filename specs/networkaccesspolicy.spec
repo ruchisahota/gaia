@@ -209,7 +209,7 @@
     "model": {
         "create": null,
         "delete": true,
-        "description": null,
+        "description": ".",
         "entity_name": "NetworkAccessPolicy",
         "extends": [
             "@base",
