@@ -246,7 +246,8 @@
         "description": null,
         "entity_name": "FilePolicy",
         "extends": [
-            "@base"
+            "@base",
+            "@described"
         ],
         "get": true,
         "package": null,
