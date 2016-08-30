@@ -7,7 +7,8 @@
         "description": null,
         "entity_name": "NetworkPolicy",
         "extends": [
-            "@base"
+            "@base",
+            "@identifiable-nopk-nostored"
         ],
         "get": true,
         "package": null,
