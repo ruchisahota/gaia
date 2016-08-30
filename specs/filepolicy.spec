@@ -247,7 +247,8 @@
         "entity_name": "FilePolicy",
         "extends": [
             "@base",
-            "@described"
+            "@described",
+            "@identifiable-nopk-nostored"
         ],
         "get": true,
         "package": null,
