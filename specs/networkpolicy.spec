@@ -61,7 +61,7 @@
             "read_only": null,
             "required": null,
             "setter": null,
-            "stored": true,
+            "stored": false,
             "subtype": "policies_list",
             "transient": false,
             "type": "external",
