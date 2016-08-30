@@ -245,7 +245,9 @@
         "delete": true,
         "description": null,
         "entity_name": "FilePolicy",
-        "extends": [],
+        "extends": [
+            "@base"
+        ],
         "get": true,
         "package": null,
         "resource_name": "filepolicies",
