@@ -47,7 +47,7 @@
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
-            "format": "free",
+            "format": null,
             "getter": null,
             "identifier": null,
             "index": null,
@@ -61,10 +61,10 @@
             "read_only": null,
             "required": null,
             "setter": null,
-            "stored": true,
-            "subtype": null,
+            "stored": false,
+            "subtype": "policies_list",
             "transient": false,
-            "type": "string",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         }
