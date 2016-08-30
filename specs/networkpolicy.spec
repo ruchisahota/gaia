@@ -8,6 +8,7 @@
         "entity_name": "NetworkPolicy",
         "extends": [
             "@base",
+            "@described",
             "@identifiable-nopk-nostored"
         ],
         "get": true,
