@@ -286,7 +286,7 @@
             "@named"
         ],
         "get": true,
-        "package": null,
+        "package": "Policies",
         "resource_name": "apiauthorizationpolicies",
         "rest_name": "apiauthorizationpolicy",
         "root": null,
