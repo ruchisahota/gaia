@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // PolicyIdentity represents the Identity of the object
 var PolicyIdentity = elemental.Identity{
@@ -63,13 +63,13 @@ type Policy struct {
 	Relation []string `json:"relation" cql:"relation,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
 	Subject [][]string `json:"subject" cql:"subject,omitempty"`
 
 	// Type of the policy
-	Type enum.PolicyType `json:"type" cql:"type,primarykey,omitempty"`
+	Type constants.PolicyType `json:"type" cql:"type,primarykey,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -79,7 +79,7 @@ type Policy struct {
 func NewPolicy() *Policy {
 
 	return &Policy{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -172,12 +172,12 @@ func (o *Policy) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *Policy) GetStatus() enum.EntityStatus {
+func (o *Policy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Policy) SetStatus(status enum.EntityStatus) {
+func (o *Policy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

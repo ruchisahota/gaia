@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // UserIdentity represents the Identity of the object
 var UserIdentity = elemental.Identity{
@@ -51,7 +51,7 @@ type User struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// OU attribute for the generated certificates
 	SubOrganizations []string `json:"subOrganizations" cql:"suborganizations,omitempty"`
@@ -67,7 +67,7 @@ type User struct {
 func NewUser() *User {
 
 	return &User{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -160,12 +160,12 @@ func (o *User) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *User) GetStatus() enum.EntityStatus {
+func (o *User) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *User) SetStatus(status enum.EntityStatus) {
+func (o *User) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

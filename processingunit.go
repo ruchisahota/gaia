@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
 type ProcessingUnitOperationalStatusValue string
@@ -88,7 +88,7 @@ type ProcessingUnit struct {
 	ServerID string `json:"serverID" cql:"serverid,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Type of the container ecosystem
 	Type ProcessingUnitTypeValue `json:"type" cql:"type,omitempty"`
@@ -102,7 +102,7 @@ func NewProcessingUnit() *ProcessingUnit {
 
 	return &ProcessingUnit{
 		OperationalStatus: "Active",
-		Status:            enum.Active,
+		Status:            constants.Active,
 	}
 }
 
@@ -195,12 +195,12 @@ func (o *ProcessingUnit) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *ProcessingUnit) GetStatus() enum.EntityStatus {
+func (o *ProcessingUnit) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *ProcessingUnit) SetStatus(status enum.EntityStatus) {
+func (o *ProcessingUnit) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

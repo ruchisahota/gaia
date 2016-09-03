@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // AuthenticatorMethodValue represents the possible values for attribute "method".
 type AuthenticatorMethodValue string
@@ -74,7 +74,7 @@ type Authenticator struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -84,7 +84,7 @@ type Authenticator struct {
 func NewAuthenticator() *Authenticator {
 
 	return &Authenticator{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -172,12 +172,12 @@ func (o *Authenticator) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *Authenticator) GetStatus() enum.EntityStatus {
+func (o *Authenticator) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Authenticator) SetStatus(status enum.EntityStatus) {
+func (o *Authenticator) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

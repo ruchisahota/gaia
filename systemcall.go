@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // SystemCallIdentity represents the Identity of the object
 var SystemCallIdentity = elemental.Identity{
@@ -48,7 +48,7 @@ type SystemCall struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -58,7 +58,7 @@ type SystemCall struct {
 func NewSystemCall() *SystemCall {
 
 	return &SystemCall{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -151,12 +151,12 @@ func (o *SystemCall) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *SystemCall) GetStatus() enum.EntityStatus {
+func (o *SystemCall) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *SystemCall) SetStatus(status enum.EntityStatus) {
+func (o *SystemCall) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

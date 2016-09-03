@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // FileAccessPolicyIdentity represents the Identity of the object
 var FileAccessPolicyIdentity = elemental.Identity{
@@ -66,7 +66,7 @@ type FileAccessPolicy struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Subject is the subject of the policy
 	Subject [][]string `json:"subject" cql:"-"`
@@ -79,7 +79,7 @@ type FileAccessPolicy struct {
 func NewFileAccessPolicy() *FileAccessPolicy {
 
 	return &FileAccessPolicy{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -172,12 +172,12 @@ func (o *FileAccessPolicy) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *FileAccessPolicy) GetStatus() enum.EntityStatus {
+func (o *FileAccessPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *FileAccessPolicy) SetStatus(status enum.EntityStatus) {
+func (o *FileAccessPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

@@ -1,4 +1,4 @@
-package enum
+package constants
 
 // EntityStatus defines the status of an entity
 type EntityStatus string
@@ -77,3 +77,45 @@ func PolicyTypeToString(policyType PolicyType) string {
 		return ""
 	}
 }
+
+const (
+
+	// StatsTagKeyDestinationID represents the destination ID tag.
+	StatsTagKeyDestinationID = "destID"
+
+	// StatsTagKeySourceID represents the source ID tag.
+	StatsTagKeySourceID = "srcID"
+
+	// StatsTagKeyDestinationPort represents the destination port tag.
+	StatsTagKeyDestinationPort = "destPort"
+
+	// StatsTagKeyFlowContext represents the flow context tag.
+	StatsTagKeyFlowContext = "flowContext"
+
+	// StatsTagKeyProcessingUnitID represents the processing unit ID tag.
+	StatsTagKeyProcessingUnitID = "ID"
+
+	// StatsTagKeyIP represents the IP tag.
+	StatsTagKeyIP = "IP"
+
+	// StatsTagKeyAction represents the action tag.
+	StatsTagKeyAction = "action"
+
+	// StatsTagKeyReason represents the reason tag.
+	StatsTagKeyReason = "reason"
+
+	// StatsTagKeyEvent represents the event tag.
+	StatsTagKeyEvent = "event"
+
+	// StatsTagKeyImage represents the image tag.
+	StatsTagKeyImage = "image"
+
+	// StatsTagKeyServerID represents the server ID tag.
+	StatsTagKeyServerID = "serverID"
+
+	// StatsTagKeyNamespace represents the namespace tag.
+	StatsTagKeyNamespace = "AporetoNamespace"
+
+	// StatsTagKeyAporetoContextID represents the aporeto context ID.
+	StatsTagKeyAporetoContextID = "AporetoContextID"
+)

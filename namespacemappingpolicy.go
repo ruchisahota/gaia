@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // NamespaceMappingPolicyIdentity represents the Identity of the object
 var NamespaceMappingPolicyIdentity = elemental.Identity{
@@ -51,7 +51,7 @@ type NamespaceMappingPolicy struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Subject is the subject.
 	Subject [][]string `json:"subject" cql:"-"`
@@ -64,7 +64,7 @@ type NamespaceMappingPolicy struct {
 func NewNamespaceMappingPolicy() *NamespaceMappingPolicy {
 
 	return &NamespaceMappingPolicy{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -157,12 +157,12 @@ func (o *NamespaceMappingPolicy) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *NamespaceMappingPolicy) GetStatus() enum.EntityStatus {
+func (o *NamespaceMappingPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *NamespaceMappingPolicy) SetStatus(status enum.EntityStatus) {
+func (o *NamespaceMappingPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // NetworkAccessPolicyIdentity represents the Identity of the object
 var NetworkAccessPolicyIdentity = elemental.Identity{
@@ -63,7 +63,7 @@ type NetworkAccessPolicy struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Subject of the policy.
 	Subject [][]string `json:"subject" cql:"-"`
@@ -77,7 +77,7 @@ func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 
 	return &NetworkAccessPolicy{
 		DestinationPorts: []string{},
-		Status:           enum.Active,
+		Status:           constants.Active,
 	}
 }
 
@@ -170,12 +170,12 @@ func (o *NetworkAccessPolicy) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *NetworkAccessPolicy) GetStatus() enum.EntityStatus {
+func (o *NetworkAccessPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *NetworkAccessPolicy) SetStatus(status enum.EntityStatus) {
+func (o *NetworkAccessPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

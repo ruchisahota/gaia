@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // ExternalServiceIdentity represents the Identity of the object
 var ExternalServiceIdentity = elemental.Identity{
@@ -57,7 +57,7 @@ type ExternalService struct {
 	Protocol string `json:"protocol" cql:"protocol,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -67,7 +67,7 @@ type ExternalService struct {
 func NewExternalService() *ExternalService {
 
 	return &ExternalService{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -160,12 +160,12 @@ func (o *ExternalService) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *ExternalService) GetStatus() enum.EntityStatus {
+func (o *ExternalService) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *ExternalService) SetStatus(status enum.EntityStatus) {
+func (o *ExternalService) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

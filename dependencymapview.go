@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // DependencyMapViewIdentity represents the Identity of the object
 var DependencyMapViewIdentity = elemental.Identity{
@@ -48,7 +48,7 @@ type DependencyMapView struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Values used by the dependency map group
 	Subviews DependencyMapSubviewsList `json:"subviews" cql:"subviews,omitempty"`
@@ -61,7 +61,7 @@ type DependencyMapView struct {
 func NewDependencyMapView() *DependencyMapView {
 
 	return &DependencyMapView{
-		Status:   enum.Active,
+		Status:   constants.Active,
 		Subviews: DependencyMapSubviewsList{},
 	}
 }
@@ -155,12 +155,12 @@ func (o *DependencyMapView) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *DependencyMapView) GetStatus() enum.EntityStatus {
+func (o *DependencyMapView) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *DependencyMapView) SetStatus(status enum.EntityStatus) {
+func (o *DependencyMapView) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

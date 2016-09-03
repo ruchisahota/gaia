@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // FilePathIdentity represents the Identity of the object
 var FilePathIdentity = elemental.Identity{
@@ -54,7 +54,7 @@ type FilePath struct {
 	Server string `json:"server" cql:"server,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -64,7 +64,7 @@ type FilePath struct {
 func NewFilePath() *FilePath {
 
 	return &FilePath{
-		Status: enum.Active,
+		Status: constants.Active,
 	}
 }
 
@@ -157,12 +157,12 @@ func (o *FilePath) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *FilePath) GetStatus() enum.EntityStatus {
+func (o *FilePath) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *FilePath) SetStatus(status enum.EntityStatus) {
+func (o *FilePath) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 

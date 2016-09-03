@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // ServerEnvironmentValue represents the possible values for attribute "environment".
 type ServerEnvironmentValue string
@@ -88,7 +88,7 @@ type Server struct {
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
 	// Status of an entity
-	Status enum.EntityStatus `json:"status" cql:"status,omitempty"`
+	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -99,7 +99,7 @@ func NewServer() *Server {
 
 	return &Server{
 		OperationalStatus: "UNKNOWN",
-		Status:            enum.Active,
+		Status:            constants.Active,
 	}
 }
 
@@ -192,12 +192,12 @@ func (o *Server) SetParentType(parentType string) {
 }
 
 // GetStatus returns the status of the receiver
-func (o *Server) GetStatus() enum.EntityStatus {
+func (o *Server) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Server) SetStatus(status enum.EntityStatus) {
+func (o *Server) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
