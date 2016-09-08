@@ -3,7 +3,7 @@ package gaia
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // LayerIdentity represents the Identity of the object
 var LayerIdentity = elemental.Identity{
@@ -29,7 +29,7 @@ type Layer struct {
 	ParentName string `json:"parentName" cql:"parentname,omitempty"`
 
 	// Severity defines the severity level of the vulnerability
-	Severity enum.SeverityLevel `json:"severity" cql:"severity,omitempty"`
+	Severity constants.SeverityLevel `json:"severity" cql:"severity,omitempty"`
 
 	// Vulnerabilities is the list of all the vulnerabilities of a layer
 	Vulnerabilities []Vulnerability `json:"vulnerabilities" cql:"vulnerabilities,omitempty"`

@@ -3,7 +3,7 @@ package gaia
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
-import "github.com/aporeto-inc/gaia/enum"
+import "github.com/aporeto-inc/gaia/constants"
 
 // ImageIdentity represents the Identity of the object
 var ImageIdentity = elemental.Identity{
@@ -32,7 +32,7 @@ type Image struct {
 	Repository string `json:"repository" cql:"-"`
 
 	// Severity defines the severity level of the image
-	Severity enum.SeverityLevel `json:"severity" cql:"severity,omitempty"`
+	Severity constants.SeverityLevel `json:"severity" cql:"severity,omitempty"`
 
 	// Tag is the tag of the image
 	Tag string `json:"tag" cql:"tag,primarykey,omitempty"`
