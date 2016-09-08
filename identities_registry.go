@@ -9,6 +9,7 @@ func init() {
 	elemental.RegisterIdentity(LayerIdentity)
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(MapNodeIdentity)
+	elemental.RegisterIdentity(ImageIdentity)
 	elemental.RegisterIdentity(HealthReportIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)

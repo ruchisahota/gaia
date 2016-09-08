@@ -3,31 +3,7 @@ package gaia
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
-// LayerSeverityValue represents the possible values for attribute "severity".
-type LayerSeverityValue string
-
-const (
-	// LayerSeverityNegligible represents the value Negligible.
-	LayerSeverityNegligible LayerSeverityValue = "Negligible"
-
-	// LayerSeverityLow represents the value Low.
-	LayerSeverityLow LayerSeverityValue = "Low"
-
-	// LayerSeverityMedium represents the value Medium.
-	LayerSeverityMedium LayerSeverityValue = "Medium"
-
-	// LayerSeverityHigh represents the value High.
-	LayerSeverityHigh LayerSeverityValue = "High"
-
-	// LayerSeverityCritical represents the value Critical.
-	LayerSeverityCritical LayerSeverityValue = "Critical"
-
-	// LayerSeverityDefcon1 represents the value Defcon1.
-	LayerSeverityDefcon1 LayerSeverityValue = "Defcon1"
-
-	// LayerSeverityUnknown represents the value Unknown.
-	LayerSeverityUnknown LayerSeverityValue = "Unknown"
-)
+import "github.com/aporeto-inc/gaia/enum"
 
 // LayerIdentity represents the Identity of the object
 var LayerIdentity = elemental.Identity{
@@ -52,8 +28,8 @@ type Layer struct {
 	// ParentName is the name of parent layer
 	ParentName string `json:"parentName" cql:"parentname,omitempty"`
 
-	// Severity refers to the severity of the vulnerability
-	Severity LayerSeverityValue `json:"severity" cql:"severity,omitempty"`
+	// Severity defines the severity level of the vulnerability
+	Severity enum.SeverityLevel `json:"severity" cql:"severity,omitempty"`
 
 	// Vulnerabilities is the list of all the vulnerabilities of a layer
 	Vulnerabilities []Vulnerability `json:"vulnerabilities" cql:"vulnerabilities,omitempty"`
@@ -94,10 +70,6 @@ func (o *Layer) Validate() elemental.Errors {
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("severity", string(o.Severity), []string{"Negligible", "Low", "Medium", "High", "Critical", "Defcon1", "Unknown"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -170,14 +142,15 @@ var LayerAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"Severity": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Negligible", "Low", "Medium", "High", "Critical", "Defcon1", "Unknown"},
+		AllowedChoices: []string{},
 		CreationOnly:   true,
 		Exposed:        true,
 		Name:           "severity",
 		ReadOnly:       true,
 		Required:       true,
 		Stored:         true,
-		Type:           "enum",
+		SubType:        "severity_level",
+		Type:           "external",
 	},
 	"Vulnerabilities": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
