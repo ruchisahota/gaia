@@ -11,5 +11,6 @@ install_monolithe_plugins:
 codegen:
 	monogen -f specs -L elemental
 	monogen -f specs -L pyelemental
-	rm -f go/*.go && rm -rf python/*.py && cp codegen/elemental/1.0/*.go go && cp codegen/pyelemental/1.0/*.py python
+	rm -f go/*.go && cp codegen/elemental/1.0/*.go go
+	rm -rf python/*.py python/requirements.txt MANIFEST.in && cp codegen/pyelemental/*.py python && cp codegen/pyelemental/requirements.txt python && cp codegen/pyelemental/MANIFEST.in python
 	rm -rf codegen
