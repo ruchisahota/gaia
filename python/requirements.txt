@@ -1,1 +1,1 @@
-pyelemental
+git+https://github.com/aporeto-inc/pyelemental.git
