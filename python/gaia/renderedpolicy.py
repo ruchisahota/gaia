@@ -33,10 +33,10 @@ class RenderedPolicy(RESTObject):
         self._ingresspolicies = None
         self._processingunitid = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
-        self.expose_attribute(local_name="egresspolicies", remote_name="egressPolicies")
-        self.expose_attribute(local_name="ingresspolicies", remote_name="ingressPolicies")
-        self.expose_attribute(local_name="processingunitid", remote_name="processingUnitID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="egressPolicies", remote_name="egressPolicies")
+        self.expose_attribute(local_name="ingressPolicies", remote_name="ingressPolicies")
+        self.expose_attribute(local_name="processingUnitID", remote_name="processingUnitID")
 
         self._compute_args(**kwargs)
 

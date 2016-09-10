@@ -33,9 +33,9 @@ class DependencyMapSubview(RESTObject):
         self._subselectors = None
         self._tonality = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="selector", remote_name="selector")
-        self.expose_attribute(local_name="subselectors", remote_name="subSelectors")
+        self.expose_attribute(local_name="subSelectors", remote_name="subSelectors")
         self.expose_attribute(local_name="tonality", remote_name="tonality")
 
         self._compute_args(**kwargs)

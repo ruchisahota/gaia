@@ -37,7 +37,7 @@ class PolicyRule(RESTObject):
         self._syscalls = None
         self._tagclauses = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="action", remote_name="action")
         self.expose_attribute(local_name="files", remote_name="files")
         self.expose_attribute(local_name="namespaces", remote_name="namespaces")

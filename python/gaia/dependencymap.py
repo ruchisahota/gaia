@@ -33,7 +33,7 @@ class DependencyMap(RESTObject):
         self._groups = None
         self._nodes = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="edges", remote_name="edges")
         self.expose_attribute(local_name="groups", remote_name="groups")
         self.expose_attribute(local_name="nodes", remote_name="nodes")

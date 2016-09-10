@@ -33,7 +33,7 @@ class MapNode(RESTObject):
         self._name = None
         self._type = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="groups", remote_name="groups")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="type", remote_name="type")

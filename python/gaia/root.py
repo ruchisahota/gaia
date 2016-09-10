@@ -30,7 +30,7 @@ class Root(RESTObject):
         
         self._id = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
 
         self._compute_args(**kwargs)
 

@@ -36,12 +36,12 @@ class HealthReport(RESTObject):
         self._squallversion = None
         self._status = None
         
-        self.expose_attribute(local_name="apiversion", remote_name="APIVersion")
-        self.expose_attribute(local_name="id", remote_name="ID")
-        self.expose_attribute(local_name="bahamutversion", remote_name="bahamutVersion")
-        self.expose_attribute(local_name="elementalversion", remote_name="elementalVersion")
-        self.expose_attribute(local_name="gaiaversion", remote_name="gaiaVersion")
-        self.expose_attribute(local_name="squallversion", remote_name="squallVersion")
+        self.expose_attribute(local_name="APIVersion", remote_name="APIVersion")
+        self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="bahamutVersion", remote_name="bahamutVersion")
+        self.expose_attribute(local_name="elementalVersion", remote_name="elementalVersion")
+        self.expose_attribute(local_name="gaiaVersion", remote_name="gaiaVersion")
+        self.expose_attribute(local_name="squallVersion", remote_name="squallVersion")
         self.expose_attribute(local_name="status", remote_name="status")
 
         self._compute_args(**kwargs)

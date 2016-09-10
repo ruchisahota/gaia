@@ -33,7 +33,7 @@ class Tag(RESTObject):
         self._namespace = None
         self._value = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="count", remote_name="count")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="value", remote_name="value")

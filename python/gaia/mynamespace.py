@@ -31,7 +31,7 @@ class MyNamespace(RESTObject):
         self._id = None
         self._namespaces = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="namespaces", remote_name="namespaces")
 
         self._compute_args(**kwargs)

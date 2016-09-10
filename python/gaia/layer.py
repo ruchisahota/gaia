@@ -35,10 +35,10 @@ class Layer(RESTObject):
         self._severity = None
         self._vulnerabilities = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="name", remote_name="name")
-        self.expose_attribute(local_name="namespacename", remote_name="namespaceName")
-        self.expose_attribute(local_name="parentname", remote_name="parentName")
+        self.expose_attribute(local_name="namespaceName", remote_name="namespaceName")
+        self.expose_attribute(local_name="parentName", remote_name="parentName")
         self.expose_attribute(local_name="severity", remote_name="severity")
         self.expose_attribute(local_name="vulnerabilities", remote_name="vulnerabilities")
 

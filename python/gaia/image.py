@@ -36,8 +36,8 @@ class Image(RESTObject):
         self._severity = None
         self._tag = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
-        self.expose_attribute(local_name="associatedtags", remote_name="associatedTags")
+        self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="registry", remote_name="registry")
         self.expose_attribute(local_name="repository", remote_name="repository")

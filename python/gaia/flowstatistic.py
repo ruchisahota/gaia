@@ -39,16 +39,16 @@ class FlowStatistic(RESTObject):
         self._type = None
         self._useridentifier = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
-        self.expose_attribute(local_name="datapoints", remote_name="dataPoints")
-        self.expose_attribute(local_name="destinationid", remote_name="destinationID")
-        self.expose_attribute(local_name="destinationtags", remote_name="destinationTags")
+        self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="dataPoints", remote_name="dataPoints")
+        self.expose_attribute(local_name="destinationID", remote_name="destinationID")
+        self.expose_attribute(local_name="destinationTags", remote_name="destinationTags")
         self.expose_attribute(local_name="metric", remote_name="metric")
         self.expose_attribute(local_name="mode", remote_name="mode")
-        self.expose_attribute(local_name="sourceid", remote_name="sourceID")
-        self.expose_attribute(local_name="sourcetags", remote_name="sourceTags")
+        self.expose_attribute(local_name="sourceID", remote_name="sourceID")
+        self.expose_attribute(local_name="sourceTags", remote_name="sourceTags")
         self.expose_attribute(local_name="type", remote_name="type")
-        self.expose_attribute(local_name="useridentifier", remote_name="userIdentifier")
+        self.expose_attribute(local_name="userIdentifier", remote_name="userIdentifier")
 
         self._compute_args(**kwargs)
 

@@ -45,22 +45,22 @@ class Server(RESTObject):
         self._status = None
         self._updatedat = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="address", remote_name="address")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
-        self.expose_attribute(local_name="associatedtags", remote_name="associatedTags")
-        self.expose_attribute(local_name="createdat", remote_name="createdAt")
+        self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
+        self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="description", remote_name="description")
         self.expose_attribute(local_name="domain", remote_name="domain")
         self.expose_attribute(local_name="environment", remote_name="environment")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
-        self.expose_attribute(local_name="operationalstatus", remote_name="operationalStatus")
-        self.expose_attribute(local_name="parentid", remote_name="parentID")
-        self.expose_attribute(local_name="parenttype", remote_name="parentType")
+        self.expose_attribute(local_name="operationalStatus", remote_name="operationalStatus")
+        self.expose_attribute(local_name="parentID", remote_name="parentID")
+        self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="status", remote_name="status")
-        self.expose_attribute(local_name="updatedat", remote_name="updatedAt")
+        self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
 
         self._compute_args(**kwargs)
 

@@ -34,11 +34,11 @@ class MapEdge(RESTObject):
         self._name = None
         self._sourceid = None
         
-        self.expose_attribute(local_name="id", remote_name="ID")
-        self.expose_attribute(local_name="destinationid", remote_name="destinationID")
+        self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="destinationID", remote_name="destinationID")
         self.expose_attribute(local_name="labels", remote_name="labels")
         self.expose_attribute(local_name="name", remote_name="name")
-        self.expose_attribute(local_name="sourceid", remote_name="sourceID")
+        self.expose_attribute(local_name="sourceID", remote_name="sourceID")
 
         self._compute_args(**kwargs)
 
