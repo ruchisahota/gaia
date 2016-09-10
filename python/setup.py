@@ -16,5 +16,8 @@ setup(
     description='SDK for Aporeto REST API',
     include_package_data=True,
     install_requires=[line for line in open('requirements.txt')],
+    dependency_links=[
+      "git+https://github.com/aporeto-inc/pyelemental.git",
+    ],
     data_files=resources
 )
