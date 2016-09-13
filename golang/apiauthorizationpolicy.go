@@ -4,30 +4,45 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/go/constants"
+import "github.com/aporeto-inc/gaia/golang/constants"
 
-// CertificateIdentity represents the Identity of the object
-var CertificateIdentity = elemental.Identity{
-	Name:     "certificate",
-	Category: "certificates",
+// APIAuthorizationPolicyIdentity represents the Identity of the object
+var APIAuthorizationPolicyIdentity = elemental.Identity{
+	Name:     "apiauthorizationpolicy",
+	Category: "apiauthorizationpolicies",
 }
 
-// CertificatesList represents a list of Certificates
-type CertificatesList []*Certificate
+// APIAuthorizationPoliciesList represents a list of APIAuthorizationPolicies
+type APIAuthorizationPoliciesList []*APIAuthorizationPolicy
 
-// Certificate represents the model of a certificate
-type Certificate struct {
+// APIAuthorizationPolicy represents the model of a apiauthorizationpolicy
+type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty"`
+	ID string `json:"ID" cql:"-"`
+
+	// AllowsDelete defines if DELETE request is authorized.
+	AllowsDelete bool `json:"allowsDelete" cql:"-"`
+
+	// AllowsGet defines if GET request is authorized.
+	AllowsGet bool `json:"allowsGet" cql:"-"`
+
+	// AllowsHead defines if HEAD request is authorized.
+	AllowsHead bool `json:"allowsHead" cql:"-"`
+
+	// AllowsPatch defines if PATCH request is authorized.
+	AllowsPatch bool `json:"allowsPatch" cql:"-"`
+
+	// AllowsPost defines if POST request is authorized.
+	AllowsPost bool `json:"allowsPost" cql:"-"`
+
+	// AllowsPut defines if PUT request is authorized.
+	AllowsPut bool `json:"allowsPut" cql:"-"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty"`
-
-	// Certificate for the user
-	Certificate string `json:"certificate" cql:"certificate,omitempty"`
 
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty"`
@@ -38,17 +53,14 @@ type Certificate struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty"`
 
-	// ExpirationDate is the date that the certificate must expire.
-	ExpirationDate time.Time `json:"expirationDate" cql:"expirationdate,omitempty"`
-
-	// Key generated for the user
-	Key string `json:"key" cql:"-"`
-
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
+
+	// Object is the object.
+	Object [][]string `json:"object" cql:"-"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty"`
@@ -59,129 +71,128 @@ type Certificate struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
+	// Subject is the subject.
+	Subject [][]string `json:"subject" cql:"-"`
+
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewCertificate returns a new *Certificate
-func NewCertificate() *Certificate {
+// NewAPIAuthorizationPolicy returns a new *APIAuthorizationPolicy
+func NewAPIAuthorizationPolicy() *APIAuthorizationPolicy {
 
-	return &Certificate{
+	return &APIAuthorizationPolicy{
 		Status: constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Certificate) Identity() elemental.Identity {
+func (o *APIAuthorizationPolicy) Identity() elemental.Identity {
 
-	return CertificateIdentity
+	return APIAuthorizationPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Certificate) Identifier() string {
+func (o *APIAuthorizationPolicy) Identifier() string {
 
 	return o.ID
 }
 
-func (o *Certificate) String() string {
+func (o *APIAuthorizationPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Certificate) SetIdentifier(ID string) {
+func (o *APIAuthorizationPolicy) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Certificate) GetAssociatedTags() []string {
+func (o *APIAuthorizationPolicy) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Certificate) SetAssociatedTags(associatedTags []string) {
+func (o *APIAuthorizationPolicy) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Certificate) SetCreatedAt(createdAt time.Time) {
+func (o *APIAuthorizationPolicy) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *Certificate) GetDeleted() bool {
+func (o *APIAuthorizationPolicy) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *Certificate) SetDeleted(deleted bool) {
+func (o *APIAuthorizationPolicy) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetName returns the name of the receiver
-func (o *Certificate) GetName() string {
+func (o *APIAuthorizationPolicy) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *Certificate) SetName(name string) {
+func (o *APIAuthorizationPolicy) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *Certificate) GetNamespace() string {
+func (o *APIAuthorizationPolicy) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Certificate) SetNamespace(namespace string) {
+func (o *APIAuthorizationPolicy) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Certificate) GetParentID() string {
+func (o *APIAuthorizationPolicy) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Certificate) SetParentID(parentID string) {
+func (o *APIAuthorizationPolicy) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Certificate) GetParentType() string {
+func (o *APIAuthorizationPolicy) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Certificate) SetParentType(parentType string) {
+func (o *APIAuthorizationPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *Certificate) GetStatus() constants.EntityStatus {
+func (o *APIAuthorizationPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Certificate) SetStatus(status constants.EntityStatus) {
+func (o *APIAuthorizationPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Certificate) SetUpdatedAt(updatedAt time.Time) {
+func (o *APIAuthorizationPolicy) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Certificate) Validate() elemental.Errors {
+func (o *APIAuthorizationPolicy) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
-
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		errors = append(errors, err)
-	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
@@ -195,13 +206,13 @@ func (o *Certificate) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Certificate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o APIAuthorizationPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return CertificateAttributesMap[name]
+	return APIAuthorizationPolicyAttributesMap[name]
 }
 
-// CertificateAttributesMap represents the map of attribute for Certificate.
-var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
+// APIAuthorizationPolicyAttributesMap represents the map of attribute for APIAuthorizationPolicy.
+var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -211,11 +222,57 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		PrimaryKey:     true,
 		ReadOnly:       true,
-		Stored:         true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"AllowsDelete": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsDelete",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsGet": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsGet",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsHead": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsHead",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsPatch": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsPatch",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsPost": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsPost",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsPut": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsPut",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -234,16 +291,6 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
-	},
-	"Certificate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "certificate",
-		Stored:         true,
-		Type:           "string",
 	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -278,27 +325,6 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"ExpirationDate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "expirationDate",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "time",
-	},
-	"Key": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "key",
-		ReadOnly:       true,
-		Type:           "string",
-	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
@@ -329,6 +355,15 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"Object": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "object",
+		Orderable:      true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -370,6 +405,15 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "status_enum",
+		Type:           "external",
+	},
+	"Subject": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "subject",
+		Orderable:      true,
+		SubType:        "policies_list",
 		Type:           "external",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{

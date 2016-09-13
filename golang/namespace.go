@@ -4,27 +4,30 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/go/constants"
+import "github.com/aporeto-inc/gaia/golang/constants"
 
-// FilePathIdentity represents the Identity of the object
-var FilePathIdentity = elemental.Identity{
-	Name:     "filepath",
-	Category: "filepaths",
+// NamespaceIdentity represents the Identity of the object
+var NamespaceIdentity = elemental.Identity{
+	Name:     "namespace",
+	Category: "namespaces",
 }
 
-// FilePathsList represents a list of FilePaths
-type FilePathsList []*FilePath
+// NamespacesList represents a list of Namespaces
+type NamespacesList []*Namespace
 
-// FilePath represents the model of a filepath
-type FilePath struct {
+// Namespace represents the model of a namespace
+type Namespace struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty"`
+	ID string `json:"ID" cql:"id,omitempty"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty"`
+
+	// Authenticator for this namespace
+	Authenticator string `json:"authenticator" cql:"authenticator,omitempty"`
 
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty"`
@@ -35,11 +38,8 @@ type FilePath struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty"`
 
-	// FilePath refer to the file mount path
-	Filepath string `json:"filepath" cql:"filepath,omitempty"`
-
-	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty"`
+	// Name is the name of the namespace.
+	Name string `json:"name" cql:"name,primarykey,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
@@ -50,9 +50,6 @@ type FilePath struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
-	// server is the server name/ID/IP associated with the file path
-	Server string `json:"server" cql:"server,omitempty"`
-
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
@@ -60,131 +57,118 @@ type FilePath struct {
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewFilePath returns a new *FilePath
-func NewFilePath() *FilePath {
+// NewNamespace returns a new *Namespace
+func NewNamespace() *Namespace {
 
-	return &FilePath{
+	return &Namespace{
 		Status: constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *FilePath) Identity() elemental.Identity {
+func (o *Namespace) Identity() elemental.Identity {
 
-	return FilePathIdentity
+	return NamespaceIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *FilePath) Identifier() string {
+func (o *Namespace) Identifier() string {
 
 	return o.ID
 }
 
-func (o *FilePath) String() string {
+func (o *Namespace) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *FilePath) SetIdentifier(ID string) {
+func (o *Namespace) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *FilePath) GetAssociatedTags() []string {
+func (o *Namespace) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *FilePath) SetAssociatedTags(associatedTags []string) {
+func (o *Namespace) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *FilePath) SetCreatedAt(createdAt time.Time) {
+func (o *Namespace) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *FilePath) GetDeleted() bool {
+func (o *Namespace) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *FilePath) SetDeleted(deleted bool) {
+func (o *Namespace) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetName returns the name of the receiver
-func (o *FilePath) GetName() string {
+func (o *Namespace) GetName() string {
 	return o.Name
 }
 
-// SetName set the given name of the receiver
-func (o *FilePath) SetName(name string) {
-	o.Name = name
-}
-
 // GetNamespace returns the namespace of the receiver
-func (o *FilePath) GetNamespace() string {
+func (o *Namespace) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *FilePath) SetNamespace(namespace string) {
+func (o *Namespace) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *FilePath) GetParentID() string {
+func (o *Namespace) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *FilePath) SetParentID(parentID string) {
+func (o *Namespace) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *FilePath) GetParentType() string {
+func (o *Namespace) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *FilePath) SetParentType(parentType string) {
+func (o *Namespace) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *FilePath) GetStatus() constants.EntityStatus {
+func (o *Namespace) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *FilePath) SetStatus(status constants.EntityStatus) {
+func (o *Namespace) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *FilePath) SetUpdatedAt(updatedAt time.Time) {
+func (o *Namespace) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *FilePath) Validate() elemental.Errors {
+func (o *Namespace) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -196,13 +180,13 @@ func (o *FilePath) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o Namespace) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return FilePathAttributesMap[name]
+	return NamespaceAttributesMap[name]
 }
 
-// FilePathAttributesMap represents the map of attribute for FilePath.
-var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
+// NamespaceAttributesMap represents the map of attribute for Namespace.
+var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -212,7 +196,6 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		PrimaryKey:     true,
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
@@ -235,6 +218,18 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
+	},
+	"Authenticator": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "authenticator",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -269,26 +264,17 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Filepath": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "filepath",
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		CreationOnly:   true,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
 		Name:           "name",
 		Orderable:      true,
+		PrimaryKey:     true,
 		Required:       true,
-		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
@@ -336,16 +322,6 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		ReadOnly:       true,
 		Setter:         true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"Server": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "server",
-		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},

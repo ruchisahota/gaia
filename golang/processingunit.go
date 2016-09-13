@@ -4,19 +4,44 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/go/constants"
+import "github.com/aporeto-inc/gaia/golang/constants"
 
-// DependencyMapViewIdentity represents the Identity of the object
-var DependencyMapViewIdentity = elemental.Identity{
-	Name:     "dependencymapview",
-	Category: "dependencymapviews",
+// ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
+type ProcessingUnitOperationalStatusValue string
+
+const (
+	// ProcessingUnitOperationalStatusActive represents the value Active.
+	ProcessingUnitOperationalStatusActive ProcessingUnitOperationalStatusValue = "Active"
+
+	// ProcessingUnitOperationalStatusDead represents the value Dead.
+	ProcessingUnitOperationalStatusDead ProcessingUnitOperationalStatusValue = "Dead"
+)
+
+// ProcessingUnitTypeValue represents the possible values for attribute "type".
+type ProcessingUnitTypeValue string
+
+const (
+	// ProcessingUnitTypeDocker represents the value Docker.
+	ProcessingUnitTypeDocker ProcessingUnitTypeValue = "Docker"
+
+	// ProcessingUnitTypeLinuxservice represents the value LinuxService.
+	ProcessingUnitTypeLinuxservice ProcessingUnitTypeValue = "LinuxService"
+
+	// ProcessingUnitTypeRkt represents the value RKT.
+	ProcessingUnitTypeRkt ProcessingUnitTypeValue = "RKT"
+)
+
+// ProcessingUnitIdentity represents the Identity of the object
+var ProcessingUnitIdentity = elemental.Identity{
+	Name:     "processingunit",
+	Category: "processingunits",
 }
 
-// DependencyMapViewsList represents a list of DependencyMapViews
-type DependencyMapViewsList []*DependencyMapView
+// ProcessingUnitsList represents a list of ProcessingUnits
+type ProcessingUnitsList []*ProcessingUnit
 
-// DependencyMapView represents the model of a dependencymapview
-type DependencyMapView struct {
+// ProcessingUnit represents the model of a processingunit
+type ProcessingUnit struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
@@ -35,11 +60,23 @@ type DependencyMapView struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty"`
 
+	// LastSyncTime is the time when the policy was last resolved
+	LastSyncTime time.Time `json:"lastSyncTime" cql:"lastsynctime,omitempty"`
+
+	// Metadata are list of tags associated to the processing unit
+	Metadata []string `json:"metadata" cql:"metadata,omitempty"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
+
+	// NativeContextID is the Docker UUID or service PID
+	NativeContextID string `json:"nativeContextID" cql:"nativecontextid,omitempty"`
+
+	// OperationalStatus of the processing unit
+	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" cql:"operationalstatus,omitempty"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty"`
@@ -47,134 +84,149 @@ type DependencyMapView struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
+	// serverID is the ID of the server associated with the processing unit
+	ServerID string `json:"serverID" cql:"serverid,omitempty"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
-	// Values used by the dependency map group
-	Subviews DependencyMapSubviewsList `json:"subviews" cql:"subviews,omitempty"`
+	// Type of the container ecosystem
+	Type ProcessingUnitTypeValue `json:"type" cql:"type,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewDependencyMapView returns a new *DependencyMapView
-func NewDependencyMapView() *DependencyMapView {
+// NewProcessingUnit returns a new *ProcessingUnit
+func NewProcessingUnit() *ProcessingUnit {
 
-	return &DependencyMapView{
-		Status:   constants.Active,
-		Subviews: DependencyMapSubviewsList{},
+	return &ProcessingUnit{
+		OperationalStatus: "Active",
+		Status:            constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *DependencyMapView) Identity() elemental.Identity {
+func (o *ProcessingUnit) Identity() elemental.Identity {
 
-	return DependencyMapViewIdentity
+	return ProcessingUnitIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *DependencyMapView) Identifier() string {
+func (o *ProcessingUnit) Identifier() string {
 
 	return o.ID
 }
 
-func (o *DependencyMapView) String() string {
+func (o *ProcessingUnit) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *DependencyMapView) SetIdentifier(ID string) {
+func (o *ProcessingUnit) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *DependencyMapView) GetAssociatedTags() []string {
+func (o *ProcessingUnit) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *DependencyMapView) SetAssociatedTags(associatedTags []string) {
+func (o *ProcessingUnit) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *DependencyMapView) SetCreatedAt(createdAt time.Time) {
+func (o *ProcessingUnit) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *DependencyMapView) GetDeleted() bool {
+func (o *ProcessingUnit) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *DependencyMapView) SetDeleted(deleted bool) {
+func (o *ProcessingUnit) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetName returns the name of the receiver
-func (o *DependencyMapView) GetName() string {
+func (o *ProcessingUnit) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *DependencyMapView) SetName(name string) {
+func (o *ProcessingUnit) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *DependencyMapView) GetNamespace() string {
+func (o *ProcessingUnit) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *DependencyMapView) SetNamespace(namespace string) {
+func (o *ProcessingUnit) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *DependencyMapView) GetParentID() string {
+func (o *ProcessingUnit) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *DependencyMapView) SetParentID(parentID string) {
+func (o *ProcessingUnit) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *DependencyMapView) GetParentType() string {
+func (o *ProcessingUnit) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *DependencyMapView) SetParentType(parentType string) {
+func (o *ProcessingUnit) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *DependencyMapView) GetStatus() constants.EntityStatus {
+func (o *ProcessingUnit) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *DependencyMapView) SetStatus(status constants.EntityStatus) {
+func (o *ProcessingUnit) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *DependencyMapView) SetUpdatedAt(updatedAt time.Time) {
+func (o *ProcessingUnit) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *DependencyMapView) Validate() elemental.Errors {
+func (o *ProcessingUnit) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Active", "Dead"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("serverID", o.ServerID); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -186,13 +238,13 @@ func (o *DependencyMapView) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o DependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return DependencyMapViewAttributesMap[name]
+	return ProcessingUnitAttributesMap[name]
 }
 
-// DependencyMapViewAttributesMap represents the map of attribute for DependencyMapView.
-var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification{
+// ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
+var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -259,6 +311,26 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		Type:           "string",
 	},
+	"LastSyncTime": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Autogenerated:  true,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "lastSyncTime",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "time",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Name:           "metadata",
+		Required:       true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
@@ -290,6 +362,23 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Type:           "string",
 		Unique:         true,
 	},
+	"NativeContextID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Format:         "free",
+		Name:           "nativeContextID",
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"OperationalStatus": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Active", "Dead"},
+		Exposed:        true,
+		Name:           "operationalStatus",
+		Required:       true,
+		Stored:         true,
+		Type:           "enum",
+	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -319,6 +408,16 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		Type:           "string",
 	},
+	"ServerID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "serverID",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -332,16 +431,14 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		SubType:        "status_enum",
 		Type:           "external",
 	},
-	"Subviews": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Docker", "LinuxService", "RKT"},
+		CreationOnly:   true,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "subviews",
-		Orderable:      true,
+		Name:           "type",
 		Required:       true,
 		Stored:         true,
-		SubType:        "dependencymapsubviews_entities",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

@@ -4,19 +4,19 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/go/constants"
+import "github.com/aporeto-inc/gaia/golang/constants"
 
-// SystemCallIdentity represents the Identity of the object
-var SystemCallIdentity = elemental.Identity{
-	Name:     "systemcall",
-	Category: "systemcalls",
+// FilePathIdentity represents the Identity of the object
+var FilePathIdentity = elemental.Identity{
+	Name:     "filepath",
+	Category: "filepaths",
 }
 
-// SystemCallsList represents a list of SystemCalls
-type SystemCallsList []*SystemCall
+// FilePathsList represents a list of FilePaths
+type FilePathsList []*FilePath
 
-// SystemCall represents the model of a systemcall
-type SystemCall struct {
+// FilePath represents the model of a filepath
+type FilePath struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
@@ -35,6 +35,9 @@ type SystemCall struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty"`
 
+	// FilePath refer to the file mount path
+	Filepath string `json:"filepath" cql:"filepath,omitempty"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty"`
 
@@ -47,6 +50,9 @@ type SystemCall struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
+	// server is the server name/ID/IP associated with the file path
+	Server string `json:"server" cql:"server,omitempty"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
@@ -54,123 +60,131 @@ type SystemCall struct {
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewSystemCall returns a new *SystemCall
-func NewSystemCall() *SystemCall {
+// NewFilePath returns a new *FilePath
+func NewFilePath() *FilePath {
 
-	return &SystemCall{
+	return &FilePath{
 		Status: constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *SystemCall) Identity() elemental.Identity {
+func (o *FilePath) Identity() elemental.Identity {
 
-	return SystemCallIdentity
+	return FilePathIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *SystemCall) Identifier() string {
+func (o *FilePath) Identifier() string {
 
 	return o.ID
 }
 
-func (o *SystemCall) String() string {
+func (o *FilePath) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *SystemCall) SetIdentifier(ID string) {
+func (o *FilePath) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *SystemCall) GetAssociatedTags() []string {
+func (o *FilePath) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *SystemCall) SetAssociatedTags(associatedTags []string) {
+func (o *FilePath) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *SystemCall) SetCreatedAt(createdAt time.Time) {
+func (o *FilePath) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *SystemCall) GetDeleted() bool {
+func (o *FilePath) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *SystemCall) SetDeleted(deleted bool) {
+func (o *FilePath) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetName returns the name of the receiver
-func (o *SystemCall) GetName() string {
+func (o *FilePath) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *SystemCall) SetName(name string) {
+func (o *FilePath) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *SystemCall) GetNamespace() string {
+func (o *FilePath) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *SystemCall) SetNamespace(namespace string) {
+func (o *FilePath) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *SystemCall) GetParentID() string {
+func (o *FilePath) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *SystemCall) SetParentID(parentID string) {
+func (o *FilePath) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *SystemCall) GetParentType() string {
+func (o *FilePath) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *SystemCall) SetParentType(parentType string) {
+func (o *FilePath) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *SystemCall) GetStatus() constants.EntityStatus {
+func (o *FilePath) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *SystemCall) SetStatus(status constants.EntityStatus) {
+func (o *FilePath) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *SystemCall) SetUpdatedAt(updatedAt time.Time) {
+func (o *FilePath) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *SystemCall) Validate() elemental.Errors {
+func (o *FilePath) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -182,13 +196,13 @@ func (o *SystemCall) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o SystemCall) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return SystemCallAttributesMap[name]
+	return FilePathAttributesMap[name]
 }
 
-// SystemCallAttributesMap represents the map of attribute for SystemCall.
-var SystemCallAttributesMap = map[string]elemental.AttributeSpecification{
+// FilePathAttributesMap represents the map of attribute for FilePath.
+var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -255,6 +269,16 @@ var SystemCallAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"Filepath": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "filepath",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
@@ -312,6 +336,16 @@ var SystemCallAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		ReadOnly:       true,
 		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Server": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "server",
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},

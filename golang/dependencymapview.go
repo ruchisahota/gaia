@@ -4,30 +4,27 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/go/constants"
+import "github.com/aporeto-inc/gaia/golang/constants"
 
-// NamespaceIdentity represents the Identity of the object
-var NamespaceIdentity = elemental.Identity{
-	Name:     "namespace",
-	Category: "namespaces",
+// DependencyMapViewIdentity represents the Identity of the object
+var DependencyMapViewIdentity = elemental.Identity{
+	Name:     "dependencymapview",
+	Category: "dependencymapviews",
 }
 
-// NamespacesList represents a list of Namespaces
-type NamespacesList []*Namespace
+// DependencyMapViewsList represents a list of DependencyMapViews
+type DependencyMapViewsList []*DependencyMapView
 
-// Namespace represents the model of a namespace
-type Namespace struct {
+// DependencyMapView represents the model of a dependencymapview
+type DependencyMapView struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,omitempty"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty"`
-
-	// Authenticator for this namespace
-	Authenticator string `json:"authenticator" cql:"authenticator,omitempty"`
 
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty"`
@@ -38,8 +35,8 @@ type Namespace struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty"`
 
-	// Name is the name of the namespace.
-	Name string `json:"name" cql:"name,primarykey,omitempty"`
+	// Name is the name of the entity
+	Name string `json:"name" cql:"name,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
@@ -53,118 +50,127 @@ type Namespace struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
+	// Values used by the dependency map group
+	Subviews DependencyMapSubviewsList `json:"subviews" cql:"subviews,omitempty"`
+
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewNamespace returns a new *Namespace
-func NewNamespace() *Namespace {
+// NewDependencyMapView returns a new *DependencyMapView
+func NewDependencyMapView() *DependencyMapView {
 
-	return &Namespace{
-		Status: constants.Active,
+	return &DependencyMapView{
+		Status:   constants.Active,
+		Subviews: DependencyMapSubviewsList{},
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Namespace) Identity() elemental.Identity {
+func (o *DependencyMapView) Identity() elemental.Identity {
 
-	return NamespaceIdentity
+	return DependencyMapViewIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Namespace) Identifier() string {
+func (o *DependencyMapView) Identifier() string {
 
 	return o.ID
 }
 
-func (o *Namespace) String() string {
+func (o *DependencyMapView) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Namespace) SetIdentifier(ID string) {
+func (o *DependencyMapView) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Namespace) GetAssociatedTags() []string {
+func (o *DependencyMapView) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Namespace) SetAssociatedTags(associatedTags []string) {
+func (o *DependencyMapView) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Namespace) SetCreatedAt(createdAt time.Time) {
+func (o *DependencyMapView) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *Namespace) GetDeleted() bool {
+func (o *DependencyMapView) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *Namespace) SetDeleted(deleted bool) {
+func (o *DependencyMapView) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetName returns the name of the receiver
-func (o *Namespace) GetName() string {
+func (o *DependencyMapView) GetName() string {
 	return o.Name
 }
 
+// SetName set the given name of the receiver
+func (o *DependencyMapView) SetName(name string) {
+	o.Name = name
+}
+
 // GetNamespace returns the namespace of the receiver
-func (o *Namespace) GetNamespace() string {
+func (o *DependencyMapView) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Namespace) SetNamespace(namespace string) {
+func (o *DependencyMapView) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Namespace) GetParentID() string {
+func (o *DependencyMapView) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Namespace) SetParentID(parentID string) {
+func (o *DependencyMapView) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Namespace) GetParentType() string {
+func (o *DependencyMapView) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Namespace) SetParentType(parentType string) {
+func (o *DependencyMapView) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *Namespace) GetStatus() constants.EntityStatus {
+func (o *DependencyMapView) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Namespace) SetStatus(status constants.EntityStatus) {
+func (o *DependencyMapView) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Namespace) SetUpdatedAt(updatedAt time.Time) {
+func (o *DependencyMapView) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Namespace) Validate() elemental.Errors {
+func (o *DependencyMapView) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
@@ -180,13 +186,13 @@ func (o *Namespace) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Namespace) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o DependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return NamespaceAttributesMap[name]
+	return DependencyMapViewAttributesMap[name]
 }
 
-// NamespaceAttributesMap represents the map of attribute for Namespace.
-var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
+// DependencyMapViewAttributesMap represents the map of attribute for DependencyMapView.
+var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -196,6 +202,7 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
@@ -218,18 +225,6 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
-	},
-	"Authenticator": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "authenticator",
-		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
 	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -266,15 +261,14 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
 		Name:           "name",
 		Orderable:      true,
-		PrimaryKey:     true,
 		Required:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
@@ -336,6 +330,17 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "status_enum",
+		Type:           "external",
+	},
+	"Subviews": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "subviews",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "dependencymapsubviews_entities",
 		Type:           "external",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
