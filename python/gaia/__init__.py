@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'HealthReport', 'Image', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'Tag', 'User', 'Vulnerability']
+
+__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'HealthReport', 'Image', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'Tag', 'User', 'Vulnerability', 'routes']
 
 from .apiauthorizationpolicy import APIAuthorizationPolicy
 from .authenticator import Authenticator
@@ -32,3 +33,4 @@ from .systemcall import SystemCall
 from .tag import Tag
 from .user import User
 from .vulnerability import Vulnerability
+from .routes import routes
