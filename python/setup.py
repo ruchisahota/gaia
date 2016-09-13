@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup
+import os
 
 packages = ['gaia']
 resources = []
