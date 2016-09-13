@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/constants"
+import "github.com/aporeto-inc/gaia/go/constants"
 
 // AuthenticatorMethodValue represents the possible values for attribute "method".
 type AuthenticatorMethodValue string

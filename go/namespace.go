@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/constants"
+import "github.com/aporeto-inc/gaia/go/constants"
 
 // NamespaceIdentity represents the Identity of the object
 var NamespaceIdentity = elemental.Identity{

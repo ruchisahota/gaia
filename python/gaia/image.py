@@ -8,7 +8,7 @@ class Image(RESTObject):
     """ Represents a Image in the 
 
         Notes:
-            Image of a docker
+            Image of a docker.
     """
 
     def __init__(self, **kwargs):

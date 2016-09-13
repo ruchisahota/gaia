@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/constants"
+import "github.com/aporeto-inc/gaia/go/constants"
 
 // PolicyIdentity represents the Identity of the object
 var PolicyIdentity = elemental.Identity{

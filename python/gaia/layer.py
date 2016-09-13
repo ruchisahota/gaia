@@ -8,7 +8,7 @@ class Layer(RESTObject):
     """ Represents a Layer in the 
 
         Notes:
-            Layer of a docker image
+            Layer of a docker image.
     """
 
     def __init__(self, **kwargs):

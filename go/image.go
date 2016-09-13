@@ -3,7 +3,7 @@ package gaia
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
-import "github.com/aporeto-inc/gaia/constants"
+import "github.com/aporeto-inc/gaia/go/constants"
 
 // ImageIdentity represents the Identity of the object
 var ImageIdentity = elemental.Identity{
@@ -175,7 +175,6 @@ var ImageAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "repository",
 		Orderable:      true,
 		ReadOnly:       true,
-		Transient:      true,
 		Type:           "string",
 		Unique:         true,
 	},
