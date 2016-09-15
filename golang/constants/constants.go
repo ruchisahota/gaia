@@ -62,18 +62,35 @@ const (
 	Defcon1
 )
 
-var vulnerabilityLevel = [...]string{
-	"None",
-	"Unknown",
-	"Negligible",
-	"Low",
-	"Medium",
-	"High",
-	"Critical",
-	"Defcon1",
+var vulnerabilityValues = [][]string{
+	{"none", "None"},
+	{"unknown", "Unknown"},
+	{"low", "Low"},
+	{"negligible", "Negligible"},
+	{"medium", "Medium"},
+	{"critical", "Critical"},
+	{"high", "High"},
+	{"defcon1", "Defcon1"},
 }
 
-func (sl Vulnerability) String() string { return vulnerabilityLevel[sl] }
+var vulnerabilityMap = map[string]Vulnerability{
+	"None":       None,
+	"Unknown":    Unknown,
+	"Low":        Low,
+	"Negligible": Negligible,
+	"Medium":     Medium,
+	"Critical":   Critical,
+	"High":       High,
+	"Defcon1":    Defcon1,
+}
+
+// TagValue returns the value of vulnerability system tag
+func (sl Vulnerability) TagValue() string { return vulnerabilityValues[sl][0] }
+
+func (sl Vulnerability) String() string { return vulnerabilityValues[sl][1] }
+
+// VulnerabilityConst return constant value of vulnerability string
+func VulnerabilityConst(vulnerability string) Vulnerability { return vulnerabilityMap[vulnerability] }
 
 // EntityStatusToString converts EntityStatusToString to its corresponding string value
 func EntityStatusToString(entityStatus EntityStatus) string {
