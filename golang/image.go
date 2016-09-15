@@ -31,11 +31,11 @@ type Image struct {
 	// Repository is the name of the image repository
 	Repository string `json:"repository" cql:"-"`
 
-	// Severity defines the severity level of the image
-	Severity constants.SeverityLevel `json:"severity" cql:"severity,omitempty"`
-
 	// Tag is the tag of the image
 	Tag string `json:"tag" cql:"tag,primarykey,omitempty"`
+
+	// Vulnerability defines the security vulnerabiility level of the image
+	Vulnerability constants.Vulnerability `json:"vulnerability" cql:"vulnerability,omitempty"`
 }
 
 // NewImage returns a new *Image
@@ -178,17 +178,6 @@ var ImageAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
-	"Severity": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Name:           "severity",
-		ReadOnly:       true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "severity_level",
-		Type:           "external",
-	},
 	"Tag": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -202,5 +191,16 @@ var ImageAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"Vulnerability": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Name:           "vulnerability",
+		ReadOnly:       true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "vulnerability_level",
+		Type:           "external",
 	},
 }

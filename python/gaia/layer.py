@@ -29,17 +29,17 @@ class Layer(RESTObject):
         # Read/Write Attributes
         
         self._id = None
+        self._vulnerability = None
         self._name = None
         self._namespacename = None
         self._parentname = None
-        self._severity = None
         self._vulnerabilities = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="Vulnerability", remote_name="Vulnerability")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespaceName", remote_name="namespaceName")
         self.expose_attribute(local_name="parentName", remote_name="parentName")
-        self.expose_attribute(local_name="severity", remote_name="severity")
         self.expose_attribute(local_name="vulnerabilities", remote_name="vulnerabilities")
 
         self._compute_args(**kwargs)
@@ -84,6 +84,28 @@ class Layer(RESTObject):
               
         """
         self._id = value
+    
+    @property
+    def Vulnerability(self):
+        """ Get Vulnerability value.
+
+          Notes:
+              Vulnerability defines the overall vulnerability level of a layer
+
+              
+        """
+        return self._vulnerability
+
+    @Vulnerability.setter
+    def Vulnerability(self, value):
+        """ Set Vulnerability value.
+
+          Notes:
+              Vulnerability defines the overall vulnerability level of a layer
+
+              
+        """
+        self._vulnerability = value
     
     @property
     def name(self):
@@ -150,28 +172,6 @@ class Layer(RESTObject):
               
         """
         self._parentname = value
-    
-    @property
-    def severity(self):
-        """ Get severity value.
-
-          Notes:
-              Severity defines the severity level of the vulnerability
-
-              
-        """
-        return self._severity
-
-    @severity.setter
-    def severity(self, value):
-        """ Set severity value.
-
-          Notes:
-              Severity defines the severity level of the vulnerability
-
-              
-        """
-        self._severity = value
     
     @property
     def vulnerabilities(self):

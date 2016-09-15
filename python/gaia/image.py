@@ -33,16 +33,16 @@ class Image(RESTObject):
         self._name = None
         self._registry = None
         self._repository = None
-        self._severity = None
         self._tag = None
+        self._vulnerability = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="registry", remote_name="registry")
         self.expose_attribute(local_name="repository", remote_name="repository")
-        self.expose_attribute(local_name="severity", remote_name="severity")
         self.expose_attribute(local_name="tag", remote_name="tag")
+        self.expose_attribute(local_name="vulnerability", remote_name="vulnerability")
 
         self._compute_args(**kwargs)
 
@@ -176,28 +176,6 @@ class Image(RESTObject):
         self._repository = value
     
     @property
-    def severity(self):
-        """ Get severity value.
-
-          Notes:
-              Severity defines the severity level of the image
-
-              
-        """
-        return self._severity
-
-    @severity.setter
-    def severity(self, value):
-        """ Set severity value.
-
-          Notes:
-              Severity defines the severity level of the image
-
-              
-        """
-        self._severity = value
-    
-    @property
     def tag(self):
         """ Get tag value.
 
@@ -218,6 +196,28 @@ class Image(RESTObject):
               
         """
         self._tag = value
+    
+    @property
+    def vulnerability(self):
+        """ Get vulnerability value.
+
+          Notes:
+              Vulnerability defines the security vulnerabiility level of the image
+
+              
+        """
+        return self._vulnerability
+
+    @vulnerability.setter
+    def vulnerability(self, value):
+        """ Set vulnerability value.
+
+          Notes:
+              Vulnerability defines the security vulnerabiility level of the image
+
+              
+        """
+        self._vulnerability = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.

@@ -40,27 +40,30 @@ const (
 	NamespaceMapping PolicyType = "NamespaceMapping"
 )
 
-// SeverityLevel defines the severity level of an image or a layer
-type SeverityLevel int
+// Vulnerability defines the security vulnerability of an image or a layer
+type Vulnerability int
 
 const (
-	// Unknown defines that severity level is Unknown
-	Unknown SeverityLevel = iota
-	// Negligible defines that severity level is Negligible
+	// None defines that security vulnerability is None
+	None Vulnerability = iota
+	// Unknown defines that security vulnerability is Unknown
+	Unknown
+	// Negligible defines that security vulnerability is Negligible
 	Negligible
-	// Low defines that severity level is Low
+	// Low defines that security vulnerability is Low
 	Low
-	// Medium defines that severity level is Medium
+	// Medium defines that security vulnerability is Medium
 	Medium
-	// High defines that severity level is High
+	// High defines that security vulnerability is High
 	High
-	// Critical defines that severity level is Critical
+	// Critical defines that security vulnerability is Critical
 	Critical
-	// Defcon1 defines that severity level is Defcon1
+	// Defcon1 defines that security vulnerability is Defcon1
 	Defcon1
 )
 
-var securityLevels = [...]string{
+var vulnerabilityLevel = [...]string{
+	"None",
 	"Unknown",
 	"Negligible",
 	"Low",
@@ -70,7 +73,7 @@ var securityLevels = [...]string{
 	"Defcon1",
 }
 
-func (sl SeverityLevel) String() string { return securityLevels[sl] }
+func (sl Vulnerability) String() string { return vulnerabilityLevel[sl] }
 
 // EntityStatusToString converts EntityStatusToString to its corresponding string value
 func EntityStatusToString(entityStatus EntityStatus) string {

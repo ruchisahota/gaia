@@ -19,6 +19,9 @@ type Layer struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"-"`
 
+	// Vulnerability defines the overall vulnerability level of a layer
+	Vulnerability constants.Vulnerability `json:"Vulnerability" cql:"vulnerability,omitempty"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,primarykey,omitempty"`
 
@@ -27,9 +30,6 @@ type Layer struct {
 
 	// ParentName is the name of parent layer
 	ParentName string `json:"parentName" cql:"parentname,omitempty"`
-
-	// Severity defines the severity level of the vulnerability
-	Severity constants.SeverityLevel `json:"severity" cql:"severity,omitempty"`
 
 	// Vulnerabilities is the list of all the vulnerabilities of a layer
 	Vulnerabilities []Vulnerability `json:"vulnerabilities" cql:"vulnerabilities,omitempty"`
@@ -101,6 +101,17 @@ var LayerAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
+	"Vulnerability": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Name:           "Vulnerability",
+		ReadOnly:       true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "vulnerability_level",
+		Type:           "external",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -140,17 +151,6 @@ var LayerAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
-	},
-	"Severity": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Name:           "severity",
-		ReadOnly:       true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "severity_level",
-		Type:           "external",
 	},
 	"Vulnerabilities": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
