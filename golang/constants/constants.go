@@ -170,4 +170,13 @@ const (
 
 	// StatsTagKeyAporetoContextID represents the aporeto context ID.
 	StatsTagKeyAporetoContextID = "AporetoContextID"
+
+	// StatsTagKeyMountedPath represents the mounted path.
+	StatsTagKeyMountedPath = "mountedPath"
+
+	// StatsTagKeyMountPoint represents the mount point of the StatsTagKeyMountedPath.
+	StatsTagKeyMountPoint = "mountPoint"
+
+	// StatsTagKeyMountMode represents the mode of mount point.
+	StatsTagKeyMountMode = "mountMode"
 )
