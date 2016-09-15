@@ -32,7 +32,7 @@ type Layer struct {
 	ParentName string `json:"parentName" cql:"parentname,omitempty"`
 
 	// Vulnerabilities is the list of all the vulnerabilities of a layer
-	Vulnerabilities []Vulnerability `json:"vulnerabilities" cql:"vulnerabilities,omitempty"`
+	Vulnerabilities []*Vulnerability `json:"vulnerabilities" cql:"vulnerabilities,omitempty"`
 }
 
 // NewLayer returns a new *Layer

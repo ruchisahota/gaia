@@ -171,12 +171,18 @@ const (
 	// StatsTagKeyAporetoContextID represents the aporeto context ID.
 	StatsTagKeyAporetoContextID = "AporetoContextID"
 
-	// StatsTagKeyMountedPath represents the mounted path.
-	StatsTagKeyMountedPath = "mountedPath"
+	// StatsTagKeyFileAccessPath represents the file path.
+	StatsTagKeyFileAccessPath = "path"
 
-	// StatsTagKeyMountPoint represents the mount point of the StatsTagKeyMountedPath.
-	StatsTagKeyMountPoint = "mountPoint"
+	// StatsTagKeyFileAccessHost represents the host where the file is stored.
+	StatsTagKeyFileAccessHost = "host"
 
-	// StatsTagKeyMountMode represents the mode of mount point.
-	StatsTagKeyMountMode = "mountMode"
+	// StatsTagKeyFileAccessProtocol represents the protocol used to access the file.
+	StatsTagKeyFileAccessProtocol = "protocol"
+
+	// StatsTagKeyFileAccessMode represents the mode of file.
+	StatsTagKeyFileAccessMode = "mode"
+
+	// StatsTagKeyFileAccessContext represents the full context of the file access.
+	StatsTagKeyFileAccessContext = "fileContext"
 )
