@@ -149,7 +149,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Layer",
+        "package": "Infrastructure",
         "resource_name": "layers",
         "rest_name": "layer",
         "root": null,
