@@ -179,8 +179,7 @@
         "entity_name": "Layer",
         "extends": [
             "@base",
-            "@identifiable-nopk-stored",
-            "@named"
+            "@identifiable-nopk-stored"
         ],
         "get": true,
         "package": "Infrastructure",
