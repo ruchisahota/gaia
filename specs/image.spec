@@ -179,6 +179,7 @@
         "entity_name": "Image",
         "extends": [
             "@base",
+            "@identifiable-nopk-stored",
             "@named"
         ],
         "get": false,
