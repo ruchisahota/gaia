@@ -178,6 +178,7 @@
         "description": "Layer of a docker image.",
         "entity_name": "Layer",
         "extends": [
+            "@base",
             "@identifiable-nopk-nostored"
         ],
         "get": false,
