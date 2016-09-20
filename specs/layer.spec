@@ -179,7 +179,8 @@
         "entity_name": "Layer",
         "extends": [
             "@base",
-            "@identifiable-nopk-nostored"
+            "@identifiable-nopk-nostored",
+            "@identifiable-nopk-stored"
         ],
         "get": false,
         "package": "Layer",
