@@ -182,7 +182,7 @@
             "@identifiable-nopk-stored",
             "@named"
         ],
-        "get": false,
+        "get": true,
         "package": "Layer",
         "resource_name": "images",
         "rest_name": "image",
