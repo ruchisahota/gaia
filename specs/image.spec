@@ -178,6 +178,7 @@
         "description": "Image of a docker.",
         "entity_name": "Image",
         "extends": [
+            "@base",
             "@named"
         ],
         "get": false,
