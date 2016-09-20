@@ -148,7 +148,7 @@
             "@identifiable-nopk-stored",
             "@named"
         ],
-        "get": false,
+        "get": true,
         "package": "Layer",
         "resource_name": "layers",
         "rest_name": "layer",
