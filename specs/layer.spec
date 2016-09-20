@@ -57,7 +57,7 @@
             "min_value": null,
             "name": "name",
             "orderable": true,
-            "primary_key": null,
+            "primary_key": true,
             "read_only": null,
             "required": null,
             "setter": null,
