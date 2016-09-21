@@ -33,12 +33,11 @@ class Image(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
-        self._name  = None
+        self._name = None
         self._namespace = None
         self._parentid = None
         self._parenttype = None
         self._registry = None
-        self._repository = None
         self._status = None
         self._tag = None
         self._updatedat = None
@@ -49,12 +48,11 @@ class Image(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
-        self.expose_attribute(local_name="name ", remote_name="name ")
+        self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="registry", remote_name="registry")
-        self.expose_attribute(local_name="repository", remote_name="repository")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="tag", remote_name="tag")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
@@ -192,26 +190,26 @@ class Image(RESTObject):
         self._deleted = value
     
     @property
-    def name (self):
-        """ Get name  value.
+    def name(self):
+        """ Get name value.
 
           Notes:
               Name is the name of the entity
 
               
         """
-        return self._name 
+        return self._name
 
-    @name .setter
-    def name (self, value):
-        """ Set name  value.
+    @name.setter
+    def name(self, value):
+        """ Set name value.
 
           Notes:
               Name is the name of the entity
 
               
         """
-        self._name  = value
+        self._name = value
     
     @property
     def namespace(self):
@@ -300,28 +298,6 @@ class Image(RESTObject):
               
         """
         self._registry = value
-    
-    @property
-    def repository(self):
-        """ Get repository value.
-
-          Notes:
-              Repository is the name of the image repository
-
-              
-        """
-        return self._repository
-
-    @repository.setter
-    def repository(self, value):
-        """ Set repository value.
-
-          Notes:
-              Repository is the name of the image repository
-
-              
-        """
-        self._repository = value
     
     @property
     def status(self):

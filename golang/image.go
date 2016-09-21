@@ -33,7 +33,7 @@ type Image struct {
 	Deleted bool `json:"-" cql:"deleted,omitempty"`
 
 	// Name is the name of the entity
-	Name string `json:"name " cql:"name ,primarykey,omitempty"`
+	Name string `json:"name" cql:"name,primarykey,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
@@ -46,9 +46,6 @@ type Image struct {
 
 	// Registry refers to the service that stores images
 	Registry string `json:"registry" cql:"registry,primarykey,omitempty"`
-
-	// Repository is the name of the image repository
-	Repository string `json:"repository" cql:"-"`
 
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
@@ -247,13 +244,13 @@ var ImageAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Name ": elemental.AttributeSpecification{
+	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "name ",
+		Name:           "name",
 		Orderable:      true,
 		PrimaryKey:     true,
 		Stored:         true,
@@ -317,17 +314,6 @@ var ImageAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Required:       true,
 		Stored:         true,
-		Type:           "string",
-		Unique:         true,
-	},
-	"Repository": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "repository",
-		Orderable:      true,
-		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
 	},
