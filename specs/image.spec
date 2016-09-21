@@ -21,7 +21,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "name ",
+            "name": "name",
             "orderable": true,
             "primary_key": true,
             "read_only": null,
