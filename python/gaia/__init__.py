@@ -2,7 +2,7 @@
 
 
 
-__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'HealthReport', 'Image', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'Rendereddependencymapview', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'Tag', 'User', 'Vulnerability', 'routes']
+__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'HealthReport', 'Image', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedDependencyMapView', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'Tag', 'User', 'Vulnerability', 'routes']
 
 from .apiauthorizationpolicy import APIAuthorizationPolicy
 from .authenticator import Authenticator
@@ -26,7 +26,7 @@ from .networkaccesspolicy import NetworkAccessPolicy
 from .policy import Policy
 from .policyrule import PolicyRule
 from .processingunit import ProcessingUnit
-from .rendereddependencymapview import Rendereddependencymapview
+from .rendereddependencymapview import RenderedDependencyMapView
 from .renderedpolicy import RenderedPolicy
 from .root import Root
 from .server import Server

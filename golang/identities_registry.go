@@ -30,7 +30,7 @@ func init() {
 	elemental.RegisterIdentity(DependencyMapViewIdentity)
 	elemental.RegisterIdentity(DependencyMapIdentity)
 	elemental.RegisterIdentity(VulnerabilityIdentity)
-	elemental.RegisterIdentity(RendereddependencymapviewIdentity)
+	elemental.RegisterIdentity(RenderedDependencyMapViewIdentity)
 	elemental.RegisterIdentity(ServerIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(NetworkAccessPolicyIdentity)

@@ -4,15 +4,15 @@ from pyelemental import RESTObject
 from pyelemental import validate_string_in_list, validate_float_in_list, validate_int_in_list, validate_required_int, validate_required_float, validate_required_string, validate_required_time, validate_maximum_float, validate_minimum_float, validate_maximum_int, validate_minimum_int, validate_maximum_length, validate_minimum_length, validate_pattern
 
 
-class Rendereddependencymapview(RESTObject):
-    """ Represents a Rendereddependencymapview in the 
+class RenderedDependencyMapView(RESTObject):
+    """ Represents a RenderedDependencyMapView in the 
 
         Notes:
             Render some dependency map views from a dependency map
     """
 
     def __init__(self, **kwargs):
-        """ Initializes a Rendereddependencymapview instance
+        """ Initializes a RenderedDependencyMapView instance
 
           Notes:
               You can specify all parameters while calling this methods.
@@ -20,11 +20,11 @@ class Rendereddependencymapview(RESTObject):
               object from a Python dictionary
 
           Examples:
-              >>> rendereddependencymapview = Rendereddependencymapview(id=u'xxxx-xxx-xxx-xxx', name=u'Rendereddependencymapview')
-              >>> rendereddependencymapview = Rendereddependencymapview(data=my_dict)
+              >>> rendereddependencymapview = RenderedDependencyMapView(id=u'xxxx-xxx-xxx-xxx', name=u'RenderedDependencyMapView')
+              >>> rendereddependencymapview = RenderedDependencyMapView(data=my_dict)
         """
 
-        super(Rendereddependencymapview, self).__init__()
+        super(RenderedDependencyMapView, self).__init__()
 
         # Read/Write Attributes
         
@@ -86,4 +86,4 @@ class Rendereddependencymapview(RESTObject):
         return None
 
     # rendereddependencymapviewIdentity represents the Identity of the object
-rendereddependencymapviewIdentity = {"name": "rendereddependencymapview", "category": "rendereddependencymapviews", "constructor": Rendereddependencymapview}
+rendereddependencymapviewIdentity = {"name": "rendereddependencymapview", "category": "rendereddependencymapviews", "constructor": RenderedDependencyMapView}
