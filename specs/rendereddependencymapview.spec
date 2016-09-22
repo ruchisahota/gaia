@@ -9,7 +9,7 @@
         "extends": [
             "@identifiable-nopk-nostored"
         ],
-        "get": true,
+        "get": false,
         "package": "Visialization",
         "resource_name": "rendereddependencymapviews",
         "rest_name": "rendereddependencymapview",
