@@ -18,6 +18,7 @@ routes.append(("GET", "/layers/:id"))
 
 # routes for images
 routes.append(("GET", "/images/:id"))
+routes.append(("GET", "/images/:id/layers"))
 
 # routes for healthreports
 
