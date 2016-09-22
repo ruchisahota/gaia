@@ -5,7 +5,7 @@
         "create": null,
         "delete": false,
         "description": "Render some dependency map views from a dependency map",
-        "entity_name": "Rendereddependencymapview",
+        "entity_name": "RenderedDependencyMapView",
         "extends": [
             "@identifiable-nopk-nostored"
         ],
