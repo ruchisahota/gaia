@@ -3,17 +3,17 @@
     "children": [],
     "model": {
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "Render some dependency map views from a dependency map",
         "entity_name": "Rendereddependencymapview",
         "extends": [
             "@identifiable-nopk-nostored"
         ],
-        "get": true,
-        "package": null,
+        "get": false,
+        "package": "Visialization",
         "resource_name": "rendereddependencymapviews",
         "rest_name": "rendereddependencymapview",
         "root": null,
-        "update": true
+        "update": false
     }
 }
