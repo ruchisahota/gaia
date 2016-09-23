@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Boolean to know if the dependency map view as rendered by the system or not",
+            "description": "Boolean to know if the dependency map view was rendered by the system or not",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
