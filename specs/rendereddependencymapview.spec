@@ -76,8 +76,7 @@
         "description": "Render some dependency map views from a dependency map",
         "entity_name": "RenderedDependencyMapView",
         "extends": [
-            "@base",
-            "@identifiable-nopk-nostored"
+            "@base"
         ],
         "get": false,
         "package": "Visialization",
