@@ -23,6 +23,9 @@ type RenderedDependencyMapView struct {
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
 
+	// The dependencyMapView linked ID to the rendered dependency map view
+	AssociatedDependencyMapViewID string `json:"associatedDependencyMapViewID" cql:"associateddependencymapviewid,omitempty"`
+
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty"`
 
@@ -31,9 +34,6 @@ type RenderedDependencyMapView struct {
 
 	// Deleted marks if the entity has been deleted.
 	Deleted bool `json:"-" cql:"deleted,omitempty"`
-
-	// The dependencyMapView linked to the rendered dependency map view
-	DependencyMapView *DependencyMapView `json:"dependencyMapView" cql:"dependencymapview,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
@@ -160,6 +160,10 @@ func (o *RenderedDependencyMapView) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return errors
 	}
@@ -196,6 +200,17 @@ var RenderedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		SubType:        "annotation",
 		Type:           "external",
 	},
+	"AssociatedDependencyMapViewID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "associatedDependencyMapViewID",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "dependencymapview",
+		Type:           "string",
+	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
@@ -228,17 +243,6 @@ var RenderedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"DependencyMapView": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "dependencyMapView",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "dependencymapview",
-		Type:           "external",
 	},
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

@@ -30,10 +30,10 @@ class RenderedDependencyMapView(RESTObject):
         
         self._id = None
         self._annotation = None
+        self._associateddependencymapviewid = None
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
-        self._dependencymapview = None
         self._namespace = None
         self._parentid = None
         self._parenttype = None
@@ -43,10 +43,10 @@ class RenderedDependencyMapView(RESTObject):
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
+        self.expose_attribute(local_name="associatedDependencyMapViewID", remote_name="associatedDependencyMapViewID")
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
-        self.expose_attribute(local_name="dependencyMapView", remote_name="dependencyMapView")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
@@ -120,6 +120,28 @@ class RenderedDependencyMapView(RESTObject):
         self._annotation = value
     
     @property
+    def associatedDependencyMapViewID(self):
+        """ Get associatedDependencyMapViewID value.
+
+          Notes:
+              The dependencyMapView linked ID to the rendered dependency map view
+
+              
+        """
+        return self._associateddependencymapviewid
+
+    @associatedDependencyMapViewID.setter
+    def associatedDependencyMapViewID(self, value):
+        """ Set associatedDependencyMapViewID value.
+
+          Notes:
+              The dependencyMapView linked ID to the rendered dependency map view
+
+              
+        """
+        self._associateddependencymapviewid = value
+    
+    @property
     def associatedTags(self):
         """ Get associatedTags value.
 
@@ -184,28 +206,6 @@ class RenderedDependencyMapView(RESTObject):
               
         """
         self._deleted = value
-    
-    @property
-    def dependencyMapView(self):
-        """ Get dependencyMapView value.
-
-          Notes:
-              The dependencyMapView linked to the rendered dependency map view
-
-              
-        """
-        return self._dependencymapview
-
-    @dependencyMapView.setter
-    def dependencyMapView(self, value):
-        """ Set dependencyMapView value.
-
-          Notes:
-              The dependencyMapView linked to the rendered dependency map view
-
-              
-        """
-        self._dependencymapview = value
     
     @property
     def namespace(self):
@@ -343,6 +343,11 @@ class RenderedDependencyMapView(RESTObject):
         """ Validate valides the current information stored into the structure.
         """
         errors = []
+
+        err = validate_required_string("associatedDependencyMapViewID", self.associatedDependencyMapViewID)
+
+        if err:
+            errors.append(err)
 
         if len(errors) > 0:
             return errors
