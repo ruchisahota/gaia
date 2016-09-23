@@ -11,6 +11,7 @@ routes.append(("DELETE", "/namespacemappingpolicies/:id"))
 
 # routes for layers
 routes.append(("GET", "/layers/:id"))
+routes.append(("GET", "/layers/:id/vulnerabilities"))
 
 # routes for dependencymapsubviews
 
