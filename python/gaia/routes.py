@@ -11,6 +11,7 @@ routes.append(("DELETE", "/namespacemappingpolicies/:id"))
 
 # routes for layers
 routes.append(("GET", "/layers/:id"))
+routes.append(("GET", "/layers/:id/vulnerabilities"))
 
 # routes for dependencymapsubviews
 
@@ -18,6 +19,7 @@ routes.append(("GET", "/layers/:id"))
 
 # routes for images
 routes.append(("GET", "/images/:id"))
+routes.append(("GET", "/images/:id/layers"))
 
 # routes for healthreports
 
@@ -100,6 +102,7 @@ routes.append(("DELETE", "/dependencymapviews/:id"))
 # routes for dependencymaps
 
 # routes for vulnerabilities
+routes.append(("GET", "/vulnerabilities/:id"))
 
 # routes for servers
 routes.append(("GET", "/servers/:id"))
@@ -145,6 +148,7 @@ routes.append(("GET", "/systemcalls"))
 routes.append(("GET", "/tags"))
 routes.append(("POST", "/users"))
 routes.append(("GET", "/users"))
+routes.append(("GET", "/vulnerabilities"))
 
 # routes for networkaccesspolicies
 routes.append(("GET", "/networkaccesspolicies/:id"))
