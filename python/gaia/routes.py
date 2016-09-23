@@ -101,6 +101,7 @@ routes.append(("DELETE", "/dependencymapviews/:id"))
 # routes for dependencymaps
 
 # routes for vulnerabilities
+routes.append(("GET", "/vulnerabilities/:id"))
 
 # routes for servers
 routes.append(("GET", "/servers/:id"))
@@ -146,6 +147,7 @@ routes.append(("GET", "/systemcalls"))
 routes.append(("GET", "/tags"))
 routes.append(("POST", "/users"))
 routes.append(("GET", "/users"))
+routes.append(("GET", "/vulnerabilities"))
 
 # routes for networkaccesspolicies
 routes.append(("GET", "/networkaccesspolicies/:id"))
