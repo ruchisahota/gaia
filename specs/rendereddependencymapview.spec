@@ -13,7 +13,7 @@
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
-            "format": "free",
+            "format": null,
             "getter": null,
             "identifier": null,
             "index": null,
@@ -25,12 +25,12 @@
             "orderable": true,
             "primary_key": null,
             "read_only": null,
-            "required": null,
+            "required": true,
             "setter": null,
             "stored": true,
             "subtype": null,
             "transient": false,
-            "type": "string",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         }
