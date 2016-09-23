@@ -38,6 +38,7 @@ class DependencyMapView(RESTObject):
         self._namespace = None
         self._parentid = None
         self._parenttype = None
+        self._rendered = None
         self._status = None
         self._subviews = None
         self._updatedat = None
@@ -52,6 +53,7 @@ class DependencyMapView(RESTObject):
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
+        self.expose_attribute(local_name="rendered", remote_name="rendered")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="subviews", remote_name="subviews")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
@@ -296,6 +298,28 @@ class DependencyMapView(RESTObject):
               
         """
         self._parenttype = value
+    
+    @property
+    def rendered(self):
+        """ Get rendered value.
+
+          Notes:
+              Boolean to know if the dependency map view was rendered by the system or not
+
+              
+        """
+        return self._rendered
+
+    @rendered.setter
+    def rendered(self, value):
+        """ Set rendered value.
+
+          Notes:
+              Boolean to know if the dependency map view was rendered by the system or not
+
+              
+        """
+        self._rendered = value
     
     @property
     def status(self):

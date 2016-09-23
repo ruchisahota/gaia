@@ -29,8 +29,12 @@ class RenderedDependencyMapView(RESTObject):
         # Read/Write Attributes
         
         self._id = None
+        self._dependencymapview = None
+        self._processingunittags = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="dependencyMapView", remote_name="dependencyMapView")
+        self.expose_attribute(local_name="processingUnitTags", remote_name="processingUnitTags")
 
         self._compute_args(**kwargs)
 
@@ -74,6 +78,50 @@ class RenderedDependencyMapView(RESTObject):
               
         """
         self._id = value
+    
+    @property
+    def dependencyMapView(self):
+        """ Get dependencyMapView value.
+
+          Notes:
+              The dependencyMapView linked to the rendered dependency map view
+
+              
+        """
+        return self._dependencymapview
+
+    @dependencyMapView.setter
+    def dependencyMapView(self, value):
+        """ Set dependencyMapView value.
+
+          Notes:
+              The dependencyMapView linked to the rendered dependency map view
+
+              
+        """
+        self._dependencymapview = value
+    
+    @property
+    def processingUnitTags(self):
+        """ Get processingUnitTags value.
+
+          Notes:
+              A map of the transient tags for the processing units
+
+              
+        """
+        return self._processingunittags
+
+    @processingUnitTags.setter
+    def processingUnitTags(self, value):
+        """ Set processingUnitTags value.
+
+          Notes:
+              A map of the transient tags for the processing units
+
+              
+        """
+        self._processingunittags = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.

@@ -16,6 +16,12 @@ type RenderedDependencyMapViewsList []*RenderedDependencyMapView
 type RenderedDependencyMapView struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"-"`
+
+	// The dependencyMapView linked to the rendered dependency map view
+	DependencyMapView *DependencyMapView `json:"dependencyMapView" cql:"dependencymapview,omitempty"`
+
+	// A map of the transient tags for the processing units
+	ProcessingUnitTags map[string][]string `json:"processingUnitTags" cql:"processingunittags,omitempty"`
 }
 
 // NewRenderedDependencyMapView returns a new *RenderedDependencyMapView
@@ -79,5 +85,27 @@ var RenderedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"DependencyMapView": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "dependencyMapView",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "dependencymapview",
+		Type:           "external",
+	},
+	"ProcessingUnitTags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "processingUnitTags",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "processingunit_transient_tags_map",
+		Type:           "external",
 	},
 }

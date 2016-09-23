@@ -47,6 +47,9 @@ type DependencyMapView struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
+	// Boolean to know if the dependency map view was rendered by the system or not
+	Rendered bool `json:"rendered" cql:"rendered,omitempty"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
@@ -318,6 +321,17 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Rendered": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Exposed:        true,
+		Filterable:     true,
+		Index:          true,
+		Name:           "rendered",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
