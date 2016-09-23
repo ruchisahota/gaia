@@ -18,7 +18,7 @@ type RenderedDependencyMapViewsList []*RenderedDependencyMapView
 // RenderedDependencyMapView represents the model of a rendereddependencymapview
 type RenderedDependencyMapView struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
@@ -188,7 +188,9 @@ var RenderedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
+		Stored:         true,
 		Type:           "string",
 		Unique:         true,
 	},
