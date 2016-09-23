@@ -8,6 +8,7 @@ routes = []
 
 # routes for layers
 routes.append(("GET", "/layers/:id"))
+routes.append(("GET", "/layers/:id/vulnerabilities"))
 
 # routes for dependencymapsubviews
 
@@ -18,6 +19,7 @@ routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 
 # routes for images
 routes.append(("GET", "/images/:id"))
+routes.append(("GET", "/images/:id/layers"))
 
 # routes for systemcalls
 routes.append(("GET", "/systemcalls/:id"))
@@ -100,6 +102,7 @@ routes.append(("DELETE", "/dependencymapviews/:id"))
 # routes for dependencymaps
 
 # routes for vulnerabilities
+routes.append(("GET", "/vulnerabilities/:id"))
 
 # routes for rendereddependencymapviews
 
@@ -148,6 +151,7 @@ routes.append(("GET", "/systemcalls"))
 routes.append(("GET", "/tags"))
 routes.append(("POST", "/users"))
 routes.append(("GET", "/users"))
+routes.append(("GET", "/vulnerabilities"))
 
 # routes for networkaccesspolicies
 routes.append(("GET", "/networkaccesspolicies/:id"))

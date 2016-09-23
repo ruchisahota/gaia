@@ -42,7 +42,6 @@ class Layer(RESTObject):
         self._parenttype = None
         self._status = None
         self._updatedat = None
-        self._vulnerabilities = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="Vulnerability", remote_name="Vulnerability")
@@ -58,7 +57,6 @@ class Layer(RESTObject):
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
-        self.expose_attribute(local_name="vulnerabilities", remote_name="vulnerabilities")
 
         self._compute_args(**kwargs)
 
@@ -388,28 +386,6 @@ class Layer(RESTObject):
               
         """
         self._updatedat = value
-    
-    @property
-    def vulnerabilities(self):
-        """ Get vulnerabilities value.
-
-          Notes:
-              Vulnerabilities is the list of all the vulnerabilities of a layer
-
-              
-        """
-        return self._vulnerabilities
-
-    @vulnerabilities.setter
-    def vulnerabilities(self, value):
-        """ Set vulnerabilities value.
-
-          Notes:
-              Vulnerabilities is the list of all the vulnerabilities of a layer
-
-              
-        """
-        self._vulnerabilities = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.
