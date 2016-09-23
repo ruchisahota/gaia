@@ -28,7 +28,7 @@
             "required": true,
             "setter": null,
             "stored": true,
-            "subtype": null,
+            "subtype": "dependencymapview",
             "transient": false,
             "type": "external",
             "unique": null,
