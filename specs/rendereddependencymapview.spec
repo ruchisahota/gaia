@@ -79,7 +79,7 @@
             "@base",
             "@identifiable-pk-stored"
         ],
-        "get": false,
+        "get": true,
         "package": "Visialization",
         "resource_name": "rendereddependencymapviews",
         "rest_name": "rendereddependencymapview",
