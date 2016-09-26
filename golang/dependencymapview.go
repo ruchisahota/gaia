@@ -356,7 +356,6 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"Rendered": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
 		Filterable:     true,
 		Index:          true,
