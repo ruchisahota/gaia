@@ -60,19 +60,16 @@ routes.append(("DELETE", "/policies/:id"))
 
 # routes for flowstatistics
 
+# routes for computeddependencymapviews
+routes.append(("GET", "/computeddependencymapviews/:id"))
+routes.append(("DELETE", "/computeddependencymapviews/:id"))
+
+# routes for healthreports
+
 # routes for fileaccesspolicies
 routes.append(("GET", "/fileaccesspolicies/:id"))
 routes.append(("PUT", "/fileaccesspolicies/:id"))
 routes.append(("DELETE", "/fileaccesspolicies/:id"))
-
-# routes for healthreports
-
-# routes for users
-routes.append(("GET", "/users/:id"))
-routes.append(("PUT", "/users/:id"))
-routes.append(("DELETE", "/users/:id"))
-routes.append(("POST", "/users/:id/certificates"))
-routes.append(("GET", "/users/:id/certificates"))
 
 # routes for renderedpolicies
 
@@ -104,10 +101,6 @@ routes.append(("DELETE", "/dependencymapviews/:id"))
 # routes for vulnerabilities
 routes.append(("GET", "/vulnerabilities/:id"))
 
-# routes for rendereddependencymapviews
-routes.append(("GET", "/rendereddependencymapviews/:id"))
-routes.append(("DELETE", "/rendereddependencymapviews/:id"))
-
 # routes for servers
 routes.append(("GET", "/servers/:id"))
 routes.append(("PUT", "/servers/:id"))
@@ -122,6 +115,7 @@ routes.append(("GET", "/apiauthorizationpolicies"))
 routes.append(("POST", "/authenticators"))
 routes.append(("GET", "/authenticators"))
 routes.append(("GET", "/certificates"))
+routes.append(("GET", "/computeddependencymapviews"))
 routes.append(("GET", "/dependencymaps"))
 routes.append(("POST", "/dependencymapviews"))
 routes.append(("GET", "/dependencymapviews"))
@@ -145,8 +139,6 @@ routes.append(("POST", "/policies"))
 routes.append(("GET", "/policies"))
 routes.append(("POST", "/processingunits"))
 routes.append(("GET", "/processingunits"))
-routes.append(("POST", "/rendereddependencymapviews"))
-routes.append(("GET", "/rendereddependencymapviews"))
 routes.append(("POST", "/servers"))
 routes.append(("GET", "/servers"))
 routes.append(("POST", "/systemcalls"))
@@ -154,10 +146,16 @@ routes.append(("GET", "/systemcalls"))
 routes.append(("GET", "/tags"))
 routes.append(("POST", "/users"))
 routes.append(("GET", "/users"))
-routes.append(("GET", "/vulnerabilities"))
 
 # routes for networkaccesspolicies
 routes.append(("GET", "/networkaccesspolicies/:id"))
 routes.append(("PUT", "/networkaccesspolicies/:id"))
 routes.append(("DELETE", "/networkaccesspolicies/:id"))
+
+# routes for users
+routes.append(("GET", "/users/:id"))
+routes.append(("PUT", "/users/:id"))
+routes.append(("DELETE", "/users/:id"))
+routes.append(("POST", "/users/:id/certificates"))
+routes.append(("GET", "/users/:id/certificates"))
 
