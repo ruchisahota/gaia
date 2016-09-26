@@ -4,10 +4,7 @@ routes = []
 
 # routes for mynamespaces
 
-# routes for namespacemappingpolicies
-routes.append(("GET", "/namespacemappingpolicies/:id"))
-routes.append(("PUT", "/namespacemappingpolicies/:id"))
-routes.append(("DELETE", "/namespacemappingpolicies/:id"))
+# routes for mapnodes
 
 # routes for layers
 routes.append(("GET", "/layers/:id"))
@@ -15,13 +12,14 @@ routes.append(("GET", "/layers/:id/vulnerabilities"))
 
 # routes for dependencymapsubviews
 
-# routes for mapnodes
+# routes for apiauthorizationpolicies
+routes.append(("GET", "/apiauthorizationpolicies/:id"))
+routes.append(("PUT", "/apiauthorizationpolicies/:id"))
+routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 
 # routes for images
 routes.append(("GET", "/images/:id"))
 routes.append(("GET", "/images/:id/layers"))
-
-# routes for healthreports
 
 # routes for systemcalls
 routes.append(("GET", "/systemcalls/:id"))
@@ -42,11 +40,6 @@ routes.append(("DELETE", "/certificates/:id"))
 routes.append(("GET", "/filepaths/:id"))
 routes.append(("PUT", "/filepaths/:id"))
 routes.append(("DELETE", "/filepaths/:id"))
-
-# routes for apiauthorizationpolicies
-routes.append(("GET", "/apiauthorizationpolicies/:id"))
-routes.append(("PUT", "/apiauthorizationpolicies/:id"))
-routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 
 # routes for namespaces
 routes.append(("GET", "/namespaces/:id"))
@@ -72,12 +65,7 @@ routes.append(("GET", "/fileaccesspolicies/:id"))
 routes.append(("PUT", "/fileaccesspolicies/:id"))
 routes.append(("DELETE", "/fileaccesspolicies/:id"))
 
-# routes for authenticators
-routes.append(("GET", "/authenticators/:id"))
-routes.append(("PUT", "/authenticators/:id"))
-routes.append(("DELETE", "/authenticators/:id"))
-routes.append(("POST", "/authenticators/:id/users"))
-routes.append(("GET", "/authenticators/:id/users"))
+# routes for healthreports
 
 # routes for users
 routes.append(("GET", "/users/:id"))
@@ -88,11 +76,23 @@ routes.append(("GET", "/users/:id/certificates"))
 
 # routes for renderedpolicies
 
+# routes for namespacemappingpolicies
+routes.append(("GET", "/namespacemappingpolicies/:id"))
+routes.append(("PUT", "/namespacemappingpolicies/:id"))
+routes.append(("DELETE", "/namespacemappingpolicies/:id"))
+
 # routes for processingunits
 routes.append(("GET", "/processingunits/:id"))
 routes.append(("PUT", "/processingunits/:id"))
 routes.append(("DELETE", "/processingunits/:id"))
 routes.append(("GET", "/processingunits/:id/renderedpolicies"))
+
+# routes for authenticators
+routes.append(("GET", "/authenticators/:id"))
+routes.append(("PUT", "/authenticators/:id"))
+routes.append(("DELETE", "/authenticators/:id"))
+routes.append(("POST", "/authenticators/:id/users"))
+routes.append(("GET", "/authenticators/:id/users"))
 
 # routes for dependencymapviews
 routes.append(("GET", "/dependencymapviews/:id"))
