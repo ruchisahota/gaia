@@ -38,9 +38,11 @@ class DependencyMapView(RESTObject):
         self._namespace = None
         self._parentid = None
         self._parenttype = None
+        self._processingunittags = None
         self._rendered = None
         self._status = None
         self._subviews = None
+        self._type = None
         self._updatedat = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
@@ -53,9 +55,11 @@ class DependencyMapView(RESTObject):
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
+        self.expose_attribute(local_name="processingUnitTags", remote_name="processingUnitTags")
         self.expose_attribute(local_name="rendered", remote_name="rendered")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="subviews", remote_name="subviews")
+        self.expose_attribute(local_name="type", remote_name="type")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
 
         self._compute_args(**kwargs)
@@ -300,6 +304,28 @@ class DependencyMapView(RESTObject):
         self._parenttype = value
     
     @property
+    def processingUnitTags(self):
+        """ Get processingUnitTags value.
+
+          Notes:
+              A map of the tags to apply to processing units
+
+              
+        """
+        return self._processingunittags
+
+    @processingUnitTags.setter
+    def processingUnitTags(self, value):
+        """ Set processingUnitTags value.
+
+          Notes:
+              A map of the tags to apply to processing units
+
+              
+        """
+        self._processingunittags = value
+    
+    @property
     def rendered(self):
         """ Get rendered value.
 
@@ -366,6 +392,28 @@ class DependencyMapView(RESTObject):
         self._subviews = value
     
     @property
+    def type(self):
+        """ Get type value.
+
+          Notes:
+              Type represents the type of the dependency map. It could be manual or automatic
+
+              
+        """
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        """ Set type value.
+
+          Notes:
+              Type represents the type of the dependency map. It could be manual or automatic
+
+              
+        """
+        self._type = value
+    
+    @property
     def updatedAt(self):
         """ Get updatedAt value.
 
@@ -393,6 +441,11 @@ class DependencyMapView(RESTObject):
         errors = []
 
         err = validate_required_string("name", self.name)
+
+        if err:
+            errors.append(err)
+
+        err = validate_string_in_list("type", self.type, ["Automatic", "Manual"], false)
 
         if err:
             errors.append(err)

@@ -6,6 +6,17 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
+// DependencyMapViewTypeValue represents the possible values for attribute "type".
+type DependencyMapViewTypeValue string
+
+const (
+	// DependencyMapViewTypeAutomatic represents the value Automatic.
+	DependencyMapViewTypeAutomatic DependencyMapViewTypeValue = "Automatic"
+
+	// DependencyMapViewTypeManual represents the value Manual.
+	DependencyMapViewTypeManual DependencyMapViewTypeValue = "Manual"
+)
+
 // DependencyMapViewIdentity represents the Identity of the object
 var DependencyMapViewIdentity = elemental.Identity{
 	Name:     "dependencymapview",
@@ -47,6 +58,9 @@ type DependencyMapView struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
+	// A map of the tags to apply to processing units
+	ProcessingUnitTags map[string][]string `json:"processingUnitTags" cql:"processingunittags,omitempty"`
+
 	// Boolean to know if the dependency map view was rendered by the system or not
 	Rendered bool `json:"rendered" cql:"rendered,omitempty"`
 
@@ -55,6 +69,9 @@ type DependencyMapView struct {
 
 	// Values used by the dependency map group
 	Subviews DependencyMapSubviewsList `json:"subviews" cql:"subviews,omitempty"`
+
+	// Type represents the type of the dependency map. It could be manual or automatic
+	Type DependencyMapViewTypeValue `json:"type" cql:"type,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -66,6 +83,7 @@ func NewDependencyMapView() *DependencyMapView {
 	return &DependencyMapView{
 		Status:   constants.Active,
 		Subviews: DependencyMapSubviewsList{},
+		Type:     "Manual",
 	}
 }
 
@@ -178,6 +196,10 @@ func (o *DependencyMapView) Validate() elemental.Errors {
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Automatic", "Manual"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -322,6 +344,16 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		Type:           "string",
 	},
+	"ProcessingUnitTags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "processingUnitTags",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "processingunit_transient_tags_map",
+		Type:           "external",
+	},
 	"Rendered": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -356,6 +388,15 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		SubType:        "dependencymapsubviews_entities",
 		Type:           "external",
+	},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Automatic", "Manual"},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "type",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
