@@ -34,6 +34,8 @@ class RenderedDependencyMapView(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
+        self._description = None
+        self._name = None
         self._namespace = None
         self._parentid = None
         self._parenttype = None
@@ -47,6 +49,8 @@ class RenderedDependencyMapView(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
+        self.expose_attribute(local_name="description", remote_name="description")
+        self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
@@ -208,6 +212,50 @@ class RenderedDependencyMapView(RESTObject):
         self._deleted = value
     
     @property
+    def description(self):
+        """ Get description value.
+
+          Notes:
+              Description is the description of the object.
+
+              
+        """
+        return self._description
+
+    @description.setter
+    def description(self, value):
+        """ Set description value.
+
+          Notes:
+              Description is the description of the object.
+
+              
+        """
+        self._description = value
+    
+    @property
+    def name(self):
+        """ Get name value.
+
+          Notes:
+              Name is the name of the entity
+
+              
+        """
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        """ Set name value.
+
+          Notes:
+              Name is the name of the entity
+
+              
+        """
+        self._name = value
+    
+    @property
     def namespace(self):
         """ Get namespace value.
 
@@ -345,6 +393,11 @@ class RenderedDependencyMapView(RESTObject):
         errors = []
 
         err = validate_required_string("associatedDependencyMapViewID", self.associatedDependencyMapViewID)
+
+        if err:
+            errors.append(err)
+
+        err = validate_required_string("name", self.name)
 
         if err:
             errors.append(err)

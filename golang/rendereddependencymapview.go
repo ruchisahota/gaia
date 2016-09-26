@@ -35,6 +35,12 @@ type RenderedDependencyMapView struct {
 	// Deleted marks if the entity has been deleted.
 	Deleted bool `json:"-" cql:"deleted,omitempty"`
 
+	// Description is the description of the object.
+	Description string `json:"description" cql:"description,omitempty"`
+
+	// Name is the name of the entity
+	Name string `json:"name" cql:"name,omitempty"`
+
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
 
@@ -110,6 +116,16 @@ func (o *RenderedDependencyMapView) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
+// GetName returns the name of the receiver
+func (o *RenderedDependencyMapView) GetName() string {
+	return o.Name
+}
+
+// SetName set the given name of the receiver
+func (o *RenderedDependencyMapView) SetName(name string) {
+	o.Name = name
+}
+
 // GetNamespace returns the namespace of the receiver
 func (o *RenderedDependencyMapView) GetNamespace() string {
 	return o.Namespace
@@ -161,6 +177,10 @@ func (o *RenderedDependencyMapView) Validate() elemental.Errors {
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -245,6 +265,30 @@ var RenderedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Description": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "description",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Name": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "name",
+		Orderable:      true,
+		Required:       true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+		Unique:         true,
 	},
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
