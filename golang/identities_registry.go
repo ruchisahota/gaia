@@ -20,7 +20,7 @@ func init() {
 	elemental.RegisterIdentity(ExternalServiceIdentity)
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
-	elemental.RegisterIdentity(ComputeddependencymapviewIdentity)
+	elemental.RegisterIdentity(ComputedDependencyMapviewIdentity)
 	elemental.RegisterIdentity(HealthReportIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
