@@ -31,6 +31,7 @@ class DependencyMapView(RESTObject):
         self._id = None
         self._annotation = None
         self._associatedtags = None
+        self._computed = None
         self._createdat = None
         self._deleted = None
         self._description = None
@@ -39,7 +40,6 @@ class DependencyMapView(RESTObject):
         self._parentid = None
         self._parenttype = None
         self._processingunittags = None
-        self._rendered = None
         self._status = None
         self._subviews = None
         self._type = None
@@ -48,6 +48,7 @@ class DependencyMapView(RESTObject):
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
+        self.expose_attribute(local_name="computed", remote_name="computed")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="description", remote_name="description")
@@ -56,7 +57,6 @@ class DependencyMapView(RESTObject):
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="processingUnitTags", remote_name="processingUnitTags")
-        self.expose_attribute(local_name="rendered", remote_name="rendered")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="subviews", remote_name="subviews")
         self.expose_attribute(local_name="type", remote_name="type")
@@ -148,6 +148,28 @@ class DependencyMapView(RESTObject):
               
         """
         self._associatedtags = value
+    
+    @property
+    def computed(self):
+        """ Get computed value.
+
+          Notes:
+              Boolean to know if the dependency map view was computed by the system or not
+
+              
+        """
+        return self._computed
+
+    @computed.setter
+    def computed(self, value):
+        """ Set computed value.
+
+          Notes:
+              Boolean to know if the dependency map view was computed by the system or not
+
+              
+        """
+        self._computed = value
     
     @property
     def createdAt(self):
@@ -324,28 +346,6 @@ class DependencyMapView(RESTObject):
               
         """
         self._processingunittags = value
-    
-    @property
-    def rendered(self):
-        """ Get rendered value.
-
-          Notes:
-              Boolean to know if the dependency map view was rendered by the system or not
-
-              
-        """
-        return self._rendered
-
-    @rendered.setter
-    def rendered(self, value):
-        """ Set rendered value.
-
-          Notes:
-              Boolean to know if the dependency map view was rendered by the system or not
-
-              
-        """
-        self._rendered = value
     
     @property
     def status(self):
