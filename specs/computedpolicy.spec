@@ -6,7 +6,9 @@
         "delete": false,
         "description": "Policies computed by the system from a dependency map view",
         "entity_name": "ComputedPolicy",
-        "extends": [],
+        "extends": [
+            "@identifiable-nopk-nostored"
+        ],
         "get": true,
         "package": "Policies",
         "resource_name": "computedpolicies",
