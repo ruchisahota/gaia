@@ -77,6 +77,7 @@
         "entity_name": "RenderedDependencyMapView",
         "extends": [
             "@base",
+            "@described",
             "@identifiable-pk-stored",
             "@named"
         ],
