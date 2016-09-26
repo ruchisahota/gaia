@@ -4,15 +4,15 @@ from pyelemental import RESTObject
 from pyelemental import validate_string_in_list, validate_float_in_list, validate_int_in_list, validate_required_int, validate_required_float, validate_required_string, validate_required_time, validate_maximum_float, validate_minimum_float, validate_maximum_int, validate_minimum_int, validate_maximum_length, validate_minimum_length, validate_pattern
 
 
-class ComputedDependencyMapview(RESTObject):
-    """ Represents a ComputedDependencyMapview in the 
+class ComputedDependencyMapView(RESTObject):
+    """ Represents a ComputedDependencyMapView in the 
 
         Notes:
             Compute some dependency map views from a dependency map
     """
 
     def __init__(self, **kwargs):
-        """ Initializes a ComputedDependencyMapview instance
+        """ Initializes a ComputedDependencyMapView instance
 
           Notes:
               You can specify all parameters while calling this methods.
@@ -20,11 +20,11 @@ class ComputedDependencyMapview(RESTObject):
               object from a Python dictionary
 
           Examples:
-              >>> computeddependencymapview = ComputedDependencyMapview(id=u'xxxx-xxx-xxx-xxx', name=u'ComputedDependencyMapview')
-              >>> computeddependencymapview = ComputedDependencyMapview(data=my_dict)
+              >>> computeddependencymapview = ComputedDependencyMapView(id=u'xxxx-xxx-xxx-xxx', name=u'ComputedDependencyMapView')
+              >>> computeddependencymapview = ComputedDependencyMapView(data=my_dict)
         """
 
-        super(ComputedDependencyMapview, self).__init__()
+        super(ComputedDependencyMapView, self).__init__()
 
         # Read/Write Attributes
         
@@ -408,4 +408,4 @@ class ComputedDependencyMapview(RESTObject):
         return None
 
     # computeddependencymapviewIdentity represents the Identity of the object
-computeddependencymapviewIdentity = {"name": "computeddependencymapview", "category": "computeddependencymapviews", "constructor": ComputedDependencyMapview}
+computeddependencymapviewIdentity = {"name": "computeddependencymapview", "category": "computeddependencymapviews", "constructor": ComputedDependencyMapView}

@@ -6,17 +6,17 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
-// ComputedDependencyMapviewIdentity represents the Identity of the object
-var ComputedDependencyMapviewIdentity = elemental.Identity{
+// ComputedDependencyMapViewIdentity represents the Identity of the object
+var ComputedDependencyMapViewIdentity = elemental.Identity{
 	Name:     "computeddependencymapview",
 	Category: "computeddependencymapviews",
 }
 
-// ComputedDependencyMapviewsList represents a list of ComputedDependencyMapviews
-type ComputedDependencyMapviewsList []*ComputedDependencyMapview
+// ComputedDependencyMapViewsList represents a list of ComputedDependencyMapViews
+type ComputedDependencyMapViewsList []*ComputedDependencyMapView
 
-// ComputedDependencyMapview represents the model of a computeddependencymapview
-type ComputedDependencyMapview struct {
+// ComputedDependencyMapView represents the model of a computeddependencymapview
+type ComputedDependencyMapView struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
@@ -60,119 +60,119 @@ type ComputedDependencyMapview struct {
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewComputedDependencyMapview returns a new *ComputedDependencyMapview
-func NewComputedDependencyMapview() *ComputedDependencyMapview {
+// NewComputedDependencyMapView returns a new *ComputedDependencyMapView
+func NewComputedDependencyMapView() *ComputedDependencyMapView {
 
-	return &ComputedDependencyMapview{
+	return &ComputedDependencyMapView{
 		Status: constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *ComputedDependencyMapview) Identity() elemental.Identity {
+func (o *ComputedDependencyMapView) Identity() elemental.Identity {
 
-	return ComputedDependencyMapviewIdentity
+	return ComputedDependencyMapViewIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *ComputedDependencyMapview) Identifier() string {
+func (o *ComputedDependencyMapView) Identifier() string {
 
 	return o.ID
 }
 
-func (o *ComputedDependencyMapview) String() string {
+func (o *ComputedDependencyMapView) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ComputedDependencyMapview) SetIdentifier(ID string) {
+func (o *ComputedDependencyMapView) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *ComputedDependencyMapview) GetAssociatedTags() []string {
+func (o *ComputedDependencyMapView) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *ComputedDependencyMapview) SetAssociatedTags(associatedTags []string) {
+func (o *ComputedDependencyMapView) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *ComputedDependencyMapview) SetCreatedAt(createdAt time.Time) {
+func (o *ComputedDependencyMapView) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *ComputedDependencyMapview) GetDeleted() bool {
+func (o *ComputedDependencyMapView) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *ComputedDependencyMapview) SetDeleted(deleted bool) {
+func (o *ComputedDependencyMapView) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetName returns the name of the receiver
-func (o *ComputedDependencyMapview) GetName() string {
+func (o *ComputedDependencyMapView) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *ComputedDependencyMapview) SetName(name string) {
+func (o *ComputedDependencyMapView) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *ComputedDependencyMapview) GetNamespace() string {
+func (o *ComputedDependencyMapView) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *ComputedDependencyMapview) SetNamespace(namespace string) {
+func (o *ComputedDependencyMapView) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *ComputedDependencyMapview) GetParentID() string {
+func (o *ComputedDependencyMapView) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *ComputedDependencyMapview) SetParentID(parentID string) {
+func (o *ComputedDependencyMapView) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *ComputedDependencyMapview) GetParentType() string {
+func (o *ComputedDependencyMapView) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *ComputedDependencyMapview) SetParentType(parentType string) {
+func (o *ComputedDependencyMapView) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *ComputedDependencyMapview) GetStatus() constants.EntityStatus {
+func (o *ComputedDependencyMapView) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *ComputedDependencyMapview) SetStatus(status constants.EntityStatus) {
+func (o *ComputedDependencyMapView) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *ComputedDependencyMapview) SetUpdatedAt(updatedAt time.Time) {
+func (o *ComputedDependencyMapView) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *ComputedDependencyMapview) Validate() elemental.Errors {
+func (o *ComputedDependencyMapView) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
@@ -192,13 +192,13 @@ func (o *ComputedDependencyMapview) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o ComputedDependencyMapview) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ComputedDependencyMapviewAttributesMap[name]
+	return ComputedDependencyMapViewAttributesMap[name]
 }
 
-// ComputedDependencyMapviewAttributesMap represents the map of attribute for ComputedDependencyMapview.
-var ComputedDependencyMapviewAttributesMap = map[string]elemental.AttributeSpecification{
+// ComputedDependencyMapViewAttributesMap represents the map of attribute for ComputedDependencyMapView.
+var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
