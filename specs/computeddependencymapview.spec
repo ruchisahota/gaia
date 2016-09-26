@@ -74,7 +74,7 @@
         "create": null,
         "delete": true,
         "description": "Compute some dependency map views from a dependency map",
-        "entity_name": "ComputedDependencyMapview",
+        "entity_name": "ComputedDependencyMapView",
         "extends": [
             "@base",
             "@described",
