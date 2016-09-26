@@ -77,7 +77,8 @@
         "entity_name": "RenderedDependencyMapView",
         "extends": [
             "@base",
-            "@identifiable-pk-stored"
+            "@identifiable-pk-stored",
+            "@named"
         ],
         "get": true,
         "package": "Visialization",
