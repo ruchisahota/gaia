@@ -4,15 +4,15 @@ from pyelemental import RESTObject
 from pyelemental import validate_string_in_list, validate_float_in_list, validate_int_in_list, validate_required_int, validate_required_float, validate_required_string, validate_required_time, validate_maximum_float, validate_minimum_float, validate_maximum_int, validate_minimum_int, validate_maximum_length, validate_minimum_length, validate_pattern
 
 
-class DependencyMapView(RESTObject):
-    """ Represents a DependencyMapView in the 
+class ComputedDependencyMapView(RESTObject):
+    """ Represents a ComputedDependencyMapView in the 
 
         Notes:
-            A DependencyMapView is used to store the various for the dependency map using a bunch of selectors.
+            Compute some dependency map views from a dependency map
     """
 
     def __init__(self, **kwargs):
-        """ Initializes a DependencyMapView instance
+        """ Initializes a ComputedDependencyMapView instance
 
           Notes:
               You can specify all parameters while calling this methods.
@@ -20,18 +20,18 @@ class DependencyMapView(RESTObject):
               object from a Python dictionary
 
           Examples:
-              >>> dependencymapview = DependencyMapView(id=u'xxxx-xxx-xxx-xxx', name=u'DependencyMapView')
-              >>> dependencymapview = DependencyMapView(data=my_dict)
+              >>> computeddependencymapview = ComputedDependencyMapView(id=u'xxxx-xxx-xxx-xxx', name=u'ComputedDependencyMapView')
+              >>> computeddependencymapview = ComputedDependencyMapView(data=my_dict)
         """
 
-        super(DependencyMapView, self).__init__()
+        super(ComputedDependencyMapView, self).__init__()
 
         # Read/Write Attributes
         
         self._id = None
         self._annotation = None
+        self._associateddependencymapviewid = None
         self._associatedtags = None
-        self._computed = None
         self._createdat = None
         self._deleted = None
         self._description = None
@@ -41,14 +41,12 @@ class DependencyMapView(RESTObject):
         self._parenttype = None
         self._processingunittags = None
         self._status = None
-        self._subviews = None
-        self._type = None
         self._updatedat = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
+        self.expose_attribute(local_name="associatedDependencyMapViewID", remote_name="associatedDependencyMapViewID")
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
-        self.expose_attribute(local_name="computed", remote_name="computed")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="description", remote_name="description")
@@ -58,8 +56,6 @@ class DependencyMapView(RESTObject):
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="processingUnitTags", remote_name="processingUnitTags")
         self.expose_attribute(local_name="status", remote_name="status")
-        self.expose_attribute(local_name="subviews", remote_name="subviews")
-        self.expose_attribute(local_name="type", remote_name="type")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
 
         self._compute_args(**kwargs)
@@ -80,7 +76,7 @@ class DependencyMapView(RESTObject):
     def identity(self):
         """ Identity returns the Identity of the object.
         """
-        return dependencymapviewIdentity
+        return computeddependencymapviewIdentity
 
     # Properties
     @property
@@ -128,6 +124,28 @@ class DependencyMapView(RESTObject):
         self._annotation = value
     
     @property
+    def associatedDependencyMapViewID(self):
+        """ Get associatedDependencyMapViewID value.
+
+          Notes:
+              The dependencyMapView linked ID to the rendered dependency map view
+
+              
+        """
+        return self._associateddependencymapviewid
+
+    @associatedDependencyMapViewID.setter
+    def associatedDependencyMapViewID(self, value):
+        """ Set associatedDependencyMapViewID value.
+
+          Notes:
+              The dependencyMapView linked ID to the rendered dependency map view
+
+              
+        """
+        self._associateddependencymapviewid = value
+    
+    @property
     def associatedTags(self):
         """ Get associatedTags value.
 
@@ -148,28 +166,6 @@ class DependencyMapView(RESTObject):
               
         """
         self._associatedtags = value
-    
-    @property
-    def computed(self):
-        """ Get computed value.
-
-          Notes:
-              Boolean to know if the dependency map view was computed by the system or not
-
-              
-        """
-        return self._computed
-
-    @computed.setter
-    def computed(self, value):
-        """ Set computed value.
-
-          Notes:
-              Boolean to know if the dependency map view was computed by the system or not
-
-              
-        """
-        self._computed = value
     
     @property
     def createdAt(self):
@@ -330,7 +326,7 @@ class DependencyMapView(RESTObject):
         """ Get processingUnitTags value.
 
           Notes:
-              A map of the tags to apply to processing units
+              A map of the transient tags for the processing units
 
               
         """
@@ -341,7 +337,7 @@ class DependencyMapView(RESTObject):
         """ Set processingUnitTags value.
 
           Notes:
-              A map of the tags to apply to processing units
+              A map of the transient tags for the processing units
 
               
         """
@@ -370,50 +366,6 @@ class DependencyMapView(RESTObject):
         self._status = value
     
     @property
-    def subviews(self):
-        """ Get subviews value.
-
-          Notes:
-              Values used by the dependency map group
-
-              
-        """
-        return self._subviews
-
-    @subviews.setter
-    def subviews(self, value):
-        """ Set subviews value.
-
-          Notes:
-              Values used by the dependency map group
-
-              
-        """
-        self._subviews = value
-    
-    @property
-    def type(self):
-        """ Get type value.
-
-          Notes:
-              Type represents the type of the dependency map. It could be manual or automatic
-
-              
-        """
-        return self._type
-
-    @type.setter
-    def type(self, value):
-        """ Set type value.
-
-          Notes:
-              Type represents the type of the dependency map. It could be manual or automatic
-
-              
-        """
-        self._type = value
-    
-    @property
     def updatedAt(self):
         """ Get updatedAt value.
 
@@ -440,12 +392,12 @@ class DependencyMapView(RESTObject):
         """
         errors = []
 
-        err = validate_required_string("name", self.name)
+        err = validate_required_string("associatedDependencyMapViewID", self.associatedDependencyMapViewID)
 
         if err:
             errors.append(err)
 
-        err = validate_string_in_list("type", self.type, ["Automatic", "Manual"], false)
+        err = validate_required_string("name", self.name)
 
         if err:
             errors.append(err)
@@ -455,5 +407,5 @@ class DependencyMapView(RESTObject):
 
         return None
 
-    # dependencymapviewIdentity represents the Identity of the object
-dependencymapviewIdentity = {"name": "dependencymapview", "category": "dependencymapviews", "constructor": DependencyMapView}
+    # computeddependencymapviewIdentity represents the Identity of the object
+computeddependencymapviewIdentity = {"name": "computeddependencymapview", "category": "computeddependencymapviews", "constructor": ComputedDependencyMapView}
