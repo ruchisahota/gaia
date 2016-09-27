@@ -29,10 +29,10 @@ class ComputedPolicy(RESTObject):
         # Read/Write Attributes
         
         self._id = None
-        self._network_access_policies = None
+        self._networkaccesspolicies = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
-        self.expose_attribute(local_name="network_access_policies", remote_name="network_access_policies")
+        self.expose_attribute(local_name="networkAccessPolicies", remote_name="networkAccessPolicies")
 
         self._compute_args(**kwargs)
 
@@ -78,26 +78,26 @@ class ComputedPolicy(RESTObject):
         self._id = value
     
     @property
-    def network_access_policies(self):
-        """ Get network_access_policies value.
+    def networkAccessPolicies(self):
+        """ Get networkAccessPolicies value.
 
           Notes:
               Array of netowrk access policies computed
 
               
         """
-        return self._network_access_policies
+        return self._networkaccesspolicies
 
-    @network_access_policies.setter
-    def network_access_policies(self, value):
-        """ Set network_access_policies value.
+    @networkAccessPolicies.setter
+    def networkAccessPolicies(self, value):
+        """ Set networkAccessPolicies value.
 
           Notes:
               Array of netowrk access policies computed
 
               
         """
-        self._network_access_policies = value
+        self._networkaccesspolicies = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.

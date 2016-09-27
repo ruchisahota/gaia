@@ -18,7 +18,7 @@ type ComputedPolicy struct {
 	ID string `json:"ID" cql:"-"`
 
 	// Array of netowrk access policies computed
-	Network_access_policies []*NetworkAccessPolicy `json:"network_access_policies" cql:"network_access_policies,omitempty"`
+	NetworkAccessPolicies []*NetworkAccessPolicy `json:"networkAccessPolicies" cql:"networkaccesspolicies,omitempty"`
 }
 
 // NewComputedPolicy returns a new *ComputedPolicy
@@ -83,11 +83,11 @@ var ComputedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
-	"Network_access_policies": elemental.AttributeSpecification{
+	"NetworkAccessPolicies": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "network_access_policies",
+		Name:           "networkAccessPolicies",
 		Orderable:      true,
 		Stored:         true,
 		SubType:        "network_access_policies_list",
