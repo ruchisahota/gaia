@@ -150,6 +150,7 @@ routes.append(("GET", "/systemcalls"))
 routes.append(("GET", "/tags"))
 routes.append(("POST", "/users"))
 routes.append(("GET", "/users"))
+routes.append(("GET", "/vulnerabilities"))
 
 # routes for networkaccesspolicies
 routes.append(("GET", "/networkaccesspolicies/:id"))
