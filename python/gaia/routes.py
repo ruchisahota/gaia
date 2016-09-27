@@ -21,10 +21,8 @@ routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 routes.append(("GET", "/images/:id"))
 routes.append(("GET", "/images/:id/layers"))
 
-# routes for systemcalls
-routes.append(("GET", "/systemcalls/:id"))
-routes.append(("PUT", "/systemcalls/:id"))
-routes.append(("DELETE", "/systemcalls/:id"))
+# routes for computedpolicies
+routes.append(("GET", "/computedpolicies/:id"))
 
 # routes for tags
 
@@ -63,6 +61,11 @@ routes.append(("DELETE", "/policies/:id"))
 # routes for computeddependencymapviews
 routes.append(("GET", "/computeddependencymapviews/:id"))
 routes.append(("DELETE", "/computeddependencymapviews/:id"))
+
+# routes for systemcalls
+routes.append(("GET", "/systemcalls/:id"))
+routes.append(("PUT", "/systemcalls/:id"))
+routes.append(("DELETE", "/systemcalls/:id"))
 
 # routes for healthreports
 
@@ -116,6 +119,7 @@ routes.append(("POST", "/authenticators"))
 routes.append(("GET", "/authenticators"))
 routes.append(("GET", "/certificates"))
 routes.append(("GET", "/computeddependencymapviews"))
+routes.append(("GET", "/computedpolicies"))
 routes.append(("GET", "/dependencymaps"))
 routes.append(("POST", "/dependencymapviews"))
 routes.append(("GET", "/dependencymapviews"))

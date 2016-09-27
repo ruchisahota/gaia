@@ -2,12 +2,13 @@
 
 
 
-__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ComputedDependencyMapView', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'HealthReport', 'Image', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'Tag', 'User', 'Vulnerability', 'routes']
+__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'HealthReport', 'Image', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'Tag', 'User', 'Vulnerability', 'routes']
 
 from .apiauthorizationpolicy import APIAuthorizationPolicy
 from .authenticator import Authenticator
 from .certificate import Certificate
 from .computeddependencymapview import ComputedDependencyMapView
+from .computedpolicy import ComputedPolicy
 from .dependencymap import DependencyMap
 from .dependencymapsubview import DependencyMapSubview
 from .dependencymapview import DependencyMapView
