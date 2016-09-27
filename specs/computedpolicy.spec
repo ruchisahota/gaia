@@ -21,7 +21,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "network_access_policies",
+            "name": "networkAccessPolicies",
             "orderable": true,
             "primary_key": null,
             "read_only": null,
