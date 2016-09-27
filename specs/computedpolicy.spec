@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Array of netowkr access policies computed",
+            "description": "Array of netowrk access policies computed",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
