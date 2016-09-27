@@ -28,7 +28,7 @@
             "required": null,
             "setter": null,
             "stored": true,
-            "subtype": "policies_list",
+            "subtype": "network_access_policies_list",
             "transient": false,
             "type": "external",
             "unique": null,
