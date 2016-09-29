@@ -111,7 +111,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "gaiaVersion is the version of Gaia used by the server.",
+            "description": "GaiaVersion is the version of Gaia used by the server.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
