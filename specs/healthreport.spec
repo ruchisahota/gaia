@@ -43,7 +43,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "bahamutVersion is the version of Bahamut used by the server.",
+            "description": "BahamutVersion is the version of Bahamut used by the server.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
