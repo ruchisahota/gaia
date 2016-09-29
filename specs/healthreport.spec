@@ -77,7 +77,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "elementalVersion is the version of Elemental used by the server.",
+            "description": "ElementalVersion is the version of Elemental used by the server.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
