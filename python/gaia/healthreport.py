@@ -33,6 +33,8 @@ class HealthReport(RESTObject):
         self._bahamutversion = None
         self._elementalversion = None
         self._gaiaversion = None
+        self._manipulateversion = None
+        self._midgardurl = None
         self._squallversion = None
         self._status = None
         
@@ -41,6 +43,8 @@ class HealthReport(RESTObject):
         self.expose_attribute(local_name="bahamutVersion", remote_name="bahamutVersion")
         self.expose_attribute(local_name="elementalVersion", remote_name="elementalVersion")
         self.expose_attribute(local_name="gaiaVersion", remote_name="gaiaVersion")
+        self.expose_attribute(local_name="manipulateVersion", remote_name="manipulateVersion")
+        self.expose_attribute(local_name="midgardURL", remote_name="midgardURL")
         self.expose_attribute(local_name="squallVersion", remote_name="squallVersion")
         self.expose_attribute(local_name="status", remote_name="status")
 
@@ -114,7 +118,7 @@ class HealthReport(RESTObject):
         """ Get bahamutVersion value.
 
           Notes:
-              bahamutVersion is the version of Bahamut used by the server.
+              BahamutVersion is the version of Bahamut used by the server.
 
               
         """
@@ -125,7 +129,7 @@ class HealthReport(RESTObject):
         """ Set bahamutVersion value.
 
           Notes:
-              bahamutVersion is the version of Bahamut used by the server.
+              BahamutVersion is the version of Bahamut used by the server.
 
               
         """
@@ -136,7 +140,7 @@ class HealthReport(RESTObject):
         """ Get elementalVersion value.
 
           Notes:
-              elementalVersion is the version of Elemental used by the server.
+              ElementalVersion is the version of Elemental used by the server.
 
               
         """
@@ -147,7 +151,7 @@ class HealthReport(RESTObject):
         """ Set elementalVersion value.
 
           Notes:
-              elementalVersion is the version of Elemental used by the server.
+              ElementalVersion is the version of Elemental used by the server.
 
               
         """
@@ -158,7 +162,7 @@ class HealthReport(RESTObject):
         """ Get gaiaVersion value.
 
           Notes:
-              gaiaVersion is the version of Gaia used by the server.
+              GaiaVersion is the version of Gaia used by the server.
 
               
         """
@@ -169,11 +173,55 @@ class HealthReport(RESTObject):
         """ Set gaiaVersion value.
 
           Notes:
-              gaiaVersion is the version of Gaia used by the server.
+              GaiaVersion is the version of Gaia used by the server.
 
               
         """
         self._gaiaversion = value
+    
+    @property
+    def manipulateVersion(self):
+        """ Get manipulateVersion value.
+
+          Notes:
+              ManipulateVersion is the version of Manipulate used by the server.
+
+              
+        """
+        return self._manipulateversion
+
+    @manipulateVersion.setter
+    def manipulateVersion(self, value):
+        """ Set manipulateVersion value.
+
+          Notes:
+              ManipulateVersion is the version of Manipulate used by the server.
+
+              
+        """
+        self._manipulateversion = value
+    
+    @property
+    def midgardURL(self):
+        """ Get midgardURL value.
+
+          Notes:
+              MidgardURL contains the url to use to obtain a token.
+
+              
+        """
+        return self._midgardurl
+
+    @midgardURL.setter
+    def midgardURL(self, value):
+        """ Set midgardURL value.
+
+          Notes:
+              MidgardURL contains the url to use to obtain a token.
+
+              
+        """
+        self._midgardurl = value
     
     @property
     def squallVersion(self):

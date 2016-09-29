@@ -34,14 +34,20 @@ type HealthReport struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"-"`
 
-	// bahamutVersion is the version of Bahamut used by the server.
+	// BahamutVersion is the version of Bahamut used by the server.
 	BahamutVersion string `json:"bahamutVersion" cql:"-"`
 
-	// elementalVersion is the version of Elemental used by the server.
+	// ElementalVersion is the version of Elemental used by the server.
 	ElementalVersion string `json:"elementalVersion" cql:"-"`
 
-	// gaiaVersion is the version of Gaia used by the server.
+	// GaiaVersion is the version of Gaia used by the server.
 	GaiaVersion string `json:"gaiaVersion" cql:"-"`
+
+	// ManipulateVersion is the version of Manipulate used by the server.
+	ManipulateVersion string `json:"manipulateVersion" cql:"manipulateversion,omitempty"`
+
+	// MidgardURL contains the url to use to obtain a token.
+	MidgardURL string `json:"midgardURL" cql:"midgardurl,omitempty"`
 
 	// SquallVersion is the version of server.
 	SquallVersion string `json:"squallVersion" cql:"-"`
@@ -158,6 +164,26 @@ var HealthReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "gaiaVersion",
 		Orderable:      true,
 		ReadOnly:       true,
+		Type:           "string",
+	},
+	"ManipulateVersion": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "manipulateVersion",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"MidgardURL": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "midgardURL",
+		Orderable:      true,
+		Stored:         true,
 		Type:           "string",
 	},
 	"SquallVersion": elemental.AttributeSpecification{
