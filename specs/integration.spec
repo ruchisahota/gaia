@@ -143,7 +143,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": null,
+            "default_value": "Registry",
             "deprecated": null,
             "description": "Type refers to type of the server",
             "exposed": true,
