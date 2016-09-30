@@ -4,15 +4,15 @@ from pyelemental import RESTObject
 from pyelemental import validate_string_in_list, validate_float_in_list, validate_int_in_list, validate_required_int, validate_required_float, validate_required_string, validate_required_time, validate_maximum_float, validate_minimum_float, validate_maximum_int, validate_minimum_int, validate_maximum_length, validate_minimum_length, validate_pattern
 
 
-class Vulnerability(RESTObject):
-    """ Represents a Vulnerability in the 
+class ClairNotification(RESTObject):
+    """ Represents a ClairNotification in the 
 
         Notes:
-            Vulnerability of a layer
+            None
     """
 
     def __init__(self, **kwargs):
-        """ Initializes a Vulnerability instance
+        """ Initializes a ClairNotification instance
 
           Notes:
               You can specify all parameters while calling this methods.
@@ -20,11 +20,11 @@ class Vulnerability(RESTObject):
               object from a Python dictionary
 
           Examples:
-              >>> vulnerability = Vulnerability(id=u'xxxx-xxx-xxx-xxx', name=u'Vulnerability')
-              >>> vulnerability = Vulnerability(data=my_dict)
+              >>> clairnotification = ClairNotification(id=u'xxxx-xxx-xxx-xxx', name=u'ClairNotification')
+              >>> clairnotification = ClairNotification(data=my_dict)
         """
 
-        super(Vulnerability, self).__init__()
+        super(ClairNotification, self).__init__()
 
         # Read/Write Attributes
         
@@ -33,14 +33,10 @@ class Vulnerability(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
-        self._description = None
-        self._link = None
-        self._name = None
         self._namespace = None
-        self._namespacename = None
+        self._notification = None
         self._parentid = None
         self._parenttype = None
-        self._severity = None
         self._status = None
         self._updatedat = None
         
@@ -49,14 +45,10 @@ class Vulnerability(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
-        self.expose_attribute(local_name="description", remote_name="description")
-        self.expose_attribute(local_name="link", remote_name="link")
-        self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
-        self.expose_attribute(local_name="namespaceName", remote_name="namespaceName")
+        self.expose_attribute(local_name="notification", remote_name="notification")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
-        self.expose_attribute(local_name="severity", remote_name="severity")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
 
@@ -78,7 +70,7 @@ class Vulnerability(RESTObject):
     def identity(self):
         """ Identity returns the Identity of the object.
         """
-        return vulnerabilityIdentity
+        return clairnotificationIdentity
 
     # Properties
     @property
@@ -192,72 +184,6 @@ class Vulnerability(RESTObject):
         self._deleted = value
     
     @property
-    def description(self):
-        """ Get description value.
-
-          Notes:
-              Description is the description of the object.
-
-              
-        """
-        return self._description
-
-    @description.setter
-    def description(self, value):
-        """ Set description value.
-
-          Notes:
-              Description is the description of the object.
-
-              
-        """
-        self._description = value
-    
-    @property
-    def link(self):
-        """ Get link value.
-
-          Notes:
-              Link is the URL that refers to the vulnerability
-
-              
-        """
-        return self._link
-
-    @link.setter
-    def link(self, value):
-        """ Set link value.
-
-          Notes:
-              Link is the URL that refers to the vulnerability
-
-              
-        """
-        self._link = value
-    
-    @property
-    def name(self):
-        """ Get name value.
-
-          Notes:
-              Name is the name of the entity
-
-              
-        """
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        """ Set name value.
-
-          Notes:
-              Name is the name of the entity
-
-              
-        """
-        self._name = value
-    
-    @property
     def namespace(self):
         """ Get namespace value.
 
@@ -280,26 +206,26 @@ class Vulnerability(RESTObject):
         self._namespace = value
     
     @property
-    def namespaceName(self):
-        """ Get namespaceName value.
+    def notification(self):
+        """ Get notification value.
 
           Notes:
-              NamespaceName is the name of the namespace
+              Notification is the name of the notification sent by Clair using the webhook
 
               
         """
-        return self._namespacename
+        return self._notification
 
-    @namespaceName.setter
-    def namespaceName(self, value):
-        """ Set namespaceName value.
+    @notification.setter
+    def notification(self, value):
+        """ Set notification value.
 
           Notes:
-              NamespaceName is the name of the namespace
+              Notification is the name of the notification sent by Clair using the webhook
 
               
         """
-        self._namespacename = value
+        self._notification = value
     
     @property
     def parentID(self):
@@ -344,28 +270,6 @@ class Vulnerability(RESTObject):
               
         """
         self._parenttype = value
-    
-    @property
-    def severity(self):
-        """ Get severity value.
-
-          Notes:
-              Severity refers to the security vulnerability level
-
-              
-        """
-        return self._severity
-
-    @severity.setter
-    def severity(self, value):
-        """ Set severity value.
-
-          Notes:
-              Severity refers to the security vulnerability level
-
-              
-        """
-        self._severity = value
     
     @property
     def status(self):
@@ -421,5 +325,5 @@ class Vulnerability(RESTObject):
 
         return None
 
-    # vulnerabilityIdentity represents the Identity of the object
-vulnerabilityIdentity = {"name": "vulnerability", "category": "vulnerabilities", "constructor": Vulnerability}
+    # clairnotificationIdentity represents the Identity of the object
+clairnotificationIdentity = {"name": "clairnotification", "category": "clairnotifications", "constructor": ClairNotification}

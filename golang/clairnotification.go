@@ -6,19 +6,19 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
-// VulnerabilityIdentity represents the Identity of the object
-var VulnerabilityIdentity = elemental.Identity{
-	Name:     "vulnerability",
-	Category: "vulnerabilities",
+// ClairNotificationIdentity represents the Identity of the object
+var ClairNotificationIdentity = elemental.Identity{
+	Name:     "clairnotification",
+	Category: "clairnotifications",
 }
 
-// VulnerabilitiesList represents a list of Vulnerabilities
-type VulnerabilitiesList []*Vulnerability
+// ClairNotificationsList represents a list of ClairNotifications
+type ClairNotificationsList []*ClairNotification
 
-// Vulnerability represents the model of a vulnerability
-type Vulnerability struct {
+// ClairNotification represents the model of a clairnotification
+type ClairNotification struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,omitempty"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
@@ -32,29 +32,17 @@ type Vulnerability struct {
 	// Deleted marks if the entity has been deleted.
 	Deleted bool `json:"-" cql:"deleted,omitempty"`
 
-	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty"`
-
-	// Link is the URL that refers to the vulnerability
-	Link string `json:"link" cql:"link,omitempty"`
-
-	// Name is the name of the entity
-	Name string `json:"name" cql:"name,primarykey,omitempty"`
-
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
 
-	// NamespaceName is the name of the namespace
-	NamespaceName string `json:"namespaceName" cql:"namespacename,omitempty"`
+	// Notification is the name of the notification sent by Clair using the webhook
+	Notification *Notification `json:"notification" cql:"-"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
-
-	// Severity refers to the security vulnerability level
-	Severity constants.Vulnerability `json:"severity" cql:"severity,omitempty"`
 
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
@@ -63,109 +51,109 @@ type Vulnerability struct {
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewVulnerability returns a new *Vulnerability
-func NewVulnerability() *Vulnerability {
+// NewClairNotification returns a new *ClairNotification
+func NewClairNotification() *ClairNotification {
 
-	return &Vulnerability{
+	return &ClairNotification{
 		Status: constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Vulnerability) Identity() elemental.Identity {
+func (o *ClairNotification) Identity() elemental.Identity {
 
-	return VulnerabilityIdentity
+	return ClairNotificationIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Vulnerability) Identifier() string {
+func (o *ClairNotification) Identifier() string {
 
 	return o.ID
 }
 
-func (o *Vulnerability) String() string {
+func (o *ClairNotification) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Vulnerability) SetIdentifier(ID string) {
+func (o *ClairNotification) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Vulnerability) GetAssociatedTags() []string {
+func (o *ClairNotification) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Vulnerability) SetAssociatedTags(associatedTags []string) {
+func (o *ClairNotification) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Vulnerability) SetCreatedAt(createdAt time.Time) {
+func (o *ClairNotification) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *Vulnerability) GetDeleted() bool {
+func (o *ClairNotification) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *Vulnerability) SetDeleted(deleted bool) {
+func (o *ClairNotification) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *Vulnerability) GetNamespace() string {
+func (o *ClairNotification) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Vulnerability) SetNamespace(namespace string) {
+func (o *ClairNotification) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Vulnerability) GetParentID() string {
+func (o *ClairNotification) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Vulnerability) SetParentID(parentID string) {
+func (o *ClairNotification) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Vulnerability) GetParentType() string {
+func (o *ClairNotification) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Vulnerability) SetParentType(parentType string) {
+func (o *ClairNotification) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetStatus returns the status of the receiver
-func (o *Vulnerability) GetStatus() constants.EntityStatus {
+func (o *ClairNotification) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Vulnerability) SetStatus(status constants.EntityStatus) {
+func (o *ClairNotification) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Vulnerability) SetUpdatedAt(updatedAt time.Time) {
+func (o *ClairNotification) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Vulnerability) Validate() elemental.Errors {
+func (o *ClairNotification) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
@@ -177,13 +165,13 @@ func (o *Vulnerability) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Vulnerability) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o ClairNotification) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return VulnerabilityAttributesMap[name]
+	return ClairNotificationAttributesMap[name]
 }
 
-// VulnerabilityAttributesMap represents the map of attribute for Vulnerability.
-var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
+// ClairNotificationAttributesMap represents the map of attribute for ClairNotification.
+var ClairNotificationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -193,6 +181,7 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
@@ -239,40 +228,6 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Description": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "description",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"Link": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "link",
-		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"Name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "name",
-		Orderable:      true,
-		PrimaryKey:     true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -290,18 +245,14 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
-	"NamespaceName": elemental.AttributeSpecification{
+	"Notification": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
-		Name:           "namespaceName",
+		Name:           "notification",
 		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
+		SubType:        "notification",
+		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -331,17 +282,6 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "string",
-	},
-	"Severity": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Exposed:        true,
-		Name:           "severity",
-		ReadOnly:       true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "vulnerability_level",
-		Type:           "external",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

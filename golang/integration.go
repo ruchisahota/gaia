@@ -6,17 +6,17 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
-// VulnerabilityIdentity represents the Identity of the object
-var VulnerabilityIdentity = elemental.Identity{
-	Name:     "vulnerability",
-	Category: "vulnerabilities",
+// IntegrationIdentity represents the Identity of the object
+var IntegrationIdentity = elemental.Identity{
+	Name:     "integration",
+	Category: "integrations",
 }
 
-// VulnerabilitiesList represents a list of Vulnerabilities
-type VulnerabilitiesList []*Vulnerability
+// IntegrationsList represents a list of Integrations
+type IntegrationsList []*Integration
 
-// Vulnerability represents the model of a vulnerability
-type Vulnerability struct {
+// Integration represents the model of a integration
+type Integration struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,omitempty"`
 
@@ -32,20 +32,11 @@ type Vulnerability struct {
 	// Deleted marks if the entity has been deleted.
 	Deleted bool `json:"-" cql:"deleted,omitempty"`
 
-	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty"`
-
-	// Link is the URL that refers to the vulnerability
-	Link string `json:"link" cql:"link,omitempty"`
-
-	// Name is the name of the entity
-	Name string `json:"name" cql:"name,primarykey,omitempty"`
+	// Endpoint is the API end point of the service
+	Endpoint string `json:"endpoint" cql:"endpoint,omitempty"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty"`
-
-	// NamespaceName is the name of the namespace
-	NamespaceName string `json:"namespaceName" cql:"namespacename,omitempty"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty"`
@@ -53,121 +44,139 @@ type Vulnerability struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty"`
 
-	// Severity refers to the security vulnerability level
-	Severity constants.Vulnerability `json:"severity" cql:"severity,omitempty"`
+	// Port is the port number of the service
+	Port int `json:"port" cql:"port,omitempty"`
+
+	// Server is either the DNS name or IP of the server that provides the service
+	Server string `json:"server" cql:"server,omitempty"`
+
+	// SSLEnabled defines if the service is either secured or unsecured
+	SslEnabled bool `json:"sslEnabled" cql:"sslenabled,omitempty"`
 
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
+
+	// Type refers to type of the server
+	Type constants.IntegrationType `json:"type" cql:"type,primarykey,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
 }
 
-// NewVulnerability returns a new *Vulnerability
-func NewVulnerability() *Vulnerability {
+// NewIntegration returns a new *Integration
+func NewIntegration() *Integration {
 
-	return &Vulnerability{
+	return &Integration{
 		Status: constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Vulnerability) Identity() elemental.Identity {
+func (o *Integration) Identity() elemental.Identity {
 
-	return VulnerabilityIdentity
+	return IntegrationIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Vulnerability) Identifier() string {
+func (o *Integration) Identifier() string {
 
 	return o.ID
 }
 
-func (o *Vulnerability) String() string {
+func (o *Integration) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Vulnerability) SetIdentifier(ID string) {
+func (o *Integration) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Vulnerability) GetAssociatedTags() []string {
+func (o *Integration) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Vulnerability) SetAssociatedTags(associatedTags []string) {
+func (o *Integration) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Vulnerability) SetCreatedAt(createdAt time.Time) {
+func (o *Integration) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetDeleted returns the deleted of the receiver
-func (o *Vulnerability) GetDeleted() bool {
+func (o *Integration) GetDeleted() bool {
 	return o.Deleted
 }
 
 // SetDeleted set the given deleted of the receiver
-func (o *Vulnerability) SetDeleted(deleted bool) {
+func (o *Integration) SetDeleted(deleted bool) {
 	o.Deleted = deleted
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *Vulnerability) GetNamespace() string {
+func (o *Integration) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Vulnerability) SetNamespace(namespace string) {
+func (o *Integration) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Vulnerability) GetParentID() string {
+func (o *Integration) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Vulnerability) SetParentID(parentID string) {
+func (o *Integration) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Vulnerability) GetParentType() string {
+func (o *Integration) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Vulnerability) SetParentType(parentType string) {
+func (o *Integration) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetServer returns the server of the receiver
+func (o *Integration) GetServer() string {
+	return o.Server
+}
+
 // GetStatus returns the status of the receiver
-func (o *Vulnerability) GetStatus() constants.EntityStatus {
+func (o *Integration) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Vulnerability) SetStatus(status constants.EntityStatus) {
+func (o *Integration) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Vulnerability) SetUpdatedAt(updatedAt time.Time) {
+func (o *Integration) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Vulnerability) Validate() elemental.Errors {
+func (o *Integration) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
+		errors = append(errors, err)
+	}
 
 	if len(errors) > 0 {
 		return errors
@@ -177,13 +186,13 @@ func (o *Vulnerability) Validate() elemental.Errors {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Vulnerability) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return VulnerabilityAttributesMap[name]
+	return IntegrationAttributesMap[name]
 }
 
-// VulnerabilityAttributesMap represents the map of attribute for Vulnerability.
-var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
+// IntegrationAttributesMap represents the map of attribute for Integration.
+var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -239,37 +248,13 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Description": elemental.AttributeSpecification{
+	"Endpoint": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "description",
+		Name:           "endpoint",
 		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"Link": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "link",
-		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"Name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "name",
-		Orderable:      true,
-		PrimaryKey:     true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -289,19 +274,6 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
-	},
-	"NamespaceName": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "namespaceName",
-		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -332,16 +304,37 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Severity": elemental.AttributeSpecification{
+	"Port": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
-		Name:           "severity",
-		ReadOnly:       true,
+		Filterable:     true,
+		Name:           "port",
+		Orderable:      true,
 		Required:       true,
 		Stored:         true,
-		SubType:        "vulnerability_level",
-		Type:           "external",
+		Type:           "integer",
+	},
+	"Server": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "server",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"SslEnabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "sslEnabled",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -354,6 +347,18 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "status_enum",
+		Type:           "external",
+	},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "type",
+		Orderable:      true,
+		PrimaryKey:     true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "integration_type",
 		Type:           "external",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{

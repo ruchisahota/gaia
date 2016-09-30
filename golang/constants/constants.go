@@ -130,6 +130,17 @@ func PolicyTypeToString(policyType PolicyType) string {
 	}
 }
 
+// IntegrationType represents the possible type of integration servers
+type IntegrationType string
+
+const (
+	// Registry represents the value Registry
+	Registry IntegrationType = "Registry"
+
+	// VulnerabilityScanner represents the value VulnerabilityScanner
+	VulnerabilityScanner IntegrationType = "VulnerabilityScanner"
+)
+
 const (
 
 	// StatsTagKeyDestinationID represents the destination ID tag.

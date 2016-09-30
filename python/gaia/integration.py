@@ -4,15 +4,15 @@ from pyelemental import RESTObject
 from pyelemental import validate_string_in_list, validate_float_in_list, validate_int_in_list, validate_required_int, validate_required_float, validate_required_string, validate_required_time, validate_maximum_float, validate_minimum_float, validate_maximum_int, validate_minimum_int, validate_maximum_length, validate_minimum_length, validate_pattern
 
 
-class Vulnerability(RESTObject):
-    """ Represents a Vulnerability in the 
+class Integration(RESTObject):
+    """ Represents a Integration in the 
 
         Notes:
-            Vulnerability of a layer
+            Integration defines the all the configuration needed to integrate Squall with any 3rd party servers
     """
 
     def __init__(self, **kwargs):
-        """ Initializes a Vulnerability instance
+        """ Initializes a Integration instance
 
           Notes:
               You can specify all parameters while calling this methods.
@@ -20,11 +20,11 @@ class Vulnerability(RESTObject):
               object from a Python dictionary
 
           Examples:
-              >>> vulnerability = Vulnerability(id=u'xxxx-xxx-xxx-xxx', name=u'Vulnerability')
-              >>> vulnerability = Vulnerability(data=my_dict)
+              >>> integration = Integration(id=u'xxxx-xxx-xxx-xxx', name=u'Integration')
+              >>> integration = Integration(data=my_dict)
         """
 
-        super(Vulnerability, self).__init__()
+        super(Integration, self).__init__()
 
         # Read/Write Attributes
         
@@ -33,15 +33,15 @@ class Vulnerability(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
-        self._description = None
-        self._link = None
-        self._name = None
+        self._endpoint = None
         self._namespace = None
-        self._namespacename = None
         self._parentid = None
         self._parenttype = None
-        self._severity = None
+        self._port = None
+        self._server = None
+        self._sslenabled = None
         self._status = None
+        self._type = None
         self._updatedat = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
@@ -49,15 +49,15 @@ class Vulnerability(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
-        self.expose_attribute(local_name="description", remote_name="description")
-        self.expose_attribute(local_name="link", remote_name="link")
-        self.expose_attribute(local_name="name", remote_name="name")
+        self.expose_attribute(local_name="endpoint", remote_name="endpoint")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
-        self.expose_attribute(local_name="namespaceName", remote_name="namespaceName")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
-        self.expose_attribute(local_name="severity", remote_name="severity")
+        self.expose_attribute(local_name="port", remote_name="port")
+        self.expose_attribute(local_name="server", remote_name="server")
+        self.expose_attribute(local_name="sslEnabled", remote_name="sslEnabled")
         self.expose_attribute(local_name="status", remote_name="status")
+        self.expose_attribute(local_name="type", remote_name="type")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
 
         self._compute_args(**kwargs)
@@ -78,7 +78,7 @@ class Vulnerability(RESTObject):
     def identity(self):
         """ Identity returns the Identity of the object.
         """
-        return vulnerabilityIdentity
+        return integrationIdentity
 
     # Properties
     @property
@@ -192,70 +192,26 @@ class Vulnerability(RESTObject):
         self._deleted = value
     
     @property
-    def description(self):
-        """ Get description value.
+    def endpoint(self):
+        """ Get endpoint value.
 
           Notes:
-              Description is the description of the object.
+              Endpoint is the API end point of the service
 
               
         """
-        return self._description
+        return self._endpoint
 
-    @description.setter
-    def description(self, value):
-        """ Set description value.
+    @endpoint.setter
+    def endpoint(self, value):
+        """ Set endpoint value.
 
           Notes:
-              Description is the description of the object.
+              Endpoint is the API end point of the service
 
               
         """
-        self._description = value
-    
-    @property
-    def link(self):
-        """ Get link value.
-
-          Notes:
-              Link is the URL that refers to the vulnerability
-
-              
-        """
-        return self._link
-
-    @link.setter
-    def link(self, value):
-        """ Set link value.
-
-          Notes:
-              Link is the URL that refers to the vulnerability
-
-              
-        """
-        self._link = value
-    
-    @property
-    def name(self):
-        """ Get name value.
-
-          Notes:
-              Name is the name of the entity
-
-              
-        """
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        """ Set name value.
-
-          Notes:
-              Name is the name of the entity
-
-              
-        """
-        self._name = value
+        self._endpoint = value
     
     @property
     def namespace(self):
@@ -278,28 +234,6 @@ class Vulnerability(RESTObject):
               
         """
         self._namespace = value
-    
-    @property
-    def namespaceName(self):
-        """ Get namespaceName value.
-
-          Notes:
-              NamespaceName is the name of the namespace
-
-              
-        """
-        return self._namespacename
-
-    @namespaceName.setter
-    def namespaceName(self, value):
-        """ Set namespaceName value.
-
-          Notes:
-              NamespaceName is the name of the namespace
-
-              
-        """
-        self._namespacename = value
     
     @property
     def parentID(self):
@@ -346,26 +280,70 @@ class Vulnerability(RESTObject):
         self._parenttype = value
     
     @property
-    def severity(self):
-        """ Get severity value.
+    def port(self):
+        """ Get port value.
 
           Notes:
-              Severity refers to the security vulnerability level
+              Port is the port number of the service
 
               
         """
-        return self._severity
+        return self._port
 
-    @severity.setter
-    def severity(self, value):
-        """ Set severity value.
+    @port.setter
+    def port(self, value):
+        """ Set port value.
 
           Notes:
-              Severity refers to the security vulnerability level
+              Port is the port number of the service
 
               
         """
-        self._severity = value
+        self._port = value
+    
+    @property
+    def server(self):
+        """ Get server value.
+
+          Notes:
+              Server is either the DNS name or IP of the server that provides the service
+
+              
+        """
+        return self._server
+
+    @server.setter
+    def server(self, value):
+        """ Set server value.
+
+          Notes:
+              Server is either the DNS name or IP of the server that provides the service
+
+              
+        """
+        self._server = value
+    
+    @property
+    def sslEnabled(self):
+        """ Get sslEnabled value.
+
+          Notes:
+              SSLEnabled defines if the service is either secured or unsecured
+
+              
+        """
+        return self._sslenabled
+
+    @sslEnabled.setter
+    def sslEnabled(self, value):
+        """ Set sslEnabled value.
+
+          Notes:
+              SSLEnabled defines if the service is either secured or unsecured
+
+              
+        """
+        self._sslenabled = value
     
     @property
     def status(self):
@@ -388,6 +366,28 @@ class Vulnerability(RESTObject):
               
         """
         self._status = value
+    
+    @property
+    def type(self):
+        """ Get type value.
+
+          Notes:
+              Type refers to type of the server
+
+              
+        """
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        """ Set type value.
+
+          Notes:
+              Type refers to type of the server
+
+              
+        """
+        self._type = value
     
     @property
     def updatedAt(self):
@@ -416,10 +416,15 @@ class Vulnerability(RESTObject):
         """
         errors = []
 
+        err = validate_required_string("server", self.server)
+
+        if err:
+            errors.append(err)
+
         if len(errors) > 0:
             return errors
 
         return None
 
-    # vulnerabilityIdentity represents the Identity of the object
-vulnerabilityIdentity = {"name": "vulnerability", "category": "vulnerabilities", "constructor": Vulnerability}
+    # integrationIdentity represents the Identity of the object
+integrationIdentity = {"name": "integration", "category": "integrations", "constructor": Integration}
