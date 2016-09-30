@@ -6,6 +6,17 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
+// IntegrationTypeValue represents the possible values for attribute "type".
+type IntegrationTypeValue string
+
+const (
+	// IntegrationTypeRegistry represents the value Registry.
+	IntegrationTypeRegistry IntegrationTypeValue = "Registry"
+
+	// IntegrationTypeVulnerabilityscanner represents the value VulnerabilityScanner.
+	IntegrationTypeVulnerabilityscanner IntegrationTypeValue = "VulnerabilityScanner"
+)
+
 // IntegrationIdentity represents the Identity of the object
 var IntegrationIdentity = elemental.Identity{
 	Name:     "integration",
@@ -57,7 +68,7 @@ type Integration struct {
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Type refers to type of the server
-	Type constants.IntegrationType `json:"type" cql:"type,primarykey,omitempty"`
+	Type IntegrationTypeValue `json:"type" cql:"type,primarykey,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -68,6 +79,7 @@ func NewIntegration() *Integration {
 
 	return &Integration{
 		Status: constants.Active,
+		Type:   "Registry",
 	}
 }
 
@@ -175,6 +187,10 @@ func (o *Integration) Validate() elemental.Errors {
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Registry", "VulnerabilityScanner"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -350,16 +366,14 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
+		AllowedChoices: []string{"Registry", "VulnerabilityScanner"},
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "type",
 		Orderable:      true,
 		PrimaryKey:     true,
 		Required:       true,
 		Stored:         true,
-		SubType:        "integration_type",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

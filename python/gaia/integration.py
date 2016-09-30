@@ -421,6 +421,11 @@ class Integration(RESTObject):
         if err:
             errors.append(err)
 
+        err = validate_string_in_list("type", self.type, ["Registry", "VulnerabilityScanner"], false)
+
+        if err:
+            errors.append(err)
+
         if len(errors) > 0:
             return errors
 
