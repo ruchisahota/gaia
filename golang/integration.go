@@ -78,8 +78,9 @@ type Integration struct {
 func NewIntegration() *Integration {
 
 	return &Integration{
-		Status: constants.Active,
-		Type:   "Registry",
+		SslEnabled: false,
+		Status:     constants.Active,
+		Type:       "Registry",
 	}
 }
 
