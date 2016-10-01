@@ -68,7 +68,7 @@ type Integration struct {
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty"`
 
 	// Type refers to type of the server
-	Type IntegrationTypeValue `json:"type" cql:"type,primarykey,omitempty"`
+	Type IntegrationTypeValue `json:"type" cql:"type,omitempty"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty"`
@@ -380,7 +380,6 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "type",
 		Orderable:      true,
-		PrimaryKey:     true,
 		Required:       true,
 		Stored:         true,
 		Type:           "enum",
