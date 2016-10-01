@@ -109,7 +109,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": null,
+            "default_value": "false",
             "deprecated": null,
             "description": "SSLEnabled defines if the service is either secured or unsecured",
             "exposed": true,
