@@ -195,7 +195,7 @@
         "entity_name": "Integration",
         "extends": [
             "@base",
-            "@identifiable-nopk-stored"
+            "@identifiable-pk-stored"
         ],
         "get": true,
         "package": "Infrastructure",

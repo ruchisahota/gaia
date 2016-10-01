@@ -29,7 +29,7 @@ type IntegrationsList []*Integration
 // Integration represents the model of a integration
 type Integration struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,omitempty"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty"`
@@ -227,6 +227,7 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
