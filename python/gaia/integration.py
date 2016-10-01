@@ -416,6 +416,16 @@ class Integration(RESTObject):
         """
         errors = []
 
+        err = validate_maximum_int("port", self.port, 65535, false)
+
+        if err:
+            errors.append(err)
+
+        err = validate_minimum_int("port", self.port, 1, false)
+
+        if err:
+            errors.append(err)
+
         err = validate_required_string("server", self.server)
 
         if err:

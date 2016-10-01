@@ -187,6 +187,14 @@ func (o *Integration) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateMaximumInt("port", o.Port, 65535, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateMinimumInt("port", o.Port, 1, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
 		errors = append(errors, err)
 	}
@@ -325,9 +333,10 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
+		MaxValue:       65535,
+		MinValue:       1,
 		Name:           "port",
 		Orderable:      true,
-		Required:       true,
 		Stored:         true,
 		Type:           "integer",
 	},
