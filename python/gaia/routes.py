@@ -20,6 +20,8 @@ routes.append(("GET", "/apiauthorizationpolicies/:id"))
 routes.append(("PUT", "/apiauthorizationpolicies/:id"))
 routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 
+# routes for systeminfos
+
 # routes for images
 routes.append(("GET", "/images/:id"))
 routes.append(("GET", "/images/:id/layers"))
@@ -95,8 +97,6 @@ routes.append(("DELETE", "/fileaccesspolicies/:id"))
 
 # routes for renderedpolicies
 
-# routes for sysinfos
-
 # routes for processingunits
 routes.append(("GET", "/processingunits/:id"))
 routes.append(("PUT", "/processingunits/:id"))
@@ -161,9 +161,9 @@ routes.append(("POST", "/processingunits"))
 routes.append(("GET", "/processingunits"))
 routes.append(("POST", "/servers"))
 routes.append(("GET", "/servers"))
-routes.append(("GET", "/sysinfos"))
 routes.append(("POST", "/systemcalls"))
 routes.append(("GET", "/systemcalls"))
+routes.append(("GET", "/systeminfos"))
 routes.append(("GET", "/tags"))
 routes.append(("POST", "/users"))
 routes.append(("GET", "/users"))
