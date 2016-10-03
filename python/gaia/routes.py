@@ -81,7 +81,12 @@ routes.append(("GET", "/systemcalls/:id"))
 routes.append(("PUT", "/systemcalls/:id"))
 routes.append(("DELETE", "/systemcalls/:id"))
 
-# routes for healthreports
+# routes for authenticators
+routes.append(("GET", "/authenticators/:id"))
+routes.append(("PUT", "/authenticators/:id"))
+routes.append(("DELETE", "/authenticators/:id"))
+routes.append(("POST", "/authenticators/:id/users"))
+routes.append(("GET", "/authenticators/:id/users"))
 
 # routes for fileaccesspolicies
 routes.append(("GET", "/fileaccesspolicies/:id"))
@@ -89,6 +94,8 @@ routes.append(("PUT", "/fileaccesspolicies/:id"))
 routes.append(("DELETE", "/fileaccesspolicies/:id"))
 
 # routes for renderedpolicies
+
+# routes for sysinfos
 
 # routes for processingunits
 routes.append(("GET", "/processingunits/:id"))
@@ -98,13 +105,6 @@ routes.append(("GET", "/processingunits/:id/renderedpolicies"))
 
 # routes for clairnotifications
 routes.append(("GET", "/clairnotifications/:id"))
-
-# routes for authenticators
-routes.append(("GET", "/authenticators/:id"))
-routes.append(("PUT", "/authenticators/:id"))
-routes.append(("DELETE", "/authenticators/:id"))
-routes.append(("POST", "/authenticators/:id/users"))
-routes.append(("GET", "/authenticators/:id/users"))
 
 # routes for dependencymapviews
 routes.append(("GET", "/dependencymapviews/:id"))
@@ -161,6 +161,7 @@ routes.append(("POST", "/processingunits"))
 routes.append(("GET", "/processingunits"))
 routes.append(("POST", "/servers"))
 routes.append(("GET", "/servers"))
+routes.append(("GET", "/sysinfos"))
 routes.append(("POST", "/systemcalls"))
 routes.append(("GET", "/systemcalls"))
 routes.append(("GET", "/tags"))
