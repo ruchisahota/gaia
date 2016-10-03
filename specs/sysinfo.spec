@@ -283,9 +283,7 @@
         "delete": false,
         "description": "A SysInfo contains the status and various information about the Server.",
         "entity_name": "Sysinfo",
-        "extends": [
-            "@identifiable-nopk-nostored"
-        ],
+        "extends": [],
         "get": false,
         "package": "System Informations",
         "resource_name": "sysinfos",
