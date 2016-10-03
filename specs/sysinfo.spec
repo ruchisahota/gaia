@@ -281,13 +281,13 @@
     "model": {
         "create": null,
         "delete": false,
-        "description": "A HealthReport contains the health status and various information about the Server.",
+        "description": "A SysInfo contains the status and various information about the Server.",
         "entity_name": "Sysinfo",
         "extends": [
             "@identifiable-nopk-nostored"
         ],
         "get": false,
-        "package": "Health",
+        "package": "System Informations",
         "resource_name": "sysinfos",
         "rest_name": "sysinfo",
         "root": null,
