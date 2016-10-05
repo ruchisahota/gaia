@@ -3,15 +3,15 @@
     "children": [],
     "model": {
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "FileAccess",
         "extends": [],
-        "get": true,
+        "get": false,
         "package": null,
         "resource_name": "fileaccesses",
         "rest_name": "fileaccess",
         "root": null,
-        "update": true
+        "update": false
     }
 }
