@@ -6,7 +6,9 @@
         "delete": true,
         "description": null,
         "entity_name": "FileAccess",
-        "extends": [],
+        "extends": [
+            "@base"
+        ],
         "get": true,
         "package": null,
         "resource_name": "fileaccesses",
