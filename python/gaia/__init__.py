@@ -2,7 +2,7 @@
 
 
 
-__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ClairNotification', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'Image', 'Integration', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Notification', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'SystemInfo', 'Tag', 'User', 'Vulnerability', 'VulnerabilityWithLayers', 'routes']
+__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ClairNotification', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccess', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'Image', 'Integration', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Notification', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SystemCall', 'SystemInfo', 'Tag', 'User', 'Vulnerability', 'VulnerabilityWithLayers', 'routes']
 
 from .apiauthorizationpolicy import APIAuthorizationPolicy
 from .authenticator import Authenticator
@@ -14,6 +14,7 @@ from .dependencymap import DependencyMap
 from .dependencymapsubview import DependencyMapSubview
 from .dependencymapview import DependencyMapView
 from .externalservice import ExternalService
+from .fileaccess import FileAccess
 from .fileaccesspolicy import FileAccessPolicy
 from .filepath import FilePath
 from .flowstatistic import FlowStatistic

@@ -46,6 +46,8 @@ routes.append(("DELETE", "/filepaths/:id"))
 
 # routes for notifications
 
+# routes for fileaccesses
+
 # routes for namespaces
 routes.append(("GET", "/namespaces/:id"))
 routes.append(("PUT", "/namespaces/:id"))
@@ -101,6 +103,7 @@ routes.append(("DELETE", "/fileaccesspolicies/:id"))
 routes.append(("GET", "/processingunits/:id"))
 routes.append(("PUT", "/processingunits/:id"))
 routes.append(("DELETE", "/processingunits/:id"))
+routes.append(("GET", "/processingunits/:id/fileaccesses"))
 routes.append(("GET", "/processingunits/:id/renderedpolicies"))
 
 # routes for clairnotifications
