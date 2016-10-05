@@ -21,7 +21,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "Action",
+            "name": "action",
             "orderable": true,
             "primary_key": null,
             "read_only": null,
