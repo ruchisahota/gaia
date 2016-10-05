@@ -55,7 +55,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "Count",
+            "name": "count",
             "orderable": true,
             "primary_key": null,
             "read_only": null,
