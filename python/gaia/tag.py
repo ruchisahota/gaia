@@ -156,7 +156,7 @@ class Tag(RESTObject):
         """
         errors = []
 
-        err = validate_pattern("value", self.value, "^[\w\d\*\$\+\#:;,|@&<>/-]+=[\w\d\*\$\+\#:;,|@&<>/-]+$")
+        err = validate_pattern("value", self.value, "^[\w\d\*\$\+\#\.:;,|@&<>/-]+=[\w\d\*\$\+\#\.:;,|@&<>/-]+$")
 
         if err:
             errors.append(err)
