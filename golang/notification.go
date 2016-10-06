@@ -3,8 +3,6 @@ package gaia
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
-import "time"
-
 // NotificationIdentity represents the Identity of the object
 var NotificationIdentity = elemental.Identity{
 	Name:     "notification",
@@ -19,13 +17,13 @@ type Notification struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"-" bson:"-"`
 
-	// CreatedAt is the time when then notification was created
-	CreatedAt string `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	// Created is the time when then notification was created
+	Created string `json:"created" cql:"created,omitempty" bson:"created"`
 
-	// DeletedAt is the time when the notification was deleted
-	DeletedAt time.Time `json:"deletedAt" cql:"deletedat,omitempty" bson:"deletedat"`
+	// Deleted is the time when the notification was deleted
+	Deleted string `json:"deleted" cql:"deleted,omitempty" bson:"deleted"`
 
-	// Limit is the number of layers returned in notification
+	// LayerLimit is the number of layers returned in notification
 	LayerLimit int `json:"layerLimit" cql:"layerlimit,omitempty" bson:"layerlimit"`
 
 	// Name is the name of the notification
@@ -37,8 +35,8 @@ type Notification struct {
 	// NextPage is the next page number
 	NextPage string `json:"nextPage" cql:"nextpage,omitempty" bson:"nextpage"`
 
-	// NorifiedAt is the time when the notification was sent
-	NotifiedAt time.Time `json:"notifiedAt" cql:"notifiedat,omitempty" bson:"notifiedat"`
+	// Notified is the time when the notification was sent
+	Notified string `json:"notified" cql:"notified,omitempty" bson:"notified"`
 
 	// Old is the old layers that introduced vulnerability
 	Old *VulnerabilityWithLayers `json:"old" cql:"old,omitempty" bson:"old"`
@@ -109,24 +107,24 @@ var NotificationAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
-	"CreatedAt": elemental.AttributeSpecification{
+	"Created": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "createdAt",
+		Name:           "created",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
 	},
-	"DeletedAt": elemental.AttributeSpecification{
+	"Deleted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "deletedAt",
+		Name:           "deleted",
 		Orderable:      true,
 		Stored:         true,
-		Type:           "time",
+		Type:           "string",
 	},
 	"LayerLimit": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -167,14 +165,14 @@ var NotificationAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"NotifiedAt": elemental.AttributeSpecification{
+	"Notified": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "notifiedAt",
+		Name:           "notified",
 		Orderable:      true,
 		Stored:         true,
-		Type:           "time",
+		Type:           "string",
 	},
 	"Old": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

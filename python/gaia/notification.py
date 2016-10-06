@@ -29,24 +29,24 @@ class Notification(RESTObject):
         # Read/Write Attributes
         
         self._id = None
-        self._createdat = None
-        self._deletedat = None
+        self._created = None
+        self._deleted = None
         self._layerlimit = None
         self._name = None
         self._new = None
         self._nextpage = None
-        self._notifiedat = None
+        self._notified = None
         self._old = None
         self._page = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
-        self.expose_attribute(local_name="createdAt", remote_name="createdAt")
-        self.expose_attribute(local_name="deletedAt", remote_name="deletedAt")
+        self.expose_attribute(local_name="created", remote_name="created")
+        self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="layerLimit", remote_name="layerLimit")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="new", remote_name="new")
         self.expose_attribute(local_name="nextPage", remote_name="nextPage")
-        self.expose_attribute(local_name="notifiedAt", remote_name="notifiedAt")
+        self.expose_attribute(local_name="notified", remote_name="notified")
         self.expose_attribute(local_name="old", remote_name="old")
         self.expose_attribute(local_name="page", remote_name="page")
 
@@ -98,55 +98,55 @@ class Notification(RESTObject):
         self._id = value
     
     @property
-    def createdAt(self):
-        """ Get createdAt value.
+    def created(self):
+        """ Get created value.
 
           Notes:
-              CreatedAt is the time when then notification was created
+              Created is the time when then notification was created
 
               
         """
-        return self._createdat
+        return self._created
 
-    @createdAt.setter
-    def createdAt(self, value):
-        """ Set createdAt value.
+    @created.setter
+    def created(self, value):
+        """ Set created value.
 
           Notes:
-              CreatedAt is the time when then notification was created
+              Created is the time when then notification was created
 
               
         """
-        self._createdat = value
+        self._created = value
     
     @property
-    def deletedAt(self):
-        """ Get deletedAt value.
+    def deleted(self):
+        """ Get deleted value.
 
           Notes:
-              DeletedAt is the time when the notification was deleted
+              Deleted is the time when the notification was deleted
 
               
         """
-        return self._deletedat
+        return self._deleted
 
-    @deletedAt.setter
-    def deletedAt(self, value):
-        """ Set deletedAt value.
+    @deleted.setter
+    def deleted(self, value):
+        """ Set deleted value.
 
           Notes:
-              DeletedAt is the time when the notification was deleted
+              Deleted is the time when the notification was deleted
 
               
         """
-        self._deletedat = value
+        self._deleted = value
     
     @property
     def layerLimit(self):
         """ Get layerLimit value.
 
           Notes:
-              Limit is the number of layers returned in notification
+              LayerLimit is the number of layers returned in notification
 
               
         """
@@ -157,7 +157,7 @@ class Notification(RESTObject):
         """ Set layerLimit value.
 
           Notes:
-              Limit is the number of layers returned in notification
+              LayerLimit is the number of layers returned in notification
 
               
         """
@@ -230,26 +230,26 @@ class Notification(RESTObject):
         self._nextpage = value
     
     @property
-    def notifiedAt(self):
-        """ Get notifiedAt value.
+    def notified(self):
+        """ Get notified value.
 
           Notes:
-              NorifiedAt is the time when the notification was sent
+              Notified is the time when the notification was sent
 
               
         """
-        return self._notifiedat
+        return self._notified
 
-    @notifiedAt.setter
-    def notifiedAt(self, value):
-        """ Set notifiedAt value.
+    @notified.setter
+    def notified(self, value):
+        """ Set notified value.
 
           Notes:
-              NorifiedAt is the time when the notification was sent
+              Notified is the time when the notification was sent
 
               
         """
-        self._notifiedat = value
+        self._notified = value
     
     @property
     def old(self):

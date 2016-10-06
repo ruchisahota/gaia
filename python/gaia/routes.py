@@ -33,6 +33,8 @@ routes.append(("GET", "/computedpolicies/:id"))
 
 # routes for mapedges
 
+# routes for vulnerabilityfixedins
+
 # routes for certificates
 routes.append(("POST", "/certificates/:id"))
 routes.append(("GET", "/certificates/:id"))
@@ -76,9 +78,12 @@ routes.append(("DELETE", "/policies/:id"))
 
 # routes for flowstatistics
 
-# routes for computeddependencymapviews
-routes.append(("GET", "/computeddependencymapviews/:id"))
-routes.append(("DELETE", "/computeddependencymapviews/:id"))
+# routes for clairvulnerabilities
+
+# routes for fileaccesspolicies
+routes.append(("GET", "/fileaccesspolicies/:id"))
+routes.append(("PUT", "/fileaccesspolicies/:id"))
+routes.append(("DELETE", "/fileaccesspolicies/:id"))
 
 # routes for systemcalls
 routes.append(("GET", "/systemcalls/:id"))
@@ -92,10 +97,16 @@ routes.append(("DELETE", "/authenticators/:id"))
 routes.append(("POST", "/authenticators/:id/users"))
 routes.append(("GET", "/authenticators/:id/users"))
 
-# routes for fileaccesspolicies
-routes.append(("GET", "/fileaccesspolicies/:id"))
-routes.append(("PUT", "/fileaccesspolicies/:id"))
-routes.append(("DELETE", "/fileaccesspolicies/:id"))
+# routes for computeddependencymapviews
+routes.append(("GET", "/computeddependencymapviews/:id"))
+routes.append(("DELETE", "/computeddependencymapviews/:id"))
+
+# routes for users
+routes.append(("GET", "/users/:id"))
+routes.append(("PUT", "/users/:id"))
+routes.append(("DELETE", "/users/:id"))
+routes.append(("POST", "/users/:id/certificates"))
+routes.append(("GET", "/users/:id/certificates"))
 
 # routes for renderedpolicies
 
@@ -176,11 +187,4 @@ routes.append(("GET", "/vulnerabilities"))
 routes.append(("GET", "/networkaccesspolicies/:id"))
 routes.append(("PUT", "/networkaccesspolicies/:id"))
 routes.append(("DELETE", "/networkaccesspolicies/:id"))
-
-# routes for users
-routes.append(("GET", "/users/:id"))
-routes.append(("PUT", "/users/:id"))
-routes.append(("DELETE", "/users/:id"))
-routes.append(("POST", "/users/:id/certificates"))
-routes.append(("GET", "/users/:id/certificates"))
 

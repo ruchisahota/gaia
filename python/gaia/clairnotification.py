@@ -33,8 +33,21 @@ class ClairNotification(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
+        self._layerlimit = None
+        self._layersintroducingnewvulnerability = None
+        self._layersintroducingoldvulnerability = None
+        self._name = None
         self._namespace = None
+        self._newvulnerabilitylink = None
+        self._newvulnerabilityname = None
+        self._nextpage = None
         self._notification = None
+        self._notificationcreatedat = None
+        self._notificationdeletedat = None
+        self._notificationnotifiedat = None
+        self._oldvulnerabilitylink = None
+        self._oldvulnerabilityname = None
+        self._page = None
         self._parentid = None
         self._parenttype = None
         self._status = None
@@ -45,8 +58,21 @@ class ClairNotification(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
+        self.expose_attribute(local_name="layerlimit", remote_name="layerlimit")
+        self.expose_attribute(local_name="layersIntroducingNewVulnerability", remote_name="layersIntroducingNewVulnerability")
+        self.expose_attribute(local_name="layersIntroducingOldVulnerability", remote_name="layersIntroducingOldVulnerability")
+        self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
+        self.expose_attribute(local_name="newVulnerabilityLink", remote_name="newVulnerabilityLink")
+        self.expose_attribute(local_name="newVulnerabilityName", remote_name="newVulnerabilityName")
+        self.expose_attribute(local_name="nextPage", remote_name="nextPage")
         self.expose_attribute(local_name="notification", remote_name="notification")
+        self.expose_attribute(local_name="notificationCreatedAt", remote_name="notificationCreatedAt")
+        self.expose_attribute(local_name="notificationDeletedAt", remote_name="notificationDeletedAt")
+        self.expose_attribute(local_name="notificationNotifiedAt", remote_name="notificationNotifiedAt")
+        self.expose_attribute(local_name="oldVulnerabilityLink", remote_name="oldVulnerabilityLink")
+        self.expose_attribute(local_name="oldVulnerabilityName", remote_name="oldVulnerabilityName")
+        self.expose_attribute(local_name="page", remote_name="page")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="status", remote_name="status")
@@ -188,6 +214,94 @@ class ClairNotification(RESTObject):
         self._deleted = value
     
     @property
+    def layerlimit(self):
+        """ Get layerlimit value.
+
+          Notes:
+              LayerLimit is the number of layers returned in notification
+
+              
+        """
+        return self._layerlimit
+
+    @layerlimit.setter
+    def layerlimit(self, value):
+        """ Set layerlimit value.
+
+          Notes:
+              LayerLimit is the number of layers returned in notification
+
+              
+        """
+        self._layerlimit = value
+    
+    @property
+    def layersIntroducingNewVulnerability(self):
+        """ Get layersIntroducingNewVulnerability value.
+
+          Notes:
+              LayersIntroducingNewVulnerability defines layers that are effected by new vulnerability
+
+              
+        """
+        return self._layersintroducingnewvulnerability
+
+    @layersIntroducingNewVulnerability.setter
+    def layersIntroducingNewVulnerability(self, value):
+        """ Set layersIntroducingNewVulnerability value.
+
+          Notes:
+              LayersIntroducingNewVulnerability defines layers that are effected by new vulnerability
+
+              
+        """
+        self._layersintroducingnewvulnerability = value
+    
+    @property
+    def layersIntroducingOldVulnerability(self):
+        """ Get layersIntroducingOldVulnerability value.
+
+          Notes:
+              LayersIntroducingOldVulnerability defines layers that are effected by old vulnerability
+
+              
+        """
+        return self._layersintroducingoldvulnerability
+
+    @layersIntroducingOldVulnerability.setter
+    def layersIntroducingOldVulnerability(self, value):
+        """ Set layersIntroducingOldVulnerability value.
+
+          Notes:
+              LayersIntroducingOldVulnerability defines layers that are effected by old vulnerability
+
+              
+        """
+        self._layersintroducingoldvulnerability = value
+    
+    @property
+    def name(self):
+        """ Get name value.
+
+          Notes:
+              Name is the name of the notification
+
+              
+        """
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        """ Set name value.
+
+          Notes:
+              Name is the name of the notification
+
+              
+        """
+        self._name = value
+    
+    @property
     def namespace(self):
         """ Get namespace value.
 
@@ -210,6 +324,72 @@ class ClairNotification(RESTObject):
         self._namespace = value
     
     @property
+    def newVulnerabilityLink(self):
+        """ Get newVulnerabilityLink value.
+
+          Notes:
+              NewVulnerabilityLink is the link that point to the new vulnerability
+
+              
+        """
+        return self._newvulnerabilitylink
+
+    @newVulnerabilityLink.setter
+    def newVulnerabilityLink(self, value):
+        """ Set newVulnerabilityLink value.
+
+          Notes:
+              NewVulnerabilityLink is the link that point to the new vulnerability
+
+              
+        """
+        self._newvulnerabilitylink = value
+    
+    @property
+    def newVulnerabilityName(self):
+        """ Get newVulnerabilityName value.
+
+          Notes:
+              NewVulnerabilityName is the name of the new vulnerability
+
+              
+        """
+        return self._newvulnerabilityname
+
+    @newVulnerabilityName.setter
+    def newVulnerabilityName(self, value):
+        """ Set newVulnerabilityName value.
+
+          Notes:
+              NewVulnerabilityName is the name of the new vulnerability
+
+              
+        """
+        self._newvulnerabilityname = value
+    
+    @property
+    def nextPage(self):
+        """ Get nextPage value.
+
+          Notes:
+              NextPage is the next page number
+
+              
+        """
+        return self._nextpage
+
+    @nextPage.setter
+    def nextPage(self, value):
+        """ Set nextPage value.
+
+          Notes:
+              NextPage is the next page number
+
+              
+        """
+        self._nextpage = value
+    
+    @property
     def notification(self):
         """ Get notification value.
 
@@ -230,6 +410,138 @@ class ClairNotification(RESTObject):
               
         """
         self._notification = value
+    
+    @property
+    def notificationCreatedAt(self):
+        """ Get notificationCreatedAt value.
+
+          Notes:
+              notificationCreatedAt is the time when then notification was created
+
+              
+        """
+        return self._notificationcreatedat
+
+    @notificationCreatedAt.setter
+    def notificationCreatedAt(self, value):
+        """ Set notificationCreatedAt value.
+
+          Notes:
+              notificationCreatedAt is the time when then notification was created
+
+              
+        """
+        self._notificationcreatedat = value
+    
+    @property
+    def notificationDeletedAt(self):
+        """ Get notificationDeletedAt value.
+
+          Notes:
+              NotificationDeletedAt is the time when the notification was deleted
+
+              
+        """
+        return self._notificationdeletedat
+
+    @notificationDeletedAt.setter
+    def notificationDeletedAt(self, value):
+        """ Set notificationDeletedAt value.
+
+          Notes:
+              NotificationDeletedAt is the time when the notification was deleted
+
+              
+        """
+        self._notificationdeletedat = value
+    
+    @property
+    def notificationNotifiedAt(self):
+        """ Get notificationNotifiedAt value.
+
+          Notes:
+              NotificationNotifiedAt is the time when the notification was sent
+
+              
+        """
+        return self._notificationnotifiedat
+
+    @notificationNotifiedAt.setter
+    def notificationNotifiedAt(self, value):
+        """ Set notificationNotifiedAt value.
+
+          Notes:
+              NotificationNotifiedAt is the time when the notification was sent
+
+              
+        """
+        self._notificationnotifiedat = value
+    
+    @property
+    def oldVulnerabilityLink(self):
+        """ Get oldVulnerabilityLink value.
+
+          Notes:
+              oldVulnerabilityLink is the link that point to the old vulnerability
+
+              
+        """
+        return self._oldvulnerabilitylink
+
+    @oldVulnerabilityLink.setter
+    def oldVulnerabilityLink(self, value):
+        """ Set oldVulnerabilityLink value.
+
+          Notes:
+              oldVulnerabilityLink is the link that point to the old vulnerability
+
+              
+        """
+        self._oldvulnerabilitylink = value
+    
+    @property
+    def oldVulnerabilityName(self):
+        """ Get oldVulnerabilityName value.
+
+          Notes:
+              oldVulnerabilityName is the name of the old vulnerability
+
+              
+        """
+        return self._oldvulnerabilityname
+
+    @oldVulnerabilityName.setter
+    def oldVulnerabilityName(self, value):
+        """ Set oldVulnerabilityName value.
+
+          Notes:
+              oldVulnerabilityName is the name of the old vulnerability
+
+              
+        """
+        self._oldvulnerabilityname = value
+    
+    @property
+    def page(self):
+        """ Get page value.
+
+          Notes:
+              Page is the page number
+
+              
+        """
+        return self._page
+
+    @page.setter
+    def page(self, value):
+        """ Set page value.
+
+          Notes:
+              Page is the page number
+
+              
+        """
+        self._page = value
     
     @property
     def parentID(self):
