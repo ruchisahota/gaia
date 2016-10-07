@@ -16,7 +16,7 @@
             "format": null,
             "getter": null,
             "identifier": null,
-            "index": true,
+            "index": false,
             "max_length": null,
             "max_value": null,
             "min_length": null,
