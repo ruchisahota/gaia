@@ -255,7 +255,6 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Filterable:     true,
-		Index:          true,
 		Name:           "computed",
 		Orderable:      true,
 		Stored:         true,
