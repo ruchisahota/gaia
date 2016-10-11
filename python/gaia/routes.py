@@ -23,6 +23,8 @@ routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 routes.append(("GET", "/images/:id"))
 routes.append(("GET", "/images/:id/layers"))
 
+# routes for syscallaccesses
+
 # routes for computedpolicies
 routes.append(("GET", "/computedpolicies/:id"))
 
@@ -111,6 +113,7 @@ routes.append(("PUT", "/processingunits/:id"))
 routes.append(("DELETE", "/processingunits/:id"))
 routes.append(("GET", "/processingunits/:id/fileaccesses"))
 routes.append(("GET", "/processingunits/:id/renderedpolicies"))
+routes.append(("GET", "/processingunits/:id/syscallaccesses"))
 
 # routes for clairnotifications
 routes.append(("GET", "/clairnotifications/:id"))
