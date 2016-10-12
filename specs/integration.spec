@@ -11,7 +11,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": false,
-            "default_value": "Basic",
+            "default_value": "None",
             "deprecated": null,
             "description": "AuthType refers to the type of HTTP authentication used to query endpoints",
             "exposed": true,
