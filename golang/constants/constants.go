@@ -186,15 +186,15 @@ const (
 	// StatsTagKeyFileAccessContext represents the full context of the file access.
 	StatsTagKeyFileAccessContext = "fileContext"
 
-	// StatsTagKeySyscall represets the syscall number
-	StatsTagKeySyscall = "syscall"
+	// StatsTagKeySyscallAccessName represents the number of the syscall.
+	StatsTagKeySyscallAccessName = "syscall"
 
-	// StatsTagKeyProcessID represents the process ID
-	StatsTagKeyProcessID = "pid"
+	// StatsTagKeySyscallAccessPID represents the pid of the related process.
+	StatsTagKeySyscallAccessPID = "pid"
 
-	// StatsTagKeyProcessName represents the process name
-	StatsTagKeyProcessName = "pname"
+	// StatsTagKeySyscallAccessProcessName represents the name of the related process.
+	StatsTagKeySyscallAccessProcessName = "processName"
 
-	// StatsTagKeySyscallContext represents the syscall context
-	StatsTagKeySyscallContext = "sysContext"
+	// StatsTagKeySyscallAccessContext represents the full context of the syscall access.
+	StatsTagKeySyscallAccessContext = "syscallContext"
 )

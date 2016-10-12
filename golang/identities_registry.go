@@ -11,6 +11,7 @@ func init() {
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(SystemInfoIdentity)
 	elemental.RegisterIdentity(ImageIdentity)
+	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(ComputedPolicyIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(MapEdgeIdentity)
