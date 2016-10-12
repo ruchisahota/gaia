@@ -492,7 +492,7 @@ class Integration(RESTObject):
         """
         errors = []
 
-        err = validate_string_in_list("authType", self.authType, ["Basic", "OAuth"], false)
+        err = validate_string_in_list("authType", self.authType, ["Basic", "None", "OAuth"], false)
 
         if err:
             errors.append(err)

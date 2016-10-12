@@ -13,6 +13,9 @@ const (
 	// IntegrationAuthTypeBasic represents the value Basic.
 	IntegrationAuthTypeBasic IntegrationAuthTypeValue = "Basic"
 
+	// IntegrationAuthTypeNone represents the value None.
+	IntegrationAuthTypeNone IntegrationAuthTypeValue = "None"
+
 	// IntegrationAuthTypeOauth represents the value OAuth.
 	IntegrationAuthTypeOauth IntegrationAuthTypeValue = "OAuth"
 )
@@ -98,7 +101,7 @@ type Integration struct {
 func NewIntegration() *Integration {
 
 	return &Integration{
-		AuthType:   "Basic",
+		AuthType:   "None",
 		SslEnabled: false,
 		Status:     constants.Active,
 		Type:       "Registry",
@@ -208,7 +211,7 @@ func (o *Integration) Validate() elemental.Errors {
 
 	errors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("authType", string(o.AuthType), []string{"Basic", "OAuth"}, false); err != nil {
+	if err := elemental.ValidateStringInList("authType", string(o.AuthType), []string{"Basic", "None", "OAuth"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -277,7 +280,7 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"AuthType": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Basic", "OAuth"},
+		AllowedChoices: []string{"Basic", "None", "OAuth"},
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "authType",
