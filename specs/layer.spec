@@ -43,7 +43,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "ImageIDs contains the ID of the images using the layer.",
+            "description": "ImageIDs contains the IDs of the images using the layer.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
