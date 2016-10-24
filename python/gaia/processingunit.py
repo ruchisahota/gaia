@@ -34,6 +34,7 @@ class ProcessingUnit(RESTObject):
         self._createdat = None
         self._deleted = None
         self._description = None
+        self._imageid = None
         self._lastsynctime = None
         self._metadata = None
         self._name = None
@@ -53,6 +54,7 @@ class ProcessingUnit(RESTObject):
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="description", remote_name="description")
+        self.expose_attribute(local_name="imageID", remote_name="imageID")
         self.expose_attribute(local_name="lastSyncTime", remote_name="lastSyncTime")
         self.expose_attribute(local_name="metadata", remote_name="metadata")
         self.expose_attribute(local_name="name", remote_name="name")
@@ -222,6 +224,28 @@ class ProcessingUnit(RESTObject):
               
         """
         self._description = value
+    
+    @property
+    def imageID(self):
+        """ Get imageID value.
+
+          Notes:
+              ImageID contains the ID of the image used by the processingunit.
+
+              
+        """
+        return self._imageid
+
+    @imageID.setter
+    def imageID(self, value):
+        """ Set imageID value.
+
+          Notes:
+              ImageID contains the ID of the image used by the processingunit.
+
+              
+        """
+        self._imageid = value
     
     @property
     def lastSyncTime(self):

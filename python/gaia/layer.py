@@ -34,6 +34,7 @@ class Layer(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
+        self._imageids = None
         self._name = None
         self._namespace = None
         self._namespacename = None
@@ -49,6 +50,7 @@ class Layer(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
+        self.expose_attribute(local_name="imageIDs", remote_name="imageIDs")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="namespaceName", remote_name="namespaceName")
@@ -214,6 +216,28 @@ class Layer(RESTObject):
               
         """
         self._deleted = value
+    
+    @property
+    def imageIDs(self):
+        """ Get imageIDs value.
+
+          Notes:
+              ImageIDs contains the IDs of the images using the layer.
+
+              
+        """
+        return self._imageids
+
+    @imageIDs.setter
+    def imageIDs(self, value):
+        """ Set imageIDs value.
+
+          Notes:
+              ImageIDs contains the IDs of the images using the layer.
+
+              
+        """
+        self._imageids = value
     
     @property
     def name(self):
