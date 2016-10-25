@@ -79,7 +79,7 @@
             "deprecated": false,
             "description": "CreatedAt is the time at which an entity was created",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": false,
             "format": null,
             "getter": false,
