@@ -87,9 +87,15 @@ func (o *Notification) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Notification) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Notification) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return NotificationAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (Notification) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return NotificationAttributesMap
 }
 
 // NotificationAttributesMap represents the map of attribute for Notification.

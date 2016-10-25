@@ -204,9 +204,15 @@ func (o *ClairNotification) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o ClairNotification) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (ClairNotification) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ClairNotificationAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (ClairNotification) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return ClairNotificationAttributesMap
 }
 
 // ClairNotificationAttributesMap represents the map of attribute for ClairNotification.

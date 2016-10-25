@@ -231,9 +231,15 @@ func (o *Server) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Server) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Server) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ServerAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (Server) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return ServerAttributesMap
 }
 
 // ServerAttributesMap represents the map of attribute for Server.

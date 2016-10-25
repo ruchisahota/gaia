@@ -137,9 +137,15 @@ func (o *FlowStatistic) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o FlowStatistic) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (FlowStatistic) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FlowStatisticAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (FlowStatistic) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return FlowStatisticAttributesMap
 }
 
 // FlowStatisticAttributesMap represents the map of attribute for FlowStatistic.

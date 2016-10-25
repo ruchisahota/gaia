@@ -177,9 +177,15 @@ func (o *Layer) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Layer) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Layer) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return LayerAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (Layer) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return LayerAttributesMap
 }
 
 // LayerAttributesMap represents the map of attribute for Layer.

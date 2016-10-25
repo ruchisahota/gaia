@@ -206,9 +206,15 @@ func (o *APIAuthorizationPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o APIAuthorizationPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (APIAuthorizationPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return APIAuthorizationPolicyAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (APIAuthorizationPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return APIAuthorizationPolicyAttributesMap
 }
 
 // APIAuthorizationPolicyAttributesMap represents the map of attribute for APIAuthorizationPolicy.

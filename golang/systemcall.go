@@ -182,9 +182,15 @@ func (o *SystemCall) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o SystemCall) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (SystemCall) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return SystemCallAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (SystemCall) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return SystemCallAttributesMap
 }
 
 // SystemCallAttributesMap represents the map of attribute for SystemCall.

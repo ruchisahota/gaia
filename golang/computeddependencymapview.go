@@ -192,9 +192,15 @@ func (o *ComputedDependencyMapView) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ComputedDependencyMapViewAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (ComputedDependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return ComputedDependencyMapViewAttributesMap
 }
 
 // ComputedDependencyMapViewAttributesMap represents the map of attribute for ComputedDependencyMapView.

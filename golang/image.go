@@ -182,9 +182,15 @@ func (o *Image) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Image) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Image) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ImageAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (Image) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return ImageAttributesMap
 }
 
 // ImageAttributesMap represents the map of attribute for Image.

@@ -71,9 +71,15 @@ func (o *SyscallAccess) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o SyscallAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (SyscallAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return SyscallAccessAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (SyscallAccess) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return SyscallAccessAttributesMap
 }
 
 // SyscallAccessAttributesMap represents the map of attribute for SyscallAccess.
