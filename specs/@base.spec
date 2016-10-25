@@ -283,7 +283,7 @@
             "deprecated": false,
             "description": "UpdatedAt is the time at which an entity was updated.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": false,
             "format": null,
             "getter": false,
