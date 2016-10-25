@@ -79,7 +79,7 @@
             "deprecated": false,
             "description": "Metadata are list of tags associated to the processing unit",
             "exposed": true,
-            "filterable": false,
+            "filterable": true,
             "foreign_key": false,
             "format": null,
             "getter": false,
