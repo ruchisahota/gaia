@@ -100,7 +100,6 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Edges": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
 		Name:           "edges",
 		ReadOnly:       true,
@@ -110,7 +109,6 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Groups": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
 		Name:           "groups",
 		ReadOnly:       true,
@@ -120,7 +118,6 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Nodes": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
 		Name:           "nodes",
 		ReadOnly:       true,

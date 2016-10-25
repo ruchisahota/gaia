@@ -92,7 +92,6 @@ var ComputedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"NetworkAccessPolicies": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "networkAccessPolicies",
 		Orderable:      true,
 		Stored:         true,

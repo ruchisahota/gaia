@@ -101,7 +101,6 @@ var DependencyMapSubviewAttributesMap = map[string]elemental.AttributeSpecificat
 	"Selector": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "selector",
 		Orderable:      true,
 		Stored:         true,
@@ -111,7 +110,6 @@ var DependencyMapSubviewAttributesMap = map[string]elemental.AttributeSpecificat
 	"SubSelectors": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "subSelectors",
 		Orderable:      true,
 		Stored:         true,

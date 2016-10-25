@@ -521,11 +521,6 @@ class Policy(RESTObject):
         if err:
             errors.append(err)
 
-        err = validate_string_in_list("type", self.type, ["APIAuthorization", "ExtendTags", "File", "NamespaceMapping", "Network", "Statistics", "Syscall"], false)
-
-        if err:
-            errors.append(err)
-
         if len(errors) > 0:
             return errors
 
