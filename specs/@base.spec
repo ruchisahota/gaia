@@ -147,7 +147,7 @@
             "deprecated": false,
             "description": "Namespace tag attached to an entity",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": false,
             "format": "free",
             "getter": true,
