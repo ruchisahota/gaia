@@ -113,7 +113,7 @@
             "deprecated": null,
             "description": "Deleted marks if the entity has been deleted.",
             "exposed": false,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": null,
             "getter": true,
