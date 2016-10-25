@@ -343,6 +343,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
+		Filterable:     true,
 		Name:           "metadata",
 		Required:       true,
 		Stored:         true,
