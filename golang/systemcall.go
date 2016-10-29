@@ -61,7 +61,9 @@ type SystemCall struct {
 func NewSystemCall() *SystemCall {
 
 	return &SystemCall{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

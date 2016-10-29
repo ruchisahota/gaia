@@ -85,7 +85,9 @@ type APIAuthorizationPolicy struct {
 func NewAPIAuthorizationPolicy() *APIAuthorizationPolicy {
 
 	return &APIAuthorizationPolicy{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

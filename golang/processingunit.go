@@ -107,6 +107,8 @@ type ProcessingUnit struct {
 func NewProcessingUnit() *ProcessingUnit {
 
 	return &ProcessingUnit{
+		AssociatedTags:    []string{},
+		NormalizedTags:    []string{},
 		OperationalStatus: "Active",
 		Status:            constants.Active,
 	}

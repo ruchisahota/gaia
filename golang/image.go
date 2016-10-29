@@ -67,7 +67,9 @@ type Image struct {
 func NewImage() *Image {
 
 	return &Image{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

@@ -70,7 +70,9 @@ type Certificate struct {
 func NewCertificate() *Certificate {
 
 	return &Certificate{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

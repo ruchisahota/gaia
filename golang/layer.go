@@ -70,7 +70,9 @@ type Layer struct {
 func NewLayer() *Layer {
 
 	return &Layer{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

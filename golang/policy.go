@@ -82,7 +82,11 @@ type Policy struct {
 func NewPolicy() *Policy {
 
 	return &Policy{
-		Status: constants.Active,
+		AllObjectTags:  []string{},
+		AllSubjectTags: []string{},
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

@@ -82,7 +82,9 @@ type FileAccessPolicy struct {
 func NewFileAccessPolicy() *FileAccessPolicy {
 
 	return &FileAccessPolicy{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

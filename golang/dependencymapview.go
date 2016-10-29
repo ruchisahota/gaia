@@ -84,9 +84,11 @@ type DependencyMapView struct {
 func NewDependencyMapView() *DependencyMapView {
 
 	return &DependencyMapView{
-		Status:   constants.Active,
-		Subviews: DependencyMapSubviewsList{},
-		Type:     "Manual",
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
+		Subviews:       DependencyMapSubviewsList{},
+		Type:           "Manual",
 	}
 }
 

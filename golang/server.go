@@ -101,6 +101,8 @@ type Server struct {
 func NewServer() *Server {
 
 	return &Server{
+		AssociatedTags:    []string{},
+		NormalizedTags:    []string{},
 		OperationalStatus: "UNKNOWN",
 		Status:            constants.Active,
 	}

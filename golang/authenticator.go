@@ -87,7 +87,9 @@ type Authenticator struct {
 func NewAuthenticator() *Authenticator {
 
 	return &Authenticator{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

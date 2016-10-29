@@ -67,7 +67,9 @@ type FilePath struct {
 func NewFilePath() *FilePath {
 
 	return &FilePath{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

@@ -79,7 +79,9 @@ type NetworkAccessPolicy struct {
 func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 
 	return &NetworkAccessPolicy{
+		AssociatedTags:   []string{},
 		DestinationPorts: []string{},
+		NormalizedTags:   []string{},
 		Status:           constants.Active,
 	}
 }

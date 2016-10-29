@@ -33,7 +33,9 @@ type MapEdge struct {
 // NewMapEdge returns a new *MapEdge
 func NewMapEdge() *MapEdge {
 
-	return &MapEdge{}
+	return &MapEdge{
+		Labels: []string{},
+	}
 }
 
 // Identity returns the Identity of the object.

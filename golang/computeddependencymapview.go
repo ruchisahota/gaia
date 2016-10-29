@@ -67,7 +67,9 @@ type ComputedDependencyMapView struct {
 func NewComputedDependencyMapView() *ComputedDependencyMapView {
 
 	return &ComputedDependencyMapView{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

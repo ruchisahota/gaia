@@ -104,10 +104,12 @@ type Integration struct {
 func NewIntegration() *Integration {
 
 	return &Integration{
-		AuthType:   "None",
-		SslEnabled: false,
-		Status:     constants.Active,
-		Type:       "Registry",
+		AssociatedTags: []string{},
+		AuthType:       "None",
+		NormalizedTags: []string{},
+		SslEnabled:     false,
+		Status:         constants.Active,
+		Type:           "Registry",
 	}
 }
 

@@ -41,7 +41,9 @@ type MapNode struct {
 // NewMapNode returns a new *MapNode
 func NewMapNode() *MapNode {
 
-	return &MapNode{}
+	return &MapNode{
+		Groups: []string{},
+	}
 }
 
 // Identity returns the Identity of the object.

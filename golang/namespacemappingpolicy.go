@@ -67,7 +67,9 @@ type NamespaceMappingPolicy struct {
 func NewNamespaceMappingPolicy() *NamespaceMappingPolicy {
 
 	return &NamespaceMappingPolicy{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

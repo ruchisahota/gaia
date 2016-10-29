@@ -70,7 +70,9 @@ type ExternalService struct {
 func NewExternalService() *ExternalService {
 
 	return &ExternalService{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

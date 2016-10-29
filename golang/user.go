@@ -70,7 +70,9 @@ type User struct {
 func NewUser() *User {
 
 	return &User{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 

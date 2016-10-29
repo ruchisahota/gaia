@@ -97,7 +97,9 @@ type ClairNotification struct {
 func NewClairNotification() *ClairNotification {
 
 	return &ClairNotification{
-		Status: constants.Active,
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Status:         constants.Active,
 	}
 }
 
