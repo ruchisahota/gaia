@@ -36,6 +36,7 @@ class Integration(RESTObject):
         self._deleted = None
         self._endpoint = None
         self._namespace = None
+        self._normalizedtags = None
         self._parentid = None
         self._parenttype = None
         self._password = None
@@ -55,6 +56,7 @@ class Integration(RESTObject):
         self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="endpoint", remote_name="endpoint")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
+        self.expose_attribute(local_name="normalizedTags", remote_name="normalizedTags")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="password", remote_name="password")
@@ -266,6 +268,28 @@ class Integration(RESTObject):
               
         """
         self._namespace = value
+    
+    @property
+    def normalizedTags(self):
+        """ Get normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        return self._normalizedtags
+
+    @normalizedTags.setter
+    def normalizedTags(self, value):
+        """ Set normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        self._normalizedtags = value
     
     @property
     def parentID(self):

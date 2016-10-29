@@ -38,6 +38,7 @@ class Layer(RESTObject):
         self._name = None
         self._namespace = None
         self._namespacename = None
+        self._normalizedtags = None
         self._parentid = None
         self._parentname = None
         self._parenttype = None
@@ -54,6 +55,7 @@ class Layer(RESTObject):
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="namespaceName", remote_name="namespaceName")
+        self.expose_attribute(local_name="normalizedTags", remote_name="normalizedTags")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentName", remote_name="parentName")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
@@ -304,6 +306,28 @@ class Layer(RESTObject):
               
         """
         self._namespacename = value
+    
+    @property
+    def normalizedTags(self):
+        """ Get normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        return self._normalizedtags
+
+    @normalizedTags.setter
+    def normalizedTags(self, value):
+        """ Set normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        self._normalizedtags = value
     
     @property
     def parentID(self):

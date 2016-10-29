@@ -41,6 +41,7 @@ class ClairNotification(RESTObject):
         self._newvulnerabilitylink = None
         self._newvulnerabilityname = None
         self._nextpage = None
+        self._normalizedtags = None
         self._notification = None
         self._notificationcreatedat = None
         self._notificationdeletedat = None
@@ -66,6 +67,7 @@ class ClairNotification(RESTObject):
         self.expose_attribute(local_name="newVulnerabilityLink", remote_name="newVulnerabilityLink")
         self.expose_attribute(local_name="newVulnerabilityName", remote_name="newVulnerabilityName")
         self.expose_attribute(local_name="nextPage", remote_name="nextPage")
+        self.expose_attribute(local_name="normalizedTags", remote_name="normalizedTags")
         self.expose_attribute(local_name="notification", remote_name="notification")
         self.expose_attribute(local_name="notificationCreatedAt", remote_name="notificationCreatedAt")
         self.expose_attribute(local_name="notificationDeletedAt", remote_name="notificationDeletedAt")
@@ -388,6 +390,28 @@ class ClairNotification(RESTObject):
               
         """
         self._nextpage = value
+    
+    @property
+    def normalizedTags(self):
+        """ Get normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        return self._normalizedtags
+
+    @normalizedTags.setter
+    def normalizedTags(self, value):
+        """ Set normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        self._normalizedtags = value
     
     @property
     def notification(self):

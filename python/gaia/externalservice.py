@@ -37,6 +37,7 @@ class ExternalService(RESTObject):
         self._name = None
         self._namespace = None
         self._network = None
+        self._normalizedtags = None
         self._parentid = None
         self._parenttype = None
         self._port = None
@@ -53,6 +54,7 @@ class ExternalService(RESTObject):
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="network", remote_name="network")
+        self.expose_attribute(local_name="normalizedTags", remote_name="normalizedTags")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="port", remote_name="port")
@@ -282,6 +284,28 @@ class ExternalService(RESTObject):
               
         """
         self._network = value
+    
+    @property
+    def normalizedTags(self):
+        """ Get normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        return self._normalizedtags
+
+    @normalizedTags.setter
+    def normalizedTags(self, value):
+        """ Set normalizedTags value.
+
+          Notes:
+              NormalizedTags contains the list of normalized tags of the entities
+
+              
+        """
+        self._normalizedtags = value
     
     @property
     def parentID(self):
