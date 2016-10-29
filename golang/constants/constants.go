@@ -133,68 +133,68 @@ func PolicyTypeToString(policyType PolicyType) string {
 const (
 
 	// StatsTagKeyDestinationID represents the destination ID tag.
-	StatsTagKeyDestinationID = "destID"
+	StatsTagKeyDestinationID = "@destid"
 
 	// StatsTagKeySourceID represents the source ID tag.
-	StatsTagKeySourceID = "srcID"
+	StatsTagKeySourceID = "@srcid"
 
 	// StatsTagKeyDestinationPort represents the destination port tag.
-	StatsTagKeyDestinationPort = "destPort"
+	StatsTagKeyDestinationPort = "@destport"
 
 	// StatsTagKeyFlowContext represents the flow context tag.
-	StatsTagKeyFlowContext = "flowContext"
+	StatsTagKeyFlowContext = "@flowcontext"
 
 	// StatsTagKeyProcessingUnitID represents the processing unit ID tag.
-	StatsTagKeyProcessingUnitID = "ID"
+	StatsTagKeyProcessingUnitID = "@id"
 
 	// StatsTagKeyIP represents the IP tag.
-	StatsTagKeyIP = "IP"
+	StatsTagKeyIP = "@ip"
 
 	// StatsTagKeyAction represents the action tag.
-	StatsTagKeyAction = "action"
+	StatsTagKeyAction = "@action"
 
 	// StatsTagKeyReason represents the reason tag.
-	StatsTagKeyReason = "reason"
+	StatsTagKeyReason = "@reason"
 
 	// StatsTagKeyEvent represents the event tag.
-	StatsTagKeyEvent = "event"
+	StatsTagKeyEvent = "@event"
 
 	// StatsTagKeyImage represents the image tag.
-	StatsTagKeyImage = "image"
+	StatsTagKeyImage = "@image"
 
 	// StatsTagKeyServerID represents the server ID tag.
-	StatsTagKeyServerID = "serverID"
+	StatsTagKeyServerID = "@serverid"
 
 	// StatsTagKeyNamespace represents the namespace tag.
-	StatsTagKeyNamespace = "AporetoNamespace"
+	StatsTagKeyNamespace = "@namespace"
 
 	// StatsTagKeyAporetoContextID represents the aporeto context ID.
-	StatsTagKeyAporetoContextID = "AporetoContextID"
+	StatsTagKeyAporetoContextID = "@squallid"
 
 	// StatsTagKeyFileAccessPath represents the file path.
-	StatsTagKeyFileAccessPath = "path"
+	StatsTagKeyFileAccessPath = "@path"
 
 	// StatsTagKeyFileAccessHost represents the host where the file is stored.
-	StatsTagKeyFileAccessHost = "host"
+	StatsTagKeyFileAccessHost = "@host"
 
 	// StatsTagKeyFileAccessProtocol represents the protocol used to access the file.
-	StatsTagKeyFileAccessProtocol = "protocol"
+	StatsTagKeyFileAccessProtocol = "@protocol"
 
 	// StatsTagKeyFileAccessMode represents the mode of file.
-	StatsTagKeyFileAccessMode = "mode"
+	StatsTagKeyFileAccessMode = "@mode"
 
 	// StatsTagKeyFileAccessContext represents the full context of the file access.
-	StatsTagKeyFileAccessContext = "fileContext"
+	StatsTagKeyFileAccessContext = "@filecontext"
 
 	// StatsTagKeySyscallAccessName represents the number of the syscall.
-	StatsTagKeySyscallAccessName = "syscall"
+	StatsTagKeySyscallAccessName = "@syscall"
 
 	// StatsTagKeySyscallAccessPID represents the pid of the related process.
-	StatsTagKeySyscallAccessPID = "pid"
+	StatsTagKeySyscallAccessPID = "@pid"
 
 	// StatsTagKeySyscallAccessProcessName represents the name of the related process.
-	StatsTagKeySyscallAccessProcessName = "processName"
+	StatsTagKeySyscallAccessProcessName = "@processname"
 
 	// StatsTagKeySyscallAccessContext represents the full context of the syscall access.
-	StatsTagKeySyscallAccessContext = "syscallContext"
+	StatsTagKeySyscallAccessContext = "@syscallcontext"
 )
