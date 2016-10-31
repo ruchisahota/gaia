@@ -290,7 +290,6 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Filepath": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
