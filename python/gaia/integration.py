@@ -40,9 +40,6 @@ class Integration(RESTObject):
         self._parentid = None
         self._parenttype = None
         self._password = None
-        self._port = None
-        self._server = None
-        self._sslenabled = None
         self._status = None
         self._type = None
         self._updatedat = None
@@ -60,9 +57,6 @@ class Integration(RESTObject):
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="password", remote_name="password")
-        self.expose_attribute(local_name="port", remote_name="port")
-        self.expose_attribute(local_name="server", remote_name="server")
-        self.expose_attribute(local_name="sslEnabled", remote_name="sslEnabled")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="type", remote_name="type")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
@@ -358,72 +352,6 @@ class Integration(RESTObject):
         self._password = value
     
     @property
-    def port(self):
-        """ Get port value.
-
-          Notes:
-              Port is the port number of the service
-
-              
-        """
-        return self._port
-
-    @port.setter
-    def port(self, value):
-        """ Set port value.
-
-          Notes:
-              Port is the port number of the service
-
-              
-        """
-        self._port = value
-    
-    @property
-    def server(self):
-        """ Get server value.
-
-          Notes:
-              Server is either the DNS name or IP of the server that provides the service
-
-              
-        """
-        return self._server
-
-    @server.setter
-    def server(self, value):
-        """ Set server value.
-
-          Notes:
-              Server is either the DNS name or IP of the server that provides the service
-
-              
-        """
-        self._server = value
-    
-    @property
-    def sslEnabled(self):
-        """ Get sslEnabled value.
-
-          Notes:
-              SSLEnabled defines if the service is either secured or unsecured
-
-              
-        """
-        return self._sslenabled
-
-    @sslEnabled.setter
-    def sslEnabled(self, value):
-        """ Set sslEnabled value.
-
-          Notes:
-              SSLEnabled defines if the service is either secured or unsecured
-
-              
-        """
-        self._sslenabled = value
-    
-    @property
     def status(self):
         """ Get status value.
 
@@ -517,21 +445,6 @@ class Integration(RESTObject):
         errors = []
 
         err = validate_string_in_list("authType", self.authType, ["Basic", "None", "OAuth"], false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_maximum_int("port", self.port, 65535, false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_minimum_int("port", self.port, 1, false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_required_string("server", self.server)
 
         if err:
             errors.append(err)

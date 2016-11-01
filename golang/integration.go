@@ -78,15 +78,6 @@ type Integration struct {
 	// Password is the password of the user to be used in the HTTP Authorization header
 	Password string `json:"password" cql:"password,omitempty" bson:"password"`
 
-	// Port is the port number of the service
-	Port int `json:"port" cql:"port,omitempty" bson:"port"`
-
-	// Server is either the DNS name or IP of the server that provides the service
-	Server string `json:"server" cql:"server,omitempty" bson:"server"`
-
-	// SSLEnabled defines if the service is either secured or unsecured
-	SslEnabled bool `json:"sslEnabled" cql:"sslenabled,omitempty" bson:"sslenabled"`
-
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -107,7 +98,6 @@ func NewIntegration() *Integration {
 		AssociatedTags: []string{},
 		AuthType:       "None",
 		NormalizedTags: []string{},
-		SslEnabled:     false,
 		Status:         constants.Active,
 		Type:           "Registry",
 	}
@@ -201,11 +191,6 @@ func (o *Integration) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
-// GetServer returns the server of the receiver
-func (o *Integration) GetServer() string {
-	return o.Server
-}
-
 // GetStatus returns the status of the receiver
 func (o *Integration) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -227,18 +212,6 @@ func (o *Integration) Validate() error {
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateStringInList("authType", string(o.AuthType), []string{"Basic", "None", "OAuth"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMaximumInt("port", o.Port, 65535, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMinimumInt("port", o.Port, 1, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -405,39 +378,6 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
-	},
-	"Port": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		MaxValue:       65535,
-		MinValue:       1,
-		Name:           "port",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "integer",
-	},
-	"Server": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Getter:         true,
-		Name:           "server",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"SslEnabled": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "sslEnabled",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
