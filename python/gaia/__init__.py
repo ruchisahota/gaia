@@ -2,13 +2,11 @@
 
 
 
-__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ClairNotification', 'ClairVulnerability', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccess', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'Image', 'Integration', 'Layer', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Notification', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SyscallAccess', 'SystemCall', 'SystemInfo', 'Tag', 'User', 'Vulnerability', 'VulnerabilityFixedIn', 'VulnerabilityWithLayers', 'routes']
+__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccess', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'Integration', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Notification', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SyscallAccess', 'SystemCall', 'SystemInfo', 'Tag', 'User', 'Vulnerability', 'routes']
 
 from .apiauthorizationpolicy import APIAuthorizationPolicy
 from .authenticator import Authenticator
 from .certificate import Certificate
-from .clairnotification import ClairNotification
-from .clairvulnerability import ClairVulnerability
 from .computeddependencymapview import ComputedDependencyMapView
 from .computedpolicy import ComputedPolicy
 from .dependencymap import DependencyMap
@@ -19,9 +17,7 @@ from .fileaccess import FileAccess
 from .fileaccesspolicy import FileAccessPolicy
 from .filepath import FilePath
 from .flowstatistic import FlowStatistic
-from .image import Image
 from .integration import Integration
-from .layer import Layer
 from .mapedge import MapEdge
 from .mapnode import MapNode
 from .mynamespace import MyNamespace
@@ -41,6 +37,4 @@ from .systeminfo import SystemInfo
 from .tag import Tag
 from .user import User
 from .vulnerability import Vulnerability
-from .vulnerabilityfixedin import VulnerabilityFixedIn
-from .vulnerabilitywithlayers import VulnerabilityWithLayers
 from .routes import routes
