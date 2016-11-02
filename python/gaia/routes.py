@@ -105,6 +105,7 @@ routes.append(("DELETE", "/dependencymapviews/:id"))
 
 # routes for vulnerabilities
 routes.append(("GET", "/vulnerabilities/:id"))
+routes.append(("GET", "/vulnerabilities/:id/processingunits"))
 
 # routes for servers
 routes.append(("GET", "/servers/:id"))
