@@ -44,53 +44,30 @@ const (
 type Vulnerability int
 
 const (
-	// None defines that security vulnerability is None
-	None Vulnerability = iota
-	// Unknown defines that security vulnerability is Unknown
-	Unknown
-	// Negligible defines that security vulnerability is Negligible
-	Negligible
-	// Low defines that security vulnerability is Low
-	Low
-	// Medium defines that security vulnerability is Medium
-	Medium
-	// High defines that security vulnerability is High
-	High
-	// Critical defines that security vulnerability is Critical
-	Critical
-	// Defcon1 defines that security vulnerability is Defcon1
-	Defcon1
+	// VulnerabilityNone defines that security vulnerability is None
+	VulnerabilityNone Vulnerability = iota
+
+	// VulnerabilityUnknown defines that security vulnerability is Unknown
+	VulnerabilityUnknown
+
+	// VulnerabilityNegligible defines that security vulnerability is Negligible
+	VulnerabilityNegligible
+
+	// VulnerabilityLow defines that security vulnerability is Low
+	VulnerabilityLow
+
+	// VulnerabilityMedium defines that security vulnerability is Medium
+	VulnerabilityMedium
+
+	// VulnerabilityHigh defines that security vulnerability is High
+	VulnerabilityHigh
+
+	// VulnerabilityCritical defines that security vulnerability is Critical
+	VulnerabilityCritical
+
+	// VulnerabilityDefcon1 defines that security vulnerability is Defcon1
+	VulnerabilityDefcon1
 )
-
-var vulnerabilityValues = [][]string{
-	{"none", "None"},
-	{"unknown", "Unknown"},
-	{"low", "Low"},
-	{"negligible", "Negligible"},
-	{"medium", "Medium"},
-	{"critical", "Critical"},
-	{"high", "High"},
-	{"defcon1", "Defcon1"},
-}
-
-var vulnerabilityMap = map[string]Vulnerability{
-	"None":       None,
-	"Unknown":    Unknown,
-	"Low":        Low,
-	"Negligible": Negligible,
-	"Medium":     Medium,
-	"Critical":   Critical,
-	"High":       High,
-	"Defcon1":    Defcon1,
-}
-
-// TagValue returns the value of vulnerability system tag
-func (sl Vulnerability) TagValue() string { return vulnerabilityValues[sl][0] }
-
-func (sl Vulnerability) String() string { return vulnerabilityValues[sl][1] }
-
-// VulnerabilityConst return constant value of vulnerability string
-func VulnerabilityConst(vulnerability string) Vulnerability { return vulnerabilityMap[vulnerability] }
 
 // EntityStatusToString converts EntityStatusToString to its corresponding string value
 func EntityStatusToString(entityStatus EntityStatus) string {
