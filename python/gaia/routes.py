@@ -94,6 +94,7 @@ routes.append(("DELETE", "/processingunits/:id"))
 routes.append(("GET", "/processingunits/:id/fileaccesses"))
 routes.append(("GET", "/processingunits/:id/renderedpolicies"))
 routes.append(("GET", "/processingunits/:id/syscallaccesses"))
+routes.append(("GET", "/processingunits/:id/vulnerabilities"))
 
 # routes for dependencymapviews
 routes.append(("GET", "/dependencymapviews/:id"))

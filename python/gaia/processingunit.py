@@ -47,7 +47,7 @@ class ProcessingUnit(RESTObject):
         self._status = None
         self._type = None
         self._updatedat = None
-        self._vulnerabilityids = None
+        self._vulnerabilities = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
@@ -68,7 +68,7 @@ class ProcessingUnit(RESTObject):
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="type", remote_name="type")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
-        self.expose_attribute(local_name="vulnerabilityIDs", remote_name="vulnerabilityIDs")
+        self.expose_attribute(local_name="vulnerabilities", remote_name="vulnerabilities")
 
         self._compute_args(**kwargs)
 
@@ -514,26 +514,26 @@ class ProcessingUnit(RESTObject):
         self._updatedat = value
     
     @property
-    def vulnerabilityIDs(self):
-        """ Get vulnerabilityIDs value.
+    def vulnerabilities(self):
+        """ Get vulnerabilities value.
 
           Notes:
-              VulnerabilityIDs contains the list of vulnerabilities of the processing unit.
+              Vulnerabilities contains the list of vulnerabilities of the processing unit.
 
               
         """
-        return self._vulnerabilityids
+        return self._vulnerabilities
 
-    @vulnerabilityIDs.setter
-    def vulnerabilityIDs(self, value):
-        """ Set vulnerabilityIDs value.
+    @vulnerabilities.setter
+    def vulnerabilities(self, value):
+        """ Set vulnerabilities value.
 
           Notes:
-              VulnerabilityIDs contains the list of vulnerabilities of the processing unit.
+              Vulnerabilities contains the list of vulnerabilities of the processing unit.
 
               
         """
-        self._vulnerabilityids = value
+        self._vulnerabilities = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.
