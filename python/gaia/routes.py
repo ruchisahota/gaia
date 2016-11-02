@@ -38,8 +38,6 @@ routes.append(("GET", "/filepaths/:id"))
 routes.append(("PUT", "/filepaths/:id"))
 routes.append(("DELETE", "/filepaths/:id"))
 
-# routes for notifications
-
 # routes for fileaccesses
 
 # routes for namespaces

@@ -2,7 +2,7 @@
 
 
 
-__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccess', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'Integration', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Notification', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SyscallAccess', 'SystemCall', 'SystemInfo', 'Tag', 'User', 'Vulnerability', 'routes']
+__all__ = ['APIAuthorizationPolicy', 'Authenticator', 'Certificate', 'ComputedDependencyMapView', 'ComputedPolicy', 'DependencyMap', 'DependencyMapSubview', 'DependencyMapView', 'ExternalService', 'FileAccess', 'FileAccessPolicy', 'FilePath', 'FlowStatistic', 'Integration', 'MapEdge', 'MapNode', 'MyNamespace', 'Namespace', 'NamespaceMappingPolicy', 'NetworkAccessPolicy', 'Policy', 'PolicyRule', 'ProcessingUnit', 'RenderedPolicy', 'Root', 'Server', 'SyscallAccess', 'SystemCall', 'SystemInfo', 'Tag', 'User', 'Vulnerability', 'routes']
 
 from .apiauthorizationpolicy import APIAuthorizationPolicy
 from .authenticator import Authenticator
@@ -24,7 +24,6 @@ from .mynamespace import MyNamespace
 from .namespace import Namespace
 from .namespacemappingpolicy import NamespaceMappingPolicy
 from .networkaccesspolicy import NetworkAccessPolicy
-from .notification import Notification
 from .policy import Policy
 from .policyrule import PolicyRule
 from .processingunit import ProcessingUnit

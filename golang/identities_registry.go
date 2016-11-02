@@ -15,7 +15,6 @@ func init() {
 	elemental.RegisterIdentity(MapEdgeIdentity)
 	elemental.RegisterIdentity(CertificateIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
-	elemental.RegisterIdentity(NotificationIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
 	elemental.RegisterIdentity(IntegrationIdentity)
