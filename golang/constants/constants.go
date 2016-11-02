@@ -148,6 +148,9 @@ const (
 	// StatsTagKeyAporetoContextID represents the aporeto context ID.
 	StatsTagKeyAporetoContextID = "@squallid"
 
+	// StatsTagKeyExternal represents the if the flow is coming from an uncontrolled network.
+	StatsTagKeyExternal = "@external"
+
 	// StatsTagKeyFileAccessPath represents the file path.
 	StatsTagKeyFileAccessPath = "@path"
 
