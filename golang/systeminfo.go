@@ -40,6 +40,9 @@ type SystemInfo struct {
 	// GaiaVersion is the version of Gaia used by the server.
 	GaiaVersion string `json:"gaiaVersion" cql:"-" bson:"-"`
 
+	// GoogleClientID is the Google oauth client ID to use to get a valid token from Google for Midgard.
+	GoogleClientID string `json:"googleClientID" cql:"googleclientid,omitempty" bson:"googleclientid"`
+
 	// ManipulateVersion is the version of Manipulate used by the server.
 	ManipulateVersion string `json:"manipulateVersion" cql:"-" bson:"-"`
 
@@ -145,6 +148,16 @@ var SystemInfoAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "gaiaVersion",
 		ReadOnly:       true,
+		Type:           "string",
+	},
+	"GoogleClientID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "googleClientID",
+		Orderable:      true,
+		Stored:         true,
 		Type:           "string",
 	},
 	"ManipulateVersion": elemental.AttributeSpecification{

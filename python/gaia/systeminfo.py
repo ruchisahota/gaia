@@ -32,6 +32,7 @@ class SystemInfo(RESTObject):
         self._bahamutversion = None
         self._elementalversion = None
         self._gaiaversion = None
+        self._googleclientid = None
         self._manipulateversion = None
         self._midgardurl = None
         self._squallversion = None
@@ -41,6 +42,7 @@ class SystemInfo(RESTObject):
         self.expose_attribute(local_name="bahamutVersion", remote_name="bahamutVersion")
         self.expose_attribute(local_name="elementalVersion", remote_name="elementalVersion")
         self.expose_attribute(local_name="gaiaVersion", remote_name="gaiaVersion")
+        self.expose_attribute(local_name="googleClientID", remote_name="googleClientID")
         self.expose_attribute(local_name="manipulateVersion", remote_name="manipulateVersion")
         self.expose_attribute(local_name="midgardURL", remote_name="midgardURL")
         self.expose_attribute(local_name="squallVersion", remote_name="squallVersion")
@@ -156,6 +158,28 @@ class SystemInfo(RESTObject):
               
         """
         self._gaiaversion = value
+    
+    @property
+    def googleClientID(self):
+        """ Get googleClientID value.
+
+          Notes:
+              GoogleClientID is the Google oauth client ID to use to get a valid token from Google for Midgard.
+
+              
+        """
+        return self._googleclientid
+
+    @googleClientID.setter
+    def googleClientID(self, value):
+        """ Set googleClientID value.
+
+          Notes:
+              GoogleClientID is the Google oauth client ID to use to get a valid token from Google for Midgard.
+
+              
+        """
+        self._googleclientid = value
     
     @property
     def manipulateVersion(self):
