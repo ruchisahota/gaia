@@ -47,7 +47,7 @@
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
-            "format": "free",
+            "format": null,
             "getter": null,
             "identifier": null,
             "index": null,
@@ -64,7 +64,7 @@
             "stored": true,
             "subtype": null,
             "transient": false,
-            "type": "string",
+            "type": "boolean",
             "unique": null,
             "uniqueScope": null
         },
