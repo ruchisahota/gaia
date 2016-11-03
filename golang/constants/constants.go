@@ -118,9 +118,6 @@ const (
 	// StatsTagKeyDestinationPort represents the destination port tag.
 	StatsTagKeyDestinationPort = "@destport"
 
-	// StatsTagKeyFlowContext represents the flow context tag.
-	StatsTagKeyFlowContext = "@flowcontext"
-
 	// StatsTagKeyProcessingUnitID represents the processing unit ID tag.
 	StatsTagKeyProcessingUnitID = "@id"
 
@@ -163,9 +160,6 @@ const (
 	// StatsTagKeyFileAccessMode represents the mode of file.
 	StatsTagKeyFileAccessMode = "@mode"
 
-	// StatsTagKeyFileAccessContext represents the full context of the file access.
-	StatsTagKeyFileAccessContext = "@filecontext"
-
 	// StatsTagKeySyscallAccessName represents the number of the syscall.
 	StatsTagKeySyscallAccessName = "@syscall"
 
@@ -174,7 +168,4 @@ const (
 
 	// StatsTagKeySyscallAccessProcessName represents the name of the related process.
 	StatsTagKeySyscallAccessProcessName = "@processname"
-
-	// StatsTagKeySyscallAccessContext represents the full context of the syscall access.
-	StatsTagKeySyscallAccessContext = "@syscallcontext"
 )
