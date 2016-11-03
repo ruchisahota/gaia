@@ -29,11 +29,13 @@ class MapNode(RESTObject):
         # Read/Write Attributes
         
         self._id = None
+        self._description = None
         self._groups = None
         self._name = None
         self._type = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="description", remote_name="description")
         self.expose_attribute(local_name="groups", remote_name="groups")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="type", remote_name="type")
@@ -84,6 +86,28 @@ class MapNode(RESTObject):
               
         """
         self._id = value
+    
+    @property
+    def description(self):
+        """ Get description value.
+
+          Notes:
+              Description is the description of the object.
+
+              
+        """
+        return self._description
+
+    @description.setter
+    def description(self, value):
+        """ Set description value.
+
+          Notes:
+              Description is the description of the object.
+
+              
+        """
+        self._description = value
     
     @property
     def groups(self):

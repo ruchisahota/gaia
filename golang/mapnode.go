@@ -28,6 +28,9 @@ type MapNode struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"-" bson:"-"`
 
+	// Description is the description of the object.
+	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+
 	// Groups for organizing resources
 	Groups []string `json:"groups" cql:"-" bson:"-"`
 
@@ -125,6 +128,16 @@ var MapNodeAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"Description": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "description",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"Groups": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
