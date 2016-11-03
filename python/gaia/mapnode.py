@@ -32,12 +32,14 @@ class MapNode(RESTObject):
         self._description = None
         self._groups = None
         self._name = None
+        self._status = None
         self._type = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="description", remote_name="description")
         self.expose_attribute(local_name="groups", remote_name="groups")
         self.expose_attribute(local_name="name", remote_name="name")
+        self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="type", remote_name="type")
 
         self._compute_args(**kwargs)
@@ -154,6 +156,28 @@ class MapNode(RESTObject):
         self._name = value
     
     @property
+    def status(self):
+        """ Get status value.
+
+          Notes:
+              Status tells the status of the node
+
+              
+        """
+        return self._status
+
+    @status.setter
+    def status(self, value):
+        """ Set status value.
+
+          Notes:
+              Status tells the status of the node
+
+              
+        """
+        self._status = value
+    
+    @property
     def type(self):
         """ Get type value.
 
@@ -181,6 +205,11 @@ class MapNode(RESTObject):
         errors = []
 
         err = validate_required_string("name", self.name)
+
+        if err:
+            errors.append(err)
+
+        err = validate_string_in_list("status", self.status, ["Active", "Dead", "Schrodinger"], true)
 
         if err:
             errors.append(err)
