@@ -29,15 +29,17 @@ class MapEdge(RESTObject):
         # Read/Write Attributes
         
         self._id = None
+        self._acceptedflows = None
         self._destinationid = None
-        self._labels = None
         self._name = None
+        self._rejectedflows = None
         self._sourceid = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="acceptedFlows", remote_name="acceptedFlows")
         self.expose_attribute(local_name="destinationID", remote_name="destinationID")
-        self.expose_attribute(local_name="labels", remote_name="labels")
         self.expose_attribute(local_name="name", remote_name="name")
+        self.expose_attribute(local_name="rejectedFlows", remote_name="rejectedFlows")
         self.expose_attribute(local_name="sourceID", remote_name="sourceID")
 
         self._compute_args(**kwargs)
@@ -88,6 +90,28 @@ class MapEdge(RESTObject):
         self._id = value
     
     @property
+    def acceptedFlows(self):
+        """ Get acceptedFlows value.
+
+          Notes:
+              AcceptedFlows tells how many accepted flows are represented by the edge
+
+              
+        """
+        return self._acceptedflows
+
+    @acceptedFlows.setter
+    def acceptedFlows(self, value):
+        """ Set acceptedFlows value.
+
+          Notes:
+              AcceptedFlows tells how many accepted flows are represented by the edge
+
+              
+        """
+        self._acceptedflows = value
+    
+    @property
     def destinationID(self):
         """ Get destinationID value.
 
@@ -110,28 +134,6 @@ class MapEdge(RESTObject):
         self._destinationid = value
     
     @property
-    def labels(self):
-        """ Get labels value.
-
-          Notes:
-              Labels provide grouping parameters
-
-              
-        """
-        return self._labels
-
-    @labels.setter
-    def labels(self, value):
-        """ Set labels value.
-
-          Notes:
-              Labels provide grouping parameters
-
-              
-        """
-        self._labels = value
-    
-    @property
     def name(self):
         """ Get name value.
 
@@ -152,6 +154,28 @@ class MapEdge(RESTObject):
               
         """
         self._name = value
+    
+    @property
+    def rejectedFlows(self):
+        """ Get rejectedFlows value.
+
+          Notes:
+              RejectedFlows tells how many flows has been rejected.
+
+              
+        """
+        return self._rejectedflows
+
+    @rejectedFlows.setter
+    def rejectedFlows(self, value):
+        """ Set rejectedFlows value.
+
+          Notes:
+              RejectedFlows tells how many flows has been rejected.
+
+              
+        """
+        self._rejectedflows = value
     
     @property
     def sourceID(self):
