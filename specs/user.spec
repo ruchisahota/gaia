@@ -158,6 +158,7 @@
         "entity_name": "User",
         "extends": [
             "@base",
+            "@described",
             "@identifiable-pk-stored",
             "@named"
         ],
