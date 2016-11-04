@@ -32,6 +32,9 @@ type User struct {
 	// Deleted marks if the entity has been deleted.
 	Deleted bool `json:"-" cql:"deleted,omitempty" bson:"deleted"`
 
+	// Description is the description of the object.
+	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+
 	// e-mail address of the user
 	Email string `json:"email" cql:"email,omitempty" bson:"email"`
 
@@ -276,6 +279,16 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Description": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "description",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"Email": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

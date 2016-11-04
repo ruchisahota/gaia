@@ -33,6 +33,7 @@ class User(RESTObject):
         self._associatedtags = None
         self._createdat = None
         self._deleted = None
+        self._description = None
         self._email = None
         self._name = None
         self._namespace = None
@@ -50,6 +51,7 @@ class User(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
+        self.expose_attribute(local_name="description", remote_name="description")
         self.expose_attribute(local_name="email", remote_name="email")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
@@ -70,16 +72,12 @@ class User(RESTObject):
     def identifier(self):
         """ Identifier returns the value of the object's unique identifier.
         """
-        
         return self.ID
-        
 
     def setIdentifier(self, ID):
         """ SetIdentifier sets the value of the object's unique identifier.
         """
-        
         self.ID = ID
-        
 
     def identity(self):
         """ Identity returns the Identity of the object.
@@ -196,6 +194,28 @@ class User(RESTObject):
               
         """
         self._deleted = value
+    
+    @property
+    def description(self):
+        """ Get description value.
+
+          Notes:
+              Description is the description of the object.
+
+              
+        """
+        return self._description
+
+    @description.setter
+    def description(self, value):
+        """ Set description value.
+
+          Notes:
+              Description is the description of the object.
+
+              
+        """
+        self._description = value
     
     @property
     def email(self):
