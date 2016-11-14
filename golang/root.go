@@ -72,15 +72,9 @@ func (o *Root) SetAPIKey(key string) {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return RootAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (Root) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return RootAttributesMap
 }
 
 // RootAttributesMap represents the map of attribute for Root.

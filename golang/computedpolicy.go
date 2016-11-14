@@ -63,15 +63,9 @@ func (o *ComputedPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ComputedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o ComputedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ComputedPolicyAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (ComputedPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return ComputedPolicyAttributesMap
 }
 
 // ComputedPolicyAttributesMap represents the map of attribute for ComputedPolicy.

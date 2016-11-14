@@ -72,15 +72,9 @@ func (o *DependencyMap) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (DependencyMap) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o DependencyMap) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return DependencyMapAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (DependencyMap) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return DependencyMapAttributesMap
 }
 
 // DependencyMapAttributesMap represents the map of attribute for DependencyMap.

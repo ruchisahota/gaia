@@ -24,7 +24,7 @@
             "name": "lastSyncTime",
             "orderable": true,
             "primary_key": false,
-            "read_only": true,
+            "read_only": false,
             "required": false,
             "setter": false,
             "stored": true,

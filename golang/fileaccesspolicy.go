@@ -218,15 +218,9 @@ func (o *FileAccessPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FileAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o FileAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FileAccessPolicyAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (FileAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return FileAccessPolicyAttributesMap
 }
 
 // FileAccessPolicyAttributesMap represents the map of attribute for FileAccessPolicy.

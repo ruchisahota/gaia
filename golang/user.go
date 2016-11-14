@@ -213,15 +213,9 @@ func (o *User) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (User) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o User) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return UserAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (User) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return UserAttributesMap
 }
 
 // UserAttributesMap represents the map of attribute for User.

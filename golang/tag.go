@@ -77,15 +77,9 @@ func (o *Tag) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Tag) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o Tag) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return TagAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (Tag) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return TagAttributesMap
 }
 
 // TagAttributesMap represents the map of attribute for Tag.

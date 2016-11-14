@@ -124,15 +124,9 @@ func (o *MapNode) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (MapNode) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o MapNode) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return MapNodeAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (MapNode) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return MapNodeAttributesMap
 }
 
 // MapNodeAttributesMap represents the map of attribute for MapNode.

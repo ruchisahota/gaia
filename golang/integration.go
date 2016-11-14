@@ -227,15 +227,9 @@ func (o *Integration) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return IntegrationAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (Integration) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return IntegrationAttributesMap
 }
 
 // IntegrationAttributesMap represents the map of attribute for Integration.

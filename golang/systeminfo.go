@@ -101,15 +101,9 @@ func (o *SystemInfo) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (SystemInfo) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o SystemInfo) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return SystemInfoAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (SystemInfo) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return SystemInfoAttributesMap
 }
 
 // SystemInfoAttributesMap represents the map of attribute for SystemInfo.

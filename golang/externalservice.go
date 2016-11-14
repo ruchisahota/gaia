@@ -218,15 +218,9 @@ func (o *ExternalService) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ExternalService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o ExternalService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ExternalServiceAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (ExternalService) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return ExternalServiceAttributesMap
 }
 
 // ExternalServiceAttributesMap represents the map of attribute for ExternalService.

@@ -256,15 +256,9 @@ func (o *ProcessingUnit) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ProcessingUnitAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return ProcessingUnitAttributesMap
 }
 
 // ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
@@ -339,7 +333,6 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "lastSyncTime",
 		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "time",
 	},

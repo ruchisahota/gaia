@@ -207,15 +207,9 @@ func (o *NamespaceMappingPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (NamespaceMappingPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o NamespaceMappingPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return NamespaceMappingPolicyAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (NamespaceMappingPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return NamespaceMappingPolicyAttributesMap
 }
 
 // NamespaceMappingPolicyAttributesMap represents the map of attribute for NamespaceMappingPolicy.

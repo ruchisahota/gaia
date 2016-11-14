@@ -81,15 +81,9 @@ func (o *PolicyRule) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (PolicyRule) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (o PolicyRule) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return PolicyRuleAttributesMap[name]
-}
-
-// AttributeSpecifications returns the full attribute specifications map.
-func (PolicyRule) AttributeSpecifications() map[string]elemental.AttributeSpecification {
-
-	return PolicyRuleAttributesMap
 }
 
 // PolicyRuleAttributesMap represents the map of attribute for PolicyRule.
