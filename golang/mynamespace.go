@@ -63,9 +63,15 @@ func (o *MyNamespace) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o MyNamespace) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (MyNamespace) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return MyNamespaceAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (MyNamespace) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return MyNamespaceAttributesMap
 }
 
 // MyNamespaceAttributesMap represents the map of attribute for MyNamespace.

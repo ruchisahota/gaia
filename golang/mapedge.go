@@ -89,9 +89,15 @@ func (o *MapEdge) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o MapEdge) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (MapEdge) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return MapEdgeAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (MapEdge) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return MapEdgeAttributesMap
 }
 
 // MapEdgeAttributesMap represents the map of attribute for MapEdge.

@@ -210,9 +210,15 @@ func (o *Certificate) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Certificate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Certificate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return CertificateAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (Certificate) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return CertificateAttributesMap
 }
 
 // CertificateAttributesMap represents the map of attribute for Certificate.

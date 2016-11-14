@@ -256,9 +256,15 @@ func (o *ProcessingUnit) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ProcessingUnitAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return ProcessingUnitAttributesMap
 }
 
 // ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.

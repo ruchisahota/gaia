@@ -211,9 +211,15 @@ func (o *FilePath) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FilePathAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (FilePath) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return FilePathAttributesMap
 }
 
 // FilePathAttributesMap represents the map of attribute for FilePath.

@@ -216,9 +216,15 @@ func (o *NetworkAccessPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o NetworkAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (NetworkAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return NetworkAccessPolicyAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (NetworkAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return NetworkAccessPolicyAttributesMap
 }
 
 // NetworkAccessPolicyAttributesMap represents the map of attribute for NetworkAccessPolicy.

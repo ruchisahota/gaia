@@ -222,9 +222,15 @@ func (o *Authenticator) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o Authenticator) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Authenticator) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return AuthenticatorAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (Authenticator) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return AuthenticatorAttributesMap
 }
 
 // AuthenticatorAttributesMap represents the map of attribute for Authenticator.

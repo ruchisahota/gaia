@@ -92,9 +92,15 @@ func (o *FileAccess) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (o FileAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (FileAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FileAccessAttributesMap[name]
+}
+
+// AttributeSpecifications returns the full attribute specifications map.
+func (FileAccess) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+
+	return FileAccessAttributesMap
 }
 
 // FileAccessAttributesMap represents the map of attribute for FileAccess.
