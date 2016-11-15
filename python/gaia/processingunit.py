@@ -545,7 +545,7 @@ class ProcessingUnit(RESTObject):
         if err:
             errors.append(err)
 
-        err = validate_string_in_list("operationalStatus", self.operationalStatus, ["Active", "Dead"], false)
+        err = validate_string_in_list("operationalStatus", self.operationalStatus, ["Paused", "Running", "Stopped"], false)
 
         if err:
             errors.append(err)

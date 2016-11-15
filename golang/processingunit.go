@@ -10,11 +10,14 @@ import "github.com/aporeto-inc/gaia/golang/constants"
 type ProcessingUnitOperationalStatusValue string
 
 const (
-	// ProcessingUnitOperationalStatusActive represents the value Active.
-	ProcessingUnitOperationalStatusActive ProcessingUnitOperationalStatusValue = "Active"
+	// ProcessingUnitOperationalStatusPaused represents the value Paused.
+	ProcessingUnitOperationalStatusPaused ProcessingUnitOperationalStatusValue = "Paused"
 
-	// ProcessingUnitOperationalStatusDead represents the value Dead.
-	ProcessingUnitOperationalStatusDead ProcessingUnitOperationalStatusValue = "Dead"
+	// ProcessingUnitOperationalStatusRunning represents the value Running.
+	ProcessingUnitOperationalStatusRunning ProcessingUnitOperationalStatusValue = "Running"
+
+	// ProcessingUnitOperationalStatusStopped represents the value Stopped.
+	ProcessingUnitOperationalStatusStopped ProcessingUnitOperationalStatusValue = "Stopped"
 )
 
 // ProcessingUnitTypeValue represents the possible values for attribute "type".
@@ -109,7 +112,7 @@ func NewProcessingUnit() *ProcessingUnit {
 	return &ProcessingUnit{
 		AssociatedTags:    []string{},
 		NormalizedTags:    []string{},
-		OperationalStatus: "Active",
+		OperationalStatus: "Stopped",
 		Status:            constants.Active,
 	}
 }
@@ -236,7 +239,7 @@ func (o *ProcessingUnit) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Active", "Dead"}, false); err != nil {
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Paused", "Running", "Stopped"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -404,11 +407,10 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"OperationalStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Active", "Dead"},
+		AllowedChoices: []string{"Paused", "Running", "Stopped"},
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "operationalStatus",
-		Required:       true,
 		Stored:         true,
 		Type:           "enum",
 	},
