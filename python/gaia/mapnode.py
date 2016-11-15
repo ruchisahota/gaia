@@ -209,11 +209,6 @@ class MapNode(RESTObject):
         if err:
             errors.append(err)
 
-        err = validate_string_in_list("status", self.status, ["Active", "Dead", "Schrodinger"], true)
-
-        if err:
-            errors.append(err)
-
         err = validate_string_in_list("type", self.type, ["Container", "Volume"], true)
 
         if err:
