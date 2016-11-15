@@ -10,6 +10,9 @@ import "github.com/aporeto-inc/gaia/golang/constants"
 type ProcessingUnitOperationalStatusValue string
 
 const (
+	// ProcessingUnitOperationalStatusInitialized represents the value Initialized.
+	ProcessingUnitOperationalStatusInitialized ProcessingUnitOperationalStatusValue = "Initialized"
+
 	// ProcessingUnitOperationalStatusPaused represents the value Paused.
 	ProcessingUnitOperationalStatusPaused ProcessingUnitOperationalStatusValue = "Paused"
 
@@ -18,6 +21,9 @@ const (
 
 	// ProcessingUnitOperationalStatusStopped represents the value Stopped.
 	ProcessingUnitOperationalStatusStopped ProcessingUnitOperationalStatusValue = "Stopped"
+
+	// ProcessingUnitOperationalStatusTerminated represents the value Terminated.
+	ProcessingUnitOperationalStatusTerminated ProcessingUnitOperationalStatusValue = "Terminated"
 )
 
 // ProcessingUnitTypeValue represents the possible values for attribute "type".
@@ -112,7 +118,7 @@ func NewProcessingUnit() *ProcessingUnit {
 	return &ProcessingUnit{
 		AssociatedTags:    []string{},
 		NormalizedTags:    []string{},
-		OperationalStatus: "Stopped",
+		OperationalStatus: "Initialized",
 		Status:            constants.Active,
 	}
 }
@@ -239,7 +245,7 @@ func (o *ProcessingUnit) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Paused", "Running", "Stopped"}, false); err != nil {
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -407,7 +413,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"OperationalStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Paused", "Running", "Stopped"},
+		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "operationalStatus",
