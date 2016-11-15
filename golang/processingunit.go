@@ -397,7 +397,6 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Format:         "free",
 		Name:           "nativeContextID",
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
