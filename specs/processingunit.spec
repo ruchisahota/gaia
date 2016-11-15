@@ -113,7 +113,7 @@
             "channel": null,
             "creation_only": false,
             "default_order": false,
-            "default_value": "Active",
+            "default_value": "Stopped",
             "deprecated": false,
             "description": "OperationalStatus of the processing unit",
             "exposed": true,
