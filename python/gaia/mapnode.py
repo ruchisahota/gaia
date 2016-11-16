@@ -34,6 +34,7 @@ class MapNode(RESTObject):
         self._name = None
         self._status = None
         self._type = None
+        self._vulnerabilitylevel = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="description", remote_name="description")
@@ -41,6 +42,7 @@ class MapNode(RESTObject):
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="type", remote_name="type")
+        self.expose_attribute(local_name="vulnerabilityLevel", remote_name="vulnerabilityLevel")
 
         self._compute_args(**kwargs)
 
@@ -198,6 +200,28 @@ class MapNode(RESTObject):
               
         """
         self._type = value
+    
+    @property
+    def vulnerabilityLevel(self):
+        """ Get vulnerabilityLevel value.
+
+          Notes:
+              VulnerabilityLevel tells the current vulnerability of the node
+
+              
+        """
+        return self._vulnerabilitylevel
+
+    @vulnerabilityLevel.setter
+    def vulnerabilityLevel(self, value):
+        """ Set vulnerabilityLevel value.
+
+          Notes:
+              VulnerabilityLevel tells the current vulnerability of the node
+
+              
+        """
+        self._vulnerabilitylevel = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.
