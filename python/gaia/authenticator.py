@@ -33,7 +33,6 @@ class Authenticator(RESTObject):
         self._associatedtags = None
         self._configuration = None
         self._createdat = None
-        self._defaultnamespace = None
         self._deleted = None
         self._description = None
         self._method = None
@@ -50,7 +49,6 @@ class Authenticator(RESTObject):
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="configuration", remote_name="configuration")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
-        self.expose_attribute(local_name="defaultNamespace", remote_name="defaultNamespace")
         self.expose_attribute(local_name="deleted", remote_name="deleted")
         self.expose_attribute(local_name="description", remote_name="description")
         self.expose_attribute(local_name="method", remote_name="method")
@@ -196,28 +194,6 @@ class Authenticator(RESTObject):
               
         """
         self._createdat = value
-    
-    @property
-    def defaultNamespace(self):
-        """ Get defaultNamespace value.
-
-          Notes:
-              Namespace is the default namespace of the Authenticator
-
-              
-        """
-        return self._defaultnamespace
-
-    @defaultNamespace.setter
-    def defaultNamespace(self, value):
-        """ Set defaultNamespace value.
-
-          Notes:
-              Namespace is the default namespace of the Authenticator
-
-              
-        """
-        self._defaultnamespace = value
     
     @property
     def deleted(self):
