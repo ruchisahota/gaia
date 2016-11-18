@@ -2,8 +2,6 @@
 
 routes = []
 
-# routes for mynamespaces
-
 # routes for namespacemappingpolicies
 routes.append(("GET", "/namespacemappingpolicies/:id"))
 routes.append(("PUT", "/namespacemappingpolicies/:id"))
@@ -137,7 +135,6 @@ routes.append(("GET", "/filepaths"))
 routes.append(("GET", "/flowstatistics"))
 routes.append(("POST", "/integrations"))
 routes.append(("GET", "/integrations"))
-routes.append(("GET", "/mynamespaces"))
 routes.append(("POST", "/namespaces"))
 routes.append(("GET", "/namespaces"))
 routes.append(("POST", "/namespacemappingpolicies"))

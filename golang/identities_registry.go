@@ -4,7 +4,6 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
-	elemental.RegisterIdentity(MyNamespaceIdentity)
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
