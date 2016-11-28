@@ -14,6 +14,8 @@ routes.append(("GET", "/apiauthorizationpolicies/:id"))
 routes.append(("PUT", "/apiauthorizationpolicies/:id"))
 routes.append(("DELETE", "/apiauthorizationpolicies/:id"))
 
+# routes for namespacecontents
+
 # routes for systeminfos
 
 # routes for syscallaccesses
