@@ -7,6 +7,7 @@ func init() {
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
+	elemental.RegisterIdentity(NamespaceContentIdentity)
 	elemental.RegisterIdentity(SystemInfoIdentity)
 	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(ComputedPolicyIdentity)
@@ -46,6 +47,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewDependencyMapSubview()
 	case APIAuthorizationPolicyIdentity.Name:
 		return NewAPIAuthorizationPolicy()
+	case NamespaceContentIdentity.Name:
+		return NewNamespaceContent()
 	case SystemInfoIdentity.Name:
 		return NewSystemInfo()
 	case SyscallAccessIdentity.Name:
