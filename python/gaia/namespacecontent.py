@@ -4,15 +4,15 @@ from pyelemental import RESTObject
 from pyelemental import validate_string_in_list, validate_float_in_list, validate_int_in_list, validate_required_int, validate_required_float, validate_required_string, validate_required_time, validate_maximum_float, validate_minimum_float, validate_maximum_int, validate_minimum_int, validate_maximum_length, validate_minimum_length, validate_pattern
 
 
-class Tag(RESTObject):
-    """ Represents a Tag in the 
+class NamespaceContent(RESTObject):
+    """ Represents a NamespaceContent in the 
 
         Notes:
-            A Tag represents a tags associated to an object.
+            This object is used to delete the content of a namespace easily
     """
 
     def __init__(self, **kwargs):
-        """ Initializes a Tag instance
+        """ Initializes a NamespaceContent instance
 
           Notes:
               You can specify all parameters while calling this methods.
@@ -20,23 +20,21 @@ class Tag(RESTObject):
               object from a Python dictionary
 
           Examples:
-              >>> tag = Tag(id=u'xxxx-xxx-xxx-xxx', name=u'Tag')
-              >>> tag = Tag(data=my_dict)
+              >>> namespacecontent = NamespaceContent(id=u'xxxx-xxx-xxx-xxx', name=u'NamespaceContent')
+              >>> namespacecontent = NamespaceContent(data=my_dict)
         """
 
-        super(Tag, self).__init__()
+        super(NamespaceContent, self).__init__()
 
         # Read/Write Attributes
         
-        self._id = None
-        self._count = None
+        self._contentid = None
+        self._contenttype = None
         self._namespace = None
-        self._value = None
         
-        self.expose_attribute(local_name="ID", remote_name="ID")
-        self.expose_attribute(local_name="count", remote_name="count")
+        self.expose_attribute(local_name="contentID", remote_name="contentID")
+        self.expose_attribute(local_name="contentType", remote_name="contentType")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
-        self.expose_attribute(local_name="value", remote_name="value")
 
         self._compute_args(**kwargs)
 
@@ -46,69 +44,69 @@ class Tag(RESTObject):
     def identifier(self):
         """ Identifier returns the value of the object's unique identifier.
         """
-        return self.ID
+        return self.
 
     def setIdentifier(self, ID):
         """ SetIdentifier sets the value of the object's unique identifier.
         """
-        self.ID = ID
+        self. = ID
 
     def identity(self):
         """ Identity returns the Identity of the object.
         """
-        return tagIdentity
+        return namespacecontentIdentity
 
     # Properties
     @property
-    def ID(self):
-        """ Get ID value.
+    def contentID(self):
+        """ Get contentID value.
 
           Notes:
-              ID is the identifier of the object.
+              ID of the content
 
               
         """
-        return self._id
+        return self._contentid
 
-    @ID.setter
-    def ID(self, value):
-        """ Set ID value.
+    @contentID.setter
+    def contentID(self, value):
+        """ Set contentID value.
 
           Notes:
-              ID is the identifier of the object.
+              ID of the content
 
               
         """
-        self._id = value
+        self._contentid = value
     
     @property
-    def count(self):
-        """ Get count value.
+    def contentType(self):
+        """ Get contentType value.
 
           Notes:
-              Count represents the number of time the tag is used.
+              Type of the content
 
               
         """
-        return self._count
+        return self._contenttype
 
-    @count.setter
-    def count(self, value):
-        """ Set count value.
+    @contentType.setter
+    def contentType(self, value):
+        """ Set contentType value.
 
           Notes:
-              Count represents the number of time the tag is used.
+              Type of the content
 
               
         """
-        self._count = value
+        self._contenttype = value
     
     @property
     def namespace(self):
         """ Get namespace value.
 
           Notes:
-              Namespace represents the namespace of the counted tag.
+              name of the namespace
 
               
         """
@@ -119,45 +117,28 @@ class Tag(RESTObject):
         """ Set namespace value.
 
           Notes:
-              Namespace represents the namespace of the counted tag.
+              name of the namespace
 
               
         """
         self._namespace = value
-    
-    @property
-    def value(self):
-        """ Get value value.
-
-          Notes:
-              Value represents the value of the tag.
-
-              
-        """
-        return self._value
-
-    @value.setter
-    def value(self, value):
-        """ Set value value.
-
-          Notes:
-              Value represents the value of the tag.
-
-              
-        """
-        self._value = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.
         """
         errors = []
 
-        err = validate_pattern("value", self.value, "^[\w\d\*\$\+\.:,|@<>/-]+=[\w\d\*\$\+\.:,|@<>/-]+$")
+        err = validate_required_string("contentID", self.contentID)
 
         if err:
             errors.append(err)
 
-        err = validate_required_string("value", self.value)
+        err = validate_required_string("contentType", self.contentType)
+
+        if err:
+            errors.append(err)
+
+        err = validate_required_string("namespace", self.namespace)
 
         if err:
             errors.append(err)
@@ -167,5 +148,5 @@ class Tag(RESTObject):
 
         return None
 
-    # tagIdentity represents the Identity of the object
-tagIdentity = {"name": "tag", "category": "tags", "constructor": Tag}
+    # namespacecontentIdentity represents the Identity of the object
+namespacecontentIdentity = {"name": "namespacecontent", "category": "namespacecontents", "constructor": NamespaceContent}
