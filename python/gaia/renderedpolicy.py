@@ -32,11 +32,13 @@ class RenderedPolicy(RESTObject):
         self._egresspolicies = None
         self._ingresspolicies = None
         self._processingunitid = None
+        self._profile = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
         self.expose_attribute(local_name="egressPolicies", remote_name="egressPolicies")
         self.expose_attribute(local_name="ingressPolicies", remote_name="ingressPolicies")
         self.expose_attribute(local_name="processingUnitID", remote_name="processingUnitID")
+        self.expose_attribute(local_name="profile", remote_name="profile")
 
         self._compute_args(**kwargs)
 
@@ -150,6 +152,28 @@ class RenderedPolicy(RESTObject):
               
         """
         self._processingunitid = value
+    
+    @property
+    def profile(self):
+        """ Get profile value.
+
+          Notes:
+              Profile is the trust profile of the processing unit that should be used during all communications.
+
+              
+        """
+        return self._profile
+
+    @profile.setter
+    def profile(self, value):
+        """ Set profile value.
+
+          Notes:
+              Profile is the trust profile of the processing unit that should be used during all communications.
+
+              
+        """
+        self._profile = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.

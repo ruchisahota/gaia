@@ -25,6 +25,9 @@ type RenderedPolicy struct {
 
 	// Identifier of the ProcessingUnit
 	ProcessingUnitID string `json:"processingUnitID" cql:"-" bson:"-"`
+
+	// Profile is the trust profile of the processing unit that should be used during all communications.
+	Profile map[string]bool `json:"profile" cql:"profile,omitempty" bson:"profile"`
 }
 
 // NewRenderedPolicy returns a new *RenderedPolicy
@@ -125,5 +128,14 @@ var RenderedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"Profile": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "profile",
+		Stored:         true,
+		SubType:        "trust_profile",
+		Type:           "external",
 	},
 }
