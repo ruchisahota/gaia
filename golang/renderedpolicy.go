@@ -27,7 +27,7 @@ type RenderedPolicy struct {
 	ProcessingUnitID string `json:"processingUnitID" cql:"-" bson:"-"`
 
 	// Profile is the trust profile of the processing unit that should be used during all communications.
-	Profile map[string]bool `json:"profile" cql:"profile,omitempty" bson:"profile"`
+	Profile map[string]string `json:"profile" cql:"profile,omitempty" bson:"profile"`
 }
 
 // NewRenderedPolicy returns a new *RenderedPolicy
