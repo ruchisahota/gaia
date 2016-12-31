@@ -157,7 +157,7 @@
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
-            "format": "free",
+            "format": null,
             "getter": null,
             "identifier": null,
             "index": null,
@@ -166,7 +166,7 @@
             "min_length": null,
             "min_value": null,
             "name": "targetNetworks",
-            "orderable": true,
+            "orderable": false,
             "primary_key": null,
             "read_only": null,
             "required": null,
@@ -174,7 +174,7 @@
             "stored": true,
             "subtype": null,
             "transient": false,
-            "type": "string",
+            "type": "list",
             "unique": null,
             "uniqueScope": null
         }
