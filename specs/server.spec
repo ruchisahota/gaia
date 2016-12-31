@@ -172,9 +172,9 @@
             "required": null,
             "setter": null,
             "stored": true,
-            "subtype": null,
+            "subtype": "target_networks_list",
             "transient": false,
-            "type": "list",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         }
