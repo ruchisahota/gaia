@@ -29,10 +29,12 @@ class APICheck(RESTObject):
         # Read/Write Attributes
         
         self._api = None
+        self._authorized = None
         self._namespace = None
         self._token = None
         
         self.expose_attribute(local_name="API", remote_name="API")
+        self.expose_attribute(local_name="authorized", remote_name="authorized")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="token", remote_name="token")
 
@@ -80,6 +82,28 @@ class APICheck(RESTObject):
               
         """
         self._api = value
+    
+    @property
+    def authorized(self):
+        """ Get authorized value.
+
+          Notes:
+              Authorized contains the results of the check.
+
+              
+        """
+        return self._authorized
+
+    @authorized.setter
+    def authorized(self, value):
+        """ Set authorized value.
+
+          Notes:
+              Authorized contains the results of the check.
+
+              
+        """
+        self._authorized = value
     
     @property
     def namespace(self):
