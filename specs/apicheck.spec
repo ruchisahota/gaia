@@ -77,7 +77,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "The token to use to check api authentication",
+            "description": "Token is the token to use to check api authentication",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
