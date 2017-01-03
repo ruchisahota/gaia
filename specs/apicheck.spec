@@ -43,7 +43,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "The namespace to use to check the api authentication.",
+            "description": "Namespace is the namespace to use to check the api authentication.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
