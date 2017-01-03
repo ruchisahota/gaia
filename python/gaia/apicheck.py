@@ -28,11 +28,11 @@ class APICheck(RESTObject):
 
         # Read/Write Attributes
         
-        self._identity = None
+        self._api = None
         self._namespace = None
         self._token = None
         
-        self.expose_attribute(local_name="identity", remote_name="identity")
+        self.expose_attribute(local_name="API", remote_name="API")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="token", remote_name="token")
 
@@ -60,33 +60,33 @@ class APICheck(RESTObject):
 
     # Properties
     @property
-    def identity(self):
-        """ Get identity value.
+    def API(self):
+        """ Get API value.
 
           Notes:
-              The identity to use to use to check the api authentication
+              API is the API identity to use to use to check the api authentication
 
               
         """
-        return self._identity
+        return self._api
 
-    @identity.setter
-    def identity(self, value):
-        """ Set identity value.
+    @API.setter
+    def API(self, value):
+        """ Set API value.
 
           Notes:
-              The identity to use to use to check the api authentication
+              API is the API identity to use to use to check the api authentication
 
               
         """
-        self._identity = value
+        self._api = value
     
     @property
     def namespace(self):
         """ Get namespace value.
 
           Notes:
-              The namespace to use to check the api authentication.
+              Namespace is the namespace to use to check the api authentication.
 
               
         """
@@ -97,7 +97,7 @@ class APICheck(RESTObject):
         """ Set namespace value.
 
           Notes:
-              The namespace to use to check the api authentication.
+              Namespace is the namespace to use to check the api authentication.
 
               
         """
@@ -108,7 +108,7 @@ class APICheck(RESTObject):
         """ Get token value.
 
           Notes:
-              The token to use to check api authentication
+              Token is the token to use to check api authentication
 
               
         """
@@ -119,7 +119,7 @@ class APICheck(RESTObject):
         """ Set token value.
 
           Notes:
-              The token to use to check api authentication
+              Token is the token to use to check api authentication
 
               
         """

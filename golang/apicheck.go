@@ -14,13 +14,13 @@ type APIChecksList []*APICheck
 
 // APICheck represents the model of a apicheck
 type APICheck struct {
-	// The identity to use to use to check the api authentication
-	Identity string `json:"identity" cql:"-" bson:"-"`
+	// API is the API identity to use to use to check the api authentication
+	API string `json:"API" cql:"-" bson:"-"`
 
-	// The namespace to use to check the api authentication.
+	// Namespace is the namespace to use to check the api authentication.
 	Namespace string `json:"namespace" cql:"-" bson:"-"`
 
-	// The token to use to check api authentication
+	// Token is the token to use to check api authentication
 	Token string `json:"token" cql:"-" bson:"-"`
 }
 
@@ -86,11 +86,11 @@ func (APICheck) AttributeSpecifications() map[string]elemental.AttributeSpecific
 
 // APICheckAttributesMap represents the map of attribute for APICheck.
 var APICheckAttributesMap = map[string]elemental.AttributeSpecification{
-	"Identity": elemental.AttributeSpecification{
+	"API": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
 		Format:         "free",
-		Name:           "identity",
+		Name:           "API",
 		Type:           "string",
 	},
 	"Namespace": elemental.AttributeSpecification{
