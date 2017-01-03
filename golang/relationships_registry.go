@@ -174,6 +174,28 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("flowstatistic")] = FlowStatisticMainRelationship
 
 	//
+	// Main Relationship for serverprofile
+	//
+	ServerProfileMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("serverprofile")] = ServerProfileMainRelationship
+
+	//
+	// Main Relationship for serverpolicy
+	//
+	ServerPolicyMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("serverpolicy")] = ServerPolicyMainRelationship
+
+	//
 	// Main Relationship for computeddependencymapview
 	//
 	ComputedDependencyMapViewMainRelationship := &elemental.Relationship{
@@ -327,6 +349,14 @@ func init() {
 		elemental.IdentityFromName("certificate"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for serverprofiles in server
+	ServerMainRelationship.AddChild(
+		elemental.IdentityFromName("serverprofile"),
+		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
@@ -499,6 +529,24 @@ func init() {
 	// Children relationship for servers in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("server"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for serverpolicies in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("serverpolicy"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for serverprofiles in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("serverprofile"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
