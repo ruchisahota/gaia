@@ -85,15 +85,15 @@ func (o *NamespaceMappingPolicy) Identifier() string {
 	return o.ID
 }
 
-func (o *NamespaceMappingPolicy) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *NamespaceMappingPolicy) SetIdentifier(ID string) {
 
 	o.ID = ID
+}
+
+func (o *NamespaceMappingPolicy) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver

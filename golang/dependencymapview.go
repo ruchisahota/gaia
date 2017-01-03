@@ -104,15 +104,15 @@ func (o *DependencyMapView) Identifier() string {
 	return o.ID
 }
 
-func (o *DependencyMapView) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *DependencyMapView) SetIdentifier(ID string) {
 
 	o.ID = ID
+}
+
+func (o *DependencyMapView) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver

@@ -48,15 +48,15 @@ func (o *RenderedPolicy) Identifier() string {
 	return o.ProcessingUnitID
 }
 
-func (o *RenderedPolicy) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *RenderedPolicy) SetIdentifier(ID string) {
 
 	o.ProcessingUnitID = ID
+}
+
+func (o *RenderedPolicy) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // Validate valides the current information stored into the structure.

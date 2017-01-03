@@ -77,14 +77,14 @@ func (o *SystemInfo) Identifier() string {
 	return ""
 }
 
-func (o *SystemInfo) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *SystemInfo) SetIdentifier(ID string) {
 
+}
+
+func (o *SystemInfo) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // Validate valides the current information stored into the structure.

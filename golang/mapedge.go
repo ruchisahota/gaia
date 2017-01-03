@@ -51,15 +51,15 @@ func (o *MapEdge) Identifier() string {
 	return o.ID
 }
 
-func (o *MapEdge) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *MapEdge) SetIdentifier(ID string) {
 
 	o.ID = ID
+}
+
+func (o *MapEdge) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetName returns the name of the receiver

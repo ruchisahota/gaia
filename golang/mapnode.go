@@ -67,15 +67,15 @@ func (o *MapNode) Identifier() string {
 	return o.ID
 }
 
-func (o *MapNode) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *MapNode) SetIdentifier(ID string) {
 
 	o.ID = ID
+}
+
+func (o *MapNode) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetName returns the name of the receiver

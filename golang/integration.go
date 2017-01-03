@@ -115,15 +115,15 @@ func (o *Integration) Identifier() string {
 	return o.ID
 }
 
-func (o *Integration) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *Integration) SetIdentifier(ID string) {
 
 	o.ID = ID
+}
+
+func (o *Integration) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
