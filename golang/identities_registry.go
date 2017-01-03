@@ -4,6 +4,7 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
+	elemental.RegisterIdentity(APICheckIdentity)
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
@@ -44,6 +45,8 @@ func init() {
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
+	case APICheckIdentity.Name:
+		return NewAPICheck()
 	case NamespaceMappingPolicyIdentity.Name:
 		return NewNamespaceMappingPolicy()
 	case DependencyMapSubviewIdentity.Name:

@@ -14,6 +14,17 @@ func init() {
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
 	//
+	// Main Relationship for apicheck
+	//
+	APICheckMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("apicheck")] = APICheckMainRelationship
+
+	//
 	// Main Relationship for namespacemappingpolicy
 	//
 	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
@@ -381,6 +392,15 @@ func init() {
 	// Children relationship for apiauthorizationpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("apiauthorizationpolicy"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for apichecks in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("apicheck"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
 			AllowsRetrieveMany: true,

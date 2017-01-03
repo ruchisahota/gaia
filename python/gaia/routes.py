@@ -2,6 +2,11 @@
 
 routes = []
 
+# routes for apichecks
+routes.append(("GET", "/apichecks/:id"))
+routes.append(("PUT", "/apichecks/:id"))
+routes.append(("DELETE", "/apichecks/:id"))
+
 # routes for namespacemappingpolicies
 routes.append(("GET", "/namespacemappingpolicies/:id"))
 routes.append(("PUT", "/namespacemappingpolicies/:id"))
@@ -131,6 +136,8 @@ routes.append(("GET", "/servers/:id/serverprofiles"))
 routes.append(("GET", "/root"))
 routes.append(("POST", "/apiauthorizationpolicies"))
 routes.append(("GET", "/apiauthorizationpolicies"))
+routes.append(("POST", "/apichecks"))
+routes.append(("GET", "/apichecks"))
 routes.append(("POST", "/authenticators"))
 routes.append(("GET", "/authenticators"))
 routes.append(("GET", "/certificates"))
