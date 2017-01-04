@@ -106,6 +106,7 @@
             "allowed_chars": null,
             "allowed_choices": [
                 "Create",
+                "Delete",
                 "Retrieve",
                 "RetrieveMany",
                 "Update"
