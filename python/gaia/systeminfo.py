@@ -35,9 +35,10 @@ class SystemInfo(RESTObject):
         self._googleclientid = None
         self._manipulateversion = None
         self._midgardurl = None
+        self._pubsubservice = None
         self._squallversion = None
-        self._statisticsservice = None
         self._status = None
+        self._zackurl = None
         
         self.expose_attribute(local_name="APIVersion", remote_name="APIVersion")
         self.expose_attribute(local_name="bahamutVersion", remote_name="bahamutVersion")
@@ -46,9 +47,10 @@ class SystemInfo(RESTObject):
         self.expose_attribute(local_name="googleClientID", remote_name="googleClientID")
         self.expose_attribute(local_name="manipulateVersion", remote_name="manipulateVersion")
         self.expose_attribute(local_name="midgardURL", remote_name="midgardURL")
+        self.expose_attribute(local_name="pubsubService", remote_name="pubsubService")
         self.expose_attribute(local_name="squallVersion", remote_name="squallVersion")
-        self.expose_attribute(local_name="statisticsService", remote_name="statisticsService")
         self.expose_attribute(local_name="status", remote_name="status")
+        self.expose_attribute(local_name="zackURL", remote_name="zackURL")
 
         self._compute_args(**kwargs)
 
@@ -228,6 +230,28 @@ class SystemInfo(RESTObject):
         self._midgardurl = value
     
     @property
+    def pubsubService(self):
+        """ Get pubsubService value.
+
+          Notes:
+              PubsubService provides the end-point for the pubsub server.
+
+              
+        """
+        return self._pubsubservice
+
+    @pubsubService.setter
+    def pubsubService(self, value):
+        """ Set pubsubService value.
+
+          Notes:
+              PubsubService provides the end-point for the pubsub server.
+
+              
+        """
+        self._pubsubservice = value
+    
+    @property
     def squallVersion(self):
         """ Get squallVersion value.
 
@@ -250,28 +274,6 @@ class SystemInfo(RESTObject):
         self._squallversion = value
     
     @property
-    def statisticsService(self):
-        """ Get statisticsService value.
-
-          Notes:
-              StatisticsService provides the end-point for pushing statistics events.
-
-              
-        """
-        return self._statisticsservice
-
-    @statisticsService.setter
-    def statisticsService(self, value):
-        """ Set statisticsService value.
-
-          Notes:
-              StatisticsService provides the end-point for pushing statistics events.
-
-              
-        """
-        self._statisticsservice = value
-    
-    @property
     def status(self):
         """ Get status value.
 
@@ -292,6 +294,28 @@ class SystemInfo(RESTObject):
               
         """
         self._status = value
+    
+    @property
+    def zackURL(self):
+        """ Get zackURL value.
+
+          Notes:
+              zackURL contains the URL of the Zack server.
+
+              
+        """
+        return self._zackurl
+
+    @zackURL.setter
+    def zackURL(self, value):
+        """ Set zackURL value.
+
+          Notes:
+              zackURL contains the URL of the Zack server.
+
+              
+        """
+        self._zackurl = value
     
     def validate(self):
         """ Validate valides the current information stored into the structure.
