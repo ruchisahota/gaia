@@ -107,6 +107,7 @@
             "allowed_choices": [
                 "Create",
                 "Delete",
+                "Patch",
                 "Retrieve",
                 "RetrieveMany",
                 "Update"
