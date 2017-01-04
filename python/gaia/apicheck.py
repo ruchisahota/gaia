@@ -31,11 +31,13 @@ class APICheck(RESTObject):
         self._api = None
         self._authorized = None
         self._namespace = None
+        self._operation = None
         self._token = None
         
         self.expose_attribute(local_name="API", remote_name="API")
         self.expose_attribute(local_name="authorized", remote_name="authorized")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
+        self.expose_attribute(local_name="operation", remote_name="operation")
         self.expose_attribute(local_name="token", remote_name="token")
 
         self._compute_args(**kwargs)
@@ -128,6 +130,28 @@ class APICheck(RESTObject):
         self._namespace = value
     
     @property
+    def operation(self):
+        """ Get operation value.
+
+          Notes:
+              Operation is the operation you want to check.
+
+              
+        """
+        return self._operation
+
+    @operation.setter
+    def operation(self, value):
+        """ Set operation value.
+
+          Notes:
+              Operation is the operation you want to check.
+
+              
+        """
+        self._operation = value
+    
+    @property
     def token(self):
         """ Get token value.
 
@@ -155,6 +179,11 @@ class APICheck(RESTObject):
         errors = []
 
         err = validate_required_string("namespace", self.namespace)
+
+        if err:
+            errors.append(err)
+
+        err = validate_string_in_list("operation", self.operation, ["Create", "Delete", "Info", "Patch", "Retrieve", "RetrieveMany", "Update"], false)
 
         if err:
             errors.append(err)

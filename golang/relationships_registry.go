@@ -16,11 +16,7 @@ func init() {
 	//
 	// Main Relationship for apicheck
 	//
-	APICheckMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
+	APICheckMainRelationship := &elemental.Relationship{}
 
 	relationshipsRegistry[elemental.IdentityFromName("apicheck")] = APICheckMainRelationship
 
@@ -402,9 +398,7 @@ func init() {
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("apicheck"),
 		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
+			AllowsCreate: true,
 		},
 	)
 	// Children relationship for authenticators in root

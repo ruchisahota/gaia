@@ -3,6 +3,32 @@ package gaia
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+// APICheckOperationValue represents the possible values for attribute "operation".
+type APICheckOperationValue string
+
+const (
+	// APICheckOperationCreate represents the value Create.
+	APICheckOperationCreate APICheckOperationValue = "Create"
+
+	// APICheckOperationDelete represents the value Delete.
+	APICheckOperationDelete APICheckOperationValue = "Delete"
+
+	// APICheckOperationInfo represents the value Info.
+	APICheckOperationInfo APICheckOperationValue = "Info"
+
+	// APICheckOperationPatch represents the value Patch.
+	APICheckOperationPatch APICheckOperationValue = "Patch"
+
+	// APICheckOperationRetrieve represents the value Retrieve.
+	APICheckOperationRetrieve APICheckOperationValue = "Retrieve"
+
+	// APICheckOperationRetrievemany represents the value RetrieveMany.
+	APICheckOperationRetrievemany APICheckOperationValue = "RetrieveMany"
+
+	// APICheckOperationUpdate represents the value Update.
+	APICheckOperationUpdate APICheckOperationValue = "Update"
+)
+
 // APICheckIdentity represents the Identity of the object
 var APICheckIdentity = elemental.Identity{
 	Name:     "apicheck",
@@ -22,6 +48,9 @@ type APICheck struct {
 
 	// Namespace is the namespace to use to check the api authentication.
 	Namespace string `json:"namespace" cql:"-" bson:"-"`
+
+	// Operation is the operation you want to check.
+	Operation APICheckOperationValue `json:"operation" cql:"operation,omitempty" bson:"operation"`
 
 	// Token is the token to use to check api authentication
 	Token string `json:"token" cql:"-" bson:"-"`
@@ -61,6 +90,10 @@ func (o *APICheck) Validate() error {
 	errors := elemental.Errors{}
 
 	if err := elemental.ValidateRequiredString("namespace", o.Namespace); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("operation", string(o.Operation), []string{"Create", "Delete", "Info", "Patch", "Retrieve", "RetrieveMany", "Update"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -111,6 +144,15 @@ var APICheckAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "namespace",
 		Required:       true,
 		Type:           "string",
+	},
+	"Operation": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Create", "Delete", "Info", "Patch", "Retrieve", "RetrieveMany", "Update"},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "operation",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"Token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

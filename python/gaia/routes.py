@@ -3,9 +3,6 @@
 routes = []
 
 # routes for apichecks
-routes.append(("GET", "/apichecks/:id"))
-routes.append(("PUT", "/apichecks/:id"))
-routes.append(("DELETE", "/apichecks/:id"))
 
 # routes for namespacemappingpolicies
 routes.append(("GET", "/namespacemappingpolicies/:id"))
