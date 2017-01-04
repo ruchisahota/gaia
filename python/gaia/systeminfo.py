@@ -49,7 +49,7 @@ class SystemInfo(RESTObject):
         self.expose_attribute(local_name="kairosDBURL", remote_name="kairosDBURL")
         self.expose_attribute(local_name="manipulateVersion", remote_name="manipulateVersion")
         self.expose_attribute(local_name="midgardURL", remote_name="midgardURL")
-        self.expose_attribute(local_name="pubsubService", remote_name="pubsubService")
+        self.expose_attribute(local_name="pubSubService", remote_name="pubSubService")
         self.expose_attribute(local_name="squallVersion", remote_name="squallVersion")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="zackURL", remote_name="zackURL")
@@ -254,8 +254,8 @@ class SystemInfo(RESTObject):
         self._midgardurl = value
     
     @property
-    def pubsubService(self):
-        """ Get pubsubService value.
+    def pubSubService(self):
+        """ Get pubSubService value.
 
           Notes:
               PubsubService provides the end-point for the pubsub server.
@@ -264,9 +264,9 @@ class SystemInfo(RESTObject):
         """
         return self._pubsubservice
 
-    @pubsubService.setter
-    def pubsubService(self, value):
-        """ Set pubsubService value.
+    @pubSubService.setter
+    def pubSubService(self, value):
+        """ Set pubSubService value.
 
           Notes:
               PubsubService provides the end-point for the pubsub server.
@@ -347,6 +347,11 @@ class SystemInfo(RESTObject):
         errors = []
 
         err = validate_string_in_list("status", self.status, ["Degraded", "Failure", "Ok"], true)
+
+        if err:
+            errors.append(err)
+
+        err = validate_required_string("zackURL", self.zackURL)
 
         if err:
             errors.append(err)
