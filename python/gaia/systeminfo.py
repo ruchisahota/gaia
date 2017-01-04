@@ -33,6 +33,7 @@ class SystemInfo(RESTObject):
         self._elementalversion = None
         self._gaiaversion = None
         self._googleclientid = None
+        self._kairosdburl = None
         self._manipulateversion = None
         self._midgardurl = None
         self._pubsubservice = None
@@ -45,6 +46,7 @@ class SystemInfo(RESTObject):
         self.expose_attribute(local_name="elementalVersion", remote_name="elementalVersion")
         self.expose_attribute(local_name="gaiaVersion", remote_name="gaiaVersion")
         self.expose_attribute(local_name="googleClientID", remote_name="googleClientID")
+        self.expose_attribute(local_name="kairosDBURL", remote_name="kairosDBURL")
         self.expose_attribute(local_name="manipulateVersion", remote_name="manipulateVersion")
         self.expose_attribute(local_name="midgardURL", remote_name="midgardURL")
         self.expose_attribute(local_name="pubsubService", remote_name="pubsubService")
@@ -184,6 +186,28 @@ class SystemInfo(RESTObject):
               
         """
         self._googleclientid = value
+    
+    @property
+    def kairosDBURL(self):
+        """ Get kairosDBURL value.
+
+          Notes:
+              KairosDBURL contains the URL of the kairos db server.
+
+              
+        """
+        return self._kairosdburl
+
+    @kairosDBURL.setter
+    def kairosDBURL(self, value):
+        """ Set kairosDBURL value.
+
+          Notes:
+              KairosDBURL contains the URL of the kairos db server.
+
+              
+        """
+        self._kairosdburl = value
     
     @property
     def manipulateVersion(self):

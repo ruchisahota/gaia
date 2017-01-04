@@ -43,6 +43,9 @@ type SystemInfo struct {
 	// GoogleClientID is the Google oauth client ID to use to get a valid token from Google for Midgard.
 	GoogleClientID string `json:"googleClientID" cql:"googleclientid,omitempty" bson:"googleclientid"`
 
+	// KairosDBURL contains the URL of the kairos db server.
+	KairosDBURL string `json:"kairosDBURL" cql:"kairosdburl,omitempty" bson:"kairosdburl"`
+
 	// ManipulateVersion is the version of Manipulate used by the server.
 	ManipulateVersion string `json:"manipulateVersion" cql:"-" bson:"-"`
 
@@ -162,6 +165,16 @@ var SystemInfoAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Format:         "free",
 		Name:           "googleClientID",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"KairosDBURL": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "kairosDBURL",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
