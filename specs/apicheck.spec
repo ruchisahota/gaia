@@ -140,15 +140,15 @@
     "children": [],
     "model": {
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "APICheck",
         "extends": [],
-        "get": true,
+        "get": false,
         "package": null,
         "resource_name": "apichecks",
         "rest_name": "apicheck",
         "root": null,
-        "update": true
+        "update": false
     }
 }
