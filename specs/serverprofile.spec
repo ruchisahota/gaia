@@ -7,7 +7,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": null,
+            "default_value": "5s",
             "deprecated": null,
             "description": "PUHeartbeatInterval configures the heart beat interval.",
             "exposed": true,
