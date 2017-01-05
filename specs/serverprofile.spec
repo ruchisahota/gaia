@@ -495,7 +495,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": null,
+            "default_value": "12h",
             "deprecated": null,
             "description": "TokenRnewInterval sets how often the Midgard token will be refreshed.",
             "exposed": true,
