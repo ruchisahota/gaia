@@ -6,37 +6,6 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
-// ServerProfileLogLevelValue represents the possible values for attribute "logLevel".
-type ServerProfileLogLevelValue string
-
-const (
-	// ServerProfileLogLevelDebug represents the value debug.
-	ServerProfileLogLevelDebug ServerProfileLogLevelValue = "debug"
-
-	// ServerProfileLogLevelError represents the value error.
-	ServerProfileLogLevelError ServerProfileLogLevelValue = "error"
-
-	// ServerProfileLogLevelFatal represents the value fatal.
-	ServerProfileLogLevelFatal ServerProfileLogLevelValue = "fatal"
-
-	// ServerProfileLogLevelInfo represents the value info.
-	ServerProfileLogLevelInfo ServerProfileLogLevelValue = "info"
-
-	// ServerProfileLogLevelWarn represents the value warn.
-	ServerProfileLogLevelWarn ServerProfileLogLevelValue = "warn"
-)
-
-// ServerProfileLogFormatValue represents the possible values for attribute "logFormat".
-type ServerProfileLogFormatValue string
-
-const (
-	// ServerProfileLogFormatJson represents the value json.
-	ServerProfileLogFormatJson ServerProfileLogFormatValue = "json"
-
-	// ServerProfileLogFormatText represents the value text.
-	ServerProfileLogFormatText ServerProfileLogFormatValue = "text"
-)
-
 // ServerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
 type ServerProfileDockerSocketTypeValue string
 
@@ -62,11 +31,11 @@ type ServerProfile struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
+	// IptablesMarkValue is the mark value to be used in an iptables implementation.
+	IPTablesMarkValue int `json:"IPTablesMarkValue" cql:"iptablesmarkvalue,omitempty" bson:"iptablesmarkvalue"`
+
 	// PUHeartbeatInterval configures the heart beat interval.
 	PUHeartbeatInterval string `json:"PUHeartbeatInterval" cql:"puheartbeatinterval,omitempty" bson:"puheartbeatinterval"`
-
-	// AgentPort is the port the agent should use to listen for API calls
-	AgentPort int `json:"agentPort" cql:"agentport,omitempty" bson:"agentport"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -89,21 +58,6 @@ type ServerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
 
-	// IptablesMarkValue is the mark value to be used in an iptables implementation.
-	IptablesMarkValue int `json:"iptablesMarkValue" cql:"iptablesmarkvalue,omitempty" bson:"iptablesmarkvalue"`
-
-	// LogFormat is the format for the logs
-	LogFormat ServerProfileLogFormatValue `json:"logFormat" cql:"logformat,omitempty" bson:"logformat"`
-
-	// LogID is the ID to use to identity the logs of this server.
-	LogID string `json:"logID" cql:"logid,omitempty" bson:"logid"`
-
-	// LogLevel is the level of logging.
-	LogLevel ServerProfileLogLevelValue `json:"logLevel" cql:"loglevel,omitempty" bson:"loglevel"`
-
-	// LogServer is the address of the log server.
-	LogServer string `json:"logServer" cql:"logserver,omitempty" bson:"logserver"`
-
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -118,6 +72,9 @@ type ServerProfile struct {
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+
+	// AgentPort is the port the agent should use to listen for API calls
+	ProxyListenAddress string `json:"proxyListenAddress" cql:"proxylistenaddress,omitempty" bson:"proxylistenaddress"`
 
 	// ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue
 	ReceiverNumberOfQueues int `json:"receiverNumberOfQueues" cql:"receivernumberofqueues,omitempty" bson:"receivernumberofqueues"`
@@ -157,16 +114,13 @@ type ServerProfile struct {
 func NewServerProfile() *ServerProfile {
 
 	return &ServerProfile{
+		IPTablesMarkValue:         1000,
 		PUHeartbeatInterval:       "5s",
-		AgentPort:                 9443,
 		AssociatedTags:            []string{},
 		DockerSocketAddress:       "/var/run/docker.sock",
 		DockerSocketType:          "unix",
-		IptablesMarkValue:         1000,
-		LogFormat:                 "text",
-		LogID:                     "Aporeto Agent",
-		LogLevel:                  "info",
 		NormalizedTags:            []string{},
+		ProxyListenAddress:        ":9443",
 		ReceiverNumberOfQueues:    4,
 		ReceiverQueue:             0,
 		ReceiverQueueSize:         500,
@@ -297,31 +251,15 @@ func (o *ServerProfile) Validate() error {
 
 	errors := elemental.Errors{}
 
-	if err := elemental.ValidateMaximumInt("agentPort", o.AgentPort, 65000, false); err != nil {
+	if err := elemental.ValidateMaximumInt("IPTablesMarkValue", o.IPTablesMarkValue, 65000, false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("agentPort", o.AgentPort, 1000, false); err != nil {
+	if err := elemental.ValidateMinimumInt("IPTablesMarkValue", o.IPTablesMarkValue, 0, false); err != nil {
 		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateStringInList("dockerSocketType", string(o.DockerSocketType), []string{"tcp", "unix"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMaximumInt("iptablesMarkValue", o.IptablesMarkValue, 65000, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMinimumInt("iptablesMarkValue", o.IptablesMarkValue, 0, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("logFormat", string(o.LogFormat), []string{"json", "text"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("logLevel", string(o.LogLevel), []string{"debug", "error", "fatal", "info", "warn"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -413,6 +351,16 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
+	"IPTablesMarkValue": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		MaxValue:       65000,
+		Name:           "IPTablesMarkValue",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "integer",
+	},
 	"PUHeartbeatInterval": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
@@ -422,17 +370,6 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
-	},
-	"AgentPort": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		MaxValue:       65000,
-		MinValue:       1000,
-		Name:           "agentPort",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "integer",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -502,54 +439,6 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "enum",
 	},
-	"IptablesMarkValue": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		MaxValue:       65000,
-		Name:           "iptablesMarkValue",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "integer",
-	},
-	"LogFormat": elemental.AttributeSpecification{
-		AllowedChoices: []string{"json", "text"},
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "logFormat",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "enum",
-	},
-	"LogID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "logID",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"LogLevel": elemental.AttributeSpecification{
-		AllowedChoices: []string{"debug", "error", "fatal", "info", "warn"},
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "logLevel",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "enum",
-	},
-	"LogServer": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "logServer",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Exposed:        true,
@@ -618,6 +507,16 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		ReadOnly:       true,
 		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"ProxyListenAddress": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "proxyListenAddress",
+		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
 	},

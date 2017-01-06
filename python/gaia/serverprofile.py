@@ -29,8 +29,8 @@ class ServerProfile(RESTObject):
         # Read/Write Attributes
         
         self._id = None
+        self._iptablesmarkvalue = None
         self._puheartbeatinterval = None
-        self._agentport = None
         self._annotation = None
         self._associatedtags = None
         self._createdat = None
@@ -38,16 +38,12 @@ class ServerProfile(RESTObject):
         self._description = None
         self._dockersocketaddress = None
         self._dockersockettype = None
-        self._iptablesmarkvalue = None
-        self._logformat = None
-        self._logid = None
-        self._loglevel = None
-        self._logserver = None
         self._name = None
         self._namespace = None
         self._normalizedtags = None
         self._parentid = None
         self._parenttype = None
+        self._proxylistenaddress = None
         self._receivernumberofqueues = None
         self._receiverqueue = None
         self._receiverqueuesize = None
@@ -61,8 +57,8 @@ class ServerProfile(RESTObject):
         self._updatedat = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="IPTablesMarkValue", remote_name="IPTablesMarkValue")
         self.expose_attribute(local_name="PUHeartbeatInterval", remote_name="PUHeartbeatInterval")
-        self.expose_attribute(local_name="agentPort", remote_name="agentPort")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
         self.expose_attribute(local_name="createdAt", remote_name="createdAt")
@@ -70,16 +66,12 @@ class ServerProfile(RESTObject):
         self.expose_attribute(local_name="description", remote_name="description")
         self.expose_attribute(local_name="dockerSocketAddress", remote_name="dockerSocketAddress")
         self.expose_attribute(local_name="dockerSocketType", remote_name="dockerSocketType")
-        self.expose_attribute(local_name="iptablesMarkValue", remote_name="iptablesMarkValue")
-        self.expose_attribute(local_name="logFormat", remote_name="logFormat")
-        self.expose_attribute(local_name="logID", remote_name="logID")
-        self.expose_attribute(local_name="logLevel", remote_name="logLevel")
-        self.expose_attribute(local_name="logServer", remote_name="logServer")
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="normalizedTags", remote_name="normalizedTags")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
+        self.expose_attribute(local_name="proxyListenAddress", remote_name="proxyListenAddress")
         self.expose_attribute(local_name="receiverNumberOfQueues", remote_name="receiverNumberOfQueues")
         self.expose_attribute(local_name="receiverQueue", remote_name="receiverQueue")
         self.expose_attribute(local_name="receiverQueueSize", remote_name="receiverQueueSize")
@@ -140,6 +132,28 @@ class ServerProfile(RESTObject):
         self._id = value
     
     @property
+    def IPTablesMarkValue(self):
+        """ Get IPTablesMarkValue value.
+
+          Notes:
+              IptablesMarkValue is the mark value to be used in an iptables implementation.
+
+              
+        """
+        return self._iptablesmarkvalue
+
+    @IPTablesMarkValue.setter
+    def IPTablesMarkValue(self, value):
+        """ Set IPTablesMarkValue value.
+
+          Notes:
+              IptablesMarkValue is the mark value to be used in an iptables implementation.
+
+              
+        """
+        self._iptablesmarkvalue = value
+    
+    @property
     def PUHeartbeatInterval(self):
         """ Get PUHeartbeatInterval value.
 
@@ -160,28 +174,6 @@ class ServerProfile(RESTObject):
               
         """
         self._puheartbeatinterval = value
-    
-    @property
-    def agentPort(self):
-        """ Get agentPort value.
-
-          Notes:
-              AgentPort is the port the agent should use to listen for API calls 
-
-              
-        """
-        return self._agentport
-
-    @agentPort.setter
-    def agentPort(self, value):
-        """ Set agentPort value.
-
-          Notes:
-              AgentPort is the port the agent should use to listen for API calls 
-
-              
-        """
-        self._agentport = value
     
     @property
     def annotation(self):
@@ -338,116 +330,6 @@ class ServerProfile(RESTObject):
         self._dockersockettype = value
     
     @property
-    def iptablesMarkValue(self):
-        """ Get iptablesMarkValue value.
-
-          Notes:
-              IptablesMarkValue is the mark value to be used in an iptables implementation.
-
-              
-        """
-        return self._iptablesmarkvalue
-
-    @iptablesMarkValue.setter
-    def iptablesMarkValue(self, value):
-        """ Set iptablesMarkValue value.
-
-          Notes:
-              IptablesMarkValue is the mark value to be used in an iptables implementation.
-
-              
-        """
-        self._iptablesmarkvalue = value
-    
-    @property
-    def logFormat(self):
-        """ Get logFormat value.
-
-          Notes:
-              LogFormat is the format for the logs
-
-              
-        """
-        return self._logformat
-
-    @logFormat.setter
-    def logFormat(self, value):
-        """ Set logFormat value.
-
-          Notes:
-              LogFormat is the format for the logs
-
-              
-        """
-        self._logformat = value
-    
-    @property
-    def logID(self):
-        """ Get logID value.
-
-          Notes:
-              LogID is the ID to use to identity the logs of this server.
-
-              
-        """
-        return self._logid
-
-    @logID.setter
-    def logID(self, value):
-        """ Set logID value.
-
-          Notes:
-              LogID is the ID to use to identity the logs of this server.
-
-              
-        """
-        self._logid = value
-    
-    @property
-    def logLevel(self):
-        """ Get logLevel value.
-
-          Notes:
-              LogLevel is the level of logging.
-
-              
-        """
-        return self._loglevel
-
-    @logLevel.setter
-    def logLevel(self, value):
-        """ Set logLevel value.
-
-          Notes:
-              LogLevel is the level of logging.
-
-              
-        """
-        self._loglevel = value
-    
-    @property
-    def logServer(self):
-        """ Get logServer value.
-
-          Notes:
-              LogServer is the address of the log server.
-
-              
-        """
-        return self._logserver
-
-    @logServer.setter
-    def logServer(self, value):
-        """ Set logServer value.
-
-          Notes:
-              LogServer is the address of the log server.
-
-              
-        """
-        self._logserver = value
-    
-    @property
     def name(self):
         """ Get name value.
 
@@ -556,6 +438,28 @@ class ServerProfile(RESTObject):
               
         """
         self._parenttype = value
+    
+    @property
+    def proxyListenAddress(self):
+        """ Get proxyListenAddress value.
+
+          Notes:
+              AgentPort is the port the agent should use to listen for API calls 
+
+              
+        """
+        return self._proxylistenaddress
+
+    @proxyListenAddress.setter
+    def proxyListenAddress(self, value):
+        """ Set proxyListenAddress value.
+
+          Notes:
+              AgentPort is the port the agent should use to listen for API calls 
+
+              
+        """
+        self._proxylistenaddress = value
     
     @property
     def receiverNumberOfQueues(self):
@@ -804,37 +708,17 @@ class ServerProfile(RESTObject):
         """
         errors = []
 
-        err = validate_maximum_int("agentPort", self.agentPort, 65000, false)
+        err = validate_maximum_int("IPTablesMarkValue", self.IPTablesMarkValue, 65000, false)
 
         if err:
             errors.append(err)
 
-        err = validate_minimum_int("agentPort", self.agentPort, 1000, false)
+        err = validate_minimum_int("IPTablesMarkValue", self.IPTablesMarkValue, 0, false)
 
         if err:
             errors.append(err)
 
         err = validate_string_in_list("dockerSocketType", self.dockerSocketType, ["tcp", "unix"], false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_maximum_int("iptablesMarkValue", self.iptablesMarkValue, 65000, false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_minimum_int("iptablesMarkValue", self.iptablesMarkValue, 0, false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_string_in_list("logFormat", self.logFormat, ["json", "text"], false)
-
-        if err:
-            errors.append(err)
-
-        err = validate_string_in_list("logLevel", self.logLevel, ["debug", "error", "fatal", "info", "warn"], false)
 
         if err:
             errors.append(err)
