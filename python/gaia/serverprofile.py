@@ -50,7 +50,6 @@ class ServerProfile(RESTObject):
         self._remoteenforcer = None
         self._status = None
         self._targetnetworks = None
-        self._tokenrenewinterval = None
         self._transmitternumberofqueues = None
         self._transmitterqueue = None
         self._transmitterqueuesize = None
@@ -78,7 +77,6 @@ class ServerProfile(RESTObject):
         self.expose_attribute(local_name="remoteEnforcer", remote_name="remoteEnforcer")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="targetNetworks", remote_name="targetNetworks")
-        self.expose_attribute(local_name="tokenRenewInterval", remote_name="tokenRenewInterval")
         self.expose_attribute(local_name="transmitterNumberOfQueues", remote_name="transmitterNumberOfQueues")
         self.expose_attribute(local_name="transmitterQueue", remote_name="transmitterQueue")
         self.expose_attribute(local_name="transmitterQueueSize", remote_name="transmitterQueueSize")
@@ -594,28 +592,6 @@ class ServerProfile(RESTObject):
         self._targetnetworks = value
     
     @property
-    def tokenRenewInterval(self):
-        """ Get tokenRenewInterval value.
-
-          Notes:
-              TokenRnewInterval sets how often the Midgard token will be refreshed.
-
-              
-        """
-        return self._tokenrenewinterval
-
-    @tokenRenewInterval.setter
-    def tokenRenewInterval(self, value):
-        """ Set tokenRenewInterval value.
-
-          Notes:
-              TokenRnewInterval sets how often the Midgard token will be refreshed.
-
-              
-        """
-        self._tokenrenewinterval = value
-    
-    @property
     def transmitterNumberOfQueues(self):
         """ Get transmitterNumberOfQueues value.
 
@@ -714,6 +690,11 @@ class ServerProfile(RESTObject):
             errors.append(err)
 
         err = validate_minimum_int("IPTablesMarkValue", self.IPTablesMarkValue, 0, false)
+
+        if err:
+            errors.append(err)
+
+        err = validate_pattern("PUHeartbeatInterval", self.PUHeartbeatInterval, "[0-9]+[smh]")
 
         if err:
             errors.append(err)
