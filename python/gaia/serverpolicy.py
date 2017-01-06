@@ -37,11 +37,11 @@ class ServerPolicy(RESTObject):
         self._name = None
         self._namespace = None
         self._normalizedtags = None
+        self._object = None
         self._parentid = None
         self._parenttype = None
         self._status = None
         self._subject = None
-        self._targetserverprofile = None
         self._updatedat = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
@@ -53,11 +53,11 @@ class ServerPolicy(RESTObject):
         self.expose_attribute(local_name="name", remote_name="name")
         self.expose_attribute(local_name="namespace", remote_name="namespace")
         self.expose_attribute(local_name="normalizedTags", remote_name="normalizedTags")
+        self.expose_attribute(local_name="object", remote_name="object")
         self.expose_attribute(local_name="parentID", remote_name="parentID")
         self.expose_attribute(local_name="parentType", remote_name="parentType")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="subject", remote_name="subject")
-        self.expose_attribute(local_name="targetServerProfile", remote_name="targetServerProfile")
         self.expose_attribute(local_name="updatedAt", remote_name="updatedAt")
 
         self._compute_args(**kwargs)
@@ -284,6 +284,28 @@ class ServerPolicy(RESTObject):
         self._normalizedtags = value
     
     @property
+    def object(self):
+        """ Get object value.
+
+          Notes:
+              Object is the list of tags to use to find a server profile.
+
+              
+        """
+        return self._object
+
+    @object.setter
+    def object(self, value):
+        """ Set object value.
+
+          Notes:
+              Object is the list of tags to use to find a server profile.
+
+              
+        """
+        self._object = value
+    
+    @property
     def parentID(self):
         """ Get parentID value.
 
@@ -372,28 +394,6 @@ class ServerPolicy(RESTObject):
         self._subject = value
     
     @property
-    def targetServerProfile(self):
-        """ Get targetServerProfile value.
-
-          Notes:
-              TargetServerProfile is the profile to be attached to the server.
-
-              
-        """
-        return self._targetserverprofile
-
-    @targetServerProfile.setter
-    def targetServerProfile(self, value):
-        """ Set targetServerProfile value.
-
-          Notes:
-              TargetServerProfile is the profile to be attached to the server.
-
-              
-        """
-        self._targetserverprofile = value
-    
-    @property
     def updatedAt(self):
         """ Get updatedAt value.
 
@@ -421,11 +421,6 @@ class ServerPolicy(RESTObject):
         errors = []
 
         err = validate_required_string("name", self.name)
-
-        if err:
-            errors.append(err)
-
-        err = validate_required_string("targetServerProfile", self.targetServerProfile)
 
         if err:
             errors.append(err)
