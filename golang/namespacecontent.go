@@ -93,7 +93,7 @@ var NamespaceContentAttributesMap = map[string]elemental.AttributeSpecification{
 	"ContentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
-		Description:    "ID of the content",
+		Description:    `ID of the content`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -107,7 +107,7 @@ var NamespaceContentAttributesMap = map[string]elemental.AttributeSpecification{
 	"ContentType": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
-		Description:    "Type of the content",
+		Description:    `Type of the content`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -121,7 +121,7 @@ var NamespaceContentAttributesMap = map[string]elemental.AttributeSpecification{
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
-		Description:    "name of the namespace",
+		Description:    `name of the namespace`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
