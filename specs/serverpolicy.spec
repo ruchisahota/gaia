@@ -25,7 +25,7 @@
             "orderable": false,
             "primary_key": null,
             "read_only": null,
-            "required": false,
+            "required": true,
             "setter": null,
             "stored": true,
             "subtype": "policies_list",
