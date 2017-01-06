@@ -29,6 +29,7 @@ class ServerProfile(RESTObject):
         # Read/Write Attributes
         
         self._id = None
+        self._puheartbeatinterval = None
         self._agentport = None
         self._annotation = None
         self._associatedtags = None
@@ -53,12 +54,14 @@ class ServerProfile(RESTObject):
         self._remoteenforcer = None
         self._status = None
         self._targetnetworks = None
+        self._tokenrenewinterval = None
         self._transmitternumberofqueues = None
         self._transmitterqueue = None
         self._transmitterqueuesize = None
         self._updatedat = None
         
         self.expose_attribute(local_name="ID", remote_name="ID")
+        self.expose_attribute(local_name="PUHeartbeatInterval", remote_name="PUHeartbeatInterval")
         self.expose_attribute(local_name="agentPort", remote_name="agentPort")
         self.expose_attribute(local_name="annotation", remote_name="annotation")
         self.expose_attribute(local_name="associatedTags", remote_name="associatedTags")
@@ -83,6 +86,7 @@ class ServerProfile(RESTObject):
         self.expose_attribute(local_name="remoteEnforcer", remote_name="remoteEnforcer")
         self.expose_attribute(local_name="status", remote_name="status")
         self.expose_attribute(local_name="targetNetworks", remote_name="targetNetworks")
+        self.expose_attribute(local_name="tokenRenewInterval", remote_name="tokenRenewInterval")
         self.expose_attribute(local_name="transmitterNumberOfQueues", remote_name="transmitterNumberOfQueues")
         self.expose_attribute(local_name="transmitterQueue", remote_name="transmitterQueue")
         self.expose_attribute(local_name="transmitterQueueSize", remote_name="transmitterQueueSize")
@@ -134,6 +138,28 @@ class ServerProfile(RESTObject):
               
         """
         self._id = value
+    
+    @property
+    def PUHeartbeatInterval(self):
+        """ Get PUHeartbeatInterval value.
+
+          Notes:
+              PUHeartbeatInterval configures the heart beat interval.
+
+              
+        """
+        return self._puheartbeatinterval
+
+    @PUHeartbeatInterval.setter
+    def PUHeartbeatInterval(self, value):
+        """ Set PUHeartbeatInterval value.
+
+          Notes:
+              PUHeartbeatInterval configures the heart beat interval.
+
+              
+        """
+        self._puheartbeatinterval = value
     
     @property
     def agentPort(self):
@@ -662,6 +688,28 @@ class ServerProfile(RESTObject):
               
         """
         self._targetnetworks = value
+    
+    @property
+    def tokenRenewInterval(self):
+        """ Get tokenRenewInterval value.
+
+          Notes:
+              TokenRnewInterval sets how often the Midgard token will be refreshed.
+
+              
+        """
+        return self._tokenrenewinterval
+
+    @tokenRenewInterval.setter
+    def tokenRenewInterval(self, value):
+        """ Set tokenRenewInterval value.
+
+          Notes:
+              TokenRnewInterval sets how often the Midgard token will be refreshed.
+
+              
+        """
+        self._tokenrenewinterval = value
     
     @property
     def transmitterNumberOfQueues(self):

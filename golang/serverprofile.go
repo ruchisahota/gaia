@@ -62,6 +62,9 @@ type ServerProfile struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
+	// PUHeartbeatInterval configures the heart beat interval.
+	PUHeartbeatInterval string `json:"PUHeartbeatInterval" cql:"puheartbeatinterval,omitempty" bson:"puheartbeatinterval"`
+
 	// AgentPort is the port the agent should use to listen for API calls
 	AgentPort int `json:"agentPort" cql:"agentport,omitempty" bson:"agentport"`
 
@@ -134,6 +137,9 @@ type ServerProfile struct {
 	// TargetNetworks is the list of networks that authorization should be applied.
 	TargetNetworks []string `json:"targetNetworks" cql:"targetnetworks,omitempty" bson:"targetnetworks"`
 
+	// TokenRnewInterval sets how often the Midgard token will be refreshed.
+	TokenRenewInterval string `json:"tokenRenewInterval" cql:"tokenrenewinterval,omitempty" bson:"tokenrenewinterval"`
+
 	// TransmitterNumberOfQueues is the number of queues for application traffic.
 	TransmitterNumberOfQueues int `json:"transmitterNumberOfQueues" cql:"transmitternumberofqueues,omitempty" bson:"transmitternumberofqueues"`
 
@@ -151,20 +157,22 @@ type ServerProfile struct {
 func NewServerProfile() *ServerProfile {
 
 	return &ServerProfile{
-		AgentPort:              9443,
-		AssociatedTags:         []string{},
-		DockerSocketAddress:    "/var/run/docker.sock",
-		DockerSocketType:       "unix",
-		IptablesMarkValue:      1000,
-		LogFormat:              "text",
-		LogID:                  "Aporeto Agent",
-		LogLevel:               "info",
-		NormalizedTags:         []string{},
-		ReceiverNumberOfQueues: 4,
-		ReceiverQueue:          0,
-		ReceiverQueueSize:      500,
-		RemoteEnforcer:         false,
-		Status:                 constants.Active,
+		PUHeartbeatInterval:       "5s",
+		AgentPort:                 9443,
+		AssociatedTags:            []string{},
+		DockerSocketAddress:       "/var/run/docker.sock",
+		DockerSocketType:          "unix",
+		IptablesMarkValue:         1000,
+		LogFormat:                 "text",
+		LogID:                     "Aporeto Agent",
+		LogLevel:                  "info",
+		NormalizedTags:            []string{},
+		ReceiverNumberOfQueues:    4,
+		ReceiverQueue:             0,
+		ReceiverQueueSize:         500,
+		RemoteEnforcer:            false,
+		Status:                    constants.Active,
+		TokenRenewInterval:        "12h",
 		TransmitterNumberOfQueues: 4,
 		TransmitterQueue:          4,
 		TransmitterQueueSize:      500,
@@ -404,6 +412,16 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"PUHeartbeatInterval": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "PUHeartbeatInterval",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"AgentPort": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -667,6 +685,16 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "target_networks_list",
 		Type:           "external",
+	},
+	"TokenRenewInterval": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "tokenRenewInterval",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"TransmitterNumberOfQueues": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
