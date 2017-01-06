@@ -56,7 +56,7 @@
             "min_length": null,
             "min_value": null,
             "name": "subject",
-            "orderable": true,
+            "orderable": false,
             "primary_key": null,
             "read_only": null,
             "required": true,
