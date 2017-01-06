@@ -30,6 +30,7 @@ class SystemInfo(RESTObject):
         
         self._apiversion = None
         self._bahamutversion = None
+        self._certificateauthority = None
         self._elementalversion = None
         self._gaiaversion = None
         self._googleclientid = None
@@ -43,6 +44,7 @@ class SystemInfo(RESTObject):
         
         self.expose_attribute(local_name="APIVersion", remote_name="APIVersion")
         self.expose_attribute(local_name="bahamutVersion", remote_name="bahamutVersion")
+        self.expose_attribute(local_name="certificateAuthority", remote_name="certificateAuthority")
         self.expose_attribute(local_name="elementalVersion", remote_name="elementalVersion")
         self.expose_attribute(local_name="gaiaVersion", remote_name="gaiaVersion")
         self.expose_attribute(local_name="googleClientID", remote_name="googleClientID")
@@ -120,6 +122,28 @@ class SystemInfo(RESTObject):
               
         """
         self._bahamutversion = value
+    
+    @property
+    def certificateAuthority(self):
+        """ Get certificateAuthority value.
+
+          Notes:
+              CertificateAuthority contains the main certificate authority,
+
+              
+        """
+        return self._certificateauthority
+
+    @certificateAuthority.setter
+    def certificateAuthority(self, value):
+        """ Set certificateAuthority value.
+
+          Notes:
+              CertificateAuthority contains the main certificate authority,
+
+              
+        """
+        self._certificateauthority = value
     
     @property
     def elementalVersion(self):
