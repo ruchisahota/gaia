@@ -206,7 +206,7 @@
             "required": true,
             "setter": false,
             "stored": true,
-            "subtype": null,
+            "subtype": "Private",
             "transient": false,
             "type": "enum",
             "unique": false,
