@@ -343,6 +343,7 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "certificate",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -418,6 +419,7 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "environment",
 		Required:       true,
 		Stored:         true,
+		SubType:        "Private",
 		Type:           "enum",
 	},
 	"Key": elemental.AttributeSpecification{
@@ -428,6 +430,7 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "key",
 		Orderable:      true,
+		ReadOnly:       true,
 		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
