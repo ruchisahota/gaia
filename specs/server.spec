@@ -236,7 +236,7 @@
             "name": "key",
             "orderable": true,
             "primary_key": null,
-            "read_only": null,
+            "read_only": true,
             "required": null,
             "setter": null,
             "stored": false,
