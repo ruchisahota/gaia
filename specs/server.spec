@@ -45,7 +45,7 @@
             "deprecated": null,
             "description": "Certificate is the certificate of the server ",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
