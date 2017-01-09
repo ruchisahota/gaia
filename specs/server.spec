@@ -223,7 +223,7 @@
             "deprecated": null,
             "description": "Key is the secret key of the server. Returned only when a server is created or the certificate is updated.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
