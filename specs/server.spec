@@ -153,7 +153,7 @@
             "default_order": false,
             "default_value": "UNKNOWN",
             "deprecated": false,
-            "description": "Operational status of the server",
+            "description": "OperationalStatus tells the status of the server",
             "exposed": true,
             "filterable": true,
             "foreign_key": false,
