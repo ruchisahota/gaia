@@ -41,7 +41,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": null,
+            "default_value": "5m",
             "deprecated": null,
             "description": "PUBookkeepingInterval configures how often the PU will be synchronized.",
             "exposed": true,
