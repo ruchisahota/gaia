@@ -61,9 +61,6 @@ type ServerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
 
-	// IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
-	IgnoreExpression [][]string `json:"ignoreExpression" cql:"ignoreexpression,omitempty" bson:"ignoreexpression"`
-
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -266,11 +263,11 @@ func (o *ServerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidatePattern("PUBookkeepingInterval", o.PUBookkeepingInterval, `[0-9]+[smh]`); err != nil {
+	if err := elemental.ValidatePattern("PUBookkeepingInterval", o.PUBookkeepingInterval, `^[0-9]+[smh]$`); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidatePattern("PUHeartbeatInterval", o.PUHeartbeatInterval, `[0-9]+[smh]`); err != nil {
+	if err := elemental.ValidatePattern("PUHeartbeatInterval", o.PUHeartbeatInterval, `^[0-9]+[smh]$`); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -282,7 +279,7 @@ func (o *ServerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidatePattern("policySynchronizationInterval", o.PolicySynchronizationInterval, `[0-9]+[smh]`); err != nil {
+	if err := elemental.ValidatePattern("policySynchronizationInterval", o.PolicySynchronizationInterval, `^[0-9]+[smh]$`); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -383,7 +380,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "integer",
 	},
 	"PUBookkeepingInterval": elemental.AttributeSpecification{
-		AllowedChars:   `[0-9]+[smh]`,
+		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
 		Description:    `PUBookkeepingInterval configures how often the PU will be synchronized.`,
 		Exposed:        true,
@@ -395,7 +392,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"PUHeartbeatInterval": elemental.AttributeSpecification{
-		AllowedChars:   `[0-9]+[smh]`,
+		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
 		Description:    `PUHeartbeatInterval configures the heart beat interval.`,
 		Exposed:        true,
@@ -481,15 +478,6 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "enum",
 	},
-	"IgnoreExpression": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.`,
-		Exposed:        true,
-		Name:           "ignoreExpression",
-		Stored:         true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name is the name of the entity`,
@@ -567,7 +555,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"PolicySynchronizationInterval": elemental.AttributeSpecification{
-		AllowedChars:   `[0-9]+[smh]`,
+		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
 		Description:    `PolicySynchronizationInterval configures how often the policy will be resynchronized.`,
 		Exposed:        true,
