@@ -182,7 +182,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "IgnoreTags allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.",
+            "description": "IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
