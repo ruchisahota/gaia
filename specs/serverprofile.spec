@@ -194,7 +194,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "ignoreTags",
+            "name": "ignoreExpression",
             "orderable": true,
             "primary_key": null,
             "read_only": null,
