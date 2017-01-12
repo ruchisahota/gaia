@@ -61,6 +61,9 @@ type ServerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
 
+	// IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
+	IgnoreExpression [][]string `json:"ignoreExpression" cql:"ignoreexpression,omitempty" bson:"ignoreexpression"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -477,6 +480,15 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "enum",
+	},
+	"IgnoreExpression": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.`,
+		Exposed:        true,
+		Name:           "ignoreExpression",
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
