@@ -85,6 +85,7 @@ func NewAuthenticator() *Authenticator {
 
 	return &Authenticator{
 		AssociatedTags: []string{},
+		Method:         "Certificate",
 		NormalizedTags: []string{},
 		Status:         constants.Active,
 	}
