@@ -16,3 +16,9 @@ codegen:
 	# rm -rf python/*.py python/requirements.txt MANIFEST.in && cp codegen/pyelemental/gaia/*.py python/gaia && cp codegen/pyelemental/requirements.txt python && cp codegen/pyelemental/MANIFEST.in python && cp codegen/pyelemental/setup.py python
 	rm -rf apidoc/* && cp -a codegen/html/* apidoc
 	rm -rf codegen
+
+publish:
+	git pull
+	make codegen
+	git commit -am "codegen"
+	git push
