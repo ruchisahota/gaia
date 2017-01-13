@@ -35,7 +35,7 @@ type AuthenticatorsList []*Authenticator
 // Authenticator represents the model of a authenticator
 type Authenticator struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,omitempty" bson:"id"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -59,7 +59,7 @@ type Authenticator struct {
 	Method AuthenticatorMethodValue `json:"method" cql:"method,omitempty" bson:"method"`
 
 	// Name of the authenticator
-	Name string `json:"name" cql:"name,primarykey,omitempty" bson:"_name"`
+	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
@@ -243,6 +243,7 @@ var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
@@ -333,7 +334,6 @@ var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 		Getter:         true,
 		Name:           "name",
 		Orderable:      true,
-		PrimaryKey:     true,
 		Required:       true,
 		Stored:         true,
 		Type:           "string",
