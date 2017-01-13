@@ -183,6 +183,10 @@ func (o *Namespace) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidatePattern("name", o.Name, `^[^\*\=]*$`); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -291,6 +295,7 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
+		AllowedChars:   `^[^\*\=]*$`,
 		AllowedChoices: []string{},
 		CreationOnly:   true,
 		Description:    `Name is the name of the namespace.`,
