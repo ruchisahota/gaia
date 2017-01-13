@@ -300,6 +300,7 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "certificate",
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -320,6 +321,7 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "certificateKey",
+		ReadOnly:       true,
 		Type:           "string",
 	},
 	"CertificateStatus": elemental.AttributeSpecification{
