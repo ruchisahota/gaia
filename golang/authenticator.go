@@ -320,7 +320,6 @@ var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "method",
-		Required:       true,
 		Stored:         true,
 		Type:           "enum",
 	},
