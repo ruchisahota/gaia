@@ -96,7 +96,7 @@
             "min_value": null,
             "name": "name",
             "orderable": true,
-            "primary_key": true,
+            "primary_key": false,
             "read_only": false,
             "required": true,
             "setter": false,
@@ -130,7 +130,7 @@
         "extends": [
             "@base",
             "@described",
-            "@identifiable-nopk-stored",
+            "@identifiable-pk-stored",
             "@named"
         ],
         "get": true,
