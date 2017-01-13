@@ -34,6 +34,9 @@ type ServerProfile struct {
 	// IptablesMarkValue is the mark value to be used in an iptables implementation.
 	IPTablesMarkValue int `json:"IPTablesMarkValue" cql:"iptablesmarkvalue,omitempty" bson:"iptablesmarkvalue"`
 
+	// IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
+	IgnoreExpression [][]string `json:"IgnoreExpression" cql:"ignoreexpression,omitempty" bson:"ignoreexpression"`
+
 	// PUBookkeepingInterval configures how often the PU will be synchronized.
 	PUBookkeepingInterval string `json:"PUBookkeepingInterval" cql:"pubookkeepinginterval,omitempty" bson:"pubookkeepinginterval"`
 
@@ -378,6 +381,15 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "integer",
+	},
+	"IgnoreExpression": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.`,
+		Exposed:        true,
+		Name:           "IgnoreExpression",
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"PUBookkeepingInterval": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
