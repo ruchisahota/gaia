@@ -46,7 +46,7 @@
             "channel": null,
             "creation_only": true,
             "default_order": false,
-            "default_value": null,
+            "default_value": "Certificate",
             "deprecated": false,
             "description": "Method for authenticator (Certificate, Key, LDAP, Google, etc)",
             "exposed": true,
