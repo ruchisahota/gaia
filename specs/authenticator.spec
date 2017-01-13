@@ -130,7 +130,6 @@
         "extends": [
             "@base",
             "@described",
-            "@identifiable-nopk-stored",
             "@named"
         ],
         "get": true,
