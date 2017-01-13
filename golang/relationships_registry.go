@@ -94,17 +94,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("mapedge")] = MapEdgeMainRelationship
 
 	//
-	// Main Relationship for certificate
-	//
-	CertificateMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("certificate")] = CertificateMainRelationship
-
-	//
 	// Main Relationship for filepath
 	//
 	FilePathMainRelationship := &elemental.Relationship{
@@ -401,14 +390,6 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
-	// Children relationship for certificates in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("certificate"),
-		&elemental.Relationship{
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
 	// Children relationship for computeddependencymapviews in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("computeddependencymapview"),
@@ -622,16 +603,6 @@ func init() {
 		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
-
-	// Children relationship for certificates in user
-	UserMainRelationship.AddChild(
-		elemental.IdentityFromName("certificate"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
 
 	relationshipsRegistry[elemental.IdentityFromName("user")] = UserMainRelationship
 

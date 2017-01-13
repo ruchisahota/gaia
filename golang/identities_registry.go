@@ -14,7 +14,6 @@ func init() {
 	elemental.RegisterIdentity(ComputedPolicyIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(MapEdgeIdentity)
-	elemental.RegisterIdentity(CertificateIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
@@ -65,8 +64,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case MapEdgeIdentity.Name:
 		return NewMapEdge()
-	case CertificateIdentity.Name:
-		return NewCertificate()
 	case FilePathIdentity.Name:
 		return NewFilePath()
 	case FileAccessIdentity.Name:
