@@ -246,6 +246,7 @@
                 "File",
                 "NamespaceMapping",
                 "Network",
+                "Server",
                 "Statistics",
                 "Syscall"
             ],
