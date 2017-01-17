@@ -244,6 +244,7 @@
                 "APIAuthorization",
                 "ExtendTags",
                 "File",
+                "NamespaceMapping",
                 "Network",
                 "Statistics",
                 "Syscall"
