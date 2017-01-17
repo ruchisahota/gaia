@@ -6,6 +6,35 @@ import "github.com/aporeto-inc/elemental"
 import "time"
 import "github.com/aporeto-inc/gaia/golang/constants"
 
+// PolicyTypeValue represents the possible values for attribute "type".
+type PolicyTypeValue string
+
+const (
+	// PolicyTypeApiauthorization represents the value APIAuthorization.
+	PolicyTypeApiauthorization PolicyTypeValue = "APIAuthorization"
+
+	// PolicyTypeExtendtags represents the value ExtendTags.
+	PolicyTypeExtendtags PolicyTypeValue = "ExtendTags"
+
+	// PolicyTypeFile represents the value File.
+	PolicyTypeFile PolicyTypeValue = "File"
+
+	// PolicyTypeNamespacemapping represents the value NamespaceMapping.
+	PolicyTypeNamespacemapping PolicyTypeValue = "NamespaceMapping"
+
+	// PolicyTypeNetwork represents the value Network.
+	PolicyTypeNetwork PolicyTypeValue = "Network"
+
+	// PolicyTypeServer represents the value Server.
+	PolicyTypeServer PolicyTypeValue = "Server"
+
+	// PolicyTypeStatistics represents the value Statistics.
+	PolicyTypeStatistics PolicyTypeValue = "Statistics"
+
+	// PolicyTypeSyscall represents the value Syscall.
+	PolicyTypeSyscall PolicyTypeValue = "Syscall"
+)
+
 // PolicyIdentity represents the Identity of the object
 var PolicyIdentity = elemental.Identity{
 	Name:     "policy",
@@ -75,7 +104,7 @@ type Policy struct {
 	Subject [][]string `json:"subject" cql:"subject,omitempty" bson:"subject"`
 
 	// Type of the policy
-	Type constants.PolicyType `json:"type" cql:"type,primarykey,omitempty" bson:"_type"`
+	Type PolicyTypeValue `json:"type" cql:"type,primarykey,omitempty" bson:"_type"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
@@ -228,7 +257,7 @@ func (o *Policy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("type", o.Type); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "ExtendTags", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -482,7 +511,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
+		AllowedChoices: []string{"APIAuthorization", "ExtendTags", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"},
 		Description:    `Type of the policy`,
 		Exposed:        true,
 		Filterable:     true,
@@ -490,8 +519,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		PrimaryKey:     true,
 		Required:       true,
 		Stored:         true,
-		SubType:        "policytype_enum",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
