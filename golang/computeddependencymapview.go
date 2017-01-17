@@ -199,6 +199,10 @@ func (o *ComputedDependencyMapView) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return errors
 	}
@@ -344,6 +348,7 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{

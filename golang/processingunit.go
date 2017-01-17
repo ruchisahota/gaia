@@ -241,6 +241,10 @@ func (o *ProcessingUnit) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("metadata", o.Metadata); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -418,6 +422,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"OperationalStatus": elemental.AttributeSpecification{

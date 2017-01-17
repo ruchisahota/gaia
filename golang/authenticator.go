@@ -204,6 +204,10 @@ func (o *Authenticator) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("configuration", o.Configuration); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateStringInList("method", string(o.Method), []string{"Certificate", "Key", "LDAP", "OAUTH"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -366,6 +370,7 @@ var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{

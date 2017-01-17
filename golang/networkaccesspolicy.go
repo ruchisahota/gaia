@@ -381,6 +381,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"Object": elemental.AttributeSpecification{

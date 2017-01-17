@@ -214,6 +214,10 @@ func (o *DependencyMapView) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredExternal("subviews", o.Subviews); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Automatic", "Manual"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -363,6 +367,7 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{

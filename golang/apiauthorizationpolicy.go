@@ -399,6 +399,7 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"Object": elemental.AttributeSpecification{

@@ -310,6 +310,10 @@ func (o *ServerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredExternal("targetNetworks", o.TargetNetworks); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateMaximumInt("transmitterNumberOfQueues", o.TransmitterNumberOfQueues, 16, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -533,6 +537,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Setter:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{
