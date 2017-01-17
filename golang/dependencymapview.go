@@ -282,6 +282,7 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Filterable:     true,
 		Name:           "computed",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "boolean",
 	},
