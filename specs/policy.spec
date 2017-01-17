@@ -242,6 +242,7 @@
             "allowed_chars": null,
             "allowed_choices": [
                 "APIAuthorization",
+                "ExtendTags",
                 "File",
                 "Network",
                 "Statistics",
