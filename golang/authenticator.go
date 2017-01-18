@@ -204,6 +204,10 @@ func (o *Authenticator) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("configuration", o.Configuration); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateStringInList("method", string(o.Method), []string{"Certificate", "Key", "LDAP", "OAUTH"}, false); err != nil {
 		errors = append(errors, err)
 	}

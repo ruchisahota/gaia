@@ -199,6 +199,10 @@ func (o *ComputedDependencyMapView) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return errors
 	}

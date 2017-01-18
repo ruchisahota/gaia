@@ -195,6 +195,14 @@ func (o *ServerPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredExternal("object", o.Object); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return errors
 	}

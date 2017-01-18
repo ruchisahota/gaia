@@ -241,6 +241,10 @@ func (o *ProcessingUnit) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("metadata", o.Metadata); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
