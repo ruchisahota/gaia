@@ -501,6 +501,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Type": elemental.AttributeSpecification{
 		AllowedChoices: []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"},
+		CreationOnly:   true,
 		Description:    `Type of the policy`,
 		Exposed:        true,
 		Filterable:     true,
