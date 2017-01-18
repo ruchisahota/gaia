@@ -249,10 +249,6 @@ func (o *Policy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("relation", o.Relation); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
 		errors = append(errors, err)
 	}
@@ -481,7 +477,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Relation describes the required operation to be performed between subjects and objects`,
 		Exposed:        true,
 		Name:           "relation",
-		Required:       true,
 		Stored:         true,
 		SubType:        "relations_list",
 		Type:           "external",
