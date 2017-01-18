@@ -360,6 +360,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		CreationOnly:   true,
 		Description:    `Metadata are list of tags associated to the processing unit`,
 		Exposed:        true,
 		Filterable:     true,
