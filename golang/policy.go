@@ -25,9 +25,6 @@ const (
 	// PolicyTypeServer represents the value Server.
 	PolicyTypeServer PolicyTypeValue = "Server"
 
-	// PolicyTypeStatistics represents the value Statistics.
-	PolicyTypeStatistics PolicyTypeValue = "Statistics"
-
 	// PolicyTypeSyscall represents the value Syscall.
 	PolicyTypeSyscall PolicyTypeValue = "Syscall"
 )
@@ -250,7 +247,7 @@ func (o *Policy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -503,7 +500,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"},
+		AllowedChoices: []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"},
 		Description:    `Type of the policy`,
 		Exposed:        true,
 		Filterable:     true,
