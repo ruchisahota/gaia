@@ -25,7 +25,7 @@
             "orderable": false,
             "primary_key": false,
             "read_only": false,
-            "required": false,
+            "required": true,
             "setter": false,
             "stored": true,
             "subtype": "actions_list",
