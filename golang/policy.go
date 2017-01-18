@@ -13,9 +13,6 @@ const (
 	// PolicyTypeApiauthorization represents the value APIAuthorization.
 	PolicyTypeApiauthorization PolicyTypeValue = "APIAuthorization"
 
-	// PolicyTypeExtendtags represents the value ExtendTags.
-	PolicyTypeExtendtags PolicyTypeValue = "ExtendTags"
-
 	// PolicyTypeFile represents the value File.
 	PolicyTypeFile PolicyTypeValue = "File"
 
@@ -253,7 +250,7 @@ func (o *Policy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "ExtendTags", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -506,7 +503,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "ExtendTags", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"},
+		AllowedChoices: []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Statistics", "Syscall"},
 		Description:    `Type of the policy`,
 		Exposed:        true,
 		Filterable:     true,
