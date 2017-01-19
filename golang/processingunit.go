@@ -79,7 +79,7 @@ type ProcessingUnit struct {
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
 	// NativeContextID is the Docker UUID or service PID
 	NativeContextID string `json:"nativeContextID" cql:"nativecontextid,omitempty" bson:"nativecontextid"`

@@ -62,7 +62,7 @@ type Authenticator struct {
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
@@ -204,6 +204,10 @@ func (o *Authenticator) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("configuration", o.Configuration); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateStringInList("method", string(o.Method), []string{"Certificate", "Key", "LDAP", "OAUTH"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -273,7 +277,9 @@ var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Configuration stores information needed to authenticate an user using any servers like LDAP/Google/Certificate `,
 		Exposed:        true,
+		Format:         "free",
 		Name:           "configuration",
+		Required:       true,
 		Stored:         true,
 		SubType:        "auth_config",
 		Type:           "external",

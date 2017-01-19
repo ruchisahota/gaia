@@ -71,7 +71,7 @@ type Policy struct {
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
@@ -98,7 +98,7 @@ type Policy struct {
 	Subject [][]string `json:"subject" cql:"subject,omitempty" bson:"subject"`
 
 	// Type of the policy
-	Type PolicyTypeValue `json:"type" cql:"type,primarykey,omitempty" bson:"_type"`
+	Type PolicyTypeValue `json:"type" cql:"type,primarykey,omitempty" bson:"type"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`

@@ -18,7 +18,7 @@ type NamespacesList []*Namespace
 // Namespace represents the model of a namespace
 type Namespace struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,omitempty" bson:"id"`
+	ID string `json:"ID" cql:"id,omitempty" bson:"_id"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -39,10 +39,10 @@ type Namespace struct {
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
 	// Name is the name of the namespace.
-	Name string `json:"name" cql:"name,primarykey,omitempty" bson:"_name"`
+	Name string `json:"name" cql:"name,primarykey,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`

@@ -42,7 +42,7 @@ type FilePath struct {
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
