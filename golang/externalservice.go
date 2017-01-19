@@ -39,7 +39,7 @@ type ExternalService struct {
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
 
 	// Network refers to either CIDR or domain name
 	Network string `json:"network" cql:"network,omitempty" bson:"network"`

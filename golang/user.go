@@ -68,13 +68,13 @@ type User struct {
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"_namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
 	// ParentAuthenticator is an Internal attribute that points to the parent authenticator.
-	ParentAuthenticator string `json:"-" cql:"parentauthenticator,primarykey,omitempty" bson:"parentauthenticator"`
+	ParentAuthenticator string `json:"-" cql:"parentauthenticator,primarykey,omitempty" bson:"_parentauthenticator"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
