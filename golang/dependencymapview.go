@@ -369,6 +369,7 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Setter:         true,
 		Stored:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{

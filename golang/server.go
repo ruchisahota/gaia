@@ -421,6 +421,7 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"OperationalStatus": elemental.AttributeSpecification{

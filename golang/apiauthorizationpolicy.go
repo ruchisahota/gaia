@@ -401,6 +401,7 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Setter:         true,
 		Stored:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"Object": elemental.AttributeSpecification{

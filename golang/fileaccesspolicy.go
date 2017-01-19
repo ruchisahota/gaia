@@ -402,6 +402,7 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "tags_list",
+		Transient:      true,
 		Type:           "external",
 	},
 	"Object": elemental.AttributeSpecification{
