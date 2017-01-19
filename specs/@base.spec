@@ -152,7 +152,7 @@
             "format": "free",
             "getter": true,
             "identifier": false,
-            "index": false,
+            "index": true,
             "max_length": null,
             "max_value": null,
             "min_length": null,
@@ -199,7 +199,7 @@
             "setter": true,
             "stored": true,
             "subtype": "tags_list",
-            "transient": true,
+            "transient": false,
             "type": "external",
             "unique": false,
             "uniqueScope": null
