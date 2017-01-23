@@ -165,7 +165,7 @@
             "setter": true,
             "stored": true,
             "subtype": "tags_list",
-            "transient": true,
+            "transient": false,
             "type": "external",
             "unique": false,
             "uniqueScope": null
