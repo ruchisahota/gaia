@@ -129,7 +129,7 @@
             "read_only": false,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": "network_entities",
             "transient": false,
             "type": "external",
