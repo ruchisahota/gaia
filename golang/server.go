@@ -72,6 +72,9 @@ type Server struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
+	// FQDN contains the fqdn of the server.
+	Fqdn string `json:"fqdn" cql:"fqdn,omitempty" bson:"fqdn"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -221,6 +224,10 @@ func (o *Server) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredString("fqdn", o.Fqdn); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -349,6 +356,19 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Fqdn": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `FQDN contains the fqdn of the server.`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "fqdn",
+		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
