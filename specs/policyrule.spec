@@ -299,7 +299,7 @@
             "read_only": false,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": "target_tags",
             "transient": false,
             "type": "external",
