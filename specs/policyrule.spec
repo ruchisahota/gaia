@@ -95,7 +95,7 @@
             "read_only": false,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": "namespace_entities",
             "transient": false,
             "type": "external",
