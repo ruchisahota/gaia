@@ -27,7 +27,7 @@
             "read_only": false,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": "actions_list",
             "transient": false,
             "type": "external",
