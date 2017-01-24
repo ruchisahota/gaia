@@ -61,7 +61,7 @@
             "read_only": false,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": "file_entities",
             "transient": false,
             "type": "external",
