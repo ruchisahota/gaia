@@ -265,7 +265,7 @@
             "read_only": false,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": "syscall_entities",
             "transient": false,
             "type": "external",
