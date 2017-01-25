@@ -70,7 +70,7 @@ const (
 	StatsTagKeyDestinationPort = "@destport"
 
 	// StatsTagKeyProcessingUnitID represents the processing unit ID tag.
-	StatsTagKeyProcessingUnitID = "@id"
+	StatsTagKeyProcessingUnitID = "$id"
 
 	// StatsTagKeyIP represents the IP tag.
 	StatsTagKeyIP = "@ip"
@@ -91,7 +91,7 @@ const (
 	StatsTagKeyServerID = "@serverid"
 
 	// StatsTagKeyNamespace represents the namespace tag.
-	StatsTagKeyNamespace = "@namespace"
+	StatsTagKeyNamespace = "$namespace"
 
 	// StatsTagKeyAporetoContextID represents the aporeto context ID.
 	StatsTagKeyAporetoContextID = "@squallid"

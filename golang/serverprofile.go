@@ -97,6 +97,9 @@ type ServerProfile struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
+	// SupportLinuxProcesses configures support for Linux processes.
+	SupportLinuxProcesses bool `json:"supportLinuxProcesses" cql:"supportlinuxprocesses,omitempty" bson:"supportlinuxprocesses"`
+
 	// TargetNetworks is the list of networks that authorization should be applied.
 	TargetNetworks []string `json:"targetNetworks" cql:"targetnetworks,omitempty" bson:"targetnetworks"`
 
@@ -131,9 +134,10 @@ func NewServerProfile() *ServerProfile {
 		ReceiverQueueSize:             500,
 		RemoteEnforcer:                false,
 		Status:                        constants.Active,
-		TransmitterNumberOfQueues: 4,
-		TransmitterQueue:          4,
-		TransmitterQueueSize:      500,
+		SupportLinuxProcesses:         false,
+		TransmitterNumberOfQueues:     4,
+		TransmitterQueue:              4,
+		TransmitterQueueSize:          500,
 	}
 }
 
@@ -629,6 +633,14 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "status_enum",
 		Type:           "external",
+	},
+	"SupportLinuxProcesses": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `SupportLinuxProcesses configures support for Linux processes.`,
+		Exposed:        true,
+		Name:           "supportLinuxProcesses",
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"TargetNetworks": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
