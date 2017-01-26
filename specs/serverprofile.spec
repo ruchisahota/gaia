@@ -216,7 +216,7 @@
             "default_order": null,
             "default_value": "false",
             "deprecated": null,
-            "description": null,
+            "description": "Kubernetes mode for the agent.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
