@@ -61,6 +61,9 @@ type ServerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
 
+	// None
+	EnableKubernetes bool `json:"enableKubernetes" cql:"enablekubernetes,omitempty" bson:"enablekubernetes"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -126,6 +129,7 @@ func NewServerProfile() *ServerProfile {
 		AssociatedTags:                []string{},
 		DockerSocketAddress:           "/var/run/docker.sock",
 		DockerSocketType:              "unix",
+		EnableKubernetes:              false,
 		NormalizedTags:                []string{},
 		PolicySynchronizationInterval: "10m",
 		ProxyListenAddress:            ":9443",
@@ -473,6 +477,15 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "enum",
+	},
+	"EnableKubernetes": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "enableKubernetes",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
