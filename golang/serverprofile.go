@@ -61,7 +61,7 @@ type ServerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
 
-	// None
+	// EnableKubernetes enables kubernetes mode for the agent.
 	EnableKubernetes bool `json:"enableKubernetes" cql:"enablekubernetes,omitempty" bson:"enablekubernetes"`
 
 	// Name is the name of the entity
@@ -480,6 +480,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"EnableKubernetes": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `EnableKubernetes enables kubernetes mode for the agent.`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "enableKubernetes",
