@@ -61,8 +61,8 @@ type ServerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
 
-	// EnableKubernetes enables kubernetes mode for the agent.
-	EnableKubernetes bool `json:"enableKubernetes" cql:"enablekubernetes,omitempty" bson:"enablekubernetes"`
+	// kubernetesEnable enables  kubernetes mode for the agent.
+	KubernetesEnable bool `json:"kubernetesEnable" cql:"kubernetesenable,omitempty" bson:"kubernetesenable"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -129,7 +129,7 @@ func NewServerProfile() *ServerProfile {
 		AssociatedTags:                []string{},
 		DockerSocketAddress:           "/var/run/docker.sock",
 		DockerSocketType:              "unix",
-		EnableKubernetes:              false,
+		KubernetesEnable:              false,
 		NormalizedTags:                []string{},
 		PolicySynchronizationInterval: "10m",
 		ProxyListenAddress:            ":9443",
@@ -478,12 +478,12 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "enum",
 	},
-	"EnableKubernetes": elemental.AttributeSpecification{
+	"KubernetesEnable": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `EnableKubernetes enables kubernetes mode for the agent.`,
+		Description:    `kubernetesEnable enables  kubernetes mode for the agent.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "enableKubernetes",
+		Name:           "kubernetesEnable",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
