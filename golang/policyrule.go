@@ -32,6 +32,9 @@ type PolicyRule struct {
 	// Policy target networks
 	Networks ExternalServicesList `json:"networks" cql:"-" bson:"-"`
 
+	// Propagated indicates if the policy is propagated.
+	Propagated bool `json:"propagated" cql:"-" bson:"-"`
+
 	// Relation describes the required operation to be performed between subjects and objects
 	Relation []string `json:"relation" cql:"-" bson:"-"`
 
@@ -174,6 +177,13 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "networks",
 		SubType:        "network_entities",
 		Type:           "external",
+	},
+	"Propagated": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Propagated indicates if the policy is propagated.`,
+		Exposed:        true,
+		Name:           "propagated",
+		Type:           "boolean",
 	},
 	"Relation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

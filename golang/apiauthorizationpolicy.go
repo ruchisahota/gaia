@@ -68,6 +68,9 @@ type APIAuthorizationPolicy struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
+	// Propagate defines if the policy should propagate.
+	Propagate bool `json:"propagate" cql:"-" bson:"-"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -418,6 +421,15 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Propagate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Propagate defines if the policy should propagate.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagate",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
