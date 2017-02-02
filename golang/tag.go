@@ -15,7 +15,7 @@ type TagsList []*Tag
 // Tag represents the model of a tag
 type Tag struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" cql:"id,omitempty" bson:"_id"`
 
 	// Count represents the number of time the tag is used.
 	Count int `json:"count" cql:"count,omitempty" bson:"count"`
@@ -101,6 +101,7 @@ var TagAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "ID",
 		Orderable:      true,
 		ReadOnly:       true,
+		Stored:         true,
 		Type:           "string",
 		Unique:         true,
 	},
