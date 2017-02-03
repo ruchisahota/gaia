@@ -229,7 +229,7 @@
             "orderable": false,
             "primary_key": null,
             "read_only": null,
-            "required": null,
+            "required": true,
             "setter": null,
             "stored": false,
             "subtype": "identity_list",
