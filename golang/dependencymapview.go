@@ -268,12 +268,12 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"Computed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		CreationOnly:   true,
 		Description:    `Boolean to know if the dependency map view was computed by the system or not`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "computed",
 		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "boolean",
 	},
