@@ -156,7 +156,6 @@ func init() {
 	//
 	PolicyMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
-		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
 
@@ -498,7 +497,6 @@ func init() {
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("policy"),
 		&elemental.Relationship{
-			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
