@@ -203,6 +203,10 @@ func (o *APIAuthorizationPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("authorizedIdentities", o.AuthorizedIdentities); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("authorizedNamespace", o.AuthorizedNamespace); err != nil {
 		errors = append(errors, err)
 	}
@@ -325,6 +329,7 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `AuthorizedIdentities defines the list of api identities the policy applies to. `,
 		Exposed:        true,
 		Name:           "authorizedIdentities",
+		Required:       true,
 		SubType:        "identity_list",
 		Type:           "external",
 	},
