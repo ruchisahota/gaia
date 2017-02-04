@@ -50,6 +50,9 @@ type ServerPolicy struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
+	// Propagate indicates if the policy is propagating to child namespaces.
+	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -355,6 +358,16 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Propagate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Propagate indicates if the policy is propagating to child namespaces.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
