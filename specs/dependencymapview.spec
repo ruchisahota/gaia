@@ -29,7 +29,7 @@
             "setter": null,
             "stored": true,
             "subtype": null,
-            "transient": false,
+            "transient": true,
             "type": "boolean",
             "unique": null,
             "uniqueScope": null
