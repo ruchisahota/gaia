@@ -30,7 +30,7 @@
             "stored": true,
             "subtype": "interface{}",
             "transient": null,
-            "type": "enum",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         },
