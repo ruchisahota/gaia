@@ -15,6 +15,7 @@ func init() {
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(MapEdgeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
+	elemental.RegisterIdentity(NotificationIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
 	elemental.RegisterIdentity(IntegrationIdentity)
@@ -66,6 +67,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewMapEdge()
 	case FilePathIdentity.Name:
 		return NewFilePath()
+	case NotificationIdentity.Name:
+		return NewNotification()
 	case FileAccessIdentity.Name:
 		return NewFileAccess()
 	case NamespaceIdentity.Name:
@@ -132,6 +135,7 @@ func AllIdentities() []elemental.Identity {
 		TagIdentity,
 		MapEdgeIdentity,
 		FilePathIdentity,
+		NotificationIdentity,
 		FileAccessIdentity,
 		NamespaceIdentity,
 		IntegrationIdentity,

@@ -105,6 +105,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("filepath")] = FilePathMainRelationship
 
 	//
+	// Main Relationship for notification
+	//
+	NotificationMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("notification")] = NotificationMainRelationship
+
+	//
 	// Main Relationship for fileaccess
 	//
 	FileAccessMainRelationship := &elemental.Relationship{}
@@ -489,6 +498,14 @@ func init() {
 		elemental.IdentityFromName("networkaccesspolicy"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for notifications in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("notification"),
+		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
