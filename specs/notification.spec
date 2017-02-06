@@ -3,7 +3,7 @@
     "children": [],
     "model": {
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "Notification",
         "extends": [],
@@ -12,6 +12,6 @@
         "resource_name": "notifications",
         "rest_name": "notification",
         "root": null,
-        "update": true
+        "update": false
     }
 }
