@@ -275,6 +275,7 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Name:           "computed",
 		Orderable:      true,
 		Stored:         true,
+		Transient:      true,
 		Type:           "boolean",
 	},
 	"CreatedAt": elemental.AttributeSpecification{
