@@ -105,15 +105,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("filepath")] = FilePathMainRelationship
 
 	//
-	// Main Relationship for notification
-	//
-	NotificationMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("notification")] = NotificationMainRelationship
-
-	//
 	// Main Relationship for fileaccess
 	//
 	FileAccessMainRelationship := &elemental.Relationship{}
@@ -367,12 +358,29 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("mapnode")] = MapNodeMainRelationship
 
 	//
+	// Main Relationship for activity
+	//
+	ActivityMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("activity")] = ActivityMainRelationship
+
+	//
 	// Main Relationship for root
 	//
 	RootMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
 	}
 
+	// Children relationship for activities in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("activity"),
+		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
 	// Children relationship for apiauthorizationpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("apiauthorizationpolicy"),
@@ -498,14 +506,6 @@ func init() {
 		elemental.IdentityFromName("networkaccesspolicy"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-	// Children relationship for notifications in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("notification"),
-		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},

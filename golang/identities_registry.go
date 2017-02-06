@@ -15,7 +15,6 @@ func init() {
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(MapEdgeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
-	elemental.RegisterIdentity(NotificationIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
 	elemental.RegisterIdentity(IntegrationIdentity)
@@ -36,6 +35,7 @@ func init() {
 	elemental.RegisterIdentity(VulnerabilityIdentity)
 	elemental.RegisterIdentity(ServerIdentity)
 	elemental.RegisterIdentity(MapNodeIdentity)
+	elemental.RegisterIdentity(ActivityIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(NetworkAccessPolicyIdentity)
 	elemental.RegisterIdentity(UserIdentity)
@@ -67,8 +67,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewMapEdge()
 	case FilePathIdentity.Name:
 		return NewFilePath()
-	case NotificationIdentity.Name:
-		return NewNotification()
 	case FileAccessIdentity.Name:
 		return NewFileAccess()
 	case NamespaceIdentity.Name:
@@ -109,6 +107,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewServer()
 	case MapNodeIdentity.Name:
 		return NewMapNode()
+	case ActivityIdentity.Name:
+		return NewActivity()
 	case RootIdentity.Name:
 		return NewRoot()
 	case NetworkAccessPolicyIdentity.Name:
@@ -135,7 +135,6 @@ func AllIdentities() []elemental.Identity {
 		TagIdentity,
 		MapEdgeIdentity,
 		FilePathIdentity,
-		NotificationIdentity,
 		FileAccessIdentity,
 		NamespaceIdentity,
 		IntegrationIdentity,
@@ -156,6 +155,7 @@ func AllIdentities() []elemental.Identity {
 		VulnerabilityIdentity,
 		ServerIdentity,
 		MapNodeIdentity,
+		ActivityIdentity,
 		RootIdentity,
 		NetworkAccessPolicyIdentity,
 		UserIdentity,
