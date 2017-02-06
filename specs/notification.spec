@@ -28,7 +28,7 @@
             "required": null,
             "setter": null,
             "stored": true,
-            "subtype": "interface{}",
+            "subtype": "raw_data",
             "transient": null,
             "type": "external",
             "unique": null,
