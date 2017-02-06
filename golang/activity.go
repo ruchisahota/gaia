@@ -28,9 +28,6 @@ type Activity struct {
 	// Date of the notification.
 	Date time.Time `json:"date" cql:"date,omitempty" bson:"date"`
 
-	// Identity of the related object.
-	Identity string `json:"identity" cql:"identity,omitempty" bson:"identity"`
-
 	// Message of the notification.
 	Message string `json:"message" cql:"message,omitempty" bson:"message"`
 
@@ -39,6 +36,9 @@ type Activity struct {
 
 	// Operation describe what kind of operation the notification represents.
 	Operation string `json:"operation" cql:"operation,omitempty" bson:"operation"`
+
+	// TargetIdentity is the Identity of the related object.
+	TargetIdentity string `json:"targetIdentity" cql:"targetidentity,omitempty" bson:"targetidentity"`
 }
 
 // NewActivity returns a new *Activity
@@ -150,17 +150,6 @@ var ActivityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"Identity": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Identity of the related object.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "identity",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"Message": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Message of the notification.`,
@@ -194,6 +183,17 @@ var ActivityAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "operation",
 		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"TargetIdentity": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `TargetIdentity is the Identity of the related object.`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "targetIdentity",
+		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
 	},
