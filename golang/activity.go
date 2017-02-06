@@ -34,7 +34,7 @@ type Activity struct {
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
 	// Claims of the user who performed the operation.
-	Claims string `json:"claims" cql:"claims,omitempty" bson:"claims"`
+	Claims interface{} `json:"claims" cql:"claims,omitempty" bson:"claims"`
 
 	// Data of the notification.
 	Data interface{} `json:"data" cql:"data,omitempty" bson:"data"`
@@ -133,12 +133,12 @@ var ActivityAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Claims of the user who performed the operation.`,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
 		Name:           "claims",
 		Orderable:      true,
 		ReadOnly:       true,
 		Stored:         true,
-		Type:           "string",
+		SubType:        "raw_data",
+		Type:           "external",
 	},
 	"Data": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
