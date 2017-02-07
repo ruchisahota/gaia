@@ -44,7 +44,7 @@ type APICheck struct {
 	API string `json:"API" cql:"-" bson:"-"`
 
 	// Authorized contains the results of the check.
-	Authorized bool `json:"authorized" cql:"-" bson:"-"`
+	Authorized map[string]bool `json:"authorized" cql:"-" bson:"-"`
 
 	// Namespace is the namespace to use to check the api authentication.
 	Namespace string `json:"namespace" cql:"-" bson:"-"`
@@ -63,6 +63,7 @@ type APICheck struct {
 func NewAPICheck() *APICheck {
 
 	return &APICheck{
+		Authorized:       map[string]bool{},
 		TargetIdentities: []string{},
 	}
 }
@@ -146,7 +147,8 @@ var APICheckAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "authorized",
 		ReadOnly:       true,
-		Type:           "boolean",
+		SubType:        "authorized_identities",
+		Type:           "external",
 	},
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
