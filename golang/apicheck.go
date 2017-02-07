@@ -52,6 +52,9 @@ type APICheck struct {
 	// Operation is the operation you want to check.
 	Operation APICheckOperationValue `json:"operation" cql:"operation,omitempty" bson:"operation"`
 
+	// TargetIdentities contains the list of identities you want to check the authorization.
+	TargetIdentities []string `json:"targetIdentities" cql:"-" bson:"-"`
+
 	// Token is the token to use to check api authentication
 	Token string `json:"token" cql:"-" bson:"-"`
 }
@@ -59,7 +62,9 @@ type APICheck struct {
 // NewAPICheck returns a new *APICheck
 func NewAPICheck() *APICheck {
 
-	return &APICheck{}
+	return &APICheck{
+		TargetIdentities: []string{},
+	}
 }
 
 // Identity returns the Identity of the object.
@@ -94,6 +99,10 @@ func (o *APICheck) Validate() error {
 	}
 
 	if err := elemental.ValidateStringInList("operation", string(o.Operation), []string{"Create", "Delete", "Info", "Patch", "Retrieve", "RetrieveMany", "Update"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("targetIdentities", o.TargetIdentities); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -157,6 +166,15 @@ var APICheckAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "enum",
+	},
+	"TargetIdentities": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `TargetIdentities contains the list of identities you want to check the authorization.`,
+		Exposed:        true,
+		Name:           "targetIdentities",
+		Required:       true,
+		SubType:        "identity_list",
+		Type:           "external",
 	},
 	"Token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
