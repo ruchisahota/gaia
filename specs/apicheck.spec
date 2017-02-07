@@ -62,9 +62,9 @@
             "required": null,
             "setter": null,
             "stored": false,
-            "subtype": null,
+            "subtype": "authorized_identities",
             "transient": false,
-            "type": "boolean",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         },
