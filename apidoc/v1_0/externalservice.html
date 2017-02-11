@@ -451,7 +451,7 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_port" title="Port refers to network port which could be 100-2000 or * to represent all ports">port</a>
+                            <a href="#attr_port" title="Port refers to network port which could be a single number or 100:2000 to represent a range of ports">port</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
                             <span class="type_string">string
@@ -463,8 +463,6 @@
                         </td>
                         <td style="padding-left: 30px;" class="fixed-text hide-xs">
                             
-    
-     <span class="label label-danger">required</span>&nbsp;
     
     
     
@@ -481,7 +479,7 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_protocol" title="Protocol refers to network protocol like TCP/UDP etc or * to represent all protocols">protocol</a>
+                            <a href="#attr_protocol" title="Protocol refers to network protocol like TCP/UDP or the number of the protocol.">protocol</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
                             <span class="type_string">string
@@ -1282,8 +1280,6 @@
                         <span class="type_string fixed-text">string</span>
                         
     
-     <span class="label label-danger">required</span>&nbsp;
-    
     
     
     
@@ -1298,7 +1294,7 @@
 
                     <div class="panel-body">
                         <h5><b>Discussion</b></h5>
-                        <p>Port refers to network port which could be 100-2000 or * to represent all ports</p>
+                        <p>Port refers to network port which could be a single number or 100:2000 to represent a range of ports</p>
 
                         <hr/>
 
@@ -1308,6 +1304,8 @@
 
                             
 
+                            
+                            <span class="small"><b>Default value: </b></span><span class="fixed-text">1:65535</span><br/>
                             
 
                             
@@ -1349,7 +1347,7 @@
 
                     <div class="panel-body">
                         <h5><b>Discussion</b></h5>
-                        <p>Protocol refers to network protocol like TCP/UDP etc or * to represent all protocols</p>
+                        <p>Protocol refers to network protocol like TCP/UDP or the number of the protocol.</p>
 
                         <hr/>
 
