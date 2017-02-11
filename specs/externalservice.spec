@@ -77,7 +77,7 @@
             "default_order": false,
             "default_value": null,
             "deprecated": false,
-            "description": "Protocol refers to network protocol like TCP/UDP etc or * to represent all protocols",
+            "description": "Protocol refers to network protocol like TCP/UDP or the number of the protocol.",
             "exposed": true,
             "filterable": true,
             "foreign_key": false,
