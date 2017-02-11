@@ -320,6 +320,7 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Network refers to either CIDR or domain name`,
 		Exposed:        true,
 		Filterable:     true,
+		Format:         "cidr",
 		Name:           "network",
 		Required:       true,
 		Stored:         true,
