@@ -13,7 +13,7 @@
             "exposed": true,
             "filterable": true,
             "foreign_key": false,
-            "format": null,
+            "format": "cidr",
             "getter": false,
             "identifier": false,
             "index": false,
