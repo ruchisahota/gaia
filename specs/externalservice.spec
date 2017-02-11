@@ -41,7 +41,7 @@
             "channel": null,
             "creation_only": false,
             "default_order": false,
-            "default_value": "1:65000",
+            "default_value": "1:65535",
             "deprecated": false,
             "description": "Port refers to network port which could be a single number or 100:2000 to represent a range of ports",
             "exposed": true,
