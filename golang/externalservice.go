@@ -194,6 +194,10 @@ func (o *ExternalService) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidatePattern("protocol", o.Protocol, `^(TCP|UDP|[0-9]{1,3})$`); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("protocol", o.Protocol); err != nil {
 		errors = append(errors, err)
 	}
@@ -377,6 +381,7 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"Protocol": elemental.AttributeSpecification{
+		AllowedChars:   `^(TCP|UDP|[0-9]{1,3})$`,
 		AllowedChoices: []string{},
 		Description:    `Protocol refers to network protocol like TCP/UDP or the number of the protocol.`,
 		Exposed:        true,
