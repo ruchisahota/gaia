@@ -190,6 +190,10 @@ func (o *ExternalService) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidatePattern("port", o.Port, `^[\d]*[[:]?[\d]+]?$`); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("protocol", o.Protocol); err != nil {
 		errors = append(errors, err)
 	}
@@ -363,6 +367,7 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"Port": elemental.AttributeSpecification{
+		AllowedChars:   `^[\d]*[[:]?[\d]+]?$`,
 		AllowedChoices: []string{},
 		Description:    `Port refers to network port which could be a single number or 100:2000 to represent a range of ports`,
 		Exposed:        true,
