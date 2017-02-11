@@ -45,14 +45,14 @@ func (o *DependencyMapSubview) Identifier() string {
 	return ""
 }
 
-func (o *DependencyMapSubview) String() string {
-
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
-}
-
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *DependencyMapSubview) SetIdentifier(ID string) {
 
+}
+
+func (o *DependencyMapSubview) String() string {
+
+	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // Validate valides the current information stored into the structure.
@@ -83,6 +83,7 @@ func (DependencyMapSubview) AttributeSpecifications() map[string]elemental.Attri
 var DependencyMapSubviewAttributesMap = map[string]elemental.AttributeSpecification{
 	"Selector": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `Selector is the main selector for the DependencyMapSubview.`,
 		Exposed:        true,
 		Name:           "selector",
 		Orderable:      true,
@@ -92,6 +93,7 @@ var DependencyMapSubviewAttributesMap = map[string]elemental.AttributeSpecificat
 	},
 	"SubSelectors": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `SubSelectors are the selector to apply inside the main selector.`,
 		Exposed:        true,
 		Name:           "subSelectors",
 		Orderable:      true,
@@ -101,6 +103,7 @@ var DependencyMapSubviewAttributesMap = map[string]elemental.AttributeSpecificat
 	},
 	"Tonality": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `Tonality sets the color tonality to use for the DependencyMapSubView.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
