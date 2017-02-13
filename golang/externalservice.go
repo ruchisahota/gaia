@@ -194,7 +194,7 @@ func (o *ExternalService) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidatePattern("port", o.Port, `^[\d]*[[:]?[\d]+]?$`); err != nil {
+	if err := elemental.ValidatePattern("port", o.Port, `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$`); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -377,7 +377,7 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"Port": elemental.AttributeSpecification{
-		AllowedChars:   `^[\d]*[[:]?[\d]+]?$`,
+		AllowedChars:   `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$`,
 		AllowedChoices: []string{},
 		Description:    `Port refers to network port which could be a single number or 100:2000 to represent a range of ports`,
 		Exposed:        true,
