@@ -252,7 +252,7 @@
             "filterable": true,
             "foreign_key": null,
             "format": null,
-            "getter": null,
+            "getter": true,
             "identifier": null,
             "index": null,
             "max_length": null,
