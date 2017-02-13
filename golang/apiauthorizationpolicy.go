@@ -186,6 +186,11 @@ func (o *APIAuthorizationPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetProtected returns the protected of the receiver
+func (o *APIAuthorizationPolicy) GetProtected() bool {
+	return o.Protected
+}
+
 // GetStatus returns the status of the receiver
 func (o *APIAuthorizationPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -461,6 +466,7 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Protected defines if the object is protected.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,

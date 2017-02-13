@@ -180,6 +180,11 @@ func (o *DependencyMapView) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetProtected returns the protected of the receiver
+func (o *DependencyMapView) GetProtected() bool {
+	return o.Protected
+}
+
 // GetStatus returns the status of the receiver
 func (o *DependencyMapView) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -397,6 +402,7 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Description:    `Protected defines if the object is protected.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,

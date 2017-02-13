@@ -178,6 +178,11 @@ func (o *NetworkAccessPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetProtected returns the protected of the receiver
+func (o *NetworkAccessPolicy) GetProtected() bool {
+	return o.Protected
+}
+
 // GetStatus returns the status of the receiver
 func (o *NetworkAccessPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -419,6 +424,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Description:    `Protected defines if the object is protected.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,

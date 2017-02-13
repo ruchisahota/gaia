@@ -194,6 +194,11 @@ func (o *User) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetProtected returns the protected of the receiver
+func (o *User) GetProtected() bool {
+	return o.Protected
+}
+
 // GetStatus returns the status of the receiver
 func (o *User) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -453,6 +458,7 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Protected defines if the object is protected.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,

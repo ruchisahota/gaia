@@ -153,6 +153,11 @@ func (o *Namespace) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetProtected returns the protected of the receiver
+func (o *Namespace) GetProtected() bool {
+	return o.Protected
+}
+
 // GetStatus returns the status of the receiver
 func (o *Namespace) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -359,6 +364,7 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Protected defines if the object is protected.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,

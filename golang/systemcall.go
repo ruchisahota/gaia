@@ -155,6 +155,11 @@ func (o *SystemCall) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetProtected returns the protected of the receiver
+func (o *SystemCall) GetProtected() bool {
+	return o.Protected
+}
+
 // GetStatus returns the status of the receiver
 func (o *SystemCall) GetStatus() constants.EntityStatus {
 	return o.Status
@@ -342,6 +347,7 @@ var SystemCallAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Protected defines if the object is protected.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,
