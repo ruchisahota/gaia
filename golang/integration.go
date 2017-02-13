@@ -205,6 +205,7 @@ func (o *Integration) SetUpdatedAt(updatedAt time.Time) {
 func (o *Integration) Validate() error {
 
 	errors := elemental.Errors{}
+	requiredErrors := elemental.Errors{}
 
 	if err := elemental.ValidateStringInList("authType", string(o.AuthType), []string{"Basic", "None", "OAuth"}, false); err != nil {
 		errors = append(errors, err)
@@ -212,6 +213,10 @@ func (o *Integration) Validate() error {
 
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Registry", "VulnerabilityScanner"}, false); err != nil {
 		errors = append(errors, err)
+	}
+
+	if len(requiredErrors) > 0 {
+		return requiredErrors
 	}
 
 	if len(errors) > 0 {

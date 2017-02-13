@@ -227,6 +227,11 @@ func (o *Server) SetUpdatedAt(updatedAt time.Time) {
 func (o *Server) Validate() error {
 
 	errors := elemental.Errors{}
+	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("FQDN", o.FQDN); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
 
 	if err := elemental.ValidateRequiredString("FQDN", o.FQDN); err != nil {
 		errors = append(errors, err)
@@ -237,11 +242,19 @@ func (o *Server) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"CONNECTED", "INITIALIZED", "UNKNOWN"}, true); err != nil {
 		errors = append(errors, err)
+	}
+
+	if len(requiredErrors) > 0 {
+		return requiredErrors
 	}
 
 	if len(errors) > 0 {

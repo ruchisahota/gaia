@@ -103,13 +103,22 @@ func (o *SystemInfo) String() string {
 func (o *SystemInfo) Validate() error {
 
 	errors := elemental.Errors{}
+	requiredErrors := elemental.Errors{}
 
 	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Degraded", "Failure", "Ok"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("zackURL", o.ZackURL); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("zackURL", o.ZackURL); err != nil {
 		errors = append(errors, err)
+	}
+
+	if len(requiredErrors) > 0 {
+		return requiredErrors
 	}
 
 	if len(errors) > 0 {

@@ -177,6 +177,11 @@ func (o *Namespace) SetUpdatedAt(updatedAt time.Time) {
 func (o *Namespace) Validate() error {
 
 	errors := elemental.Errors{}
+	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
 
 	if err := elemental.ValidatePattern("name", o.Name, `^[^\*\=]*$`); err != nil {
 		errors = append(errors, err)
@@ -184,6 +189,10 @@ func (o *Namespace) Validate() error {
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
+	}
+
+	if len(requiredErrors) > 0 {
+		return requiredErrors
 	}
 
 	if len(errors) > 0 {

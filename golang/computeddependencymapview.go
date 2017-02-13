@@ -185,9 +185,18 @@ func (o *ComputedDependencyMapView) SetUpdatedAt(updatedAt time.Time) {
 func (o *ComputedDependencyMapView) Validate() error {
 
 	errors := elemental.Errors{}
+	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
 
 	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
 		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
@@ -195,7 +204,15 @@ func (o *ComputedDependencyMapView) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
 		errors = append(errors, err)
+	}
+
+	if len(requiredErrors) > 0 {
+		return requiredErrors
 	}
 
 	if len(errors) > 0 {

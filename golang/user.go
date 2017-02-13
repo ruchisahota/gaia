@@ -218,9 +218,14 @@ func (o *User) SetUpdatedAt(updatedAt time.Time) {
 func (o *User) Validate() error {
 
 	errors := elemental.Errors{}
+	requiredErrors := elemental.Errors{}
 
 	if err := elemental.ValidateStringInList("certificateStatus", string(o.CertificateStatus), []string{"RENEW", "REVOKED", "VALID"}, false); err != nil {
 		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
@@ -229,6 +234,10 @@ func (o *User) Validate() error {
 
 	if err := elemental.ValidateMaximumLength("userName", o.UserName, 64, false); err != nil {
 		errors = append(errors, err)
+	}
+
+	if len(requiredErrors) > 0 {
+		return requiredErrors
 	}
 
 	if len(errors) > 0 {
