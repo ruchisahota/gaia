@@ -53,6 +53,9 @@ type ComputedDependencyMapView struct {
 	// A map of the transient tags for the processing units
 	ProcessingUnitTags map[string][]string `json:"processingUnitTags" cql:"processingunittags,omitempty" bson:"processingunittags"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -369,6 +372,16 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Stored:         true,
 		SubType:        "processingunit_transient_tags_map",
 		Type:           "external",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

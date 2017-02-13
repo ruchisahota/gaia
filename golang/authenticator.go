@@ -70,6 +70,9 @@ type Authenticator struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -375,6 +378,16 @@ var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

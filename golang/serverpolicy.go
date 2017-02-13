@@ -53,6 +53,9 @@ type ServerPolicy struct {
 	// Propagate indicates if the policy is propagating to child namespaces.
 	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -365,6 +368,16 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "propagate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",

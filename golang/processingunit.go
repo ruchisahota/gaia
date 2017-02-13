@@ -93,6 +93,9 @@ type ProcessingUnit struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// serverID is the ID of the server associated with the processing unit
 	ServerID string `json:"serverID" cql:"serverid,omitempty" bson:"serverid"`
 
@@ -437,6 +440,16 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"ServerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

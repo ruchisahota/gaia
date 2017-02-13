@@ -85,6 +85,9 @@ type Policy struct {
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// Relation describes the required operation to be performed between subjects and objects
 	Relation []string `json:"relation" cql:"relation,omitempty" bson:"relation"`
 
@@ -439,6 +442,16 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "propagate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",

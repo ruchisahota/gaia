@@ -53,6 +53,9 @@ type ExternalService struct {
 	// Port refers to network port which could be a single number or 100:2000 to represent a range of ports
 	Port string `json:"port" cql:"port,omitempty" bson:"port"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// Protocol refers to network protocol like TCP/UDP or the number of the protocol.
 	Protocol string `json:"protocol" cql:"protocol,omitempty" bson:"protocol"`
 
@@ -385,6 +388,16 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "port",
 		Stored:         true,
 		Type:           "string",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"Protocol": elemental.AttributeSpecification{
 		AllowedChars:   `^(TCP|UDP|[0-9]{1,3})$`,

@@ -82,6 +82,9 @@ type ServerProfile struct {
 	// PolicySynchronizationInterval configures how often the policy will be resynchronized.
 	PolicySynchronizationInterval string `json:"policySynchronizationInterval" cql:"policysynchronizationinterval,omitempty" bson:"policysynchronizationinterval"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+
 	// AgentPort is the port the agent should use to listen for API calls
 	ProxyListenAddress string `json:"proxyListenAddress" cql:"proxylistenaddress,omitempty" bson:"proxylistenaddress"`
 
@@ -577,6 +580,16 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Protected": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Protected defines if the object is protected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protected",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"ProxyListenAddress": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
