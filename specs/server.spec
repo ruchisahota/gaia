@@ -240,9 +240,9 @@
             "read_only": true,
             "required": false,
             "setter": false,
-            "stored": true,
+            "stored": false,
             "subtype": null,
-            "transient": false,
+            "transient": true,
             "type": "enum",
             "unique": false,
             "uniqueScope": null
