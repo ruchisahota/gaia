@@ -91,7 +91,7 @@ type Server struct {
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
 	// OperationalStatus tells the status of the server
-	OperationalStatus ServerOperationalStatusValue `json:"operationalStatus" cql:"operationalstatus,omitempty" bson:"operationalstatus"`
+	OperationalStatus ServerOperationalStatusValue `json:"operationalStatus" cql:"-" bson:"-"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
@@ -260,10 +260,6 @@ func (o *Server) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Connected", "Disconnected", "Initialized", "Unknown"}, true); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -473,7 +469,7 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Name:           "operationalStatus",
 		ReadOnly:       true,
-		Stored:         true,
+		Transient:      true,
 		Type:           "enum",
 	},
 	"ParentID": elemental.AttributeSpecification{
