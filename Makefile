@@ -1,4 +1,5 @@
 zack_folder := "zack"
+vince_folder := "vince"
 
 init: install_monolithe install_monolithe_plugins
 default: codegen
@@ -31,3 +32,7 @@ publish:
 codegen_zack:
 	cd $(zack_folder) && make codegen
 	# cd $(zack_folder)/golang && go build
+
+codegen_vince:
+	cd $(vince_folder) && make codegen
+	cd $(vince_folder)/golang && go build
