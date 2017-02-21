@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
 // ServerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
 type ServerProfileDockerSocketTypeValue string

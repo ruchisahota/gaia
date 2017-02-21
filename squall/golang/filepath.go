@@ -4,33 +4,21 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// FileAccessPolicyIdentity represents the Identity of the object
-var FileAccessPolicyIdentity = elemental.Identity{
-	Name:     "fileaccesspolicy",
-	Category: "fileaccesspolicies",
+// FilePathIdentity represents the Identity of the object
+var FilePathIdentity = elemental.Identity{
+	Name:     "filepath",
+	Category: "filepaths",
 }
 
-// FileAccessPoliciesList represents a list of FileAccessPolicies
-type FileAccessPoliciesList []*FileAccessPolicy
+// FilePathsList represents a list of FilePaths
+type FilePathsList []*FilePath
 
-// FileAccessPolicy represents the model of a fileaccesspolicy
-type FileAccessPolicy struct {
+// FilePath represents the model of a filepath
+type FilePath struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
-
-	// Propagate indicates that the policy must be propagated to the children namespaces.
-	Propagate bool `json:"Propagate" cql:"-" bson:"-"`
-
-	// AllowsExecute allows to execute the files.
-	AllowsExecute bool `json:"allowsExecute" cql:"-" bson:"-"`
-
-	// AllowsRead allows to read the files.
-	AllowsRead bool `json:"allowsRead" cql:"-" bson:"-"`
-
-	// AllowsWrite allows to write the files.
-	AllowsWrite bool `json:"allowsWrite" cql:"-" bson:"-"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -44,11 +32,8 @@ type FileAccessPolicy struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
-	// EncryptionEnabled will enable the automatic encryption
-	EncryptionEnabled bool `json:"encryptionEnabled" cql:"-" bson:"-"`
-
-	// LogsEnabled will enable logging when this policy is used.
-	LogsEnabled bool `json:"logsEnabled" cql:"-" bson:"-"`
+	// FilePath refer to the file mount path
+	Filepath string `json:"filepath" cql:"filepath,omitempty" bson:"filepath"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -59,9 +44,6 @@ type FileAccessPolicy struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
-	// Object is the object of the policy.
-	Object [][]string `json:"object" cql:"-" bson:"-"`
-
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
 
@@ -71,21 +53,20 @@ type FileAccessPolicy struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
+	// server is the server name/ID/IP associated with the file path
+	Server string `json:"server" cql:"server,omitempty" bson:"server"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
-
-	// Subject is the subject of the policy
-	Subject [][]string `json:"subject" cql:"-" bson:"-"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewFileAccessPolicy returns a new *FileAccessPolicy
-func NewFileAccessPolicy() *FileAccessPolicy {
+// NewFilePath returns a new *FilePath
+func NewFilePath() *FilePath {
 
-	return &FileAccessPolicy{
-		Propagate:      false,
+	return &FilePath{
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
 		Status:         constants.Active,
@@ -93,124 +74,140 @@ func NewFileAccessPolicy() *FileAccessPolicy {
 }
 
 // Identity returns the Identity of the object.
-func (o *FileAccessPolicy) Identity() elemental.Identity {
+func (o *FilePath) Identity() elemental.Identity {
 
-	return FileAccessPolicyIdentity
+	return FilePathIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *FileAccessPolicy) Identifier() string {
+func (o *FilePath) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *FileAccessPolicy) SetIdentifier(ID string) {
+func (o *FilePath) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *FileAccessPolicy) String() string {
+func (o *FilePath) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *FileAccessPolicy) GetAssociatedTags() []string {
+func (o *FilePath) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *FileAccessPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *FilePath) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *FileAccessPolicy) SetCreatedAt(createdAt time.Time) {
+func (o *FilePath) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *FileAccessPolicy) GetName() string {
+func (o *FilePath) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *FileAccessPolicy) SetName(name string) {
+func (o *FilePath) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *FileAccessPolicy) GetNamespace() string {
+func (o *FilePath) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *FileAccessPolicy) SetNamespace(namespace string) {
+func (o *FilePath) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *FileAccessPolicy) GetNormalizedTags() []string {
+func (o *FilePath) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *FileAccessPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *FilePath) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *FileAccessPolicy) GetParentID() string {
+func (o *FilePath) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *FileAccessPolicy) SetParentID(parentID string) {
+func (o *FilePath) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *FileAccessPolicy) GetParentType() string {
+func (o *FilePath) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *FileAccessPolicy) SetParentType(parentType string) {
+func (o *FilePath) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *FileAccessPolicy) GetProtected() bool {
+func (o *FilePath) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *FileAccessPolicy) GetStatus() constants.EntityStatus {
+func (o *FilePath) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *FileAccessPolicy) SetStatus(status constants.EntityStatus) {
+func (o *FilePath) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *FileAccessPolicy) SetUpdatedAt(updatedAt time.Time) {
+func (o *FilePath) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *FileAccessPolicy) Validate() error {
+func (o *FilePath) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
+		errors = append(errors, err)
+	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -226,19 +223,19 @@ func (o *FileAccessPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FileAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return FileAccessPolicyAttributesMap[name]
+	return FilePathAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (FileAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (FilePath) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return FileAccessPolicyAttributesMap
+	return FilePathAttributesMap
 }
 
-// FileAccessPolicyAttributesMap represents the map of attribute for FileAccessPolicy.
-var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// FilePathAttributesMap represents the map of attribute for FilePath.
+var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -249,45 +246,11 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
+		Stored:         true,
 		Type:           "string",
 		Unique:         true,
-	},
-	"Propagate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Propagate indicates that the policy must be propagated to the children namespaces.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "Propagate",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsExecute": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsExecute allows to execute the files.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsExecute",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsRead": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsRead allows to read the files.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsRead",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsWrite": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsWrite allows to write the files.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsWrite",
-		Orderable:      true,
-		Type:           "boolean",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -332,23 +295,16 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"EncryptionEnabled": elemental.AttributeSpecification{
+	"Filepath": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `EncryptionEnabled will enable the automatic encryption`,
+		Description:    `FilePath refer to the file mount path`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "encryptionEnabled",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"LogsEnabled": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `LogsEnabled will enable logging when this policy is used.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "logsEnabled",
-		Orderable:      true,
-		Type:           "boolean",
+		Format:         "free",
+		Name:           "filepath",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -397,15 +353,6 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"Object": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Object is the object of the policy.`,
-		Exposed:        true,
-		Name:           "object",
-		Orderable:      true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -448,6 +395,18 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
+	"Server": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `server is the server name/ID/IP associated with the file path`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "server",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -460,15 +419,6 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "status_enum",
-		Type:           "external",
-	},
-	"Subject": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Subject is the subject of the policy`,
-		Exposed:        true,
-		Name:           "subject",
-		Orderable:      true,
-		SubType:        "policies_list",
 		Type:           "external",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{

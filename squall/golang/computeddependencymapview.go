@@ -4,24 +4,27 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// ServerPolicyIdentity represents the Identity of the object
-var ServerPolicyIdentity = elemental.Identity{
-	Name:     "serverpolicy",
-	Category: "serverpolicies",
+// ComputedDependencyMapViewIdentity represents the Identity of the object
+var ComputedDependencyMapViewIdentity = elemental.Identity{
+	Name:     "computeddependencymapview",
+	Category: "computeddependencymapviews",
 }
 
-// ServerPoliciesList represents a list of ServerPolicies
-type ServerPoliciesList []*ServerPolicy
+// ComputedDependencyMapViewsList represents a list of ComputedDependencyMapViews
+type ComputedDependencyMapViewsList []*ComputedDependencyMapView
 
-// ServerPolicy represents the model of a serverpolicy
-type ServerPolicy struct {
+// ComputedDependencyMapView represents the model of a computeddependencymapview
+type ComputedDependencyMapView struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
+
+	// The dependencyMapView linked ID to the rendered dependency map view
+	AssociatedDependencyMapViewID string `json:"associatedDependencyMapViewID" cql:"associateddependencymapviewid,omitempty" bson:"associateddependencymapviewid"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
@@ -41,17 +44,14 @@ type ServerPolicy struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
-	// Object is the list of tags to use to find a server profile.
-	Object [][]string `json:"object" cql:"object,omitempty" bson:"object"`
-
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
-	// Propagate indicates if the policy is propagating to child namespaces.
-	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
+	// A map of the transient tags for the processing units
+	ProcessingUnitTags map[string][]string `json:"processingUnitTags" cql:"processingunittags,omitempty" bson:"processingunittags"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
@@ -59,17 +59,14 @@ type ServerPolicy struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
-	// Subject is the subject of the policy.
-	Subject [][]string `json:"subject" cql:"subject,omitempty" bson:"subject"`
-
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewServerPolicy returns a new *ServerPolicy
-func NewServerPolicy() *ServerPolicy {
+// NewComputedDependencyMapView returns a new *ComputedDependencyMapView
+func NewComputedDependencyMapView() *ComputedDependencyMapView {
 
-	return &ServerPolicy{
+	return &ComputedDependencyMapView{
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
 		Status:         constants.Active,
@@ -77,119 +74,127 @@ func NewServerPolicy() *ServerPolicy {
 }
 
 // Identity returns the Identity of the object.
-func (o *ServerPolicy) Identity() elemental.Identity {
+func (o *ComputedDependencyMapView) Identity() elemental.Identity {
 
-	return ServerPolicyIdentity
+	return ComputedDependencyMapViewIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *ServerPolicy) Identifier() string {
+func (o *ComputedDependencyMapView) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ServerPolicy) SetIdentifier(ID string) {
+func (o *ComputedDependencyMapView) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *ServerPolicy) String() string {
+func (o *ComputedDependencyMapView) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *ServerPolicy) GetAssociatedTags() []string {
+func (o *ComputedDependencyMapView) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *ServerPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *ComputedDependencyMapView) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *ServerPolicy) SetCreatedAt(createdAt time.Time) {
+func (o *ComputedDependencyMapView) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *ServerPolicy) GetName() string {
+func (o *ComputedDependencyMapView) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *ServerPolicy) SetName(name string) {
+func (o *ComputedDependencyMapView) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *ServerPolicy) GetNamespace() string {
+func (o *ComputedDependencyMapView) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *ServerPolicy) SetNamespace(namespace string) {
+func (o *ComputedDependencyMapView) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *ServerPolicy) GetNormalizedTags() []string {
+func (o *ComputedDependencyMapView) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *ServerPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *ComputedDependencyMapView) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *ServerPolicy) GetParentID() string {
+func (o *ComputedDependencyMapView) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *ServerPolicy) SetParentID(parentID string) {
+func (o *ComputedDependencyMapView) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *ServerPolicy) GetParentType() string {
+func (o *ComputedDependencyMapView) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *ServerPolicy) SetParentType(parentType string) {
+func (o *ComputedDependencyMapView) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *ServerPolicy) GetProtected() bool {
+func (o *ComputedDependencyMapView) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *ServerPolicy) GetStatus() constants.EntityStatus {
+func (o *ComputedDependencyMapView) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *ServerPolicy) SetStatus(status constants.EntityStatus) {
+func (o *ComputedDependencyMapView) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *ServerPolicy) SetUpdatedAt(updatedAt time.Time) {
+func (o *ComputedDependencyMapView) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *ServerPolicy) Validate() error {
+func (o *ComputedDependencyMapView) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -198,19 +203,11 @@ func (o *ServerPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("object", o.Object); err != nil {
+	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("object", o.Object); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -226,19 +223,19 @@ func (o *ServerPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ServerPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ServerPolicyAttributesMap[name]
+	return ComputedDependencyMapViewAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ServerPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (ComputedDependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return ServerPolicyAttributesMap
+	return ComputedDependencyMapViewAttributesMap
 }
 
-// ServerPolicyAttributesMap represents the map of attribute for ServerPolicy.
-var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// ComputedDependencyMapViewAttributesMap represents the map of attribute for ComputedDependencyMapView.
+var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -249,7 +246,9 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
+		PrimaryKey:     true,
 		ReadOnly:       true,
+		Stored:         true,
 		Type:           "string",
 		Unique:         true,
 	},
@@ -261,6 +260,17 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "annotation",
 		Type:           "external",
+	},
+	"AssociatedDependencyMapViewID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `The dependencyMapView linked ID to the rendered dependency map view`,
+		Exposed:        true,
+		Name:           "associatedDependencyMapViewID",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		SubType:        "dependencymapview",
+		Type:           "string",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -343,16 +353,6 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"Object": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Object is the list of tags to use to find a server profile.`,
-		Exposed:        true,
-		Name:           "object",
-		Required:       true,
-		Stored:         true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -384,15 +384,16 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Propagate": elemental.AttributeSpecification{
+	"ProcessingUnitTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Propagate indicates if the policy is propagating to child namespaces.`,
+		Description:    `A map of the transient tags for the processing units`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "propagate",
+		Name:           "processingUnitTags",
 		Orderable:      true,
+		Required:       true,
 		Stored:         true,
-		Type:           "boolean",
+		SubType:        "processingunit_transient_tags_map",
+		Type:           "external",
 	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -417,16 +418,6 @@ var ServerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "status_enum",
-		Type:           "external",
-	},
-	"Subject": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Subject is the subject of the policy.`,
-		Exposed:        true,
-		Name:           "subject",
-		Required:       true,
-		Stored:         true,
-		SubType:        "policies_list",
 		Type:           "external",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{

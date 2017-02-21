@@ -4,19 +4,36 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// VulnerabilityIdentity represents the Identity of the object
-var VulnerabilityIdentity = elemental.Identity{
-	Name:     "vulnerability",
-	Category: "vulnerabilities",
+// AuthenticatorMethodValue represents the possible values for attribute "method".
+type AuthenticatorMethodValue string
+
+const (
+	// AuthenticatorMethodCertificate represents the value Certificate.
+	AuthenticatorMethodCertificate AuthenticatorMethodValue = "Certificate"
+
+	// AuthenticatorMethodKey represents the value Key.
+	AuthenticatorMethodKey AuthenticatorMethodValue = "Key"
+
+	// AuthenticatorMethodLdap represents the value LDAP.
+	AuthenticatorMethodLdap AuthenticatorMethodValue = "LDAP"
+
+	// AuthenticatorMethodOauth represents the value OAUTH.
+	AuthenticatorMethodOauth AuthenticatorMethodValue = "OAUTH"
+)
+
+// AuthenticatorIdentity represents the Identity of the object
+var AuthenticatorIdentity = elemental.Identity{
+	Name:     "authenticator",
+	Category: "authenticators",
 }
 
-// VulnerabilitiesList represents a list of Vulnerabilities
-type VulnerabilitiesList []*Vulnerability
+// AuthenticatorsList represents a list of Authenticators
+type AuthenticatorsList []*Authenticator
 
-// Vulnerability represents the model of a vulnerability
-type Vulnerability struct {
+// Authenticator represents the model of a authenticator
+type Authenticator struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
@@ -26,23 +43,23 @@ type Vulnerability struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
 
+	// Configuration stores information needed to authenticate an user using any servers like LDAP/Google/Certificate
+	Configuration map[string]string `json:"configuration" cql:"configuration,omitempty" bson:"configuration"`
+
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
 
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
-	// Link is the URL that refers to the vulnerability
-	Link string `json:"link" cql:"link,omitempty" bson:"link"`
+	// Method for authenticator (Certificate, Key, LDAP, Google, etc)
+	Method AuthenticatorMethodValue `json:"method" cql:"method,omitempty" bson:"method"`
 
-	// Name is the name of the entity
+	// Name of the authenticator
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
-
-	// NamespaceName is the name of the namespace
-	NamespaceName string `json:"namespaceName" cql:"namespacename,omitempty" bson:"namespacename"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
@@ -56,9 +73,6 @@ type Vulnerability struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
-	// Severity refers to the security vulnerability level
-	Severity constants.Vulnerability `json:"severity" cql:"severity,omitempty" bson:"severity"`
-
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
@@ -66,126 +80,135 @@ type Vulnerability struct {
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewVulnerability returns a new *Vulnerability
-func NewVulnerability() *Vulnerability {
+// NewAuthenticator returns a new *Authenticator
+func NewAuthenticator() *Authenticator {
 
-	return &Vulnerability{
+	return &Authenticator{
 		AssociatedTags: []string{},
+		Method:         "Certificate",
 		NormalizedTags: []string{},
-		Severity:       constants.VulnerabilityUnknown,
 		Status:         constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Vulnerability) Identity() elemental.Identity {
+func (o *Authenticator) Identity() elemental.Identity {
 
-	return VulnerabilityIdentity
+	return AuthenticatorIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Vulnerability) Identifier() string {
+func (o *Authenticator) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Vulnerability) SetIdentifier(ID string) {
+func (o *Authenticator) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *Vulnerability) String() string {
+func (o *Authenticator) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Vulnerability) GetAssociatedTags() []string {
+func (o *Authenticator) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Vulnerability) SetAssociatedTags(associatedTags []string) {
+func (o *Authenticator) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Vulnerability) SetCreatedAt(createdAt time.Time) {
+func (o *Authenticator) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
+// GetName returns the name of the receiver
+func (o *Authenticator) GetName() string {
+	return o.Name
+}
+
 // GetNamespace returns the namespace of the receiver
-func (o *Vulnerability) GetNamespace() string {
+func (o *Authenticator) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Vulnerability) SetNamespace(namespace string) {
+func (o *Authenticator) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *Vulnerability) GetNormalizedTags() []string {
+func (o *Authenticator) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *Vulnerability) SetNormalizedTags(normalizedTags []string) {
+func (o *Authenticator) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Vulnerability) GetParentID() string {
+func (o *Authenticator) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Vulnerability) SetParentID(parentID string) {
+func (o *Authenticator) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Vulnerability) GetParentType() string {
+func (o *Authenticator) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Vulnerability) SetParentType(parentType string) {
+func (o *Authenticator) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *Vulnerability) GetProtected() bool {
+func (o *Authenticator) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *Vulnerability) GetStatus() constants.EntityStatus {
+func (o *Authenticator) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Vulnerability) SetStatus(status constants.EntityStatus) {
+func (o *Authenticator) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Vulnerability) SetUpdatedAt(updatedAt time.Time) {
+func (o *Authenticator) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Vulnerability) Validate() error {
+func (o *Authenticator) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredExternal("severity", o.Severity); err != nil {
+	if err := elemental.ValidateStringInList("method", string(o.Method), []string{"Certificate", "Key", "LDAP", "OAUTH"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("severity", o.Severity); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -201,19 +224,19 @@ func (o *Vulnerability) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Vulnerability) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Authenticator) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return VulnerabilityAttributesMap[name]
+	return AuthenticatorAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Vulnerability) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (Authenticator) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return VulnerabilityAttributesMap
+	return AuthenticatorAttributesMap
 }
 
-// VulnerabilityAttributesMap represents the map of attribute for Vulnerability.
-var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
+// AuthenticatorAttributesMap represents the map of attribute for Authenticator.
+var AuthenticatorAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -250,6 +273,15 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
+	"Configuration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Configuration stores information needed to authenticate an user using any servers like LDAP/Google/Certificate `,
+		Exposed:        true,
+		Name:           "configuration",
+		Stored:         true,
+		SubType:        "auth_config",
+		Type:           "external",
+	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -273,28 +305,28 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Link": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
+	"Method": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Certificate", "Key", "LDAP", "OAUTH"},
 		CreationOnly:   true,
-		Description:    `Link is the URL that refers to the vulnerability`,
+		Description:    `Method for authenticator (Certificate, Key, LDAP, Google, etc)`,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
-		Name:           "link",
-		Orderable:      true,
-		ReadOnly:       true,
+		Name:           "method",
 		Stored:         true,
-		Type:           "string",
+		Type:           "enum",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Name is the name of the entity`,
+		CreationOnly:   true,
+		Description:    `Name of the authenticator`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
+		Getter:         true,
+		Index:          true,
 		Name:           "name",
 		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -313,20 +345,6 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		PrimaryKey:     true,
 		ReadOnly:       true,
 		Setter:         true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"NamespaceName": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		CreationOnly:   true,
-		Description:    `NamespaceName is the name of the namespace`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "namespaceName",
-		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -385,19 +403,6 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Severity": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Description:    `Severity refers to the security vulnerability level`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "severity",
-		ReadOnly:       true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "vulnerability_level",
-		Type:           "external",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

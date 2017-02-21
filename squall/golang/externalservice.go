@@ -4,44 +4,19 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// IntegrationAuthTypeValue represents the possible values for attribute "authType".
-type IntegrationAuthTypeValue string
-
-const (
-	// IntegrationAuthTypeBasic represents the value Basic.
-	IntegrationAuthTypeBasic IntegrationAuthTypeValue = "Basic"
-
-	// IntegrationAuthTypeNone represents the value None.
-	IntegrationAuthTypeNone IntegrationAuthTypeValue = "None"
-
-	// IntegrationAuthTypeOauth represents the value OAuth.
-	IntegrationAuthTypeOauth IntegrationAuthTypeValue = "OAuth"
-)
-
-// IntegrationTypeValue represents the possible values for attribute "type".
-type IntegrationTypeValue string
-
-const (
-	// IntegrationTypeRegistry represents the value Registry.
-	IntegrationTypeRegistry IntegrationTypeValue = "Registry"
-
-	// IntegrationTypeVulnerabilityscanner represents the value VulnerabilityScanner.
-	IntegrationTypeVulnerabilityscanner IntegrationTypeValue = "VulnerabilityScanner"
-)
-
-// IntegrationIdentity represents the Identity of the object
-var IntegrationIdentity = elemental.Identity{
-	Name:     "integration",
-	Category: "integrations",
+// ExternalServiceIdentity represents the Identity of the object
+var ExternalServiceIdentity = elemental.Identity{
+	Name:     "externalservice",
+	Category: "externalservices",
 }
 
-// IntegrationsList represents a list of Integrations
-type IntegrationsList []*Integration
+// ExternalServicesList represents a list of ExternalServices
+type ExternalServicesList []*ExternalService
 
-// Integration represents the model of a integration
-type Integration struct {
+// ExternalService represents the model of a externalservice
+type ExternalService struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
@@ -51,17 +26,20 @@ type Integration struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
 
-	// AuthType refers to the type of HTTP authentication used to query endpoints
-	AuthType IntegrationAuthTypeValue `json:"authType" cql:"authtype,omitempty" bson:"authtype"`
-
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
 
-	// Endpoint is the API end point of the service
-	Endpoint string `json:"endpoint" cql:"endpoint,omitempty" bson:"endpoint"`
+	// Description is the description of the object.
+	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+
+	// Name is the name of the entity
+	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+
+	// Network refers to either CIDR or domain name
+	Network string `json:"network" cql:"network,omitempty" bson:"network"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
@@ -72,146 +50,180 @@ type Integration struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
-	// Password is the password of the user to be used in the HTTP Authorization header
-	Password string `json:"password" cql:"password,omitempty" bson:"password"`
+	// Port refers to network port which could be a single number or 100:2000 to represent a range of ports
+	Port string `json:"port" cql:"port,omitempty" bson:"port"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
+	// Protocol refers to network protocol like TCP/UDP or the number of the protocol.
+	Protocol string `json:"protocol" cql:"protocol,omitempty" bson:"protocol"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
-	// Type refers to type of the server
-	Type IntegrationTypeValue `json:"type" cql:"type,omitempty" bson:"type"`
-
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
-
-	// Username refers to the username to be used in the HTTP Authorization header
-	UserName string `json:"userName" cql:"username,omitempty" bson:"username"`
 }
 
-// NewIntegration returns a new *Integration
-func NewIntegration() *Integration {
+// NewExternalService returns a new *ExternalService
+func NewExternalService() *ExternalService {
 
-	return &Integration{
+	return &ExternalService{
 		AssociatedTags: []string{},
-		AuthType:       "None",
 		NormalizedTags: []string{},
+		Port:           "1:65535",
 		Status:         constants.Active,
-		Type:           "Registry",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Integration) Identity() elemental.Identity {
+func (o *ExternalService) Identity() elemental.Identity {
 
-	return IntegrationIdentity
+	return ExternalServiceIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Integration) Identifier() string {
+func (o *ExternalService) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Integration) SetIdentifier(ID string) {
+func (o *ExternalService) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *Integration) String() string {
+func (o *ExternalService) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Integration) GetAssociatedTags() []string {
+func (o *ExternalService) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Integration) SetAssociatedTags(associatedTags []string) {
+func (o *ExternalService) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Integration) SetCreatedAt(createdAt time.Time) {
+func (o *ExternalService) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
+// GetName returns the name of the receiver
+func (o *ExternalService) GetName() string {
+	return o.Name
+}
+
+// SetName set the given name of the receiver
+func (o *ExternalService) SetName(name string) {
+	o.Name = name
+}
+
 // GetNamespace returns the namespace of the receiver
-func (o *Integration) GetNamespace() string {
+func (o *ExternalService) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Integration) SetNamespace(namespace string) {
+func (o *ExternalService) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *Integration) GetNormalizedTags() []string {
+func (o *ExternalService) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *Integration) SetNormalizedTags(normalizedTags []string) {
+func (o *ExternalService) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Integration) GetParentID() string {
+func (o *ExternalService) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Integration) SetParentID(parentID string) {
+func (o *ExternalService) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Integration) GetParentType() string {
+func (o *ExternalService) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Integration) SetParentType(parentType string) {
+func (o *ExternalService) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *Integration) GetProtected() bool {
+func (o *ExternalService) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *Integration) GetStatus() constants.EntityStatus {
+func (o *ExternalService) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Integration) SetStatus(status constants.EntityStatus) {
+func (o *ExternalService) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Integration) SetUpdatedAt(updatedAt time.Time) {
+func (o *ExternalService) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Integration) Validate() error {
+func (o *ExternalService) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("authType", string(o.AuthType), []string{"Basic", "None", "OAuth"}, false); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Registry", "VulnerabilityScanner"}, false); err != nil {
+	if err := elemental.ValidateRequiredString("network", o.Network); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidatePattern("network", o.Network, `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$`); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("network", o.Network); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidatePattern("port", o.Port, `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$`); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("protocol", o.Protocol); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidatePattern("protocol", o.Protocol, `^(TCP|UDP|tcp|udp|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("protocol", o.Protocol); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -227,19 +239,19 @@ func (o *Integration) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (ExternalService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return IntegrationAttributesMap[name]
+	return ExternalServiceAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Integration) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (ExternalService) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return IntegrationAttributesMap
+	return ExternalServiceAttributesMap
 }
 
-// IntegrationAttributesMap represents the map of attribute for Integration.
-var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
+// ExternalServiceAttributesMap represents the map of attribute for ExternalService.
+var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -276,17 +288,6 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"AuthType": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Basic", "None", "OAuth"},
-		Description:    `AuthType refers to the type of HTTP authentication used to query endpoints`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "authType",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
-	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -299,16 +300,31 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"Endpoint": elemental.AttributeSpecification{
+	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Endpoint is the API end point of the service`,
+		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "endpoint",
+		Name:           "description",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Name": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Name is the name of the entity`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "name",
+		Orderable:      true,
+		Required:       true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+		Unique:         true,
 	},
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -325,6 +341,18 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		PrimaryKey:     true,
 		ReadOnly:       true,
 		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Network": elemental.AttributeSpecification{
+		AllowedChars:   `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$`,
+		AllowedChoices: []string{},
+		Description:    `Network refers to either CIDR or domain name`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "network",
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -373,13 +401,13 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Password": elemental.AttributeSpecification{
+	"Port": elemental.AttributeSpecification{
+		AllowedChars:   `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$`,
 		AllowedChoices: []string{},
-		Description:    `Password is the password of the user to be used in the HTTP Authorization header`,
+		Description:    `Port refers to network port which could be a single number or 100:2000 to represent a range of ports`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "password",
-		Orderable:      true,
+		Filterable:     true,
+		Name:           "port",
 		Stored:         true,
 		Type:           "string",
 	},
@@ -393,6 +421,17 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Protocol": elemental.AttributeSpecification{
+		AllowedChars:   `^(TCP|UDP|tcp|udp|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`,
+		AllowedChoices: []string{},
+		Description:    `Protocol refers to network protocol like TCP/UDP or the number of the protocol.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "protocol",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -408,16 +447,6 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "status_enum",
 		Type:           "external",
 	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Registry", "VulnerabilityScanner"},
-		Description:    `Type refers to type of the server`,
-		Exposed:        true,
-		Name:           "type",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
-	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -429,16 +458,5 @@ var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
-	},
-	"UserName": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Username refers to the username to be used in the HTTP Authorization header`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "userName",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
 	},
 }

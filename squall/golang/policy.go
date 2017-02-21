@@ -4,55 +4,53 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// ServerCertificateStatusValue represents the possible values for attribute "certificateStatus".
-type ServerCertificateStatusValue string
-
-const (
-	// ServerCertificateStatusRenew represents the value RENEW.
-	ServerCertificateStatusRenew ServerCertificateStatusValue = "RENEW"
-
-	// ServerCertificateStatusRevoked represents the value REVOKED.
-	ServerCertificateStatusRevoked ServerCertificateStatusValue = "REVOKED"
-
-	// ServerCertificateStatusValid represents the value VALID.
-	ServerCertificateStatusValid ServerCertificateStatusValue = "VALID"
-)
-
-// ServerOperationalStatusValue represents the possible values for attribute "operationalStatus".
-type ServerOperationalStatusValue string
+// PolicyTypeValue represents the possible values for attribute "type".
+type PolicyTypeValue string
 
 const (
-	// ServerOperationalStatusConnected represents the value Connected.
-	ServerOperationalStatusConnected ServerOperationalStatusValue = "Connected"
+	// PolicyTypeApiauthorization represents the value APIAuthorization.
+	PolicyTypeApiauthorization PolicyTypeValue = "APIAuthorization"
 
-	// ServerOperationalStatusDisconnected represents the value Disconnected.
-	ServerOperationalStatusDisconnected ServerOperationalStatusValue = "Disconnected"
+	// PolicyTypeFile represents the value File.
+	PolicyTypeFile PolicyTypeValue = "File"
 
-	// ServerOperationalStatusInitialized represents the value Initialized.
-	ServerOperationalStatusInitialized ServerOperationalStatusValue = "Initialized"
+	// PolicyTypeNamespacemapping represents the value NamespaceMapping.
+	PolicyTypeNamespacemapping PolicyTypeValue = "NamespaceMapping"
 
-	// ServerOperationalStatusUnknown represents the value Unknown.
-	ServerOperationalStatusUnknown ServerOperationalStatusValue = "Unknown"
+	// PolicyTypeNetwork represents the value Network.
+	PolicyTypeNetwork PolicyTypeValue = "Network"
+
+	// PolicyTypeServer represents the value Server.
+	PolicyTypeServer PolicyTypeValue = "Server"
+
+	// PolicyTypeSyscall represents the value Syscall.
+	PolicyTypeSyscall PolicyTypeValue = "Syscall"
 )
 
-// ServerIdentity represents the Identity of the object
-var ServerIdentity = elemental.Identity{
-	Name:     "server",
-	Category: "servers",
+// PolicyIdentity represents the Identity of the object
+var PolicyIdentity = elemental.Identity{
+	Name:     "policy",
+	Category: "policies",
 }
 
-// ServersList represents a list of Servers
-type ServersList []*Server
+// PoliciesList represents a list of Policies
+type PoliciesList []*Policy
 
-// Server represents the model of a server
-type Server struct {
-	// FQDN contains the fqdn of the server.
-	FQDN string `json:"FQDN" cql:"fqdn,omitempty" bson:"fqdn"`
-
+// Policy represents the model of a policy
+type Policy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+
+	// Action defines set of actions that must be enforced when a dependency is met.
+	Action map[string]map[string]string `json:"action" cql:"action,omitempty" bson:"action"`
+
+	// This is a set of all object tags for matching in the DB
+	AllObjectTags []string `json:"-" cql:"allobjecttags,omitempty" bson:"allobjecttags"`
+
+	// This is a set of all subject tags for matching in the DB
+	AllSubjectTags []string `json:"-" cql:"allsubjecttags,omitempty" bson:"allsubjecttags"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -60,26 +58,11 @@ type Server struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
 
-	// Certificate is the certificate of the server
-	Certificate string `json:"certificate" cql:"certificate,omitempty" bson:"certificate"`
-
-	// CertificateExpirationDate is the expiration date of the certificate.
-	CertificateExpirationDate time.Time `json:"certificateExpirationDate" cql:"certificateexpirationdate,omitempty" bson:"certificateexpirationdate"`
-
-	// CertificateKey is the secret key of the server. Returned only when a server is created or the certificate is updated.
-	CertificateKey string `json:"certificateKey" cql:"-" bson:"-"`
-
-	// CertificateStatus indicates if the certificate is valid.
-	CertificateStatus ServerCertificateStatusValue `json:"certificateStatus" cql:"certificatestatus,omitempty" bson:"certificatestatus"`
-
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
 
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
-
-	// LastSyncTime holds the last heart beat time.
-	LastSyncTime time.Time `json:"lastSyncTime" cql:"lastsynctime,omitempty" bson:"lastsynctime"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -90,8 +73,8 @@ type Server struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
-	// OperationalStatus tells the status of the server
-	OperationalStatus ServerOperationalStatusValue `json:"operationalStatus" cql:"-" bson:"-"`
+	// Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.
+	Object [][]string `json:"object" cql:"object,omitempty" bson:"object"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
@@ -99,159 +82,160 @@ type Server struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
+	// Propagate will propagate the policy to all of its children.
+	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
+
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
+	// Relation describes the required operation to be performed between subjects and objects
+	Relation []string `json:"relation" cql:"relation,omitempty" bson:"relation"`
+
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
+
+	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
+	Subject [][]string `json:"subject" cql:"subject,omitempty" bson:"subject"`
+
+	// Type of the policy
+	Type PolicyTypeValue `json:"type" cql:"type,primarykey,omitempty" bson:"type"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewServer returns a new *Server
-func NewServer() *Server {
+// NewPolicy returns a new *Policy
+func NewPolicy() *Policy {
 
-	return &Server{
-		AssociatedTags:    []string{},
-		CertificateStatus: "VALID",
-		NormalizedTags:    []string{},
-		OperationalStatus: "Initialized",
-		Status:            constants.Active,
+	return &Policy{
+		AllObjectTags:  []string{},
+		AllSubjectTags: []string{},
+		AssociatedTags: []string{},
+		NormalizedTags: []string{},
+		Propagate:      false,
+		Status:         constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Server) Identity() elemental.Identity {
+func (o *Policy) Identity() elemental.Identity {
 
-	return ServerIdentity
+	return PolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Server) Identifier() string {
+func (o *Policy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Server) SetIdentifier(ID string) {
+func (o *Policy) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *Server) String() string {
+func (o *Policy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Server) GetAssociatedTags() []string {
+func (o *Policy) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Server) SetAssociatedTags(associatedTags []string) {
+func (o *Policy) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Server) SetCreatedAt(createdAt time.Time) {
+func (o *Policy) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *Server) GetName() string {
+func (o *Policy) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *Server) SetName(name string) {
+func (o *Policy) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *Server) GetNamespace() string {
+func (o *Policy) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Server) SetNamespace(namespace string) {
+func (o *Policy) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *Server) GetNormalizedTags() []string {
+func (o *Policy) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *Server) SetNormalizedTags(normalizedTags []string) {
+func (o *Policy) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Server) GetParentID() string {
+func (o *Policy) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Server) SetParentID(parentID string) {
+func (o *Policy) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Server) GetParentType() string {
+func (o *Policy) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Server) SetParentType(parentType string) {
+func (o *Policy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *Server) GetProtected() bool {
+func (o *Policy) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *Server) GetStatus() constants.EntityStatus {
+func (o *Policy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Server) SetStatus(status constants.EntityStatus) {
+func (o *Policy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Server) SetUpdatedAt(updatedAt time.Time) {
+func (o *Policy) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Server) Validate() error {
+func (o *Policy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("FQDN", o.FQDN); err != nil {
+	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("FQDN", o.FQDN); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("certificateStatus", string(o.CertificateStatus), []string{"RENEW", "REVOKED", "VALID"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("lastSyncTime", o.LastSyncTime); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("lastSyncTime", o.LastSyncTime); err != nil {
+	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -260,6 +244,18 @@ func (o *Server) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -275,32 +271,19 @@ func (o *Server) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Server) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Policy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ServerAttributesMap[name]
+	return PolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Server) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (Policy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return ServerAttributesMap
+	return PolicyAttributesMap
 }
 
-// ServerAttributesMap represents the map of attribute for Server.
-var ServerAttributesMap = map[string]elemental.AttributeSpecification{
-	"FQDN": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Description:    `FQDN contains the fqdn of the server.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "FQDN",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
-	},
+// PolicyAttributesMap represents the map of attribute for Policy.
+var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -316,6 +299,34 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"Action": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Action defines set of actions that must be enforced when a dependency is met.`,
+		Exposed:        true,
+		Name:           "action",
+		Required:       true,
+		Stored:         true,
+		SubType:        "actions_list",
+		Type:           "external",
+	},
+	"AllObjectTags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `This is a set of all object tags for matching in the DB`,
+		Name:           "allObjectTags",
+		Required:       true,
+		Stored:         true,
+		SubType:        "tags_list",
+		Type:           "external",
+	},
+	"AllSubjectTags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `This is a set of all subject tags for matching in the DB`,
+		Name:           "allSubjectTags",
+		Required:       true,
+		Stored:         true,
+		SubType:        "tags_list",
+		Type:           "external",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -336,49 +347,6 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
-	},
-	"Certificate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		Description:    `Certificate is the certificate of the server `,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "certificate",
-		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"CertificateExpirationDate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `CertificateExpirationDate is the expiration date of the certificate.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "certificateExpirationDate",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "time",
-	},
-	"CertificateKey": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		Description:    `CertificateKey is the secret key of the server. Returned only when a server is created or the certificate is updated.`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "certificateKey",
-		Orderable:      true,
-		ReadOnly:       true,
-		Type:           "string",
-	},
-	"CertificateStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
-		Description:    `CertificateStatus indicates if the certificate is valid.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "certificateStatus",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "enum",
 	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -402,17 +370,6 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
-	},
-	"LastSyncTime": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `LastSyncTime holds the last heart beat time.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "lastSyncTime",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "time",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -461,16 +418,14 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"OperationalStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Connected", "Disconnected", "Initialized", "Unknown"},
-		Autogenerated:  true,
-		Description:    `OperationalStatus tells the status of the server`,
+	"Object": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "operationalStatus",
-		ReadOnly:       true,
-		Transient:      true,
-		Type:           "enum",
+		Name:           "object",
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -503,6 +458,16 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"Propagate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Propagate will propagate the policy to all of its children.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Protected defines if the object is protected.`,
@@ -513,6 +478,15 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Relation": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Relation describes the required operation to be performed between subjects and objects`,
+		Exposed:        true,
+		Name:           "relation",
+		Stored:         true,
+		SubType:        "relations_list",
+		Type:           "external",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -527,6 +501,28 @@ var ServerAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "status_enum",
 		Type:           "external",
+	},
+	"Subject": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR`,
+		Exposed:        true,
+		Name:           "subject",
+		Required:       true,
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
+	},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"},
+		CreationOnly:   true,
+		Description:    `Type of the policy`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "type",
+		PrimaryKey:     true,
+		Required:       true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

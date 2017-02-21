@@ -1,6 +1,7 @@
-zack_folder := "zack"
-vince_folder := "vince"
-midgard_folder := "midgard"
+midgard_folder := midgard
+squall_folder := squall
+vince_folder := vince
+zack_folder := zack
 
 init: install_monolithe install_monolithe_plugins
 default: codegen
@@ -12,7 +13,7 @@ install_monolithe_plugins:
 	pip install 'git+https://github.com/aporeto-inc/elemental.git#subdirectory=monolithe'
 	pip install 'git+https://github.com/aporeto-inc/pyelemental.git#subdirectory=monolithe'
 
-codegen: codegen_squall codegen_zack codegen_vince codegen_midgard
+codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall
 
 codegen_squall:
 	@echo '* Generating Squall models'
@@ -40,4 +41,8 @@ codegen_vince:
 
 codegen_midgard:
 	cd $(midgard_folder) && make codegen
-	cd $(midgard_folder)/golang && go build
+	# cd $(midgard_folder)/golang && go build
+
+codegen_squall:
+	cd $(squall_folder) && make codegen
+	cd $(squall_folder)/golang && go build

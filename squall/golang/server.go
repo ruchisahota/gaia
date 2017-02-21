@@ -4,19 +4,53 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// ExternalServiceIdentity represents the Identity of the object
-var ExternalServiceIdentity = elemental.Identity{
-	Name:     "externalservice",
-	Category: "externalservices",
+// ServerCertificateStatusValue represents the possible values for attribute "certificateStatus".
+type ServerCertificateStatusValue string
+
+const (
+	// ServerCertificateStatusRenew represents the value RENEW.
+	ServerCertificateStatusRenew ServerCertificateStatusValue = "RENEW"
+
+	// ServerCertificateStatusRevoked represents the value REVOKED.
+	ServerCertificateStatusRevoked ServerCertificateStatusValue = "REVOKED"
+
+	// ServerCertificateStatusValid represents the value VALID.
+	ServerCertificateStatusValid ServerCertificateStatusValue = "VALID"
+)
+
+// ServerOperationalStatusValue represents the possible values for attribute "operationalStatus".
+type ServerOperationalStatusValue string
+
+const (
+	// ServerOperationalStatusConnected represents the value Connected.
+	ServerOperationalStatusConnected ServerOperationalStatusValue = "Connected"
+
+	// ServerOperationalStatusDisconnected represents the value Disconnected.
+	ServerOperationalStatusDisconnected ServerOperationalStatusValue = "Disconnected"
+
+	// ServerOperationalStatusInitialized represents the value Initialized.
+	ServerOperationalStatusInitialized ServerOperationalStatusValue = "Initialized"
+
+	// ServerOperationalStatusUnknown represents the value Unknown.
+	ServerOperationalStatusUnknown ServerOperationalStatusValue = "Unknown"
+)
+
+// ServerIdentity represents the Identity of the object
+var ServerIdentity = elemental.Identity{
+	Name:     "server",
+	Category: "servers",
 }
 
-// ExternalServicesList represents a list of ExternalServices
-type ExternalServicesList []*ExternalService
+// ServersList represents a list of Servers
+type ServersList []*Server
 
-// ExternalService represents the model of a externalservice
-type ExternalService struct {
+// Server represents the model of a server
+type Server struct {
+	// FQDN contains the fqdn of the server.
+	FQDN string `json:"FQDN" cql:"fqdn,omitempty" bson:"fqdn"`
+
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
@@ -26,11 +60,26 @@ type ExternalService struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
 
+	// Certificate is the certificate of the server
+	Certificate string `json:"certificate" cql:"certificate,omitempty" bson:"certificate"`
+
+	// CertificateExpirationDate is the expiration date of the certificate.
+	CertificateExpirationDate time.Time `json:"certificateExpirationDate" cql:"certificateexpirationdate,omitempty" bson:"certificateexpirationdate"`
+
+	// CertificateKey is the secret key of the server. Returned only when a server is created or the certificate is updated.
+	CertificateKey string `json:"certificateKey" cql:"-" bson:"-"`
+
+	// CertificateStatus indicates if the certificate is valid.
+	CertificateStatus ServerCertificateStatusValue `json:"certificateStatus" cql:"certificatestatus,omitempty" bson:"certificatestatus"`
+
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
 
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+
+	// LastSyncTime holds the last heart beat time.
+	LastSyncTime time.Time `json:"lastSyncTime" cql:"lastsynctime,omitempty" bson:"lastsynctime"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -38,11 +87,11 @@ type ExternalService struct {
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
-	// Network refers to either CIDR or domain name
-	Network string `json:"network" cql:"network,omitempty" bson:"network"`
-
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+
+	// OperationalStatus tells the status of the server
+	OperationalStatus ServerOperationalStatusValue `json:"operationalStatus" cql:"-" bson:"-"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
@@ -50,14 +99,8 @@ type ExternalService struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
-	// Port refers to network port which could be a single number or 100:2000 to represent a range of ports
-	Port string `json:"port" cql:"port,omitempty" bson:"port"`
-
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
-
-	// Protocol refers to network protocol like TCP/UDP or the number of the protocol.
-	Protocol string `json:"protocol" cql:"protocol,omitempty" bson:"protocol"`
 
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
@@ -66,164 +109,157 @@ type ExternalService struct {
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewExternalService returns a new *ExternalService
-func NewExternalService() *ExternalService {
+// NewServer returns a new *Server
+func NewServer() *Server {
 
-	return &ExternalService{
-		AssociatedTags: []string{},
-		NormalizedTags: []string{},
-		Port:           "1:65535",
-		Status:         constants.Active,
+	return &Server{
+		AssociatedTags:    []string{},
+		CertificateStatus: "VALID",
+		NormalizedTags:    []string{},
+		OperationalStatus: "Initialized",
+		Status:            constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *ExternalService) Identity() elemental.Identity {
+func (o *Server) Identity() elemental.Identity {
 
-	return ExternalServiceIdentity
+	return ServerIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *ExternalService) Identifier() string {
+func (o *Server) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ExternalService) SetIdentifier(ID string) {
+func (o *Server) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *ExternalService) String() string {
+func (o *Server) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *ExternalService) GetAssociatedTags() []string {
+func (o *Server) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *ExternalService) SetAssociatedTags(associatedTags []string) {
+func (o *Server) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *ExternalService) SetCreatedAt(createdAt time.Time) {
+func (o *Server) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *ExternalService) GetName() string {
+func (o *Server) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *ExternalService) SetName(name string) {
+func (o *Server) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *ExternalService) GetNamespace() string {
+func (o *Server) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *ExternalService) SetNamespace(namespace string) {
+func (o *Server) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *ExternalService) GetNormalizedTags() []string {
+func (o *Server) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *ExternalService) SetNormalizedTags(normalizedTags []string) {
+func (o *Server) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *ExternalService) GetParentID() string {
+func (o *Server) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *ExternalService) SetParentID(parentID string) {
+func (o *Server) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *ExternalService) GetParentType() string {
+func (o *Server) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *ExternalService) SetParentType(parentType string) {
+func (o *Server) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *ExternalService) GetProtected() bool {
+func (o *Server) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *ExternalService) GetStatus() constants.EntityStatus {
+func (o *Server) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *ExternalService) SetStatus(status constants.EntityStatus) {
+func (o *Server) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *ExternalService) SetUpdatedAt(updatedAt time.Time) {
+func (o *Server) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *ExternalService) Validate() error {
+func (o *Server) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("FQDN", o.FQDN); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("FQDN", o.FQDN); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("certificateStatus", string(o.CertificateStatus), []string{"RENEW", "REVOKED", "VALID"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredTime("lastSyncTime", o.LastSyncTime); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredTime("lastSyncTime", o.LastSyncTime); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("network", o.Network); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidatePattern("network", o.Network, `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$`); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("network", o.Network); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidatePattern("port", o.Port, `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$`); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("protocol", o.Protocol); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidatePattern("protocol", o.Protocol, `^(TCP|UDP|tcp|udp|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("protocol", o.Protocol); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -239,19 +275,32 @@ func (o *ExternalService) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ExternalService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Server) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ExternalServiceAttributesMap[name]
+	return ServerAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ExternalService) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (Server) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return ExternalServiceAttributesMap
+	return ServerAttributesMap
 }
 
-// ExternalServiceAttributesMap represents the map of attribute for ExternalService.
-var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
+// ServerAttributesMap represents the map of attribute for Server.
+var ServerAttributesMap = map[string]elemental.AttributeSpecification{
+	"FQDN": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `FQDN contains the fqdn of the server.`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "FQDN",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -288,6 +337,49 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
+	"Certificate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Autogenerated:  true,
+		Description:    `Certificate is the certificate of the server `,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificate",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"CertificateExpirationDate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `CertificateExpirationDate is the expiration date of the certificate.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "certificateExpirationDate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "time",
+	},
+	"CertificateKey": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Autogenerated:  true,
+		Description:    `CertificateKey is the secret key of the server. Returned only when a server is created or the certificate is updated.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificateKey",
+		Orderable:      true,
+		ReadOnly:       true,
+		Type:           "string",
+	},
+	"CertificateStatus": elemental.AttributeSpecification{
+		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
+		Description:    `CertificateStatus indicates if the certificate is valid.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "certificateStatus",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
+	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -310,6 +402,17 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"LastSyncTime": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LastSyncTime holds the last heart beat time.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "lastSyncTime",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "time",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -344,18 +447,6 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Network": elemental.AttributeSpecification{
-		AllowedChars:   `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$`,
-		AllowedChoices: []string{},
-		Description:    `Network refers to either CIDR or domain name`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "network",
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"NormalizedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -369,6 +460,17 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Transient:      true,
 		Type:           "external",
+	},
+	"OperationalStatus": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Connected", "Disconnected", "Initialized", "Unknown"},
+		Autogenerated:  true,
+		Description:    `OperationalStatus tells the status of the server`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "operationalStatus",
+		ReadOnly:       true,
+		Transient:      true,
+		Type:           "enum",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -401,16 +503,6 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Port": elemental.AttributeSpecification{
-		AllowedChars:   `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$`,
-		AllowedChoices: []string{},
-		Description:    `Port refers to network port which could be a single number or 100:2000 to represent a range of ports`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "port",
-		Stored:         true,
-		Type:           "string",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Protected defines if the object is protected.`,
@@ -421,17 +513,6 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Protocol": elemental.AttributeSpecification{
-		AllowedChars:   `^(TCP|UDP|tcp|udp|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`,
-		AllowedChoices: []string{},
-		Description:    `Protocol refers to network protocol like TCP/UDP or the number of the protocol.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "protocol",
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

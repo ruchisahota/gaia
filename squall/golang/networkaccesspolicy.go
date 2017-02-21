@@ -4,27 +4,27 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// ComputedDependencyMapViewIdentity represents the Identity of the object
-var ComputedDependencyMapViewIdentity = elemental.Identity{
-	Name:     "computeddependencymapview",
-	Category: "computeddependencymapviews",
+// NetworkAccessPolicyIdentity represents the Identity of the object
+var NetworkAccessPolicyIdentity = elemental.Identity{
+	Name:     "networkaccesspolicy",
+	Category: "networkaccesspolicies",
 }
 
-// ComputedDependencyMapViewsList represents a list of ComputedDependencyMapViews
-type ComputedDependencyMapViewsList []*ComputedDependencyMapView
+// NetworkAccessPoliciesList represents a list of NetworkAccessPolicies
+type NetworkAccessPoliciesList []*NetworkAccessPolicy
 
-// ComputedDependencyMapView represents the model of a computeddependencymapview
-type ComputedDependencyMapView struct {
+// NetworkAccessPolicy represents the model of a networkaccesspolicy
+type NetworkAccessPolicy struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" cql:"-" bson:"-"`
+
+	// AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
+	AllowsTraffic bool `json:"allowsTraffic" cql:"-" bson:"-"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
-
-	// The dependencyMapView linked ID to the rendered dependency map view
-	AssociatedDependencyMapViewID string `json:"associatedDependencyMapViewID" cql:"associateddependencymapviewid,omitempty" bson:"associateddependencymapviewid"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
@@ -35,6 +35,15 @@ type ComputedDependencyMapView struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
+	// DestinationPorts contains the list of allowed ports and ranges.
+	DestinationPorts []string `json:"destinationPorts" cql:"-" bson:"-"`
+
+	// EncryptionEnabled defines if the flow has to be encrypted.
+	EncryptionEnabled bool `json:"encryptionEnabled" cql:"-" bson:"-"`
+
+	// LogsEnabled defines if the flow has to be logged.
+	LogsEnabled bool `json:"logsEnabled" cql:"-" bson:"-"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -44,14 +53,17 @@ type ComputedDependencyMapView struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
+	// Object of the policy.
+	Object [][]string `json:"object" cql:"-" bson:"-"`
+
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
-	// A map of the transient tags for the processing units
-	ProcessingUnitTags map[string][]string `json:"processingUnitTags" cql:"processingunittags,omitempty" bson:"processingunittags"`
+	// Propagate will propagate the policy to all of its children.
+	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
@@ -59,155 +71,144 @@ type ComputedDependencyMapView struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
+	// Subject of the policy.
+	Subject [][]string `json:"subject" cql:"-" bson:"-"`
+
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewComputedDependencyMapView returns a new *ComputedDependencyMapView
-func NewComputedDependencyMapView() *ComputedDependencyMapView {
+// NewNetworkAccessPolicy returns a new *NetworkAccessPolicy
+func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 
-	return &ComputedDependencyMapView{
-		AssociatedTags: []string{},
-		NormalizedTags: []string{},
-		Status:         constants.Active,
+	return &NetworkAccessPolicy{
+		AssociatedTags:   []string{},
+		DestinationPorts: []string{},
+		NormalizedTags:   []string{},
+		Propagate:        false,
+		Status:           constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *ComputedDependencyMapView) Identity() elemental.Identity {
+func (o *NetworkAccessPolicy) Identity() elemental.Identity {
 
-	return ComputedDependencyMapViewIdentity
+	return NetworkAccessPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *ComputedDependencyMapView) Identifier() string {
+func (o *NetworkAccessPolicy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ComputedDependencyMapView) SetIdentifier(ID string) {
+func (o *NetworkAccessPolicy) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *ComputedDependencyMapView) String() string {
+func (o *NetworkAccessPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *ComputedDependencyMapView) GetAssociatedTags() []string {
+func (o *NetworkAccessPolicy) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *ComputedDependencyMapView) SetAssociatedTags(associatedTags []string) {
+func (o *NetworkAccessPolicy) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *ComputedDependencyMapView) SetCreatedAt(createdAt time.Time) {
+func (o *NetworkAccessPolicy) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *ComputedDependencyMapView) GetName() string {
+func (o *NetworkAccessPolicy) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *ComputedDependencyMapView) SetName(name string) {
+func (o *NetworkAccessPolicy) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *ComputedDependencyMapView) GetNamespace() string {
+func (o *NetworkAccessPolicy) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *ComputedDependencyMapView) SetNamespace(namespace string) {
+func (o *NetworkAccessPolicy) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *ComputedDependencyMapView) GetNormalizedTags() []string {
+func (o *NetworkAccessPolicy) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *ComputedDependencyMapView) SetNormalizedTags(normalizedTags []string) {
+func (o *NetworkAccessPolicy) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *ComputedDependencyMapView) GetParentID() string {
+func (o *NetworkAccessPolicy) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *ComputedDependencyMapView) SetParentID(parentID string) {
+func (o *NetworkAccessPolicy) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *ComputedDependencyMapView) GetParentType() string {
+func (o *NetworkAccessPolicy) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *ComputedDependencyMapView) SetParentType(parentType string) {
+func (o *NetworkAccessPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *ComputedDependencyMapView) GetProtected() bool {
+func (o *NetworkAccessPolicy) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *ComputedDependencyMapView) GetStatus() constants.EntityStatus {
+func (o *NetworkAccessPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *ComputedDependencyMapView) SetStatus(status constants.EntityStatus) {
+func (o *NetworkAccessPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *ComputedDependencyMapView) SetUpdatedAt(updatedAt time.Time) {
+func (o *NetworkAccessPolicy) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *ComputedDependencyMapView) Validate() error {
+func (o *NetworkAccessPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("associatedDependencyMapViewID", o.AssociatedDependencyMapViewID); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("processingUnitTags", o.ProcessingUnitTags); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -223,19 +224,19 @@ func (o *ComputedDependencyMapView) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (NetworkAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ComputedDependencyMapViewAttributesMap[name]
+	return NetworkAccessPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ComputedDependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (NetworkAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return ComputedDependencyMapViewAttributesMap
+	return NetworkAccessPolicyAttributesMap
 }
 
-// ComputedDependencyMapViewAttributesMap represents the map of attribute for ComputedDependencyMapView.
-var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification{
+// NetworkAccessPolicyAttributesMap represents the map of attribute for NetworkAccessPolicy.
+var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -246,11 +247,18 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		PrimaryKey:     true,
 		ReadOnly:       true,
-		Stored:         true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"AllowsTraffic": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsTraffic",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -260,17 +268,6 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Stored:         true,
 		SubType:        "annotation",
 		Type:           "external",
-	},
-	"AssociatedDependencyMapViewID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `The dependencyMapView linked ID to the rendered dependency map view`,
-		Exposed:        true,
-		Name:           "associatedDependencyMapViewID",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "dependencymapview",
-		Type:           "string",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -305,6 +302,34 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"DestinationPorts": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `DestinationPorts contains the list of allowed ports and ranges.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "destinationPorts",
+		Orderable:      true,
+		SubType:        "ports_list",
+		Type:           "external",
+	},
+	"EncryptionEnabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `EncryptionEnabled defines if the flow has to be encrypted.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "encryptionEnabled",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"LogsEnabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LogsEnabled defines if the flow has to be logged.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "logsEnabled",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -353,6 +378,15 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Transient:      true,
 		Type:           "external",
 	},
+	"Object": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Object of the policy.`,
+		Exposed:        true,
+		Name:           "object",
+		Orderable:      true,
+		SubType:        "policies_list",
+		Type:           "external",
+	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -384,16 +418,15 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Stored:         true,
 		Type:           "string",
 	},
-	"ProcessingUnitTags": elemental.AttributeSpecification{
+	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `A map of the transient tags for the processing units`,
+		Description:    `Propagate will propagate the policy to all of its children. `,
 		Exposed:        true,
-		Name:           "processingUnitTags",
+		Filterable:     true,
+		Name:           "propagate",
 		Orderable:      true,
-		Required:       true,
 		Stored:         true,
-		SubType:        "processingunit_transient_tags_map",
-		Type:           "external",
+		Type:           "boolean",
 	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -418,6 +451,15 @@ var ComputedDependencyMapViewAttributesMap = map[string]elemental.AttributeSpeci
 		Setter:         true,
 		Stored:         true,
 		SubType:        "status_enum",
+		Type:           "external",
+	},
+	"Subject": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Subject of the policy.`,
+		Exposed:        true,
+		Name:           "subject",
+		Orderable:      true,
+		SubType:        "policies_list",
 		Type:           "external",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{

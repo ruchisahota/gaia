@@ -4,30 +4,33 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// DependencyMapViewTypeValue represents the possible values for attribute "type".
-type DependencyMapViewTypeValue string
+// UserCertificateStatusValue represents the possible values for attribute "certificateStatus".
+type UserCertificateStatusValue string
 
 const (
-	// DependencyMapViewTypeAutomatic represents the value Automatic.
-	DependencyMapViewTypeAutomatic DependencyMapViewTypeValue = "Automatic"
+	// UserCertificateStatusRenew represents the value RENEW.
+	UserCertificateStatusRenew UserCertificateStatusValue = "RENEW"
 
-	// DependencyMapViewTypeManual represents the value Manual.
-	DependencyMapViewTypeManual DependencyMapViewTypeValue = "Manual"
+	// UserCertificateStatusRevoked represents the value REVOKED.
+	UserCertificateStatusRevoked UserCertificateStatusValue = "REVOKED"
+
+	// UserCertificateStatusValid represents the value VALID.
+	UserCertificateStatusValid UserCertificateStatusValue = "VALID"
 )
 
-// DependencyMapViewIdentity represents the Identity of the object
-var DependencyMapViewIdentity = elemental.Identity{
-	Name:     "dependencymapview",
-	Category: "dependencymapviews",
+// UserIdentity represents the Identity of the object
+var UserIdentity = elemental.Identity{
+	Name:     "user",
+	Category: "users",
 }
 
-// DependencyMapViewsList represents a list of DependencyMapViews
-type DependencyMapViewsList []*DependencyMapView
+// UsersList represents a list of Users
+type UsersList []*User
 
-// DependencyMapView represents the model of a dependencymapview
-type DependencyMapView struct {
+// User represents the model of a user
+type User struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
@@ -37,14 +40,26 @@ type DependencyMapView struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
 
-	// Boolean to know if the dependency map view was computed by the system or not
-	Computed bool `json:"computed" cql:"computed,omitempty" bson:"computed"`
+	// Certificate provides a certificate for the user
+	Certificate string `json:"certificate" cql:"certificate,omitempty" bson:"certificate"`
+
+	// CertificateExpirationDate indicates the expiration day for the certificate.
+	CertificateExpirationDate time.Time `json:"certificateExpirationDate" cql:"certificateexpirationdate,omitempty" bson:"certificateexpirationdate"`
+
+	// CertificateKey provides the key for the user. Only available at create or update time.
+	CertificateKey string `json:"certificateKey" cql:"-" bson:"-"`
+
+	// CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.
+	CertificateStatus UserCertificateStatusValue `json:"certificateStatus" cql:"certificatestatus,omitempty" bson:"certificatestatus"`
 
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
 
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+
+	// e-mail address of the user
+	Email string `json:"email" cql:"email,omitempty" bson:"email"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -55,14 +70,14 @@ type DependencyMapView struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
+	// ParentAuthenticator is an Internal attribute that points to the parent authenticator.
+	ParentAuthenticator string `json:"-" cql:"parentauthenticator,primarykey,omitempty" bson:"parentauthenticator"`
+
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
-
-	// A map of the tags to apply to processing units
-	ProcessingUnitTags map[string][]string `json:"processingUnitTags" cql:"processingunittags,omitempty" bson:"processingunittags"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
@@ -70,142 +85,145 @@ type DependencyMapView struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
-	// Values used by the dependency map group
-	Subviews DependencyMapSubviewsList `json:"subviews" cql:"subviews,omitempty" bson:"subviews"`
-
-	// Type represents the type of the dependency map. It could be manual or automatic
-	Type DependencyMapViewTypeValue `json:"type" cql:"type,omitempty" bson:"type"`
+	// OU attribute for the generated certificates
+	SubOrganizations []string `json:"subOrganizations" cql:"suborganizations,omitempty" bson:"suborganizations"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+
+	// CommonName (CN) for the user certificate
+	UserName string `json:"userName" cql:"username,omitempty" bson:"username"`
 }
 
-// NewDependencyMapView returns a new *DependencyMapView
-func NewDependencyMapView() *DependencyMapView {
+// NewUser returns a new *User
+func NewUser() *User {
 
-	return &DependencyMapView{
-		AssociatedTags: []string{},
-		NormalizedTags: []string{},
-		Status:         constants.Active,
-		Subviews:       DependencyMapSubviewsList{},
-		Type:           "Manual",
+	return &User{
+		AssociatedTags:    []string{},
+		CertificateStatus: "VALID",
+		NormalizedTags:    []string{},
+		Status:            constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *DependencyMapView) Identity() elemental.Identity {
+func (o *User) Identity() elemental.Identity {
 
-	return DependencyMapViewIdentity
+	return UserIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *DependencyMapView) Identifier() string {
+func (o *User) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *DependencyMapView) SetIdentifier(ID string) {
+func (o *User) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *DependencyMapView) String() string {
+func (o *User) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *DependencyMapView) GetAssociatedTags() []string {
+func (o *User) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *DependencyMapView) SetAssociatedTags(associatedTags []string) {
+func (o *User) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *DependencyMapView) SetCreatedAt(createdAt time.Time) {
+func (o *User) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *DependencyMapView) GetName() string {
+func (o *User) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *DependencyMapView) SetName(name string) {
+func (o *User) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *DependencyMapView) GetNamespace() string {
+func (o *User) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *DependencyMapView) SetNamespace(namespace string) {
+func (o *User) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *DependencyMapView) GetNormalizedTags() []string {
+func (o *User) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *DependencyMapView) SetNormalizedTags(normalizedTags []string) {
+func (o *User) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *DependencyMapView) GetParentID() string {
+func (o *User) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *DependencyMapView) SetParentID(parentID string) {
+func (o *User) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *DependencyMapView) GetParentType() string {
+func (o *User) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *DependencyMapView) SetParentType(parentType string) {
+func (o *User) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *DependencyMapView) GetProtected() bool {
+func (o *User) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *DependencyMapView) GetStatus() constants.EntityStatus {
+func (o *User) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *DependencyMapView) SetStatus(status constants.EntityStatus) {
+func (o *User) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *DependencyMapView) SetUpdatedAt(updatedAt time.Time) {
+func (o *User) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *DependencyMapView) Validate() error {
+func (o *User) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateStringInList("certificateStatus", string(o.CertificateStatus), []string{"RENEW", "REVOKED", "VALID"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -214,15 +232,7 @@ func (o *DependencyMapView) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("subviews", o.Subviews); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subviews", o.Subviews); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Automatic", "Manual"}, false); err != nil {
+	if err := elemental.ValidateMaximumLength("userName", o.UserName, 64, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -238,19 +248,19 @@ func (o *DependencyMapView) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (DependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (User) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return DependencyMapViewAttributesMap[name]
+	return UserAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (DependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (User) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return DependencyMapViewAttributesMap
+	return UserAttributesMap
 }
 
-// DependencyMapViewAttributesMap represents the map of attribute for DependencyMapView.
-var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification{
+// UserAttributesMap represents the map of attribute for User.
+var UserAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -287,17 +297,46 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"Computed": elemental.AttributeSpecification{
+	"Certificate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Description:    `Boolean to know if the dependency map view was computed by the system or not`,
+		Autogenerated:  true,
+		Description:    `Certificate provides a certificate for the user`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificate",
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"CertificateExpirationDate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `CertificateExpirationDate indicates the expiration day for the certificate.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "computed",
+		Name:           "certificateExpirationDate",
 		Orderable:      true,
 		Stored:         true,
-		Transient:      true,
-		Type:           "boolean",
+		Type:           "time",
+	},
+	"CertificateKey": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Autogenerated:  true,
+		Description:    `CertificateKey provides the key for the user. Only available at create or update time.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificateKey",
+		ReadOnly:       true,
+		Type:           "string",
+	},
+	"CertificateStatus": elemental.AttributeSpecification{
+		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
+		Description:    `CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "certificateStatus",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"CreatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -318,6 +357,17 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Email": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `e-mail address of the user`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "email",
+		Name:           "email",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
@@ -369,6 +419,18 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Transient:      true,
 		Type:           "external",
 	},
+	"ParentAuthenticator": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Autogenerated:  true,
+		Description:    `ParentAuthenticator is an Internal attribute that points to the parent authenticator.`,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "parentAuthenticator",
+		PrimaryKey:     true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -400,16 +462,6 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		Type:           "string",
 	},
-	"ProcessingUnitTags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `A map of the tags to apply to processing units`,
-		Exposed:        true,
-		Name:           "processingUnitTags",
-		Orderable:      true,
-		Stored:         true,
-		SubType:        "processingunit_transient_tags_map",
-		Type:           "external",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Protected defines if the object is protected.`,
@@ -435,26 +487,15 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		SubType:        "status_enum",
 		Type:           "external",
 	},
-	"Subviews": elemental.AttributeSpecification{
+	"SubOrganizations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Values used by the dependency map group`,
-		Exposed:        true,
-		Name:           "subviews",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "dependencymapsubviews_entities",
-		Type:           "external",
-	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Automatic", "Manual"},
-		Description:    `Type represents the type of the dependency map. It could be manual or automatic`,
+		Description:    `OU attribute for the generated certificates`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "type",
-		Orderable:      true,
+		Name:           "subOrganizations",
 		Stored:         true,
-		Type:           "enum",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -467,5 +508,18 @@ var DependencyMapViewAttributesMap = map[string]elemental.AttributeSpecification
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"UserName": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `CommonName (CN) for the user certificate`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		MaxLength:      64,
+		Name:           "userName",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
 	},
 }

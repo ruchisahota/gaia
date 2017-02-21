@@ -4,19 +4,53 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// FilePathIdentity represents the Identity of the object
-var FilePathIdentity = elemental.Identity{
-	Name:     "filepath",
-	Category: "filepaths",
+// ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
+type ProcessingUnitOperationalStatusValue string
+
+const (
+	// ProcessingUnitOperationalStatusInitialized represents the value Initialized.
+	ProcessingUnitOperationalStatusInitialized ProcessingUnitOperationalStatusValue = "Initialized"
+
+	// ProcessingUnitOperationalStatusPaused represents the value Paused.
+	ProcessingUnitOperationalStatusPaused ProcessingUnitOperationalStatusValue = "Paused"
+
+	// ProcessingUnitOperationalStatusRunning represents the value Running.
+	ProcessingUnitOperationalStatusRunning ProcessingUnitOperationalStatusValue = "Running"
+
+	// ProcessingUnitOperationalStatusStopped represents the value Stopped.
+	ProcessingUnitOperationalStatusStopped ProcessingUnitOperationalStatusValue = "Stopped"
+
+	// ProcessingUnitOperationalStatusTerminated represents the value Terminated.
+	ProcessingUnitOperationalStatusTerminated ProcessingUnitOperationalStatusValue = "Terminated"
+)
+
+// ProcessingUnitTypeValue represents the possible values for attribute "type".
+type ProcessingUnitTypeValue string
+
+const (
+	// ProcessingUnitTypeDocker represents the value Docker.
+	ProcessingUnitTypeDocker ProcessingUnitTypeValue = "Docker"
+
+	// ProcessingUnitTypeLinuxservice represents the value LinuxService.
+	ProcessingUnitTypeLinuxservice ProcessingUnitTypeValue = "LinuxService"
+
+	// ProcessingUnitTypeRkt represents the value RKT.
+	ProcessingUnitTypeRkt ProcessingUnitTypeValue = "RKT"
+)
+
+// ProcessingUnitIdentity represents the Identity of the object
+var ProcessingUnitIdentity = elemental.Identity{
+	Name:     "processingunit",
+	Category: "processingunits",
 }
 
-// FilePathsList represents a list of FilePaths
-type FilePathsList []*FilePath
+// ProcessingUnitsList represents a list of ProcessingUnits
+type ProcessingUnitsList []*ProcessingUnit
 
-// FilePath represents the model of a filepath
-type FilePath struct {
+// ProcessingUnit represents the model of a processingunit
+type ProcessingUnit struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
@@ -32,8 +66,11 @@ type FilePath struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
-	// FilePath refer to the file mount path
-	Filepath string `json:"filepath" cql:"filepath,omitempty" bson:"filepath"`
+	// LastSyncTime is the time when the policy was last resolved
+	LastSyncTime time.Time `json:"lastSyncTime" cql:"lastsynctime,omitempty" bson:"lastsynctime"`
+
+	// Metadata are list of tags associated to the processing unit
+	Metadata []string `json:"metadata" cql:"metadata,omitempty" bson:"metadata"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -41,8 +78,14 @@ type FilePath struct {
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
 
+	// NativeContextID is the Docker UUID or service PID
+	NativeContextID string `json:"nativeContextID" cql:"nativecontextid,omitempty" bson:"nativecontextid"`
+
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+
+	// OperationalStatus of the processing unit
+	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" cql:"operationalstatus,omitempty" bson:"operationalstatus"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
@@ -53,148 +96,147 @@ type FilePath struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
-	// server is the server name/ID/IP associated with the file path
-	Server string `json:"server" cql:"server,omitempty" bson:"server"`
+	// serverID is the ID of the server associated with the processing unit
+	ServerID string `json:"serverID" cql:"serverid,omitempty" bson:"serverid"`
 
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
+	// Type of the container ecosystem
+	Type ProcessingUnitTypeValue `json:"type" cql:"type,omitempty" bson:"type"`
+
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+
+	// Vulnerabilities contains the list of vulnerabilities of the processing unit.
+	Vulnerabilities []string `json:"-" cql:"vulnerabilities,omitempty" bson:"vulnerabilities"`
 }
 
-// NewFilePath returns a new *FilePath
-func NewFilePath() *FilePath {
+// NewProcessingUnit returns a new *ProcessingUnit
+func NewProcessingUnit() *ProcessingUnit {
 
-	return &FilePath{
-		AssociatedTags: []string{},
-		NormalizedTags: []string{},
-		Status:         constants.Active,
+	return &ProcessingUnit{
+		AssociatedTags:    []string{},
+		NormalizedTags:    []string{},
+		OperationalStatus: "Initialized",
+		Status:            constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *FilePath) Identity() elemental.Identity {
+func (o *ProcessingUnit) Identity() elemental.Identity {
 
-	return FilePathIdentity
+	return ProcessingUnitIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *FilePath) Identifier() string {
+func (o *ProcessingUnit) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *FilePath) SetIdentifier(ID string) {
+func (o *ProcessingUnit) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *FilePath) String() string {
+func (o *ProcessingUnit) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *FilePath) GetAssociatedTags() []string {
+func (o *ProcessingUnit) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *FilePath) SetAssociatedTags(associatedTags []string) {
+func (o *ProcessingUnit) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *FilePath) SetCreatedAt(createdAt time.Time) {
+func (o *ProcessingUnit) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *FilePath) GetName() string {
+func (o *ProcessingUnit) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *FilePath) SetName(name string) {
+func (o *ProcessingUnit) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *FilePath) GetNamespace() string {
+func (o *ProcessingUnit) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *FilePath) SetNamespace(namespace string) {
+func (o *ProcessingUnit) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *FilePath) GetNormalizedTags() []string {
+func (o *ProcessingUnit) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *FilePath) SetNormalizedTags(normalizedTags []string) {
+func (o *ProcessingUnit) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *FilePath) GetParentID() string {
+func (o *ProcessingUnit) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *FilePath) SetParentID(parentID string) {
+func (o *ProcessingUnit) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *FilePath) GetParentType() string {
+func (o *ProcessingUnit) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *FilePath) SetParentType(parentType string) {
+func (o *ProcessingUnit) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *FilePath) GetProtected() bool {
+func (o *ProcessingUnit) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *FilePath) GetStatus() constants.EntityStatus {
+func (o *ProcessingUnit) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *FilePath) SetStatus(status constants.EntityStatus) {
+func (o *ProcessingUnit) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *FilePath) SetUpdatedAt(updatedAt time.Time) {
+func (o *ProcessingUnit) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *FilePath) Validate() error {
+func (o *ProcessingUnit) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -203,11 +245,11 @@ func (o *FilePath) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
-		requiredErrors = append(requiredErrors, err)
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"}, false); err != nil {
+		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -223,19 +265,19 @@ func (o *FilePath) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return FilePathAttributesMap[name]
+	return ProcessingUnitAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (FilePath) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return FilePathAttributesMap
+	return ProcessingUnitAttributesMap
 }
 
-// FilePathAttributesMap represents the map of attribute for FilePath.
-var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
+// ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
+var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -295,16 +337,26 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Filepath": elemental.AttributeSpecification{
+	"LastSyncTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `FilePath refer to the file mount path`,
+		Autogenerated:  true,
+		Description:    `LastSyncTime is the time when the policy was last resolved`,
+		Exposed:        true,
+		Name:           "lastSyncTime",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "time",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata are list of tags associated to the processing unit`,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
-		Name:           "filepath",
-		Required:       true,
+		Name:           "metadata",
 		Stored:         true,
-		Type:           "string",
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -339,6 +391,16 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"NativeContextID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `NativeContextID is the Docker UUID or service PID`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "nativeContextID",
+		Stored:         true,
+		Type:           "string",
+	},
 	"NormalizedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -352,6 +414,15 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Transient:      true,
 		Type:           "external",
+	},
+	"OperationalStatus": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
+		Description:    `OperationalStatus of the processing unit`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "operationalStatus",
+		Stored:         true,
+		Type:           "enum",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -395,15 +466,13 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Server": elemental.AttributeSpecification{
+	"ServerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Description:    `server is the server name/ID/IP associated with the file path`,
+		Description:    `serverID is the ID of the server associated with the processing unit`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "server",
-		Required:       true,
+		Name:           "serverID",
 		Stored:         true,
 		Type:           "string",
 	},
@@ -421,6 +490,17 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "status_enum",
 		Type:           "external",
 	},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Docker", "LinuxService", "RKT"},
+		CreationOnly:   true,
+		Description:    `Type of the container ecosystem`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "type",
+		Required:       true,
+		Stored:         true,
+		Type:           "enum",
+	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -432,5 +512,16 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"Vulnerabilities": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Autogenerated:  true,
+		Description:    `Vulnerabilities contains the list of vulnerabilities of the processing unit.`,
+		Name:           "vulnerabilities",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
 	},
 }

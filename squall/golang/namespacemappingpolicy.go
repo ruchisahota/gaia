@@ -4,53 +4,21 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// PolicyTypeValue represents the possible values for attribute "type".
-type PolicyTypeValue string
-
-const (
-	// PolicyTypeApiauthorization represents the value APIAuthorization.
-	PolicyTypeApiauthorization PolicyTypeValue = "APIAuthorization"
-
-	// PolicyTypeFile represents the value File.
-	PolicyTypeFile PolicyTypeValue = "File"
-
-	// PolicyTypeNamespacemapping represents the value NamespaceMapping.
-	PolicyTypeNamespacemapping PolicyTypeValue = "NamespaceMapping"
-
-	// PolicyTypeNetwork represents the value Network.
-	PolicyTypeNetwork PolicyTypeValue = "Network"
-
-	// PolicyTypeServer represents the value Server.
-	PolicyTypeServer PolicyTypeValue = "Server"
-
-	// PolicyTypeSyscall represents the value Syscall.
-	PolicyTypeSyscall PolicyTypeValue = "Syscall"
-)
-
-// PolicyIdentity represents the Identity of the object
-var PolicyIdentity = elemental.Identity{
-	Name:     "policy",
-	Category: "policies",
+// NamespaceMappingPolicyIdentity represents the Identity of the object
+var NamespaceMappingPolicyIdentity = elemental.Identity{
+	Name:     "namespacemappingpolicy",
+	Category: "namespacemappingpolicies",
 }
 
-// PoliciesList represents a list of Policies
-type PoliciesList []*Policy
+// NamespaceMappingPoliciesList represents a list of NamespaceMappingPolicies
+type NamespaceMappingPoliciesList []*NamespaceMappingPolicy
 
-// Policy represents the model of a policy
-type Policy struct {
+// NamespaceMappingPolicy represents the model of a namespacemappingpolicy
+type NamespaceMappingPolicy struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
-
-	// Action defines set of actions that must be enforced when a dependency is met.
-	Action map[string]map[string]string `json:"action" cql:"action,omitempty" bson:"action"`
-
-	// This is a set of all object tags for matching in the DB
-	AllObjectTags []string `json:"-" cql:"allobjecttags,omitempty" bson:"allobjecttags"`
-
-	// This is a set of all subject tags for matching in the DB
-	AllSubjectTags []string `json:"-" cql:"allsubjecttags,omitempty" bson:"allsubjecttags"`
+	ID string `json:"ID" cql:"-" bson:"-"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -64,6 +32,9 @@ type Policy struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
+	// mappedNamespace is the mapped namespace
+	MappedNamespace string `json:"mappedNamespace" cql:"mappednamespace,omitempty" bson:"mappednamespace"`
+
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
@@ -73,169 +44,154 @@ type Policy struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
-	// Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.
-	Object [][]string `json:"object" cql:"object,omitempty" bson:"object"`
-
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
-	// Propagate will propagate the policy to all of its children.
-	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
-
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
-
-	// Relation describes the required operation to be performed between subjects and objects
-	Relation []string `json:"relation" cql:"relation,omitempty" bson:"relation"`
 
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
-	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
-	Subject [][]string `json:"subject" cql:"subject,omitempty" bson:"subject"`
-
-	// Type of the policy
-	Type PolicyTypeValue `json:"type" cql:"type,primarykey,omitempty" bson:"type"`
+	// Subject is the subject.
+	Subject [][]string `json:"subject" cql:"-" bson:"-"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewPolicy returns a new *Policy
-func NewPolicy() *Policy {
+// NewNamespaceMappingPolicy returns a new *NamespaceMappingPolicy
+func NewNamespaceMappingPolicy() *NamespaceMappingPolicy {
 
-	return &Policy{
-		AllObjectTags:  []string{},
-		AllSubjectTags: []string{},
+	return &NamespaceMappingPolicy{
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Propagate:      false,
 		Status:         constants.Active,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Policy) Identity() elemental.Identity {
+func (o *NamespaceMappingPolicy) Identity() elemental.Identity {
 
-	return PolicyIdentity
+	return NamespaceMappingPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Policy) Identifier() string {
+func (o *NamespaceMappingPolicy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Policy) SetIdentifier(ID string) {
+func (o *NamespaceMappingPolicy) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *Policy) String() string {
+func (o *NamespaceMappingPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *Policy) GetAssociatedTags() []string {
+func (o *NamespaceMappingPolicy) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *Policy) SetAssociatedTags(associatedTags []string) {
+func (o *NamespaceMappingPolicy) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *Policy) SetCreatedAt(createdAt time.Time) {
+func (o *NamespaceMappingPolicy) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *Policy) GetName() string {
+func (o *NamespaceMappingPolicy) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *Policy) SetName(name string) {
+func (o *NamespaceMappingPolicy) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *Policy) GetNamespace() string {
+func (o *NamespaceMappingPolicy) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *Policy) SetNamespace(namespace string) {
+func (o *NamespaceMappingPolicy) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *Policy) GetNormalizedTags() []string {
+func (o *NamespaceMappingPolicy) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *Policy) SetNormalizedTags(normalizedTags []string) {
+func (o *NamespaceMappingPolicy) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *Policy) GetParentID() string {
+func (o *NamespaceMappingPolicy) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *Policy) SetParentID(parentID string) {
+func (o *NamespaceMappingPolicy) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *Policy) GetParentType() string {
+func (o *NamespaceMappingPolicy) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *Policy) SetParentType(parentType string) {
+func (o *NamespaceMappingPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *Policy) GetProtected() bool {
+func (o *NamespaceMappingPolicy) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *Policy) GetStatus() constants.EntityStatus {
+func (o *NamespaceMappingPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Policy) SetStatus(status constants.EntityStatus) {
+func (o *NamespaceMappingPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *Policy) SetUpdatedAt(updatedAt time.Time) {
+func (o *NamespaceMappingPolicy) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Policy) Validate() error {
+func (o *NamespaceMappingPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
+	if err := elemental.ValidateRequiredString("mappedNamespace", o.MappedNamespace); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
+	if err := elemental.ValidateRequiredString("mappedNamespace", o.MappedNamespace); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -244,18 +200,6 @@ func (o *Policy) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -271,19 +215,19 @@ func (o *Policy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Policy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (NamespaceMappingPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return PolicyAttributesMap[name]
+	return NamespaceMappingPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Policy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (NamespaceMappingPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return PolicyAttributesMap
+	return NamespaceMappingPolicyAttributesMap
 }
 
-// PolicyAttributesMap represents the map of attribute for Policy.
-var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// NamespaceMappingPolicyAttributesMap represents the map of attribute for NamespaceMappingPolicy.
+var NamespaceMappingPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -294,39 +238,9 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		PrimaryKey:     true,
 		ReadOnly:       true,
-		Stored:         true,
 		Type:           "string",
 		Unique:         true,
-	},
-	"Action": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Action defines set of actions that must be enforced when a dependency is met.`,
-		Exposed:        true,
-		Name:           "action",
-		Required:       true,
-		Stored:         true,
-		SubType:        "actions_list",
-		Type:           "external",
-	},
-	"AllObjectTags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `This is a set of all object tags for matching in the DB`,
-		Name:           "allObjectTags",
-		Required:       true,
-		Stored:         true,
-		SubType:        "tags_list",
-		Type:           "external",
-	},
-	"AllSubjectTags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `This is a set of all subject tags for matching in the DB`,
-		Name:           "allSubjectTags",
-		Required:       true,
-		Stored:         true,
-		SubType:        "tags_list",
-		Type:           "external",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -368,6 +282,18 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"MappedNamespace": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `mappedNamespace is the mapped namespace`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "mappedNamespace",
+		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -418,15 +344,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"Object": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.`,
-		Exposed:        true,
-		Name:           "object",
-		Stored:         true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -458,16 +375,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Propagate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Propagate will propagate the policy to all of its children.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "propagate",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "boolean",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Protected defines if the object is protected.`,
@@ -478,15 +385,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Relation": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Relation describes the required operation to be performed between subjects and objects`,
-		Exposed:        true,
-		Name:           "relation",
-		Stored:         true,
-		SubType:        "relations_list",
-		Type:           "external",
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -504,25 +402,12 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR`,
+		Description:    `Subject is the subject.`,
 		Exposed:        true,
 		Name:           "subject",
-		Required:       true,
-		Stored:         true,
+		Orderable:      true,
 		SubType:        "policies_list",
 		Type:           "external",
-	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "File", "NamespaceMapping", "Network", "Server", "Syscall"},
-		CreationOnly:   true,
-		Description:    `Type of the policy`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		PrimaryKey:     true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

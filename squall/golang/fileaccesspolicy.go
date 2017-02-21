@@ -4,21 +4,33 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// NamespaceMappingPolicyIdentity represents the Identity of the object
-var NamespaceMappingPolicyIdentity = elemental.Identity{
-	Name:     "namespacemappingpolicy",
-	Category: "namespacemappingpolicies",
+// FileAccessPolicyIdentity represents the Identity of the object
+var FileAccessPolicyIdentity = elemental.Identity{
+	Name:     "fileaccesspolicy",
+	Category: "fileaccesspolicies",
 }
 
-// NamespaceMappingPoliciesList represents a list of NamespaceMappingPolicies
-type NamespaceMappingPoliciesList []*NamespaceMappingPolicy
+// FileAccessPoliciesList represents a list of FileAccessPolicies
+type FileAccessPoliciesList []*FileAccessPolicy
 
-// NamespaceMappingPolicy represents the model of a namespacemappingpolicy
-type NamespaceMappingPolicy struct {
+// FileAccessPolicy represents the model of a fileaccesspolicy
+type FileAccessPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"-" bson:"-"`
+
+	// Propagate indicates that the policy must be propagated to the children namespaces.
+	Propagate bool `json:"Propagate" cql:"-" bson:"-"`
+
+	// AllowsExecute allows to execute the files.
+	AllowsExecute bool `json:"allowsExecute" cql:"-" bson:"-"`
+
+	// AllowsRead allows to read the files.
+	AllowsRead bool `json:"allowsRead" cql:"-" bson:"-"`
+
+	// AllowsWrite allows to write the files.
+	AllowsWrite bool `json:"allowsWrite" cql:"-" bson:"-"`
 
 	// Annotation stores additional information about an entity
 	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
@@ -32,8 +44,11 @@ type NamespaceMappingPolicy struct {
 	// Description is the description of the object.
 	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
-	// mappedNamespace is the mapped namespace
-	MappedNamespace string `json:"mappedNamespace" cql:"mappednamespace,omitempty" bson:"mappednamespace"`
+	// EncryptionEnabled will enable the automatic encryption
+	EncryptionEnabled bool `json:"encryptionEnabled" cql:"-" bson:"-"`
+
+	// LogsEnabled will enable logging when this policy is used.
+	LogsEnabled bool `json:"logsEnabled" cql:"-" bson:"-"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
@@ -43,6 +58,9 @@ type NamespaceMappingPolicy struct {
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+
+	// Object is the object of the policy.
+	Object [][]string `json:"object" cql:"-" bson:"-"`
 
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
@@ -56,17 +74,18 @@ type NamespaceMappingPolicy struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
-	// Subject is the subject.
+	// Subject is the subject of the policy
 	Subject [][]string `json:"subject" cql:"-" bson:"-"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 }
 
-// NewNamespaceMappingPolicy returns a new *NamespaceMappingPolicy
-func NewNamespaceMappingPolicy() *NamespaceMappingPolicy {
+// NewFileAccessPolicy returns a new *FileAccessPolicy
+func NewFileAccessPolicy() *FileAccessPolicy {
 
-	return &NamespaceMappingPolicy{
+	return &FileAccessPolicy{
+		Propagate:      false,
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
 		Status:         constants.Active,
@@ -74,126 +93,118 @@ func NewNamespaceMappingPolicy() *NamespaceMappingPolicy {
 }
 
 // Identity returns the Identity of the object.
-func (o *NamespaceMappingPolicy) Identity() elemental.Identity {
+func (o *FileAccessPolicy) Identity() elemental.Identity {
 
-	return NamespaceMappingPolicyIdentity
+	return FileAccessPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *NamespaceMappingPolicy) Identifier() string {
+func (o *FileAccessPolicy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *NamespaceMappingPolicy) SetIdentifier(ID string) {
+func (o *FileAccessPolicy) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *NamespaceMappingPolicy) String() string {
+func (o *FileAccessPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *NamespaceMappingPolicy) GetAssociatedTags() []string {
+func (o *FileAccessPolicy) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *NamespaceMappingPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *FileAccessPolicy) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *NamespaceMappingPolicy) SetCreatedAt(createdAt time.Time) {
+func (o *FileAccessPolicy) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
 // GetName returns the name of the receiver
-func (o *NamespaceMappingPolicy) GetName() string {
+func (o *FileAccessPolicy) GetName() string {
 	return o.Name
 }
 
 // SetName set the given name of the receiver
-func (o *NamespaceMappingPolicy) SetName(name string) {
+func (o *FileAccessPolicy) SetName(name string) {
 	o.Name = name
 }
 
 // GetNamespace returns the namespace of the receiver
-func (o *NamespaceMappingPolicy) GetNamespace() string {
+func (o *FileAccessPolicy) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *NamespaceMappingPolicy) SetNamespace(namespace string) {
+func (o *FileAccessPolicy) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *NamespaceMappingPolicy) GetNormalizedTags() []string {
+func (o *FileAccessPolicy) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *NamespaceMappingPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *FileAccessPolicy) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *NamespaceMappingPolicy) GetParentID() string {
+func (o *FileAccessPolicy) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *NamespaceMappingPolicy) SetParentID(parentID string) {
+func (o *FileAccessPolicy) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *NamespaceMappingPolicy) GetParentType() string {
+func (o *FileAccessPolicy) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *NamespaceMappingPolicy) SetParentType(parentType string) {
+func (o *FileAccessPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *NamespaceMappingPolicy) GetProtected() bool {
+func (o *FileAccessPolicy) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *NamespaceMappingPolicy) GetStatus() constants.EntityStatus {
+func (o *FileAccessPolicy) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *NamespaceMappingPolicy) SetStatus(status constants.EntityStatus) {
+func (o *FileAccessPolicy) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *NamespaceMappingPolicy) SetUpdatedAt(updatedAt time.Time) {
+func (o *FileAccessPolicy) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *NamespaceMappingPolicy) Validate() error {
+func (o *FileAccessPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
-
-	if err := elemental.ValidateRequiredString("mappedNamespace", o.MappedNamespace); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("mappedNamespace", o.MappedNamespace); err != nil {
-		errors = append(errors, err)
-	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
@@ -215,19 +226,19 @@ func (o *NamespaceMappingPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (NamespaceMappingPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (FileAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return NamespaceMappingPolicyAttributesMap[name]
+	return FileAccessPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (NamespaceMappingPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (FileAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return NamespaceMappingPolicyAttributesMap
+	return FileAccessPolicyAttributesMap
 }
 
-// NamespaceMappingPolicyAttributesMap represents the map of attribute for NamespaceMappingPolicy.
-var NamespaceMappingPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// FileAccessPolicyAttributesMap represents the map of attribute for FileAccessPolicy.
+var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -241,6 +252,42 @@ var NamespaceMappingPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"Propagate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Propagate indicates that the policy must be propagated to the children namespaces.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "Propagate",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsExecute": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `AllowsExecute allows to execute the files.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsExecute",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsRead": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `AllowsRead allows to read the files.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsRead",
+		Orderable:      true,
+		Type:           "boolean",
+	},
+	"AllowsWrite": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `AllowsWrite allows to write the files.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsWrite",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"Annotation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -285,17 +332,23 @@ var NamespaceMappingPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Stored:         true,
 		Type:           "string",
 	},
-	"MappedNamespace": elemental.AttributeSpecification{
+	"EncryptionEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `mappedNamespace is the mapped namespace`,
+		Description:    `EncryptionEnabled will enable the automatic encryption`,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
-		Name:           "mappedNamespace",
+		Name:           "encryptionEnabled",
 		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		Type:           "boolean",
+	},
+	"LogsEnabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LogsEnabled will enable logging when this policy is used.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "logsEnabled",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -342,6 +395,15 @@ var NamespaceMappingPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Stored:         true,
 		SubType:        "tags_list",
 		Transient:      true,
+		Type:           "external",
+	},
+	"Object": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Object is the object of the policy.`,
+		Exposed:        true,
+		Name:           "object",
+		Orderable:      true,
+		SubType:        "policies_list",
 		Type:           "external",
 	},
 	"ParentID": elemental.AttributeSpecification{
@@ -402,7 +464,7 @@ var NamespaceMappingPolicyAttributesMap = map[string]elemental.AttributeSpecific
 	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Subject is the subject.`,
+		Description:    `Subject is the subject of the policy`,
 		Exposed:        true,
 		Name:           "subject",
 		Orderable:      true,

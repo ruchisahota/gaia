@@ -4,33 +4,44 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/golang/constants"
+import "github.com/aporeto-inc/gaia/squall/golang/constants"
 
-// UserCertificateStatusValue represents the possible values for attribute "certificateStatus".
-type UserCertificateStatusValue string
+// IntegrationAuthTypeValue represents the possible values for attribute "authType".
+type IntegrationAuthTypeValue string
 
 const (
-	// UserCertificateStatusRenew represents the value RENEW.
-	UserCertificateStatusRenew UserCertificateStatusValue = "RENEW"
+	// IntegrationAuthTypeBasic represents the value Basic.
+	IntegrationAuthTypeBasic IntegrationAuthTypeValue = "Basic"
 
-	// UserCertificateStatusRevoked represents the value REVOKED.
-	UserCertificateStatusRevoked UserCertificateStatusValue = "REVOKED"
+	// IntegrationAuthTypeNone represents the value None.
+	IntegrationAuthTypeNone IntegrationAuthTypeValue = "None"
 
-	// UserCertificateStatusValid represents the value VALID.
-	UserCertificateStatusValid UserCertificateStatusValue = "VALID"
+	// IntegrationAuthTypeOauth represents the value OAuth.
+	IntegrationAuthTypeOauth IntegrationAuthTypeValue = "OAuth"
 )
 
-// UserIdentity represents the Identity of the object
-var UserIdentity = elemental.Identity{
-	Name:     "user",
-	Category: "users",
+// IntegrationTypeValue represents the possible values for attribute "type".
+type IntegrationTypeValue string
+
+const (
+	// IntegrationTypeRegistry represents the value Registry.
+	IntegrationTypeRegistry IntegrationTypeValue = "Registry"
+
+	// IntegrationTypeVulnerabilityscanner represents the value VulnerabilityScanner.
+	IntegrationTypeVulnerabilityscanner IntegrationTypeValue = "VulnerabilityScanner"
+)
+
+// IntegrationIdentity represents the Identity of the object
+var IntegrationIdentity = elemental.Identity{
+	Name:     "integration",
+	Category: "integrations",
 }
 
-// UsersList represents a list of Users
-type UsersList []*User
+// IntegrationsList represents a list of Integrations
+type IntegrationsList []*Integration
 
-// User represents the model of a user
-type User struct {
+// Integration represents the model of a integration
+type Integration struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
 
@@ -40,29 +51,14 @@ type User struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
 
-	// Certificate provides a certificate for the user
-	Certificate string `json:"certificate" cql:"certificate,omitempty" bson:"certificate"`
-
-	// CertificateExpirationDate indicates the expiration day for the certificate.
-	CertificateExpirationDate time.Time `json:"certificateExpirationDate" cql:"certificateexpirationdate,omitempty" bson:"certificateexpirationdate"`
-
-	// CertificateKey provides the key for the user. Only available at create or update time.
-	CertificateKey string `json:"certificateKey" cql:"-" bson:"-"`
-
-	// CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.
-	CertificateStatus UserCertificateStatusValue `json:"certificateStatus" cql:"certificatestatus,omitempty" bson:"certificatestatus"`
+	// AuthType refers to the type of HTTP authentication used to query endpoints
+	AuthType IntegrationAuthTypeValue `json:"authType" cql:"authtype,omitempty" bson:"authtype"`
 
 	// CreatedAt is the time at which an entity was created
 	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
 
-	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
-
-	// e-mail address of the user
-	Email string `json:"email" cql:"email,omitempty" bson:"email"`
-
-	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	// Endpoint is the API end point of the service
+	Endpoint string `json:"endpoint" cql:"endpoint,omitempty" bson:"endpoint"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
@@ -70,14 +66,14 @@ type User struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
 
-	// ParentAuthenticator is an Internal attribute that points to the parent authenticator.
-	ParentAuthenticator string `json:"-" cql:"parentauthenticator,primarykey,omitempty" bson:"parentauthenticator"`
-
 	// ParentID is the ID of the parent, if any,
 	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+
+	// Password is the password of the user to be used in the HTTP Authorization header
+	Password string `json:"password" cql:"password,omitempty" bson:"password"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
@@ -85,154 +81,137 @@ type User struct {
 	// Status of an entity
 	Status constants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
 
-	// OU attribute for the generated certificates
-	SubOrganizations []string `json:"subOrganizations" cql:"suborganizations,omitempty" bson:"suborganizations"`
+	// Type refers to type of the server
+	Type IntegrationTypeValue `json:"type" cql:"type,omitempty" bson:"type"`
 
 	// UpdatedAt is the time at which an entity was updated.
 	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
 
-	// CommonName (CN) for the user certificate
+	// Username refers to the username to be used in the HTTP Authorization header
 	UserName string `json:"userName" cql:"username,omitempty" bson:"username"`
 }
 
-// NewUser returns a new *User
-func NewUser() *User {
+// NewIntegration returns a new *Integration
+func NewIntegration() *Integration {
 
-	return &User{
-		AssociatedTags:    []string{},
-		CertificateStatus: "VALID",
-		NormalizedTags:    []string{},
-		Status:            constants.Active,
+	return &Integration{
+		AssociatedTags: []string{},
+		AuthType:       "None",
+		NormalizedTags: []string{},
+		Status:         constants.Active,
+		Type:           "Registry",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *User) Identity() elemental.Identity {
+func (o *Integration) Identity() elemental.Identity {
 
-	return UserIdentity
+	return IntegrationIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *User) Identifier() string {
+func (o *Integration) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *User) SetIdentifier(ID string) {
+func (o *Integration) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-func (o *User) String() string {
+func (o *Integration) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
-func (o *User) GetAssociatedTags() []string {
+func (o *Integration) GetAssociatedTags() []string {
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags set the given associatedTags of the receiver
-func (o *User) SetAssociatedTags(associatedTags []string) {
+func (o *Integration) SetAssociatedTags(associatedTags []string) {
 	o.AssociatedTags = associatedTags
 }
 
 // SetCreatedAt set the given createdAt of the receiver
-func (o *User) SetCreatedAt(createdAt time.Time) {
+func (o *Integration) SetCreatedAt(createdAt time.Time) {
 	o.CreatedAt = createdAt
 }
 
-// GetName returns the name of the receiver
-func (o *User) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *User) SetName(name string) {
-	o.Name = name
-}
-
 // GetNamespace returns the namespace of the receiver
-func (o *User) GetNamespace() string {
+func (o *Integration) GetNamespace() string {
 	return o.Namespace
 }
 
 // SetNamespace set the given namespace of the receiver
-func (o *User) SetNamespace(namespace string) {
+func (o *Integration) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the normalizedTags of the receiver
-func (o *User) GetNormalizedTags() []string {
+func (o *Integration) GetNormalizedTags() []string {
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags set the given normalizedTags of the receiver
-func (o *User) SetNormalizedTags(normalizedTags []string) {
+func (o *Integration) SetNormalizedTags(normalizedTags []string) {
 	o.NormalizedTags = normalizedTags
 }
 
 // GetParentID returns the parentID of the receiver
-func (o *User) GetParentID() string {
+func (o *Integration) GetParentID() string {
 	return o.ParentID
 }
 
 // SetParentID set the given parentID of the receiver
-func (o *User) SetParentID(parentID string) {
+func (o *Integration) SetParentID(parentID string) {
 	o.ParentID = parentID
 }
 
 // GetParentType returns the parentType of the receiver
-func (o *User) GetParentType() string {
+func (o *Integration) GetParentType() string {
 	return o.ParentType
 }
 
 // SetParentType set the given parentType of the receiver
-func (o *User) SetParentType(parentType string) {
+func (o *Integration) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
 // GetProtected returns the protected of the receiver
-func (o *User) GetProtected() bool {
+func (o *Integration) GetProtected() bool {
 	return o.Protected
 }
 
 // GetStatus returns the status of the receiver
-func (o *User) GetStatus() constants.EntityStatus {
+func (o *Integration) GetStatus() constants.EntityStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *User) SetStatus(status constants.EntityStatus) {
+func (o *Integration) SetStatus(status constants.EntityStatus) {
 	o.Status = status
 }
 
 // SetUpdatedAt set the given updatedAt of the receiver
-func (o *User) SetUpdatedAt(updatedAt time.Time) {
+func (o *Integration) SetUpdatedAt(updatedAt time.Time) {
 	o.UpdatedAt = updatedAt
 }
 
 // Validate valides the current information stored into the structure.
-func (o *User) Validate() error {
+func (o *Integration) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("certificateStatus", string(o.CertificateStatus), []string{"RENEW", "REVOKED", "VALID"}, false); err != nil {
+	if err := elemental.ValidateStringInList("authType", string(o.AuthType), []string{"Basic", "None", "OAuth"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMaximumLength("userName", o.UserName, 64, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Registry", "VulnerabilityScanner"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -248,19 +227,19 @@ func (o *User) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (User) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return UserAttributesMap[name]
+	return IntegrationAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (User) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (Integration) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return UserAttributesMap
+	return IntegrationAttributesMap
 }
 
-// UserAttributesMap represents the map of attribute for User.
-var UserAttributesMap = map[string]elemental.AttributeSpecification{
+// IntegrationAttributesMap represents the map of attribute for Integration.
+var IntegrationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -297,44 +276,14 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"Certificate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		Description:    `Certificate provides a certificate for the user`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "certificate",
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"CertificateExpirationDate": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `CertificateExpirationDate indicates the expiration day for the certificate.`,
+	"AuthType": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Basic", "None", "OAuth"},
+		Description:    `AuthType refers to the type of HTTP authentication used to query endpoints`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "certificateExpirationDate",
+		Name:           "authType",
 		Orderable:      true,
-		Stored:         true,
-		Type:           "time",
-	},
-	"CertificateKey": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		Description:    `CertificateKey provides the key for the user. Only available at create or update time.`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "certificateKey",
-		ReadOnly:       true,
-		Type:           "string",
-	},
-	"CertificateStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
-		Description:    `CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "certificateStatus",
-		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "enum",
 	},
@@ -350,42 +299,16 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"Description": elemental.AttributeSpecification{
+	"Endpoint": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Description is the description of the object.`,
+		Description:    `Endpoint is the API end point of the service`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "description",
+		Name:           "endpoint",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
-	},
-	"Email": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `e-mail address of the user`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "email",
-		Name:           "email",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"Name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Name is the name of the entity`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Getter:         true,
-		Name:           "name",
-		Orderable:      true,
-		Required:       true,
-		Setter:         true,
-		Stored:         true,
-		Type:           "string",
-		Unique:         true,
 	},
 	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -419,18 +342,6 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"ParentAuthenticator": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		Description:    `ParentAuthenticator is an Internal attribute that points to the parent authenticator.`,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "parentAuthenticator",
-		PrimaryKey:     true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -462,6 +373,16 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"Password": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Password is the password of the user to be used in the HTTP Authorization header`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "password",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Protected defines if the object is protected.`,
@@ -487,15 +408,15 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "status_enum",
 		Type:           "external",
 	},
-	"SubOrganizations": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `OU attribute for the generated certificates`,
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Registry", "VulnerabilityScanner"},
+		Description:    `Type refers to type of the server`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "subOrganizations",
+		Name:           "type",
+		Orderable:      true,
+		Required:       true,
 		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
+		Type:           "enum",
 	},
 	"UpdatedAt": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -511,12 +432,10 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"UserName": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Description:    `CommonName (CN) for the user certificate`,
+		Description:    `Username refers to the username to be used in the HTTP Authorization header`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		MaxLength:      64,
 		Name:           "userName",
 		Orderable:      true,
 		Stored:         true,
