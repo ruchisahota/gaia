@@ -1,3 +1,5 @@
+zack_folder := "zack"
+
 init: install_monolithe install_monolithe_plugins
 default: codegen
 
@@ -8,7 +10,10 @@ install_monolithe_plugins:
 	pip install 'git+https://github.com/aporeto-inc/elemental.git#subdirectory=monolithe'
 	pip install 'git+https://github.com/aporeto-inc/pyelemental.git#subdirectory=monolithe'
 
-codegen:
+codegen: codegen_squall codegen_zack
+
+codegen_squall:
+	@echo '* Generating Squall models'
 	monogen -f specs -L elemental
 	# monogen -f specs -L pyelemental
 	monogen -f specs -L html
@@ -22,3 +27,7 @@ publish:
 	make codegen
 	git commit -am "codegen"
 	git push
+
+codegen_zack:
+	cd $(zack_folder) && make codegen
+	# cd $(zack_folder)/golang && go build
