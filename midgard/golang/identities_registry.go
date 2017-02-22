@@ -33,3 +33,11 @@ func AllIdentities() []elemental.Identity {
 		AuthIdentity,
 	}
 }
+
+var aliasesMap = map[string]elemental.Identity{}
+
+// IdentityForAlias returns the Identity associated to the given alias
+func IdentityForAlias(alias string) elemental.Identity {
+
+	return aliasesMap[alias]
+}
