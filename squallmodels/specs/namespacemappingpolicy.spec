@@ -26,6 +26,7 @@
             "primary_key": null,
             "read_only": null,
             "required": true,
+            "secret": false,
             "setter": null,
             "stored": true,
             "subtype": null,
@@ -60,6 +61,7 @@
             "primary_key": null,
             "read_only": null,
             "required": null,
+            "secret": false,
             "setter": null,
             "stored": false,
             "subtype": "policies_list",
@@ -71,6 +73,12 @@
     ],
     "children": [],
     "model": {
+        "aliases": [
+            "nsmaps",
+            "nsmap",
+            "nspolicies",
+            "nspolicy"
+        ],
         "create": null,
         "delete": true,
         "description": null,
