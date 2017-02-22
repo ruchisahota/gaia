@@ -1,7 +1,7 @@
-midgard_folder := midgard
-squall_folder := squall
-vince_folder := vince
-zack_folder := zack
+midgard_folder := midgardmodels
+squall_folder := squallmodels
+vince_folder := vincemodels
+zack_folder := zackmodels
 
 init: install_monolithe install_monolithe_plugins
 default: codegen
