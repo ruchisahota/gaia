@@ -354,6 +354,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "apiauths",
             "apiauth"
         ],
         "create": null,
