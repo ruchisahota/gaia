@@ -26,6 +26,7 @@
             "primary_key": false,
             "read_only": false,
             "required": true,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": null,
@@ -60,6 +61,7 @@
             "primary_key": false,
             "read_only": false,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": null,
@@ -94,6 +96,7 @@
             "primary_key": false,
             "read_only": false,
             "required": true,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": null,
@@ -105,6 +108,10 @@
     ],
     "children": [],
     "model": {
+        "aliases": [
+            "extsrvs",
+            "extsrv"
+        ],
         "create": false,
         "delete": true,
         "description": "ExternalService are services that are external to the system.",
