@@ -26,6 +26,7 @@
             "primary_key": false,
             "read_only": true,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": false,
             "subtype": "rendered_policy",
@@ -60,6 +61,7 @@
             "primary_key": false,
             "read_only": true,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": false,
             "subtype": "rendered_policy",
@@ -94,6 +96,7 @@
             "primary_key": false,
             "read_only": true,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": false,
             "subtype": null,
@@ -128,6 +131,7 @@
             "primary_key": null,
             "read_only": null,
             "required": null,
+            "secret": false,
             "setter": null,
             "stored": true,
             "subtype": "trust_profile",
@@ -139,6 +143,10 @@
     ],
     "children": [],
     "model": {
+        "aliases": [
+            "rpols",
+            "rpol"
+        ],
         "create": false,
         "delete": false,
         "description": "RenderedPolicies attached to the given set of Subjects.",
