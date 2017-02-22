@@ -8,7 +8,6 @@ func init() {
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
-	elemental.RegisterIdentity(NamespaceContentIdentity)
 	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(ComputedPolicyIdentity)
 	elemental.RegisterIdentity(TagIdentity)
@@ -52,8 +51,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewDependencyMapSubview()
 	case APIAuthorizationPolicyIdentity.Name:
 		return NewAPIAuthorizationPolicy()
-	case NamespaceContentIdentity.Name:
-		return NewNamespaceContent()
 	case SyscallAccessIdentity.Name:
 		return NewSyscallAccess()
 	case ComputedPolicyIdentity.Name:
@@ -125,7 +122,6 @@ func AllIdentities() []elemental.Identity {
 		NamespaceMappingPolicyIdentity,
 		DependencyMapSubviewIdentity,
 		APIAuthorizationPolicyIdentity,
-		NamespaceContentIdentity,
 		SyscallAccessIdentity,
 		ComputedPolicyIdentity,
 		TagIdentity,
@@ -158,10 +154,138 @@ func AllIdentities() []elemental.Identity {
 	}
 }
 
-var aliasesMap = map[string]elemental.Identity{}
+var aliasesMap = map[string]elemental.Identity{
+	"nsmaps":     NamespaceMappingPolicyIdentity,
+	"nsmap":      NamespaceMappingPolicyIdentity,
+	"nspolicies": NamespaceMappingPolicyIdentity,
+	"nspolicy":   NamespaceMappingPolicyIdentity,
+	"apiauths":   APIAuthorizationPolicyIdentity,
+	"apiauth":    APIAuthorizationPolicyIdentity,
+	"fps":        FilePathIdentity,
+	"fp":         FilePathIdentity,
+	"ns":         NamespaceIdentity,
+	"extsrvs":    ExternalServiceIdentity,
+	"extsrv":     ExternalServiceIdentity,
+	"srvpols":    ServerPolicyIdentity,
+	"srvpol":     ServerPolicyIdentity,
+	"rpols":      RenderedPolicyIdentity,
+	"rpol":       RenderedPolicyIdentity,
+	"pus":        ProcessingUnitIdentity,
+	"pu":         ProcessingUnitIdentity,
+	"vulns":      VulnerabilityIdentity,
+	"vul":        VulnerabilityIdentity,
+	"netpols":    NetworkAccessPolicyIdentity,
+	"netpol":     NetworkAccessPolicyIdentity,
+}
 
-// IdentityForAlias returns the Identity associated to the given alias
-func IdentityForAlias(alias string) elemental.Identity {
+// IdentityFromAlias returns the Identity associated to the given alias.
+func IdentityFromAlias(alias string) elemental.Identity {
 
 	return aliasesMap[alias]
+}
+
+// AliasesForIdentity returns all the aliases for the given identity.
+func AliasesForIdentity(identity elemental.Identity) []string {
+
+	switch identity {
+	case APICheckIdentity:
+		return []string{}
+	case NamespaceMappingPolicyIdentity:
+		return []string{
+			"nsmaps",
+			"nsmap",
+			"nspolicies",
+			"nspolicy",
+		}
+	case DependencyMapSubviewIdentity:
+		return []string{}
+	case APIAuthorizationPolicyIdentity:
+		return []string{
+			"apiauths",
+			"apiauth",
+		}
+	case SyscallAccessIdentity:
+		return []string{}
+	case ComputedPolicyIdentity:
+		return []string{}
+	case TagIdentity:
+		return []string{}
+	case MapEdgeIdentity:
+		return []string{}
+	case FilePathIdentity:
+		return []string{
+			"fps",
+			"fp",
+		}
+	case FileAccessIdentity:
+		return []string{}
+	case NamespaceIdentity:
+		return []string{
+			"ns",
+		}
+	case IntegrationIdentity:
+		return []string{}
+	case PolicyRuleIdentity:
+		return []string{}
+	case ExternalServiceIdentity:
+		return []string{
+			"extsrvs",
+			"extsrv",
+		}
+	case PolicyIdentity:
+		return []string{}
+	case FlowStatisticIdentity:
+		return []string{}
+	case ServerProfileIdentity:
+		return []string{}
+	case ServerPolicyIdentity:
+		return []string{
+			"srvpols",
+			"srvpol",
+		}
+	case ComputedDependencyMapViewIdentity:
+		return []string{}
+	case SystemCallIdentity:
+		return []string{}
+	case AuthenticatorIdentity:
+		return []string{}
+	case FileAccessPolicyIdentity:
+		return []string{}
+	case RenderedPolicyIdentity:
+		return []string{
+			"rpols",
+			"rpol",
+		}
+	case ProcessingUnitIdentity:
+		return []string{
+			"pus",
+			"pu",
+		}
+	case DependencyMapViewIdentity:
+		return []string{}
+	case DependencyMapIdentity:
+		return []string{}
+	case VulnerabilityIdentity:
+		return []string{
+			"vulns",
+			"vul",
+		}
+	case ServerIdentity:
+		return []string{}
+	case MapNodeIdentity:
+		return []string{}
+	case ActivityIdentity:
+		return []string{}
+	case RootIdentity:
+		return []string{}
+	case NetworkAccessPolicyIdentity:
+		return []string{
+			"netpols",
+			"netpol",
+		}
+	case UserIdentity:
+		return []string{}
+	}
+
+	return nil
 }

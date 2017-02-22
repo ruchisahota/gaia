@@ -50,13 +50,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("apiauthorizationpolicy")] = APIAuthorizationPolicyMainRelationship
 
 	//
-	// Main Relationship for namespacecontent
-	//
-	NamespaceContentMainRelationship := &elemental.Relationship{}
-
-	relationshipsRegistry[elemental.IdentityFromName("namespacecontent")] = NamespaceContentMainRelationship
-
-	//
 	// Main Relationship for syscallaccess
 	//
 	SyscallAccessMainRelationship := &elemental.Relationship{}
