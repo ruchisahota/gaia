@@ -26,6 +26,7 @@
             "primary_key": false,
             "read_only": true,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": null,
@@ -60,6 +61,7 @@
             "primary_key": true,
             "read_only": false,
             "required": true,
+            "secret": false,
             "setter": null,
             "stored": true,
             "subtype": null,
@@ -71,6 +73,9 @@
     ],
     "children": [],
     "model": {
+        "aliases": [
+            "ns"
+        ],
         "create": false,
         "delete": true,
         "description": "Namespace attached to an user.",
