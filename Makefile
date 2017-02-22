@@ -15,22 +15,6 @@ install_monolithe_plugins:
 
 codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall
 
-codegen_squall:
-	@echo '* Generating Squall models'
-	monogen -f specs -L elemental
-	# monogen -f specs -L pyelemental
-	monogen -f specs -L html
-	rm -f golang/*.go && cp codegen/elemental/1.0/*.go golang
-	# rm -rf python/*.py python/requirements.txt MANIFEST.in && cp codegen/pyelemental/gaia/*.py python/gaia && cp codegen/pyelemental/requirements.txt python && cp codegen/pyelemental/MANIFEST.in python && cp codegen/pyelemental/setup.py python
-	rm -rf apidoc/* && cp -a codegen/html/* apidoc
-	rm -rf codegen
-
-publish:
-	git pull
-	make codegen
-	git commit -am "codegen"
-	git push
-
 codegen_zack:
 	cd $(zack_folder) && make codegen
 	# cd $(zack_folder)/golang && go build
@@ -45,4 +29,10 @@ codegen_midgard:
 
 codegen_squall:
 	cd $(squall_folder) && make codegen
-	cd $(squall_folder)/golang && go build
+	# cd $(squall_folder)/golang && go build
+
+publish:
+	git pull
+	make codegen
+	git commit -am "codegen"
+	git push
