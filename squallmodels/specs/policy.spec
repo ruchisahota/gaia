@@ -264,7 +264,8 @@
             "@base",
             "@described",
             "@identifiable-pk-stored",
-            "@named"
+            "@named",
+            "@propagated"
         ],
         "get": true,
         "package": "Policies",
