@@ -85,7 +85,8 @@
             "@base",
             "@described",
             "@identifiable-nopk-nostored",
-            "@named"
+            "@named",
+            "@propagated"
         ],
         "get": true,
         "package": null,
