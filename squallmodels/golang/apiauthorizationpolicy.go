@@ -71,8 +71,11 @@ type APIAuthorizationPolicy struct {
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
 	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
 
-	// Propagate defines if the policy should propagate.
-	Propagate bool `json:"propagate" cql:"-" bson:"-"`
+	// Propagate will propagate the policy to all of its children.
+	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
+
+	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+	PropagationHidden bool `json:"propagationHidden" cql:"propagationhidden,omitempty" bson:"propagationhidden"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
@@ -471,11 +474,22 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 	},
 	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Propagate defines if the policy should propagate.`,
+		Description:    `Propagate will propagate the policy to all of its children.`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "propagate",
 		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
+	"PropagationHidden": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagationHidden",
+		Orderable:      true,
+		Stored:         true,
 		Type:           "boolean",
 	},
 	"Protected": elemental.AttributeSpecification{

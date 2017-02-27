@@ -65,6 +65,9 @@ type NetworkAccessPolicy struct {
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
 
+	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+	PropagationHidden bool `json:"propagationHidden" cql:"propagationhidden,omitempty" bson:"propagationhidden"`
+
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
@@ -85,7 +88,6 @@ func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 		AssociatedTags:   []string{},
 		DestinationPorts: []string{},
 		NormalizedTags:   []string{},
-		Propagate:        false,
 		Status:           gaiaconstants.Active,
 	}
 }
@@ -420,10 +422,20 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Propagate will propagate the policy to all of its children. `,
+		Description:    `Propagate will propagate the policy to all of its children.`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "propagate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
+	"PropagationHidden": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagationHidden",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",

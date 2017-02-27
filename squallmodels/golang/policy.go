@@ -85,6 +85,9 @@ type Policy struct {
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
 
+	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+	PropagationHidden bool `json:"propagationHidden" cql:"propagationhidden,omitempty" bson:"propagationhidden"`
+
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
 
@@ -112,7 +115,6 @@ func NewPolicy() *Policy {
 		AllSubjectTags: []string{},
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Propagate:      false,
 		Status:         gaiaconstants.Active,
 	}
 }
@@ -464,6 +466,16 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "propagate",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
+	"PropagationHidden": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagationHidden",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
