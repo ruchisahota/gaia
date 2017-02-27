@@ -189,6 +189,26 @@ func (o *APIAuthorizationPolicy) SetParentType(parentType string) {
 	o.ParentType = parentType
 }
 
+// GetPropagate returns the propagate of the receiver
+func (o *APIAuthorizationPolicy) GetPropagate() bool {
+	return o.Propagate
+}
+
+// SetPropagate set the given propagate of the receiver
+func (o *APIAuthorizationPolicy) SetPropagate(propagate bool) {
+	o.Propagate = propagate
+}
+
+// GetPropagationHidden returns the propagationHidden of the receiver
+func (o *APIAuthorizationPolicy) GetPropagationHidden() bool {
+	return o.PropagationHidden
+}
+
+// SetPropagationHidden set the given propagationHidden of the receiver
+func (o *APIAuthorizationPolicy) SetPropagationHidden(propagationHidden bool) {
+	o.PropagationHidden = propagationHidden
+}
+
 // GetProtected returns the protected of the receiver
 func (o *APIAuthorizationPolicy) GetProtected() bool {
 	return o.Protected
@@ -477,8 +497,10 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Propagate will propagate the policy to all of its children.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "propagate",
 		Orderable:      true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
 	},
@@ -487,8 +509,10 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "propagationHidden",
 		Orderable:      true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
 	},
