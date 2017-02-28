@@ -22,16 +22,6 @@ func init() {
 		AllowsDelete:   true,
 	}
 
-	// Children relationship for certificates in account
-	AccountMainRelationship.AddChild(
-		elemental.IdentityFromName("certificate"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-
 	relationshipsRegistry[elemental.IdentityFromName("account")] = AccountMainRelationship
 
 	//
@@ -63,6 +53,15 @@ func init() {
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("activate"),
 		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for certificates in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("certificate"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
