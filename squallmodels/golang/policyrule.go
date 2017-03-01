@@ -21,16 +21,16 @@ type PolicyRule struct {
 	Action map[string]map[string]string `json:"action" cql:"-" bson:"-"`
 
 	// Policy target networks
-	Files FilePathsList `json:"files" cql:"-" bson:"-"`
+	ExternalServices ExternalServicesList `json:"externalServices" cql:"-" bson:"-"`
+
+	// Policy target networks
+	FilePaths FilePathsList `json:"filePaths" cql:"-" bson:"-"`
 
 	// Name is the name of the entity
 	Name string `json:"name" cql:"name,omitempty" bson:"name"`
 
 	// Policy target networks
 	Namespaces NamespacesList `json:"namespaces" cql:"-" bson:"-"`
-
-	// Policy target networks
-	Networks ExternalServicesList `json:"networks" cql:"-" bson:"-"`
 
 	// Propagated indicates if the policy is propagated.
 	Propagated bool `json:"propagated" cql:"-" bson:"-"`
@@ -39,19 +39,25 @@ type PolicyRule struct {
 	Relation []string `json:"relation" cql:"-" bson:"-"`
 
 	// ServerProfiles provides the information about the server profile.
-	Serverprofiles ServerProfilesList `json:"serverprofiles" cql:"-" bson:"-"`
+	ServerProfiles ServerProfilesList `json:"serverProfiles" cql:"-" bson:"-"`
 
 	// Policy target networks
-	Syscalls SystemCallsList `json:"syscalls" cql:"-" bson:"-"`
+	SystemCalls SystemCallsList `json:"systemCalls" cql:"-" bson:"-"`
 
 	// Policy target tags
-	Tagclauses [][]string `json:"tagclauses" cql:"-" bson:"-"`
+	TagClauses [][]string `json:"tagClauses" cql:"-" bson:"-"`
 }
 
 // NewPolicyRule returns a new *PolicyRule
 func NewPolicyRule() *PolicyRule {
 
-	return &PolicyRule{}
+	return &PolicyRule{
+		ExternalServices: ExternalServicesList{},
+		FilePaths:        FilePathsList{},
+		Namespaces:       NamespacesList{},
+		ServerProfiles:   ServerProfilesList{},
+		SystemCalls:      SystemCallsList{},
+	}
 }
 
 // Identity returns the Identity of the object.
@@ -148,11 +154,19 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "actions_list",
 		Type:           "external",
 	},
-	"Files": elemental.AttributeSpecification{
+	"ExternalServices": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Policy target networks `,
 		Exposed:        true,
-		Name:           "files",
+		Name:           "externalServices",
+		SubType:        "network_entities",
+		Type:           "external",
+	},
+	"FilePaths": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Policy target networks `,
+		Exposed:        true,
+		Name:           "filePaths",
 		SubType:        "file_entities",
 		Type:           "external",
 	},
@@ -179,14 +193,6 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "namespace_entities",
 		Type:           "external",
 	},
-	"Networks": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Policy target networks `,
-		Exposed:        true,
-		Name:           "networks",
-		SubType:        "network_entities",
-		Type:           "external",
-	},
 	"Propagated": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Propagated indicates if the policy is propagated.`,
@@ -202,27 +208,27 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "relations_list",
 		Type:           "external",
 	},
-	"Serverprofiles": elemental.AttributeSpecification{
+	"ServerProfiles": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `ServerProfiles provides the information about the server profile.`,
 		Exposed:        true,
-		Name:           "serverprofiles",
+		Name:           "serverProfiles",
 		SubType:        "serverprofile_entities",
 		Type:           "external",
 	},
-	"Syscalls": elemental.AttributeSpecification{
+	"SystemCalls": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Policy target networks `,
 		Exposed:        true,
-		Name:           "syscalls",
+		Name:           "systemCalls",
 		SubType:        "syscall_entities",
 		Type:           "external",
 	},
-	"Tagclauses": elemental.AttributeSpecification{
+	"TagClauses": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Policy target tags`,
 		Exposed:        true,
-		Name:           "tagclauses",
+		Name:           "tagClauses",
 		SubType:        "target_tags",
 		Type:           "external",
 	},

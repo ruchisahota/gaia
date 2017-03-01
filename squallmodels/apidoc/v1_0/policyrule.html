@@ -32,7 +32,9 @@
                             
                             <li><a data-id="attr_action" href="#attr_action" class="fixed-text">action</a></li>
                             
-                            <li><a data-id="attr_files" href="#attr_files" class="fixed-text">files</a></li>
+                            <li><a data-id="attr_externalServices" href="#attr_externalServices" class="fixed-text">externalServices</a></li>
+                            
+                            <li><a data-id="attr_filePaths" href="#attr_filePaths" class="fixed-text">filePaths</a></li>
                             
                             <li><a data-id="attr_ID" href="#attr_ID" class="fixed-text">ID</a></li>
                             
@@ -40,17 +42,15 @@
                             
                             <li><a data-id="attr_namespaces" href="#attr_namespaces" class="fixed-text">namespaces</a></li>
                             
-                            <li><a data-id="attr_networks" href="#attr_networks" class="fixed-text">networks</a></li>
-                            
                             <li><a data-id="attr_propagated" href="#attr_propagated" class="fixed-text">propagated</a></li>
                             
                             <li><a data-id="attr_relation" href="#attr_relation" class="fixed-text">relation</a></li>
                             
-                            <li><a data-id="attr_serverprofiles" href="#attr_serverprofiles" class="fixed-text">serverprofiles</a></li>
+                            <li><a data-id="attr_serverProfiles" href="#attr_serverProfiles" class="fixed-text">serverProfiles</a></li>
                             
-                            <li><a data-id="attr_syscalls" href="#attr_syscalls" class="fixed-text">syscalls</a></li>
+                            <li><a data-id="attr_systemCalls" href="#attr_systemCalls" class="fixed-text">systemCalls</a></li>
                             
-                            <li><a data-id="attr_tagclauses" href="#attr_tagclauses" class="fixed-text">tagclauses</a></li>
+                            <li><a data-id="attr_tagClauses" href="#attr_tagClauses" class="fixed-text">tagClauses</a></li>
                             
                         </ul>
                     </li>
@@ -117,7 +117,33 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_files" title="Policy target networks ">files</a>
+                            <a href="#attr_externalServices" title="Policy target networks ">externalServices</a>
+                        </td>
+                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
+                            <span class="type_external">external
+    
+    
+    
+    
+    </span>
+                        </td>
+                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
+                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="fixed-text">
+                            <a href="#attr_filePaths" title="Policy target networks ">filePaths</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
                             <span class="type_external">external
@@ -243,32 +269,6 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_networks" title="Policy target networks ">networks</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
                             <a href="#attr_propagated" title="Propagated indicates if the policy is propagated.">propagated</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
@@ -321,7 +321,7 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_serverprofiles" title="ServerProfiles provides the information about the server profile.">serverprofiles</a>
+                            <a href="#attr_serverProfiles" title="ServerProfiles provides the information about the server profile.">serverProfiles</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
                             <span class="type_external">external
@@ -347,7 +347,7 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_syscalls" title="Policy target networks ">syscalls</a>
+                            <a href="#attr_systemCalls" title="Policy target networks ">systemCalls</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
                             <span class="type_external">external
@@ -373,7 +373,7 @@
                     
                     <tr>
                         <td class="fixed-text">
-                            <a href="#attr_tagclauses" title="Policy target tags">tagclauses</a>
+                            <a href="#attr_tagClauses" title="Policy target tags">tagClauses</a>
                         </td>
                         <td style="padding-left: 10px;" class="fixed-text hide-xs">
                             <span class="type_external">external
@@ -501,10 +501,10 @@
                 </div>
             </section>
             
-            <section id="attr_files" class="filterable" data-filter-keyword="files" style="padding-top: 60px; margin-top: -60px;">
+            <section id="attr_externalServices" class="filterable" data-filter-keyword="externalServices" style="padding-top: 60px; margin-top: -60px;">
                 <div class="panel panel-default">
                     <div class="panel-heading fixed-text">
-                        <b>files</b>
+                        <b>externalServices</b>
                         <span class="type_external fixed-text">external</span>
                         
     
@@ -542,7 +542,54 @@
 
                             
 
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">files</span>
+                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">externalServices</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="attr_filePaths" class="filterable" data-filter-keyword="filePaths" style="padding-top: 60px; margin-top: -60px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading fixed-text">
+                        <b>filePaths</b>
+                        <span class="type_external fixed-text">external</span>
+                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                    </div>
+
+                    <div class="panel-body">
+                        <h5><b>Discussion</b></h5>
+                        <p>Policy target networks </p>
+
+                        <hr/>
+
+                        <h5><b>Charateristics</b></h5>
+                        <p>
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">filePaths</span>
                         </p>
                     </div>
                 </div>
@@ -715,53 +762,6 @@
                 </div>
             </section>
             
-            <section id="attr_networks" class="filterable" data-filter-keyword="networks" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>networks</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Policy target networks </p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">networks</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
-            
             <section id="attr_propagated" class="filterable" data-filter-keyword="propagated" style="padding-top: 60px; margin-top: -60px;">
                 <div class="panel panel-default">
                     <div class="panel-heading fixed-text">
@@ -856,10 +856,10 @@
                 </div>
             </section>
             
-            <section id="attr_serverprofiles" class="filterable" data-filter-keyword="serverprofiles" style="padding-top: 60px; margin-top: -60px;">
+            <section id="attr_serverProfiles" class="filterable" data-filter-keyword="serverProfiles" style="padding-top: 60px; margin-top: -60px;">
                 <div class="panel panel-default">
                     <div class="panel-heading fixed-text">
-                        <b>serverprofiles</b>
+                        <b>serverProfiles</b>
                         <span class="type_external fixed-text">external</span>
                         
     
@@ -897,16 +897,16 @@
 
                             
 
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">serverprofiles</span>
+                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">serverProfiles</span>
                         </p>
                     </div>
                 </div>
             </section>
             
-            <section id="attr_syscalls" class="filterable" data-filter-keyword="syscalls" style="padding-top: 60px; margin-top: -60px;">
+            <section id="attr_systemCalls" class="filterable" data-filter-keyword="systemCalls" style="padding-top: 60px; margin-top: -60px;">
                 <div class="panel panel-default">
                     <div class="panel-heading fixed-text">
-                        <b>syscalls</b>
+                        <b>systemCalls</b>
                         <span class="type_external fixed-text">external</span>
                         
     
@@ -944,16 +944,16 @@
 
                             
 
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">syscalls</span>
+                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">systemCalls</span>
                         </p>
                     </div>
                 </div>
             </section>
             
-            <section id="attr_tagclauses" class="filterable" data-filter-keyword="tagclauses" style="padding-top: 60px; margin-top: -60px;">
+            <section id="attr_tagClauses" class="filterable" data-filter-keyword="tagClauses" style="padding-top: 60px; margin-top: -60px;">
                 <div class="panel panel-default">
                     <div class="panel-heading fixed-text">
-                        <b>tagclauses</b>
+                        <b>tagClauses</b>
                         <span class="type_external fixed-text">external</span>
                         
     
@@ -991,7 +991,7 @@
 
                             
 
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">tagclauses</span>
+                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">tagClauses</span>
                         </p>
                     </div>
                 </div>

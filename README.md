@@ -16,7 +16,7 @@ You need Monolithe and the Elemental plugin to be installed. If not already, run
 
 To edit the code, use the Specification Director available here:
 
-    https://ec2-54-186-150-21.us-west-2.compute.amazonaws.com
+    https://galactica.aporeto.com
 
 
 ## Generate the code

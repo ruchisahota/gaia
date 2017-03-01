@@ -14,6 +14,18 @@ const (
 	Candidate EntityStatus = "Candidate"
 )
 
+// RenderedPolicyType defines the type of the RenderedPolicyType
+type RenderedPolicyType string
+
+const (
+	// RenderedPolicyTypeNetwork that the RenderedPolicyType is network
+	RenderedPolicyTypeNetwork RenderedPolicyType = "networkPolicyRules"
+	// RenderedPolicyTypeFile that the RenderedPolicyType is file
+	RenderedPolicyTypeFile RenderedPolicyType = "filePolicyRules"
+	// RenderedPolicyTypeSystemCall that the RenderedPolicyType is systemCall
+	RenderedPolicyTypeSystemCall RenderedPolicyType = "systemCallPolicyRules"
+)
+
 // Vulnerability defines the security vulnerability of an image or a layer
 type Vulnerability int
 
