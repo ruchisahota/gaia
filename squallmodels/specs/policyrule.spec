@@ -266,7 +266,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "syscalls",
+            "name": "systemCalls",
             "orderable": false,
             "primary_key": false,
             "read_only": false,
