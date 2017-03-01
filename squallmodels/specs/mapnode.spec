@@ -45,7 +45,7 @@
             "default_value": null,
             "deprecated": null,
             "description": "Namespace contains the node namespace.",
-            "exposed": false,
+            "exposed": true,
             "filterable": false,
             "foreign_key": null,
             "format": "free",
