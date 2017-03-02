@@ -12,6 +12,11 @@ var MapEdgeIdentity = elemental.Identity{
 // MapEdgesList represents a list of MapEdges
 type MapEdgesList []*MapEdge
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o MapEdgesList) ContentIdentity() elemental.Identity {
+	return MapEdgeIdentity
+}
+
 // MapEdge represents the model of a mapedge
 type MapEdge struct {
 	// ID is the identifier of the object.

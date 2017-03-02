@@ -15,6 +15,11 @@ var FileAccessPolicyIdentity = elemental.Identity{
 // FileAccessPoliciesList represents a list of FileAccessPolicies
 type FileAccessPoliciesList []*FileAccessPolicy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o FileAccessPoliciesList) ContentIdentity() elemental.Identity {
+	return FileAccessPolicyIdentity
+}
+
 // FileAccessPolicy represents the model of a fileaccesspolicy
 type FileAccessPolicy struct {
 	// ID is the identifier of the object.

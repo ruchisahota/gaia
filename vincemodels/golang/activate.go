@@ -12,6 +12,11 @@ var ActivateIdentity = elemental.Identity{
 // ActivatesList represents a list of Activates
 type ActivatesList []*Activate
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ActivatesList) ContentIdentity() elemental.Identity {
+	return ActivateIdentity
+}
+
 // Activate represents the model of a activate
 type Activate struct {
 	// Token contains the activation token

@@ -12,6 +12,11 @@ var TagIdentity = elemental.Identity{
 // TagsList represents a list of Tags
 type TagsList []*Tag
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o TagsList) ContentIdentity() elemental.Identity {
+	return TagIdentity
+}
+
 // Tag represents the model of a tag
 type Tag struct {
 	// ID is the identifier of the object.

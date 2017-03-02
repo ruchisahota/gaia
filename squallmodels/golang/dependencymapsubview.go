@@ -12,6 +12,11 @@ var DependencyMapSubviewIdentity = elemental.Identity{
 // DependencyMapSubviewsList represents a list of DependencyMapSubviews
 type DependencyMapSubviewsList []*DependencyMapSubview
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o DependencyMapSubviewsList) ContentIdentity() elemental.Identity {
+	return DependencyMapSubviewIdentity
+}
+
 // DependencyMapSubview represents the model of a dependencymapsubview
 type DependencyMapSubview struct {
 	// Selector is the main selector for the DependencyMapSubview.

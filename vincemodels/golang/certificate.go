@@ -25,6 +25,11 @@ var CertificateIdentity = elemental.Identity{
 // CertificatesList represents a list of Certificates
 type CertificatesList []*Certificate
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o CertificatesList) ContentIdentity() elemental.Identity {
+	return CertificateIdentity
+}
+
 // Certificate represents the model of a certificate
 type Certificate struct {
 	// ID of the object.

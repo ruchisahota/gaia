@@ -15,6 +15,11 @@ var NetworkAccessPolicyIdentity = elemental.Identity{
 // NetworkAccessPoliciesList represents a list of NetworkAccessPolicies
 type NetworkAccessPoliciesList []*NetworkAccessPolicy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o NetworkAccessPoliciesList) ContentIdentity() elemental.Identity {
+	return NetworkAccessPolicyIdentity
+}
+
 // NetworkAccessPolicy represents the model of a networkaccesspolicy
 type NetworkAccessPolicy struct {
 	// ID is the identifier of the object.

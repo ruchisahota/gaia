@@ -49,6 +49,11 @@ var ProcessingUnitIdentity = elemental.Identity{
 // ProcessingUnitsList represents a list of ProcessingUnits
 type ProcessingUnitsList []*ProcessingUnit
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ProcessingUnitsList) ContentIdentity() elemental.Identity {
+	return ProcessingUnitIdentity
+}
+
 // ProcessingUnit represents the model of a processingunit
 type ProcessingUnit struct {
 	// ID is the identifier of the object.

@@ -38,6 +38,11 @@ var APICheckIdentity = elemental.Identity{
 // APIChecksList represents a list of APIChecks
 type APIChecksList []*APICheck
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o APIChecksList) ContentIdentity() elemental.Identity {
+	return APICheckIdentity
+}
+
 // APICheck represents the model of a apicheck
 type APICheck struct {
 	// Authorized contains the results of the check.

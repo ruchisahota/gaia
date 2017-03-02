@@ -15,6 +15,11 @@ var ExternalServiceIdentity = elemental.Identity{
 // ExternalServicesList represents a list of ExternalServices
 type ExternalServicesList []*ExternalService
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ExternalServicesList) ContentIdentity() elemental.Identity {
+	return ExternalServiceIdentity
+}
+
 // ExternalService represents the model of a externalservice
 type ExternalService struct {
 	// ID is the identifier of the object.

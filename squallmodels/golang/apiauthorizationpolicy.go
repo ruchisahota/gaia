@@ -15,6 +15,11 @@ var APIAuthorizationPolicyIdentity = elemental.Identity{
 // APIAuthorizationPoliciesList represents a list of APIAuthorizationPolicies
 type APIAuthorizationPoliciesList []*APIAuthorizationPolicy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o APIAuthorizationPoliciesList) ContentIdentity() elemental.Identity {
+	return APIAuthorizationPolicyIdentity
+}
+
 // APIAuthorizationPolicy represents the model of a apiauthorizationpolicy
 type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.

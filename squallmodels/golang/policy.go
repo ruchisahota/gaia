@@ -38,6 +38,11 @@ var PolicyIdentity = elemental.Identity{
 // PoliciesList represents a list of Policies
 type PoliciesList []*Policy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o PoliciesList) ContentIdentity() elemental.Identity {
+	return PolicyIdentity
+}
+
 // Policy represents the model of a policy
 type Policy struct {
 	// ID is the identifier of the object.

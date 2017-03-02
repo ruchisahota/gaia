@@ -14,6 +14,11 @@ var ActivityIdentity = elemental.Identity{
 // ActivitiesList represents a list of Activities
 type ActivitiesList []*Activity
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ActivitiesList) ContentIdentity() elemental.Identity {
+	return ActivityIdentity
+}
+
 // Activity represents the model of a activity
 type Activity struct {
 	// ID is the identifier of the object.

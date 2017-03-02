@@ -12,6 +12,11 @@ var CheckIdentity = elemental.Identity{
 // ChecksList represents a list of Checks
 type ChecksList []*Check
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ChecksList) ContentIdentity() elemental.Identity {
+	return CheckIdentity
+}
+
 // Check represents the model of a check
 type Check struct {
 }

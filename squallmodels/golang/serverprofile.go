@@ -26,6 +26,11 @@ var ServerProfileIdentity = elemental.Identity{
 // ServerProfilesList represents a list of ServerProfiles
 type ServerProfilesList []*ServerProfile
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ServerProfilesList) ContentIdentity() elemental.Identity {
+	return ServerProfileIdentity
+}
+
 // ServerProfile represents the model of a serverprofile
 type ServerProfile struct {
 	// ID is the identifier of the object.

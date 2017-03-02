@@ -12,6 +12,11 @@ var SyscallAccessIdentity = elemental.Identity{
 // SyscallAccessList represents a list of SyscallAccess
 type SyscallAccessList []*SyscallAccess
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o SyscallAccessList) ContentIdentity() elemental.Identity {
+	return SyscallAccessIdentity
+}
+
 // SyscallAccess represents the model of a syscallaccess
 type SyscallAccess struct {
 	// PID is the PID of the process that used the system call.

@@ -12,6 +12,11 @@ var ComputedPolicyIdentity = elemental.Identity{
 // ComputedPoliciesList represents a list of ComputedPolicies
 type ComputedPoliciesList []*ComputedPolicy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ComputedPoliciesList) ContentIdentity() elemental.Identity {
+	return ComputedPolicyIdentity
+}
+
 // ComputedPolicy represents the model of a computedpolicy
 type ComputedPolicy struct {
 	// ID is the identifier of the object.

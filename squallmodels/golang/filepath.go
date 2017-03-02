@@ -15,6 +15,11 @@ var FilePathIdentity = elemental.Identity{
 // FilePathsList represents a list of FilePaths
 type FilePathsList []*FilePath
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o FilePathsList) ContentIdentity() elemental.Identity {
+	return FilePathIdentity
+}
+
 // FilePath represents the model of a filepath
 type FilePath struct {
 	// ID is the identifier of the object.

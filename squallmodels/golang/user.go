@@ -29,6 +29,11 @@ var UserIdentity = elemental.Identity{
 // UsersList represents a list of Users
 type UsersList []*User
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o UsersList) ContentIdentity() elemental.Identity {
+	return UserIdentity
+}
+
 // User represents the model of a user
 type User struct {
 	// ID is the identifier of the object.

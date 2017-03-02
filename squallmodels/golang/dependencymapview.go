@@ -26,6 +26,11 @@ var DependencyMapViewIdentity = elemental.Identity{
 // DependencyMapViewsList represents a list of DependencyMapViews
 type DependencyMapViewsList []*DependencyMapView
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o DependencyMapViewsList) ContentIdentity() elemental.Identity {
+	return DependencyMapViewIdentity
+}
+
 // DependencyMapView represents the model of a dependencymapview
 type DependencyMapView struct {
 	// ID is the identifier of the object.

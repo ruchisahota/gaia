@@ -12,6 +12,11 @@ var RenderedPolicyIdentity = elemental.Identity{
 // RenderedPoliciesList represents a list of RenderedPolicies
 type RenderedPoliciesList []*RenderedPolicy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o RenderedPoliciesList) ContentIdentity() elemental.Identity {
+	return RenderedPolicyIdentity
+}
+
 // RenderedPolicy represents the model of a renderedpolicy
 type RenderedPolicy struct {
 	// EgressPolicies lists all the egress policies attached to ProcessingUnit

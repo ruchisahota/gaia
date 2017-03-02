@@ -26,6 +26,11 @@ var FileAccessIdentity = elemental.Identity{
 // FileAccessList represents a list of FileAccess
 type FileAccessList []*FileAccess
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o FileAccessList) ContentIdentity() elemental.Identity {
+	return FileAccessIdentity
+}
+
 // FileAccess represents the model of a fileaccess
 type FileAccess struct {
 	// Action tells if the access has been allowed or not.

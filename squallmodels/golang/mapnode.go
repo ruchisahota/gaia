@@ -23,6 +23,11 @@ var MapNodeIdentity = elemental.Identity{
 // MapNodesList represents a list of MapNodes
 type MapNodesList []*MapNode
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o MapNodesList) ContentIdentity() elemental.Identity {
+	return MapNodeIdentity
+}
+
 // MapNode represents the model of a mapnode
 type MapNode struct {
 	// ID is the identifier of the object.

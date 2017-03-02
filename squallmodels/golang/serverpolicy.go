@@ -15,6 +15,11 @@ var ServerPolicyIdentity = elemental.Identity{
 // ServerPoliciesList represents a list of ServerPolicies
 type ServerPoliciesList []*ServerPolicy
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ServerPoliciesList) ContentIdentity() elemental.Identity {
+	return ServerPolicyIdentity
+}
+
 // ServerPolicy represents the model of a serverpolicy
 type ServerPolicy struct {
 	// ID is the identifier of the object.

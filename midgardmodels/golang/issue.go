@@ -38,6 +38,11 @@ var IssueIdentity = elemental.Identity{
 // IssuesList represents a list of Issues
 type IssuesList []*Issue
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o IssuesList) ContentIdentity() elemental.Identity {
+	return IssueIdentity
+}
+
 // Issue represents the model of a issue
 type Issue struct {
 	// Data contains additional data. The value depends on the issuer type.

@@ -12,6 +12,11 @@ var DependencyMapIdentity = elemental.Identity{
 // DependencyMapsList represents a list of DependencyMaps
 type DependencyMapsList []*DependencyMap
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o DependencyMapsList) ContentIdentity() elemental.Identity {
+	return DependencyMapIdentity
+}
+
 // DependencyMap represents the model of a dependencymap
 type DependencyMap struct {
 	// ID is the identifier of the object.

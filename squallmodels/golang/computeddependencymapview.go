@@ -15,6 +15,11 @@ var ComputedDependencyMapViewIdentity = elemental.Identity{
 // ComputedDependencyMapViewsList represents a list of ComputedDependencyMapViews
 type ComputedDependencyMapViewsList []*ComputedDependencyMapView
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ComputedDependencyMapViewsList) ContentIdentity() elemental.Identity {
+	return ComputedDependencyMapViewIdentity
+}
+
 // ComputedDependencyMapView represents the model of a computeddependencymapview
 type ComputedDependencyMapView struct {
 	// ID is the identifier of the object.

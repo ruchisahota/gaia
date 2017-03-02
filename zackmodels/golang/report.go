@@ -12,6 +12,11 @@ var ReportIdentity = elemental.Identity{
 // ReportsList represents a list of Reports
 type ReportsList []*Report
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ReportsList) ContentIdentity() elemental.Identity {
+	return ReportIdentity
+}
+
 // Report represents the model of a report
 type Report struct {
 	// Name contains the name metric of statistics data.

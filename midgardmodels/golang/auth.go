@@ -14,6 +14,11 @@ var AuthIdentity = elemental.Identity{
 // AuthsList represents a list of Auths
 type AuthsList []*Auth
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o AuthsList) ContentIdentity() elemental.Identity {
+	return AuthIdentity
+}
+
 // Auth represents the model of a auth
 type Auth struct {
 	// Claims are the claims.

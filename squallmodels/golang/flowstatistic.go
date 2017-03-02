@@ -45,6 +45,11 @@ var FlowStatisticIdentity = elemental.Identity{
 // FlowStatisticsList represents a list of FlowStatistics
 type FlowStatisticsList []*FlowStatistic
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o FlowStatisticsList) ContentIdentity() elemental.Identity {
+	return FlowStatisticIdentity
+}
+
 // FlowStatistic represents the model of a flowstatistic
 type FlowStatistic struct {
 	// ID is the identifier of the object.

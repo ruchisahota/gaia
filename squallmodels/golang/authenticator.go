@@ -32,6 +32,11 @@ var AuthenticatorIdentity = elemental.Identity{
 // AuthenticatorsList represents a list of Authenticators
 type AuthenticatorsList []*Authenticator
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o AuthenticatorsList) ContentIdentity() elemental.Identity {
+	return AuthenticatorIdentity
+}
+
 // Authenticator represents the model of a authenticator
 type Authenticator struct {
 	// ID is the identifier of the object.

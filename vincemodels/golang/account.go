@@ -31,6 +31,11 @@ var AccountIdentity = elemental.Identity{
 // AccountsList represents a list of Accounts
 type AccountsList []*Account
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o AccountsList) ContentIdentity() elemental.Identity {
+	return AccountIdentity
+}
+
 // Account represents the model of a account
 type Account struct {
 	// ID of the object.

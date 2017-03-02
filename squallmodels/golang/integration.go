@@ -40,6 +40,11 @@ var IntegrationIdentity = elemental.Identity{
 // IntegrationsList represents a list of Integrations
 type IntegrationsList []*Integration
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o IntegrationsList) ContentIdentity() elemental.Identity {
+	return IntegrationIdentity
+}
+
 // Integration represents the model of a integration
 type Integration struct {
 	// ID is the identifier of the object.

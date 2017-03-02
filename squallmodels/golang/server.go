@@ -46,6 +46,11 @@ var ServerIdentity = elemental.Identity{
 // ServersList represents a list of Servers
 type ServersList []*Server
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o ServersList) ContentIdentity() elemental.Identity {
+	return ServerIdentity
+}
+
 // Server represents the model of a server
 type Server struct {
 	// FQDN contains the fqdn of the server.

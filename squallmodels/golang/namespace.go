@@ -15,6 +15,11 @@ var NamespaceIdentity = elemental.Identity{
 // NamespacesList represents a list of Namespaces
 type NamespacesList []*Namespace
 
+// ContentIdentity returns the identity of the objects in the list.
+func (o NamespacesList) ContentIdentity() elemental.Identity {
+	return NamespaceIdentity
+}
+
 // Namespace represents the model of a namespace
 type Namespace struct {
 	// ID is the identifier of the object.
