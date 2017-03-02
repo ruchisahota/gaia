@@ -19,7 +19,6 @@ func init() {
 	AccountMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
 		AllowsUpdate:   true,
-		AllowsDelete:   true,
 	}
 
 	relationshipsRegistry[elemental.IdentityFromName("account")] = AccountMainRelationship
