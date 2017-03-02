@@ -27,7 +27,7 @@ var DependencyMapViewIdentity = elemental.Identity{
 type DependencyMapViewsList []*DependencyMapView
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o DependencyMapViewsList) ContentIdentity() elemental.Identity {
+func (o *DependencyMapViewsList) ContentIdentity() elemental.Identity {
 	return DependencyMapViewIdentity
 }
 

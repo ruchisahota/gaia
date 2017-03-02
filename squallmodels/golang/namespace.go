@@ -16,7 +16,7 @@ var NamespaceIdentity = elemental.Identity{
 type NamespacesList []*Namespace
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o NamespacesList) ContentIdentity() elemental.Identity {
+func (o *NamespacesList) ContentIdentity() elemental.Identity {
 	return NamespaceIdentity
 }
 

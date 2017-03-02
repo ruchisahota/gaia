@@ -13,7 +13,7 @@ var DependencyMapIdentity = elemental.Identity{
 type DependencyMapsList []*DependencyMap
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o DependencyMapsList) ContentIdentity() elemental.Identity {
+func (o *DependencyMapsList) ContentIdentity() elemental.Identity {
 	return DependencyMapIdentity
 }
 

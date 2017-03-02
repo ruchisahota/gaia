@@ -39,7 +39,7 @@ var PolicyIdentity = elemental.Identity{
 type PoliciesList []*Policy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o PoliciesList) ContentIdentity() elemental.Identity {
+func (o *PoliciesList) ContentIdentity() elemental.Identity {
 	return PolicyIdentity
 }
 

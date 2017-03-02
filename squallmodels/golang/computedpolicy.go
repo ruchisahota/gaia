@@ -13,7 +13,7 @@ var ComputedPolicyIdentity = elemental.Identity{
 type ComputedPoliciesList []*ComputedPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o ComputedPoliciesList) ContentIdentity() elemental.Identity {
+func (o *ComputedPoliciesList) ContentIdentity() elemental.Identity {
 	return ComputedPolicyIdentity
 }
 

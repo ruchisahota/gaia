@@ -41,7 +41,7 @@ var IntegrationIdentity = elemental.Identity{
 type IntegrationsList []*Integration
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o IntegrationsList) ContentIdentity() elemental.Identity {
+func (o *IntegrationsList) ContentIdentity() elemental.Identity {
 	return IntegrationIdentity
 }
 

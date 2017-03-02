@@ -27,7 +27,7 @@ var ServerProfileIdentity = elemental.Identity{
 type ServerProfilesList []*ServerProfile
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o ServerProfilesList) ContentIdentity() elemental.Identity {
+func (o *ServerProfilesList) ContentIdentity() elemental.Identity {
 	return ServerProfileIdentity
 }
 

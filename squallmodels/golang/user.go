@@ -30,7 +30,7 @@ var UserIdentity = elemental.Identity{
 type UsersList []*User
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o UsersList) ContentIdentity() elemental.Identity {
+func (o *UsersList) ContentIdentity() elemental.Identity {
 	return UserIdentity
 }
 

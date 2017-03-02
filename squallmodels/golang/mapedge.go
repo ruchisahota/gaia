@@ -13,7 +13,7 @@ var MapEdgeIdentity = elemental.Identity{
 type MapEdgesList []*MapEdge
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o MapEdgesList) ContentIdentity() elemental.Identity {
+func (o *MapEdgesList) ContentIdentity() elemental.Identity {
 	return MapEdgeIdentity
 }
 

@@ -26,7 +26,7 @@ var CertificateIdentity = elemental.Identity{
 type CertificatesList []*Certificate
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o CertificatesList) ContentIdentity() elemental.Identity {
+func (o *CertificatesList) ContentIdentity() elemental.Identity {
 	return CertificateIdentity
 }
 

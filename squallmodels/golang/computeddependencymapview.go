@@ -16,7 +16,7 @@ var ComputedDependencyMapViewIdentity = elemental.Identity{
 type ComputedDependencyMapViewsList []*ComputedDependencyMapView
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o ComputedDependencyMapViewsList) ContentIdentity() elemental.Identity {
+func (o *ComputedDependencyMapViewsList) ContentIdentity() elemental.Identity {
 	return ComputedDependencyMapViewIdentity
 }
 

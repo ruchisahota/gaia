@@ -50,7 +50,7 @@ var ProcessingUnitIdentity = elemental.Identity{
 type ProcessingUnitsList []*ProcessingUnit
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o ProcessingUnitsList) ContentIdentity() elemental.Identity {
+func (o *ProcessingUnitsList) ContentIdentity() elemental.Identity {
 	return ProcessingUnitIdentity
 }
 

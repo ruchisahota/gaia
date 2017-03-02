@@ -13,7 +13,7 @@ var ReportIdentity = elemental.Identity{
 type ReportsList []*Report
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o ReportsList) ContentIdentity() elemental.Identity {
+func (o *ReportsList) ContentIdentity() elemental.Identity {
 	return ReportIdentity
 }
 
