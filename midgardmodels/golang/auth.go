@@ -3,6 +3,8 @@ package midgardmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "github.com/aporeto-inc/midgard-lib/claims"
+
 // AuthIdentity represents the Identity of the object
 var AuthIdentity = elemental.Identity{
 	Name:     "auth",
@@ -15,13 +17,15 @@ type AuthsList []*Auth
 // Auth represents the model of a auth
 type Auth struct {
 	// Claims are the claims.
-	Claims interface{} `json:"claims" cql:"-" bson:"-"`
+	Claims *claims.MidgardClaims `json:"claims" cql:"-" bson:"-"`
 }
 
 // NewAuth returns a new *Auth
 func NewAuth() *Auth {
 
-	return &Auth{}
+	return &Auth{
+		Claims: claims.NewMidgardClaims(),
+	}
 }
 
 // Identity returns the Identity of the object.
