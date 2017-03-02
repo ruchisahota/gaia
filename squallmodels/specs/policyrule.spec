@@ -324,6 +324,7 @@
         "description": "PolicyRules describes the set of rules applied on a Subject.",
         "entity_name": "PolicyRule",
         "extends": [
+            "@identifiable-nopk-nostored",
             "@named"
         ],
         "get": false,
