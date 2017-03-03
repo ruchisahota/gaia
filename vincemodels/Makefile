@@ -3,6 +3,7 @@ default: codegen
 
 codegen:
 	@echo '* Generating Vince models'
+	rm -rf codegen
 	monogen -f specs -L elemental
 	monogen -f specs -L html
 	rm -f ./golang/*.go && cp codegen/elemental/1.0/*.go ./golang

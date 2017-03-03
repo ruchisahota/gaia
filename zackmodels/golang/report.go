@@ -13,8 +13,19 @@ var ReportIdentity = elemental.Identity{
 type ReportsList []*Report
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *ReportsList) ContentIdentity() elemental.Identity {
+func (o ReportsList) ContentIdentity() elemental.Identity {
 	return ReportIdentity
+}
+
+// List convert the object to and elemental.IdentifiablesList.
+func (o ReportsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
 }
 
 // Report represents the model of a report
