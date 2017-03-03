@@ -15,7 +15,7 @@ var AuthIdentity = elemental.Identity{
 type AuthsList []*Auth
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *AuthsList) ContentIdentity() elemental.Identity {
+func (o AuthsList) ContentIdentity() elemental.Identity {
 	return AuthIdentity
 }
 

@@ -13,7 +13,7 @@ var ActivateIdentity = elemental.Identity{
 type ActivatesList []*Activate
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *ActivatesList) ContentIdentity() elemental.Identity {
+func (o ActivatesList) ContentIdentity() elemental.Identity {
 	return ActivateIdentity
 }
 

@@ -46,7 +46,7 @@ var FlowStatisticIdentity = elemental.Identity{
 type FlowStatisticsList []*FlowStatistic
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *FlowStatisticsList) ContentIdentity() elemental.Identity {
+func (o FlowStatisticsList) ContentIdentity() elemental.Identity {
 	return FlowStatisticIdentity
 }
 

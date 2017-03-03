@@ -24,7 +24,7 @@ var MapNodeIdentity = elemental.Identity{
 type MapNodesList []*MapNode
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *MapNodesList) ContentIdentity() elemental.Identity {
+func (o MapNodesList) ContentIdentity() elemental.Identity {
 	return MapNodeIdentity
 }
 

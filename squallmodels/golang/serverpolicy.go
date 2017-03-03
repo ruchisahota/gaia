@@ -16,7 +16,7 @@ var ServerPolicyIdentity = elemental.Identity{
 type ServerPoliciesList []*ServerPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *ServerPoliciesList) ContentIdentity() elemental.Identity {
+func (o ServerPoliciesList) ContentIdentity() elemental.Identity {
 	return ServerPolicyIdentity
 }
 

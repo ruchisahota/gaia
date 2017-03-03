@@ -33,7 +33,7 @@ var AuthenticatorIdentity = elemental.Identity{
 type AuthenticatorsList []*Authenticator
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *AuthenticatorsList) ContentIdentity() elemental.Identity {
+func (o AuthenticatorsList) ContentIdentity() elemental.Identity {
 	return AuthenticatorIdentity
 }
 

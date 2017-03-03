@@ -16,7 +16,7 @@ var NetworkAccessPolicyIdentity = elemental.Identity{
 type NetworkAccessPoliciesList []*NetworkAccessPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *NetworkAccessPoliciesList) ContentIdentity() elemental.Identity {
+func (o NetworkAccessPoliciesList) ContentIdentity() elemental.Identity {
 	return NetworkAccessPolicyIdentity
 }
 

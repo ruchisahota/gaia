@@ -39,7 +39,7 @@ var IssueIdentity = elemental.Identity{
 type IssuesList []*Issue
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *IssuesList) ContentIdentity() elemental.Identity {
+func (o IssuesList) ContentIdentity() elemental.Identity {
 	return IssueIdentity
 }
 

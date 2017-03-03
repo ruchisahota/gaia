@@ -13,7 +13,7 @@ var CheckIdentity = elemental.Identity{
 type ChecksList []*Check
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *ChecksList) ContentIdentity() elemental.Identity {
+func (o ChecksList) ContentIdentity() elemental.Identity {
 	return CheckIdentity
 }
 

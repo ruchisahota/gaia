@@ -16,7 +16,7 @@ var NamespaceMappingPolicyIdentity = elemental.Identity{
 type NamespaceMappingPoliciesList []*NamespaceMappingPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *NamespaceMappingPoliciesList) ContentIdentity() elemental.Identity {
+func (o NamespaceMappingPoliciesList) ContentIdentity() elemental.Identity {
 	return NamespaceMappingPolicyIdentity
 }
 

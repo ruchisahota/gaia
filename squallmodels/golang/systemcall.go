@@ -16,7 +16,7 @@ var SystemCallIdentity = elemental.Identity{
 type SystemCallsList []*SystemCall
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *SystemCallsList) ContentIdentity() elemental.Identity {
+func (o SystemCallsList) ContentIdentity() elemental.Identity {
 	return SystemCallIdentity
 }
 

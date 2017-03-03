@@ -13,7 +13,7 @@ var DependencyMapSubviewIdentity = elemental.Identity{
 type DependencyMapSubviewsList []*DependencyMapSubview
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *DependencyMapSubviewsList) ContentIdentity() elemental.Identity {
+func (o DependencyMapSubviewsList) ContentIdentity() elemental.Identity {
 	return DependencyMapSubviewIdentity
 }
 

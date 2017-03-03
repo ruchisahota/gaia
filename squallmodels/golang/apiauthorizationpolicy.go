@@ -16,7 +16,7 @@ var APIAuthorizationPolicyIdentity = elemental.Identity{
 type APIAuthorizationPoliciesList []*APIAuthorizationPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *APIAuthorizationPoliciesList) ContentIdentity() elemental.Identity {
+func (o APIAuthorizationPoliciesList) ContentIdentity() elemental.Identity {
 	return APIAuthorizationPolicyIdentity
 }
 

@@ -15,7 +15,7 @@ var ActivityIdentity = elemental.Identity{
 type ActivitiesList []*Activity
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *ActivitiesList) ContentIdentity() elemental.Identity {
+func (o ActivitiesList) ContentIdentity() elemental.Identity {
 	return ActivityIdentity
 }
 

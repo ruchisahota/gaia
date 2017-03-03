@@ -16,7 +16,7 @@ var FileAccessPolicyIdentity = elemental.Identity{
 type FileAccessPoliciesList []*FileAccessPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *FileAccessPoliciesList) ContentIdentity() elemental.Identity {
+func (o FileAccessPoliciesList) ContentIdentity() elemental.Identity {
 	return FileAccessPolicyIdentity
 }
 

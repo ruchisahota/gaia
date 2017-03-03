@@ -13,7 +13,7 @@ var SyscallAccessIdentity = elemental.Identity{
 type SyscallAccessList []*SyscallAccess
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *SyscallAccessList) ContentIdentity() elemental.Identity {
+func (o SyscallAccessList) ContentIdentity() elemental.Identity {
 	return SyscallAccessIdentity
 }
 

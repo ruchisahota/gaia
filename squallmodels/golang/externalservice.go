@@ -16,7 +16,7 @@ var ExternalServiceIdentity = elemental.Identity{
 type ExternalServicesList []*ExternalService
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *ExternalServicesList) ContentIdentity() elemental.Identity {
+func (o ExternalServicesList) ContentIdentity() elemental.Identity {
 	return ExternalServiceIdentity
 }
 

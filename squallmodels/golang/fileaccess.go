@@ -27,7 +27,7 @@ var FileAccessIdentity = elemental.Identity{
 type FileAccessList []*FileAccess
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *FileAccessList) ContentIdentity() elemental.Identity {
+func (o FileAccessList) ContentIdentity() elemental.Identity {
 	return FileAccessIdentity
 }
 

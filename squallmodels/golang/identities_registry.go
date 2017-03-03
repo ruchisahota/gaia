@@ -114,6 +114,79 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	}
 }
 
+// ContentIdentifiableForIdentity returns a new instance of a ContentIdentifiable for the given identity name.
+func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
+
+	switch identity {
+	case APICheckIdentity.Name:
+		return APIChecksList{}
+	case NamespaceMappingPolicyIdentity.Name:
+		return NamespaceMappingPoliciesList{}
+	case DependencyMapSubviewIdentity.Name:
+		return DependencyMapSubviewsList{}
+	case APIAuthorizationPolicyIdentity.Name:
+		return APIAuthorizationPoliciesList{}
+	case SyscallAccessIdentity.Name:
+		return SyscallAccessList{}
+	case ComputedPolicyIdentity.Name:
+		return ComputedPoliciesList{}
+	case TagIdentity.Name:
+		return TagsList{}
+	case MapEdgeIdentity.Name:
+		return MapEdgesList{}
+	case FilePathIdentity.Name:
+		return FilePathsList{}
+	case FileAccessIdentity.Name:
+		return FileAccessList{}
+	case NamespaceIdentity.Name:
+		return NamespacesList{}
+	case IntegrationIdentity.Name:
+		return IntegrationsList{}
+	case PolicyRuleIdentity.Name:
+		return PolicyRulesList{}
+	case ExternalServiceIdentity.Name:
+		return ExternalServicesList{}
+	case PolicyIdentity.Name:
+		return PoliciesList{}
+	case FlowStatisticIdentity.Name:
+		return FlowStatisticsList{}
+	case ServerProfileIdentity.Name:
+		return ServerProfilesList{}
+	case ServerPolicyIdentity.Name:
+		return ServerPoliciesList{}
+	case ComputedDependencyMapViewIdentity.Name:
+		return ComputedDependencyMapViewsList{}
+	case SystemCallIdentity.Name:
+		return SystemCallsList{}
+	case AuthenticatorIdentity.Name:
+		return AuthenticatorsList{}
+	case FileAccessPolicyIdentity.Name:
+		return FileAccessPoliciesList{}
+	case RenderedPolicyIdentity.Name:
+		return RenderedPoliciesList{}
+	case ProcessingUnitIdentity.Name:
+		return ProcessingUnitsList{}
+	case DependencyMapViewIdentity.Name:
+		return DependencyMapViewsList{}
+	case DependencyMapIdentity.Name:
+		return DependencyMapsList{}
+	case VulnerabilityIdentity.Name:
+		return VulnerabilitiesList{}
+	case ServerIdentity.Name:
+		return ServersList{}
+	case MapNodeIdentity.Name:
+		return MapNodesList{}
+	case ActivityIdentity.Name:
+		return ActivitiesList{}
+	case NetworkAccessPolicyIdentity.Name:
+		return NetworkAccessPoliciesList{}
+	case UserIdentity.Name:
+		return UsersList{}
+	default:
+		return nil
+	}
+}
+
 // AllIdentities returns all existing identities.
 func AllIdentities() []elemental.Identity {
 

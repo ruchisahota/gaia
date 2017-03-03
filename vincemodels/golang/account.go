@@ -32,7 +32,7 @@ var AccountIdentity = elemental.Identity{
 type AccountsList []*Account
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *AccountsList) ContentIdentity() elemental.Identity {
+func (o AccountsList) ContentIdentity() elemental.Identity {
 	return AccountIdentity
 }
 

@@ -30,6 +30,23 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	}
 }
 
+// ContentIdentifiableForIdentity returns a new instance of a ContentIdentifiable for the given identity name.
+func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
+
+	switch identity {
+	case AccountIdentity.Name:
+		return AccountsList{}
+	case ActivateIdentity.Name:
+		return ActivatesList{}
+	case CheckIdentity.Name:
+		return ChecksList{}
+	case CertificateIdentity.Name:
+		return CertificatesList{}
+	default:
+		return nil
+	}
+}
+
 // AllIdentities returns all existing identities.
 func AllIdentities() []elemental.Identity {
 

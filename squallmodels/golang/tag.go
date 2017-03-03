@@ -13,7 +13,7 @@ var TagIdentity = elemental.Identity{
 type TagsList []*Tag
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *TagsList) ContentIdentity() elemental.Identity {
+func (o TagsList) ContentIdentity() elemental.Identity {
 	return TagIdentity
 }
 

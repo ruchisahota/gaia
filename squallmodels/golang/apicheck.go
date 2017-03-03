@@ -39,7 +39,7 @@ var APICheckIdentity = elemental.Identity{
 type APIChecksList []*APICheck
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o *APIChecksList) ContentIdentity() elemental.Identity {
+func (o APIChecksList) ContentIdentity() elemental.Identity {
 	return APICheckIdentity
 }
 
