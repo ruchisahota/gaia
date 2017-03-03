@@ -17,6 +17,17 @@ func (o ChecksList) ContentIdentity() elemental.Identity {
 	return CheckIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ChecksList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Check represents the model of a check
 type Check struct {
 }

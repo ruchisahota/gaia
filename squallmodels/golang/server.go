@@ -51,6 +51,17 @@ func (o ServersList) ContentIdentity() elemental.Identity {
 	return ServerIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ServersList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Server represents the model of a server
 type Server struct {
 	// FQDN contains the fqdn of the server.

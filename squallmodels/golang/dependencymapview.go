@@ -31,6 +31,17 @@ func (o DependencyMapViewsList) ContentIdentity() elemental.Identity {
 	return DependencyMapViewIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o DependencyMapViewsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // DependencyMapView represents the model of a dependencymapview
 type DependencyMapView struct {
 	// ID is the identifier of the object.

@@ -17,6 +17,17 @@ func (o RenderedPoliciesList) ContentIdentity() elemental.Identity {
 	return RenderedPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o RenderedPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // RenderedPolicy represents the model of a renderedpolicy
 type RenderedPolicy struct {
 	// EgressPolicies lists all the egress policies attached to ProcessingUnit

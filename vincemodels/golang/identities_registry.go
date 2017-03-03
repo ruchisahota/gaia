@@ -35,13 +35,13 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 
 	switch identity {
 	case AccountIdentity.Name:
-		return AccountsList{}
+		return &AccountsList{}
 	case ActivateIdentity.Name:
-		return ActivatesList{}
+		return &ActivatesList{}
 	case CheckIdentity.Name:
-		return ChecksList{}
+		return &ChecksList{}
 	case CertificateIdentity.Name:
-		return CertificatesList{}
+		return &CertificatesList{}
 	default:
 		return nil
 	}

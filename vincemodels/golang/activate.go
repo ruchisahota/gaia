@@ -17,6 +17,17 @@ func (o ActivatesList) ContentIdentity() elemental.Identity {
 	return ActivateIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ActivatesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Activate represents the model of a activate
 type Activate struct {
 	// Token contains the activation token

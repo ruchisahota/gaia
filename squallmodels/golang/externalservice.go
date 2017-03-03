@@ -20,6 +20,17 @@ func (o ExternalServicesList) ContentIdentity() elemental.Identity {
 	return ExternalServiceIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ExternalServicesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // ExternalService represents the model of a externalservice
 type ExternalService struct {
 	// ID is the identifier of the object.

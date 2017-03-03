@@ -20,6 +20,17 @@ func (o NamespaceMappingPoliciesList) ContentIdentity() elemental.Identity {
 	return NamespaceMappingPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o NamespaceMappingPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // NamespaceMappingPolicy represents the model of a namespacemappingpolicy
 type NamespaceMappingPolicy struct {
 	// ID is the identifier of the object.

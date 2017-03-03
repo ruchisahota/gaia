@@ -17,6 +17,17 @@ func (o MapEdgesList) ContentIdentity() elemental.Identity {
 	return MapEdgeIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o MapEdgesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // MapEdge represents the model of a mapedge
 type MapEdge struct {
 	// ID is the identifier of the object.

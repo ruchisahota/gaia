@@ -30,6 +30,17 @@ func (o CertificatesList) ContentIdentity() elemental.Identity {
 	return CertificateIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o CertificatesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Certificate represents the model of a certificate
 type Certificate struct {
 	// ID of the object.

@@ -20,6 +20,17 @@ func (o ServerPoliciesList) ContentIdentity() elemental.Identity {
 	return ServerPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ServerPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // ServerPolicy represents the model of a serverpolicy
 type ServerPolicy struct {
 	// ID is the identifier of the object.

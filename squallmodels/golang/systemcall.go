@@ -20,6 +20,17 @@ func (o SystemCallsList) ContentIdentity() elemental.Identity {
 	return SystemCallIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o SystemCallsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // SystemCall represents the model of a systemcall
 type SystemCall struct {
 	// ID is the identifier of the object.

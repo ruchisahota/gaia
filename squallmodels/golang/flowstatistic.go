@@ -50,6 +50,17 @@ func (o FlowStatisticsList) ContentIdentity() elemental.Identity {
 	return FlowStatisticIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o FlowStatisticsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // FlowStatistic represents the model of a flowstatistic
 type FlowStatistic struct {
 	// ID is the identifier of the object.

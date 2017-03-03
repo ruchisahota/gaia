@@ -43,6 +43,17 @@ func (o PoliciesList) ContentIdentity() elemental.Identity {
 	return PolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o PoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Policy represents the model of a policy
 type Policy struct {
 	// ID is the identifier of the object.

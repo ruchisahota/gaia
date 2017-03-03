@@ -19,6 +19,17 @@ func (o AuthsList) ContentIdentity() elemental.Identity {
 	return AuthIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o AuthsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Auth represents the model of a auth
 type Auth struct {
 	// Claims are the claims.

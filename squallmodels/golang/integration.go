@@ -45,6 +45,17 @@ func (o IntegrationsList) ContentIdentity() elemental.Identity {
 	return IntegrationIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o IntegrationsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Integration represents the model of a integration
 type Integration struct {
 	// ID is the identifier of the object.

@@ -37,6 +37,17 @@ func (o AuthenticatorsList) ContentIdentity() elemental.Identity {
 	return AuthenticatorIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o AuthenticatorsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Authenticator represents the model of a authenticator
 type Authenticator struct {
 	// ID is the identifier of the object.

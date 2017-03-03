@@ -34,6 +34,17 @@ func (o UsersList) ContentIdentity() elemental.Identity {
 	return UserIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o UsersList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // User represents the model of a user
 type User struct {
 	// ID is the identifier of the object.

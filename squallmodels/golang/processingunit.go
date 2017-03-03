@@ -54,6 +54,17 @@ func (o ProcessingUnitsList) ContentIdentity() elemental.Identity {
 	return ProcessingUnitIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // ProcessingUnit represents the model of a processingunit
 type ProcessingUnit struct {
 	// ID is the identifier of the object.

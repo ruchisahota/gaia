@@ -20,6 +20,17 @@ func (o FilePathsList) ContentIdentity() elemental.Identity {
 	return FilePathIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o FilePathsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // FilePath represents the model of a filepath
 type FilePath struct {
 	// ID is the identifier of the object.

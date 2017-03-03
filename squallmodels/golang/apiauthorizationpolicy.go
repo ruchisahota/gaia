@@ -20,6 +20,17 @@ func (o APIAuthorizationPoliciesList) ContentIdentity() elemental.Identity {
 	return APIAuthorizationPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o APIAuthorizationPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // APIAuthorizationPolicy represents the model of a apiauthorizationpolicy
 type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.

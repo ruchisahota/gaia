@@ -119,69 +119,69 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 
 	switch identity {
 	case APICheckIdentity.Name:
-		return APIChecksList{}
+		return &APIChecksList{}
 	case NamespaceMappingPolicyIdentity.Name:
-		return NamespaceMappingPoliciesList{}
+		return &NamespaceMappingPoliciesList{}
 	case DependencyMapSubviewIdentity.Name:
-		return DependencyMapSubviewsList{}
+		return &DependencyMapSubviewsList{}
 	case APIAuthorizationPolicyIdentity.Name:
-		return APIAuthorizationPoliciesList{}
+		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Name:
-		return SyscallAccessList{}
+		return &SyscallAccessList{}
 	case ComputedPolicyIdentity.Name:
-		return ComputedPoliciesList{}
+		return &ComputedPoliciesList{}
 	case TagIdentity.Name:
-		return TagsList{}
+		return &TagsList{}
 	case MapEdgeIdentity.Name:
-		return MapEdgesList{}
+		return &MapEdgesList{}
 	case FilePathIdentity.Name:
-		return FilePathsList{}
+		return &FilePathsList{}
 	case FileAccessIdentity.Name:
-		return FileAccessList{}
+		return &FileAccessList{}
 	case NamespaceIdentity.Name:
-		return NamespacesList{}
+		return &NamespacesList{}
 	case IntegrationIdentity.Name:
-		return IntegrationsList{}
+		return &IntegrationsList{}
 	case PolicyRuleIdentity.Name:
-		return PolicyRulesList{}
+		return &PolicyRulesList{}
 	case ExternalServiceIdentity.Name:
-		return ExternalServicesList{}
+		return &ExternalServicesList{}
 	case PolicyIdentity.Name:
-		return PoliciesList{}
+		return &PoliciesList{}
 	case FlowStatisticIdentity.Name:
-		return FlowStatisticsList{}
+		return &FlowStatisticsList{}
 	case ServerProfileIdentity.Name:
-		return ServerProfilesList{}
+		return &ServerProfilesList{}
 	case ServerPolicyIdentity.Name:
-		return ServerPoliciesList{}
+		return &ServerPoliciesList{}
 	case ComputedDependencyMapViewIdentity.Name:
-		return ComputedDependencyMapViewsList{}
+		return &ComputedDependencyMapViewsList{}
 	case SystemCallIdentity.Name:
-		return SystemCallsList{}
+		return &SystemCallsList{}
 	case AuthenticatorIdentity.Name:
-		return AuthenticatorsList{}
+		return &AuthenticatorsList{}
 	case FileAccessPolicyIdentity.Name:
-		return FileAccessPoliciesList{}
+		return &FileAccessPoliciesList{}
 	case RenderedPolicyIdentity.Name:
-		return RenderedPoliciesList{}
+		return &RenderedPoliciesList{}
 	case ProcessingUnitIdentity.Name:
-		return ProcessingUnitsList{}
+		return &ProcessingUnitsList{}
 	case DependencyMapViewIdentity.Name:
-		return DependencyMapViewsList{}
+		return &DependencyMapViewsList{}
 	case DependencyMapIdentity.Name:
-		return DependencyMapsList{}
+		return &DependencyMapsList{}
 	case VulnerabilityIdentity.Name:
-		return VulnerabilitiesList{}
+		return &VulnerabilitiesList{}
 	case ServerIdentity.Name:
-		return ServersList{}
+		return &ServersList{}
 	case MapNodeIdentity.Name:
-		return MapNodesList{}
+		return &MapNodesList{}
 	case ActivityIdentity.Name:
-		return ActivitiesList{}
+		return &ActivitiesList{}
 	case NetworkAccessPolicyIdentity.Name:
-		return NetworkAccessPoliciesList{}
+		return &NetworkAccessPoliciesList{}
 	case UserIdentity.Name:
-		return UsersList{}
+		return &UsersList{}
 	default:
 		return nil
 	}

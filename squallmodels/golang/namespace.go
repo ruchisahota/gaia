@@ -20,6 +20,17 @@ func (o NamespacesList) ContentIdentity() elemental.Identity {
 	return NamespaceIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o NamespacesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Namespace represents the model of a namespace
 type Namespace struct {
 	// ID is the identifier of the object.

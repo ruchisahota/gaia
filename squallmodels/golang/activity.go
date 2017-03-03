@@ -19,6 +19,17 @@ func (o ActivitiesList) ContentIdentity() elemental.Identity {
 	return ActivityIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ActivitiesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Activity represents the model of a activity
 type Activity struct {
 	// ID is the identifier of the object.

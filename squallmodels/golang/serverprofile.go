@@ -31,6 +31,17 @@ func (o ServerProfilesList) ContentIdentity() elemental.Identity {
 	return ServerProfileIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ServerProfilesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // ServerProfile represents the model of a serverprofile
 type ServerProfile struct {
 	// ID is the identifier of the object.

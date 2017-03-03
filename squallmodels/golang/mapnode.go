@@ -28,6 +28,17 @@ func (o MapNodesList) ContentIdentity() elemental.Identity {
 	return MapNodeIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o MapNodesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // MapNode represents the model of a mapnode
 type MapNode struct {
 	// ID is the identifier of the object.

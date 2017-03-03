@@ -43,6 +43,17 @@ func (o IssuesList) ContentIdentity() elemental.Identity {
 	return IssueIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o IssuesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Issue represents the model of a issue
 type Issue struct {
 	// Data contains additional data. The value depends on the issuer type.

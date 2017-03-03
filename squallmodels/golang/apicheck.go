@@ -43,6 +43,17 @@ func (o APIChecksList) ContentIdentity() elemental.Identity {
 	return APICheckIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o APIChecksList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // APICheck represents the model of a apicheck
 type APICheck struct {
 	// Authorized contains the results of the check.

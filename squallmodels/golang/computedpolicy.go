@@ -17,6 +17,17 @@ func (o ComputedPoliciesList) ContentIdentity() elemental.Identity {
 	return ComputedPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ComputedPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // ComputedPolicy represents the model of a computedpolicy
 type ComputedPolicy struct {
 	// ID is the identifier of the object.

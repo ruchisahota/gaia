@@ -20,6 +20,17 @@ func (o FileAccessPoliciesList) ContentIdentity() elemental.Identity {
 	return FileAccessPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o FileAccessPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // FileAccessPolicy represents the model of a fileaccesspolicy
 type FileAccessPolicy struct {
 	// ID is the identifier of the object.

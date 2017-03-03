@@ -17,6 +17,17 @@ func (o DependencyMapSubviewsList) ContentIdentity() elemental.Identity {
 	return DependencyMapSubviewIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o DependencyMapSubviewsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // DependencyMapSubview represents the model of a dependencymapsubview
 type DependencyMapSubview struct {
 	// Selector is the main selector for the DependencyMapSubview.

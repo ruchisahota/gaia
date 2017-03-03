@@ -17,6 +17,17 @@ func (o SyscallAccessList) ContentIdentity() elemental.Identity {
 	return SyscallAccessIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o SyscallAccessList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // SyscallAccess represents the model of a syscallaccess
 type SyscallAccess struct {
 	// PID is the PID of the process that used the system call.

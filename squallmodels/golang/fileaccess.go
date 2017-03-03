@@ -31,6 +31,17 @@ func (o FileAccessList) ContentIdentity() elemental.Identity {
 	return FileAccessIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o FileAccessList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // FileAccess represents the model of a fileaccess
 type FileAccess struct {
 	// Action tells if the access has been allowed or not.

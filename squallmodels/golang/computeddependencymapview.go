@@ -20,6 +20,17 @@ func (o ComputedDependencyMapViewsList) ContentIdentity() elemental.Identity {
 	return ComputedDependencyMapViewIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o ComputedDependencyMapViewsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // ComputedDependencyMapView represents the model of a computeddependencymapview
 type ComputedDependencyMapView struct {
 	// ID is the identifier of the object.

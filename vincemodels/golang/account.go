@@ -36,6 +36,17 @@ func (o AccountsList) ContentIdentity() elemental.Identity {
 	return AccountIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o AccountsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // Account represents the model of a account
 type Account struct {
 	// ID of the object.

@@ -29,9 +29,9 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 
 	switch identity {
 	case IssueIdentity.Name:
-		return IssuesList{}
+		return &IssuesList{}
 	case AuthIdentity.Name:
-		return AuthsList{}
+		return &AuthsList{}
 	default:
 		return nil
 	}

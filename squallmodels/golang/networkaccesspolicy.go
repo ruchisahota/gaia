@@ -20,6 +20,17 @@ func (o NetworkAccessPoliciesList) ContentIdentity() elemental.Identity {
 	return NetworkAccessPolicyIdentity
 }
 
+// List convert the object to and elemental.IdentifiablesList.
+func (o NetworkAccessPoliciesList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
 // NetworkAccessPolicy represents the model of a networkaccesspolicy
 type NetworkAccessPolicy struct {
 	// ID is the identifier of the object.
