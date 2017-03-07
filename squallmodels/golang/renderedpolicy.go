@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
+
 // RenderedPolicyIdentity represents the Identity of the object
 var RenderedPolicyIdentity = elemental.Identity{
 	Name:     "renderedpolicy",
@@ -46,7 +48,10 @@ type RenderedPolicy struct {
 // NewRenderedPolicy returns a new *RenderedPolicy
 func NewRenderedPolicy() *RenderedPolicy {
 
-	return &RenderedPolicy{}
+	return &RenderedPolicy{
+		EgressPolicies:  map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
+		IngressPolicies: map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
+	}
 }
 
 // Identity returns the Identity of the object.
