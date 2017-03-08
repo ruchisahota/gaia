@@ -1,16 +1,5 @@
 package gaiaconstants
 
-// PolicyStatus defines the status of an entity
-type PolicyStatus string
-
-const (
-	// PolicyStatusEnabled defines that a policy is enabled
-	PolicyStatusEnabled PolicyStatus = "Enabled"
-
-	// PolicyStatusDisabled defines that a policy is disabled
-	PolicyStatusDisabled PolicyStatus = "Disabled"
-)
-
 // RenderedPolicyType defines the type of the RenderedPolicyType
 type RenderedPolicyType string
 
