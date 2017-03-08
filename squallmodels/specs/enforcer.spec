@@ -44,7 +44,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Certificate is the certificate of the server ",
+            "description": "Certificate is the certificate of the enforcer. ",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
