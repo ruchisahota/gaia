@@ -26,6 +26,7 @@
             "primary_key": false,
             "read_only": false,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": "auth_config",
@@ -65,6 +66,7 @@
             "primary_key": false,
             "read_only": false,
             "required": false,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": null,
@@ -99,6 +101,7 @@
             "primary_key": false,
             "read_only": false,
             "required": true,
+            "secret": false,
             "setter": false,
             "stored": true,
             "subtype": null,
@@ -108,21 +111,9 @@
             "uniqueScope": null
         }
     ],
-    "children": [
-        {
-            "bulk_create": false,
-            "bulk_delete": false,
-            "bulk_update": false,
-            "create": true,
-            "delete": false,
-            "deprecated": null,
-            "get": true,
-            "relationship": "child",
-            "rest_name": "user",
-            "update": false
-        }
-    ],
+    "children": [],
     "model": {
+        "aliases": [],
         "create": false,
         "delete": true,
         "description": "Authenticator defines all the configuration needed to authenticate an user.",
