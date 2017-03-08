@@ -87,8 +87,7 @@
             "@base",
             "@described",
             "@identifiable-nopk-nostored",
-            "@named",
-            "@statuable"
+            "@named"
         ],
         "get": true,
         "package": "Policies",
