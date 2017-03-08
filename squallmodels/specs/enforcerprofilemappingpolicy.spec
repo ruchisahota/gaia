@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Object is the list of tags to use to find a server profile.",
+            "description": "Object is the list of tags to use to find a enforcer profile.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
