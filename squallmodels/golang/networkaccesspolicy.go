@@ -4,7 +4,6 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
 
 // NetworkAccessPolicyIdentity represents the Identity of the object
 var NetworkAccessPolicyIdentity = elemental.Identity{
@@ -54,6 +53,9 @@ type NetworkAccessPolicy struct {
 	// DestinationPorts contains the list of allowed ports and ranges.
 	DestinationPorts []string `json:"destinationPorts" bson:"-"`
 
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
 	// EncryptionEnabled defines if the flow has to be encrypted.
 	EncryptionEnabled bool `json:"encryptionEnabled" bson:"-"`
 
@@ -81,9 +83,6 @@ type NetworkAccessPolicy struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
 
-	// Status represents the status of the object.
-	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
-
 	// Subject of the policy.
 	Subject [][]string `json:"subject" bson:"-"`
 
@@ -101,7 +100,6 @@ func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 		AssociatedTags:   []string{},
 		DestinationPorts: []string{},
 		NormalizedTags:   []string{},
-		Status:           gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -147,6 +145,16 @@ func (o *NetworkAccessPolicy) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *NetworkAccessPolicy) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetDisabled returns the disabled of the receiver
+func (o *NetworkAccessPolicy) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled set the given disabled of the receiver
+func (o *NetworkAccessPolicy) SetDisabled(disabled bool) {
+	o.Disabled = disabled
 }
 
 // GetName returns the name of the receiver
@@ -202,16 +210,6 @@ func (o *NetworkAccessPolicy) SetPropagationHidden(propagationHidden bool) {
 // GetProtected returns the protected of the receiver
 func (o *NetworkAccessPolicy) GetProtected() bool {
 	return o.Protected
-}
-
-// GetStatus returns the status of the receiver
-func (o *NetworkAccessPolicy) GetStatus() gaiaconstants.PolicyStatus {
-	return o.Status
-}
-
-// SetStatus set the given status of the receiver
-func (o *NetworkAccessPolicy) SetStatus(status gaiaconstants.PolicyStatus) {
-	o.Status = status
 }
 
 // SetUpdateTime set the given updateTime of the receiver
@@ -334,6 +332,18 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "ports_list",
 		Type:           "external",
 	},
+	"Disabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Disabled defines if the propert is disabled.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "disabled",
+		Orderable:      true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"EncryptionEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `EncryptionEnabled defines if the flow has to be encrypted.`,
@@ -442,20 +452,6 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
-		Description:    `Status represents the status of the object.`,
-		Exposed:        true,
-		Filterable:     true,
-		Getter:         true,
-		Name:           "status",
-		Orderable:      true,
-		Setter:         true,
-		Stored:         true,
-		SubType:        "policy_status",
-		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

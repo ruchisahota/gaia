@@ -4,7 +4,6 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
 
 // FileAccessPolicyIdentity represents the Identity of the object
 var FileAccessPolicyIdentity = elemental.Identity{
@@ -57,6 +56,9 @@ type FileAccessPolicy struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
 	// EncryptionEnabled will enable the automatic encryption
 	EncryptionEnabled bool `json:"encryptionEnabled" bson:"-"`
 
@@ -84,9 +86,6 @@ type FileAccessPolicy struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
 
-	// Status represents the status of the object.
-	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
-
 	// Subject is the subject of the policy
 	Subject [][]string `json:"subject" bson:"-"`
 
@@ -103,7 +102,6 @@ func NewFileAccessPolicy() *FileAccessPolicy {
 		ModelVersion:   1.0,
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Status:         gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -149,6 +147,16 @@ func (o *FileAccessPolicy) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *FileAccessPolicy) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetDisabled returns the disabled of the receiver
+func (o *FileAccessPolicy) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled set the given disabled of the receiver
+func (o *FileAccessPolicy) SetDisabled(disabled bool) {
+	o.Disabled = disabled
 }
 
 // GetName returns the name of the receiver
@@ -204,16 +212,6 @@ func (o *FileAccessPolicy) SetPropagationHidden(propagationHidden bool) {
 // GetProtected returns the protected of the receiver
 func (o *FileAccessPolicy) GetProtected() bool {
 	return o.Protected
-}
-
-// GetStatus returns the status of the receiver
-func (o *FileAccessPolicy) GetStatus() gaiaconstants.PolicyStatus {
-	return o.Status
-}
-
-// SetStatus set the given status of the receiver
-func (o *FileAccessPolicy) SetStatus(status gaiaconstants.PolicyStatus) {
-	o.Status = status
 }
 
 // SetUpdateTime set the given updateTime of the receiver
@@ -344,6 +342,18 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"Disabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Disabled defines if the propert is disabled.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "disabled",
+		Orderable:      true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"EncryptionEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `EncryptionEnabled will enable the automatic encryption`,
@@ -452,20 +462,6 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
-		Description:    `Status represents the status of the object.`,
-		Exposed:        true,
-		Filterable:     true,
-		Getter:         true,
-		Name:           "status",
-		Orderable:      true,
-		Setter:         true,
-		Stored:         true,
-		SubType:        "policy_status",
-		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

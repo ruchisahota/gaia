@@ -4,7 +4,6 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
 
 // APIAuthorizationPolicyIdentity represents the Identity of the object
 var APIAuthorizationPolicyIdentity = elemental.Identity{
@@ -72,6 +71,9 @@ type APIAuthorizationPolicy struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -90,9 +92,6 @@ type APIAuthorizationPolicy struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
 
-	// Status represents the status of the object.
-	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
-
 	// Subject is the subject.
 	Subject [][]string `json:"subject" bson:"-"`
 
@@ -110,7 +109,6 @@ func NewAPIAuthorizationPolicy() *APIAuthorizationPolicy {
 		AssociatedTags:       []string{},
 		AuthorizedIdentities: []string{},
 		NormalizedTags:       []string{},
-		Status:               gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -156,6 +154,16 @@ func (o *APIAuthorizationPolicy) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *APIAuthorizationPolicy) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetDisabled returns the disabled of the receiver
+func (o *APIAuthorizationPolicy) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled set the given disabled of the receiver
+func (o *APIAuthorizationPolicy) SetDisabled(disabled bool) {
+	o.Disabled = disabled
 }
 
 // GetName returns the name of the receiver
@@ -211,16 +219,6 @@ func (o *APIAuthorizationPolicy) SetPropagationHidden(propagationHidden bool) {
 // GetProtected returns the protected of the receiver
 func (o *APIAuthorizationPolicy) GetProtected() bool {
 	return o.Protected
-}
-
-// GetStatus returns the status of the receiver
-func (o *APIAuthorizationPolicy) GetStatus() gaiaconstants.PolicyStatus {
-	return o.Status
-}
-
-// SetStatus set the given status of the receiver
-func (o *APIAuthorizationPolicy) SetStatus(status gaiaconstants.PolicyStatus) {
-	o.Status = status
 }
 
 // SetUpdateTime set the given updateTime of the receiver
@@ -413,6 +411,18 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Stored:         true,
 		Type:           "string",
 	},
+	"Disabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Disabled defines if the propert is disabled.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "disabled",
+		Orderable:      true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name is the name of the entity`,
@@ -494,20 +504,6 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
-		Description:    `Status represents the status of the object.`,
-		Exposed:        true,
-		Filterable:     true,
-		Getter:         true,
-		Name:           "status",
-		Orderable:      true,
-		Setter:         true,
-		Stored:         true,
-		SubType:        "policy_status",
-		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

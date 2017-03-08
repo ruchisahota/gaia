@@ -4,7 +4,6 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
 
 // EnforcerProfileMappingPolicyIdentity represents the Identity of the object
 var EnforcerProfileMappingPolicyIdentity = elemental.Identity{
@@ -48,6 +47,9 @@ type EnforcerProfileMappingPolicy struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -69,9 +71,6 @@ type EnforcerProfileMappingPolicy struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
 
-	// Status represents the status of the object.
-	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
-
 	// Subject is the subject of the policy.
 	Subject [][]string `json:"subject" bson:"subject"`
 
@@ -88,7 +87,6 @@ func NewEnforcerProfileMappingPolicy() *EnforcerProfileMappingPolicy {
 		ModelVersion:   1.0,
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Status:         gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -134,6 +132,16 @@ func (o *EnforcerProfileMappingPolicy) SetAssociatedTags(associatedTags []string
 // SetCreateTime set the given createTime of the receiver
 func (o *EnforcerProfileMappingPolicy) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetDisabled returns the disabled of the receiver
+func (o *EnforcerProfileMappingPolicy) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled set the given disabled of the receiver
+func (o *EnforcerProfileMappingPolicy) SetDisabled(disabled bool) {
+	o.Disabled = disabled
 }
 
 // GetName returns the name of the receiver
@@ -189,16 +197,6 @@ func (o *EnforcerProfileMappingPolicy) SetPropagationHidden(propagationHidden bo
 // GetProtected returns the protected of the receiver
 func (o *EnforcerProfileMappingPolicy) GetProtected() bool {
 	return o.Protected
-}
-
-// GetStatus returns the status of the receiver
-func (o *EnforcerProfileMappingPolicy) GetStatus() gaiaconstants.PolicyStatus {
-	return o.Status
-}
-
-// SetStatus set the given status of the receiver
-func (o *EnforcerProfileMappingPolicy) SetStatus(status gaiaconstants.PolicyStatus) {
-	o.Status = status
 }
 
 // SetUpdateTime set the given updateTime of the receiver
@@ -318,6 +316,18 @@ var EnforcerProfileMappingPolicyAttributesMap = map[string]elemental.AttributeSp
 		Stored:         true,
 		Type:           "string",
 	},
+	"Disabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Disabled defines if the propert is disabled.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "disabled",
+		Orderable:      true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name is the name of the entity`,
@@ -409,20 +419,6 @@ var EnforcerProfileMappingPolicyAttributesMap = map[string]elemental.AttributeSp
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
-		Description:    `Status represents the status of the object.`,
-		Exposed:        true,
-		Filterable:     true,
-		Getter:         true,
-		Name:           "status",
-		Orderable:      true,
-		Setter:         true,
-		Stored:         true,
-		SubType:        "policy_status",
-		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

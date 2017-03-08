@@ -4,7 +4,6 @@ import "fmt"
 import "github.com/aporeto-inc/elemental"
 
 import "time"
-import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
 
 // PolicyTypeValue represents the possible values for attribute "type".
 type PolicyTypeValue string
@@ -80,6 +79,9 @@ type Policy struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -104,9 +106,6 @@ type Policy struct {
 	// Relation describes the required operation to be performed between subjects and objects
 	Relation []string `json:"relation" bson:"relation"`
 
-	// Status represents the status of the object.
-	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
-
 	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
 	Subject [][]string `json:"subject" bson:"subject"`
 
@@ -128,7 +127,6 @@ func NewPolicy() *Policy {
 		AllSubjectTags: []string{},
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Status:         gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -174,6 +172,16 @@ func (o *Policy) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *Policy) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetDisabled returns the disabled of the receiver
+func (o *Policy) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled set the given disabled of the receiver
+func (o *Policy) SetDisabled(disabled bool) {
+	o.Disabled = disabled
 }
 
 // GetName returns the name of the receiver
@@ -229,16 +237,6 @@ func (o *Policy) SetPropagationHidden(propagationHidden bool) {
 // GetProtected returns the protected of the receiver
 func (o *Policy) GetProtected() bool {
 	return o.Protected
-}
-
-// GetStatus returns the status of the receiver
-func (o *Policy) GetStatus() gaiaconstants.PolicyStatus {
-	return o.Status
-}
-
-// SetStatus set the given status of the receiver
-func (o *Policy) SetStatus(status gaiaconstants.PolicyStatus) {
-	o.Status = status
 }
 
 // SetUpdateTime set the given updateTime of the receiver
@@ -392,6 +390,18 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"Disabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Disabled defines if the propert is disabled.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "disabled",
+		Orderable:      true,
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name is the name of the entity`,
@@ -490,20 +500,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "relation",
 		Stored:         true,
 		SubType:        "relations_list",
-		Type:           "external",
-	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
-		Description:    `Status represents the status of the object.`,
-		Exposed:        true,
-		Filterable:     true,
-		Getter:         true,
-		Name:           "status",
-		Orderable:      true,
-		Setter:         true,
-		Stored:         true,
-		SubType:        "policy_status",
 		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{
