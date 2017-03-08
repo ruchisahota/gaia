@@ -329,6 +329,7 @@
         "extends": [
             "@base",
             "@described",
+            "@disabled",
             "@identifiable-nopk-nostored",
             "@named",
             "@propagated"
