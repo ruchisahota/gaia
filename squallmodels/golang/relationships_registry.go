@@ -69,6 +69,26 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("tag")] = TagMainRelationship
 
 	//
+	// Main Relationship for enforcer
+	//
+	EnforcerMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	// Children relationship for enforcerprofiles in enforcer
+	EnforcerMainRelationship.AddChild(
+		elemental.IdentityFromName("enforcerprofile"),
+		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+
+	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
+
+	//
 	// Main Relationship for mapedge
 	//
 	MapEdgeMainRelationship := &elemental.Relationship{}
@@ -151,36 +171,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("flowstatistic")] = FlowStatisticMainRelationship
 
 	//
-	// Main Relationship for serverprofile
+	// Main Relationship for fileaccesspolicy
 	//
-	ServerProfileMainRelationship := &elemental.Relationship{
+	FileAccessPolicyMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
 		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
 
-	relationshipsRegistry[elemental.IdentityFromName("serverprofile")] = ServerProfileMainRelationship
-
-	//
-	// Main Relationship for serverpolicy
-	//
-	ServerPolicyMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("serverpolicy")] = ServerPolicyMainRelationship
-
-	//
-	// Main Relationship for computeddependencymapview
-	//
-	ComputedDependencyMapViewMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("computeddependencymapview")] = ComputedDependencyMapViewMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("fileaccesspolicy")] = FileAccessPolicyMainRelationship
 
 	//
 	// Main Relationship for systemcall
@@ -194,15 +193,25 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("systemcall")] = SystemCallMainRelationship
 
 	//
-	// Main Relationship for fileaccesspolicy
+	// Main Relationship for enforcerprofile
 	//
-	FileAccessPolicyMainRelationship := &elemental.Relationship{
+	EnforcerProfileMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
 		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
 
-	relationshipsRegistry[elemental.IdentityFromName("fileaccesspolicy")] = FileAccessPolicyMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("enforcerprofile")] = EnforcerProfileMainRelationship
+
+	//
+	// Main Relationship for computeddependencymapview
+	//
+	ComputedDependencyMapViewMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("computeddependencymapview")] = ComputedDependencyMapViewMainRelationship
 
 	//
 	// Main Relationship for renderedpolicy
@@ -303,24 +312,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("vulnerability")] = VulnerabilityMainRelationship
 
 	//
-	// Main Relationship for server
+	// Main Relationship for enforcerprofilemappingpolicy
 	//
-	ServerMainRelationship := &elemental.Relationship{
+	EnforcerProfileMappingPolicyMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
 		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
 
-	// Children relationship for serverprofiles in server
-	ServerMainRelationship.AddChild(
-		elemental.IdentityFromName("serverprofile"),
-		&elemental.Relationship{
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-
-	relationshipsRegistry[elemental.IdentityFromName("server")] = ServerMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("enforcerprofilemappingpolicy")] = EnforcerProfileMappingPolicyMainRelationship
 
 	//
 	// Main Relationship for activity
@@ -389,6 +389,33 @@ func init() {
 	// Children relationship for dependencymapviews in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("dependencymapview"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for enforcers in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("enforcer"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for enforcerprofiles in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("enforcerprofile"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+	// Children relationship for enforcerprofilemappingpolicies in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("enforcerprofilemappingpolicy"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
@@ -477,33 +504,6 @@ func init() {
 	// Children relationship for processingunits in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("processingunit"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-	// Children relationship for servers in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("server"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-	// Children relationship for serverpolicies in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("serverpolicy"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-	// Children relationship for serverprofiles in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("serverprofile"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
 			AllowsRetrieveMany: true,

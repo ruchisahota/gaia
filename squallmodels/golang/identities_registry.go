@@ -11,6 +11,7 @@ func init() {
 	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(ComputedPolicyIdentity)
 	elemental.RegisterIdentity(TagIdentity)
+	elemental.RegisterIdentity(EnforcerIdentity)
 	elemental.RegisterIdentity(MapEdgeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
@@ -20,18 +21,17 @@ func init() {
 	elemental.RegisterIdentity(ExternalServiceIdentity)
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
-	elemental.RegisterIdentity(ServerProfileIdentity)
-	elemental.RegisterIdentity(ServerPolicyIdentity)
-	elemental.RegisterIdentity(ComputedDependencyMapViewIdentity)
-	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
+	elemental.RegisterIdentity(SystemCallIdentity)
+	elemental.RegisterIdentity(EnforcerProfileIdentity)
+	elemental.RegisterIdentity(ComputedDependencyMapViewIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
 	elemental.RegisterIdentity(DependencyMapViewIdentity)
 	elemental.RegisterIdentity(DependencyMapIdentity)
 	elemental.RegisterIdentity(VulnerabilityIdentity)
-	elemental.RegisterIdentity(ServerIdentity)
+	elemental.RegisterIdentity(EnforcerProfileMappingPolicyIdentity)
 	elemental.RegisterIdentity(ActivityIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(NetworkAccessPolicyIdentity)
@@ -58,6 +58,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewComputedPolicy()
 	case TagIdentity.Name:
 		return NewTag()
+	case EnforcerIdentity.Name:
+		return NewEnforcer()
 	case MapEdgeIdentity.Name:
 		return NewMapEdge()
 	case FilePathIdentity.Name:
@@ -76,16 +78,14 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPolicy()
 	case FlowStatisticIdentity.Name:
 		return NewFlowStatistic()
-	case ServerProfileIdentity.Name:
-		return NewServerProfile()
-	case ServerPolicyIdentity.Name:
-		return NewServerPolicy()
-	case ComputedDependencyMapViewIdentity.Name:
-		return NewComputedDependencyMapView()
-	case SystemCallIdentity.Name:
-		return NewSystemCall()
 	case FileAccessPolicyIdentity.Name:
 		return NewFileAccessPolicy()
+	case SystemCallIdentity.Name:
+		return NewSystemCall()
+	case EnforcerProfileIdentity.Name:
+		return NewEnforcerProfile()
+	case ComputedDependencyMapViewIdentity.Name:
+		return NewComputedDependencyMapView()
 	case RenderedPolicyIdentity.Name:
 		return NewRenderedPolicy()
 	case NamespaceMappingPolicyIdentity.Name:
@@ -98,8 +98,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewDependencyMap()
 	case VulnerabilityIdentity.Name:
 		return NewVulnerability()
-	case ServerIdentity.Name:
-		return NewServer()
+	case EnforcerProfileMappingPolicyIdentity.Name:
+		return NewEnforcerProfileMappingPolicy()
 	case ActivityIdentity.Name:
 		return NewActivity()
 	case RootIdentity.Name:
@@ -129,6 +129,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &ComputedPoliciesList{}
 	case TagIdentity.Name:
 		return &TagsList{}
+	case EnforcerIdentity.Name:
+		return &EnforcersList{}
 	case MapEdgeIdentity.Name:
 		return &MapEdgesList{}
 	case FilePathIdentity.Name:
@@ -147,16 +149,14 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PoliciesList{}
 	case FlowStatisticIdentity.Name:
 		return &FlowStatisticsList{}
-	case ServerProfileIdentity.Name:
-		return &ServerProfilesList{}
-	case ServerPolicyIdentity.Name:
-		return &ServerPoliciesList{}
-	case ComputedDependencyMapViewIdentity.Name:
-		return &ComputedDependencyMapViewsList{}
-	case SystemCallIdentity.Name:
-		return &SystemCallsList{}
 	case FileAccessPolicyIdentity.Name:
 		return &FileAccessPoliciesList{}
+	case SystemCallIdentity.Name:
+		return &SystemCallsList{}
+	case EnforcerProfileIdentity.Name:
+		return &EnforcerProfilesList{}
+	case ComputedDependencyMapViewIdentity.Name:
+		return &ComputedDependencyMapViewsList{}
 	case RenderedPolicyIdentity.Name:
 		return &RenderedPoliciesList{}
 	case NamespaceMappingPolicyIdentity.Name:
@@ -169,8 +169,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &DependencyMapsList{}
 	case VulnerabilityIdentity.Name:
 		return &VulnerabilitiesList{}
-	case ServerIdentity.Name:
-		return &ServersList{}
+	case EnforcerProfileMappingPolicyIdentity.Name:
+		return &EnforcerProfileMappingPoliciesList{}
 	case ActivityIdentity.Name:
 		return &ActivitiesList{}
 	case NetworkAccessPolicyIdentity.Name:
@@ -191,6 +191,7 @@ func AllIdentities() []elemental.Identity {
 		SyscallAccessIdentity,
 		ComputedPolicyIdentity,
 		TagIdentity,
+		EnforcerIdentity,
 		MapEdgeIdentity,
 		FilePathIdentity,
 		FileAccessIdentity,
@@ -200,18 +201,17 @@ func AllIdentities() []elemental.Identity {
 		ExternalServiceIdentity,
 		PolicyIdentity,
 		FlowStatisticIdentity,
-		ServerProfileIdentity,
-		ServerPolicyIdentity,
-		ComputedDependencyMapViewIdentity,
-		SystemCallIdentity,
 		FileAccessPolicyIdentity,
+		SystemCallIdentity,
+		EnforcerProfileIdentity,
+		ComputedDependencyMapViewIdentity,
 		RenderedPolicyIdentity,
 		NamespaceMappingPolicyIdentity,
 		ProcessingUnitIdentity,
 		DependencyMapViewIdentity,
 		DependencyMapIdentity,
 		VulnerabilityIdentity,
-		ServerIdentity,
+		EnforcerProfileMappingPolicyIdentity,
 		ActivityIdentity,
 		RootIdentity,
 		NetworkAccessPolicyIdentity,
@@ -226,8 +226,6 @@ var aliasesMap = map[string]elemental.Identity{
 	"ns":         NamespaceIdentity,
 	"extsrvs":    ExternalServiceIdentity,
 	"extsrv":     ExternalServiceIdentity,
-	"srvpols":    ServerPolicyIdentity,
-	"srvpol":     ServerPolicyIdentity,
 	"rpols":      RenderedPolicyIdentity,
 	"rpol":       RenderedPolicyIdentity,
 	"nsmaps":     NamespaceMappingPolicyIdentity,
@@ -238,6 +236,8 @@ var aliasesMap = map[string]elemental.Identity{
 	"pu":         ProcessingUnitIdentity,
 	"vulns":      VulnerabilityIdentity,
 	"vul":        VulnerabilityIdentity,
+	"srvpol":     EnforcerProfileMappingPolicyIdentity,
+	"srvpols":    EnforcerProfileMappingPolicyIdentity,
 	"netpols":    NetworkAccessPolicyIdentity,
 	"netpol":     NetworkAccessPolicyIdentity,
 }
@@ -269,6 +269,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case TagIdentity:
 		return []string{}
+	case EnforcerIdentity:
+		return []string{}
 	case MapEdgeIdentity:
 		return []string{}
 	case FilePathIdentity:
@@ -295,18 +297,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case FlowStatisticIdentity:
 		return []string{}
-	case ServerProfileIdentity:
-		return []string{}
-	case ServerPolicyIdentity:
-		return []string{
-			"srvpols",
-			"srvpol",
-		}
-	case ComputedDependencyMapViewIdentity:
+	case FileAccessPolicyIdentity:
 		return []string{}
 	case SystemCallIdentity:
 		return []string{}
-	case FileAccessPolicyIdentity:
+	case EnforcerProfileIdentity:
+		return []string{}
+	case ComputedDependencyMapViewIdentity:
 		return []string{}
 	case RenderedPolicyIdentity:
 		return []string{
@@ -334,8 +331,11 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"vulns",
 			"vul",
 		}
-	case ServerIdentity:
-		return []string{}
+	case EnforcerProfileMappingPolicyIdentity:
+		return []string{
+			"srvpol",
+			"srvpols",
+		}
 	case ActivityIdentity:
 		return []string{}
 	case RootIdentity:

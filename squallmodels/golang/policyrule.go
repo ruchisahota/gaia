@@ -36,6 +36,9 @@ type PolicyRule struct {
 	// Action defines set of actions that must be enforced when a dependency is met.
 	Action map[string]map[string]string `json:"action" bson:"-"`
 
+	// EnforcerProfiles provides the information about the server profile.
+	EnforcerProfiles EnforcerProfilesList `json:"enforcerProfiles" bson:"-"`
+
 	// Policy target networks
 	ExternalServices ExternalServicesList `json:"externalServices" bson:"-"`
 
@@ -54,9 +57,6 @@ type PolicyRule struct {
 	// Relation describes the required operation to be performed between subjects and objects
 	Relation []string `json:"relation" bson:"-"`
 
-	// ServerProfiles provides the information about the server profile.
-	ServerProfiles ServerProfilesList `json:"serverProfiles" bson:"-"`
-
 	// Policy target networks
 	SystemCalls SystemCallsList `json:"systemCalls" bson:"-"`
 
@@ -71,10 +71,10 @@ func NewPolicyRule() *PolicyRule {
 
 	return &PolicyRule{
 		ModelVersion:     1.0,
+		EnforcerProfiles: EnforcerProfilesList{},
 		ExternalServices: ExternalServicesList{},
 		FilePaths:        FilePathsList{},
 		Namespaces:       NamespacesList{},
-		ServerProfiles:   ServerProfilesList{},
 		SystemCalls:      SystemCallsList{},
 	}
 }
@@ -179,6 +179,14 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "actions_list",
 		Type:           "external",
 	},
+	"EnforcerProfiles": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `EnforcerProfiles provides the information about the server profile.`,
+		Exposed:        true,
+		Name:           "enforcerProfiles",
+		SubType:        "enforcerprofiles_list",
+		Type:           "external",
+	},
 	"ExternalServices": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Policy target networks `,
@@ -231,14 +239,6 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "relation",
 		SubType:        "relations_list",
-		Type:           "external",
-	},
-	"ServerProfiles": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `ServerProfiles provides the information about the server profile.`,
-		Exposed:        true,
-		Name:           "serverProfiles",
-		SubType:        "serverprofile_entities",
 		Type:           "external",
 	},
 	"SystemCalls": elemental.AttributeSpecification{
