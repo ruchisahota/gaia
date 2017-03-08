@@ -263,6 +263,7 @@
         "extends": [
             "@base",
             "@described",
+            "@disabled",
             "@identifiable-pk-stored",
             "@named",
             "@propagated"
