@@ -21,15 +21,11 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("apicheck")] = APICheckMainRelationship
 
 	//
-	// Main Relationship for namespacemappingpolicy
+	// Main Relationship for mapnode
 	//
-	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
+	MapNodeMainRelationship := &elemental.Relationship{}
 
-	relationshipsRegistry[elemental.IdentityFromName("namespacemappingpolicy")] = NamespaceMappingPolicyMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("mapnode")] = MapNodeMainRelationship
 
 	//
 	// Main Relationship for dependencymapsubview
@@ -198,27 +194,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("systemcall")] = SystemCallMainRelationship
 
 	//
-	// Main Relationship for authenticator
-	//
-	AuthenticatorMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	// Children relationship for users in authenticator
-	AuthenticatorMainRelationship.AddChild(
-		elemental.IdentityFromName("user"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-
-	relationshipsRegistry[elemental.IdentityFromName("authenticator")] = AuthenticatorMainRelationship
-
-	//
 	// Main Relationship for fileaccesspolicy
 	//
 	FileAccessPolicyMainRelationship := &elemental.Relationship{
@@ -235,6 +210,17 @@ func init() {
 	RenderedPolicyMainRelationship := &elemental.Relationship{}
 
 	relationshipsRegistry[elemental.IdentityFromName("renderedpolicy")] = RenderedPolicyMainRelationship
+
+	//
+	// Main Relationship for namespacemappingpolicy
+	//
+	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("namespacemappingpolicy")] = NamespaceMappingPolicyMainRelationship
 
 	//
 	// Main Relationship for processingunit
@@ -337,13 +323,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("server")] = ServerMainRelationship
 
 	//
-	// Main Relationship for mapnode
-	//
-	MapNodeMainRelationship := &elemental.Relationship{}
-
-	relationshipsRegistry[elemental.IdentityFromName("mapnode")] = MapNodeMainRelationship
-
-	//
 	// Main Relationship for activity
 	//
 	ActivityMainRelationship := &elemental.Relationship{
@@ -381,15 +360,6 @@ func init() {
 		elemental.IdentityFromName("apicheck"),
 		&elemental.Relationship{
 			AllowsCreate: true,
-		},
-	)
-	// Children relationship for authenticators in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("authenticator"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
 		},
 	)
 	// Children relationship for computeddependencymapviews in root
@@ -557,15 +527,6 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
-	// Children relationship for users in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("user"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
 	// Children relationship for vulnerabilities in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("vulnerability"),
@@ -587,16 +548,5 @@ func init() {
 	}
 
 	relationshipsRegistry[elemental.IdentityFromName("networkaccesspolicy")] = NetworkAccessPolicyMainRelationship
-
-	//
-	// Main Relationship for user
-	//
-	UserMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("user")] = UserMainRelationship
 
 }

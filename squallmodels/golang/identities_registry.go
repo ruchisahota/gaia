@@ -5,7 +5,7 @@ import "github.com/aporeto-inc/elemental"
 func init() {
 
 	elemental.RegisterIdentity(APICheckIdentity)
-	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
+	elemental.RegisterIdentity(MapNodeIdentity)
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(SyscallAccessIdentity)
@@ -24,19 +24,17 @@ func init() {
 	elemental.RegisterIdentity(ServerPolicyIdentity)
 	elemental.RegisterIdentity(ComputedDependencyMapViewIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
-	elemental.RegisterIdentity(AuthenticatorIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
+	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
 	elemental.RegisterIdentity(DependencyMapViewIdentity)
 	elemental.RegisterIdentity(DependencyMapIdentity)
 	elemental.RegisterIdentity(VulnerabilityIdentity)
 	elemental.RegisterIdentity(ServerIdentity)
-	elemental.RegisterIdentity(MapNodeIdentity)
 	elemental.RegisterIdentity(ActivityIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(NetworkAccessPolicyIdentity)
-	elemental.RegisterIdentity(UserIdentity)
 }
 
 // ModelVersion returns the current version of the model
@@ -48,8 +46,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	switch identity {
 	case APICheckIdentity.Name:
 		return NewAPICheck()
-	case NamespaceMappingPolicyIdentity.Name:
-		return NewNamespaceMappingPolicy()
+	case MapNodeIdentity.Name:
+		return NewMapNode()
 	case DependencyMapSubviewIdentity.Name:
 		return NewDependencyMapSubview()
 	case APIAuthorizationPolicyIdentity.Name:
@@ -86,12 +84,12 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewComputedDependencyMapView()
 	case SystemCallIdentity.Name:
 		return NewSystemCall()
-	case AuthenticatorIdentity.Name:
-		return NewAuthenticator()
 	case FileAccessPolicyIdentity.Name:
 		return NewFileAccessPolicy()
 	case RenderedPolicyIdentity.Name:
 		return NewRenderedPolicy()
+	case NamespaceMappingPolicyIdentity.Name:
+		return NewNamespaceMappingPolicy()
 	case ProcessingUnitIdentity.Name:
 		return NewProcessingUnit()
 	case DependencyMapViewIdentity.Name:
@@ -102,16 +100,12 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewVulnerability()
 	case ServerIdentity.Name:
 		return NewServer()
-	case MapNodeIdentity.Name:
-		return NewMapNode()
 	case ActivityIdentity.Name:
 		return NewActivity()
 	case RootIdentity.Name:
 		return NewRoot()
 	case NetworkAccessPolicyIdentity.Name:
 		return NewNetworkAccessPolicy()
-	case UserIdentity.Name:
-		return NewUser()
 	default:
 		return nil
 	}
@@ -123,8 +117,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 	switch identity {
 	case APICheckIdentity.Name:
 		return &APIChecksList{}
-	case NamespaceMappingPolicyIdentity.Name:
-		return &NamespaceMappingPoliciesList{}
+	case MapNodeIdentity.Name:
+		return &MapNodesList{}
 	case DependencyMapSubviewIdentity.Name:
 		return &DependencyMapSubviewsList{}
 	case APIAuthorizationPolicyIdentity.Name:
@@ -161,12 +155,12 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &ComputedDependencyMapViewsList{}
 	case SystemCallIdentity.Name:
 		return &SystemCallsList{}
-	case AuthenticatorIdentity.Name:
-		return &AuthenticatorsList{}
 	case FileAccessPolicyIdentity.Name:
 		return &FileAccessPoliciesList{}
 	case RenderedPolicyIdentity.Name:
 		return &RenderedPoliciesList{}
+	case NamespaceMappingPolicyIdentity.Name:
+		return &NamespaceMappingPoliciesList{}
 	case ProcessingUnitIdentity.Name:
 		return &ProcessingUnitsList{}
 	case DependencyMapViewIdentity.Name:
@@ -177,14 +171,10 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &VulnerabilitiesList{}
 	case ServerIdentity.Name:
 		return &ServersList{}
-	case MapNodeIdentity.Name:
-		return &MapNodesList{}
 	case ActivityIdentity.Name:
 		return &ActivitiesList{}
 	case NetworkAccessPolicyIdentity.Name:
 		return &NetworkAccessPoliciesList{}
-	case UserIdentity.Name:
-		return &UsersList{}
 	default:
 		return nil
 	}
@@ -195,7 +185,7 @@ func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
 		APICheckIdentity,
-		NamespaceMappingPolicyIdentity,
+		MapNodeIdentity,
 		DependencyMapSubviewIdentity,
 		APIAuthorizationPolicyIdentity,
 		SyscallAccessIdentity,
@@ -214,27 +204,21 @@ func AllIdentities() []elemental.Identity {
 		ServerPolicyIdentity,
 		ComputedDependencyMapViewIdentity,
 		SystemCallIdentity,
-		AuthenticatorIdentity,
 		FileAccessPolicyIdentity,
 		RenderedPolicyIdentity,
+		NamespaceMappingPolicyIdentity,
 		ProcessingUnitIdentity,
 		DependencyMapViewIdentity,
 		DependencyMapIdentity,
 		VulnerabilityIdentity,
 		ServerIdentity,
-		MapNodeIdentity,
 		ActivityIdentity,
 		RootIdentity,
 		NetworkAccessPolicyIdentity,
-		UserIdentity,
 	}
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"nsmaps":     NamespaceMappingPolicyIdentity,
-	"nsmap":      NamespaceMappingPolicyIdentity,
-	"nspolicies": NamespaceMappingPolicyIdentity,
-	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
 	"fps":        FilePathIdentity,
@@ -246,6 +230,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"srvpol":     ServerPolicyIdentity,
 	"rpols":      RenderedPolicyIdentity,
 	"rpol":       RenderedPolicyIdentity,
+	"nsmaps":     NamespaceMappingPolicyIdentity,
+	"nsmap":      NamespaceMappingPolicyIdentity,
+	"nspolicies": NamespaceMappingPolicyIdentity,
+	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"pus":        ProcessingUnitIdentity,
 	"pu":         ProcessingUnitIdentity,
 	"vulns":      VulnerabilityIdentity,
@@ -266,13 +254,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	switch identity {
 	case APICheckIdentity:
 		return []string{}
-	case NamespaceMappingPolicyIdentity:
-		return []string{
-			"nsmaps",
-			"nsmap",
-			"nspolicies",
-			"nspolicy",
-		}
+	case MapNodeIdentity:
+		return []string{}
 	case DependencyMapSubviewIdentity:
 		return []string{}
 	case APIAuthorizationPolicyIdentity:
@@ -323,14 +306,19 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case SystemCallIdentity:
 		return []string{}
-	case AuthenticatorIdentity:
-		return []string{}
 	case FileAccessPolicyIdentity:
 		return []string{}
 	case RenderedPolicyIdentity:
 		return []string{
 			"rpols",
 			"rpol",
+		}
+	case NamespaceMappingPolicyIdentity:
+		return []string{
+			"nsmaps",
+			"nsmap",
+			"nspolicies",
+			"nspolicy",
 		}
 	case ProcessingUnitIdentity:
 		return []string{
@@ -348,8 +336,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case ServerIdentity:
 		return []string{}
-	case MapNodeIdentity:
-		return []string{}
 	case ActivityIdentity:
 		return []string{}
 	case RootIdentity:
@@ -359,8 +345,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"netpols",
 			"netpol",
 		}
-	case UserIdentity:
-		return []string{}
 	}
 
 	return nil

@@ -41,9 +41,6 @@ type Namespace struct {
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
-	// Authenticator for this namespace
-	Authenticator string `json:"authenticator" bson:"authenticator"`
-
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
@@ -234,19 +231,6 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
-	},
-	"Authenticator": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		CreationOnly:   true,
-		Description:    `Authenticator for this namespace`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "authenticator",
-		Orderable:      true,
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
