@@ -75,6 +75,12 @@ func (o *RenderedPolicy) SetIdentifier(ID string) {
 	o.ProcessingUnitID = ID
 }
 
+// Version returns the hardcoded version of the model
+func (o *RenderedPolicy) Version() float64 {
+
+	return 1.0
+}
+
 func (o *RenderedPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

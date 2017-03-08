@@ -128,6 +128,12 @@ func (o *Authenticator) SetIdentifier(ID string) {
 	o.ID = ID
 }
 
+// Version returns the hardcoded version of the model
+func (o *Authenticator) Version() float64 {
+
+	return 1.0
+}
+
 func (o *Authenticator) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

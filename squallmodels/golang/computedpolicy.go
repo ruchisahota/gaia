@@ -65,6 +65,12 @@ func (o *ComputedPolicy) SetIdentifier(ID string) {
 	o.ID = ID
 }
 
+// Version returns the hardcoded version of the model
+func (o *ComputedPolicy) Version() float64 {
+
+	return 1.0
+}
+
 func (o *ComputedPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

@@ -58,6 +58,12 @@ func (o *Check) SetIdentifier(ID string) {
 
 }
 
+// Version returns the hardcoded version of the model
+func (o *Check) Version() float64 {
+
+	return 1.0
+}
+
 func (o *Check) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

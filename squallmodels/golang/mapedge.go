@@ -77,6 +77,12 @@ func (o *MapEdge) SetIdentifier(ID string) {
 	o.ID = ID
 }
 
+// Version returns the hardcoded version of the model
+func (o *MapEdge) Version() float64 {
+
+	return 1.0
+}
+
 func (o *MapEdge) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

@@ -160,6 +160,12 @@ func (o *ProcessingUnit) SetIdentifier(ID string) {
 	o.ID = ID
 }
 
+// Version returns the hardcoded version of the model
+func (o *ProcessingUnit) Version() float64 {
+
+	return 1.0
+}
+
 func (o *ProcessingUnit) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
