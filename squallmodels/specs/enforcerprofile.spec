@@ -292,7 +292,7 @@
             "default_order": null,
             "default_value": ":9443",
             "deprecated": null,
-            "description": "AgentPort is the port the agent should use to listen for API calls ",
+            "description": "AgentPort is the port the enforcer should use to listen for API calls ",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
