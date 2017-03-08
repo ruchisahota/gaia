@@ -228,7 +228,7 @@
             "default_order": false,
             "default_value": "Initialized",
             "deprecated": false,
-            "description": "OperationalStatus tells the status of the server",
+            "description": "OperationalStatus tells the status of the enforcer.",
             "exposed": true,
             "filterable": true,
             "foreign_key": false,
