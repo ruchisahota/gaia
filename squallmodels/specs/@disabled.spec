@@ -7,7 +7,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": "Enabled",
+            "default_value": null,
             "deprecated": null,
             "description": "Disabled defines if the propert is disabled.",
             "exposed": true,
@@ -29,9 +29,9 @@
             "secret": null,
             "setter": true,
             "stored": true,
-            "subtype": "policy_status",
+            "subtype": null,
             "transient": null,
-            "type": "external",
+            "type": "boolean",
             "unique": null,
             "uniqueScope": null
         }
