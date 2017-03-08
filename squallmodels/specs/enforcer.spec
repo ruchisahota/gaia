@@ -114,7 +114,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "CertificateKey is the secret key of the server. Returned only when a server is created or the certificate is updated.",
+            "description": "CertificateKey is the secret key of the enforcer. Returned only when a enforcer is created or the certificate is updated.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
