@@ -50,74 +50,77 @@ func (o AccountsList) List() elemental.IdentifiablesList {
 // Account represents the model of a account
 type Account struct {
 	// ID of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// LDAPAddress holds the account authentication account's private ldap server.
-	LDAPAddress string `json:"LDAPAddress" cql:"ldapaddress,omitempty" bson:"ldapaddress"`
+	LDAPAddress string `json:"LDAPAddress" bson:"ldapaddress"`
 
 	// LDAPBaseDN holds the base DN to use to ldap queries.
-	LDAPBaseDN string `json:"LDAPBaseDN" cql:"ldapbasedn,omitempty" bson:"ldapbasedn"`
+	LDAPBaseDN string `json:"LDAPBaseDN" bson:"ldapbasedn"`
 
 	// LDAPBindDN holds the account's internal LDAP bind dn for querying auth.
-	LDAPBindDN string `json:"LDAPBindDN" cql:"ldapbinddn,omitempty" bson:"ldapbinddn"`
+	LDAPBindDN string `json:"LDAPBindDN" bson:"ldapbinddn"`
 
 	// LDAPBindPassword holds the password to the LDAPBindDN.
-	LDAPBindPassword string `json:"LDAPBindPassword" cql:"ldapbindpassword,omitempty" bson:"ldapbindpassword"`
+	LDAPBindPassword string `json:"LDAPBindPassword" bson:"ldapbindpassword"`
 
 	// LDAPEnabled triggers if the account uses it's own LDAP for authentication.
-	LDAPEnabled bool `json:"LDAPEnabled" cql:"ldapenabled,omitempty" bson:"ldapenabled"`
+	LDAPEnabled bool `json:"LDAPEnabled" bson:"ldapenabled"`
 
 	// AccessEnabled defines if the account holder should have access to the systems.
-	AccessEnabled bool `json:"accessEnabled" cql:"accessenabled,omitempty" bson:"accessenabled"`
+	AccessEnabled bool `json:"accessEnabled" bson:"accessenabled"`
 
 	// ActivationExpiration contains the expiration date of the activation token.
-	ActivationExpiration time.Time `json:"-" cql:"activationexpiration,omitempty" bson:"activationexpiration"`
+	ActivationExpiration time.Time `json:"-" bson:"activationexpiration"`
 
 	// ActivationToken contains the activation token.
-	ActivationToken string `json:"-" cql:"activationtoken,omitempty" bson:"activationtoken"`
+	ActivationToken string `json:"-" bson:"activationtoken"`
 
 	// AssociatedAPIAuthPolicyID holds the ID of the associated API auth policy.
-	AssociatedAPIAuthPolicyID string `json:"associatedAPIAuthPolicyID" cql:"associatedapiauthpolicyid,omitempty" bson:"associatedapiauthpolicyid"`
+	AssociatedAPIAuthPolicyID string `json:"associatedAPIAuthPolicyID" bson:"associatedapiauthpolicyid"`
 
 	// associatedAgentReadAPIAuthPolicyID holds the ID of the associated agent read auth policy.
-	AssociatedAgentReadAPIAuthPolicyID string `json:"associatedAgentReadAPIAuthPolicyID" cql:"associatedagentreadapiauthpolicyid,omitempty" bson:"associatedagentreadapiauthpolicyid"`
+	AssociatedAgentReadAPIAuthPolicyID string `json:"associatedAgentReadAPIAuthPolicyID" bson:"associatedagentreadapiauthpolicyid"`
 
 	// associatedAgentWriteAPIAuthPolicyID holds the ID of the associated agent write auth policy.
-	AssociatedAgentWriteAPIAuthPolicyID string `json:"associatedAgentWriteAPIAuthPolicyID" cql:"associatedagentwriteapiauthpolicyid,omitempty" bson:"associatedagentwriteapiauthpolicyid"`
+	AssociatedAgentWriteAPIAuthPolicyID string `json:"associatedAgentWriteAPIAuthPolicyID" bson:"associatedagentwriteapiauthpolicyid"`
 
 	// AssociatedNSMappingPolicyID contains the ID of the associated Namespace Mapping Policy.
-	AssociatedNSMappingPolicyID string `json:"associatedNSMappingPolicyID" cql:"associatednsmappingpolicyid,omitempty" bson:"associatednsmappingpolicyid"`
+	AssociatedNSMappingPolicyID string `json:"associatedNSMappingPolicyID" bson:"associatednsmappingpolicyid"`
 
 	// AssociatedNamespaceID contains the ID of the associated namespace.
-	AssociatedNamespaceID string `json:"associatedNamespaceID" cql:"associatednamespaceid,omitempty" bson:"associatednamespaceid"`
+	AssociatedNamespaceID string `json:"associatedNamespaceID" bson:"associatednamespaceid"`
 
 	// BumpToken contains the tag processing unit must use to be placed in the account's namespace.
-	BumpToken string `json:"bumpToken" cql:"bumptoken,omitempty" bson:"bumptoken"`
+	BumpToken string `json:"bumpToken" bson:"bumptoken"`
 
 	// CreatedAt represents the creation date of the objct.
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Email of the account holder.
-	Email string `json:"email" cql:"email,omitempty" bson:"email"`
+	Email string `json:"email" bson:"email"`
 
 	// Name of the account.
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Password for the account.
-	Password string `json:"password" cql:"password,omitempty" bson:"password"`
+	Password string `json:"password" bson:"password"`
 
 	// Status of the account.
-	Status AccountStatusValue `json:"status" cql:"status,omitempty" bson:"status"`
+	Status AccountStatusValue `json:"status" bson:"status"`
 
 	// UpdatedAt represents the last update date of the objct.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewAccount returns a new *Account
 func NewAccount() *Account {
 
 	return &Account{
-		Status: "Pending",
+		ModelVersion: 1.0,
+		Status:       "Pending",
 	}
 }
 
@@ -420,6 +423,7 @@ var AccountAttributesMap = map[string]elemental.AttributeSpecification{
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Active", "Disabled", "Invited", "Pending"},
 		Autogenerated:  true,
+		DefaultValue:   AccountStatusValue("Pending"),
 		Description:    `Status of the account.`,
 		Exposed:        true,
 		Filterable:     true,

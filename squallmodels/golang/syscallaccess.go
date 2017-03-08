@@ -31,29 +31,32 @@ func (o SyscallAccessList) List() elemental.IdentifiablesList {
 // SyscallAccess represents the model of a syscallaccess
 type SyscallAccess struct {
 	// PID is the PID of the process that used the system call.
-	PID int `json:"PID" cql:"-" bson:"-"`
+	PID int `json:"PID" bson:"-"`
 
 	// Propagate indicates that the policy must be propagated to the children namespaces.
-	Propagate bool `json:"Propagate" cql:"-" bson:"-"`
+	Propagate bool `json:"Propagate" bson:"-"`
 
 	// Actions tells if the system call has been allowed.
-	Action string `json:"action" cql:"-" bson:"-"`
+	Action string `json:"action" bson:"-"`
 
 	// Count tells how many times the syscall has been sent.
-	Count int `json:"count" cql:"-" bson:"-"`
+	Count int `json:"count" bson:"-"`
 
 	// Name represents the name of the system call.
-	Name string `json:"name" cql:"-" bson:"-"`
+	Name string `json:"name" bson:"-"`
 
 	// ProcessName is the name of the process that used the system call.
-	ProcessName string `json:"processName" cql:"-" bson:"-"`
+	ProcessName string `json:"processName" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewSyscallAccess returns a new *SyscallAccess
 func NewSyscallAccess() *SyscallAccess {
 
 	return &SyscallAccess{
-		Propagate: false,
+		ModelVersion: 1.0,
+		Propagate:    false,
 	}
 }
 
@@ -121,6 +124,7 @@ var SyscallAccessAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   false,
 		Description:    `Propagate indicates that the policy must be propagated to the children namespaces.`,
 		Exposed:        true,
 		Filterable:     true,

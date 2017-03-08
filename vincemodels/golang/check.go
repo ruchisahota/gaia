@@ -30,12 +30,15 @@ func (o ChecksList) List() elemental.IdentifiablesList {
 
 // Check represents the model of a check
 type Check struct {
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewCheck returns a new *Check
 func NewCheck() *Check {
 
-	return &Check{}
+	return &Check{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -31,16 +31,20 @@ func (o ComputedPoliciesList) List() elemental.IdentifiablesList {
 // ComputedPolicy represents the model of a computedpolicy
 type ComputedPolicy struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" bson:"-"`
 
 	// Array of netowrk access policies computed
-	NetworkAccessPolicies []*NetworkAccessPolicy `json:"networkAccessPolicies" cql:"networkaccesspolicies,omitempty" bson:"networkaccesspolicies"`
+	NetworkAccessPolicies []*NetworkAccessPolicy `json:"networkAccessPolicies" bson:"networkaccesspolicies"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewComputedPolicy returns a new *ComputedPolicy
 func NewComputedPolicy() *ComputedPolicy {
 
-	return &ComputedPolicy{}
+	return &ComputedPolicy{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

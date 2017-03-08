@@ -33,22 +33,25 @@ func (o RenderedPoliciesList) List() elemental.IdentifiablesList {
 // RenderedPolicy represents the model of a renderedpolicy
 type RenderedPolicy struct {
 	// EgressPolicies lists all the egress policies attached to ProcessingUnit
-	EgressPolicies map[string]PolicyRulesList `json:"egressPolicies" cql:"-" bson:"-"`
+	EgressPolicies map[string]PolicyRulesList `json:"egressPolicies" bson:"-"`
 
 	// IngressPolicies lists all the ingress policies attached to ProcessingUnit
-	IngressPolicies map[string]PolicyRulesList `json:"ingressPolicies" cql:"-" bson:"-"`
+	IngressPolicies map[string]PolicyRulesList `json:"ingressPolicies" bson:"-"`
 
 	// Identifier of the ProcessingUnit
-	ProcessingUnitID string `json:"processingUnitID" cql:"-" bson:"-"`
+	ProcessingUnitID string `json:"processingUnitID" bson:"-"`
 
 	// Profile is the trust profile of the processing unit that should be used during all communications.
-	Profile map[string]string `json:"profile" cql:"profile,omitempty" bson:"profile"`
+	Profile map[string]string `json:"profile" bson:"profile"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewRenderedPolicy returns a new *RenderedPolicy
 func NewRenderedPolicy() *RenderedPolicy {
 
 	return &RenderedPolicy{
+		ModelVersion:    1.0,
 		EgressPolicies:  map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
 		IngressPolicies: map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
 	}

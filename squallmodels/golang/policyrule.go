@@ -31,43 +31,46 @@ func (o PolicyRulesList) List() elemental.IdentifiablesList {
 // PolicyRule represents the model of a policyrule
 type PolicyRule struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" bson:"-"`
 
 	// Action defines set of actions that must be enforced when a dependency is met.
-	Action map[string]map[string]string `json:"action" cql:"-" bson:"-"`
+	Action map[string]map[string]string `json:"action" bson:"-"`
 
 	// Policy target networks
-	ExternalServices ExternalServicesList `json:"externalServices" cql:"-" bson:"-"`
+	ExternalServices ExternalServicesList `json:"externalServices" bson:"-"`
 
 	// Policy target networks
-	FilePaths FilePathsList `json:"filePaths" cql:"-" bson:"-"`
+	FilePaths FilePathsList `json:"filePaths" bson:"-"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Policy target networks
-	Namespaces NamespacesList `json:"namespaces" cql:"-" bson:"-"`
+	Namespaces NamespacesList `json:"namespaces" bson:"-"`
 
 	// Propagated indicates if the policy is propagated.
-	Propagated bool `json:"propagated" cql:"-" bson:"-"`
+	Propagated bool `json:"propagated" bson:"-"`
 
 	// Relation describes the required operation to be performed between subjects and objects
-	Relation []string `json:"relation" cql:"-" bson:"-"`
+	Relation []string `json:"relation" bson:"-"`
 
 	// ServerProfiles provides the information about the server profile.
-	ServerProfiles ServerProfilesList `json:"serverProfiles" cql:"-" bson:"-"`
+	ServerProfiles ServerProfilesList `json:"serverProfiles" bson:"-"`
 
 	// Policy target networks
-	SystemCalls SystemCallsList `json:"systemCalls" cql:"-" bson:"-"`
+	SystemCalls SystemCallsList `json:"systemCalls" bson:"-"`
 
 	// Policy target tags
-	TagClauses [][]string `json:"tagClauses" cql:"-" bson:"-"`
+	TagClauses [][]string `json:"tagClauses" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewPolicyRule returns a new *PolicyRule
 func NewPolicyRule() *PolicyRule {
 
 	return &PolicyRule{
+		ModelVersion:     1.0,
 		ExternalServices: ExternalServicesList{},
 		FilePaths:        FilePathsList{},
 		Namespaces:       NamespacesList{},

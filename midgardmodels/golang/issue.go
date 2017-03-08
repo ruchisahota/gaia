@@ -57,27 +57,30 @@ func (o IssuesList) List() elemental.IdentifiablesList {
 // Issue represents the model of a issue
 type Issue struct {
 	// Data contains additional data. The value depends on the issuer type.
-	Data string `json:"data" cql:"data,omitempty" bson:"data"`
+	Data string `json:"data" bson:"data"`
 
 	// Metadata contains various additional information. Meaning depends on the realm.
-	Metadata map[string]interface{} `json:"metadata" cql:"-" bson:"-"`
+	Metadata map[string]interface{} `json:"metadata" bson:"-"`
 
 	// Realm is the realm
-	Realm IssueRealmValue `json:"realm" cql:"-" bson:"-"`
+	Realm IssueRealmValue `json:"realm" bson:"-"`
 
 	// Token is the token to use for the registration.
-	Token string `json:"token" cql:"-" bson:"-"`
+	Token string `json:"token" bson:"-"`
 
 	// Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped.
-	Validity string `json:"validity" cql:"validity,omitempty" bson:"validity"`
+	Validity string `json:"validity" bson:"validity"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewIssue returns a new *Issue
 func NewIssue() *Issue {
 
 	return &Issue{
-		Metadata: map[string]interface{}{},
-		Validity: "24h",
+		ModelVersion: 1.0,
+		Metadata:     map[string]interface{}{},
+		Validity:     "24h",
 	}
 }
 
@@ -183,6 +186,7 @@ var IssueAttributesMap = map[string]elemental.AttributeSpecification{
 	"Validity": elemental.AttributeSpecification{
 		AllowedChars:   `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`,
 		AllowedChoices: []string{},
+		DefaultValue:   "24h",
 		Description:    `Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped.`,
 		Exposed:        true,
 		Filterable:     true,

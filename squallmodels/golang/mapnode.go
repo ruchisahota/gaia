@@ -42,35 +42,38 @@ func (o MapNodesList) List() elemental.IdentifiablesList {
 // MapNode represents the model of a mapnode
 type MapNode struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" bson:"-"`
 
 	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+	Description string `json:"description" bson:"description"`
 
 	// Groups for organizing resources
-	Groups []string `json:"groups" cql:"-" bson:"-"`
+	Groups []string `json:"groups" bson:"-"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Namespace contains the node namespace.
-	Namespace string `json:"namespace" cql:"-" bson:"-"`
+	Namespace string `json:"namespace" bson:"-"`
 
 	// Status tells the status of the node
-	Status string `json:"status" cql:"-" bson:"-"`
+	Status string `json:"status" bson:"-"`
 
 	// Type of the resource represented in the map
-	Type MapNodeTypeValue `json:"type" cql:"-" bson:"-"`
+	Type MapNodeTypeValue `json:"type" bson:"-"`
 
 	// VulnerabilityLevel tells the current vulnerability of the node
-	VulnerabilityLevel string `json:"vulnerabilityLevel" cql:"-" bson:"-"`
+	VulnerabilityLevel string `json:"vulnerabilityLevel" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewMapNode returns a new *MapNode
 func NewMapNode() *MapNode {
 
 	return &MapNode{
-		Groups: []string{},
+		ModelVersion: 1.0,
+		Groups:       []string{},
 	}
 }
 

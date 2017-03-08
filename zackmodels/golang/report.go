@@ -31,23 +31,26 @@ func (o ReportsList) List() elemental.IdentifiablesList {
 // Report represents the model of a report
 type Report struct {
 	// Name contains the name metric of statistics data.
-	Name string `json:"name" cql:"-" bson:"-"`
+	Name string `json:"name" bson:"-"`
 
 	// Tags contains the tags associated to the data point.
-	Tags map[string]string `json:"tags" cql:"-" bson:"-"`
+	Tags map[string]string `json:"tags" bson:"-"`
 
 	// Timestamp contains the unix timestamp for the report.
-	Timestamp int64 `json:"timestamp" cql:"-" bson:"-"`
+	Timestamp int64 `json:"timestamp" bson:"-"`
 
 	// Value contains the value for the report.
-	Value float64 `json:"value" cql:"-" bson:"-"`
+	Value float64 `json:"value" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewReport returns a new *Report
 func NewReport() *Report {
 
 	return &Report{
-		Tags: map[string]string{},
+		ModelVersion: 1.0,
+		Tags:         map[string]string{},
 	}
 }
 

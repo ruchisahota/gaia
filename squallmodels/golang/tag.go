@@ -31,22 +31,26 @@ func (o TagsList) List() elemental.IdentifiablesList {
 // Tag represents the model of a tag
 type Tag struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// Count represents the number of time the tag is used.
-	Count int `json:"count" cql:"count,omitempty" bson:"count"`
+	Count int `json:"count" bson:"count"`
 
 	// Namespace represents the namespace of the counted tag.
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// Value represents the value of the tag.
-	Value string `json:"value" cql:"value,primarykey,omitempty" bson:"value"`
+	Value string `json:"value" bson:"value"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewTag returns a new *Tag
 func NewTag() *Tag {
 
-	return &Tag{}
+	return &Tag{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

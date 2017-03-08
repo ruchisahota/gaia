@@ -45,28 +45,32 @@ func (o FileAccessList) List() elemental.IdentifiablesList {
 // FileAccess represents the model of a fileaccess
 type FileAccess struct {
 	// Action tells if the access has been allowed or not.
-	Action string `json:"action" cql:"-" bson:"-"`
+	Action string `json:"action" bson:"-"`
 
 	// Count tells how many times the file has been accessed.
-	Count int `json:"count" cql:"-" bson:"-"`
+	Count int `json:"count" bson:"-"`
 
 	// Host is the host that served the accessed file.
-	Host string `json:"host" cql:"-" bson:"-"`
+	Host string `json:"host" bson:"-"`
 
 	// Mode is the mode of the accessed file.
-	Mode FileAccessModeValue `json:"mode" cql:"-" bson:"-"`
+	Mode FileAccessModeValue `json:"mode" bson:"-"`
 
 	// Path is the path of the accessed file.
-	Path string `json:"path" cql:"-" bson:"-"`
+	Path string `json:"path" bson:"-"`
 
 	// Protocol is the protocol used to access the file.
-	Protocol string `json:"protocol" cql:"-" bson:"-"`
+	Protocol string `json:"protocol" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewFileAccess returns a new *FileAccess
 func NewFileAccess() *FileAccess {
 
-	return &FileAccess{}
+	return &FileAccess{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

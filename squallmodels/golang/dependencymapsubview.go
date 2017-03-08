@@ -31,19 +31,22 @@ func (o DependencyMapSubviewsList) List() elemental.IdentifiablesList {
 // DependencyMapSubview represents the model of a dependencymapsubview
 type DependencyMapSubview struct {
 	// Selector is the main selector for the DependencyMapSubview.
-	Selector []string `json:"selector" cql:"selector,omitempty" bson:"selector"`
+	Selector []string `json:"selector" bson:"selector"`
 
 	// SubSelectors are the selector to apply inside the main selector.
-	SubSelectors map[string][]string `json:"subSelectors" cql:"subselectors,omitempty" bson:"subselectors"`
+	SubSelectors map[string][]string `json:"subSelectors" bson:"subselectors"`
 
 	// Tonality sets the color tonality to use for the DependencyMapSubView.
-	Tonality string `json:"tonality" cql:"tonality,omitempty" bson:"tonality"`
+	Tonality string `json:"tonality" bson:"tonality"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewDependencyMapSubview returns a new *DependencyMapSubview
 func NewDependencyMapSubview() *DependencyMapSubview {
 
 	return &DependencyMapSubview{
+		ModelVersion: 1.0,
 		Selector:     []string{},
 		SubSelectors: map[string][]string{},
 	}

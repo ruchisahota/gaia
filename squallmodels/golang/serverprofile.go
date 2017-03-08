@@ -45,103 +45,106 @@ func (o ServerProfilesList) List() elemental.IdentifiablesList {
 // ServerProfile represents the model of a serverprofile
 type ServerProfile struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// IptablesMarkValue is the mark value to be used in an iptables implementation.
-	IPTablesMarkValue int `json:"IPTablesMarkValue" cql:"iptablesmarkvalue,omitempty" bson:"iptablesmarkvalue"`
+	IPTablesMarkValue int `json:"IPTablesMarkValue" bson:"iptablesmarkvalue"`
 
 	// IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
-	IgnoreExpression [][]string `json:"IgnoreExpression" cql:"ignoreexpression,omitempty" bson:"ignoreexpression"`
+	IgnoreExpression [][]string `json:"IgnoreExpression" bson:"ignoreexpression"`
 
 	// PUBookkeepingInterval configures how often the PU will be synchronized.
-	PUBookkeepingInterval string `json:"PUBookkeepingInterval" cql:"pubookkeepinginterval,omitempty" bson:"pubookkeepinginterval"`
+	PUBookkeepingInterval string `json:"PUBookkeepingInterval" bson:"pubookkeepinginterval"`
 
 	// PUHeartbeatInterval configures the heart beat interval.
-	PUHeartbeatInterval string `json:"PUHeartbeatInterval" cql:"puheartbeatinterval,omitempty" bson:"puheartbeatinterval"`
+	PUHeartbeatInterval string `json:"PUHeartbeatInterval" bson:"puheartbeatinterval"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
+	Annotation map[string]string `json:"annotation" bson:"annotation"`
 
 	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
 	// CreatedAt is the time at which an entity was created
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+	Description string `json:"description" bson:"description"`
 
 	// DockerSocketAddress is the address of the docker daemon.
-	DockerSocketAddress string `json:"dockerSocketAddress" cql:"dockersocketaddress,omitempty" bson:"dockersocketaddress"`
+	DockerSocketAddress string `json:"dockerSocketAddress" bson:"dockersocketaddress"`
 
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
-	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" cql:"dockersockettype,omitempty" bson:"dockersockettype"`
+	DockerSocketType ServerProfileDockerSocketTypeValue `json:"dockerSocketType" bson:"dockersockettype"`
 
 	// kubernetesEnable enables  kubernetes mode for the agent.
-	KubernetesEnable bool `json:"kubernetesEnable" cql:"kubernetesenable,omitempty" bson:"kubernetesenable"`
+	KubernetesEnable bool `json:"kubernetesEnable" bson:"kubernetesenable"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
 	// ParentID is the ID of the parent, if any,
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
-	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+	ParentType string `json:"parentType" bson:"parenttype"`
 
 	// PolicySynchronizationInterval configures how often the policy will be resynchronized.
-	PolicySynchronizationInterval string `json:"policySynchronizationInterval" cql:"policysynchronizationinterval,omitempty" bson:"policysynchronizationinterval"`
+	PolicySynchronizationInterval string `json:"policySynchronizationInterval" bson:"policysynchronizationinterval"`
 
 	// Protected defines if the object is protected.
-	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+	Protected bool `json:"protected" bson:"protected"`
 
 	// AgentPort is the port the agent should use to listen for API calls
-	ProxyListenAddress string `json:"proxyListenAddress" cql:"proxylistenaddress,omitempty" bson:"proxylistenaddress"`
+	ProxyListenAddress string `json:"proxyListenAddress" bson:"proxylistenaddress"`
 
 	// ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue
-	ReceiverNumberOfQueues int `json:"receiverNumberOfQueues" cql:"receivernumberofqueues,omitempty" bson:"receivernumberofqueues"`
+	ReceiverNumberOfQueues int `json:"receiverNumberOfQueues" bson:"receivernumberofqueues"`
 
 	// ReceiverQueue is the base queue number for traffic from the network.
-	ReceiverQueue int `json:"receiverQueue" cql:"receiverqueue,omitempty" bson:"receiverqueue"`
+	ReceiverQueue int `json:"receiverQueue" bson:"receiverqueue"`
 
 	// ReceiverQueueSize is the queue size of the receiver
-	ReceiverQueueSize int `json:"receiverQueueSize" cql:"receiverqueuesize,omitempty" bson:"receiverqueuesize"`
+	ReceiverQueueSize int `json:"receiverQueueSize" bson:"receiverqueuesize"`
 
 	// RemoteEnforcer inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.
-	RemoteEnforcer bool `json:"remoteEnforcer" cql:"remoteenforcer,omitempty" bson:"remoteenforcer"`
+	RemoteEnforcer bool `json:"remoteEnforcer" bson:"remoteenforcer"`
 
 	// Status of an entity
-	Status gaiaconstants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
+	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
 
 	// SupportLinuxProcesses configures support for Linux processes.
-	SupportLinuxProcesses bool `json:"supportLinuxProcesses" cql:"supportlinuxprocesses,omitempty" bson:"supportlinuxprocesses"`
+	SupportLinuxProcesses bool `json:"supportLinuxProcesses" bson:"supportlinuxprocesses"`
 
 	// TargetNetworks is the list of networks that authorization should be applied.
-	TargetNetworks []string `json:"targetNetworks" cql:"targetnetworks,omitempty" bson:"targetnetworks"`
+	TargetNetworks []string `json:"targetNetworks" bson:"targetnetworks"`
 
 	// TransmitterNumberOfQueues is the number of queues for application traffic.
-	TransmitterNumberOfQueues int `json:"transmitterNumberOfQueues" cql:"transmitternumberofqueues,omitempty" bson:"transmitternumberofqueues"`
+	TransmitterNumberOfQueues int `json:"transmitterNumberOfQueues" bson:"transmitternumberofqueues"`
 
 	// TransmitterQueue is the queue number for traffic from the applications starting at the transmitterQueue
-	TransmitterQueue int `json:"transmitterQueue" cql:"transmitterqueue,omitempty" bson:"transmitterqueue"`
+	TransmitterQueue int `json:"transmitterQueue" bson:"transmitterqueue"`
 
 	// TransmitterQueueSize is the size of the queue for application traffic.
-	TransmitterQueueSize int `json:"transmitterQueueSize" cql:"transmitterqueuesize,omitempty" bson:"transmitterqueuesize"`
+	TransmitterQueueSize int `json:"transmitterQueueSize" bson:"transmitterqueuesize"`
 
 	// UpdatedAt is the time at which an entity was updated.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewServerProfile returns a new *ServerProfile
 func NewServerProfile() *ServerProfile {
 
 	return &ServerProfile{
+		ModelVersion:                  1.0,
 		IPTablesMarkValue:             1000,
 		PUBookkeepingInterval:         "5m",
 		PUHeartbeatInterval:           "5s",
@@ -409,6 +412,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"IPTablesMarkValue": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   1000,
 		Description:    `IptablesMarkValue is the mark value to be used in an iptables implementation.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -430,6 +434,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"PUBookkeepingInterval": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
+		DefaultValue:   "5m",
 		Description:    `PUBookkeepingInterval configures how often the PU will be synchronized.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -442,6 +447,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"PUHeartbeatInterval": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
+		DefaultValue:   "5s",
 		Description:    `PUHeartbeatInterval configures the heart beat interval.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -496,6 +502,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"DockerSocketAddress": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   "/var/run/docker.sock",
 		Description:    `DockerSocketAddress is the address of the docker daemon.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -507,6 +514,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"DockerSocketType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"tcp", "unix"},
+		DefaultValue:   ServerProfileDockerSocketTypeValue("unix"),
 		Description:    `DockerSocketType is the type of socket to use to talk to the docker daemon.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -517,6 +525,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"KubernetesEnable": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   false,
 		Description:    `kubernetesEnable enables  kubernetes mode for the agent.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -606,6 +615,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"PolicySynchronizationInterval": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
+		DefaultValue:   "10m",
 		Description:    `PolicySynchronizationInterval configures how often the policy will be resynchronized.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -628,6 +638,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"ProxyListenAddress": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   ":9443",
 		Description:    `AgentPort is the port the agent should use to listen for API calls `,
 		Exposed:        true,
 		Filterable:     true,
@@ -639,6 +650,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"ReceiverNumberOfQueues": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   4,
 		Description:    `ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue`,
 		Exposed:        true,
 		Filterable:     true,
@@ -651,6 +663,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"ReceiverQueue": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   0,
 		Description:    `ReceiverQueue is the base queue number for traffic from the network.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -662,6 +675,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"ReceiverQueueSize": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   500,
 		Description:    `ReceiverQueueSize is the queue size of the receiver`,
 		Exposed:        true,
 		Filterable:     true,
@@ -674,6 +688,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"RemoteEnforcer": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   false,
 		Description:    `RemoteEnforcer inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -685,6 +700,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
+		DefaultValue:   gaiaconstants.Active,
 		Description:    `Status of an entity`,
 		Exposed:        true,
 		Filterable:     true,
@@ -698,6 +714,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"SupportLinuxProcesses": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   false,
 		Description:    `SupportLinuxProcesses configures support for Linux processes.`,
 		Exposed:        true,
 		Name:           "supportLinuxProcesses",
@@ -718,6 +735,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"TransmitterNumberOfQueues": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   4,
 		Description:    `TransmitterNumberOfQueues is the number of queues for application traffic.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -730,6 +748,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"TransmitterQueue": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   4,
 		Description:    `TransmitterQueue is the queue number for traffic from the applications starting at the transmitterQueue`,
 		Exposed:        true,
 		Filterable:     true,
@@ -742,6 +761,7 @@ var ServerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"TransmitterQueueSize": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultValue:   500,
 		Description:    `TransmitterQueueSize is the size of the queue for application traffic.`,
 		Exposed:        true,
 		Filterable:     true,

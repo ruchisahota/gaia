@@ -31,24 +31,27 @@ func (o DependencyMapsList) List() elemental.IdentifiablesList {
 // DependencyMap represents the model of a dependencymap
 type DependencyMap struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" bson:"-"`
 
 	// edges are the edges of the map
-	Edges map[string]*MapEdge `json:"edges" cql:"-" bson:"-"`
+	Edges map[string]*MapEdge `json:"edges" bson:"-"`
 
 	// Groups provide information about the group values
-	Groups map[string]map[string]string `json:"groups" cql:"-" bson:"-"`
+	Groups map[string]map[string]string `json:"groups" bson:"-"`
 
 	// nodes refers to the nodes of the map
-	Nodes map[string]*MapNode `json:"nodes" cql:"-" bson:"-"`
+	Nodes map[string]*MapNode `json:"nodes" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewDependencyMap returns a new *DependencyMap
 func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
-		Edges: map[string]*MapEdge{},
-		Nodes: map[string]*MapNode{},
+		ModelVersion: 1.0,
+		Edges:        map[string]*MapEdge{},
+		Nodes:        map[string]*MapNode{},
 	}
 }
 

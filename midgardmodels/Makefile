@@ -6,7 +6,7 @@ codegen:
 	rm -rf codegen
 	monogen -f specs -L elemental
 	monogen -f specs -L html
-	rm -f ./golang/*.go && cp codegen/elemental/1.0/*.go ./golang
+	rm -f ./golang/*.go && cp codegen/elemental/*.go ./golang
 	rm -rf ./apidoc/* && cp -a codegen/html/* ./apidoc
 	rm -rf codegen
 

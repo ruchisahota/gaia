@@ -68,70 +68,73 @@ func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
 // ProcessingUnit represents the model of a processingunit
 type ProcessingUnit struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
+	Annotation map[string]string `json:"annotation" bson:"annotation"`
 
 	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
 	// CreatedAt is the time at which an entity was created
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+	Description string `json:"description" bson:"description"`
 
 	// LastSyncTime is the time when the policy was last resolved
-	LastSyncTime time.Time `json:"lastSyncTime" cql:"lastsynctime,omitempty" bson:"lastsynctime"`
+	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime"`
 
 	// Metadata are list of tags associated to the processing unit
-	Metadata []string `json:"metadata" cql:"metadata,omitempty" bson:"metadata"`
+	Metadata []string `json:"metadata" bson:"metadata"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// NativeContextID is the Docker UUID or service PID
-	NativeContextID string `json:"nativeContextID" cql:"nativecontextid,omitempty" bson:"nativecontextid"`
+	NativeContextID string `json:"nativeContextID" bson:"nativecontextid"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
 	// OperationalStatus of the processing unit
-	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" cql:"operationalstatus,omitempty" bson:"operationalstatus"`
+	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" bson:"operationalstatus"`
 
 	// ParentID is the ID of the parent, if any,
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
-	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+	ParentType string `json:"parentType" bson:"parenttype"`
 
 	// Protected defines if the object is protected.
-	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+	Protected bool `json:"protected" bson:"protected"`
 
 	// serverID is the ID of the server associated with the processing unit
-	ServerID string `json:"serverID" cql:"serverid,omitempty" bson:"serverid"`
+	ServerID string `json:"serverID" bson:"serverid"`
 
 	// Status of an entity
-	Status gaiaconstants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
+	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
 
 	// Type of the container ecosystem
-	Type ProcessingUnitTypeValue `json:"type" cql:"type,omitempty" bson:"type"`
+	Type ProcessingUnitTypeValue `json:"type" bson:"type"`
 
 	// UpdatedAt is the time at which an entity was updated.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
 
 	// Vulnerabilities contains the list of vulnerabilities of the processing unit.
-	Vulnerabilities []string `json:"-" cql:"vulnerabilities,omitempty" bson:"vulnerabilities"`
+	Vulnerabilities []string `json:"-" bson:"vulnerabilities"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewProcessingUnit returns a new *ProcessingUnit
 func NewProcessingUnit() *ProcessingUnit {
 
 	return &ProcessingUnit{
+		ModelVersion:      1.0,
 		AssociatedTags:    []string{},
 		NormalizedTags:    []string{},
 		OperationalStatus: "Initialized",
@@ -433,6 +436,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"OperationalStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
+		DefaultValue:   ProcessingUnitOperationalStatusValue("Initialized"),
 		Description:    `OperationalStatus of the processing unit`,
 		Exposed:        true,
 		Filterable:     true,
@@ -495,6 +499,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
+		DefaultValue:   gaiaconstants.Active,
 		Description:    `Status of an entity`,
 		Exposed:        true,
 		Filterable:     true,

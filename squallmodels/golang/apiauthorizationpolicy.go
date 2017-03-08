@@ -34,82 +34,85 @@ func (o APIAuthorizationPoliciesList) List() elemental.IdentifiablesList {
 // APIAuthorizationPolicy represents the model of a apiauthorizationpolicy
 type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" bson:"-"`
 
 	// AllowsDelete defines if DELETE request is authorized.
-	AllowsDelete bool `json:"allowsDelete" cql:"-" bson:"-"`
+	AllowsDelete bool `json:"allowsDelete" bson:"-"`
 
 	// AllowsGet defines if GET request is authorized.
-	AllowsGet bool `json:"allowsGet" cql:"-" bson:"-"`
+	AllowsGet bool `json:"allowsGet" bson:"-"`
 
 	// AllowsHead defines if HEAD request is authorized.
-	AllowsHead bool `json:"allowsHead" cql:"-" bson:"-"`
+	AllowsHead bool `json:"allowsHead" bson:"-"`
 
 	// AllowsPatch defines if PATCH request is authorized.
-	AllowsPatch bool `json:"allowsPatch" cql:"-" bson:"-"`
+	AllowsPatch bool `json:"allowsPatch" bson:"-"`
 
 	// AllowsPost defines if POST request is authorized.
-	AllowsPost bool `json:"allowsPost" cql:"-" bson:"-"`
+	AllowsPost bool `json:"allowsPost" bson:"-"`
 
 	// AllowsPut defines if PUT request is authorized.
-	AllowsPut bool `json:"allowsPut" cql:"-" bson:"-"`
+	AllowsPut bool `json:"allowsPut" bson:"-"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
+	Annotation map[string]string `json:"annotation" bson:"annotation"`
 
 	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
 	// AuthorizedIdentities defines the list of api identities the policy applies to.
-	AuthorizedIdentities []string `json:"authorizedIdentities" cql:"-" bson:"-"`
+	AuthorizedIdentities []string `json:"authorizedIdentities" bson:"-"`
 
 	// AuthorizedNamespace defines on what namespace the policy applies.
-	AuthorizedNamespace string `json:"authorizedNamespace" cql:"-" bson:"-"`
+	AuthorizedNamespace string `json:"authorizedNamespace" bson:"-"`
 
 	// CreatedAt is the time at which an entity was created
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+	Description string `json:"description" bson:"description"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
 	// ParentID is the ID of the parent, if any,
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
-	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+	ParentType string `json:"parentType" bson:"parenttype"`
 
 	// Propagate will propagate the policy to all of its children.
-	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
+	Propagate bool `json:"propagate" bson:"propagate"`
 
 	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
-	PropagationHidden bool `json:"propagationHidden" cql:"propagationhidden,omitempty" bson:"propagationhidden"`
+	PropagationHidden bool `json:"propagationHidden" bson:"propagationhidden"`
 
 	// Protected defines if the object is protected.
-	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+	Protected bool `json:"protected" bson:"protected"`
 
 	// Status of an entity
-	Status gaiaconstants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
+	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
 
 	// Subject is the subject.
-	Subject [][]string `json:"subject" cql:"-" bson:"-"`
+	Subject [][]string `json:"subject" bson:"-"`
 
 	// UpdatedAt is the time at which an entity was updated.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewAPIAuthorizationPolicy returns a new *APIAuthorizationPolicy
 func NewAPIAuthorizationPolicy() *APIAuthorizationPolicy {
 
 	return &APIAuthorizationPolicy{
+		ModelVersion:         1.0,
 		AssociatedTags:       []string{},
 		AuthorizedIdentities: []string{},
 		NormalizedTags:       []string{},
@@ -546,6 +549,7 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
+		DefaultValue:   gaiaconstants.Active,
 		Description:    `Status of an entity`,
 		Exposed:        true,
 		Filterable:     true,

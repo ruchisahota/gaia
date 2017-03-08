@@ -57,76 +57,79 @@ func (o PoliciesList) List() elemental.IdentifiablesList {
 // Policy represents the model of a policy
 type Policy struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// Action defines set of actions that must be enforced when a dependency is met.
-	Action map[string]map[string]string `json:"action" cql:"action,omitempty" bson:"action"`
+	Action map[string]map[string]string `json:"action" bson:"action"`
 
 	// This is a set of all object tags for matching in the DB
-	AllObjectTags []string `json:"-" cql:"allobjecttags,omitempty" bson:"allobjecttags"`
+	AllObjectTags []string `json:"-" bson:"allobjecttags"`
 
 	// This is a set of all subject tags for matching in the DB
-	AllSubjectTags []string `json:"-" cql:"allsubjecttags,omitempty" bson:"allsubjecttags"`
+	AllSubjectTags []string `json:"-" bson:"allsubjecttags"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
+	Annotation map[string]string `json:"annotation" bson:"annotation"`
 
 	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
 	// CreatedAt is the time at which an entity was created
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+	Description string `json:"description" bson:"description"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
 	// Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.
-	Object [][]string `json:"object" cql:"object,omitempty" bson:"object"`
+	Object [][]string `json:"object" bson:"object"`
 
 	// ParentID is the ID of the parent, if any,
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
-	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+	ParentType string `json:"parentType" bson:"parenttype"`
 
 	// Propagate will propagate the policy to all of its children.
-	Propagate bool `json:"propagate" cql:"propagate,omitempty" bson:"propagate"`
+	Propagate bool `json:"propagate" bson:"propagate"`
 
 	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
-	PropagationHidden bool `json:"propagationHidden" cql:"propagationhidden,omitempty" bson:"propagationhidden"`
+	PropagationHidden bool `json:"propagationHidden" bson:"propagationhidden"`
 
 	// Protected defines if the object is protected.
-	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+	Protected bool `json:"protected" bson:"protected"`
 
 	// Relation describes the required operation to be performed between subjects and objects
-	Relation []string `json:"relation" cql:"relation,omitempty" bson:"relation"`
+	Relation []string `json:"relation" bson:"relation"`
 
 	// Status of an entity
-	Status gaiaconstants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
+	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
 
 	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
-	Subject [][]string `json:"subject" cql:"subject,omitempty" bson:"subject"`
+	Subject [][]string `json:"subject" bson:"subject"`
 
 	// Type of the policy
-	Type PolicyTypeValue `json:"type" cql:"type,primarykey,omitempty" bson:"type"`
+	Type PolicyTypeValue `json:"type" bson:"type"`
 
 	// UpdatedAt is the time at which an entity was updated.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewPolicy returns a new *Policy
 func NewPolicy() *Policy {
 
 	return &Policy{
+		ModelVersion:   1.0,
 		AllObjectTags:  []string{},
 		AllSubjectTags: []string{},
 		AssociatedTags: []string{},
@@ -543,6 +546,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
+		DefaultValue:   gaiaconstants.Active,
 		Description:    `Status of an entity`,
 		Exposed:        true,
 		Filterable:     true,

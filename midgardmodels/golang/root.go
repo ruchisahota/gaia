@@ -14,28 +14,31 @@ var RootIdentity = elemental.Identity{
 // Root represents the model of a root
 type Root struct {
 	// The identifier
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// CreatedAt represents the creation time of the object.
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// ParentID is the ID of the parent if any.
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// ParentType is the type of the parent if any.
-	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+	ParentType string `json:"parentType" bson:"parenttype"`
 
 	// UpdatedAt represents the last update time of the object.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
 
-	Token        string `json:"APIKey,omitempty"`
-	Organization string `json:"enterprise,omitempty"`
+	Token        string  `json:"APIKey,omitempty"`
+	Organization string  `json:"enterprise,omitempty"`
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewRoot returns a new *Root
 func NewRoot() *Root {
 
-	return &Root{}
+	return &Root{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

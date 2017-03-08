@@ -48,73 +48,76 @@ func (o UsersList) List() elemental.IdentifiablesList {
 // User represents the model of a user
 type User struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string]string `json:"annotation" cql:"annotation,omitempty" bson:"annotation"`
+	Annotation map[string]string `json:"annotation" bson:"annotation"`
 
 	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" cql:"associatedtags,omitempty" bson:"associatedtags"`
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
 	// Certificate provides a certificate for the user
-	Certificate string `json:"certificate" cql:"certificate,omitempty" bson:"certificate"`
+	Certificate string `json:"certificate" bson:"certificate"`
 
 	// CertificateExpirationDate indicates the expiration day for the certificate.
-	CertificateExpirationDate time.Time `json:"certificateExpirationDate" cql:"certificateexpirationdate,omitempty" bson:"certificateexpirationdate"`
+	CertificateExpirationDate time.Time `json:"certificateExpirationDate" bson:"certificateexpirationdate"`
 
 	// CertificateKey provides the key for the user. Only available at create or update time.
-	CertificateKey string `json:"certificateKey" cql:"-" bson:"-"`
+	CertificateKey string `json:"certificateKey" bson:"-"`
 
 	// CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.
-	CertificateStatus UserCertificateStatusValue `json:"certificateStatus" cql:"certificatestatus,omitempty" bson:"certificatestatus"`
+	CertificateStatus UserCertificateStatusValue `json:"certificateStatus" bson:"certificatestatus"`
 
 	// CreatedAt is the time at which an entity was created
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Description is the description of the object.
-	Description string `json:"description" cql:"description,omitempty" bson:"description"`
+	Description string `json:"description" bson:"description"`
 
 	// e-mail address of the user
-	Email string `json:"email" cql:"email,omitempty" bson:"email"`
+	Email string `json:"email" bson:"email"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" cql:"namespace,primarykey,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" cql:"normalizedtags,omitempty" bson:"normalizedtags"`
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
 	// ParentAuthenticator is an Internal attribute that points to the parent authenticator.
-	ParentAuthenticator string `json:"-" cql:"parentauthenticator,primarykey,omitempty" bson:"parentauthenticator"`
+	ParentAuthenticator string `json:"-" bson:"parentauthenticator"`
 
 	// ParentID is the ID of the parent, if any,
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// ParentType is the type of the parent, if any. It will be set to the parent's Identity.Name.
-	ParentType string `json:"parentType" cql:"parenttype,omitempty" bson:"parenttype"`
+	ParentType string `json:"parentType" bson:"parenttype"`
 
 	// Protected defines if the object is protected.
-	Protected bool `json:"protected" cql:"protected,omitempty" bson:"protected"`
+	Protected bool `json:"protected" bson:"protected"`
 
 	// Status of an entity
-	Status gaiaconstants.EntityStatus `json:"status" cql:"status,omitempty" bson:"status"`
+	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
 
 	// OU attribute for the generated certificates
-	SubOrganizations []string `json:"subOrganizations" cql:"suborganizations,omitempty" bson:"suborganizations"`
+	SubOrganizations []string `json:"subOrganizations" bson:"suborganizations"`
 
 	// UpdatedAt is the time at which an entity was updated.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
 
 	// CommonName (CN) for the user certificate
-	UserName string `json:"userName" cql:"username,omitempty" bson:"username"`
+	UserName string `json:"userName" bson:"username"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewUser returns a new *User
 func NewUser() *User {
 
 	return &User{
+		ModelVersion:      1.0,
 		AssociatedTags:    []string{},
 		CertificateStatus: "VALID",
 		NormalizedTags:    []string{},
@@ -346,6 +349,7 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"CertificateStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
+		DefaultValue:   UserCertificateStatusValue("VALID"),
 		Description:    `CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -492,6 +496,7 @@ var UserAttributesMap = map[string]elemental.AttributeSpecification{
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
+		DefaultValue:   gaiaconstants.Active,
 		Description:    `Status of an entity`,
 		Exposed:        true,
 		Filterable:     true,

@@ -33,14 +33,17 @@ func (o AuthsList) List() elemental.IdentifiablesList {
 // Auth represents the model of a auth
 type Auth struct {
 	// Claims are the claims.
-	Claims *claims.MidgardClaims `json:"claims" cql:"-" bson:"-"`
+	Claims *claims.MidgardClaims `json:"claims" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewAuth returns a new *Auth
 func NewAuth() *Auth {
 
 	return &Auth{
-		Claims: claims.NewMidgardClaims(),
+		ModelVersion: 1.0,
+		Claims:       claims.NewMidgardClaims(),
 	}
 }
 

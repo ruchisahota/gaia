@@ -44,62 +44,65 @@ func (o CertificatesList) List() elemental.IdentifiablesList {
 // Certificate represents the model of a certificate
 type Certificate struct {
 	// ID of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// Admin determines if the certificate must be added to the admin list.
-	Admin bool `json:"admin" cql:"admin,omitempty" bson:"admin"`
+	Admin bool `json:"admin" bson:"admin"`
 
 	// CommonName (CN) for the user certificate
-	CommonName string `json:"commonName" cql:"commonname,omitempty" bson:"commonname"`
+	CommonName string `json:"commonName" bson:"commonname"`
 
 	// CreatedAt represents the creation date of the objct.
-	CreatedAt time.Time `json:"createdAt" cql:"createdat,omitempty" bson:"createdat"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdat"`
 
 	// Certificate provides a certificate for the user
-	Data string `json:"data" cql:"data,omitempty" bson:"data"`
+	Data string `json:"data" bson:"data"`
 
 	// Mark if the certificate is deleted.
-	Deleted bool `json:"-" cql:"deleted,omitempty" bson:"deleted"`
+	Deleted bool `json:"-" bson:"deleted"`
 
 	// e-mail address of the user
-	Email string `json:"email" cql:"email,omitempty" bson:"email"`
+	Email string `json:"email" bson:"email"`
 
 	// CertificateExpirationDate indicates the expiration day for the certificate.
-	ExpirationDate time.Time `json:"expirationDate" cql:"expirationdate,omitempty" bson:"expirationdate"`
+	ExpirationDate time.Time `json:"expirationDate" bson:"expirationdate"`
 
 	// CertificateKey provides the key for the user. Only available at create or update time.
-	Key string `json:"key" cql:"-" bson:"-"`
+	Key string `json:"key" bson:"-"`
 
 	// Name of the certificate.
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// OrganizationalUnits attribute for the generated certificates
-	OrganizationalUnits []string `json:"organizationalUnits" cql:"organizationalunits,omitempty" bson:"organizationalunits"`
+	OrganizationalUnits []string `json:"organizationalUnits" bson:"organizationalunits"`
 
 	// P12 contains the raw certificate and key in pkcs12 format.
-	P12 string `json:"p12" cql:"-" bson:"-"`
+	P12 string `json:"p12" bson:"-"`
 
 	// ParentID holds the parent account ID.
-	ParentID string `json:"parentID" cql:"parentid,omitempty" bson:"parentid"`
+	ParentID string `json:"parentID" bson:"parentid"`
 
 	// Passphrase to use for the generated p12.
-	Passphrase string `json:"passphrase" cql:"passphrase,omitempty" bson:"passphrase"`
+	Passphrase string `json:"passphrase" bson:"passphrase"`
 
 	// SerialNumber of the certificate.
-	SerialNumber string `json:"serialNumber" cql:"serialnumber,omitempty" bson:"serialnumber"`
+	SerialNumber string `json:"serialNumber" bson:"serialnumber"`
 
 	// CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.
-	Status CertificateStatusValue `json:"status" cql:"status,omitempty" bson:"status"`
+	Status CertificateStatusValue `json:"status" bson:"status"`
 
 	// UpdatedAt represents the last update date of the objct.
-	UpdatedAt time.Time `json:"updatedAt" cql:"updatedat,omitempty" bson:"updatedat"`
+	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewCertificate returns a new *Certificate
 func NewCertificate() *Certificate {
 
 	return &Certificate{
-		Status: "Valid",
+		ModelVersion: 1.0,
+		Status:       "Valid",
 	}
 }
 
@@ -366,6 +369,7 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Revoked", "Valid"},
+		DefaultValue:   CertificateStatusValue("Valid"),
 		Description:    `CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.`,
 		Exposed:        true,
 		Filterable:     true,

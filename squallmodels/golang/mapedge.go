@@ -31,28 +31,32 @@ func (o MapEdgesList) List() elemental.IdentifiablesList {
 // MapEdge represents the model of a mapedge
 type MapEdge struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"-" bson:"-"`
+	ID string `json:"ID" bson:"-"`
 
 	// AcceptedFlows tells how many accepted flows are represented by the edge
-	AcceptedFlows int `json:"acceptedFlows" cql:"acceptedflows,omitempty" bson:"acceptedflows"`
+	AcceptedFlows int `json:"acceptedFlows" bson:"acceptedflows"`
 
 	// ID of the destination resource
-	DestinationID string `json:"destinationID" cql:"-" bson:"-"`
+	DestinationID string `json:"destinationID" bson:"-"`
 
 	// Name is the name of the entity
-	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+	Name string `json:"name" bson:"name"`
 
 	// RejectedFlows tells how many flows has been rejected.
-	RejectedFlows int `json:"rejectedFlows" cql:"rejectedflows,omitempty" bson:"rejectedflows"`
+	RejectedFlows int `json:"rejectedFlows" bson:"rejectedflows"`
 
 	// ID of the source resource
-	SourceID string `json:"sourceID" cql:"-" bson:"-"`
+	SourceID string `json:"sourceID" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewMapEdge returns a new *MapEdge
 func NewMapEdge() *MapEdge {
 
-	return &MapEdge{}
+	return &MapEdge{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

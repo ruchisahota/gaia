@@ -31,13 +31,17 @@ func (o ActivatesList) List() elemental.IdentifiablesList {
 // Activate represents the model of a activate
 type Activate struct {
 	// Token contains the activation token
-	Token string `json:"token" cql:"-" bson:"-"`
+	Token string `json:"token" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewActivate returns a new *Activate
 func NewActivate() *Activate {
 
-	return &Activate{}
+	return &Activate{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

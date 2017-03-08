@@ -11,14 +11,17 @@ var RootIdentity = elemental.Identity{
 
 // Root represents the model of a root
 type Root struct {
-	Token        string `json:"APIKey,omitempty"`
-	Organization string `json:"enterprise,omitempty"`
+	Token        string  `json:"APIKey,omitempty"`
+	Organization string  `json:"enterprise,omitempty"`
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewRoot returns a new *Root
 func NewRoot() *Root {
 
-	return &Root{}
+	return &Root{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

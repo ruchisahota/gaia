@@ -33,37 +33,41 @@ func (o ActivitiesList) List() elemental.IdentifiablesList {
 // Activity represents the model of a activity
 type Activity struct {
 	// ID is the identifier of the object.
-	ID string `json:"ID" cql:"id,primarykey,omitempty" bson:"_id"`
+	ID string `json:"ID" bson:"_id"`
 
 	// Claims of the user who performed the operation.
-	Claims interface{} `json:"claims" cql:"claims,omitempty" bson:"claims"`
+	Claims interface{} `json:"claims" bson:"claims"`
 
 	// Data of the notification.
-	Data interface{} `json:"data" cql:"data,omitempty" bson:"data"`
+	Data interface{} `json:"data" bson:"data"`
 
 	// Date of the notification.
-	Date time.Time `json:"date" cql:"date,omitempty" bson:"date"`
+	Date time.Time `json:"date" bson:"date"`
 
 	// Error contains the eventual error.
-	Error interface{} `json:"error" cql:"error,omitempty" bson:"error"`
+	Error interface{} `json:"error" bson:"error"`
 
 	// Message of the notification.
-	Message string `json:"message" cql:"message,omitempty" bson:"message"`
+	Message string `json:"message" bson:"message"`
 
 	// Namespace of the notification.
-	Namespace string `json:"namespace" cql:"namespace,omitempty" bson:"namespace"`
+	Namespace string `json:"namespace" bson:"namespace"`
 
 	// Operation describe what kind of operation the notification represents.
-	Operation string `json:"operation" cql:"operation,omitempty" bson:"operation"`
+	Operation string `json:"operation" bson:"operation"`
 
 	// TargetIdentity is the Identity of the related object.
-	TargetIdentity string `json:"targetIdentity" cql:"targetidentity,omitempty" bson:"targetidentity"`
+	TargetIdentity string `json:"targetIdentity" bson:"targetidentity"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewActivity returns a new *Activity
 func NewActivity() *Activity {
 
-	return &Activity{}
+	return &Activity{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -57,25 +57,28 @@ func (o APIChecksList) List() elemental.IdentifiablesList {
 // APICheck represents the model of a apicheck
 type APICheck struct {
 	// Authorized contains the results of the check.
-	Authorized map[string]bool `json:"authorized" cql:"-" bson:"-"`
+	Authorized map[string]bool `json:"authorized" bson:"-"`
 
 	// Namespace is the namespace to use to check the api authentication.
-	Namespace string `json:"namespace" cql:"-" bson:"-"`
+	Namespace string `json:"namespace" bson:"-"`
 
 	// Operation is the operation you want to check.
-	Operation APICheckOperationValue `json:"operation" cql:"operation,omitempty" bson:"operation"`
+	Operation APICheckOperationValue `json:"operation" bson:"operation"`
 
 	// TargetIdentities contains the list of identities you want to check the authorization.
-	TargetIdentities []string `json:"targetIdentities" cql:"-" bson:"-"`
+	TargetIdentities []string `json:"targetIdentities" bson:"-"`
 
 	// Token is the token to use to check api authentication
-	Token string `json:"token" cql:"-" bson:"-"`
+	Token string `json:"token" bson:"-"`
+
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
 }
 
 // NewAPICheck returns a new *APICheck
 func NewAPICheck() *APICheck {
 
 	return &APICheck{
+		ModelVersion:     1.0,
 		Authorized:       map[string]bool{},
 		TargetIdentities: []string{},
 	}
