@@ -222,7 +222,7 @@
             "default_order": null,
             "default_value": "false",
             "deprecated": null,
-            "description": "kubernetesEnable enables  kubernetes mode for the agent.",
+            "description": "kubernetesEnable enables  kubernetes mode for the enforcer.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
