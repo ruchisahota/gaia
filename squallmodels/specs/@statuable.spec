@@ -7,7 +7,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": "Active",
+            "default_value": "Enabled",
             "deprecated": null,
             "description": "Status represents the status of the object.",
             "exposed": true,
