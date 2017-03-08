@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "FQDN contains the fqdn of the server.",
+            "description": "FQDN contains the fqdn of the server where the enforcer is running.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
