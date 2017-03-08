@@ -9,6 +9,9 @@ func init() {
 	elemental.RegisterIdentity(AuthIdentity)
 }
 
+// ModelVersion returns the current version of the model
+func ModelVersion() float64 { return 1.0 }
+
 // IdentifiableForIdentity returns a new instance of the Identifiable for the given identity name.
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
