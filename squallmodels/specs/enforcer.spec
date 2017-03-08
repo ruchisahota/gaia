@@ -265,7 +265,7 @@
             "deprecated": null,
             "get": true,
             "relationship": "child",
-            "rest_name": "serverprofile",
+            "rest_name": "enforcerprofile",
             "update": false
         }
     ],
