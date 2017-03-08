@@ -24,6 +24,8 @@ const (
 	RenderedPolicyTypeFile RenderedPolicyType = "filePolicyRules"
 	// RenderedPolicyTypeSystemCall that the RenderedPolicyType is systemCall
 	RenderedPolicyTypeSystemCall RenderedPolicyType = "systemCallPolicyRules"
+	// PolicyTypeEnforcerProfile that the RenderedPolicyType is enforcerProfile
+	PolicyTypeEnforcerProfile RenderedPolicyType = "enforcerProfileRules"
 )
 
 // Vulnerability defines the security vulnerability of an image or a layer
