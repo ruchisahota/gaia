@@ -82,7 +82,7 @@ type NetworkAccessPolicy struct {
 	Protected bool `json:"protected" bson:"protected"`
 
 	// Status represents the status of the object.
-	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
+	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
 
 	// Subject of the policy.
 	Subject [][]string `json:"subject" bson:"-"`
@@ -101,7 +101,7 @@ func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 		AssociatedTags:   []string{},
 		DestinationPorts: []string{},
 		NormalizedTags:   []string{},
-		Status:           gaiaconstants.Active,
+		Status:           gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -205,12 +205,12 @@ func (o *NetworkAccessPolicy) GetProtected() bool {
 }
 
 // GetStatus returns the status of the receiver
-func (o *NetworkAccessPolicy) GetStatus() gaiaconstants.EntityStatus {
+func (o *NetworkAccessPolicy) GetStatus() gaiaconstants.PolicyStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *NetworkAccessPolicy) SetStatus(status gaiaconstants.EntityStatus) {
+func (o *NetworkAccessPolicy) SetStatus(status gaiaconstants.PolicyStatus) {
 	o.Status = status
 }
 
@@ -445,7 +445,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.Active,
+		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
 		Description:    `Status represents the status of the object.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -454,7 +454,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Orderable:      true,
 		Setter:         true,
 		Stored:         true,
-		SubType:        "status_enum",
+		SubType:        "policy_status",
 		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{

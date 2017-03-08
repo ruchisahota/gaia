@@ -1,17 +1,14 @@
 package gaiaconstants
 
-// EntityStatus defines the status of an entity
-type EntityStatus string
+// PolicyStatus defines the status of an entity
+type PolicyStatus string
 
 const (
-	// Active defines that an entity is active
-	Active EntityStatus = "Active"
+	// PolicyStatusEnabled defines that a policy is enabled
+	PolicyStatusEnabled PolicyStatus = "Enabled"
 
-	// Disabled defines that an entity is disabled
-	Disabled EntityStatus = "Disabled"
-
-	// Candidate defines that an entity is a candidate and could be either activated or deleted or disabled
-	Candidate EntityStatus = "Candidate"
+	// PolicyStatusDisabled defines that a policy is disabled
+	PolicyStatusDisabled PolicyStatus = "Disabled"
 )
 
 // RenderedPolicyType defines the type of the RenderedPolicyType
@@ -24,8 +21,6 @@ const (
 	RenderedPolicyTypeFile RenderedPolicyType = "filePolicyRules"
 	// RenderedPolicyTypeSystemCall that the RenderedPolicyType is systemCall
 	RenderedPolicyTypeSystemCall RenderedPolicyType = "systemCallPolicyRules"
-	// PolicyTypeEnforcerProfile that the RenderedPolicyType is enforcerProfile
-	PolicyTypeEnforcerProfile RenderedPolicyType = "enforcerProfileRules"
 )
 
 // Vulnerability defines the security vulnerability of an image or a layer
@@ -56,21 +51,6 @@ const (
 	// VulnerabilityDefcon1 defines that security vulnerability is Defcon1
 	VulnerabilityDefcon1
 )
-
-// EntityStatusToString converts EntityStatusToString to its corresponding string value
-func EntityStatusToString(entityStatus EntityStatus) string {
-
-	switch entityStatus {
-	case Active:
-		return "Active"
-	case Disabled:
-		return "Disabled"
-	case Candidate:
-		return "Candidate"
-	default:
-		return ""
-	}
-}
 
 const (
 

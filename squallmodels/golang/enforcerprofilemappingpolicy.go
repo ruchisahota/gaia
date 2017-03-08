@@ -70,7 +70,7 @@ type EnforcerProfileMappingPolicy struct {
 	Protected bool `json:"protected" bson:"protected"`
 
 	// Status represents the status of the object.
-	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
+	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
 
 	// Subject is the subject of the policy.
 	Subject [][]string `json:"subject" bson:"subject"`
@@ -88,7 +88,7 @@ func NewEnforcerProfileMappingPolicy() *EnforcerProfileMappingPolicy {
 		ModelVersion:   1.0,
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Status:         gaiaconstants.Active,
+		Status:         gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -192,12 +192,12 @@ func (o *EnforcerProfileMappingPolicy) GetProtected() bool {
 }
 
 // GetStatus returns the status of the receiver
-func (o *EnforcerProfileMappingPolicy) GetStatus() gaiaconstants.EntityStatus {
+func (o *EnforcerProfileMappingPolicy) GetStatus() gaiaconstants.PolicyStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *EnforcerProfileMappingPolicy) SetStatus(status gaiaconstants.EntityStatus) {
+func (o *EnforcerProfileMappingPolicy) SetStatus(status gaiaconstants.PolicyStatus) {
 	o.Status = status
 }
 
@@ -412,7 +412,7 @@ var EnforcerProfileMappingPolicyAttributesMap = map[string]elemental.AttributeSp
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.Active,
+		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
 		Description:    `Status represents the status of the object.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -421,7 +421,7 @@ var EnforcerProfileMappingPolicyAttributesMap = map[string]elemental.AttributeSp
 		Orderable:      true,
 		Setter:         true,
 		Stored:         true,
-		SubType:        "status_enum",
+		SubType:        "policy_status",
 		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{

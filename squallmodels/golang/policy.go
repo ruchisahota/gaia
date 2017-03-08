@@ -105,7 +105,7 @@ type Policy struct {
 	Relation []string `json:"relation" bson:"relation"`
 
 	// Status represents the status of the object.
-	Status gaiaconstants.EntityStatus `json:"status" bson:"status"`
+	Status gaiaconstants.PolicyStatus `json:"status" bson:"status"`
 
 	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
 	Subject [][]string `json:"subject" bson:"subject"`
@@ -128,7 +128,7 @@ func NewPolicy() *Policy {
 		AllSubjectTags: []string{},
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
-		Status:         gaiaconstants.Active,
+		Status:         gaiaconstants.PolicyStatusEnabled,
 	}
 }
 
@@ -232,12 +232,12 @@ func (o *Policy) GetProtected() bool {
 }
 
 // GetStatus returns the status of the receiver
-func (o *Policy) GetStatus() gaiaconstants.EntityStatus {
+func (o *Policy) GetStatus() gaiaconstants.PolicyStatus {
 	return o.Status
 }
 
 // SetStatus set the given status of the receiver
-func (o *Policy) SetStatus(status gaiaconstants.EntityStatus) {
+func (o *Policy) SetStatus(status gaiaconstants.PolicyStatus) {
 	o.Status = status
 }
 
@@ -494,7 +494,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		DefaultValue:   gaiaconstants.Active,
+		DefaultValue:   gaiaconstants.PolicyStatusEnabled,
 		Description:    `Status represents the status of the object.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -503,7 +503,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Setter:         true,
 		Stored:         true,
-		SubType:        "status_enum",
+		SubType:        "policy_status",
 		Type:           "external",
 	},
 	"Subject": elemental.AttributeSpecification{

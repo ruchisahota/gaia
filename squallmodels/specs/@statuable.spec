@@ -29,7 +29,7 @@
             "secret": null,
             "setter": true,
             "stored": true,
-            "subtype": "status_enum",
+            "subtype": "policy_status",
             "transient": null,
             "type": "external",
             "unique": null,
