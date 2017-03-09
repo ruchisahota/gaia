@@ -76,8 +76,11 @@ type EnforcerProfile struct {
 	// DockerSocketType is the type of socket to use to talk to the docker daemon.
 	DockerSocketType EnforcerProfileDockerSocketTypeValue `json:"dockerSocketType" bson:"dockersockettype"`
 
-	// kubernetesEnable enables  kubernetes mode for the enforcer.
-	KubernetesEnable bool `json:"kubernetesEnable" bson:"kubernetesenable"`
+	// KubernetesSupportEnabled enables kubernetes mode for the enforcer.
+	KubernetesSupportEnabled bool `json:"kubernetesSupportEnabled" bson:"kubernetessupportenabled"`
+
+	// LinuxProcessesSupportEnabled configures support for Linux processes.
+	LinuxProcessesSupportEnabled bool `json:"linuxProcessesSupportEnabled" bson:"linuxprocessessupportenabled"`
 
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
@@ -106,11 +109,8 @@ type EnforcerProfile struct {
 	// ReceiverQueueSize is the queue size of the receiver
 	ReceiverQueueSize int `json:"receiverQueueSize" bson:"receiverqueuesize"`
 
-	// RemoteEnforcer inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.
-	RemoteEnforcer bool `json:"remoteEnforcer" bson:"remoteenforcer"`
-
-	// SupportLinuxProcesses configures support for Linux processes.
-	SupportLinuxProcesses bool `json:"supportLinuxProcesses" bson:"supportlinuxprocesses"`
+	// RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.
+	RemoteEnforcerEnabled bool `json:"remoteEnforcerEnabled" bson:"remoteenforcerenabled"`
 
 	// TargetNetworks is the list of networks that authorization should be applied.
 	TargetNetworks []string `json:"targetNetworks" bson:"targetnetworks"`
@@ -141,15 +141,15 @@ func NewEnforcerProfile() *EnforcerProfile {
 		AssociatedTags:                []string{},
 		DockerSocketAddress:           "/var/run/docker.sock",
 		DockerSocketType:              "unix",
-		KubernetesEnable:              false,
+		KubernetesSupportEnabled:      false,
+		LinuxProcessesSupportEnabled:  false,
 		NormalizedTags:                []string{},
 		PolicySynchronizationInterval: "10m",
 		ProxyListenAddress:            ":9443",
 		ReceiverNumberOfQueues:        4,
 		ReceiverQueue:                 0,
 		ReceiverQueueSize:             500,
-		RemoteEnforcer:                false,
-		SupportLinuxProcesses:         false,
+		RemoteEnforcerEnabled:         false,
 		TransmitterNumberOfQueues:     4,
 		TransmitterQueue:              4,
 		TransmitterQueueSize:          500,
@@ -488,14 +488,23 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "enum",
 	},
-	"KubernetesEnable": elemental.AttributeSpecification{
+	"KubernetesSupportEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		DefaultValue:   false,
-		Description:    `kubernetesEnable enables  kubernetes mode for the enforcer.`,
+		Description:    `KubernetesSupportEnabled enables kubernetes mode for the enforcer.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "kubernetesEnable",
+		Name:           "kubernetesSupportEnabled",
 		Orderable:      true,
+		Stored:         true,
+		Type:           "boolean",
+	},
+	"LinuxProcessesSupportEnabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		DefaultValue:   false,
+		Description:    `LinuxProcessesSupportEnabled configures support for Linux processes.`,
+		Exposed:        true,
+		Name:           "linuxProcessesSupportEnabled",
 		Stored:         true,
 		Type:           "boolean",
 	},
@@ -620,23 +629,14 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "integer",
 	},
-	"RemoteEnforcer": elemental.AttributeSpecification{
+	"RemoteEnforcerEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		DefaultValue:   false,
-		Description:    `RemoteEnforcer inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.`,
+		Description:    `RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "remoteEnforcer",
+		Name:           "remoteEnforcerEnabled",
 		Orderable:      true,
-		Stored:         true,
-		Type:           "boolean",
-	},
-	"SupportLinuxProcesses": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		DefaultValue:   false,
-		Description:    `SupportLinuxProcesses configures support for Linux processes.`,
-		Exposed:        true,
-		Name:           "supportLinuxProcesses",
 		Stored:         true,
 		Type:           "boolean",
 	},
