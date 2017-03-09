@@ -79,6 +79,11 @@ func (o *DependencyMap) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *DependencyMap) Doc() string {
+	return `dependencymap creates a map of dependencies.`
+}
+
 func (o *DependencyMap) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

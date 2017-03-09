@@ -71,6 +71,11 @@ func (o *ComputedPolicy) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *ComputedPolicy) Doc() string {
+	return `Policies computed by the system from a dependency map view`
+}
+
 func (o *ComputedPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

@@ -101,6 +101,11 @@ func (o *MapNode) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *MapNode) Doc() string {
+	return `MapNode describes a resource for the map.`
+}
+
 func (o *MapNode) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

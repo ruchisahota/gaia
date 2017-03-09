@@ -109,6 +109,11 @@ func (o *ExternalService) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *ExternalService) Doc() string {
+	return `ExternalService are services that are external to the system.`
+}
+
 func (o *ExternalService) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

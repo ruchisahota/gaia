@@ -105,6 +105,11 @@ func (o *FilePath) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *FilePath) Doc() string {
+	return `FilePath is the path to the file system.`
+}
+
 func (o *FilePath) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

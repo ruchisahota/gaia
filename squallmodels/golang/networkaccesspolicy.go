@@ -127,6 +127,11 @@ func (o *NetworkAccessPolicy) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *NetworkAccessPolicy) Doc() string {
+	return `.`
+}
+
 func (o *NetworkAccessPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

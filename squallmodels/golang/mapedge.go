@@ -83,6 +83,11 @@ func (o *MapEdge) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *MapEdge) Doc() string {
+	return `MapEdge describes a dependency between two resources.`
+}
+
 func (o *MapEdge) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

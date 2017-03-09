@@ -65,6 +65,11 @@ func (o *Root) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Root) Doc() string {
+	return `Root object of the API`
+}
+
 func (o *Root) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

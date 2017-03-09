@@ -154,6 +154,11 @@ func (o *Policy) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Policy) Doc() string {
+	return `Policy that describes the set of rules to be applied when an event happens in the system. For example, policy can be defined to authorize an API call.`
+}
+
 func (o *Policy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

@@ -153,6 +153,11 @@ func (o *Enforcer) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Enforcer) Doc() string {
+	return `Server runs all the containers.`
+}
+
 func (o *Enforcer) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

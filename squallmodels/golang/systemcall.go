@@ -99,6 +99,11 @@ func (o *SystemCall) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *SystemCall) Doc() string {
+	return `SystemCall represents a system call.`
+}
+
 func (o *SystemCall) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

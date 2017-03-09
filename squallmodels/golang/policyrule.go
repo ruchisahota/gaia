@@ -103,6 +103,11 @@ func (o *PolicyRule) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *PolicyRule) Doc() string {
+	return `PolicyRules describes the set of rules applied on a Subject.`
+}
+
 func (o *PolicyRule) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

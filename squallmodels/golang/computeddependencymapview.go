@@ -105,6 +105,11 @@ func (o *ComputedDependencyMapView) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *ComputedDependencyMapView) Doc() string {
+	return `Compute some dependency map views from a dependency map`
+}
+
 func (o *ComputedDependencyMapView) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

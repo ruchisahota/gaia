@@ -81,6 +81,11 @@ func (o *RenderedPolicy) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *RenderedPolicy) Doc() string {
+	return `RenderedPolicies attached to the given set of Subjects.`
+}
+
 func (o *RenderedPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

@@ -99,6 +99,11 @@ func (o *Namespace) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Namespace) Doc() string {
+	return `Namespace attached to an user.`
+}
+
 func (o *Namespace) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

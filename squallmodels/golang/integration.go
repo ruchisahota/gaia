@@ -135,6 +135,11 @@ func (o *Integration) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Integration) Doc() string {
+	return `Integration defines the all the configuration needed to integrate Squall with any 3rd party servers`
+}
+
 func (o *Integration) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

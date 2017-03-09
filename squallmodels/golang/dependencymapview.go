@@ -124,6 +124,11 @@ func (o *DependencyMapView) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *DependencyMapView) Doc() string {
+	return `A DependencyMapView is used to store the various for the dependency map using a bunch of selectors.`
+}
+
 func (o *DependencyMapView) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

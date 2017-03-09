@@ -75,6 +75,11 @@ func (o *DependencyMapSubview) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *DependencyMapSubview) Doc() string {
+	return `A DependencyMapSubview is subview of a DependencyMapView`
+}
+
 func (o *DependencyMapSubview) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

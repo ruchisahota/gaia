@@ -132,6 +132,11 @@ func (o *FlowStatistic) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *FlowStatistic) Doc() string {
+	return `FlowStatistic retrieves the flows between two nodes in a specified interval of time.`
+}
+
 func (o *FlowStatistic) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

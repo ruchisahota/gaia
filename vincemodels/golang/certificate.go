@@ -130,6 +130,11 @@ func (o *Certificate) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Certificate) Doc() string {
+	return `A User represents the owner of some certificates.`
+}
+
 func (o *Certificate) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
