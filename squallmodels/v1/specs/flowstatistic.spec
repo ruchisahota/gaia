@@ -330,7 +330,7 @@
         "aliases": [],
         "create": false,
         "delete": false,
-        "description": "Returns network access statistics on a particular processing unit.",
+        "description": "Returns network access statistics on a particular processing unit or group of processing units based on their tags.",
         "entity_name": "FlowStatistic",
         "extends": [
             "@identifiable-nopk-nostored"
