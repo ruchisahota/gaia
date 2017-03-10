@@ -51,7 +51,7 @@
             "@identifiable-nopk-stored"
         ],
         "get": true,
-        "package": "Infrastructure",
+        "package": "Namespace",
         "resource_name": "namespaces",
         "rest_name": "namespace",
         "root": null,
