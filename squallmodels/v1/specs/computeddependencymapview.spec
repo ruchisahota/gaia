@@ -85,7 +85,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Visialization",
+        "package": "Platform",
         "resource_name": "computeddependencymapviews",
         "rest_name": "computeddependencymapview",
         "root": null,
