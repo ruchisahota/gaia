@@ -144,12 +144,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "rpols",
-            "rpol"
+            "rpol",
+            "rpols"
         ],
         "create": false,
         "delete": false,
-        "description": "RenderedPolicies attached to the given set of Subjects.",
+        "description": "Retrieve the aggregated policies applied to a particular processing unit.",
         "entity_name": "RenderedPolicy",
         "extends": [],
         "get": false,
