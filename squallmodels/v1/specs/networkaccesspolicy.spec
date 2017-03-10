@@ -214,8 +214,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "netpol",
-            "netpols"
+            "netpols",
+            "netpol"
         ],
         "create": null,
         "delete": true,
@@ -230,7 +230,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Compute",
         "resource_name": "networkaccesspolicies",
         "rest_name": "networkaccesspolicy",
         "root": null,
