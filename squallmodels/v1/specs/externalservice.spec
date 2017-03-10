@@ -109,8 +109,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "extsrvs",
-            "extsrv"
+            "extsrv",
+            "extsrvs"
         ],
         "create": false,
         "delete": true,
@@ -123,7 +123,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Compute",
         "resource_name": "externalservices",
         "rest_name": "externalservice",
         "root": null,
