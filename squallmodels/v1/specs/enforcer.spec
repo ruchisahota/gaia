@@ -273,7 +273,7 @@
         "aliases": [],
         "create": false,
         "delete": true,
-        "description": "An Enforcer represents a compute node that is managed by Aporeto. They are automatically created when you register an Aporeto agent. A Enforcer has its own certificate that is used by the Aporeto Agent to identify and authenticate itself with the system.  A Enforcer is using a Enforcer Profile to determine its configuration. Enforcer Profiles are assigned to a Enforcer using its tags and a Enforcer Profiles Mapping Policy that will decide what profile to use.",
+        "description": "A Enforcer Profile contains a configuration for a Enforcer. It contains various parameters, like what network should not policeds, what processing units should be ignored based on their tags and so on. It also contains more advanced parameters to fine tune the Agent. A Enforcer will decide what profile to apply using aEnforcer Profile Mapping Policy. This policy will decide according the Enforcer's tags what profile to use. If an Enforcer tags are matching more than a single policy, it will refuse to start. Some parameters will be applied directly to a running agent, some will need to restart it.",
         "entity_name": "Enforcer",
         "extends": [
             "@base",
