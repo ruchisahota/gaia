@@ -26,6 +26,7 @@
             "primary_key": null,
             "read_only": null,
             "required": null,
+            "secret": false,
             "setter": null,
             "stored": true,
             "subtype": "network_access_policies_list",
@@ -37,9 +38,10 @@
     ],
     "children": [],
     "model": {
+        "aliases": [],
         "create": null,
         "delete": false,
-        "description": "Policies computed by the system from a dependency map view",
+        "description": "[nodoc]",
         "entity_name": "ComputedPolicy",
         "extends": [
             "@identifiable-nopk-nostored"
