@@ -1,13 +1,15 @@
 init: codegen
 default: codegen
 
-codegen:
-	@echo '* Generating Squall models'
+codegen: codegen_v1
+
+codegen_v1:
+	@echo '* Generating Squall models v1'
 	rm -rf codegen
-	monogen -f specs -L elemental
-	monogen -f specs -L html
-	rm -f ./golang/*.go && cp codegen/elemental/*.go ./golang
-	rm -rf ./apidoc/* && cp -a codegen/html/* ./apidoc
+	monogen -f v1/specs -L elemental
+	monogen -f v1/specs -L html
+	rm -f ./v1/golang/*.go && cp codegen/elemental/*.go ./v1/golang
+	rm -rf ./v1/apidoc/* && cp -a codegen/html/* ./v1/apidoc
 	rm -rf codegen
 
 publish:
