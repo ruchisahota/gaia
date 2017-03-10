@@ -193,7 +193,7 @@
         "entity_name": "APICheck",
         "extends": [],
         "get": false,
-        "package": null,
+        "package": "Policies",
         "resource_name": "apichecks",
         "rest_name": "apicheck",
         "root": null,
