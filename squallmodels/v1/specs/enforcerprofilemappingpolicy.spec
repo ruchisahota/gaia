@@ -74,12 +74,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "srvpol",
-            "srvpols"
+            "srvpols",
+            "srvpol"
         ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "Allows to assign an Enforcer Profile to some Enforcers. It will make the relation using the Enforcer's tags and the Enforcer Profile tag. If more than one profile is matching the tags, the policy will be resolved and the enforcers will not start.",
         "entity_name": "EnforcerProfileMappingPolicy",
         "extends": [
             "@base",
@@ -90,7 +90,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": null,
+        "package": "System",
         "resource_name": "enforcerprofilemappingpolicies",
         "rest_name": "enforcerprofilemappingpolicy",
         "root": null,
