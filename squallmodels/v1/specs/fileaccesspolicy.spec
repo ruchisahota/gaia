@@ -262,7 +262,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Storage",
         "resource_name": "fileaccesspolicies",
         "rest_name": "fileaccesspolicy",
         "root": null,
