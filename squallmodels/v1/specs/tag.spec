@@ -117,7 +117,7 @@
             "@identifiable-nopk-stored"
         ],
         "get": false,
-        "package": "Policies",
+        "package": "Authorization",
         "resource_name": "tags",
         "rest_name": "tag",
         "root": null,
