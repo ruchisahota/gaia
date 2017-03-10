@@ -220,7 +220,7 @@
         "entity_name": "SyscallAccess",
         "extends": [],
         "get": false,
-        "package": null,
+        "package": "Platform",
         "resource_name": "syscallaccesses",
         "rest_name": "syscallaccess",
         "root": null,
