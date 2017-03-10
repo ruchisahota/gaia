@@ -328,7 +328,7 @@
             "@named"
         ],
         "get": false,
-        "package": "Policies",
+        "package": "System",
         "resource_name": "policyrules",
         "rest_name": "policyrule",
         "root": null,
