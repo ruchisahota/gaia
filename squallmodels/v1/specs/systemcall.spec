@@ -14,7 +14,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Syste,",
         "resource_name": "systemcalls",
         "rest_name": "systemcall",
         "root": null,
