@@ -637,6 +637,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "profiles",
             "profile"
         ],
         "create": null,
