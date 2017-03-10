@@ -136,6 +136,11 @@ func (o *APIAuthorizationPolicy) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *APIAuthorizationPolicy) Doc() string {
+	return `An API Authorization Policy defines what kind of operations a user of a system can do in a namespace. The operations can be any combination of GET, POST, PUT, DELETE,PATCH or HEAD. By default, an API Authorization Policy will only give permissions in the context of the current namespace but you can make it propagate to all the child namespaces.  It is also possible restrict permissions to apply only on a particular subset of the apis by setting the target identities.`
+}
+
 func (o *APIAuthorizationPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

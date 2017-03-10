@@ -105,7 +105,7 @@ func (o *PolicyRule) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *PolicyRule) Doc() string {
-	return `PolicyRules describes the set of rules applied on a Subject.`
+	return `[nodoc]`
 }
 
 func (o *PolicyRule) String() string {

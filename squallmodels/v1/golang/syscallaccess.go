@@ -83,6 +83,11 @@ func (o *SyscallAccess) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *SyscallAccess) Doc() string {
+	return `[nodoc]`
+}
+
 func (o *SyscallAccess) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

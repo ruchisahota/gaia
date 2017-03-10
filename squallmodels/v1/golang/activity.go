@@ -94,6 +94,11 @@ func (o *Activity) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Activity) Doc() string {
+	return `Contains all the activity log that happened in a namespace. All sucessful or failed actions will be available, and eventual errors as well as the claims of the user who triggered the actiions. This log is capped and only keeps the last 50k entries by default. `
+}
+
 func (o *Activity) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

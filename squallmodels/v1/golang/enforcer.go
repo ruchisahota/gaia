@@ -155,7 +155,7 @@ func (o *Enforcer) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *Enforcer) Doc() string {
-	return `Server runs all the containers.`
+	return `A Enforcer Profile contains a configuration for a Enforcer. It contains various parameters, like what network should not policeds, what processing units should be ignored based on their tags and so on. It also contains more advanced parameters to fine tune the Agent. A Enforcer will decide what profile to apply using aEnforcer Profile Mapping Policy. This policy will decide according the Enforcer's tags what profile to use. If an Enforcer tags are matching more than a single policy, it will refuse to start. Some parameters will be applied directly to a running agent, some will need to restart it.`
 }
 
 func (o *Enforcer) String() string {

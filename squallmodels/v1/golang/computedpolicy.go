@@ -73,7 +73,7 @@ func (o *ComputedPolicy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *ComputedPolicy) Doc() string {
-	return `Policies computed by the system from a dependency map view`
+	return `[nodoc]`
 }
 
 func (o *ComputedPolicy) String() string {

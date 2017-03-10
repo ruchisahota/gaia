@@ -107,6 +107,11 @@ func (o *APICheck) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *APICheck) Doc() string {
+	return `This API allows to verify is a client identitied by his token is allowed to do some operations on some apis. For example, it allows third party system to impersonate a user and ensure a proxfied request should be allowed.`
+}
+
 func (o *APICheck) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

@@ -114,6 +114,11 @@ func (o *EnforcerProfileMappingPolicy) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *EnforcerProfileMappingPolicy) Doc() string {
+	return `A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used by and Aporeto Agent based on the Enforcer that have been used during the registration. The policy can also be propagated down to the child namespace.`
+}
+
 func (o *EnforcerProfileMappingPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

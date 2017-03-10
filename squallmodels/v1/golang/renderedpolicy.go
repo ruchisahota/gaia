@@ -83,7 +83,7 @@ func (o *RenderedPolicy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *RenderedPolicy) Doc() string {
-	return `RenderedPolicies attached to the given set of Subjects.`
+	return `Retrieve the aggregated policies applied to a particular processing unit.`
 }
 
 func (o *RenderedPolicy) String() string {

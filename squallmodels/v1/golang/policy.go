@@ -156,7 +156,7 @@ func (o *Policy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *Policy) Doc() string {
-	return `Policy that describes the set of rules to be applied when an event happens in the system. For example, policy can be defined to authorize an API call.`
+	return `[nodoc]`
 }
 
 func (o *Policy) String() string {

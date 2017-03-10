@@ -103,7 +103,7 @@ func (o *MapNode) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *MapNode) Doc() string {
-	return `MapNode describes a resource for the map.`
+	return `[nodoc]`
 }
 
 func (o *MapNode) String() string {

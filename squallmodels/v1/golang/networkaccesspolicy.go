@@ -129,7 +129,7 @@ func (o *NetworkAccessPolicy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *NetworkAccessPolicy) Doc() string {
-	return `.`
+	return `Allows to define networking policies to allow or prevent processing units identitied by their tags to talk to other processing units or external services (also identified by their tags).`
 }
 
 func (o *NetworkAccessPolicy) String() string {

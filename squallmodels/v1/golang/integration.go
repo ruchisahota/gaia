@@ -137,7 +137,7 @@ func (o *Integration) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *Integration) Doc() string {
-	return `Integration defines the all the configuration needed to integrate Squall with any 3rd party servers`
+	return `[EXPERIMENTAL]`
 }
 
 func (o *Integration) String() string {

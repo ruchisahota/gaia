@@ -134,7 +134,7 @@ func (o *FlowStatistic) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *FlowStatistic) Doc() string {
-	return `FlowStatistic retrieves the flows between two nodes in a specified interval of time.`
+	return `Returns network access statistics on a particular processing unit or group of processing units based on their tags.`
 }
 
 func (o *FlowStatistic) String() string {

@@ -126,7 +126,7 @@ func (o *DependencyMapView) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *DependencyMapView) Doc() string {
-	return `A DependencyMapView is used to store the various for the dependency map using a bunch of selectors.`
+	return `Allows to create a view to apply on a dependency map view. It is possible to ask the dependency map view to group all the processing units based on a primary selector, which is a tag's key, then to subgroup them based on a secondary selector.`
 }
 
 func (o *DependencyMapView) String() string {

@@ -107,7 +107,7 @@ func (o *FilePath) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *FilePath) Doc() string {
-	return `FilePath is the path to the file system.`
+	return `A File Path represents a random path to a file or a folder. They can be used in aFile Access Policiesin order to allow Processing Units to access them, using various modes (read, write, execute). You will need to use the File Paths tags to set some policies. A good example would bevolume=web or file=/etc/passwd.`
 }
 
 func (o *FilePath) String() string {

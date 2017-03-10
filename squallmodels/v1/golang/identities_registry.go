@@ -219,13 +219,15 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"apiauths":   APIAuthorizationPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
+	"apiauths":   APIAuthorizationPolicyIdentity,
 	"fps":        FilePathIdentity,
 	"fp":         FilePathIdentity,
 	"ns":         NamespaceIdentity,
-	"extsrvs":    ExternalServiceIdentity,
 	"extsrv":     ExternalServiceIdentity,
+	"extsrvs":    ExternalServiceIdentity,
+	"profiles":   EnforcerProfileIdentity,
+	"profile":    EnforcerProfileIdentity,
 	"rpols":      RenderedPolicyIdentity,
 	"rpol":       RenderedPolicyIdentity,
 	"nsmaps":     NamespaceMappingPolicyIdentity,
@@ -260,8 +262,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case APIAuthorizationPolicyIdentity:
 		return []string{
-			"apiauths",
 			"apiauth",
+			"apiauths",
 		}
 	case SyscallAccessIdentity:
 		return []string{}
@@ -290,8 +292,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ExternalServiceIdentity:
 		return []string{
-			"extsrvs",
 			"extsrv",
+			"extsrvs",
 		}
 	case PolicyIdentity:
 		return []string{}
@@ -302,7 +304,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case SystemCallIdentity:
 		return []string{}
 	case EnforcerProfileIdentity:
-		return []string{}
+		return []string{
+			"profiles",
+			"profile",
+		}
 	case ComputedDependencyMapViewIdentity:
 		return []string{}
 	case RenderedPolicyIdentity:

@@ -85,7 +85,7 @@ func (o *MapEdge) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *MapEdge) Doc() string {
-	return `MapEdge describes a dependency between two resources.`
+	return `[nodoc]`
 }
 
 func (o *MapEdge) String() string {

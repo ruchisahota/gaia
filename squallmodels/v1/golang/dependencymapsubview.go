@@ -77,7 +77,7 @@ func (o *DependencyMapSubview) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *DependencyMapSubview) Doc() string {
-	return `A DependencyMapSubview is subview of a DependencyMapView`
+	return `[nodoc]`
 }
 
 func (o *DependencyMapSubview) String() string {

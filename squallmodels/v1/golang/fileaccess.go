@@ -96,6 +96,11 @@ func (o *FileAccess) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *FileAccess) Doc() string {
+	return `Returns file access statistics on a particular processing unit.`
+}
+
 func (o *FileAccess) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

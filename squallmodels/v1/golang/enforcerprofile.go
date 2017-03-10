@@ -180,6 +180,11 @@ func (o *EnforcerProfile) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *EnforcerProfile) Doc() string {
+	return `Allows to create reusable configuration profile for your enforcers. Enforcer Profiles contains various startup information that can (for some) be updated live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile Mapping Policy.`
+}
+
 func (o *EnforcerProfile) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
