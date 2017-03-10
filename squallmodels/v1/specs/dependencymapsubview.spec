@@ -115,7 +115,7 @@
         "entity_name": "DependencyMapSubview",
         "extends": [],
         "get": false,
-        "package": "Vizualization",
+        "package": "Platform",
         "resource_name": "dependencymapsubviews",
         "rest_name": "dependencymapsubview",
         "root": null,
