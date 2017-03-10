@@ -336,7 +336,7 @@
             "@identifiable-nopk-nostored"
         ],
         "get": false,
-        "package": "Visualization",
+        "package": "Platform",
         "resource_name": "flowstatistics",
         "rest_name": "flowstatistic",
         "root": null,
