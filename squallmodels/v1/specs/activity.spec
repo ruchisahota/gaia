@@ -292,7 +292,7 @@
             "@identifiable-pk-stored"
         ],
         "get": true,
-        "package": null,
+        "package": "System",
         "resource_name": "activities",
         "rest_name": "activity",
         "root": null,
