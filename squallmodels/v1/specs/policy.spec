@@ -258,7 +258,7 @@
         "aliases": [],
         "create": false,
         "delete": true,
-        "description": "Policy that describes the set of rules to be applied when an event happens in the system. For example, policy can be defined to authorize an API call.",
+        "description": "[nodoc]",
         "entity_name": "Policy",
         "extends": [
             "@base",
