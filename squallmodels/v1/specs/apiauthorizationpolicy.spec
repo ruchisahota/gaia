@@ -319,12 +319,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "apiauths",
-            "apiauth"
+            "apiauth",
+            "apiauths"
         ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "Allows to define who can do what based on the identity contained in their token. You can for example tell a particular group of people (claims) can only do read operations on a defined list of entities, based on their identity. As every other policies, they can propagate to child namespaces.",
         "entity_name": "APIAuthorizationPolicy",
         "extends": [
             "@base",
