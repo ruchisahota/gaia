@@ -216,7 +216,7 @@
         "aliases": [],
         "create": null,
         "delete": false,
-        "description": null,
+        "description": "[nodoc]",
         "entity_name": "SyscallAccess",
         "extends": [],
         "get": false,
