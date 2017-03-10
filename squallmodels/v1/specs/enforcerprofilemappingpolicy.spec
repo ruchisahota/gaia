@@ -74,12 +74,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "srvpols",
-            "srvpol"
+            "srvpol",
+            "srvpols"
         ],
         "create": null,
         "delete": true,
-        "description": "Allows to assign an Enforcer Profile to some Enforcers. It will make the relation using the Enforcer's tags and the Enforcer Profile tag. If more than one profile is matching the tags, the policy will be resolved and the enforcers will not start.",
+        "description": "A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used by and Aporeto Agent based on the Enforcer that have been used during the registration. The policy can also be propagated down to the child namespace.",
         "entity_name": "EnforcerProfileMappingPolicy",
         "extends": [
             "@base",
