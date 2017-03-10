@@ -308,8 +308,8 @@
     ],
     "model": {
         "aliases": [
-            "pu",
-            "pus"
+            "pus",
+            "pu"
         ],
         "create": false,
         "delete": true,
@@ -322,7 +322,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Processing Units",
+        "package": "Compute",
         "resource_name": "processingunits",
         "rest_name": "processingunit",
         "root": null,
