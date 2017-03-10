@@ -214,12 +214,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "netpols",
-            "netpol"
+            "netpol",
+            "netpols"
         ],
         "create": null,
         "delete": true,
-        "description": ".",
+        "description": "Allows to define networking policies to allow or prevent processing units identitied by their tags to talk to other processing units or external services (also identified by their tags).",
         "entity_name": "NetworkAccessPolicy",
         "extends": [
             "@base",
