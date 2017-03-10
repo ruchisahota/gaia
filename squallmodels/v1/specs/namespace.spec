@@ -51,7 +51,7 @@
             "@identifiable-nopk-stored"
         ],
         "get": true,
-        "package": "Namespace",
+        "package": "Authorization",
         "resource_name": "namespaces",
         "rest_name": "namespace",
         "root": null,
