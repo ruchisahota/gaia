@@ -192,7 +192,7 @@
             "@named"
         ],
         "get": false,
-        "package": "Visualization",
+        "package": "Platform",
         "resource_name": "mapnodes",
         "rest_name": "mapnode",
         "root": null,
