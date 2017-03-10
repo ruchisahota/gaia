@@ -308,12 +308,12 @@
     ],
     "model": {
         "aliases": [
-            "pus",
-            "pu"
+            "pu",
+            "pus"
         ],
         "create": false,
         "delete": true,
-        "description": "ProcessingUnits is the container that gets instantiated on the server.",
+        "description": "A Processing Unit reprents anything that can compute. It can be a Docker container, or a simple Unix process. They are created, updated and deleted by the system as they come and go. You can only modify its tags.  Processing Units use Network Access Policies to define which other Processing Units or External Services they can communicate with andFile Access Policies to define what File Paths they can use.",
         "entity_name": "ProcessingUnit",
         "extends": [
             "@base",
