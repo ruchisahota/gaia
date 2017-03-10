@@ -47,7 +47,7 @@
             "@identifiable-nopk-nostored"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Platform",
         "resource_name": "computedpolicies",
         "rest_name": "computedpolicy",
         "root": null,
