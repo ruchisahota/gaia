@@ -319,8 +319,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "apiauths",
-            "apiauth"
+            "apiauth",
+            "apiauths"
         ],
         "create": null,
         "delete": true,
@@ -335,7 +335,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Authorization",
         "resource_name": "apiauthorizationpolicies",
         "rest_name": "apiauthorizationpolicy",
         "root": null,
