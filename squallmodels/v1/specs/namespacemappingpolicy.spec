@@ -74,10 +74,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "nspolicy",
-            "nspolicies",
+            "nsmaps",
             "nsmap",
-            "nsmaps"
+            "nspolicies",
+            "nspolicy"
         ],
         "create": null,
         "delete": true,
@@ -91,7 +91,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Compute",
         "resource_name": "namespacemappingpolicies",
         "rest_name": "namespacemappingpolicy",
         "root": null,
