@@ -144,8 +144,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "rpol",
-            "rpols"
+            "rpols",
+            "rpol"
         ],
         "create": false,
         "delete": false,
@@ -153,7 +153,7 @@
         "entity_name": "RenderedPolicy",
         "extends": [],
         "get": false,
-        "package": "Policies",
+        "package": "Compute",
         "resource_name": "renderedpolicies",
         "rest_name": "renderedpolicy",
         "root": false,
