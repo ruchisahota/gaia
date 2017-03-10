@@ -184,7 +184,7 @@
         "aliases": [],
         "create": false,
         "delete": false,
-        "description": "MapNode describes a resource for the map.",
+        "description": "[nodoc]",
         "entity_name": "MapNode",
         "extends": [
             "@described",
