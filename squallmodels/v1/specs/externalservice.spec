@@ -109,12 +109,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "extsrv",
-            "extsrvs"
+            "extsrvs",
+            "extsrv"
         ],
         "create": false,
         "delete": true,
-        "description": "Allows to declare random external networks or hosts that can be used in Network Access Policies. For instance, you can declare a external service called \"internet\" with a netwok set \"0.0.0.0/0\" and ports set to \"80\" to represent an external HTTP connection.",
+        "description": "An External Service represents a random network or ip that is not managed by the system. They can be used in Network Access Policies in order to allow traffic from or to the declared network or IP, using the provided protocol and port or ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0 as address, and 1-65000 for the ports. You will need to use the External Services tags to set some policies. A good example would benet=any or net=intranet.",
         "entity_name": "ExternalService",
         "extends": [
             "@base",
