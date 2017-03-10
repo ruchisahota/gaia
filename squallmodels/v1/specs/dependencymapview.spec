@@ -158,7 +158,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Visualization",
+        "package": "Platform",
         "resource_name": "dependencymapviews",
         "rest_name": "dependencymapview",
         "root": null,
