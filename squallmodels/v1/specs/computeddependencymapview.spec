@@ -26,6 +26,7 @@
             "primary_key": null,
             "read_only": null,
             "required": true,
+            "secret": false,
             "setter": null,
             "stored": true,
             "subtype": "dependencymapview",
@@ -60,6 +61,7 @@
             "primary_key": null,
             "read_only": null,
             "required": true,
+            "secret": false,
             "setter": null,
             "stored": true,
             "subtype": "processingunit_transient_tags_map",
@@ -71,9 +73,10 @@
     ],
     "children": [],
     "model": {
+        "aliases": [],
         "create": null,
         "delete": true,
-        "description": "Compute some dependency map views from a dependency map",
+        "description": "[nodoc]",
         "entity_name": "ComputedDependencyMapView",
         "extends": [
             "@base",
