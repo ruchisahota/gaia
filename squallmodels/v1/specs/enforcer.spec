@@ -273,7 +273,7 @@
         "aliases": [],
         "create": false,
         "delete": true,
-        "description": "Server runs all the containers.",
+        "description": "Enforcers represent the Aporeto Enforcers that are running on your servers and that are responsible to apply all the declared policies on containers or linux processes. You don't need to create them, as the enforcer binary will do it during the registration process.",
         "entity_name": "Enforcer",
         "extends": [
             "@base",
@@ -282,7 +282,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Infrastructure",
+        "package": "System",
         "resource_name": "enforcers",
         "rest_name": "enforcer",
         "root": null,
