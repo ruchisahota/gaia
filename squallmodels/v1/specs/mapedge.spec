@@ -153,7 +153,7 @@
             "@named"
         ],
         "get": false,
-        "package": "Visualization",
+        "package": "Platform",
         "resource_name": "mapedges",
         "rest_name": "mapedge",
         "root": null,
