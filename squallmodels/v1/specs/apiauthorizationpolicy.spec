@@ -319,12 +319,12 @@
     "children": [],
     "model": {
         "aliases": [
-            "apiauth",
-            "apiauths"
+            "apiauths",
+            "apiauth"
         ],
         "create": null,
         "delete": true,
-        "description": "Allows to define who can do what based on the identity contained in their token. You can for example tell a particular group of people (claims) can only do read operations on a defined list of entities, based on their identity. As every other policies, they can propagate to child namespaces.",
+        "description": "An API Authorization Policy defines what kind of operations a user of a system can do in a namespace. The operations can be any combination of GET, POST, PUT, DELETE,PATCH or HEAD. By default, an API Authorization Policy will only give permissions in the context of the current namespace but you can make it propagate to all the child namespaces.  It is also possible restrict permissions to apply only on a particular subset of the apis by setting the target identities.",
         "entity_name": "APIAuthorizationPolicy",
         "extends": [
             "@base",
