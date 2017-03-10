@@ -188,14 +188,14 @@
         "aliases": [],
         "create": null,
         "delete": true,
-        "description": "Allows to declare a file, a folder or volume that can be used in File Access Policies to allow a processing unit to read, write or execute the represented item.",
+        "description": "[EXPERIMENTAL]",
         "entity_name": "Integration",
         "extends": [
             "@base",
             "@identifiable-pk-stored"
         ],
         "get": true,
-        "package": "Infrastructure",
+        "package": "Compute",
         "resource_name": "integrations",
         "rest_name": "integration",
         "root": null,
