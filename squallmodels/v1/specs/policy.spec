@@ -269,7 +269,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "System",
         "resource_name": "policies",
         "rest_name": "policy",
         "root": null,
