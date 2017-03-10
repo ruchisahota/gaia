@@ -273,7 +273,7 @@
         "aliases": [],
         "create": false,
         "delete": true,
-        "description": "Enforcers represent the Aporeto Enforcers that are running on your servers and that are responsible to apply all the declared policies on containers or linux processes. You don't need to create them, as the enforcer binary will do it during the registration process.",
+        "description": "An Enforcer represents a compute node that is managed by Aporeto. They are automatically created when you register an Aporeto agent. A Enforcer has its own certificate that is used by the Aporeto Agent to identify and authenticate itself with the system.  A Enforcer is using a Enforcer Profile to determine its configuration. Enforcer Profiles are assigned to a Enforcer using its tags and a Enforcer Profiles Mapping Policy that will decide what profile to use.",
         "entity_name": "Enforcer",
         "extends": [
             "@base",
