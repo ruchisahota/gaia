@@ -74,8 +74,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "fp",
-            "fps"
+            "fps",
+            "fp"
         ],
         "create": false,
         "delete": true,
@@ -88,7 +88,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Storage",
         "resource_name": "filepaths",
         "rest_name": "filepath",
         "root": null,
