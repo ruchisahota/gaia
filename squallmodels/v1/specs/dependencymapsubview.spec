@@ -111,7 +111,7 @@
         "aliases": [],
         "create": null,
         "delete": false,
-        "description": "Allows to create a view to apply on a dependency map view. It is possible to ask the dependency map view to group all the processing units based on a primary selector, which is a tag's key, then to subgroup them based on a secondary selector.",
+        "description": "[nodoc]",
         "entity_name": "DependencyMapSubview",
         "extends": [],
         "get": false,
