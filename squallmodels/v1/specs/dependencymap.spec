@@ -117,7 +117,7 @@
             "@identifiable-nopk-nostored"
         ],
         "get": false,
-        "package": "Visualization",
+        "package": "Platform",
         "resource_name": "dependencymaps",
         "rest_name": "dependencymap",
         "root": null,
