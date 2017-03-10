@@ -2,9 +2,10 @@
     "attributes": [],
     "children": [],
     "model": {
+        "aliases": [],
         "create": false,
         "delete": true,
-        "description": "SystemCall represents a system call.",
+        "description": "[nodoc]",
         "entity_name": "SystemCall",
         "extends": [
             "@base",
