@@ -251,7 +251,7 @@
         "aliases": [],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "A File Access Policy allows Processing Units to access various folder and files. It will use the tags of a File Path to know what is the path of the file or folder to allow access to. You can allow the Processing Unit to have any combination of read, write or execute. Note: When a Processing Unit is Docker container, then it will police the volumes mount. executewon't have any effect. Note: File path are not supported yet for standard Linux processes.",
         "entity_name": "FileAccessPolicy",
         "extends": [
             "@base",
