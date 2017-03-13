@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // NetworkAccessPolicyIdentity represents the Identity of the object
@@ -90,6 +92,8 @@ type NetworkAccessPolicy struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewNetworkAccessPolicy returns a new *NetworkAccessPolicy
@@ -248,13 +252,13 @@ func (o *NetworkAccessPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (NetworkAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*NetworkAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return NetworkAccessPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (NetworkAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*NetworkAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return NetworkAccessPolicyAttributesMap
 }

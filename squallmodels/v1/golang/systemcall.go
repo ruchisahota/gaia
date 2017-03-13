@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // SystemCallIdentity represents the Identity of the object
@@ -63,6 +65,8 @@ type SystemCall struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewSystemCall returns a new *SystemCall
@@ -101,7 +105,9 @@ func (o *SystemCall) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *SystemCall) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *SystemCall) String() string {
@@ -190,13 +196,13 @@ func (o *SystemCall) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (SystemCall) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*SystemCall) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return SystemCallAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (SystemCall) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*SystemCall) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return SystemCallAttributesMap
 }

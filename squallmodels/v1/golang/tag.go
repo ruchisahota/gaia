@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // TagIdentity represents the Identity of the object
 var TagIdentity = elemental.Identity{
 	Name:     "tag",
@@ -43,6 +45,8 @@ type Tag struct {
 	Value string `json:"value" bson:"value"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewTag returns a new *Tag
@@ -117,13 +121,13 @@ func (o *Tag) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Tag) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Tag) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return TagAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Tag) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Tag) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return TagAttributesMap
 }

@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // APICheckOperationValue represents the possible values for attribute "operation".
 type APICheckOperationValue string
 
@@ -72,6 +74,8 @@ type APICheck struct {
 	Token string `json:"token" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewAPICheck returns a new *APICheck
@@ -163,13 +167,13 @@ func (o *APICheck) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (APICheck) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*APICheck) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return APICheckAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (APICheck) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*APICheck) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return APICheckAttributesMap
 }

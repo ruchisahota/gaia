@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // ActivityIdentity represents the Identity of the object
@@ -60,6 +62,8 @@ type Activity struct {
 	TargetIdentity string `json:"targetIdentity" bson:"targetidentity"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewActivity returns a new *Activity
@@ -122,13 +126,13 @@ func (o *Activity) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Activity) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Activity) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ActivityAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Activity) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Activity) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ActivityAttributesMap
 }

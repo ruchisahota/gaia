@@ -3,6 +3,8 @@ package zackmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // ReportIdentity represents the Identity of the object
 var ReportIdentity = elemental.Identity{
 	Name:     "report",
@@ -43,6 +45,8 @@ type Report struct {
 	Value float64 `json:"value" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewReport returns a new *Report
@@ -100,13 +104,13 @@ func (o *Report) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Report) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Report) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ReportAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Report) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ReportAttributesMap
 }

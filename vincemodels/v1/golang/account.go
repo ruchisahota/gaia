@@ -3,6 +3,8 @@ package vincemodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // AccountStatusValue represents the possible values for attribute "status".
@@ -113,6 +115,8 @@ type Account struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewAccount returns a new *Account
@@ -191,13 +195,13 @@ func (o *Account) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Account) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Account) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return AccountAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Account) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Account) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return AccountAttributesMap
 }

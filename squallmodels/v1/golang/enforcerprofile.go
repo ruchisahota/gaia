@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // EnforcerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
@@ -128,6 +130,8 @@ type EnforcerProfile struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewEnforcerProfile returns a new *EnforcerProfile
@@ -351,13 +355,13 @@ func (o *EnforcerProfile) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (EnforcerProfile) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*EnforcerProfile) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return EnforcerProfileAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (EnforcerProfile) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*EnforcerProfile) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return EnforcerProfileAttributesMap
 }

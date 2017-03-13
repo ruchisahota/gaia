@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // EnforcerCertificateStatusValue represents the possible values for attribute "certificateStatus".
@@ -115,6 +117,8 @@ type Enforcer struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewEnforcer returns a new *Enforcer
@@ -264,13 +268,13 @@ func (o *Enforcer) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Enforcer) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Enforcer) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return EnforcerAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Enforcer) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Enforcer) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return EnforcerAttributesMap
 }

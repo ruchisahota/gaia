@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // SyscallAccessIdentity represents the Identity of the object
 var SyscallAccessIdentity = elemental.Identity{
 	Name:     "syscallaccess",
@@ -49,6 +51,8 @@ type SyscallAccess struct {
 	Propagate bool `json:"propagate" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewSyscallAccess returns a new *SyscallAccess
@@ -85,7 +89,9 @@ func (o *SyscallAccess) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *SyscallAccess) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *SyscallAccess) String() string {
@@ -111,13 +117,13 @@ func (o *SyscallAccess) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (SyscallAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*SyscallAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return SyscallAccessAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (SyscallAccess) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*SyscallAccess) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return SyscallAccessAttributesMap
 }

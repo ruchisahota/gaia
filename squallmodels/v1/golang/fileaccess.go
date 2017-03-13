@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // FileAccessModeValue represents the possible values for attribute "mode".
 type FileAccessModeValue string
 
@@ -63,6 +65,8 @@ type FileAccess struct {
 	Protocol string `json:"protocol" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewFileAccess returns a new *FileAccess
@@ -128,13 +132,13 @@ func (o *FileAccess) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FileAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*FileAccess) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FileAccessAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (FileAccess) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*FileAccess) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return FileAccessAttributesMap
 }

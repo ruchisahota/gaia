@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // DependencyMapIdentity represents the Identity of the object
 var DependencyMapIdentity = elemental.Identity{
 	Name:     "dependencymap",
@@ -43,6 +45,8 @@ type DependencyMap struct {
 	Nodes map[string]*MapNode `json:"nodes" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewDependencyMap returns a new *DependencyMap
@@ -131,13 +135,13 @@ func (o *DependencyMap) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (DependencyMap) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*DependencyMap) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return DependencyMapAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (DependencyMap) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*DependencyMap) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return DependencyMapAttributesMap
 }

@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // ComputedPolicyIdentity represents the Identity of the object
 var ComputedPolicyIdentity = elemental.Identity{
 	Name:     "computedpolicy",
@@ -37,6 +39,8 @@ type ComputedPolicy struct {
 	NetworkAccessPolicies []*NetworkAccessPolicy `json:"networkAccessPolicies" bson:"networkaccesspolicies"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewComputedPolicy returns a new *ComputedPolicy
@@ -73,7 +77,9 @@ func (o *ComputedPolicy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *ComputedPolicy) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *ComputedPolicy) String() string {
@@ -99,13 +105,13 @@ func (o *ComputedPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ComputedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*ComputedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ComputedPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ComputedPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*ComputedPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ComputedPolicyAttributesMap
 }

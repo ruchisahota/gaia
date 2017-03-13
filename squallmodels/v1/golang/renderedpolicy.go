@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
 
 // RenderedPolicyIdentity represents the Identity of the object
@@ -45,6 +47,8 @@ type RenderedPolicy struct {
 	Profile map[string]string `json:"profile" bson:"profile"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewRenderedPolicy returns a new *RenderedPolicy
@@ -109,13 +113,13 @@ func (o *RenderedPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (RenderedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*RenderedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return RenderedPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (RenderedPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*RenderedPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return RenderedPolicyAttributesMap
 }

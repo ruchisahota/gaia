@@ -3,6 +3,8 @@ package vincemodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // CertificateStatusValue represents the possible values for attribute "status".
@@ -95,6 +97,8 @@ type Certificate struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewCertificate returns a new *Certificate
@@ -190,13 +194,13 @@ func (o *Certificate) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Certificate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Certificate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return CertificateAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Certificate) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Certificate) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return CertificateAttributesMap
 }

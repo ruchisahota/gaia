@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // EnforcerProfileMappingPolicyIdentity represents the Identity of the object
@@ -78,6 +80,8 @@ type EnforcerProfileMappingPolicy struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewEnforcerProfileMappingPolicy returns a new *EnforcerProfileMappingPolicy
@@ -251,13 +255,13 @@ func (o *EnforcerProfileMappingPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (EnforcerProfileMappingPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*EnforcerProfileMappingPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return EnforcerProfileMappingPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (EnforcerProfileMappingPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*EnforcerProfileMappingPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return EnforcerProfileMappingPolicyAttributesMap
 }

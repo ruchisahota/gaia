@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // PolicyRuleIdentity represents the Identity of the object
 var PolicyRuleIdentity = elemental.Identity{
 	Name:     "policyrule",
@@ -64,6 +66,8 @@ type PolicyRule struct {
 	TagClauses [][]string `json:"tagClauses" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewPolicyRule returns a new *PolicyRule
@@ -105,7 +109,9 @@ func (o *PolicyRule) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *PolicyRule) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *PolicyRule) String() string {
@@ -149,13 +155,13 @@ func (o *PolicyRule) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (PolicyRule) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*PolicyRule) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return PolicyRuleAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (PolicyRule) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*PolicyRule) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return PolicyRuleAttributesMap
 }

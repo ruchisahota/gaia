@@ -3,6 +3,8 @@ package vincemodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // ActivateIdentity represents the Identity of the object
 var ActivateIdentity = elemental.Identity{
 	Name:     "activate",
@@ -34,6 +36,8 @@ type Activate struct {
 	Token string `json:"token" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewActivate returns a new *Activate
@@ -90,13 +94,13 @@ func (o *Activate) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Activate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Activate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ActivateAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Activate) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Activate) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ActivateAttributesMap
 }

@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // APIAuthorizationPolicyIdentity represents the Identity of the object
@@ -99,6 +101,8 @@ type APIAuthorizationPolicy struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewAPIAuthorizationPolicy returns a new *APIAuthorizationPolicy
@@ -273,13 +277,13 @@ func (o *APIAuthorizationPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (APIAuthorizationPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*APIAuthorizationPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return APIAuthorizationPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (APIAuthorizationPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*APIAuthorizationPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return APIAuthorizationPolicyAttributesMap
 }

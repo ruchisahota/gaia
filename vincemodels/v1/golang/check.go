@@ -3,6 +3,8 @@ package vincemodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // CheckIdentity represents the Identity of the object
 var CheckIdentity = elemental.Identity{
 	Name:     "check",
@@ -31,6 +33,8 @@ func (o ChecksList) List() elemental.IdentifiablesList {
 // Check represents the model of a check
 type Check struct {
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewCheck returns a new *Check
@@ -87,13 +91,13 @@ func (o *Check) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Check) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Check) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return CheckAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Check) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Check) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return CheckAttributesMap
 }

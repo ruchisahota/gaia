@@ -3,6 +3,8 @@ package midgardmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "github.com/aporeto-inc/midgard-lib/claims"
 
 // AuthIdentity represents the Identity of the object
@@ -36,6 +38,8 @@ type Auth struct {
 	Claims *claims.MidgardClaims `json:"claims" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewAuth returns a new *Auth
@@ -93,13 +97,13 @@ func (o *Auth) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Auth) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Auth) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return AuthAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Auth) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Auth) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return AuthAttributesMap
 }

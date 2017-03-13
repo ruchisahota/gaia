@@ -3,6 +3,8 @@ package midgardmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // RootIdentity represents the Identity of the object
@@ -31,6 +33,8 @@ type Root struct {
 	Token        string  `json:"APIKey,omitempty"`
 	Organization string  `json:"enterprise,omitempty"`
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewRoot returns a new *Root
@@ -145,13 +149,13 @@ func (o *Root) SetAPIKey(key string) {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return RootAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Root) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Root) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return RootAttributesMap
 }

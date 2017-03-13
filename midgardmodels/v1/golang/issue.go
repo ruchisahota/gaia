@@ -3,6 +3,8 @@ package midgardmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // IssueRealmValue represents the possible values for attribute "realm".
 type IssueRealmValue string
 
@@ -72,6 +74,8 @@ type Issue struct {
 	Validity string `json:"validity" bson:"validity"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewIssue returns a new *Issue
@@ -138,13 +142,13 @@ func (o *Issue) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Issue) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Issue) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return IssueAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Issue) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Issue) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return IssueAttributesMap
 }

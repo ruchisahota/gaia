@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // PolicyTypeValue represents the possible values for attribute "type".
@@ -116,6 +118,8 @@ type Policy struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewPolicy returns a new *Policy
@@ -156,7 +160,9 @@ func (o *Policy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *Policy) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *Policy) String() string {
@@ -295,13 +301,13 @@ func (o *Policy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Policy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Policy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return PolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Policy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Policy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return PolicyAttributesMap
 }

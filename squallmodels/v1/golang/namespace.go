@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // NamespaceIdentity represents the Identity of the object
@@ -63,6 +65,8 @@ type Namespace struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewNamespace returns a new *Namespace
@@ -189,13 +193,13 @@ func (o *Namespace) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Namespace) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Namespace) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return NamespaceAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Namespace) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Namespace) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return NamespaceAttributesMap
 }

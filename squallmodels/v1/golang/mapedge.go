@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // MapEdgeIdentity represents the Identity of the object
 var MapEdgeIdentity = elemental.Identity{
 	Name:     "mapedge",
@@ -49,6 +51,8 @@ type MapEdge struct {
 	SourceID string `json:"sourceID" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewMapEdge returns a new *MapEdge
@@ -85,7 +89,9 @@ func (o *MapEdge) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *MapEdge) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *MapEdge) String() string {
@@ -129,13 +135,13 @@ func (o *MapEdge) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (MapEdge) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*MapEdge) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return MapEdgeAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (MapEdge) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*MapEdge) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return MapEdgeAttributesMap
 }

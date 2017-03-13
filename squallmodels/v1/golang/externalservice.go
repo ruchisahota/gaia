@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // ExternalServiceIdentity represents the Identity of the object
@@ -72,6 +74,8 @@ type ExternalService struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewExternalService returns a new *ExternalService
@@ -228,13 +232,13 @@ func (o *ExternalService) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ExternalService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*ExternalService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ExternalServiceAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ExternalService) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*ExternalService) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ExternalServiceAttributesMap
 }

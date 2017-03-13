@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // MapNodeTypeValue represents the possible values for attribute "type".
 type MapNodeTypeValue string
 
@@ -66,6 +68,8 @@ type MapNode struct {
 	VulnerabilityLevel string `json:"vulnerabilityLevel" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewMapNode returns a new *MapNode
@@ -103,7 +107,9 @@ func (o *MapNode) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *MapNode) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *MapNode) String() string {
@@ -151,13 +157,13 @@ func (o *MapNode) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (MapNode) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*MapNode) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return MapNodeAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (MapNode) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*MapNode) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return MapNodeAttributesMap
 }

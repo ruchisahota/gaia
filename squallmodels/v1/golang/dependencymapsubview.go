@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // DependencyMapSubviewIdentity represents the Identity of the object
 var DependencyMapSubviewIdentity = elemental.Identity{
 	Name:     "dependencymapsubview",
@@ -40,6 +42,8 @@ type DependencyMapSubview struct {
 	Tonality string `json:"tonality" bson:"tonality"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewDependencyMapSubview returns a new *DependencyMapSubview
@@ -77,7 +81,9 @@ func (o *DependencyMapSubview) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *DependencyMapSubview) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *DependencyMapSubview) String() string {
@@ -103,13 +109,13 @@ func (o *DependencyMapSubview) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (DependencyMapSubview) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*DependencyMapSubview) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return DependencyMapSubviewAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (DependencyMapSubview) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*DependencyMapSubview) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return DependencyMapSubviewAttributesMap
 }

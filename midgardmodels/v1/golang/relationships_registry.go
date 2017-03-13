@@ -2,6 +2,8 @@ package midgardmodels
 
 import "github.com/aporeto-inc/elemental"
 
+const nodocString = "[nodoc]"
+
 var relationshipsRegistry elemental.RelationshipsRegistry
 
 // Relationships returns the model relationships.

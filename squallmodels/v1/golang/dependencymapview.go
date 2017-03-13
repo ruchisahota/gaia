@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // DependencyMapViewTypeValue represents the possible values for attribute "type".
@@ -86,6 +88,8 @@ type DependencyMapView struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewDependencyMapView returns a new *DependencyMapView
@@ -227,13 +231,13 @@ func (o *DependencyMapView) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (DependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*DependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return DependencyMapViewAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (DependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*DependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return DependencyMapViewAttributesMap
 }

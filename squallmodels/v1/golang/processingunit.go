@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
@@ -118,6 +120,8 @@ type ProcessingUnit struct {
 	Vulnerabilities []string `json:"-" bson:"vulnerabilities"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewProcessingUnit returns a new *ProcessingUnit
@@ -254,13 +258,13 @@ func (o *ProcessingUnit) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ProcessingUnitAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ProcessingUnitAttributesMap
 }

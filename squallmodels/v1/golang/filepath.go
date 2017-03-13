@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // FilePathIdentity represents the Identity of the object
@@ -69,6 +71,8 @@ type FilePath struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewFilePath returns a new *FilePath
@@ -212,13 +216,13 @@ func (o *FilePath) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*FilePath) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FilePathAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (FilePath) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*FilePath) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return FilePathAttributesMap
 }

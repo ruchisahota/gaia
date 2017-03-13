@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // FlowStatisticMetricValue represents the possible values for attribute "metric".
 type FlowStatisticMetricValue string
 
@@ -94,6 +96,8 @@ type FlowStatistic struct {
 	UserIdentifier string `json:"userIdentifier" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewFlowStatistic returns a new *FlowStatistic
@@ -172,13 +176,13 @@ func (o *FlowStatistic) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FlowStatistic) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*FlowStatistic) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FlowStatisticAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (FlowStatistic) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*FlowStatistic) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return FlowStatisticAttributesMap
 }

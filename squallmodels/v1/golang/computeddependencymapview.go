@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // ComputedDependencyMapViewIdentity represents the Identity of the object
@@ -69,6 +71,8 @@ type ComputedDependencyMapView struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewComputedDependencyMapView returns a new *ComputedDependencyMapView
@@ -107,7 +111,9 @@ func (o *ComputedDependencyMapView) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *ComputedDependencyMapView) Doc() string {
-	return `[nodoc]`
+
+	return nodocString
+
 }
 
 func (o *ComputedDependencyMapView) String() string {
@@ -212,13 +218,13 @@ func (o *ComputedDependencyMapView) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*ComputedDependencyMapView) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return ComputedDependencyMapViewAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (ComputedDependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*ComputedDependencyMapView) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return ComputedDependencyMapViewAttributesMap
 }

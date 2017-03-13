@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // IntegrationAuthTypeValue represents the possible values for attribute "authType".
@@ -97,6 +99,8 @@ type Integration struct {
 	UserName string `json:"userName" bson:"username"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewIntegration returns a new *Integration
@@ -216,13 +220,13 @@ func (o *Integration) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Integration) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return IntegrationAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Integration) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Integration) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return IntegrationAttributesMap
 }

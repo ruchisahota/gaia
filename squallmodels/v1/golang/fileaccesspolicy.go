@@ -3,6 +3,8 @@ package squallmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 import "time"
 
 // FileAccessPolicyIdentity represents the Identity of the object
@@ -93,6 +95,8 @@ type FileAccessPolicy struct {
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewFileAccessPolicy returns a new *FileAccessPolicy
@@ -250,13 +254,13 @@ func (o *FileAccessPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (FileAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*FileAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return FileAccessPolicyAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (FileAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*FileAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return FileAccessPolicyAttributesMap
 }
