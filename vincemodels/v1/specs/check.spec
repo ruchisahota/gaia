@@ -2,9 +2,10 @@
     "attributes": [],
     "children": [],
     "model": {
+        "aliases": [],
         "create": null,
         "delete": false,
-        "description": null,
+        "description": "[nodoc]",
         "entity_name": "Check",
         "extends": [],
         "get": false,
