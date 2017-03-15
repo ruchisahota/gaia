@@ -3,6 +3,7 @@
         {
             "allowed_chars": null,
             "allowed_choices": [
+                "AWSIdentity",
                 "Certificate",
                 "Facebook",
                 "Github",
@@ -34,6 +35,7 @@
             "primary_key": null,
             "read_only": false,
             "required": true,
+            "secret": false,
             "setter": null,
             "stored": false,
             "subtype": null,
@@ -45,6 +47,7 @@
     ],
     "children": [],
     "model": {
+        "aliases": [],
         "create": null,
         "delete": false,
         "description": null,
