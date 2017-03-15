@@ -68,6 +68,13 @@ func (o *Check) Version() float64 {
 	return 1.0
 }
 
+// Doc returns the documentation for the object
+func (o *Check) Doc() string {
+
+	return nodocString
+
+}
+
 func (o *Check) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
