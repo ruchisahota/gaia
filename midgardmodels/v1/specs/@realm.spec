@@ -3,7 +3,7 @@
         {
             "allowed_chars": null,
             "allowed_choices": [
-                "AWSIdentity",
+                "AWSIdentityDocument",
                 "Certificate",
                 "Facebook",
                 "Github",
