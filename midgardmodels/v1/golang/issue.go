@@ -9,8 +9,8 @@ import "sync"
 type IssueRealmValue string
 
 const (
-	// IssueRealmAwsidentity represents the value AWSIdentity.
-	IssueRealmAwsidentity IssueRealmValue = "AWSIdentity"
+	// IssueRealmAwsidentitydocument represents the value AWSIdentityDocument.
+	IssueRealmAwsidentitydocument IssueRealmValue = "AWSIdentityDocument"
 
 	// IssueRealmCertificate represents the value Certificate.
 	IssueRealmCertificate IssueRealmValue = "Certificate"
@@ -125,7 +125,7 @@ func (o *Issue) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("realm", string(o.Realm), []string{"AWSIdentity", "Certificate", "Facebook", "Github", "Google", "LDAP", "Twitter", "Vince"}, false); err != nil {
+	if err := elemental.ValidateStringInList("realm", string(o.Realm), []string{"AWSIdentityDocument", "Certificate", "Facebook", "Github", "Google", "LDAP", "Twitter", "Vince"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -179,7 +179,7 @@ var IssueAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Realm": elemental.AttributeSpecification{
-		AllowedChoices: []string{"AWSIdentity", "Certificate", "Facebook", "Github", "Google", "LDAP", "Twitter", "Vince"},
+		AllowedChoices: []string{"AWSIdentityDocument", "Certificate", "Facebook", "Github", "Google", "LDAP", "Twitter", "Vince"},
 		Description:    `Realm is the realm`,
 		Exposed:        true,
 		Name:           "realm",
