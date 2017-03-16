@@ -15,9 +15,10 @@
         }
     ],
     "model": {
+        "aliases": [],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "[nodoc]",
         "entity_name": "Root",
         "extends": [],
         "get": true,
