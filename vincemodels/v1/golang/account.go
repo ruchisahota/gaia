@@ -66,6 +66,9 @@ type Account struct {
 	// LDAPBindPassword holds the password to the LDAPBindDN.
 	LDAPBindPassword string `json:"LDAPBindPassword" bson:"ldapbindpassword"`
 
+	// LDAPCertificateAuthority contains the optional certificate authority that will be used to connect to the LDAP server. It is not needed if the TLS certificate of the LDAP is issued from a public truster CA.
+	LDAPCertificateAuthority string `json:"LDAPCertificateAuthority" bson:"ldapcertificateauthority"`
+
 	// LDAPEnabled triggers if the account uses it's own LDAP for authentication.
 	LDAPEnabled bool `json:"LDAPEnabled" bson:"ldapenabled"`
 
@@ -263,6 +266,17 @@ var AccountAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Format:         "free",
 		Name:           "LDAPBindPassword",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"LDAPCertificateAuthority": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LDAPCertificateAuthority contains the optional certificate authority that will be used to connect to the LDAP server. It is not needed if the TLS certificate of the LDAP is issued from a public truster CA.`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "LDAPCertificateAuthority",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
