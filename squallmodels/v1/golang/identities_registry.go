@@ -111,6 +111,77 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	}
 }
 
+// IdentifiableForCategory returns a new instance of the Identifiable for the given category name.
+func IdentifiableForCategory(category string) elemental.Identifiable {
+
+	switch category {
+	case APICheckIdentity.Category:
+		return NewAPICheck()
+	case MapNodeIdentity.Category:
+		return NewMapNode()
+	case DependencyMapSubviewIdentity.Category:
+		return NewDependencyMapSubview()
+	case APIAuthorizationPolicyIdentity.Category:
+		return NewAPIAuthorizationPolicy()
+	case SyscallAccessIdentity.Category:
+		return NewSyscallAccess()
+	case ComputedPolicyIdentity.Category:
+		return NewComputedPolicy()
+	case TagIdentity.Category:
+		return NewTag()
+	case EnforcerIdentity.Category:
+		return NewEnforcer()
+	case MapEdgeIdentity.Category:
+		return NewMapEdge()
+	case FilePathIdentity.Category:
+		return NewFilePath()
+	case FileAccessIdentity.Category:
+		return NewFileAccess()
+	case NamespaceIdentity.Category:
+		return NewNamespace()
+	case IntegrationIdentity.Category:
+		return NewIntegration()
+	case PolicyRuleIdentity.Category:
+		return NewPolicyRule()
+	case ExternalServiceIdentity.Category:
+		return NewExternalService()
+	case PolicyIdentity.Category:
+		return NewPolicy()
+	case FlowStatisticIdentity.Category:
+		return NewFlowStatistic()
+	case FileAccessPolicyIdentity.Category:
+		return NewFileAccessPolicy()
+	case SystemCallIdentity.Category:
+		return NewSystemCall()
+	case EnforcerProfileIdentity.Category:
+		return NewEnforcerProfile()
+	case ComputedDependencyMapViewIdentity.Category:
+		return NewComputedDependencyMapView()
+	case RenderedPolicyIdentity.Category:
+		return NewRenderedPolicy()
+	case NamespaceMappingPolicyIdentity.Category:
+		return NewNamespaceMappingPolicy()
+	case ProcessingUnitIdentity.Category:
+		return NewProcessingUnit()
+	case DependencyMapViewIdentity.Category:
+		return NewDependencyMapView()
+	case DependencyMapIdentity.Category:
+		return NewDependencyMap()
+	case VulnerabilityIdentity.Category:
+		return NewVulnerability()
+	case EnforcerProfileMappingPolicyIdentity.Category:
+		return NewEnforcerProfileMappingPolicy()
+	case ActivityIdentity.Category:
+		return NewActivity()
+	case RootIdentity.Category:
+		return NewRoot()
+	case NetworkAccessPolicyIdentity.Category:
+		return NewNetworkAccessPolicy()
+	default:
+		return nil
+	}
+}
+
 // ContentIdentifiableForIdentity returns a new instance of a ContentIdentifiable for the given identity name.
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
@@ -174,6 +245,75 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 	case ActivityIdentity.Name:
 		return &ActivitiesList{}
 	case NetworkAccessPolicyIdentity.Name:
+		return &NetworkAccessPoliciesList{}
+	default:
+		return nil
+	}
+}
+
+// ContentIdentifiableForCategory returns a new instance of a ContentIdentifiable for the given category name.
+func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
+
+	switch category {
+	case APICheckIdentity.Category:
+		return &APIChecksList{}
+	case MapNodeIdentity.Category:
+		return &MapNodesList{}
+	case DependencyMapSubviewIdentity.Category:
+		return &DependencyMapSubviewsList{}
+	case APIAuthorizationPolicyIdentity.Category:
+		return &APIAuthorizationPoliciesList{}
+	case SyscallAccessIdentity.Category:
+		return &SyscallAccessList{}
+	case ComputedPolicyIdentity.Category:
+		return &ComputedPoliciesList{}
+	case TagIdentity.Category:
+		return &TagsList{}
+	case EnforcerIdentity.Category:
+		return &EnforcersList{}
+	case MapEdgeIdentity.Category:
+		return &MapEdgesList{}
+	case FilePathIdentity.Category:
+		return &FilePathsList{}
+	case FileAccessIdentity.Category:
+		return &FileAccessList{}
+	case NamespaceIdentity.Category:
+		return &NamespacesList{}
+	case IntegrationIdentity.Category:
+		return &IntegrationsList{}
+	case PolicyRuleIdentity.Category:
+		return &PolicyRulesList{}
+	case ExternalServiceIdentity.Category:
+		return &ExternalServicesList{}
+	case PolicyIdentity.Category:
+		return &PoliciesList{}
+	case FlowStatisticIdentity.Category:
+		return &FlowStatisticsList{}
+	case FileAccessPolicyIdentity.Category:
+		return &FileAccessPoliciesList{}
+	case SystemCallIdentity.Category:
+		return &SystemCallsList{}
+	case EnforcerProfileIdentity.Category:
+		return &EnforcerProfilesList{}
+	case ComputedDependencyMapViewIdentity.Category:
+		return &ComputedDependencyMapViewsList{}
+	case RenderedPolicyIdentity.Category:
+		return &RenderedPoliciesList{}
+	case NamespaceMappingPolicyIdentity.Category:
+		return &NamespaceMappingPoliciesList{}
+	case ProcessingUnitIdentity.Category:
+		return &ProcessingUnitsList{}
+	case DependencyMapViewIdentity.Category:
+		return &DependencyMapViewsList{}
+	case DependencyMapIdentity.Category:
+		return &DependencyMapsList{}
+	case VulnerabilityIdentity.Category:
+		return &VulnerabilitiesList{}
+	case EnforcerProfileMappingPolicyIdentity.Category:
+		return &EnforcerProfileMappingPoliciesList{}
+	case ActivityIdentity.Category:
+		return &ActivitiesList{}
+	case NetworkAccessPolicyIdentity.Category:
 		return &NetworkAccessPoliciesList{}
 	default:
 		return nil
