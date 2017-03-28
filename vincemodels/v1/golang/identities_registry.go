@@ -6,9 +6,10 @@ func init() {
 
 	elemental.RegisterIdentity(AccountIdentity)
 	elemental.RegisterIdentity(ActivateIdentity)
+	elemental.RegisterIdentity(CertificateIdentity)
+	elemental.RegisterIdentity(PasswordResetIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(CheckIdentity)
-	elemental.RegisterIdentity(CertificateIdentity)
 }
 
 // ModelVersion returns the current version of the model
@@ -22,12 +23,35 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAccount()
 	case ActivateIdentity.Name:
 		return NewActivate()
+	case CertificateIdentity.Name:
+		return NewCertificate()
+	case PasswordResetIdentity.Name:
+		return NewPasswordReset()
 	case RootIdentity.Name:
 		return NewRoot()
 	case CheckIdentity.Name:
 		return NewCheck()
-	case CertificateIdentity.Name:
+	default:
+		return nil
+	}
+}
+
+// IdentifiableForCategory returns a new instance of the Identifiable for the given category name.
+func IdentifiableForCategory(category string) elemental.Identifiable {
+
+	switch category {
+	case AccountIdentity.Category:
+		return NewAccount()
+	case ActivateIdentity.Category:
+		return NewActivate()
+	case CertificateIdentity.Category:
 		return NewCertificate()
+	case PasswordResetIdentity.Category:
+		return NewPasswordReset()
+	case RootIdentity.Category:
+		return NewRoot()
+	case CheckIdentity.Category:
+		return NewCheck()
 	default:
 		return nil
 	}
@@ -41,10 +65,31 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &AccountsList{}
 	case ActivateIdentity.Name:
 		return &ActivatesList{}
-	case CheckIdentity.Name:
-		return &ChecksList{}
 	case CertificateIdentity.Name:
 		return &CertificatesList{}
+	case PasswordResetIdentity.Name:
+		return &PasswordResetsList{}
+	case CheckIdentity.Name:
+		return &ChecksList{}
+	default:
+		return nil
+	}
+}
+
+// ContentIdentifiableForCategory returns a new instance of a ContentIdentifiable for the given category name.
+func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
+
+	switch category {
+	case AccountIdentity.Category:
+		return &AccountsList{}
+	case ActivateIdentity.Category:
+		return &ActivatesList{}
+	case CertificateIdentity.Category:
+		return &CertificatesList{}
+	case PasswordResetIdentity.Category:
+		return &PasswordResetsList{}
+	case CheckIdentity.Category:
+		return &ChecksList{}
 	default:
 		return nil
 	}
@@ -56,9 +101,10 @@ func AllIdentities() []elemental.Identity {
 	return []elemental.Identity{
 		AccountIdentity,
 		ActivateIdentity,
+		CertificateIdentity,
+		PasswordResetIdentity,
 		RootIdentity,
 		CheckIdentity,
-		CertificateIdentity,
 	}
 }
 
@@ -78,11 +124,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ActivateIdentity:
 		return []string{}
+	case CertificateIdentity:
+		return []string{}
+	case PasswordResetIdentity:
+		return []string{}
 	case RootIdentity:
 		return []string{}
 	case CheckIdentity:
-		return []string{}
-	case CertificateIdentity:
 		return []string{}
 	}
 

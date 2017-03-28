@@ -33,6 +33,24 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("activate")] = ActivateMainRelationship
 
 	//
+	// Main Relationship for certificate
+	//
+	CertificateMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("certificate")] = CertificateMainRelationship
+
+	//
+	// Main Relationship for passwordreset
+	//
+	PasswordResetMainRelationship := &elemental.Relationship{}
+
+	relationshipsRegistry[elemental.IdentityFromName("passwordreset")] = PasswordResetMainRelationship
+
+	//
 	// Main Relationship for root
 	//
 	RootMainRelationship := &elemental.Relationship{
@@ -75,6 +93,15 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+	// Children relationship for passwordreset in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("passwordreset"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
 
 	relationshipsRegistry[elemental.IdentityFromName("root")] = RootMainRelationship
 
@@ -84,16 +111,5 @@ func init() {
 	CheckMainRelationship := &elemental.Relationship{}
 
 	relationshipsRegistry[elemental.IdentityFromName("check")] = CheckMainRelationship
-
-	//
-	// Main Relationship for certificate
-	//
-	CertificateMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("certificate")] = CertificateMainRelationship
 
 }

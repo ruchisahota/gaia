@@ -27,6 +27,21 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	}
 }
 
+// IdentifiableForCategory returns a new instance of the Identifiable for the given category name.
+func IdentifiableForCategory(category string) elemental.Identifiable {
+
+	switch category {
+	case RootIdentity.Category:
+		return NewRoot()
+	case IssueIdentity.Category:
+		return NewIssue()
+	case AuthIdentity.Category:
+		return NewAuth()
+	default:
+		return nil
+	}
+}
+
 // ContentIdentifiableForIdentity returns a new instance of a ContentIdentifiable for the given identity name.
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
@@ -34,6 +49,19 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 	case IssueIdentity.Name:
 		return &IssuesList{}
 	case AuthIdentity.Name:
+		return &AuthsList{}
+	default:
+		return nil
+	}
+}
+
+// ContentIdentifiableForCategory returns a new instance of a ContentIdentifiable for the given category name.
+func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
+
+	switch category {
+	case IssueIdentity.Category:
+		return &IssuesList{}
+	case AuthIdentity.Category:
 		return &AuthsList{}
 	default:
 		return nil
