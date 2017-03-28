@@ -110,15 +110,15 @@
     "model": {
         "aliases": [],
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "PasswordReset",
         "extends": [],
-        "get": true,
+        "get": false,
         "package": null,
         "resource_name": "passwordreset",
         "rest_name": "passwordreset",
         "root": null,
-        "update": true
+        "update": false
     }
 }
