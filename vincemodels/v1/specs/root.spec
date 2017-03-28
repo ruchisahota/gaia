@@ -56,7 +56,7 @@
             "create": true,
             "delete": false,
             "deprecated": null,
-            "get": false,
+            "get": true,
             "relationship": "root",
             "rest_name": "passwordreset",
             "update": false
