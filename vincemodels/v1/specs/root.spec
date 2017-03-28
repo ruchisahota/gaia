@@ -48,6 +48,18 @@
             "relationship": "root",
             "rest_name": "check",
             "update": false
+        },
+        {
+            "bulk_create": false,
+            "bulk_delete": false,
+            "bulk_update": false,
+            "create": true,
+            "delete": false,
+            "deprecated": null,
+            "get": false,
+            "relationship": "root",
+            "rest_name": "passwordreset",
+            "update": false
         }
     ],
     "model": {
