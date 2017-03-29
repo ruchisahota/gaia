@@ -42,6 +42,17 @@ const (
 )
 
 const (
+	// UserLabelPrefix is the label prefix for all user defined labels
+	UserLabelPrefix = "@usr:"
+
+	// SystemLabelPrefix is the label prefix for all system defined labels
+	SystemLabelPrefix = "@sys:"
+
+	// AttributeLabelPrefix is the prefix for all attributes
+	AttributeLabelPrefix = "$"
+)
+
+const (
 
 	// StatsTagKeyDestinationID represents the destination ID tag.
 	StatsTagKeyDestinationID = "@destid"
@@ -68,7 +79,7 @@ const (
 	StatsTagKeyEvent = "@event"
 
 	// StatsTagKeyImage represents the image tag.
-	StatsTagKeyImage = "@image"
+	StatsTagKeyImage = "@sys:image"
 
 	// StatsTagKeyServerID represents the server ID tag.
 	StatsTagKeyServerID = "@serverid"
