@@ -5,7 +5,7 @@
         "aliases": [],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "Allows to get policy suggestions",
         "entity_name": "SuggestedPolicy",
         "extends": [],
         "get": true,
