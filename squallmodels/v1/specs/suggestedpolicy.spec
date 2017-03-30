@@ -39,6 +39,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "suggs",
             "sugg",
             "sugpols",
             "sugpol"
