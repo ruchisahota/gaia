@@ -21,6 +21,7 @@ func init() {
 	elemental.RegisterIdentity(ExternalServiceIdentity)
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
+	elemental.RegisterIdentity(SuggestedPolicyIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(EnforcerProfileIdentity)
@@ -78,6 +79,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPolicy()
 	case FlowStatisticIdentity.Name:
 		return NewFlowStatistic()
+	case SuggestedPolicyIdentity.Name:
+		return NewSuggestedPolicy()
 	case FileAccessPolicyIdentity.Name:
 		return NewFileAccessPolicy()
 	case SystemCallIdentity.Name:
@@ -149,6 +152,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewPolicy()
 	case FlowStatisticIdentity.Category:
 		return NewFlowStatistic()
+	case SuggestedPolicyIdentity.Category:
+		return NewSuggestedPolicy()
 	case FileAccessPolicyIdentity.Category:
 		return NewFileAccessPolicy()
 	case SystemCallIdentity.Category:
@@ -220,6 +225,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PoliciesList{}
 	case FlowStatisticIdentity.Name:
 		return &FlowStatisticsList{}
+	case SuggestedPolicyIdentity.Name:
+		return &SuggestedPoliciesList{}
 	case FileAccessPolicyIdentity.Name:
 		return &FileAccessPoliciesList{}
 	case SystemCallIdentity.Name:
@@ -289,6 +296,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &PoliciesList{}
 	case FlowStatisticIdentity.Category:
 		return &FlowStatisticsList{}
+	case SuggestedPolicyIdentity.Category:
+		return &SuggestedPoliciesList{}
 	case FileAccessPolicyIdentity.Category:
 		return &FileAccessPoliciesList{}
 	case SystemCallIdentity.Category:
@@ -341,6 +350,7 @@ func AllIdentities() []elemental.Identity {
 		ExternalServiceIdentity,
 		PolicyIdentity,
 		FlowStatisticIdentity,
+		SuggestedPolicyIdentity,
 		FileAccessPolicyIdentity,
 		SystemCallIdentity,
 		EnforcerProfileIdentity,
@@ -438,6 +448,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case PolicyIdentity:
 		return []string{}
 	case FlowStatisticIdentity:
+		return []string{}
+	case SuggestedPolicyIdentity:
 		return []string{}
 	case FileAccessPolicyIdentity:
 		return []string{}
