@@ -2,7 +2,9 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "sugpol"
+        ],
         "create": null,
         "delete": true,
         "description": "Allows to get policy suggestions",
