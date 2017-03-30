@@ -9,7 +9,7 @@
         "entity_name": "SuggestedPolicy",
         "extends": [],
         "get": true,
-        "package": null,
+        "package": "Compute",
         "resource_name": "suggestedpolicies",
         "rest_name": "suggestedpolicy",
         "root": null,
