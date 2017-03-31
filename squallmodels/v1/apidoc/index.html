@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Squall API Reference 1.0</title>
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/semantic.min.js"></script>
+
+    <script src="js/common.js"></script>
+</head>
+
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Squall API Documentation 1.0
+    </div>
+  </div>
+
+  <div class="ui grid stackable padded">
+    <div class="row">
+
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
+        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+      <div class="item">
+        <div class="header">Authorization</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apicheck.html');" title="API reference for apicheck">APICheck</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apiauthorizationpolicy.html');" title="API reference for apiauthorizationpolicy">APIAuthorizationPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('tag.html');" title="API reference for tag">Tag</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespace.html');" title="API reference for namespace">Namespace</a>
+          </div>
+        </div>
+</div>
+
+      <div class="item">
+        <div class="header">Compute</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('integration.html');" title="API reference for integration">Integration</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('externalservice.html');" title="API reference for externalservice">ExternalService</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('suggestedpolicy.html');" title="API reference for suggestedpolicy">SuggestedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('renderedpolicy.html');" title="API reference for renderedpolicy">RenderedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespacemappingpolicy.html');" title="API reference for namespacemappingpolicy">NamespaceMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('processingunit.html');" title="API reference for processingunit">ProcessingUnit</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('networkaccesspolicy.html');" title="API reference for networkaccesspolicy">NetworkAccessPolicy</a>
+          </div>
+        </div>
+</div>
+
+      <div class="item">
+        <div class="header">Platform</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccess.html');" title="API reference for fileaccess">FileAccess</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('flowstatistic.html');" title="API reference for flowstatistic">FlowStatistic</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymapview.html');" title="API reference for dependencymapview">DependencyMapView</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymap.html');" title="API reference for dependencymap">DependencyMap</a>
+          </div>
+        </div>
+</div>
+
+      <div class="item">
+        <div class="header">Storage</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('filepath.html');" title="API reference for filepath">FilePath</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccesspolicy.html');" title="API reference for fileaccesspolicy">FileAccessPolicy</a>
+          </div>
+        </div>
+</div>
+
+      <div class="item">
+        <div class="header">System</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcer.html');" title="API reference for enforcer">Enforcer</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofile.html');" title="API reference for enforcerprofile">EnforcerProfile</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofilemappingpolicy.html');" title="API reference for enforcerprofilemappingpolicy">EnforcerProfileMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('activity.html');" title="API reference for activity">Activity</a>
+          </div>
+        </div>
+</div>
+
+</div>
+      </div>
+
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+        <section>
+            <h2>Authorization</h2>
+            <div class="ui card">
+            <div class="content">
+            <a  id="apichecks"
+                href="javascript:goToURLWithCurrentParameters('apicheck.html');"
+                title="API reference for apicheck">APICheck</a>
+            <br>
+            <div class="meta">
+              This API allows to verify is a client identitied by his token is allowed to do some operations on some apis. For example, it allows third party system to impersonate a user and ensure a proxfied request should be allowed.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="apiauthorizationpolicies"
+                href="javascript:goToURLWithCurrentParameters('apiauthorizationpolicy.html');"
+                title="API reference for apiauthorizationpolicy">APIAuthorizationPolicy</a>
+            <br>
+            <div class="meta">
+              An API Authorization Policy defines what kind of operations a user of a system can do in a namespace. The operations can be any combination of GET, POST, PUT, DELETE,PATCH or HEAD. By default, an API Authorization Policy will only give permissions in the context of the current namespace but you can make it propagate to all the child namespaces.  It is also possible restrict permissions to apply only on a particular subset of the apis by setting the target identities.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="tags"
+                href="javascript:goToURLWithCurrentParameters('tag.html');"
+                title="API reference for tag">Tag</a>
+            <br>
+            <div class="meta">
+              A tag is a string in the form of "key=value" that can applied to all objects in the system. They are used for policy resolution. Tags starting by a "$" are derived from the property of an object (for instance an object with ID set to xxx and a name set to "the name" will be tagged by default with "$name=the name" and "$id=xxx"). Tags starting with an "@" have been generated by an external system.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="namespaces"
+                href="javascript:goToURLWithCurrentParameters('namespace.html');"
+                title="API reference for namespace">Namespace</a>
+            <br>
+            <div class="meta">
+              A Namespace represents the core organizational unit of the system. All objects always exists in a single namespace. A Namespace can also have child namespaces. They can be used to split the system into organizations, business units, applications, services or any combination you like.
+            </div>
+            </div>
+            </div>
+            <h2>Compute</h2>
+            <div class="ui card">
+            <div class="content">
+            <a  id="integrations"
+                href="javascript:goToURLWithCurrentParameters('integration.html');"
+                title="API reference for integration">Integration</a>
+            <br>
+            <div class="meta">
+              [EXPERIMENTAL]
+            </div>
+            </div>
+            <div class="content">
+            <a  id="externalservices"
+                href="javascript:goToURLWithCurrentParameters('externalservice.html');"
+                title="API reference for externalservice">ExternalService</a>
+            <br>
+            <div class="meta">
+              An External Service represents a random network or ip that is not managed by the system. They can be used in Network Access Policies in order to allow traffic from or to the declared network or IP, using the provided protocol and port or ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0 as address, and 1-65000 for the ports. You will need to use the External Services tags to set some policies. A good example would benet=any or net=intranet.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="suggestedpolicies"
+                href="javascript:goToURLWithCurrentParameters('suggestedpolicy.html');"
+                title="API reference for suggestedpolicy">SuggestedPolicy</a>
+            <br>
+            <div class="meta">
+              Allows to get policy suggestions
+            </div>
+            </div>
+            <div class="content">
+            <a  id="renderedpolicies"
+                href="javascript:goToURLWithCurrentParameters('renderedpolicy.html');"
+                title="API reference for renderedpolicy">RenderedPolicy</a>
+            <br>
+            <div class="meta">
+              Retrieve the aggregated policies applied to a particular processing unit.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="namespacemappingpolicies"
+                href="javascript:goToURLWithCurrentParameters('namespacemappingpolicy.html');"
+                title="API reference for namespacemappingpolicy">NamespaceMappingPolicy</a>
+            <br>
+            <div class="meta">
+              A Namespace Mapping Policy defines in which namespace aProcessing Unit should be placed when it is created, based on its tags. When an Aporeto Agent creates a new Processing Unit, the system will place it in its own namespace if no matching Namespace Mapping Policy can be found. If one match is found, then the Processing will be bumped down to the namespace declared in the policy. If it finds in that child namespace another matching Namespace Mapping Policy, then the Processing Unit will be bumped down again, until it reach a namespace with no matching policies.  This is very useful to dispatch processes and containers into a particular namespace, based on a lot of factor. You can put in place a quarantine namespace that will grab all Processing Units with too much vulnerabilities for instances.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="processingunits"
+                href="javascript:goToURLWithCurrentParameters('processingunit.html');"
+                title="API reference for processingunit">ProcessingUnit</a>
+            <br>
+            <div class="meta">
+              A Processing Unit reprents anything that can compute. It can be a Docker container, or a simple Unix process. They are created, updated and deleted by the system as they come and go. You can only modify its tags.  Processing Units use Network Access Policies to define which other Processing Units or External Services they can communicate with andFile Access Policies to define what File Paths they can use.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="networkaccesspolicies"
+                href="javascript:goToURLWithCurrentParameters('networkaccesspolicy.html');"
+                title="API reference for networkaccesspolicy">NetworkAccessPolicy</a>
+            <br>
+            <div class="meta">
+              Allows to define networking policies to allow or prevent processing units identitied by their tags to talk to other processing units or external services (also identified by their tags).
+            </div>
+            </div>
+            </div>
+            <h2>Platform</h2>
+            <div class="ui card">
+            <div class="content">
+            <a  id="fileaccesses"
+                href="javascript:goToURLWithCurrentParameters('fileaccess.html');"
+                title="API reference for fileaccess">FileAccess</a>
+            <br>
+            <div class="meta">
+              Returns file access statistics on a particular processing unit.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="flowstatistics"
+                href="javascript:goToURLWithCurrentParameters('flowstatistic.html');"
+                title="API reference for flowstatistic">FlowStatistic</a>
+            <br>
+            <div class="meta">
+              Returns network access statistics on a particular processing unit or group of processing units based on their tags.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="dependencymapviews"
+                href="javascript:goToURLWithCurrentParameters('dependencymapview.html');"
+                title="API reference for dependencymapview">DependencyMapView</a>
+            <br>
+            <div class="meta">
+              Allows to create a view to apply on a dependency map view. It is possible to ask the dependency map view to group all the processing units based on a primary selector, which is a tag's key, then to subgroup them based on a secondary selector.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="dependencymaps"
+                href="javascript:goToURLWithCurrentParameters('dependencymap.html');"
+                title="API reference for dependencymap">DependencyMap</a>
+            <br>
+            <div class="meta">
+              This api returns a data structure representing the graph of all processing units and their connections in a particular namespace, in a given time window. To pass the time window you can use the query parameters "startAbsolute", "endAbsolute", "startRelative", "endRelative".  For example "https://squall.aporeto.com/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000"
+            </div>
+            </div>
+            </div>
+            <h2>Storage</h2>
+            <div class="ui card">
+            <div class="content">
+            <a  id="filepaths"
+                href="javascript:goToURLWithCurrentParameters('filepath.html');"
+                title="API reference for filepath">FilePath</a>
+            <br>
+            <div class="meta">
+              A File Path represents a random path to a file or a folder. They can be used in aFile Access Policiesin order to allow Processing Units to access them, using various modes (read, write, execute). You will need to use the File Paths tags to set some policies. A good example would bevolume=web or file=/etc/passwd.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="fileaccesspolicies"
+                href="javascript:goToURLWithCurrentParameters('fileaccesspolicy.html');"
+                title="API reference for fileaccesspolicy">FileAccessPolicy</a>
+            <br>
+            <div class="meta">
+              A File Access Policy allows Processing Units to access various folder and files. It will use the tags of a File Path to know what is the path of the file or folder to allow access to. You can allow the Processing Unit to have any combination of read, write or execute. Note: When a Processing Unit is Docker container, then it will police the volumes mount. executewon't have any effect. Note: File path are not supported yet for standard Linux processes.
+            </div>
+            </div>
+            </div>
+            <h2>System</h2>
+            <div class="ui card">
+            <div class="content">
+            <a  id="enforcers"
+                href="javascript:goToURLWithCurrentParameters('enforcer.html');"
+                title="API reference for enforcer">Enforcer</a>
+            <br>
+            <div class="meta">
+              A Enforcer Profile contains a configuration for a Enforcer. It contains various parameters, like what network should not policeds, what processing units should be ignored based on their tags and so on. It also contains more advanced parameters to fine tune the Agent. A Enforcer will decide what profile to apply using aEnforcer Profile Mapping Policy. This policy will decide according the Enforcer's tags what profile to use. If an Enforcer tags are matching more than a single policy, it will refuse to start. Some parameters will be applied directly to a running agent, some will need to restart it.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="enforcerprofiles"
+                href="javascript:goToURLWithCurrentParameters('enforcerprofile.html');"
+                title="API reference for enforcerprofile">EnforcerProfile</a>
+            <br>
+            <div class="meta">
+              Allows to create reusable configuration profile for your enforcers. Enforcer Profiles contains various startup information that can (for some) be updated live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile Mapping Policy.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="enforcerprofilemappingpolicies"
+                href="javascript:goToURLWithCurrentParameters('enforcerprofilemappingpolicy.html');"
+                title="API reference for enforcerprofilemappingpolicy">EnforcerProfileMappingPolicy</a>
+            <br>
+            <div class="meta">
+              A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used by and Aporeto Agent based on the Enforcer that have been used during the registration. The policy can also be propagated down to the child namespace.
+            </div>
+            </div>
+            <div class="content">
+            <a  id="activities"
+                href="javascript:goToURLWithCurrentParameters('activity.html');"
+                title="API reference for activity">Activity</a>
+            <br>
+            <div class="meta">
+              Contains all the activity log that happened in a namespace. All sucessful or failed actions will be available, and eventual errors as well as the claims of the user who triggered the actiions. This log is capped and only keeps the last 50k entries by default. 
+            </div>
+            </div>
+            </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+      });
+  </script>
+
+</body>
+
+</html>
