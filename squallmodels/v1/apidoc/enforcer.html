@@ -6,7 +6,9 @@
 
     <link rel="stylesheet" href="css/semantic.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codestyles/tomorrow.css">
 
+    <script src="js/highlight.pack.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/semantic.min.js"></script>
 
@@ -447,11 +449,14 @@
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api list enforcers -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -476,10 +481,12 @@ func main() {
 
   disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Enforcer
@@ -509,14 +516,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
+    </code>
   </pre>
 </div>
 </div>
@@ -534,13 +544,16 @@ curl -X GET \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre>
+  <code class="bash">
 apoctl api create enforcers -n /namespace \
   -k fqdn "fqdn" \
-  -k lastsynctime "2017-03-31T12:54:43Z" \
-  -k name "name"</pre>
+  -k lastsynctime "2017-03-31T13:58:49Z" \
+  -k name "name"  </code>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -559,7 +572,7 @@ func main () {
 
     obj := squallmodels.NewEnforcer()
     obj.FQDN = "fqdn"
-    obj.LastSyncTime = "2017-03-31T12:54:43Z"
+    obj.LastSyncTime = "2017-03-31T13:58:49Z"
     obj.SetName("name")
 
     if err = m.Create(nil, obj); err != nil {
@@ -568,10 +581,12 @@ func main () {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Enforcer
@@ -586,7 +601,7 @@ def main():
 
     obj = Enforcer()
     obj.FQDN = "fqdn"
-    obj.lastSyncTime = "2017-03-31T12:54:43Z"
+    obj.lastSyncTime = "2017-03-31T13:58:49Z"
     obj.name = "name"
 
     try:
@@ -602,17 +617,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d fqdn="fqdn" \
-  -d lastsynctime="2017-03-31T12:54:43Z" \
+  -d lastsynctime="2017-03-31T13:58:49Z" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
+    </code>
   </pre>
 </div>
 </div>
@@ -633,11 +651,14 @@ curl -X POST \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api delete enforcer identitifier -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -661,10 +682,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Enforcer
@@ -693,14 +716,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers/identitifier
+    </code>
   </pre>
 </div>
 </div>
@@ -718,11 +744,14 @@ curl -X DELETE \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api get enforcer identitifier -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -748,10 +777,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Enforcer
@@ -780,14 +811,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/enforcers/identifier
+    </code>
   </pre>
 </div>
 </div>
@@ -805,11 +839,14 @@ http://&lt;host&gt;:&lt;port&gt;/enforcers/identifier
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api update enforcer identitifier -n /namespace \
-  -k name "name"  </pre>
+  -k name "name"    </code>
+  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -839,10 +876,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Enforcer
@@ -879,15 +918,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers/identitifier
+    </code>
   </pre>
 </div>
 </div>
@@ -915,6 +957,6 @@ curl -X PUT \
 
       });
   </script>
-
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

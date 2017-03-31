@@ -6,7 +6,9 @@
 
     <link rel="stylesheet" href="css/semantic.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codestyles/tomorrow.css">
 
+    <script src="js/highlight.pack.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/semantic.min.js"></script>
 
@@ -330,11 +332,14 @@
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api list namespaces -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -359,10 +364,12 @@ func main() {
 
   disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Namespace
@@ -392,14 +399,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/namespaces
+    </code>
   </pre>
 </div>
 </div>
@@ -417,10 +427,13 @@ curl -X GET \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre>
-apoctl api create namespaces -n /namespace</pre>
+  <code class="bash">
+apoctl api create namespaces -n /namespace  </code>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -445,10 +458,12 @@ func main () {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Namespace
@@ -476,14 +491,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/namespaces
+    </code>
   </pre>
 </div>
 </div>
@@ -504,11 +522,14 @@ curl -X POST \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api delete namespace identitifier -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -532,10 +553,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Namespace
@@ -564,14 +587,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/namespaces/identitifier
+    </code>
   </pre>
 </div>
 </div>
@@ -589,11 +615,14 @@ curl -X DELETE \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api get namespace identitifier -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -619,10 +648,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Namespace
@@ -651,14 +682,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/namespaces/identifier
+    </code>
   </pre>
 </div>
 </div>
@@ -676,10 +710,13 @@ http://&lt;host&gt;:&lt;port&gt;/namespaces/identifier
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
-apoctl api update namespace identitifier -n /namespace  </pre>
+    <code class="bash">
+apoctl api update namespace identitifier -n /namespace    </code>
+  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -708,10 +745,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import Namespace
@@ -747,14 +786,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/namespaces/identitifier
+    </code>
   </pre>
 </div>
 </div>
@@ -782,6 +824,6 @@ curl -X PUT \
 
       });
   </script>
-
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

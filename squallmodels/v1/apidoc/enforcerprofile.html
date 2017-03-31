@@ -6,7 +6,9 @@
 
     <link rel="stylesheet" href="css/semantic.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codestyles/tomorrow.css">
 
+    <script src="js/highlight.pack.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/semantic.min.js"></script>
 
@@ -614,11 +616,14 @@
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api list enforcerprofiles in enforcer parent-id -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -650,10 +655,12 @@ func main() {
 
   disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import EnforcerProfile, Enforcer
@@ -687,14 +694,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers/id/enforcerprofiles
+    </code>
   </pre>
 </div>
 </div>
@@ -714,11 +724,14 @@ curl -X GET \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api list enforcerprofiles -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -743,10 +756,12 @@ func main() {
 
   disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import EnforcerProfile
@@ -776,14 +791,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles
+    </code>
   </pre>
 </div>
 </div>
@@ -801,12 +819,15 @@ curl -X GET \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre>
+  <code class="bash">
 apoctl api create enforcerprofiles -n /namespace \
   -k name "name" \
-  -k targetnetworks "target_networks_list"</pre>
+  -k targetnetworks "target_networks_list"  </code>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -833,10 +854,12 @@ func main () {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import EnforcerProfile
@@ -866,16 +889,19 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   -d targetnetworks="target_networks_list" \
   http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles
+    </code>
   </pre>
 </div>
 </div>
@@ -896,11 +922,14 @@ curl -X POST \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api delete enforcerprofile identitifier -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -924,10 +953,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import EnforcerProfile
@@ -956,14 +987,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identitifier
+    </code>
   </pre>
 </div>
 </div>
@@ -981,11 +1015,14 @@ curl -X DELETE \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api get enforcerprofile identitifier -n /namespace
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 package main
 
 import (
@@ -1011,10 +1048,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import EnforcerProfile
@@ -1043,14 +1082,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identifier
+    </code>
   </pre>
 </div>
 </div>
@@ -1068,12 +1110,15 @@ http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identifier
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre>
+    <code class="bash">
 apoctl api update enforcerprofile identitifier -n /namespace \
   -k name "name" \
-  -k targetnetworks "target_networks_list"  </pre>
+  -k targetnetworks "target_networks_list"    </code>
+  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre>
+    <code class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -1104,10 +1149,12 @@ func main() {
 
     disconnect()
 }
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
   <pre>
+    <code class="python">
 import os
 
 from squallmodels import EnforcerProfile
@@ -1145,16 +1192,19 @@ def main():
 
 if __name__ == "__main__":
     main()
+    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre>
+    <code class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   -d targetnetworks="target_networks_list" \
   http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identitifier
+    </code>
   </pre>
 </div>
 </div>
@@ -1182,6 +1232,6 @@ curl -X PUT \
 
       });
   </script>
-
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
