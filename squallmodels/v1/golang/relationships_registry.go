@@ -55,13 +55,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("syscallaccess")] = SyscallAccessMainRelationship
 
 	//
-	// Main Relationship for computedpolicy
+	// Main Relationship for systemcall
 	//
-	ComputedPolicyMainRelationship := &elemental.Relationship{
+	SystemCallMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
 	}
 
-	relationshipsRegistry[elemental.IdentityFromName("computedpolicy")] = ComputedPolicyMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("systemcall")] = SystemCallMainRelationship
 
 	//
 	// Main Relationship for tag
@@ -194,17 +196,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("fileaccesspolicy")] = FileAccessPolicyMainRelationship
 
 	//
-	// Main Relationship for systemcall
-	//
-	SystemCallMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("systemcall")] = SystemCallMainRelationship
-
-	//
 	// Main Relationship for enforcerprofile
 	//
 	EnforcerProfileMainRelationship := &elemental.Relationship{
@@ -214,16 +205,6 @@ func init() {
 	}
 
 	relationshipsRegistry[elemental.IdentityFromName("enforcerprofile")] = EnforcerProfileMainRelationship
-
-	//
-	// Main Relationship for computeddependencymapview
-	//
-	ComputedDependencyMapViewMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("computeddependencymapview")] = ComputedDependencyMapViewMainRelationship
 
 	//
 	// Main Relationship for renderedpolicy
@@ -375,24 +356,6 @@ func init() {
 		elemental.IdentityFromName("apicheck"),
 		&elemental.Relationship{
 			AllowsCreate: true,
-		},
-	)
-
-	// Children relationship for computeddependencymapviews in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("computeddependencymapview"),
-		&elemental.Relationship{
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-
-	// Children relationship for computedpolicies in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("computedpolicy"),
-		&elemental.Relationship{
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
 		},
 	)
 

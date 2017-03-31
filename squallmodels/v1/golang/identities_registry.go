@@ -9,7 +9,7 @@ func init() {
 	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(SyscallAccessIdentity)
-	elemental.RegisterIdentity(ComputedPolicyIdentity)
+	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
 	elemental.RegisterIdentity(MapEdgeIdentity)
@@ -23,9 +23,7 @@ func init() {
 	elemental.RegisterIdentity(FlowStatisticIdentity)
 	elemental.RegisterIdentity(SuggestedPolicyIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
-	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(EnforcerProfileIdentity)
-	elemental.RegisterIdentity(ComputedDependencyMapViewIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
@@ -55,8 +53,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAPIAuthorizationPolicy()
 	case SyscallAccessIdentity.Name:
 		return NewSyscallAccess()
-	case ComputedPolicyIdentity.Name:
-		return NewComputedPolicy()
+	case SystemCallIdentity.Name:
+		return NewSystemCall()
 	case TagIdentity.Name:
 		return NewTag()
 	case EnforcerIdentity.Name:
@@ -83,12 +81,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewSuggestedPolicy()
 	case FileAccessPolicyIdentity.Name:
 		return NewFileAccessPolicy()
-	case SystemCallIdentity.Name:
-		return NewSystemCall()
 	case EnforcerProfileIdentity.Name:
 		return NewEnforcerProfile()
-	case ComputedDependencyMapViewIdentity.Name:
-		return NewComputedDependencyMapView()
 	case RenderedPolicyIdentity.Name:
 		return NewRenderedPolicy()
 	case NamespaceMappingPolicyIdentity.Name:
@@ -128,8 +122,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewAPIAuthorizationPolicy()
 	case SyscallAccessIdentity.Category:
 		return NewSyscallAccess()
-	case ComputedPolicyIdentity.Category:
-		return NewComputedPolicy()
+	case SystemCallIdentity.Category:
+		return NewSystemCall()
 	case TagIdentity.Category:
 		return NewTag()
 	case EnforcerIdentity.Category:
@@ -156,12 +150,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewSuggestedPolicy()
 	case FileAccessPolicyIdentity.Category:
 		return NewFileAccessPolicy()
-	case SystemCallIdentity.Category:
-		return NewSystemCall()
 	case EnforcerProfileIdentity.Category:
 		return NewEnforcerProfile()
-	case ComputedDependencyMapViewIdentity.Category:
-		return NewComputedDependencyMapView()
 	case RenderedPolicyIdentity.Category:
 		return NewRenderedPolicy()
 	case NamespaceMappingPolicyIdentity.Category:
@@ -201,8 +191,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Name:
 		return &SyscallAccessList{}
-	case ComputedPolicyIdentity.Name:
-		return &ComputedPoliciesList{}
+	case SystemCallIdentity.Name:
+		return &SystemCallsList{}
 	case TagIdentity.Name:
 		return &TagsList{}
 	case EnforcerIdentity.Name:
@@ -229,12 +219,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &SuggestedPoliciesList{}
 	case FileAccessPolicyIdentity.Name:
 		return &FileAccessPoliciesList{}
-	case SystemCallIdentity.Name:
-		return &SystemCallsList{}
 	case EnforcerProfileIdentity.Name:
 		return &EnforcerProfilesList{}
-	case ComputedDependencyMapViewIdentity.Name:
-		return &ComputedDependencyMapViewsList{}
 	case RenderedPolicyIdentity.Name:
 		return &RenderedPoliciesList{}
 	case NamespaceMappingPolicyIdentity.Name:
@@ -272,8 +258,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Category:
 		return &SyscallAccessList{}
-	case ComputedPolicyIdentity.Category:
-		return &ComputedPoliciesList{}
+	case SystemCallIdentity.Category:
+		return &SystemCallsList{}
 	case TagIdentity.Category:
 		return &TagsList{}
 	case EnforcerIdentity.Category:
@@ -300,12 +286,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &SuggestedPoliciesList{}
 	case FileAccessPolicyIdentity.Category:
 		return &FileAccessPoliciesList{}
-	case SystemCallIdentity.Category:
-		return &SystemCallsList{}
 	case EnforcerProfileIdentity.Category:
 		return &EnforcerProfilesList{}
-	case ComputedDependencyMapViewIdentity.Category:
-		return &ComputedDependencyMapViewsList{}
 	case RenderedPolicyIdentity.Category:
 		return &RenderedPoliciesList{}
 	case NamespaceMappingPolicyIdentity.Category:
@@ -338,7 +320,7 @@ func AllIdentities() []elemental.Identity {
 		DependencyMapSubviewIdentity,
 		APIAuthorizationPolicyIdentity,
 		SyscallAccessIdentity,
-		ComputedPolicyIdentity,
+		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
 		MapEdgeIdentity,
@@ -352,9 +334,7 @@ func AllIdentities() []elemental.Identity {
 		FlowStatisticIdentity,
 		SuggestedPolicyIdentity,
 		FileAccessPolicyIdentity,
-		SystemCallIdentity,
 		EnforcerProfileIdentity,
-		ComputedDependencyMapViewIdentity,
 		RenderedPolicyIdentity,
 		NamespaceMappingPolicyIdentity,
 		ProcessingUnitIdentity,
@@ -421,7 +401,7 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case SyscallAccessIdentity:
 		return []string{}
-	case ComputedPolicyIdentity:
+	case SystemCallIdentity:
 		return []string{}
 	case TagIdentity:
 		return []string{}
@@ -462,15 +442,11 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case FileAccessPolicyIdentity:
 		return []string{}
-	case SystemCallIdentity:
-		return []string{}
 	case EnforcerProfileIdentity:
 		return []string{
 			"profiles",
 			"profile",
 		}
-	case ComputedDependencyMapViewIdentity:
-		return []string{}
 	case RenderedPolicyIdentity:
 		return []string{
 			"rpols",
