@@ -36,3 +36,9 @@ publish:
 	make codegen
 	git commit -am "codegen"
 	git push
+
+upload:
+	gsutil -m rsync -d -R vincemodels/v1/apidoc gs://doc.aporeto.com/api/v1/vince
+	gsutil -m rsync -d -R midgardmodels/v1/apidoc gs://doc.aporeto.com/api/v1/midgard
+	gsutil -m rsync -d -R squallmodels/v1/apidoc gs://doc.aporeto.com/api/v1/squall
+	gsutil -m rsync -d -R zackmodels/v1/apidoc gs://doc.aporeto.com/api/v1/zack

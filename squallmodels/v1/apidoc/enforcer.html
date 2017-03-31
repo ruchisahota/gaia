@@ -4,15 +4,15 @@
     <title>Enforcer API Reference 1.0</title>
     <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
 
-    <link rel="stylesheet" href="../css/semantic.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/semantic.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/semantic.min.js"></script>
 
-    <script src="/js/d3.v4.min.js"></script>
-    <script src="/js/common.js"></script>
-    <script src="/js/relations.js"></script>
+    <script src="js/d3.v4.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/relations.js"></script>
 </head>
 
 <body>
@@ -536,7 +536,7 @@ curl -X GET \
 <pre>
 apoctl api create enforcers -n /namespace \
   -k fqdn "fqdn" \
-  -k lastsynctime "2017-03-31T12:44:31Z" \
+  -k lastsynctime "2017-03-31T12:54:43Z" \
   -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -559,7 +559,7 @@ func main () {
 
     obj := squallmodels.NewEnforcer()
     obj.FQDN = "fqdn"
-    obj.LastSyncTime = "2017-03-31T12:44:31Z"
+    obj.LastSyncTime = "2017-03-31T12:54:43Z"
     obj.SetName("name")
 
     if err = m.Create(nil, obj); err != nil {
@@ -586,7 +586,7 @@ def main():
 
     obj = Enforcer()
     obj.FQDN = "fqdn"
-    obj.lastSyncTime = "2017-03-31T12:44:31Z"
+    obj.lastSyncTime = "2017-03-31T12:54:43Z"
     obj.name = "name"
 
     try:
@@ -610,7 +610,7 @@ curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d fqdn="fqdn" \
-  -d lastsynctime="2017-03-31T12:44:31Z" \
+  -d lastsynctime="2017-03-31T12:54:43Z" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
   </pre>
