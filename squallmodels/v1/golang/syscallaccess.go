@@ -89,9 +89,7 @@ func (o *SyscallAccess) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *SyscallAccess) Doc() string {
-
 	return nodocString
-
 }
 
 func (o *SyscallAccess) String() string {

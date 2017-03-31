@@ -1,23 +1,84 @@
 body {
     position: relative;
-    padding-top: 40px;
     overflow: auto;
 }
 
 section {
-    padding-top:40px;
-    margin-top:-40px;
+    padding-top: 20px;
 }
 
+a,
+a:hover,
+a:visited {
+  color: #34a0b3;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+#aporeto-icon {
+  background: url("https://avatars1.githubusercontent.com/u/15617796?v=3&s=200") top left no-repeat;
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin: 0 4px 0 0;
+}
+
+/* Positions */
+
+.pull-right,
+.float-right {
+    float: right;
+}
+
+
+/* Texts */
+.muted {
+
+}
+
+.small {
+  font-size: 85%;
+}
+
+
+pre,
 .code {
     white-space: pre;
     font-family: Menlo, Courier;
+    overflow: scroll;
 }
 
-.fixed-text {
-    font-family: Menlo, Courier;
-    font-size: 11px;
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+
+/* Types */
 
 .enumvalues {
     margin-top: 20px;
@@ -28,30 +89,6 @@ section {
     list-style: none;
     padding-left: 5px;
     color: #444;
-}
-
-.type_int, .type_float {
-    color: #6E6FC5;
-}
-
-.type_string {
-    color: #B28B06;
-}
-
-.type_boolean {
-    color: #879B00;
-}
-
-.type_enum {
-    color: #C54C1D;
-}
-
-.type_date {
-    color: #3A89D2;
-}
-
-.type_list {
-    color: #71908e;
 }
 
 .wiki p {
@@ -78,6 +115,16 @@ section {
     display: block;
 }
 
+/* Odd / Even */
+
+.odd {
+  background: #aaa;
+}
+
+.even {
+  background: white;
+}
+
 .bordered-row {
     padding: 10px 0;
     border-top: 1px solid #E7E7E7
@@ -87,9 +134,6 @@ section {
     border-bottom: 1px solid #E7E7E7
 }
 
-.float-right {
-    float: right;
-}
 
 .dropdown-menu {
     max-height: 500px;
@@ -101,4 +145,67 @@ section {
     .hide-xs {
         display: none;
     }
+}
+
+/* svg */
+svg line.parents,
+svg .parents rect {
+  stroke: #A333C8;
+  stroke-width: "2px";
+  fill: #f9f9f9;
+}
+
+svg .parents,
+svg .parents text {
+  fill: #A333C8;
+  stroke: "none"
+}
+
+svg .parents:hover .box {
+  fill: #F5E3FB;
+}
+
+
+svg line.children,
+svg .children rect {
+  stroke: #6435C9;
+  stroke-width: "2px";
+  fill: #f9f9f9;
+}
+
+svg .children {
+  fill: #6435C9;
+  stroke: "none"
+}
+
+svg .children:hover .box {
+  fill: #ECE5FB;
+}
+
+svg line.self,
+svg .self rect {
+  stroke: #34a0b3;
+  stroke-width: "2px";
+  fill: #f9f9f9;
+}
+
+svg .self,
+svg .self text {
+  fill: #34a0b3;
+  stroke: "none"
+}
+
+
+
+svg line.disabled,
+svg .disabled rect {
+  stroke: #ccc;
+  stroke-width: "2px";
+  fill: #f9f9f9;
+}
+
+svg .disabled,
+svg .disabled text {
+  fill: #ccc;
+  stroke: "none"
 }

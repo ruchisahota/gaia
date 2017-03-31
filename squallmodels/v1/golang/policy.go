@@ -160,9 +160,7 @@ func (o *Policy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *Policy) Doc() string {
-
 	return nodocString
-
 }
 
 func (o *Policy) String() string {

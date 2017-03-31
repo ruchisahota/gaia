@@ -77,9 +77,7 @@ func (o *ComputedPolicy) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *ComputedPolicy) Doc() string {
-
 	return nodocString
-
 }
 
 func (o *ComputedPolicy) String() string {

@@ -87,7 +87,6 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
-
 	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
 
 	//
@@ -285,7 +284,6 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
-
 	relationshipsRegistry[elemental.IdentityFromName("processingunit")] = ProcessingUnitMainRelationship
 
 	//
@@ -321,7 +319,6 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
-
 	relationshipsRegistry[elemental.IdentityFromName("vulnerability")] = VulnerabilityMainRelationship
 
 	//
@@ -523,6 +520,14 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+	// Children relationship for suggestedpolicies in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("suggestedpolicy"),
+		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
 	// Children relationship for systemcalls in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("systemcall"),
@@ -548,7 +553,6 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
-
 	relationshipsRegistry[elemental.IdentityFromName("root")] = RootMainRelationship
 
 	//

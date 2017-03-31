@@ -2,1789 +2,1008 @@
 <html lang="en">
 <head>
     <title>ProcessingUnit API Reference 1.0</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="../css/semantic.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/semantic.min.js"></script>
+
+    <script src="../js/d3.v4.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/relations.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbarmain">
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Squall API Documentation 1.0
+    </div>
+    <a class="item active" href="#attributes">Attributes</a>
+    <a class="item" href="#relations">Relations</a>
+    <a class="item" href="#codingexamples">Coding Examples</a>
+  </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbarmain">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Squall API Documentation 1.0</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li><a data-id="intro" href="#intro">Top</a></li>
-                    <li><a data-id="overview" href="#overview">Overview</a></li>
-                    <li><a data-id="apiresources" href="#apiresources">API Resource</a></li>
-                    <li><a data-id="parents" href="#parents">Parents</a></li>
-                    <li><a data-id="children" href="#children">Children</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Attributes <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            
-                            <li><a data-id="attr_annotation" href="#attr_annotation" class="fixed-text">annotation</a></li>
-                            
-                            <li><a data-id="attr_associatedTags" href="#attr_associatedTags" class="fixed-text">associatedTags</a></li>
-                            
-                            <li><a data-id="attr_createTime" href="#attr_createTime" class="fixed-text">createTime</a></li>
-                            
-                            <li><a data-id="attr_description" href="#attr_description" class="fixed-text">description</a></li>
-                            
-                            <li><a data-id="attr_enforcerID" href="#attr_enforcerID" class="fixed-text">enforcerID</a></li>
-                            
-                            <li><a data-id="attr_ID" href="#attr_ID" class="fixed-text">ID</a></li>
-                            
-                            <li><a data-id="attr_lastSyncTime" href="#attr_lastSyncTime" class="fixed-text">lastSyncTime</a></li>
-                            
-                            <li><a data-id="attr_metadata" href="#attr_metadata" class="fixed-text">metadata</a></li>
-                            
-                            <li><a data-id="attr_name" href="#attr_name" class="fixed-text">name</a></li>
-                            
-                            <li><a data-id="attr_namespace" href="#attr_namespace" class="fixed-text">namespace</a></li>
-                            
-                            <li><a data-id="attr_nativeContextID" href="#attr_nativeContextID" class="fixed-text">nativeContextID</a></li>
-                            
-                            <li><a data-id="attr_normalizedTags" href="#attr_normalizedTags" class="fixed-text">normalizedTags</a></li>
-                            
-                            <li><a data-id="attr_operationalStatus" href="#attr_operationalStatus" class="fixed-text">operationalStatus</a></li>
-                            
-                            <li><a data-id="attr_protected" href="#attr_protected" class="fixed-text">protected</a></li>
-                            
-                            <li><a data-id="attr_type" href="#attr_type" class="fixed-text">type</a></li>
-                            
-                            <li><a data-id="attr_updateTime" href="#attr_updateTime" class="fixed-text">updateTime</a></li>
-                            
-                            <li><a data-id="attr_vulnerabilities" href="#attr_vulnerabilities" class="fixed-text">vulnerabilities</a></li>
-                            
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group dropdown">
-                        <input type="text" class="form-control" placeholder="Search" id="searchfield">
-                        <ul class="dropdown-menu dropdown-menu-left" role="menu" id="searchresult" style="display: none"></ul>
-                    </div>
-                </form>
-            </div>
+
+  <div class="ui grid stackable padded">
+    <div class="row">
+
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
+        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+      <div class="item">
+        <div class="header">Authorization</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apicheck.html');" title="API reference for apicheck">APICheck</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apiauthorizationpolicy.html');" title="API reference for apiauthorizationpolicy">APIAuthorizationPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('tag.html');" title="API reference for tag">Tag</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespace.html');" title="API reference for namespace">Namespace</a>
+          </div>
         </div>
-    </nav>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Compute</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('integration.html');" title="API reference for integration">Integration</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('externalservice.html');" title="API reference for externalservice">ExternalService</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('suggestedpolicy.html');" title="API reference for suggestedpolicy">SuggestedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('renderedpolicy.html');" title="API reference for renderedpolicy">RenderedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespacemappingpolicy.html');" title="API reference for namespacemappingpolicy">NamespaceMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('processingunit.html');" title="API reference for processingunit">ProcessingUnit</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('networkaccesspolicy.html');" title="API reference for networkaccesspolicy">NetworkAccessPolicy</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Platform</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccess.html');" title="API reference for fileaccess">FileAccess</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('flowstatistic.html');" title="API reference for flowstatistic">FlowStatistic</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymapview.html');" title="API reference for dependencymapview">DependencyMapView</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymap.html');" title="API reference for dependencymap">DependencyMap</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Storage</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('filepath.html');" title="API reference for filepath">FilePath</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccesspolicy.html');" title="API reference for fileaccesspolicy">FileAccessPolicy</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">System</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcer.html');" title="API reference for enforcer">Enforcer</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofile.html');" title="API reference for enforcerprofile">EnforcerProfile</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofilemappingpolicy.html');" title="API reference for enforcerprofilemappingpolicy">EnforcerProfileMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('activity.html');" title="API reference for activity">Activity</a>
+          </div>
+        </div>
+</div>
 
+</div>
+      </div>
 
-    <div class="container">
-
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
         <section id="intro">
             <h2>ProcessingUnit</h2>
             <p>A Processing Unit reprents anything that can compute. It can be a Docker container, or a simple Unix process. They are created, updated and deleted by the system as they come and go. You can only modify its tags.  Processing Units use Network Access Policies to define which other Processing Units or External Services they can communicate with andFile Access Policies to define what File Paths they can use.</p>
         </section>
 
-        <section id="overview">
-            <h3>Overview</h3>
-                <table class="width: 100%">
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_annotation" title="Annotation stores additional information about an entity">annotation</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedTags" title="AssociatedTags are the list of tags attached to an entity">associatedTags</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_createTime" title="CreatedTime is the time at which the object was created">createTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_description" title="Description is the description of the object.">description</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_enforcerID" title="EnforcerID is the ID of the enforcer associated with the processing unit">enforcerID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_ID" title="ID is the identifier of the object.">ID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_lastSyncTime" title="LastSyncTime is the time when the policy was last resolved">lastSyncTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_metadata" title="Metadata are list of tags associated to the processing unit">metadata</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_name" title="Name is the name of the entity">name</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_namespace" title="Namespace tag attached to an entity">namespace</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_nativeContextID" title="NativeContextID is the Docker UUID or service PID">nativeContextID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_normalizedTags" title="NormalizedTags contains the list of normalized tags of the entities">normalizedTags</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_operationalStatus" title="OperationalStatus of the processing unit">operationalStatus</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_enum">enum
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     (Initialized | Paused | Running | Stopped | Terminated)
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_protected" title="Protected defines if the object is protected.">protected</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_type" title="Type of the container ecosystem">type</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_enum">enum
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     (Docker | LinuxService | RKT)
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_updateTime" title="UpdateTime is the time at which an entity was updated.">updateTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_vulnerabilities" title="Vulnerabilities contains the list of vulnerabilities of the processing unit.">vulnerabilities</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_list">list
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                </table>
-        </section>
-
-        <section id="apiresources">
-            <h3>API Resource</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            <span class="fixed-text">/processingunits/<span class="text-muted">id</span></a>
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-danger">delete</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-success">put</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="parents">
-            <h3>Parents</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/<a href="vulnerability.html">vulnerabilities</a>/<span class="text-muted">id</span>/processingunits</span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/processingunits</a>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-primary">post</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="children">
-            <h3>Children</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-
-            
-            <span class="fixed-text">/processingunits/<span class="text-muted">id</span>/<a href="fileaccess.html">fileaccesses</a></span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-
-            
-            <span class="fixed-text">/processingunits/<span class="text-muted">id</span>/<a href="renderedpolicy.html">renderedpolicies</a></span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-
-            
-            <span class="fixed-text">/processingunits/<span class="text-muted">id</span>/<a href="syscallaccess.html">syscallaccesses</a></span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-
-            
-            <span class="fixed-text">/processingunits/<span class="text-muted">id</span>/<a href="vulnerability.html">vulnerabilities</a></span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
         <section id="attributes">
-            <h3>Attributes documentation</h3>
-            
-            <section id="attr_annotation" class="filterable" data-filter-keyword="annotation" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>annotation</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Annotation stores additional information about an entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">annotation</span>
-                        </p>
-                    </div>
+            <h3>Attributes</h3>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_associatedTags" class="filterable" data-filter-keyword="associatedTags" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedTags</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
+                <strong>annotation</strong>  <span class="ui blue">annotation</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Annotation stores additional information about an entity
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AssociatedTags are the list of tags attached to an entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedTags</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_createTime" class="filterable" data-filter-keyword="createTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>createTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>CreatedTime is the time at which the object was created</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">createTime</span>
-                        </p>
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_description" class="filterable" data-filter-keyword="description" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>description</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AssociatedTags are the list of tags attached to an entity
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Description is the description of the object.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">description</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_enforcerID" class="filterable" data-filter-keyword="enforcerID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>enforcerID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>EnforcerID is the ID of the enforcer associated with the processing unit</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">enforcerID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_ID" class="filterable" data-filter-keyword="ID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>ID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>createTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  CreatedTime is the time at which the object was created
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ID is the identifier of the object.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">ID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_lastSyncTime" class="filterable" data-filter-keyword="lastSyncTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>lastSyncTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LastSyncTime is the time when the policy was last resolved</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">lastSyncTime</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_metadata" class="filterable" data-filter-keyword="metadata" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>metadata</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                    </div>
+                <strong>description</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Description is the description of the object. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Metadata are list of tags associated to the processing unit</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">metadata</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_name" class="filterable" data-filter-keyword="name" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>name</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Name is the name of the entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">name</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_namespace" class="filterable" data-filter-keyword="namespace" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>namespace</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>enforcerID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  EnforcerID is the ID of the enforcer associated with the processing unit (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Namespace tag attached to an entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">namespace</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_nativeContextID" class="filterable" data-filter-keyword="nativeContextID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>nativeContextID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+<span class="ui label mini orange">locally unique</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>NativeContextID is the Docker UUID or service PID</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">nativeContextID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_normalizedTags" class="filterable" data-filter-keyword="normalizedTags" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>normalizedTags</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>ID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ID is the identifier of the object. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>NormalizedTags contains the list of normalized tags of the entities</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">normalizedTags</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_operationalStatus" class="filterable" data-filter-keyword="operationalStatus" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>operationalStatus</b>
-                        <span class="type_enum fixed-text">enum</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>OperationalStatus of the processing unit</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-                            <span class="small"><b>Allowed values: </b></span><span class="fixed-text">Initialized, Paused, Running, Stopped, Terminated</span><br/>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">Initialized</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">operationalStatus</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_protected" class="filterable" data-filter-keyword="protected" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>protected</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>lastSyncTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LastSyncTime is the time when the policy was last resolved
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Protected defines if the object is protected.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">protected</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_type" class="filterable" data-filter-keyword="type" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>type</b>
-                        <span class="type_enum fixed-text">enum</span>
-                        
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini olive">creation only</span>
+<span class="ui label mini purple">filterable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Type of the container ecosystem</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-                            <span class="small"><b>Allowed values: </b></span><span class="fixed-text">Docker, LinuxService, RKT</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">type</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_updateTime" class="filterable" data-filter-keyword="updateTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>updateTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>metadata</strong>  <span class="ui blue">metadata_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Metadata are list of tags associated to the processing unit
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>UpdateTime is the time at which an entity was updated.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">updateTime</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_vulnerabilities" class="filterable" data-filter-keyword="vulnerabilities" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>vulnerabilities</b>
-                        <span class="type_list fixed-text">list</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+<span class="ui label mini orange">locally unique</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Vulnerabilities contains the list of vulnerabilities of the processing unit.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">vulnerabilities</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
+                <strong>name</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Name is the name of the entity (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini olive">creation only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>namespace</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Namespace tag attached to an entity (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+
+                </div>
+                <strong>nativeContextID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  NativeContextID is the Docker UUID or service PID (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+
+                </div>
+                <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  NormalizedTags contains the list of normalized tags of the entities
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+
+                </div>
+                <strong>operationalStatus</strong>  <span class="ui blue">enum (Initialized | Paused | Running | Stopped | Terminated)</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  OperationalStatus of the processing unit (default: Initialized)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>protected</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Protected defines if the object is protected.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini red">required</span>
+<span class="ui label mini olive">creation only</span>
+<span class="ui label mini purple">filterable</span>
+
+                </div>
+                <strong>type</strong>  <span class="ui blue">enum (Docker | LinuxService | RKT)</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Type of the container ecosystem
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>updateTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  UpdateTime is the time at which an entity was updated.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>vulnerabilities</strong>  <span class="ui blue">list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Vulnerabilities contains the list of vulnerabilities of the processing unit.
+
+                </div>
+              </div>
+            </div>
         </section>
 
-    </div>
+        <section id="relations">
+          <h3>Relations</h3>
+          <svg preserveAspectRatio="xMidYMid meet"></svg>
+        </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/search.js"></script>
-    <script>
-        $(document).ready(function()
-        {
-            initialize_search("attr_");
-            initialize_scrollspy();
-        });
-    </script>
+        <section id="codingexamples">
+          <h3>Code example</h3>
+            <div>
+  <div id="retrieve_all_processingunits_from_vulnerability">
+<h4>Retrieve all ProcessingUnits in a given Vulnerability</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api list processingunits in vulnerability parent-id -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects squallmodels.ProcessingUnitsList
+
+  parent := squallmodels.NewVulnerability()
+  parent.SetIdentifier("parent-id")
+
+  mctx := manipulate.NewContext()
+  mctx.Parent = parent
+
+  if err = m.RetrieveMany(mctx, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import ProcessingUnit, Vulnerability
+from pymanipulate.context import Context
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    objects = []
+
+    parent = Vulnerability(ID="parent-id")
+    mctx = Context(parent=parent)
+
+    try:
+        manipulator.retrieve_children(mctx, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/vulnerabilities/id/processingunits
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_processingunits_from_vulnerability .menu .item').tab({context: "parent"});</script>
+
+</div>
+<div>
+  <div id="retrieve_all_processingunits">
+<h4>Retrieve all ProcessingUnits </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api list processingunits -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects squallmodels.ProcessingUnitsList
+
+  if err = m.RetrieveMany(nil, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import ProcessingUnit
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    objects = []
+
+    try:
+        manipulator.retrieve_children(None, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/processingunits
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_processingunits .menu .item').tab({context: "parent"});</script>
+
+  <div id="create_processingunit_from_root">
+<h4>Create a new ProcessingUnit </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+<pre>
+apoctl api create processingunits -n /namespace \
+  -k name "name" \
+  -k type "Docker"</pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main () {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewProcessingUnit()
+    obj.SetName("name")
+    obj.Type = "Docker"
+
+    if err = m.Create(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import ProcessingUnit
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    obj.name = "name"
+    obj.type = "Docker"
+
+    try:
+        manipulator.create(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X POST \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  -d name="name" \
+  -d type="Docker" \
+  http://&lt;host&gt;:&lt;port&gt;/processingunits
+  </pre>
+</div>
+</div>
+<script>$('#create_processingunit_from_root .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+  <div>
+  <div id="delete_processingunit">
+<h4>Delete a given ProcessingUnit</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api delete processingunit identitifier -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewProcessingUnit()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Delete(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import ProcessingUnit
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.delete(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X DELETE \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/processingunits/identitifier
+  </pre>
+</div>
+</div>
+<script>$('#delete_processingunit .menu .item').tab({context: "parent"});</script>
+
+  <div id="get_processingunit">
+<h4>Retrieve a given ProcessingUnit</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api get processingunit identitifier -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewProcessingUnit()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Retrieve(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import ProcessingUnit
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.retrieve(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+-H "X-Namespace: namespace" \
+-H "Authorization: token" \
+http://&lt;host&gt;:&lt;port&gt;/processingunits/identifier
+  </pre>
+</div>
+</div>
+<script>$('#get_processingunit .menu .item').tab({context: "parent"});</script>
+
+  <div id="update_processingunit">
+<h4>Update a given ProcessingUnit</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api update processingunit identitifier -n /namespace \
+  -k name "name"  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewProcessingUnit()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Retrieve(nil, obj); err != nil {
+      panic(err)
+    }
+
+    obj.SetName("name")
+
+    if err = m.Update(nil, obj); err != nil {
+      panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import ProcessingUnit
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.retrieve(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    obj.name = "name"
+
+    try:
+        manipulator.update(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X PUT \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  -d name="name" \
+  http://&lt;host&gt;:&lt;port&gt;/processingunits/identitifier
+  </pre>
+</div>
+</div>
+<script>$('#update_processingunit .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+
+        // Write relations graph
+        var data = [
+{"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "parents", "exposed": false, "actions": ['GET']}, {"restName": "fileaccess", "instanceName": "FileAccess", "resourceName": "fileaccesses", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "renderedpolicy", "instanceName": "RenderedPolicy", "resourceName": "renderedpolicies", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "syscallaccess", "instanceName": "SyscallAccess", "resourceName": "syscallaccesses", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "processingunit", "instanceName": "ProcessingUnit", "resourceName": "processingunits", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+]
+        drawRelations(data, 2, 4);
+
+      });
+  </script>
 
 </body>
 </html>

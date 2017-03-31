@@ -2,2306 +2,865 @@
 <html lang="en">
 <head>
     <title>Account API Reference 1.0</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="../css/semantic.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/semantic.min.js"></script>
+
+    <script src="../js/d3.v4.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/relations.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbarmain">
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Vince API Documentation 1.0
+    </div>
+    <a class="item active" href="#attributes">Attributes</a>
+    <a class="item" href="#relations">Relations</a>
+    <a class="item" href="#codingexamples">Coding Examples</a>
+  </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbarmain">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Vince API Documentation 1.0</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li><a data-id="intro" href="#intro">Top</a></li>
-                    <li><a data-id="overview" href="#overview">Overview</a></li>
-                    <li><a data-id="apiresources" href="#apiresources">API Resource</a></li>
-                    <li><a data-id="parents" href="#parents">Parents</a></li>
-                    <li><a data-id="children" href="#children">Children</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Attributes <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            
-                            <li><a data-id="attr_accessEnabled" href="#attr_accessEnabled" class="fixed-text">accessEnabled</a></li>
-                            
-                            <li><a data-id="attr_activationExpiration" href="#attr_activationExpiration" class="fixed-text">activationExpiration</a></li>
-                            
-                            <li><a data-id="attr_activationToken" href="#attr_activationToken" class="fixed-text">activationToken</a></li>
-                            
-                            <li><a data-id="attr_associatedAgentReadAPIAuthPolicyID" href="#attr_associatedAgentReadAPIAuthPolicyID" class="fixed-text">associatedAgentReadAPIAuthPolicyID</a></li>
-                            
-                            <li><a data-id="attr_associatedAgentWriteAPIAuthPolicyID" href="#attr_associatedAgentWriteAPIAuthPolicyID" class="fixed-text">associatedAgentWriteAPIAuthPolicyID</a></li>
-                            
-                            <li><a data-id="attr_associatedAPIAuthPolicyID" href="#attr_associatedAPIAuthPolicyID" class="fixed-text">associatedAPIAuthPolicyID</a></li>
-                            
-                            <li><a data-id="attr_associatedNamespaceID" href="#attr_associatedNamespaceID" class="fixed-text">associatedNamespaceID</a></li>
-                            
-                            <li><a data-id="attr_associatedNSMappingPolicyID" href="#attr_associatedNSMappingPolicyID" class="fixed-text">associatedNSMappingPolicyID</a></li>
-                            
-                            <li><a data-id="attr_bumpToken" href="#attr_bumpToken" class="fixed-text">bumpToken</a></li>
-                            
-                            <li><a data-id="attr_createTime" href="#attr_createTime" class="fixed-text">createTime</a></li>
-                            
-                            <li><a data-id="attr_email" href="#attr_email" class="fixed-text">email</a></li>
-                            
-                            <li><a data-id="attr_ID" href="#attr_ID" class="fixed-text">ID</a></li>
-                            
-                            <li><a data-id="attr_LDAPAddress" href="#attr_LDAPAddress" class="fixed-text">LDAPAddress</a></li>
-                            
-                            <li><a data-id="attr_LDAPBaseDN" href="#attr_LDAPBaseDN" class="fixed-text">LDAPBaseDN</a></li>
-                            
-                            <li><a data-id="attr_LDAPBindDN" href="#attr_LDAPBindDN" class="fixed-text">LDAPBindDN</a></li>
-                            
-                            <li><a data-id="attr_LDAPBindPassword" href="#attr_LDAPBindPassword" class="fixed-text">LDAPBindPassword</a></li>
-                            
-                            <li><a data-id="attr_LDAPCertificateAuthority" href="#attr_LDAPCertificateAuthority" class="fixed-text">LDAPCertificateAuthority</a></li>
-                            
-                            <li><a data-id="attr_LDAPEnabled" href="#attr_LDAPEnabled" class="fixed-text">LDAPEnabled</a></li>
-                            
-                            <li><a data-id="attr_name" href="#attr_name" class="fixed-text">name</a></li>
-                            
-                            <li><a data-id="attr_password" href="#attr_password" class="fixed-text">password</a></li>
-                            
-                            <li><a data-id="attr_resetPasswordExpiration" href="#attr_resetPasswordExpiration" class="fixed-text">resetPasswordExpiration</a></li>
-                            
-                            <li><a data-id="attr_resetPasswordToken" href="#attr_resetPasswordToken" class="fixed-text">resetPasswordToken</a></li>
-                            
-                            <li><a data-id="attr_status" href="#attr_status" class="fixed-text">status</a></li>
-                            
-                            <li><a data-id="attr_updateTime" href="#attr_updateTime" class="fixed-text">updateTime</a></li>
-                            
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group dropdown">
-                        <input type="text" class="form-control" placeholder="Search" id="searchfield">
-                        <ul class="dropdown-menu dropdown-menu-left" role="menu" id="searchresult" style="display: none"></ul>
-                    </div>
-                </form>
-            </div>
+
+  <div class="ui grid stackable padded">
+    <div class="row">
+
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
+        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+      <div class="item">
+        <div class="header">Security</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('certificate.html');" title="API reference for certificate">Certificate</a>
+          </div>
         </div>
-    </nav>
+</div>
 
-    
-    
+</div>
+      </div>
 
-    
-    
-
-    
-    
-
-    
-    
-
-
-    <div class="container">
-
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
         <section id="intro">
             <h2>Account</h2>
             <p>None</p>
         </section>
 
-        <section id="overview">
-            <h3>Overview</h3>
-                <table class="width: 100%">
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_accessEnabled" title="AccessEnabled defines if the account holder should have access to the systems.">accessEnabled</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_activationExpiration" title="ActivationExpiration contains the expiration date of the activation token.">activationExpiration</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_activationToken" title="ActivationToken contains the activation token.">activationToken</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedAgentReadAPIAuthPolicyID" title="associatedAgentReadAPIAuthPolicyID holds the ID of the associated agent read auth policy.">associatedAgentReadAPIAuthPolicyID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedAgentWriteAPIAuthPolicyID" title="associatedAgentWriteAPIAuthPolicyID holds the ID of the associated agent write auth policy.">associatedAgentWriteAPIAuthPolicyID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedAPIAuthPolicyID" title="AssociatedAPIAuthPolicyID holds the ID of the associated API auth policy.">associatedAPIAuthPolicyID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedNamespaceID" title="AssociatedNamespaceID contains the ID of the associated namespace.">associatedNamespaceID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedNSMappingPolicyID" title="AssociatedNSMappingPolicyID contains the ID of the associated Namespace Mapping Policy.">associatedNSMappingPolicyID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_bumpToken" title="BumpToken contains the tag processing unit must use to be placed in the account's namespace.">bumpToken</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_createTime" title="createdAt represents the creation date of the object.">createTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_email" title="Email of the account holder.">email</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_ID" title="ID of the object.">ID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_LDAPAddress" title="LDAPAddress holds the account authentication account's private ldap server.">LDAPAddress</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_LDAPBaseDN" title="LDAPBaseDN holds the base DN to use to ldap queries.">LDAPBaseDN</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_LDAPBindDN" title="LDAPBindDN holds the account's internal LDAP bind dn for querying auth.">LDAPBindDN</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_LDAPBindPassword" title="LDAPBindPassword holds the password to the LDAPBindDN. ">LDAPBindPassword</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_LDAPCertificateAuthority" title="LDAPCertificateAuthority contains the optional certificate authority that will be used to connect to the LDAP server. It is not needed if the TLS certificate of the LDAP is issued from a public truster CA.">LDAPCertificateAuthority</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_LDAPEnabled" title="LDAPEnabled triggers if the account uses it's own LDAP for authentication.">LDAPEnabled</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_name" title="Name of the account.">name</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_password" title="Password for the account.">password</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_resetPasswordExpiration" title="ResetPasswordExpiration contains the expiration time for reseting the password.">resetPasswordExpiration</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_resetPasswordToken" title="ResetPasswordToken contains the token to use for resetting password.">resetPasswordToken</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_status" title="Status of the account.">status</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_enum">enum
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     (Active | Disabled | Invited | Pending)
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_updateTime" title="UpdateTime represents the last update date of the objct.">updateTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                </table>
-        </section>
-
-        <section id="apiresources">
-            <h3>API Resource</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            <span class="fixed-text">/accounts/<span class="text-muted">id</span></a>
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-success">put</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="parents">
-            <h3>Parents</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/accounts</a>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-primary">post</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="children">
-            <h3>Children</h3>
-            
-    
-    
-    
-
-    
-    <p>This object has no child.</p>
-    
-    
-        </section>
-
         <section id="attributes">
-            <h3>Attributes documentation</h3>
-            
-            <section id="attr_accessEnabled" class="filterable" data-filter-keyword="accessEnabled" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>accessEnabled</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+            <h3>Attributes</h3>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AccessEnabled defines if the account holder should have access to the systems.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">accessEnabled</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_activationExpiration" class="filterable" data-filter-keyword="activationExpiration" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>activationExpiration</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>accessEnabled</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AccessEnabled defines if the account holder should have access to the systems.
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ActivationExpiration contains the expiration date of the activation token.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">activationExpiration</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_activationToken" class="filterable" data-filter-keyword="activationToken" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>activationToken</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini pink">autogenerated</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ActivationToken contains the activation token.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">activationToken</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_associatedAgentReadAPIAuthPolicyID" class="filterable" data-filter-keyword="associatedAgentReadAPIAuthPolicyID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedAgentReadAPIAuthPolicyID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>activationExpiration</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ActivationExpiration contains the expiration date of the activation token.
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>associatedAgentReadAPIAuthPolicyID holds the ID of the associated agent read auth policy.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedAgentReadAPIAuthPolicyID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_associatedAgentWriteAPIAuthPolicyID" class="filterable" data-filter-keyword="associatedAgentWriteAPIAuthPolicyID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedAgentWriteAPIAuthPolicyID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini pink">autogenerated</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>associatedAgentWriteAPIAuthPolicyID holds the ID of the associated agent write auth policy.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedAgentWriteAPIAuthPolicyID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_associatedAPIAuthPolicyID" class="filterable" data-filter-keyword="associatedAPIAuthPolicyID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedAPIAuthPolicyID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>activationToken</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ActivationToken contains the activation token. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AssociatedAPIAuthPolicyID holds the ID of the associated API auth policy.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedAPIAuthPolicyID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_associatedNamespaceID" class="filterable" data-filter-keyword="associatedNamespaceID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedNamespaceID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AssociatedNamespaceID contains the ID of the associated namespace.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedNamespaceID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_associatedNSMappingPolicyID" class="filterable" data-filter-keyword="associatedNSMappingPolicyID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedNSMappingPolicyID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedAgentReadAPIAuthPolicyID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  associatedAgentReadAPIAuthPolicyID holds the ID of the associated agent read auth policy. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AssociatedNSMappingPolicyID contains the ID of the associated Namespace Mapping Policy.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedNSMappingPolicyID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_bumpToken" class="filterable" data-filter-keyword="bumpToken" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>bumpToken</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>BumpToken contains the tag processing unit must use to be placed in the account's namespace.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">bumpToken</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_createTime" class="filterable" data-filter-keyword="createTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>createTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedAgentWriteAPIAuthPolicyID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  associatedAgentWriteAPIAuthPolicyID holds the ID of the associated agent write auth policy. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>createdAt represents the creation date of the object.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">createTime</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_email" class="filterable" data-filter-keyword="email" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>email</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Email of the account holder.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">email</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_ID" class="filterable" data-filter-keyword="ID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>ID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedAPIAuthPolicyID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AssociatedAPIAuthPolicyID holds the ID of the associated API auth policy. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ID of the object.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">ID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_LDAPAddress" class="filterable" data-filter-keyword="LDAPAddress" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>LDAPAddress</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LDAPAddress holds the account authentication account's private ldap server.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">LDAPAddress</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_LDAPBaseDN" class="filterable" data-filter-keyword="LDAPBaseDN" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>LDAPBaseDN</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedNamespaceID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AssociatedNamespaceID contains the ID of the associated namespace. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LDAPBaseDN holds the base DN to use to ldap queries.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">LDAPBaseDN</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_LDAPBindDN" class="filterable" data-filter-keyword="LDAPBindDN" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>LDAPBindDN</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LDAPBindDN holds the account's internal LDAP bind dn for querying auth.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">LDAPBindDN</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_LDAPBindPassword" class="filterable" data-filter-keyword="LDAPBindPassword" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>LDAPBindPassword</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedNSMappingPolicyID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AssociatedNSMappingPolicyID contains the ID of the associated Namespace Mapping Policy. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LDAPBindPassword holds the password to the LDAPBindDN. </p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">LDAPBindPassword</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_LDAPCertificateAuthority" class="filterable" data-filter-keyword="LDAPCertificateAuthority" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>LDAPCertificateAuthority</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LDAPCertificateAuthority contains the optional certificate authority that will be used to connect to the LDAP server. It is not needed if the TLS certificate of the LDAP is issued from a public truster CA.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">LDAPCertificateAuthority</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_LDAPEnabled" class="filterable" data-filter-keyword="LDAPEnabled" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>LDAPEnabled</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>bumpToken</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  BumpToken contains the tag processing unit must use to be placed in the account's namespace. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LDAPEnabled triggers if the account uses it's own LDAP for authentication.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">LDAPEnabled</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_name" class="filterable" data-filter-keyword="name" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>name</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Name of the account.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-                            <span class="small"><b>Allowed characters: </b></span><span class="fixed-text">^[^\*\=]*$</span><br/>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">name</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_password" class="filterable" data-filter-keyword="password" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>password</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>createTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  createdAt represents the creation date of the object.
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Password for the account.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">password</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_resetPasswordExpiration" class="filterable" data-filter-keyword="resetPasswordExpiration" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>resetPasswordExpiration</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ResetPasswordExpiration contains the expiration time for reseting the password.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">resetPasswordExpiration</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_resetPasswordToken" class="filterable" data-filter-keyword="resetPasswordToken" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>resetPasswordToken</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>email</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Email of the account holder. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ResetPasswordToken contains the token to use for resetting password.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">resetPasswordToken</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_status" class="filterable" data-filter-keyword="status" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>status</b>
-                        <span class="type_enum fixed-text">enum</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Status of the account.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-                            <span class="small"><b>Allowed values: </b></span><span class="fixed-text">Active, Disabled, Invited, Pending</span><br/>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">Pending</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">status</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_updateTime" class="filterable" data-filter-keyword="updateTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>updateTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>ID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ID of the object. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>UpdateTime represents the last update date of the objct.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">updateTime</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>LDAPAddress</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LDAPAddress holds the account authentication account's private ldap server. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>LDAPBaseDN</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LDAPBaseDN holds the base DN to use to ldap queries. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>LDAPBindDN</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LDAPBindDN holds the account's internal LDAP bind dn for querying auth. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>LDAPBindPassword</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LDAPBindPassword holds the password to the LDAPBindDN.  (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>LDAPCertificateAuthority</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LDAPCertificateAuthority contains the optional certificate authority that will be used to connect to the LDAP server. It is not needed if the TLS certificate of the LDAP is issued from a public truster CA. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>LDAPEnabled</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LDAPEnabled triggers if the account uses it's own LDAP for authentication.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini red">required</span>
+<span class="ui label mini olive">creation only</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>name</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Name of the account. (characters: ^[^\*\=]*$ | format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>password</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Password for the account. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini pink">autogenerated</span>
+
+                </div>
+                <strong>resetPasswordExpiration</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ResetPasswordExpiration contains the expiration time for reseting the password.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini pink">autogenerated</span>
+
+                </div>
+                <strong>resetPasswordToken</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ResetPasswordToken contains the token to use for resetting password. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>status</strong>  <span class="ui blue">enum (Active | Disabled | Invited | Pending)</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Status of the account. (default: Pending)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>updateTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  UpdateTime represents the last update date of the objct.
+
+                </div>
+              </div>
+            </div>
         </section>
 
-    </div>
+        <section id="relations">
+          <h3>Relations</h3>
+          <svg preserveAspectRatio="xMidYMid meet"></svg>
+        </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/search.js"></script>
-    <script>
-        $(document).ready(function()
-        {
-            initialize_search("attr_");
-            initialize_scrollspy();
-        });
-    </script>
+        <section id="codingexamples">
+          <h3>Code example</h3>
+            <div>
+  <div id="retrieve_all_accounts">
+<h4>Retrieve all Accounts </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api list accounts -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  vincemodels "github.com/aporeto-inc/gaia/vincemodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects vincemodels.AccountsList
+
+  if err = m.RetrieveMany(nil, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from vincemodels import Account
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = Account()
+    objects = []
+
+    try:
+        manipulator.retrieve_children(None, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/accounts
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_accounts .menu .item').tab({context: "parent"});</script>
+
+  <div id="create_account_from_root">
+<h4>Create a new Account </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+<pre>
+apoctl api create accounts -n /namespace \
+  -k email "email" \
+  -k name "name"</pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    vincemodels "github.com/aporeto-inc/gaia/vincemodels/current/golang"
+)
+
+func main () {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := vincemodels.NewAccount()
+    obj.Email = "email"
+    obj.Name = "name"
+
+    if err = m.Create(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from vincemodels import Account
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = Account()
+    obj.email = "email"
+    obj.name = "name"
+
+    try:
+        manipulator.create(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X POST \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  -d email="email" \
+  -d name="name" \
+  http://&lt;host&gt;:&lt;port&gt;/accounts
+  </pre>
+</div>
+</div>
+<script>$('#create_account_from_root .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+  <div>
+  <div id="get_account">
+<h4>Retrieve a given Account</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api get account identitifier -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    vincemodels "github.com/aporeto-inc/gaia/vincemodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := vincemodels.NewAccount()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Retrieve(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from vincemodels import Account
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = Account()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.retrieve(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+-H "X-Namespace: namespace" \
+-H "Authorization: token" \
+http://&lt;host&gt;:&lt;port&gt;/accounts/identifier
+  </pre>
+</div>
+</div>
+<script>$('#get_account .menu .item').tab({context: "parent"});</script>
+
+  <div id="update_account">
+<h4>Update a given Account</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api update account identitifier -n /namespace \
+  -k email "email"  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    vincemodels "github.com/aporeto-inc/gaia/vincemodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := vincemodels.NewAccount()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Retrieve(nil, obj); err != nil {
+      panic(err)
+    }
+
+    obj.Email = "email"
+
+    if err = m.Update(nil, obj); err != nil {
+      panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from vincemodels import Account
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = Account()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.retrieve(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    obj.email = "email"
+
+    try:
+        manipulator.update(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X PUT \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  -d email="email" \
+  http://&lt;host&gt;:&lt;port&gt;/accounts/identitifier
+  </pre>
+</div>
+</div>
+<script>$('#update_account .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+
+        // Write relations graph
+        var data = [
+{"restName": "account", "instanceName": "Account", "resourceName": "accounts", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT']}, 
+]
+        drawRelations(data, 1, 0);
+
+      });
+  </script>
 
 </body>
 </html>

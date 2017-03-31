@@ -376,6 +376,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"ns":         NamespaceIdentity,
 	"extsrv":     ExternalServiceIdentity,
 	"extsrvs":    ExternalServiceIdentity,
+	"suggs":      SuggestedPolicyIdentity,
+	"sugg":       SuggestedPolicyIdentity,
+	"sugpols":    SuggestedPolicyIdentity,
+	"sugpol":     SuggestedPolicyIdentity,
 	"profiles":   EnforcerProfileIdentity,
 	"profile":    EnforcerProfileIdentity,
 	"rpols":      RenderedPolicyIdentity,
@@ -450,7 +454,12 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case FlowStatisticIdentity:
 		return []string{}
 	case SuggestedPolicyIdentity:
-		return []string{}
+		return []string{
+			"suggs",
+			"sugg",
+			"sugpols",
+			"sugpol",
+		}
 	case FileAccessPolicyIdentity:
 		return []string{}
 	case SystemCallIdentity:

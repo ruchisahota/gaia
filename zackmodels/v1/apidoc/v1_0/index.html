@@ -2,87 +2,53 @@
 <html lang="en">
 <head>
     <title>Zack API Reference 1.0</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="../css/semantic.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/semantic.min.js"></script>
+
+    <script src="../js/common.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbarmain">
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Zack API Documentation 1.0
+    </div>
+  </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbarmain">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Zack API Documentation 1.0</a>
+  <div class="ui grid stackable padded">
+    <div class="row">
 
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="../usage.html">API Usage</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Components <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            
-                            
-                                
-                            
-                                
-                            
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group dropdown">
-                        <input type="text" class="form-control" placeholder="Search" id="searchfield">
-                        <ul class="dropdown-menu dropdown-menu-left" role="menu" id="searchresult" style="display: none"></ul>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container" id="content">
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
         
-        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+</div>
+      </div>
 
-            
-
-            <div class="row bordered-row">
-                <div class="col-xs-12">
-                    <a class="filterable" data-filter-keyword="reports" id="reports" href="report.html" title="API reference for report">reports </a>
-                    <br>
-                    <small>None</small>
-                </div>
-            </div>
-        
-
-            
-
-            <div class="row bordered-row">
-                <div class="col-xs-12">
-                    <a class="filterable" data-filter-keyword="root" id="root" href="root.html" title="API reference for root">root </a>
-                    <br>
-                    <small>[nodoc]</small>
-                </div>
-            </div>
-        
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+        <section>
+        </section>
+      </div>
 
     </div>
+  </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/search.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            initialize_search("");
-            initialize_scrollspy();
-        });
-    </script>
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+      });
+  </script>
 
 </body>
+
 </html>

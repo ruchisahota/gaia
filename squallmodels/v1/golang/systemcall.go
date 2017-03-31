@@ -105,9 +105,7 @@ func (o *SystemCall) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *SystemCall) Doc() string {
-
 	return nodocString
-
 }
 
 func (o *SystemCall) String() string {

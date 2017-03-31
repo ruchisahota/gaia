@@ -38,7 +38,6 @@ func init() {
 			AllowsCreate: true,
 		},
 	)
-
 	relationshipsRegistry[elemental.IdentityFromName("root")] = RootMainRelationship
 
 }

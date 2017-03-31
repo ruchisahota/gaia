@@ -1,3 +1,4 @@
+
 package vincemodels
 
 import "fmt"
@@ -6,38 +7,38 @@ import "github.com/aporeto-inc/elemental"
 import "sync"
 
 // RootIdentity represents the Identity of the object
-var RootIdentity = elemental.Identity{
-	Name:     "root",
-	Category: "root",
+var RootIdentity = elemental.Identity {
+    Name:     "root",
+    Category: "root",
 }
+
 
 // Root represents the model of a root
 type Root struct {
-	Token        string  `json:"APIKey,omitempty"`
-	Organization string  `json:"enterprise,omitempty"`
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+    Token string `json:"APIKey,omitempty"`
+    Organization string `json:"enterprise,omitempty"`    ModelVersion float64 `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+    sync.Mutex
 }
 
 // NewRoot returns a new *Root
 func NewRoot() *Root {
 
-	return &Root{
-		ModelVersion: 1.0,
-	}
+    return &Root{
+        ModelVersion: 1.0,
+}
 }
 
 // Identity returns the Identity of the object.
 func (o *Root) Identity() elemental.Identity {
 
-	return RootIdentity
+    return RootIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
 func (o *Root) Identifier() string {
 
-	return ""
+return ""
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
@@ -46,63 +47,62 @@ func (o *Root) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Root) Version() float64 {
+func  (o *Root) Version() float64 {
 
-	return 1.0
+  return 1.0
 }
 
 // Doc returns the documentation for the object
 func (o *Root) Doc() string {
-
-	return nodocString
-
+  return nodocString
 }
 
-func (o *Root) String() string {
+func  (o *Root) String() string {
 
-	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
+  return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // Validate valides the current information stored into the structure.
 func (o *Root) Validate() error {
 
-	errors := elemental.Errors{}
-	requiredErrors := elemental.Errors{}
+    errors := elemental.Errors{}
+    requiredErrors := elemental.Errors{}
 
-	if len(requiredErrors) > 0 {
-		return requiredErrors
-	}
+if len(requiredErrors) > 0 {
+      return requiredErrors
+    }
 
-	if len(errors) > 0 {
-		return errors
-	}
+    if len(errors) > 0 {
+        return errors
+    }
 
-	return nil
+    return nil
 }
 
 // APIKey returns a the API Key
 func (o *Root) APIKey() string {
 
-	return o.Token
+    return o.Token
 }
 
 // SetAPIKey sets a the API Key
 func (o *Root) SetAPIKey(key string) {
 
-	o.Token = key
+    o.Token = key
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return RootAttributesMap[name]
+  return RootAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
 func (*Root) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return RootAttributesMap
+  return RootAttributesMap
 }
 
 // RootAttributesMap represents the map of attribute for Root.
-var RootAttributesMap = map[string]elemental.AttributeSpecification{}
+var RootAttributesMap = map[string]elemental.AttributeSpecification{
+}

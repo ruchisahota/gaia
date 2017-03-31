@@ -89,9 +89,7 @@ func (o *MapEdge) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *MapEdge) Doc() string {
-
 	return nodocString
-
 }
 
 func (o *MapEdge) String() string {

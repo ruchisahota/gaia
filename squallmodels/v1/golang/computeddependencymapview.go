@@ -111,9 +111,7 @@ func (o *ComputedDependencyMapView) Version() float64 {
 
 // Doc returns the documentation for the object
 func (o *ComputedDependencyMapView) Doc() string {
-
 	return nodocString
-
 }
 
 func (o *ComputedDependencyMapView) String() string {

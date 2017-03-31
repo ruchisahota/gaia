@@ -2,683 +2,374 @@
 <html lang="en">
 <head>
     <title>FileAccess API Reference 1.0</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="../css/semantic.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/semantic.min.js"></script>
+
+    <script src="../js/d3.v4.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/relations.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbarmain">
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Squall API Documentation 1.0
+    </div>
+    <a class="item active" href="#attributes">Attributes</a>
+    <a class="item" href="#relations">Relations</a>
+    <a class="item" href="#codingexamples">Coding Examples</a>
+  </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbarmain">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Squall API Documentation 1.0</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li><a data-id="intro" href="#intro">Top</a></li>
-                    <li><a data-id="overview" href="#overview">Overview</a></li>
-                    <li><a data-id="apiresources" href="#apiresources">API Resource</a></li>
-                    <li><a data-id="parents" href="#parents">Parents</a></li>
-                    <li><a data-id="children" href="#children">Children</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Attributes <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            
-                            <li><a data-id="attr_action" href="#attr_action" class="fixed-text">action</a></li>
-                            
-                            <li><a data-id="attr_count" href="#attr_count" class="fixed-text">count</a></li>
-                            
-                            <li><a data-id="attr_host" href="#attr_host" class="fixed-text">host</a></li>
-                            
-                            <li><a data-id="attr_mode" href="#attr_mode" class="fixed-text">mode</a></li>
-                            
-                            <li><a data-id="attr_path" href="#attr_path" class="fixed-text">path</a></li>
-                            
-                            <li><a data-id="attr_protocol" href="#attr_protocol" class="fixed-text">protocol</a></li>
-                            
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group dropdown">
-                        <input type="text" class="form-control" placeholder="Search" id="searchfield">
-                        <ul class="dropdown-menu dropdown-menu-left" role="menu" id="searchresult" style="display: none"></ul>
-                    </div>
-                </form>
-            </div>
+
+  <div class="ui grid stackable padded">
+    <div class="row">
+
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
+        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+      <div class="item">
+        <div class="header">Authorization</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apicheck.html');" title="API reference for apicheck">APICheck</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apiauthorizationpolicy.html');" title="API reference for apiauthorizationpolicy">APIAuthorizationPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('tag.html');" title="API reference for tag">Tag</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespace.html');" title="API reference for namespace">Namespace</a>
+          </div>
         </div>
-    </nav>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Compute</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('integration.html');" title="API reference for integration">Integration</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('externalservice.html');" title="API reference for externalservice">ExternalService</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('suggestedpolicy.html');" title="API reference for suggestedpolicy">SuggestedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('renderedpolicy.html');" title="API reference for renderedpolicy">RenderedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespacemappingpolicy.html');" title="API reference for namespacemappingpolicy">NamespaceMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('processingunit.html');" title="API reference for processingunit">ProcessingUnit</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('networkaccesspolicy.html');" title="API reference for networkaccesspolicy">NetworkAccessPolicy</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Platform</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccess.html');" title="API reference for fileaccess">FileAccess</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('flowstatistic.html');" title="API reference for flowstatistic">FlowStatistic</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymapview.html');" title="API reference for dependencymapview">DependencyMapView</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymap.html');" title="API reference for dependencymap">DependencyMap</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Storage</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('filepath.html');" title="API reference for filepath">FilePath</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccesspolicy.html');" title="API reference for fileaccesspolicy">FileAccessPolicy</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">System</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcer.html');" title="API reference for enforcer">Enforcer</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofile.html');" title="API reference for enforcerprofile">EnforcerProfile</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofilemappingpolicy.html');" title="API reference for enforcerprofilemappingpolicy">EnforcerProfileMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('activity.html');" title="API reference for activity">Activity</a>
+          </div>
+        </div>
+</div>
 
+</div>
+      </div>
 
-    <div class="container">
-
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
         <section id="intro">
             <h2>FileAccess</h2>
             <p>Returns file access statistics on a particular processing unit.</p>
         </section>
 
-        <section id="overview">
-            <h3>Overview</h3>
-                <table class="width: 100%">
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_action" title="Action tells if the access has been allowed or not.">action</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_count" title="Count tells how many times the file has been accessed.">count</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_host" title="Host is the host that served the accessed file.">host</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_mode" title="Mode is the mode of the accessed file.">mode</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_enum">enum
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     (Read | ReadWrite | Write)
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_path" title="Path is the path of the accessed file.">path</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_protocol" title="Protocol is the protocol used to access the file.">protocol</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                </table>
-        </section>
-
-        <section id="apiresources">
-            <h3>API Resource</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            <span class="fixed-text">/fileaccesses/<span class="text-muted">id</span></a>
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="parents">
-            <h3>Parents</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/<a href="processingunit.html">processingunits</a>/<span class="text-muted">id</span>/fileaccesses</span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="children">
-            <h3>Children</h3>
-            
-    
-    
-    
-
-    
-    <p>This object has no child.</p>
-    
-    
-        </section>
-
         <section id="attributes">
-            <h3>Attributes documentation</h3>
-            
-            <section id="attr_action" class="filterable" data-filter-keyword="action" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>action</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+            <h3>Attributes</h3>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Action tells if the access has been allowed or not.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">action</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_count" class="filterable" data-filter-keyword="count" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>count</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>action</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Action tells if the access has been allowed or not. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Count tells how many times the file has been accessed.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">count</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_host" class="filterable" data-filter-keyword="host" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>host</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Host is the host that served the accessed file.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">host</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_mode" class="filterable" data-filter-keyword="mode" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>mode</b>
-                        <span class="type_enum fixed-text">enum</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>count</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Count tells how many times the file has been accessed.
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Mode is the mode of the accessed file.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-                            <span class="small"><b>Allowed values: </b></span><span class="fixed-text">Read, ReadWrite, Write</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">mode</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_path" class="filterable" data-filter-keyword="path" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>path</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Path is the path of the accessed file.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">path</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_protocol" class="filterable" data-filter-keyword="protocol" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>protocol</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>host</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Host is the host that served the accessed file. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Protocol is the protocol used to access the file.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">protocol</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+
+                </div>
+                <strong>mode</strong>  <span class="ui blue">enum (Read | ReadWrite | Write)</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Mode is the mode of the accessed file.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+
+                </div>
+                <strong>path</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Path is the path of the accessed file. (format: free)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+
+                </div>
+                <strong>protocol</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Protocol is the protocol used to access the file. (format: free)
+
+                </div>
+              </div>
+            </div>
         </section>
 
-    </div>
+        <section id="relations">
+          <h3>Relations</h3>
+          <svg preserveAspectRatio="xMidYMid meet"></svg>
+        </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/search.js"></script>
-    <script>
-        $(document).ready(function()
-        {
-            initialize_search("attr_");
-            initialize_scrollspy();
-        });
-    </script>
+        <section id="codingexamples">
+          <h3>Code example</h3>
+            <div>
+  <div id="retrieve_all_fileaccesses_from_processingunit">
+<h4>Retrieve all FileAccess in a given ProcessingUnit</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api list fileaccesses in processingunit parent-id -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects squallmodels.FileAccessList
+
+  parent := squallmodels.NewProcessingUnit()
+  parent.SetIdentifier("parent-id")
+
+  mctx := manipulate.NewContext()
+  mctx.Parent = parent
+
+  if err = m.RetrieveMany(mctx, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import FileAccess, ProcessingUnit
+from pymanipulate.context import Context
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = FileAccess()
+    objects = []
+
+    parent = ProcessingUnit(ID="parent-id")
+    mctx = Context(parent=parent)
+
+    try:
+        manipulator.retrieve_children(mctx, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/processingunits/id/fileaccesses
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_fileaccesses_from_processingunit .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+  <div>
+</div>
+
+
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+
+        // Write relations graph
+        var data = [
+{"restName": "processingunit", "instanceName": "ProcessingUnit", "resourceName": "processingunits", "type": "parents", "exposed": true, "actions": ['GET']}, {"restName": "fileaccess", "instanceName": "FileAccess", "resourceName": "fileaccesses", "type": "self", "exposed": true, "actions": []}, 
+]
+        drawRelations(data, 1, 0);
+
+      });
+  </script>
 
 </body>
 </html>

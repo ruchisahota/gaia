@@ -2,2649 +2,1186 @@
 <html lang="en">
 <head>
     <title>EnforcerProfile API Reference 1.0</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="../css/semantic.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/semantic.min.js"></script>
+
+    <script src="../js/d3.v4.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/relations.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbarmain">
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Squall API Documentation 1.0
+    </div>
+    <a class="item active" href="#attributes">Attributes</a>
+    <a class="item" href="#relations">Relations</a>
+    <a class="item" href="#codingexamples">Coding Examples</a>
+  </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbarmain">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Squall API Documentation 1.0</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li><a data-id="intro" href="#intro">Top</a></li>
-                    <li><a data-id="overview" href="#overview">Overview</a></li>
-                    <li><a data-id="apiresources" href="#apiresources">API Resource</a></li>
-                    <li><a data-id="parents" href="#parents">Parents</a></li>
-                    <li><a data-id="children" href="#children">Children</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Attributes <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            
-                            <li><a data-id="attr_annotation" href="#attr_annotation" class="fixed-text">annotation</a></li>
-                            
-                            <li><a data-id="attr_associatedTags" href="#attr_associatedTags" class="fixed-text">associatedTags</a></li>
-                            
-                            <li><a data-id="attr_createTime" href="#attr_createTime" class="fixed-text">createTime</a></li>
-                            
-                            <li><a data-id="attr_description" href="#attr_description" class="fixed-text">description</a></li>
-                            
-                            <li><a data-id="attr_dockerSocketAddress" href="#attr_dockerSocketAddress" class="fixed-text">dockerSocketAddress</a></li>
-                            
-                            <li><a data-id="attr_dockerSocketType" href="#attr_dockerSocketType" class="fixed-text">dockerSocketType</a></li>
-                            
-                            <li><a data-id="attr_ID" href="#attr_ID" class="fixed-text">ID</a></li>
-                            
-                            <li><a data-id="attr_IgnoreExpression" href="#attr_IgnoreExpression" class="fixed-text">IgnoreExpression</a></li>
-                            
-                            <li><a data-id="attr_IPTablesMarkValue" href="#attr_IPTablesMarkValue" class="fixed-text">IPTablesMarkValue</a></li>
-                            
-                            <li><a data-id="attr_kubernetesSupportEnabled" href="#attr_kubernetesSupportEnabled" class="fixed-text">kubernetesSupportEnabled</a></li>
-                            
-                            <li><a data-id="attr_linuxProcessesSupportEnabled" href="#attr_linuxProcessesSupportEnabled" class="fixed-text">linuxProcessesSupportEnabled</a></li>
-                            
-                            <li><a data-id="attr_name" href="#attr_name" class="fixed-text">name</a></li>
-                            
-                            <li><a data-id="attr_namespace" href="#attr_namespace" class="fixed-text">namespace</a></li>
-                            
-                            <li><a data-id="attr_normalizedTags" href="#attr_normalizedTags" class="fixed-text">normalizedTags</a></li>
-                            
-                            <li><a data-id="attr_policySynchronizationInterval" href="#attr_policySynchronizationInterval" class="fixed-text">policySynchronizationInterval</a></li>
-                            
-                            <li><a data-id="attr_protected" href="#attr_protected" class="fixed-text">protected</a></li>
-                            
-                            <li><a data-id="attr_proxyListenAddress" href="#attr_proxyListenAddress" class="fixed-text">proxyListenAddress</a></li>
-                            
-                            <li><a data-id="attr_PUBookkeepingInterval" href="#attr_PUBookkeepingInterval" class="fixed-text">PUBookkeepingInterval</a></li>
-                            
-                            <li><a data-id="attr_PUHeartbeatInterval" href="#attr_PUHeartbeatInterval" class="fixed-text">PUHeartbeatInterval</a></li>
-                            
-                            <li><a data-id="attr_receiverNumberOfQueues" href="#attr_receiverNumberOfQueues" class="fixed-text">receiverNumberOfQueues</a></li>
-                            
-                            <li><a data-id="attr_receiverQueue" href="#attr_receiverQueue" class="fixed-text">receiverQueue</a></li>
-                            
-                            <li><a data-id="attr_receiverQueueSize" href="#attr_receiverQueueSize" class="fixed-text">receiverQueueSize</a></li>
-                            
-                            <li><a data-id="attr_remoteEnforcerEnabled" href="#attr_remoteEnforcerEnabled" class="fixed-text">remoteEnforcerEnabled</a></li>
-                            
-                            <li><a data-id="attr_targetNetworks" href="#attr_targetNetworks" class="fixed-text">targetNetworks</a></li>
-                            
-                            <li><a data-id="attr_transmitterNumberOfQueues" href="#attr_transmitterNumberOfQueues" class="fixed-text">transmitterNumberOfQueues</a></li>
-                            
-                            <li><a data-id="attr_transmitterQueue" href="#attr_transmitterQueue" class="fixed-text">transmitterQueue</a></li>
-                            
-                            <li><a data-id="attr_transmitterQueueSize" href="#attr_transmitterQueueSize" class="fixed-text">transmitterQueueSize</a></li>
-                            
-                            <li><a data-id="attr_updateTime" href="#attr_updateTime" class="fixed-text">updateTime</a></li>
-                            
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group dropdown">
-                        <input type="text" class="form-control" placeholder="Search" id="searchfield">
-                        <ul class="dropdown-menu dropdown-menu-left" role="menu" id="searchresult" style="display: none"></ul>
-                    </div>
-                </form>
-            </div>
+
+  <div class="ui grid stackable padded">
+    <div class="row">
+
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
+        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+      <div class="item">
+        <div class="header">Authorization</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apicheck.html');" title="API reference for apicheck">APICheck</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('apiauthorizationpolicy.html');" title="API reference for apiauthorizationpolicy">APIAuthorizationPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('tag.html');" title="API reference for tag">Tag</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespace.html');" title="API reference for namespace">Namespace</a>
+          </div>
         </div>
-    </nav>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Compute</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('integration.html');" title="API reference for integration">Integration</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('externalservice.html');" title="API reference for externalservice">ExternalService</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('suggestedpolicy.html');" title="API reference for suggestedpolicy">SuggestedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('renderedpolicy.html');" title="API reference for renderedpolicy">RenderedPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('namespacemappingpolicy.html');" title="API reference for namespacemappingpolicy">NamespaceMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('processingunit.html');" title="API reference for processingunit">ProcessingUnit</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('networkaccesspolicy.html');" title="API reference for networkaccesspolicy">NetworkAccessPolicy</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Platform</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccess.html');" title="API reference for fileaccess">FileAccess</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('flowstatistic.html');" title="API reference for flowstatistic">FlowStatistic</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymapview.html');" title="API reference for dependencymapview">DependencyMapView</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('dependencymap.html');" title="API reference for dependencymap">DependencyMap</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">Storage</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('filepath.html');" title="API reference for filepath">FilePath</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('fileaccesspolicy.html');" title="API reference for fileaccesspolicy">FileAccessPolicy</a>
+          </div>
+        </div>
+</div>
 
-    
-    
+      <div class="item">
+        <div class="header">System</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcer.html');" title="API reference for enforcer">Enforcer</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofile.html');" title="API reference for enforcerprofile">EnforcerProfile</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('enforcerprofilemappingpolicy.html');" title="API reference for enforcerprofilemappingpolicy">EnforcerProfileMappingPolicy</a>
+          </div>
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('activity.html');" title="API reference for activity">Activity</a>
+          </div>
+        </div>
+</div>
 
+</div>
+      </div>
 
-    <div class="container">
-
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
         <section id="intro">
             <h2>EnforcerProfile</h2>
             <p>Allows to create reusable configuration profile for your enforcers. Enforcer Profiles contains various startup information that can (for some) be updated live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile Mapping Policy.</p>
         </section>
 
-        <section id="overview">
-            <h3>Overview</h3>
-                <table class="width: 100%">
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_annotation" title="Annotation stores additional information about an entity">annotation</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_associatedTags" title="AssociatedTags are the list of tags attached to an entity">associatedTags</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_createTime" title="CreatedTime is the time at which the object was created">createTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_description" title="Description is the description of the object.">description</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_dockerSocketAddress" title="DockerSocketAddress is the address of the docker daemon.">dockerSocketAddress</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_dockerSocketType" title="DockerSocketType is the type of socket to use to talk to the docker daemon.">dockerSocketType</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_enum">enum
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     (tcp | unix)
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_ID" title="ID is the identifier of the object.">ID</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_IgnoreExpression" title="IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.">IgnoreExpression</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_IPTablesMarkValue" title="IptablesMarkValue is the mark value to be used in an iptables implementation.">IPTablesMarkValue</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_kubernetesSupportEnabled" title="KubernetesSupportEnabled enables kubernetes mode for the enforcer.">kubernetesSupportEnabled</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_linuxProcessesSupportEnabled" title="LinuxProcessesSupportEnabled configures support for Linux processes.">linuxProcessesSupportEnabled</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_name" title="Name is the name of the entity">name</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_namespace" title="Namespace tag attached to an entity">namespace</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_normalizedTags" title="NormalizedTags contains the list of normalized tags of the entities">normalizedTags</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_policySynchronizationInterval" title="PolicySynchronizationInterval configures how often the policy will be resynchronized.">policySynchronizationInterval</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_protected" title="Protected defines if the object is protected.">protected</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_proxyListenAddress" title="AgentPort is the port the enforcer should use to listen for API calls ">proxyListenAddress</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_PUBookkeepingInterval" title="PUBookkeepingInterval configures how often the PU will be synchronized.">PUBookkeepingInterval</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_PUHeartbeatInterval" title="PUHeartbeatInterval configures the heart beat interval.">PUHeartbeatInterval</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_receiverNumberOfQueues" title="ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue">receiverNumberOfQueues</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_receiverQueue" title="ReceiverQueue is the base queue number for traffic from the network.">receiverQueue</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_receiverQueueSize" title="ReceiverQueueSize is the queue size of the receiver">receiverQueueSize</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_remoteEnforcerEnabled" title="RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.">remoteEnforcerEnabled</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_boolean">boolean
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_targetNetworks" title="TargetNetworks is the list of networks that authorization should be applied.">targetNetworks</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_transmitterNumberOfQueues" title="TransmitterNumberOfQueues is the number of queues for application traffic.">transmitterNumberOfQueues</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_transmitterQueue" title="TransmitterQueue is the queue number for traffic from the applications starting at the transmitterQueue">transmitterQueue</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_transmitterQueueSize" title="TransmitterQueueSize is the size of the queue for application traffic.">transmitterQueueSize</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_integer">integer
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_updateTime" title="UpdateTime is the time at which an entity was updated.">updateTime</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_time">time
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                </table>
-        </section>
-
-        <section id="apiresources">
-            <h3>API Resource</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            <span class="fixed-text">/enforcerprofiles/<span class="text-muted">id</span></a>
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-danger">delete</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-success">put</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="parents">
-            <h3>Parents</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/<a href="enforcer.html">enforcers</a>/<span class="text-muted">id</span>/enforcerprofiles</span>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-        </div>
-    </div>
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/enforcerprofiles</a>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-default">get</span>
-    
-            
-            
-    
-    
-    
-    <span class="label label-primary">post</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="children">
-            <h3>Children</h3>
-            
-    
-    
-    
-
-    
-    <p>This object has no child.</p>
-    
-    
-        </section>
-
         <section id="attributes">
-            <h3>Attributes documentation</h3>
-            
-            <section id="attr_annotation" class="filterable" data-filter-keyword="annotation" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>annotation</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Annotation stores additional information about an entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">annotation</span>
-                        </p>
-                    </div>
+            <h3>Attributes</h3>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_associatedTags" class="filterable" data-filter-keyword="associatedTags" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>associatedTags</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
+                <strong>annotation</strong>  <span class="ui blue">annotation</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Annotation stores additional information about an entity
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AssociatedTags are the list of tags attached to an entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">associatedTags</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_createTime" class="filterable" data-filter-keyword="createTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>createTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>CreatedTime is the time at which the object was created</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">createTime</span>
-                        </p>
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_description" class="filterable" data-filter-keyword="description" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>description</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AssociatedTags are the list of tags attached to an entity
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Description is the description of the object.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">description</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_dockerSocketAddress" class="filterable" data-filter-keyword="dockerSocketAddress" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>dockerSocketAddress</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>DockerSocketAddress is the address of the docker daemon.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">/var/run/docker.sock</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">dockerSocketAddress</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_dockerSocketType" class="filterable" data-filter-keyword="dockerSocketType" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>dockerSocketType</b>
-                        <span class="type_enum fixed-text">enum</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>createTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  CreatedTime is the time at which the object was created
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>DockerSocketType is the type of socket to use to talk to the docker daemon.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-                            <span class="small"><b>Allowed values: </b></span><span class="fixed-text">tcp, unix</span><br/>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">unix</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">dockerSocketType</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_ID" class="filterable" data-filter-keyword="ID" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>ID</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ID is the identifier of the object.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">ID</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_IgnoreExpression" class="filterable" data-filter-keyword="IgnoreExpression" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>IgnoreExpression</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
+                <strong>description</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Description is the description of the object. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">IgnoreExpression</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_IPTablesMarkValue" class="filterable" data-filter-keyword="IPTablesMarkValue" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>IPTablesMarkValue</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>IptablesMarkValue is the mark value to be used in an iptables implementation.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">1000</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">65000</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">IPTablesMarkValue</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_kubernetesSupportEnabled" class="filterable" data-filter-keyword="kubernetesSupportEnabled" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>kubernetesSupportEnabled</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>dockerSocketAddress</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  DockerSocketAddress is the address of the docker daemon. (format: free | default: /var/run/docker.sock)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>KubernetesSupportEnabled enables kubernetes mode for the enforcer.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">false</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">kubernetesSupportEnabled</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_linuxProcessesSupportEnabled" class="filterable" data-filter-keyword="linuxProcessesSupportEnabled" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>linuxProcessesSupportEnabled</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>LinuxProcessesSupportEnabled configures support for Linux processes.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">false</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">linuxProcessesSupportEnabled</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_name" class="filterable" data-filter-keyword="name" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>name</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-     <span class="label label-warning">locally unique</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>dockerSocketType</strong>  <span class="ui blue">enum (tcp | unix)</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  DockerSocketType is the type of socket to use to talk to the docker daemon. (default: unix)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Name is the name of the entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">name</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_namespace" class="filterable" data-filter-keyword="namespace" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>namespace</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">creation only</span>&nbsp;
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+<span class="ui label mini orange">locally unique</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Namespace tag attached to an entity</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">namespace</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_normalizedTags" class="filterable" data-filter-keyword="normalizedTags" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>normalizedTags</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-    
-    
-                    </div>
+                <strong>ID</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ID is the identifier of the object. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>NormalizedTags contains the list of normalized tags of the entities</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">normalizedTags</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_policySynchronizationInterval" class="filterable" data-filter-keyword="policySynchronizationInterval" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>policySynchronizationInterval</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>PolicySynchronizationInterval configures how often the policy will be resynchronized.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-                            <span class="small"><b>Allowed characters: </b></span><span class="fixed-text">^[0-9]+[smh]$</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">10m</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">policySynchronizationInterval</span>
-                        </p>
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_protected" class="filterable" data-filter-keyword="protected" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>protected</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>IgnoreExpression</strong>  <span class="ui blue">policies_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Protected defines if the object is protected.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">protected</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_proxyListenAddress" class="filterable" data-filter-keyword="proxyListenAddress" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>proxyListenAddress</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>AgentPort is the port the enforcer should use to listen for API calls </p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">:9443</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">proxyListenAddress</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_PUBookkeepingInterval" class="filterable" data-filter-keyword="PUBookkeepingInterval" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>PUBookkeepingInterval</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>IPTablesMarkValue</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  IptablesMarkValue is the mark value to be used in an iptables implementation. (default: 1000 | value: [0;65000])
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>PUBookkeepingInterval configures how often the PU will be synchronized.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-                            <span class="small"><b>Allowed characters: </b></span><span class="fixed-text">^[0-9]+[smh]$</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">5m</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">PUBookkeepingInterval</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_PUHeartbeatInterval" class="filterable" data-filter-keyword="PUHeartbeatInterval" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>PUHeartbeatInterval</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>PUHeartbeatInterval configures the heart beat interval.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-                            <span class="small"><b>Allowed characters: </b></span><span class="fixed-text">^[0-9]+[smh]$</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">5s</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">PUHeartbeatInterval</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_receiverNumberOfQueues" class="filterable" data-filter-keyword="receiverNumberOfQueues" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>receiverNumberOfQueues</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>kubernetesSupportEnabled</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  KubernetesSupportEnabled enables kubernetes mode for the enforcer. (default: false)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">4</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Min value: </b></span><span class="fixed-text">1</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">16</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">receiverNumberOfQueues</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_receiverQueue" class="filterable" data-filter-keyword="receiverQueue" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>receiverQueue</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ReceiverQueue is the base queue number for traffic from the network.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">0</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">1000</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">receiverQueue</span>
-                        </p>
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_receiverQueueSize" class="filterable" data-filter-keyword="receiverQueueSize" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>receiverQueueSize</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>linuxProcessesSupportEnabled</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  LinuxProcessesSupportEnabled configures support for Linux processes. (default: false)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>ReceiverQueueSize is the queue size of the receiver</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">500</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Min value: </b></span><span class="fixed-text">1</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">5000</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">receiverQueueSize</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_remoteEnforcerEnabled" class="filterable" data-filter-keyword="remoteEnforcerEnabled" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>remoteEnforcerEnabled</b>
-                        <span class="type_boolean fixed-text">boolean</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+<span class="ui label mini orange">locally unique</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">false</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">remoteEnforcerEnabled</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_targetNetworks" class="filterable" data-filter-keyword="targetNetworks" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>targetNetworks</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-     <span class="label label-danger">required</span>&nbsp;
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>name</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Name is the name of the entity (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>TargetNetworks is the list of networks that authorization should be applied.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">targetNetworks</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_transmitterNumberOfQueues" class="filterable" data-filter-keyword="transmitterNumberOfQueues" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>transmitterNumberOfQueues</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini olive">creation only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>TransmitterNumberOfQueues is the number of queues for application traffic.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">4</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Min value: </b></span><span class="fixed-text">1</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">16</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">transmitterNumberOfQueues</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_transmitterQueue" class="filterable" data-filter-keyword="transmitterQueue" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>transmitterQueue</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>namespace</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Namespace tag attached to an entity (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>TransmitterQueue is the queue number for traffic from the applications starting at the transmitterQueue</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">4</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Min value: </b></span><span class="fixed-text">1</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">1000</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">transmitterQueue</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_transmitterQueueSize" class="filterable" data-filter-keyword="transmitterQueueSize" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>transmitterQueueSize</b>
-                        <span class="type_integer fixed-text">integer</span>
-                        
-    
-    
-    
-    
-    
-    
-     <span class="label label-info">filterable</span>&nbsp;
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>TransmitterQueueSize is the size of the queue for application traffic.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Default value: </b></span><span class="fixed-text">500</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Min value: </b></span><span class="fixed-text">1</span><br/>
-                            
-
-                            
-                            <span class="small"><b>Max value: </b></span><span class="fixed-text">1000</span><br/>
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">transmitterQueueSize</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_updateTime" class="filterable" data-filter-keyword="updateTime" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>updateTime</b>
-                        <span class="type_time fixed-text">time</span>
-                        
-    
-    
-     <span class="label label-warning">read only</span>&nbsp;
-    
-    
-    
-    
-     <span class="label label-info">autogenerated</span>&nbsp;
-    
-    
-    
-     <span class="label label-info">orderable</span>&nbsp;
-    
-    
-    
-                    </div>
+                <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  NormalizedTags contains the list of normalized tags of the entities
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>UpdateTime is the time at which an entity was updated.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">updateTime</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>policySynchronizationInterval</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  PolicySynchronizationInterval configures how often the policy will be resynchronized. (characters: ^[0-9]+[smh]$ | format: free | default: 10m)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>protected</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Protected defines if the object is protected.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>proxyListenAddress</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  AgentPort is the port the enforcer should use to listen for API calls  (format: free | default: :9443)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>PUBookkeepingInterval</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  PUBookkeepingInterval configures how often the PU will be synchronized. (characters: ^[0-9]+[smh]$ | format: free | default: 5m)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>PUHeartbeatInterval</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  PUHeartbeatInterval configures the heart beat interval. (characters: ^[0-9]+[smh]$ | format: free | default: 5s)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>receiverNumberOfQueues</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue (default: 4 | value: [1;16])
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>receiverQueue</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ReceiverQueue is the base queue number for traffic from the network. (default: 0 | value: [0;1000])
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>receiverQueueSize</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  ReceiverQueueSize is the queue size of the receiver (default: 500 | value: [1;5000])
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>remoteEnforcerEnabled</strong>  <span class="ui blue">boolean</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed. (default: false)
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>targetNetworks</strong>  <span class="ui blue">target_networks_list</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  TargetNetworks is the list of networks that authorization should be applied.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>transmitterNumberOfQueues</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  TransmitterNumberOfQueues is the number of queues for application traffic. (default: 4 | value: [1;16])
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>transmitterQueue</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  TransmitterQueue is the queue number for traffic from the applications starting at the transmitterQueue (default: 4 | value: [1;1000])
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>transmitterQueueSize</strong>  <span class="ui blue">integer</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  TransmitterQueueSize is the size of the queue for application traffic. (default: 500 | value: [1;1000])
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  <span class="ui label mini grey">read only</span>
+<span class="ui label mini pink">autogenerated</span>
+<span class="ui label mini teal">orderable</span>
+
+                </div>
+                <strong>updateTime</strong>  <span class="ui blue">time</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  UpdateTime is the time at which an entity was updated.
+
+                </div>
+              </div>
+            </div>
         </section>
 
-    </div>
+        <section id="relations">
+          <h3>Relations</h3>
+          <svg preserveAspectRatio="xMidYMid meet"></svg>
+        </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/search.js"></script>
-    <script>
-        $(document).ready(function()
-        {
-            initialize_search("attr_");
-            initialize_scrollspy();
-        });
-    </script>
+        <section id="codingexamples">
+          <h3>Code example</h3>
+            <div>
+  <div id="retrieve_all_enforcerprofiles_from_enforcer">
+<h4>Retrieve all EnforcerProfiles in a given Enforcer</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api list enforcerprofiles in enforcer parent-id -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects squallmodels.EnforcerProfilesList
+
+  parent := squallmodels.NewEnforcer()
+  parent.SetIdentifier("parent-id")
+
+  mctx := manipulate.NewContext()
+  mctx.Parent = parent
+
+  if err = m.RetrieveMany(mctx, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import EnforcerProfile, Enforcer
+from pymanipulate.context import Context
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = EnforcerProfile()
+    objects = []
+
+    parent = Enforcer(ID="parent-id")
+    mctx = Context(parent=parent)
+
+    try:
+        manipulator.retrieve_children(mctx, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/enforcers/id/enforcerprofiles
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_enforcerprofiles_from_enforcer .menu .item').tab({context: "parent"});</script>
+
+</div>
+<div>
+  <div id="retrieve_all_enforcerprofiles">
+<h4>Retrieve all EnforcerProfiles </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api list enforcerprofiles -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects squallmodels.EnforcerProfilesList
+
+  if err = m.RetrieveMany(nil, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import EnforcerProfile
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = EnforcerProfile()
+    objects = []
+
+    try:
+        manipulator.retrieve_children(None, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_enforcerprofiles .menu .item').tab({context: "parent"});</script>
+
+  <div id="create_enforcerprofile_from_root">
+<h4>Create a new EnforcerProfile </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+<pre>
+apoctl api create enforcerprofiles -n /namespace \
+  -k name "name" \
+  -k targetnetworks "target_networks_list"</pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main () {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewEnforcerProfile()
+    obj.SetName("name")
+    obj.TargetNetworks = "target_networks_list"
+
+    if err = m.Create(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import EnforcerProfile
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = EnforcerProfile()
+    obj.name = "name"
+    obj.targetNetworks = "target_networks_list"
+
+    try:
+        manipulator.create(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X POST \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  -d name="name" \
+  -d targetnetworks="target_networks_list" \
+  http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles
+  </pre>
+</div>
+</div>
+<script>$('#create_enforcerprofile_from_root .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+  <div>
+  <div id="delete_enforcerprofile">
+<h4>Delete a given EnforcerProfile</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api delete enforcerprofile identitifier -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewEnforcerProfile()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Delete(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import EnforcerProfile
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = EnforcerProfile()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.delete(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X DELETE \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identitifier
+  </pre>
+</div>
+</div>
+<script>$('#delete_enforcerprofile .menu .item').tab({context: "parent"});</script>
+
+  <div id="get_enforcerprofile">
+<h4>Retrieve a given EnforcerProfile</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api get enforcerprofile identitifier -n /namespace
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewEnforcerProfile()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Retrieve(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import EnforcerProfile
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = EnforcerProfile()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.retrieve(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X GET \
+-H "X-Namespace: namespace" \
+-H "Authorization: token" \
+http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identifier
+  </pre>
+</div>
+</div>
+<script>$('#get_enforcerprofile .menu .item').tab({context: "parent"});</script>
+
+  <div id="update_enforcerprofile">
+<h4>Update a given EnforcerProfile</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+  <pre>
+apoctl api update enforcerprofile identitifier -n /namespace \
+  -k name "name" \
+  -k targetnetworks "target_networks_list"  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := squallmodels.NewEnforcerProfile()
+    obj.SetIdentifier("identifier")
+
+    if err = m.Retrieve(nil, obj); err != nil {
+      panic(err)
+    }
+
+    obj.SetName("name")
+    obj.TargetNetworks = "target_networks_list"
+
+    if err = m.Update(nil, obj); err != nil {
+      panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from squallmodels import EnforcerProfile
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = EnforcerProfile()
+    obj.ID = "identifier"
+
+    try:
+        manipulator.retrieve(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    obj.name = "name"
+    obj.targetNetworks = "target_networks_list"
+
+    try:
+        manipulator.update(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X PUT \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  -d name="name" \
+  -d targetnetworks="target_networks_list" \
+  http://&lt;host&gt;:&lt;port&gt;/enforcerprofiles/identitifier
+  </pre>
+</div>
+</div>
+<script>$('#update_enforcerprofile .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+
+        // Write relations graph
+        var data = [
+{"restName": "enforcer", "instanceName": "Enforcer", "resourceName": "enforcers", "type": "parents", "exposed": true, "actions": ['GET']}, {"restName": "enforcerprofile", "instanceName": "EnforcerProfile", "resourceName": "enforcerprofiles", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+]
+        drawRelations(data, 2, 0);
+
+      });
+  </script>
 
 </body>
 </html>

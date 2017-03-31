@@ -2,466 +2,227 @@
 <html lang="en">
 <head>
     <title>Report API Reference 1.0</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
+
+    <link rel="stylesheet" href="../css/semantic.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/semantic.min.js"></script>
+
+    <script src="../js/d3.v4.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/relations.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbarmain">
-
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbarmain">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Zack API Documentation 1.0</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li><a data-id="intro" href="#intro">Top</a></li>
-                    <li><a data-id="overview" href="#overview">Overview</a></li>
-                    <li><a data-id="apiresources" href="#apiresources">API Resource</a></li>
-                    <li><a data-id="parents" href="#parents">Parents</a></li>
-                    <li><a data-id="children" href="#children">Children</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Attributes <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            
-                            <li><a data-id="attr_name" href="#attr_name" class="fixed-text">name</a></li>
-                            
-                            <li><a data-id="attr_tags" href="#attr_tags" class="fixed-text">tags</a></li>
-                            
-                            <li><a data-id="attr_timestamp" href="#attr_timestamp" class="fixed-text">timestamp</a></li>
-                            
-                            <li><a data-id="attr_value" href="#attr_value" class="fixed-text">value</a></li>
-                            
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group dropdown">
-                        <input type="text" class="form-control" placeholder="Search" id="searchfield">
-                        <ul class="dropdown-menu dropdown-menu-left" role="menu" id="searchresult" style="display: none"></ul>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-    
+<body>
+  <div class="ui menu fixed navbar">
+    <div class="item header">
+      <i id="aporeto-icon"></i> Zack API Documentation 1.0
+    </div>
+    <a class="item active" href="#attributes">Attributes</a>
+    <a class="item" href="#relations">Relations</a>
+    <a class="item" href="#codingexamples">Coding Examples</a>
+  </div>
 
 
-    <div class="container">
+  <div class="ui grid stackable padded">
+    <div class="row">
 
+      <div id="main_menu" class="sixteen wide tablet three wide computer column">
+        
+<div class="ui vertical menu fluid">
+  <div class="item">
+    <a href="index.html">
+      Index
+    </a>
+  </div>
+</div>
+      </div>
+
+      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
         <section id="intro">
             <h2>Report</h2>
             <p>None</p>
         </section>
 
-        <section id="overview">
-            <h3>Overview</h3>
-                <table class="width: 100%">
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_name" title="Name contains the name metric of statistics data.">name</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_string">string
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_tags" title="Tags contains the tags associated to the data point.">tags</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_timestamp" title="Timestamp contains the unix timestamp for the report.">timestamp</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_external">external
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="fixed-text">
-                            <a href="#attr_value" title="Value contains the value for the report.">value</a>
-                        </td>
-                        <td style="padding-left: 10px;" class="fixed-text hide-xs">
-                            <span class="type_float">float
-    
-    
-    
-    
-    </span>
-                        </td>
-                        <td style="padding-left: 30px;" class="fixed-text hide-xs">
-                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                        </td>
-                    </tr>
-                    
-                </table>
-        </section>
-
-        <section id="apiresources">
-            <h3>API Resource</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            <span class="fixed-text">/reports/<span class="text-muted">id</span></a>
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="parents">
-            <h3>Parents</h3>
-            
-    
-    
-    
-
-    
-    
-    <div class="row bordered-row">
-        <div class="col-xs-7">
-
-            
-            
-            <span class="fixed-text">/reports</a>
-            
-
-            
-        </div>
-        <div class="col-xs-5 text-right">
-            
-            
-    
-    
-    
-    <span class="label label-primary">post</span>
-    
-            
-        </div>
-    </div>
-    
-    
-    
-        </section>
-
-        <section id="children">
-            <h3>Children</h3>
-            
-    
-    
-    
-
-    
-    <p>This object has no child.</p>
-    
-    
-        </section>
-
         <section id="attributes">
-            <h3>Attributes documentation</h3>
-            
-            <section id="attr_name" class="filterable" data-filter-keyword="name" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>name</b>
-                        <span class="type_string fixed-text">string</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Name contains the name metric of statistics data.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-                            <span class="small"><b>Format: </b></span><span class="fixed-text">free</span><br/>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">name</span>
-                        </p>
-                    </div>
+            <h3>Attributes</h3>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_tags" class="filterable" data-filter-keyword="tags" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>tags</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
+                <strong>name</strong>  <span class="ui blue">string</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Name contains the name metric of statistics data. (format: free)
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Tags contains the tags associated to the data point.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">tags</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
-            <section id="attr_timestamp" class="filterable" data-filter-keyword="timestamp" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>timestamp</b>
-                        <span class="type_external fixed-text">external</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
-
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Timestamp contains the unix timestamp for the report.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">timestamp</span>
-                        </p>
-                    </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
                 </div>
-            </section>
-            
-            <section id="attr_value" class="filterable" data-filter-keyword="value" style="padding-top: 60px; margin-top: -60px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading fixed-text">
-                        <b>value</b>
-                        <span class="type_float fixed-text">float</span>
-                        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    </div>
+                <strong>tags</strong>  <span class="ui blue">tags_map</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Tags contains the tags associated to the data point.
 
-                    <div class="panel-body">
-                        <h5><b>Discussion</b></h5>
-                        <p>Value contains the value for the report.</p>
-
-                        <hr/>
-
-                        <h5><b>Charateristics</b></h5>
-                        <p>
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            
-
-                            <span class="small"><b>SDK attribute: </b></span><span class="fixed-text">value</span>
-                        </p>
-                    </div>
                 </div>
-            </section>
-            
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
+                </div>
+                <strong>timestamp</strong>  <span class="ui blue">int64</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Timestamp contains the unix timestamp for the report.
+
+                </div>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="pull-right">
+                  
+                </div>
+                <strong>value</strong>  <span class="ui blue">float</span>
+              </div>
+              <div class="content">
+                <div class="meta">
+                  Value contains the value for the report.
+
+                </div>
+              </div>
+            </div>
         </section>
 
-    </div>
+        <section id="relations">
+          <h3>Relations</h3>
+          <svg preserveAspectRatio="xMidYMid meet"></svg>
+        </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/search.js"></script>
-    <script>
-        $(document).ready(function()
-        {
-            initialize_search("attr_");
-            initialize_scrollspy();
-        });
-    </script>
+        <section id="codingexamples">
+          <h3>Code example</h3>
+            <div>
+  <div id="create_report_from_root">
+<h4>Create a new Report </h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+<pre>
+apoctl api create reports -n /namespace</pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre>
+package main
+
+import (
+    "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+    zackmodels "github.com/aporeto-inc/gaia/zackmodels/current/golang"
+)
+
+func main () {
+
+    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+    if err != nil {
+        panic(err)
+    }
+
+    obj := zackmodels.NewReport()
+
+    if err = m.Create(nil, obj); err != nil {
+        panic(err)
+    }
+
+    disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre>
+import os
+
+from zackmodels import Report
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = Report()
+
+    try:
+        manipulator.create(None, obj)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre>
+curl -X POST \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/reports
+  </pre>
+</div>
+</div>
+<script>$('#create_report_from_root .menu .item').tab({context: "parent"});</script>
+
+</div>
+
+  <div>
+</div>
+
+
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function()
+      {
+        prepareComponents(1.0);
+
+        // Write relations graph
+        var data = [
+{"restName": "report", "instanceName": "Report", "resourceName": "reports", "type": "self", "exposed": true, "actions": ['POST']}, 
+]
+        drawRelations(data, 1, 0);
+
+      });
+  </script>
 
 </body>
 </html>

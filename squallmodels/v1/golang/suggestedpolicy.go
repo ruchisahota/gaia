@@ -32,6 +32,9 @@ func (o SuggestedPoliciesList) List() elemental.IdentifiablesList {
 
 // SuggestedPolicy represents the model of a suggestedpolicy
 type SuggestedPolicy struct {
+	// List of suggested network access policies
+	NetworkAccessPolicies []*NetworkAccessPolicy `json:"networkAccessPolicies" bson:"networkaccesspolicies"`
+
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -66,6 +69,11 @@ func (o *SuggestedPolicy) SetIdentifier(ID string) {
 func (o *SuggestedPolicy) Version() float64 {
 
 	return 1.0
+}
+
+// Doc returns the documentation for the object
+func (o *SuggestedPolicy) Doc() string {
+	return `Allows to get policy suggestions`
 }
 
 func (o *SuggestedPolicy) String() string {
@@ -103,4 +111,16 @@ func (*SuggestedPolicy) AttributeSpecifications() map[string]elemental.Attribute
 }
 
 // SuggestedPolicyAttributesMap represents the map of attribute for SuggestedPolicy.
-var SuggestedPolicyAttributesMap = map[string]elemental.AttributeSpecification{}
+var SuggestedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+	"NetworkAccessPolicies": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `List of suggested network access policies`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "networkAccessPolicies",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "network_access_policies_list",
+		Type:           "external",
+	},
+}
