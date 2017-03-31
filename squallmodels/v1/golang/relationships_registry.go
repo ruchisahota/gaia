@@ -260,6 +260,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for renderedpolicies in processingunit
 	ProcessingUnitMainRelationship.AddChild(
 		elemental.IdentityFromName("renderedpolicy"),
@@ -268,6 +269,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for syscallaccesses in processingunit
 	ProcessingUnitMainRelationship.AddChild(
 		elemental.IdentityFromName("syscallaccess"),
@@ -276,6 +278,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for vulnerabilities in processingunit
 	ProcessingUnitMainRelationship.AddChild(
 		elemental.IdentityFromName("vulnerability"),
@@ -356,6 +359,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for apiauthorizationpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("apiauthorizationpolicy"),
@@ -365,6 +369,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for apichecks in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("apicheck"),
@@ -372,6 +377,7 @@ func init() {
 			AllowsCreate: true,
 		},
 	)
+
 	// Children relationship for computeddependencymapviews in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("computeddependencymapview"),
@@ -380,6 +386,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for computedpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("computedpolicy"),
@@ -388,6 +395,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for dependencymaps in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("dependencymap"),
@@ -396,6 +404,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for dependencymapviews in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("dependencymapview"),
@@ -405,6 +414,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for enforcers in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("enforcer"),
@@ -414,6 +424,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for enforcerprofiles in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("enforcerprofile"),
@@ -423,6 +434,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for enforcerprofilemappingpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("enforcerprofilemappingpolicy"),
@@ -432,6 +444,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for externalservices in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("externalservice"),
@@ -441,6 +454,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for fileaccesspolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("fileaccesspolicy"),
@@ -450,6 +464,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for filepaths in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("filepath"),
@@ -459,6 +474,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for flowstatistics in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("flowstatistic"),
@@ -467,6 +483,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for integrations in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("integration"),
@@ -476,6 +493,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for namespaces in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("namespace"),
@@ -485,6 +503,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for namespacemappingpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("namespacemappingpolicy"),
@@ -494,6 +513,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for networkaccesspolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("networkaccesspolicy"),
@@ -503,6 +523,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for policies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("policy"),
@@ -511,6 +532,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for processingunits in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("processingunit"),
@@ -520,6 +542,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for suggestedpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("suggestedpolicy"),
@@ -528,6 +551,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for systemcalls in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("systemcall"),
@@ -537,6 +561,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for tags in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("tag"),
@@ -545,6 +570,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for vulnerabilities in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("vulnerability"),

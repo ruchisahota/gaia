@@ -30,6 +30,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for issue in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("issue"),

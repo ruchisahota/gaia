@@ -68,6 +68,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for activate in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("activate"),
@@ -76,6 +77,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for certificates in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("certificate"),
@@ -85,6 +87,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for check in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("check"),
@@ -93,6 +96,7 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
 	// Children relationship for passwordreset in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("passwordreset"),
