@@ -1,6 +1,6 @@
 
 const goToURLWithCurrentParameters = (url) => {
-  window.location = url + getURLParameters();
+  window.location = url + window.location.search;
 }
 
 const goToHash = (hash) => {
