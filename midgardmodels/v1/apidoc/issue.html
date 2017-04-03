@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Midgard API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -49,104 +50,104 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>Issue</h2>
-            <p>None</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>Issue</h2>
+              <p>None</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>data</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>data</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Data contains additional data. The value depends on the issuer type. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Data contains additional data. The value depends on the issuer type. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini teal">orderable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>metadata</strong>  <span class="ui blue">metadata</span>
                 </div>
-                <strong>metadata</strong>  <span class="ui blue">metadata</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Metadata contains various additional information. Meaning depends on the realm.
+                <div class="content">
+                  <div class="meta">
+                    Metadata contains various additional information. Meaning depends on the realm.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 
+                  </div>
+                  <strong>realm</strong>  <span class="ui blue">enum (AWSIdentityDocument | Certificate | Facebook | Github | Google | LDAP | Twitter | Vince)</span>
                 </div>
-                <strong>realm</strong>  <span class="ui blue">enum (AWSIdentityDocument | Certificate | Facebook | Github | Google | LDAP | Twitter | Vince)</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Realm is the realm
+                <div class="content">
+                  <div class="meta">
+                    Realm is the realm
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 
+                  </div>
+                  <strong>token</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>token</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Token is the token to use for the registration. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Token is the token to use for the registration. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>validity</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>validity</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped. (characters: ^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$ | format: free | default: 24h)
+                <div class="content">
+                  <div class="meta">
+                    Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped. (characters: ^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$ | format: free | default: 24h)
 
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+          </section>
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="create_issue_from_root">
 <h4>Create a new Issue </h4>
 
@@ -158,15 +159,12 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre>
-  <code class="bash">
+<pre class="bash">
 apoctl api create issue -n /namespace \
-  -k realm "AWSIdentityDocument"  </code>
-</pre>
+  -k realm "AWSIdentityDocument"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -192,12 +190,10 @@ func main () {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from midgardmodels import Issue
@@ -226,18 +222,15 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d realm="AWSIdentityDocument" \
   http://&lt;host&gt;:&lt;port&gt;/issue
-    </code>
   </pre>
 </div>
 </div>
@@ -249,16 +242,17 @@ curl -X POST \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -268,6 +262,5 @@ curl -X POST \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

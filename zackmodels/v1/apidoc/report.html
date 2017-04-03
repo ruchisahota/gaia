@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Zack API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -40,82 +41,82 @@
     </a>
   </div>
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>Report</h2>
-            <p>None</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>Report</h2>
+              <p>None</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>name</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>name</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Name contains the name metric of statistics data. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Name contains the name metric of statistics data. (format: free)
 
-                </div>
-              </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
-                </div>
-                <strong>tags</strong>  <span class="ui blue">tags_map</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Tags contains the tags associated to the data point.
-
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>tags</strong>  <span class="ui blue">tags_map</span>
                 </div>
-                <strong>timestamp</strong>  <span class="ui blue">int64</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Timestamp contains the unix timestamp for the report.
+                <div class="content">
+                  <div class="meta">
+                    Tags contains the tags associated to the data point.
 
-                </div>
-              </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
-                </div>
-                <strong>value</strong>  <span class="ui blue">float</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Value contains the value for the report.
-
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>timestamp</strong>  <span class="ui blue">int64</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Timestamp contains the unix timestamp for the report.
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>value</strong>  <span class="ui blue">float</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Value contains the value for the report.
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+                  </div>
+                </div>
+              </div>
+          </section>
+
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
+
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="create_report_from_root">
 <h4>Create a new Report </h4>
 
@@ -127,14 +128,11 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre>
-  <code class="bash">
-apoctl api create reports -n /namespace  </code>
-</pre>
+<pre class="bash">
+apoctl api create reports -n /namespace</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -159,12 +157,10 @@ func main () {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from zackmodels import Report
@@ -192,17 +188,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/reports
-    </code>
   </pre>
 </div>
 </div>
@@ -214,16 +207,17 @@ curl -X POST \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -233,6 +227,5 @@ curl -X POST \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

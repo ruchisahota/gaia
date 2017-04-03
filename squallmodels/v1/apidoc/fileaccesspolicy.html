@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Squall API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -133,350 +134,350 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>FileAccessPolicy</h2>
-            <p>A File Access Policy allows Processing Units to access various folder and files. It will use the tags of a File Path to know what is the path of the file or folder to allow access to. You can allow the Processing Unit to have any combination of read, write or execute. Note: When a Processing Unit is Docker container, then it will police the volumes mount. executewon't have any effect. Note: File path are not supported yet for standard Linux processes.</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>FileAccessPolicy</h2>
+              <p>A File Access Policy allows Processing Units to access various folder and files. It will use the tags of a File Path to know what is the path of the file or folder to allow access to. You can allow the Processing Unit to have any combination of read, write or execute. Note: When a Processing Unit is Docker container, then it will police the volumes mount. executewon't have any effect. Note: File path are not supported yet for standard Linux processes.</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>allowsExecute</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>allowsExecute</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AllowsExecute allows to execute the files.
+                <div class="content">
+                  <div class="meta">
+                    AllowsExecute allows to execute the files.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>allowsRead</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>allowsRead</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AllowsRead allows to read the files.
+                <div class="content">
+                  <div class="meta">
+                    AllowsRead allows to read the files.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>allowsWrite</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>allowsWrite</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AllowsWrite allows to write the files.
+                <div class="content">
+                  <div class="meta">
+                    AllowsWrite allows to write the files.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>annotation</strong>  <span class="ui blue">annotation</span>
                 </div>
-                <strong>annotation</strong>  <span class="ui blue">annotation</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Annotation stores additional information about an entity
+                <div class="content">
+                  <div class="meta">
+                    Annotation stores additional information about an entity
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
                 </div>
-                <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AssociatedTags are the list of tags attached to an entity
+                <div class="content">
+                  <div class="meta">
+                    AssociatedTags are the list of tags attached to an entity
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>createTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>createTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CreatedTime is the time at which the object was created
+                <div class="content">
+                  <div class="meta">
+                    CreatedTime is the time at which the object was created
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>description</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>description</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Description is the description of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Description is the description of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>disabled</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>disabled</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Disabled defines if the propert is disabled.
+                <div class="content">
+                  <div class="meta">
+                    Disabled defines if the propert is disabled.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>encryptionEnabled</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>encryptionEnabled</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  EncryptionEnabled will enable the automatic encryption
+                <div class="content">
+                  <div class="meta">
+                    EncryptionEnabled will enable the automatic encryption
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>ID</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>ID</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  ID is the identifier of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    ID is the identifier of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>logsEnabled</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>logsEnabled</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  LogsEnabled will enable logging when this policy is used.
+                <div class="content">
+                  <div class="meta">
+                    LogsEnabled will enable logging when this policy is used.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>name</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>name</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Name is the name of the entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Name is the name of the entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini olive">creation only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>namespace</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>namespace</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Namespace tag attached to an entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Namespace tag attached to an entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 
+                  </div>
+                  <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
                 </div>
-                <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  NormalizedTags contains the list of normalized tags of the entities
+                <div class="content">
+                  <div class="meta">
+                    NormalizedTags contains the list of normalized tags of the entities
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini teal">orderable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>object</strong>  <span class="ui blue">policies_list</span>
                 </div>
-                <strong>object</strong>  <span class="ui blue">policies_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Object is the object of the policy.
+                <div class="content">
+                  <div class="meta">
+                    Object is the object of the policy.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>propagate</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>propagate</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Propagate will propagate the policy to all of its children.
+                <div class="content">
+                  <div class="meta">
+                    Propagate will propagate the policy to all of its children.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>propagationHidden</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>propagationHidden</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+                <div class="content">
+                  <div class="meta">
+                    If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>protected</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>protected</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Protected defines if the object is protected.
+                <div class="content">
+                  <div class="meta">
+                    Protected defines if the object is protected.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini teal">orderable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>subject</strong>  <span class="ui blue">policies_list</span>
                 </div>
-                <strong>subject</strong>  <span class="ui blue">policies_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Subject is the subject of the policy
+                <div class="content">
+                  <div class="meta">
+                    Subject is the subject of the policy
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>updateTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>updateTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  UpdateTime is the time at which an entity was updated.
+                <div class="content">
+                  <div class="meta">
+                    UpdateTime is the time at which an entity was updated.
 
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+          </section>
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="retrieve_all_fileaccesspolicies">
 <h4>Retrieve all FileAccessPolicies </h4>
 
@@ -488,15 +489,12 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+<pre class="bash">
 apoctl api list fileaccesspolicies -n /namespace
-    </code>
-  </pre>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -521,12 +519,10 @@ func main() {
 
   disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import FileAccessPolicy
@@ -556,17 +552,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/fileaccesspolicies
-    </code>
   </pre>
 </div>
 </div>
@@ -583,15 +576,12 @@ curl -X GET \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre>
-  <code class="bash">
+<pre class="bash">
 apoctl api create fileaccesspolicies -n /namespace \
-  -k name "name"  </code>
-</pre>
+  -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -617,12 +607,10 @@ func main () {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import FileAccessPolicy
@@ -651,18 +639,15 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/fileaccesspolicies
-    </code>
   </pre>
 </div>
 </div>
@@ -682,15 +667,12 @@ curl -X POST \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api delete fileaccesspolicy identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -714,12 +696,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import FileAccessPolicy
@@ -748,17 +728,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/fileaccesspolicies/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -775,15 +752,12 @@ curl -X DELETE \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api get fileaccesspolicy identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -809,12 +783,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import FileAccessPolicy
@@ -843,17 +815,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/fileaccesspolicies/identifier
-    </code>
   </pre>
 </div>
 </div>
@@ -870,15 +839,12 @@ http://&lt;host&gt;:&lt;port&gt;/fileaccesspolicies/identifier
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api update fileaccesspolicy identitifier -n /namespace \
-  -k name "name"    </code>
-  </pre>
+  -k name "name"  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -908,12 +874,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import FileAccessPolicy
@@ -950,18 +914,15 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/fileaccesspolicies/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -970,16 +931,17 @@ curl -X PUT \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -989,6 +951,5 @@ curl -X PUT \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

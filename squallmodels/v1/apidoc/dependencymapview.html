@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Squall API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -133,256 +134,256 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>DependencyMapView</h2>
-            <p>Allows to create a view to apply on a dependency map view. It is possible to ask the dependency map view to group all the processing units based on a primary selector, which is a tag's key, then to subgroup them based on a secondary selector.</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>DependencyMapView</h2>
+              <p>Allows to create a view to apply on a dependency map view. It is possible to ask the dependency map view to group all the processing units based on a primary selector, which is a tag's key, then to subgroup them based on a secondary selector.</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>annotation</strong>  <span class="ui blue">annotation</span>
                 </div>
-                <strong>annotation</strong>  <span class="ui blue">annotation</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Annotation stores additional information about an entity
+                <div class="content">
+                  <div class="meta">
+                    Annotation stores additional information about an entity
 
-                </div>
-              </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
-                </div>
-                <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AssociatedTags are the list of tags attached to an entity
-
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini olive">creation only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    AssociatedTags are the list of tags attached to an entity
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>computed</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>computed</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Boolean to know if the dependency map view was computed by the system or not
+                <div class="content">
+                  <div class="meta">
+                    Boolean to know if the dependency map view was computed by the system or not
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>createTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>createTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CreatedTime is the time at which the object was created
+                <div class="content">
+                  <div class="meta">
+                    CreatedTime is the time at which the object was created
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>description</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>description</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Description is the description of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Description is the description of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>ID</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>ID</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  ID is the identifier of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    ID is the identifier of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>name</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>name</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Name is the name of the entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Name is the name of the entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini olive">creation only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>namespace</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>namespace</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Namespace tag attached to an entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Namespace tag attached to an entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 
+                  </div>
+                  <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
                 </div>
-                <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  NormalizedTags contains the list of normalized tags of the entities
+                <div class="content">
+                  <div class="meta">
+                    NormalizedTags contains the list of normalized tags of the entities
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini teal">orderable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>processingUnitTags</strong>  <span class="ui blue">processingunit_transient_tags_map</span>
                 </div>
-                <strong>processingUnitTags</strong>  <span class="ui blue">processingunit_transient_tags_map</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  A map of the tags to apply to processing units
+                <div class="content">
+                  <div class="meta">
+                    A map of the tags to apply to processing units
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>protected</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>protected</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Protected defines if the object is protected.
+                <div class="content">
+                  <div class="meta">
+                    Protected defines if the object is protected.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>subviews</strong>  <span class="ui blue">dependencymapsubviews_entities</span>
                 </div>
-                <strong>subviews</strong>  <span class="ui blue">dependencymapsubviews_entities</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Values used by the dependency map group
+                <div class="content">
+                  <div class="meta">
+                    Values used by the dependency map group
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>type</strong>  <span class="ui blue">enum (Automatic | Manual)</span>
                 </div>
-                <strong>type</strong>  <span class="ui blue">enum (Automatic | Manual)</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Type represents the type of the dependency map. It could be manual or automatic (default: Manual)
+                <div class="content">
+                  <div class="meta">
+                    Type represents the type of the dependency map. It could be manual or automatic (default: Manual)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>updateTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>updateTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  UpdateTime is the time at which an entity was updated.
+                <div class="content">
+                  <div class="meta">
+                    UpdateTime is the time at which an entity was updated.
 
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+          </section>
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="retrieve_all_dependencymapviews">
 <h4>Retrieve all DependencyMapViews </h4>
 
@@ -394,15 +395,12 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+<pre class="bash">
 apoctl api list dependencymapviews -n /namespace
-    </code>
-  </pre>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -427,12 +425,10 @@ func main() {
 
   disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import DependencyMapView
@@ -462,17 +458,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/dependencymapviews
-    </code>
   </pre>
 </div>
 </div>
@@ -489,16 +482,13 @@ curl -X GET \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre>
-  <code class="bash">
+<pre class="bash">
 apoctl api create dependencymapviews -n /namespace \
   -k name "name" \
-  -k subviews "dependencymapsubviews_entities"  </code>
-</pre>
+  -k subviews "dependencymapsubviews_entities"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -525,12 +515,10 @@ func main () {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import DependencyMapView
@@ -560,19 +548,16 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   -d subviews="dependencymapsubviews_entities" \
   http://&lt;host&gt;:&lt;port&gt;/dependencymapviews
-    </code>
   </pre>
 </div>
 </div>
@@ -592,15 +577,12 @@ curl -X POST \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api delete dependencymapview identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -624,12 +606,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import DependencyMapView
@@ -658,17 +638,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/dependencymapviews/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -685,15 +662,12 @@ curl -X DELETE \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api get dependencymapview identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -719,12 +693,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import DependencyMapView
@@ -753,17 +725,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/dependencymapviews/identifier
-    </code>
   </pre>
 </div>
 </div>
@@ -780,16 +749,13 @@ http://&lt;host&gt;:&lt;port&gt;/dependencymapviews/identifier
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api update dependencymapview identitifier -n /namespace \
   -k name "name" \
-  -k subviews "dependencymapsubviews_entities"    </code>
-  </pre>
+  -k subviews "dependencymapsubviews_entities"  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -820,12 +786,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import DependencyMapView
@@ -863,19 +827,16 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   -d subviews="dependencymapsubviews_entities" \
   http://&lt;host&gt;:&lt;port&gt;/dependencymapviews/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -884,16 +845,17 @@ curl -X PUT \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -903,6 +865,5 @@ curl -X PUT \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

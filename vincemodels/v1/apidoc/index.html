@@ -20,11 +20,12 @@
     </div>
   </div>
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -41,32 +42,33 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section>
-            <h2>Security</h2>
-            <div class="ui card">
-            <div class="content">
-            <a  id="certificates"
-                href="javascript:goToURLWithCurrentParameters('certificate.html');"
-                title="API reference for certificate">Certificate</a>
-            <br>
-            <div class="meta">
-              A User represents the owner of some certificates.
-            </div>
-            </div>
-            </div>
-        </section>
-      </div>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section>
+              <h2>Security</h2>
+              <div class="ui card">
+              <div class="content">
+              <a  id="certificates"
+                  href="javascript:goToURLWithCurrentParameters('certificate.html');"
+                  title="API reference for certificate">Certificate</a>
+              <br>
+              <div class="meta">
+                A User represents the owner of some certificates.
+              </div>
+              </div>
+              </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
       });
   </script>
 

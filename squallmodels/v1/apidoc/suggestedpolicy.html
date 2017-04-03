@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Squall API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -133,42 +134,42 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>SuggestedPolicy</h2>
-            <p>Allows to get policy suggestions</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>SuggestedPolicy</h2>
+              <p>Allows to get policy suggestions</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>networkAccessPolicies</strong>  <span class="ui blue">network_access_policies_list</span>
                 </div>
-                <strong>networkAccessPolicies</strong>  <span class="ui blue">network_access_policies_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  List of suggested network access policies
+                <div class="content">
+                  <div class="meta">
+                    List of suggested network access policies
 
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+          </section>
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="retrieve_all_suggestedpolicies">
 <h4>Retrieve all SuggestedPolicies </h4>
 
@@ -180,15 +181,12 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+<pre class="bash">
 apoctl api list suggestedpolicies -n /namespace
-    </code>
-  </pre>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -213,12 +211,10 @@ func main() {
 
   disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import SuggestedPolicy
@@ -248,17 +244,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/suggestedpolicies
-    </code>
   </pre>
 </div>
 </div>
@@ -278,15 +271,12 @@ curl -X GET \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api delete suggestedpolicy identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -310,12 +300,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import SuggestedPolicy
@@ -344,17 +332,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/suggestedpolicies/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -371,15 +356,12 @@ curl -X DELETE \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api get suggestedpolicy identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -405,12 +387,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import SuggestedPolicy
@@ -439,17 +419,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/suggestedpolicies/identifier
-    </code>
   </pre>
 </div>
 </div>
@@ -466,14 +443,11 @@ http://&lt;host&gt;:&lt;port&gt;/suggestedpolicies/identifier
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
-apoctl api update suggestedpolicy identitifier -n /namespace    </code>
-  </pre>
+  <pre class="bash">
+apoctl api update suggestedpolicy identitifier -n /namespace  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -502,12 +476,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import SuggestedPolicy
@@ -543,17 +515,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/suggestedpolicies/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -562,16 +531,17 @@ curl -X PUT \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -581,6 +551,5 @@ curl -X PUT \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

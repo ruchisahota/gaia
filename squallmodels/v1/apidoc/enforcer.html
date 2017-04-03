@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Squall API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -133,310 +134,310 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>Enforcer</h2>
-            <p>A Enforcer Profile contains a configuration for a Enforcer. It contains various parameters, like what network should not policeds, what processing units should be ignored based on their tags and so on. It also contains more advanced parameters to fine tune the Agent. A Enforcer will decide what profile to apply using aEnforcer Profile Mapping Policy. This policy will decide according the Enforcer's tags what profile to use. If an Enforcer tags are matching more than a single policy, it will refuse to start. Some parameters will be applied directly to a running agent, some will need to restart it.</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>Enforcer</h2>
+              <p>A Enforcer Profile contains a configuration for a Enforcer. It contains various parameters, like what network should not policeds, what processing units should be ignored based on their tags and so on. It also contains more advanced parameters to fine tune the Agent. A Enforcer will decide what profile to apply using aEnforcer Profile Mapping Policy. This policy will decide according the Enforcer's tags what profile to use. If an Enforcer tags are matching more than a single policy, it will refuse to start. Some parameters will be applied directly to a running agent, some will need to restart it.</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>annotation</strong>  <span class="ui blue">annotation</span>
                 </div>
-                <strong>annotation</strong>  <span class="ui blue">annotation</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Annotation stores additional information about an entity
+                <div class="content">
+                  <div class="meta">
+                    Annotation stores additional information about an entity
 
-                </div>
-              </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
-                </div>
-                <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AssociatedTags are the list of tags attached to an entity
-
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    AssociatedTags are the list of tags attached to an entity
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>certificate</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>certificate</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Certificate is the certificate of the enforcer.  (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Certificate is the certificate of the enforcer.  (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>certificateExpirationDate</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>certificateExpirationDate</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CertificateExpirationDate is the expiration date of the certificate.
+                <div class="content">
+                  <div class="meta">
+                    CertificateExpirationDate is the expiration date of the certificate.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>certificateKey</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>certificateKey</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CertificateKey is the secret key of the enforcer. Returned only when a enforcer is created or the certificate is updated. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    CertificateKey is the secret key of the enforcer. Returned only when a enforcer is created or the certificate is updated. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>certificateStatus</strong>  <span class="ui blue">enum (RENEW | REVOKED | VALID)</span>
                 </div>
-                <strong>certificateStatus</strong>  <span class="ui blue">enum (RENEW | REVOKED | VALID)</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CertificateStatus indicates if the certificate is valid. (default: VALID)
+                <div class="content">
+                  <div class="meta">
+                    CertificateStatus indicates if the certificate is valid. (default: VALID)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>createTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>createTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CreatedTime is the time at which the object was created
+                <div class="content">
+                  <div class="meta">
+                    CreatedTime is the time at which the object was created
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>description</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>description</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Description is the description of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Description is the description of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>FQDN</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>FQDN</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  FQDN contains the fqdn of the server where the enforcer is running. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    FQDN contains the fqdn of the server where the enforcer is running. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>ID</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>ID</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  ID is the identifier of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    ID is the identifier of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>lastSyncTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>lastSyncTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  LastSyncTime holds the last heart beat time.
+                <div class="content">
+                  <div class="meta">
+                    LastSyncTime holds the last heart beat time.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>name</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>name</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Name is the name of the entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Name is the name of the entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini olive">creation only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>namespace</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>namespace</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Namespace tag attached to an entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Namespace tag attached to an entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 
+                  </div>
+                  <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
                 </div>
-                <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  NormalizedTags contains the list of normalized tags of the entities
+                <div class="content">
+                  <div class="meta">
+                    NormalizedTags contains the list of normalized tags of the entities
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 
+                  </div>
+                  <strong>operationalStatus</strong>  <span class="ui blue">enum (Connected | Disconnected | Initialized | Unknown)</span>
                 </div>
-                <strong>operationalStatus</strong>  <span class="ui blue">enum (Connected | Disconnected | Initialized | Unknown)</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  OperationalStatus tells the status of the enforcer. (default: Initialized)
+                <div class="content">
+                  <div class="meta">
+                    OperationalStatus tells the status of the enforcer. (default: Initialized)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>protected</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>protected</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Protected defines if the object is protected.
+                <div class="content">
+                  <div class="meta">
+                    Protected defines if the object is protected.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>updateTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>updateTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  UpdateTime is the time at which an entity was updated.
+                <div class="content">
+                  <div class="meta">
+                    UpdateTime is the time at which an entity was updated.
 
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+          </section>
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="retrieve_all_enforcers">
 <h4>Retrieve all Enforcers </h4>
 
@@ -448,15 +449,12 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+<pre class="bash">
 apoctl api list enforcers -n /namespace
-    </code>
-  </pre>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -481,12 +479,10 @@ func main() {
 
   disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Enforcer
@@ -516,17 +512,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
-    </code>
   </pre>
 </div>
 </div>
@@ -543,17 +536,14 @@ curl -X GET \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre>
-  <code class="bash">
+<pre class="bash">
 apoctl api create enforcers -n /namespace \
   -k fqdn "fqdn" \
-  -k lastsynctime "2017-03-31T13:58:49Z" \
-  -k name "name"  </code>
-</pre>
+  -k lastsynctime "2017-04-03T16:24:10Z" \
+  -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -572,7 +562,7 @@ func main () {
 
     obj := squallmodels.NewEnforcer()
     obj.FQDN = "fqdn"
-    obj.LastSyncTime = "2017-03-31T13:58:49Z"
+    obj.LastSyncTime = "2017-04-03T16:24:10Z"
     obj.SetName("name")
 
     if err = m.Create(nil, obj); err != nil {
@@ -581,12 +571,10 @@ func main () {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Enforcer
@@ -601,7 +589,7 @@ def main():
 
     obj = Enforcer()
     obj.FQDN = "fqdn"
-    obj.lastSyncTime = "2017-03-31T13:58:49Z"
+    obj.lastSyncTime = "2017-04-03T16:24:10Z"
     obj.name = "name"
 
     try:
@@ -617,20 +605,17 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d fqdn="fqdn" \
-  -d lastsynctime="2017-03-31T13:58:49Z" \
+  -d lastsynctime="2017-04-03T16:24:10Z" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
-    </code>
   </pre>
 </div>
 </div>
@@ -650,15 +635,12 @@ curl -X POST \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api delete enforcer identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -682,12 +664,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Enforcer
@@ -716,17 +696,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -743,15 +720,12 @@ curl -X DELETE \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api get enforcer identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -777,12 +751,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Enforcer
@@ -811,17 +783,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/enforcers/identifier
-    </code>
   </pre>
 </div>
 </div>
@@ -838,15 +807,12 @@ http://&lt;host&gt;:&lt;port&gt;/enforcers/identifier
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api update enforcer identitifier -n /namespace \
-  -k name "name"    </code>
-  </pre>
+  -k name "name"  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -876,12 +842,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Enforcer
@@ -918,18 +882,15 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -938,16 +899,17 @@ curl -X PUT \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -957,6 +919,5 @@ curl -X PUT \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

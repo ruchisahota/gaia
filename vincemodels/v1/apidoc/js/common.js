@@ -3,20 +3,32 @@ const goToURLWithCurrentParameters = (url) => {
   window.location = url + getURLParameters();
 }
 
-const prepareComponents = (version) => {
-  $('.navbar').sticky({
-    context: 'body'
-  });
+const goToHash = (hash) => {
+  $('.navbar .item').removeClass("active");
 
-  let parameters = getURLParameters();
-
-  if (parameters.indexOf("fullscreen") > 0) {
-    enterFullScreenMode();
+  if (!hash)
+  {
+    $('.navbar a.item:first-of-type').addClass("active");
+  }
+  else {
+    $('.navbar a[href="'+hash+'"]').addClass("active");
   }
 }
 
-let getURLParameters = () => {
-  return window.location.search;
+const prepareComponents = () => {
+  $('pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  goToHash(window.location.hash);
+
+  if (window.location.search.indexOf("fullscreen") > 0) {
+    enterFullScreenMode();
+  }
+
+  $('.navbar').sticky({
+    context: 'div#main_container'
+  });
 }
 
 let enterFullScreenMode = () => {

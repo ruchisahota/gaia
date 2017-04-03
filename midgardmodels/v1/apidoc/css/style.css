@@ -14,14 +14,28 @@ a:visited {
 }
 
 .navbar {
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
+#main_container {
+  padding-top: 65px
+}
+
+
 #aporeto-icon {
-  background: url("https://avatars1.githubusercontent.com/u/15617796?v=3&s=200") top left no-repeat;
-  background-size: 16px 16px;
-  width: 16px;
-  height: 16px;
+  background: url("../img/aporeto-logo-white.png") top left no-repeat;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: 0 4px 0 0;
+}
+
+#aporeto-fullname {
+  background: url("../img/aporeto-fullname-white.png") top left no-repeat;
+  background-size: 87.19px 20px;
+  width: 87.19px;
+  height: 20px;
   display: block;
   margin: 0 4px 0 0;
 }
@@ -35,10 +49,6 @@ a:visited {
 
 
 /* Texts */
-.muted {
-
-}
-
 .small {
   font-size: 85%;
 }
@@ -73,6 +83,10 @@ pre code {
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll;
+}
+
+.text-center {
+  text-align: center;
 }
 
 

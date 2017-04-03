@@ -20,11 +20,12 @@
     </div>
   </div>
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -41,32 +42,33 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section>
-            <h2>midgard</h2>
-            <div class="ui card">
-            <div class="content">
-            <a  id="root"
-                href="javascript:goToURLWithCurrentParameters('root.html');"
-                title="API reference for root">Root</a>
-            <br>
-            <div class="meta">
-              Root object of the API
-            </div>
-            </div>
-            </div>
-        </section>
-      </div>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section>
+              <h2>midgard</h2>
+              <div class="ui card">
+              <div class="content">
+              <a  id="root"
+                  href="javascript:goToURLWithCurrentParameters('root.html');"
+                  title="API reference for root">Root</a>
+              <br>
+              <div class="meta">
+                Root object of the API
+              </div>
+              </div>
+              </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
       });
   </script>
 

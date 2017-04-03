@@ -22,17 +22,18 @@
     <div class="item header">
       <i id="aporeto-icon"></i> Squall API Documentation 1.0
     </div>
-    <a class="item active" href="#attributes">Attributes</a>
-    <a class="item" href="#relations">Relations</a>
-    <a class="item" href="#codingexamples">Coding Examples</a>
+    <a class="item" href="#attributes" onclick="goToHash('#attributes')">Attributes</a>
+    <a class="item" href="#relations" onclick="goToHash('#relations')">Relations</a>
+    <a class="item" href="#codingexamples" onclick="goToHash('#codingexamples')">Coding Examples</a>
   </div>
 
 
-  <div class="ui grid stackable padded">
-    <div class="row">
+  <div id="main_container">
+    <div class="ui grid stackable padded">
+      <div class="row">
 
-      <div id="main_menu" class="sixteen wide tablet three wide computer column">
-        
+        <div id="main_menu" class="sixteen wide tablet three wide computer column">
+          
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -133,238 +134,238 @@
 </div>
 
 </div>
-      </div>
+        </div>
 
-      <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
-        <section id="intro">
-            <h2>Integration</h2>
-            <p>[EXPERIMENTAL]</p>
-        </section>
+        <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
+          <section id="intro">
+              <h2>Integration</h2>
+              <p>[EXPERIMENTAL]</p>
+          </section>
 
-        <section id="attributes">
-            <h3>Attributes</h3>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
+          <section id="attributes">
+              <h3>Attributes</h3>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>annotation</strong>  <span class="ui blue">annotation</span>
                 </div>
-                <strong>annotation</strong>  <span class="ui blue">annotation</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Annotation stores additional information about an entity
+                <div class="content">
+                  <div class="meta">
+                    Annotation stores additional information about an entity
 
-                </div>
-              </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  
-                </div>
-                <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AssociatedTags are the list of tags attached to an entity
-
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    AssociatedTags are the list of tags attached to an entity
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>authType</strong>  <span class="ui blue">enum (Basic | None | OAuth)</span>
                 </div>
-                <strong>authType</strong>  <span class="ui blue">enum (Basic | None | OAuth)</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  AuthType refers to the type of HTTP authentication used to query endpoints (default: None)
+                <div class="content">
+                  <div class="meta">
+                    AuthType refers to the type of HTTP authentication used to query endpoints (default: None)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>createTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>createTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  CreatedTime is the time at which the object was created
+                <div class="content">
+                  <div class="meta">
+                    CreatedTime is the time at which the object was created
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>endpoint</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>endpoint</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Endpoint is the API end point of the service (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Endpoint is the API end point of the service (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 <span class="ui label mini orange">locally unique</span>
 
+                  </div>
+                  <strong>ID</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>ID</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  ID is the identifier of the object. (format: free)
+                <div class="content">
+                  <div class="meta">
+                    ID is the identifier of the object. (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini olive">creation only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>namespace</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>namespace</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Namespace tag attached to an entity (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Namespace tag attached to an entity (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 
+                  </div>
+                  <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
                 </div>
-                <strong>normalizedTags</strong>  <span class="ui blue">tags_list</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  NormalizedTags contains the list of normalized tags of the entities
+                <div class="content">
+                  <div class="meta">
+                    NormalizedTags contains the list of normalized tags of the entities
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini teal">orderable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>password</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>password</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Password is the password of the user to be used in the HTTP Authorization header (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Password is the password of the user to be used in the HTTP Authorization header (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>protected</strong>  <span class="ui blue">boolean</span>
                 </div>
-                <strong>protected</strong>  <span class="ui blue">boolean</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Protected defines if the object is protected.
+                <div class="content">
+                  <div class="meta">
+                    Protected defines if the object is protected.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini red">required</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>type</strong>  <span class="ui blue">enum (Registry | VulnerabilityScanner)</span>
                 </div>
-                <strong>type</strong>  <span class="ui blue">enum (Registry | VulnerabilityScanner)</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Type refers to type of the server (default: Registry)
+                <div class="content">
+                  <div class="meta">
+                    Type refers to type of the server (default: Registry)
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini grey">read only</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>updateTime</strong>  <span class="ui blue">time</span>
                 </div>
-                <strong>updateTime</strong>  <span class="ui blue">time</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  UpdateTime is the time at which an entity was updated.
+                <div class="content">
+                  <div class="meta">
+                    UpdateTime is the time at which an entity was updated.
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ui card">
-              <div class="content">
-                <div class="pull-right">
-                  <span class="ui label mini purple">filterable</span>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
+                  </div>
+                  <strong>userName</strong>  <span class="ui blue">string</span>
                 </div>
-                <strong>userName</strong>  <span class="ui blue">string</span>
-              </div>
-              <div class="content">
-                <div class="meta">
-                  Username refers to the username to be used in the HTTP Authorization header (format: free)
+                <div class="content">
+                  <div class="meta">
+                    Username refers to the username to be used in the HTTP Authorization header (format: free)
 
+                  </div>
                 </div>
               </div>
-            </div>
-        </section>
+          </section>
 
-        <section id="relations">
-          <h3>Relations</h3>
-          <svg preserveAspectRatio="xMidYMid meet"></svg>
-        </section>
+          <section id="relations">
+            <h3>Relations</h3>
+            <svg preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
 
-        <section id="codingexamples">
-          <h3>Code example</h3>
-            <div>
+          <section id="codingexamples">
+            <h3>Code example</h3>
+              <div>
   <div id="retrieve_all_integrations">
 <h4>Retrieve all Integrations </h4>
 
@@ -376,15 +377,12 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+<pre class="bash">
 apoctl api list integrations -n /namespace
-    </code>
-  </pre>
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -409,12 +407,10 @@ func main() {
 
   disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Integration
@@ -444,17 +440,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/integrations
-    </code>
   </pre>
 </div>
 </div>
@@ -471,16 +464,13 @@ curl -X GET \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre>
-  <code class="bash">
+<pre class="bash">
 apoctl api create integrations -n /namespace \
   -k authtype "Basic" \
-  -k type "Registry"  </code>
-</pre>
+  -k type "Registry"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -507,12 +497,10 @@ func main () {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Integration
@@ -542,19 +530,16 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d authtype="Basic" \
   -d type="Registry" \
   http://&lt;host&gt;:&lt;port&gt;/integrations
-    </code>
   </pre>
 </div>
 </div>
@@ -574,15 +559,12 @@ curl -X POST \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api delete integration identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -606,12 +588,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Integration
@@ -640,17 +620,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/integrations/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -667,15 +644,12 @@ curl -X DELETE \
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api get integration identitifier -n /namespace
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 package main
 
 import (
@@ -701,12 +675,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Integration
@@ -735,17 +707,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
 http://&lt;host&gt;:&lt;port&gt;/integrations/identifier
-    </code>
   </pre>
 </div>
 </div>
@@ -762,16 +731,13 @@ http://&lt;host&gt;:&lt;port&gt;/integrations/identifier
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 apoctl api update integration identitifier -n /namespace \
   -k authtype "Basic" \
-  -k type "Registry"    </code>
-  </pre>
+  -k type "Registry"  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
-  <pre>
-    <code class="go">
+  <pre class="go">
 import (
     "github.com/aporeto-inc/manipulate/manipwebsocket"
 
@@ -802,12 +768,10 @@ func main() {
 
     disconnect()
 }
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="python">
-  <pre>
-    <code class="python">
+  <pre class="python">
 import os
 
 from squallmodels import Integration
@@ -845,19 +809,16 @@ def main():
 
 if __name__ == "__main__":
     main()
-    </code>
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
-  <pre>
-    <code class="bash">
+  <pre class="bash">
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d authtype="Basic" \
   -d type="Registry" \
   http://&lt;host&gt;:&lt;port&gt;/integrations/identitifier
-    </code>
   </pre>
 </div>
 </div>
@@ -866,16 +827,17 @@ curl -X PUT \
 </div>
 
 
-        </section>
-      </div>
+          </section>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <script>
       $(document).ready(function()
       {
-        prepareComponents(1.0);
+        prepareComponents();
 
         // Write relations graph
         var data = [
@@ -885,6 +847,5 @@ curl -X PUT \
 
       });
   </script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
