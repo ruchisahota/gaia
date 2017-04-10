@@ -109,6 +109,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "depmaps",
             "depmap"
         ],
         "create": false,
