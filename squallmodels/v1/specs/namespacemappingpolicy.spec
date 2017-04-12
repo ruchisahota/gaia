@@ -88,6 +88,7 @@
             "@described",
             "@disabled",
             "@identifiable-nopk-nostored",
+            "@metadatable",
             "@named"
         ],
         "get": true,
