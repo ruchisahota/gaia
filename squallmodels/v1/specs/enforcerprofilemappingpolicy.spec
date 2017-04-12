@@ -86,6 +86,7 @@
             "@described",
             "@disabled",
             "@identifiable-nopk-nostored",
+            "@metadatable",
             "@named",
             "@propagated"
         ],
