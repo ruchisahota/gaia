@@ -48,7 +48,8 @@
         "extends": [
             "@base",
             "@described",
-            "@identifiable-nopk-stored"
+            "@identifiable-nopk-stored",
+            "@metadatable"
         ],
         "get": true,
         "package": "Authorization",
