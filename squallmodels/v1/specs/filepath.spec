@@ -85,6 +85,7 @@
             "@base",
             "@described",
             "@identifiable-pk-stored",
+            "@metadatable",
             "@named"
         ],
         "get": true,
