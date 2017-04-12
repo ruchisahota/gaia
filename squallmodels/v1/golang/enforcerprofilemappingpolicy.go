@@ -52,6 +52,9 @@ type EnforcerProfileMappingPolicy struct {
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" bson:"disabled"`
 
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -90,6 +93,7 @@ func NewEnforcerProfileMappingPolicy() *EnforcerProfileMappingPolicy {
 	return &EnforcerProfileMappingPolicy{
 		ModelVersion:   1.0,
 		AssociatedTags: []string{},
+		Metadata:       []string{},
 		NormalizedTags: []string{},
 	}
 }
@@ -151,6 +155,16 @@ func (o *EnforcerProfileMappingPolicy) GetDisabled() bool {
 // SetDisabled set the given disabled of the receiver
 func (o *EnforcerProfileMappingPolicy) SetDisabled(disabled bool) {
 	o.Disabled = disabled
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *EnforcerProfileMappingPolicy) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *EnforcerProfileMappingPolicy) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -336,6 +350,19 @@ var EnforcerProfileMappingPolicyAttributesMap = map[string]elemental.AttributeSp
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "metadata",
+		Setter:         true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

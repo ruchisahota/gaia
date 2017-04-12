@@ -67,6 +67,9 @@ type FileAccessPolicy struct {
 	// LogsEnabled will enable logging when this policy is used.
 	LogsEnabled bool `json:"logsEnabled" bson:"-"`
 
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -105,6 +108,7 @@ func NewFileAccessPolicy() *FileAccessPolicy {
 	return &FileAccessPolicy{
 		ModelVersion:   1.0,
 		AssociatedTags: []string{},
+		Metadata:       []string{},
 		NormalizedTags: []string{},
 	}
 }
@@ -166,6 +170,16 @@ func (o *FileAccessPolicy) GetDisabled() bool {
 // SetDisabled set the given disabled of the receiver
 func (o *FileAccessPolicy) SetDisabled(disabled bool) {
 	o.Disabled = disabled
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *FileAccessPolicy) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *FileAccessPolicy) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -380,6 +394,19 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "logsEnabled",
 		Orderable:      true,
 		Type:           "boolean",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "metadata",
+		Setter:         true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

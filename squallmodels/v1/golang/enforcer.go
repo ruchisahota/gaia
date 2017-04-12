@@ -101,6 +101,9 @@ type Enforcer struct {
 	// LastSyncTime holds the last heart beat time.
 	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime"`
 
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -131,6 +134,7 @@ func NewEnforcer() *Enforcer {
 		ModelVersion:      1.0,
 		AssociatedTags:    []string{},
 		CertificateStatus: "VALID",
+		Metadata:          []string{},
 		NormalizedTags:    []string{},
 		OperationalStatus: "Initialized",
 	}
@@ -183,6 +187,16 @@ func (o *Enforcer) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *Enforcer) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *Enforcer) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *Enforcer) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -421,6 +435,19 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "metadata",
+		Setter:         true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

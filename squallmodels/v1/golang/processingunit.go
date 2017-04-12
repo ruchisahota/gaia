@@ -89,7 +89,7 @@ type ProcessingUnit struct {
 	// LastSyncTime is the time when the policy was last resolved
 	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime"`
 
-	// Metadata are list of tags associated to the processing unit
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
 
 	// Name is the name of the entity
@@ -130,6 +130,7 @@ func NewProcessingUnit() *ProcessingUnit {
 	return &ProcessingUnit{
 		ModelVersion:      1.0,
 		AssociatedTags:    []string{},
+		Metadata:          []string{},
 		NormalizedTags:    []string{},
 		OperationalStatus: "Initialized",
 	}
@@ -182,6 +183,16 @@ func (o *ProcessingUnit) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *ProcessingUnit) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *ProcessingUnit) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *ProcessingUnit) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -353,10 +364,12 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
-		Description:    `Metadata are list of tags associated to the processing unit`,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
+		Getter:         true,
 		Name:           "metadata",
+		Setter:         true,
 		Stored:         true,
 		SubType:        "metadata_list",
 		Type:           "external",

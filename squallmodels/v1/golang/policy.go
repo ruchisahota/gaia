@@ -84,6 +84,9 @@ type Policy struct {
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" bson:"disabled"`
 
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -130,6 +133,7 @@ func NewPolicy() *Policy {
 		AllObjectTags:  []string{},
 		AllSubjectTags: []string{},
 		AssociatedTags: []string{},
+		Metadata:       []string{},
 		NormalizedTags: []string{},
 	}
 }
@@ -191,6 +195,16 @@ func (o *Policy) GetDisabled() bool {
 // SetDisabled set the given disabled of the receiver
 func (o *Policy) SetDisabled(disabled bool) {
 	o.Disabled = disabled
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *Policy) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *Policy) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -410,6 +424,19 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "metadata",
+		Setter:         true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

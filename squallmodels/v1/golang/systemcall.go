@@ -49,6 +49,9 @@ type SystemCall struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -75,6 +78,7 @@ func NewSystemCall() *SystemCall {
 	return &SystemCall{
 		ModelVersion:   1.0,
 		AssociatedTags: []string{},
+		Metadata:       []string{},
 		NormalizedTags: []string{},
 	}
 }
@@ -126,6 +130,16 @@ func (o *SystemCall) SetAssociatedTags(associatedTags []string) {
 // SetCreateTime set the given createTime of the receiver
 func (o *SystemCall) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *SystemCall) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *SystemCall) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -265,6 +279,19 @@ var SystemCallAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "metadata",
+		Setter:         true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

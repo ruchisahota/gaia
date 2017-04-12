@@ -64,6 +64,9 @@ type NetworkAccessPolicy struct {
 	// LogsEnabled defines if the flow has to be logged.
 	LogsEnabled bool `json:"logsEnabled" bson:"-"`
 
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -103,6 +106,7 @@ func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 		ModelVersion:     1.0,
 		AssociatedTags:   []string{},
 		DestinationPorts: []string{},
+		Metadata:         []string{},
 		NormalizedTags:   []string{},
 	}
 }
@@ -164,6 +168,16 @@ func (o *NetworkAccessPolicy) GetDisabled() bool {
 // SetDisabled set the given disabled of the receiver
 func (o *NetworkAccessPolicy) SetDisabled(disabled bool) {
 	o.Disabled = disabled
+}
+
+// GetMetadata returns the metadata of the receiver
+func (o *NetworkAccessPolicy) GetMetadata() []string {
+	return o.Metadata
+}
+
+// SetMetadata set the given metadata of the receiver
+func (o *NetworkAccessPolicy) SetMetadata(metadata []string) {
+	o.Metadata = metadata
 }
 
 // GetName returns the name of the receiver
@@ -370,6 +384,19 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "logsEnabled",
 		Orderable:      true,
 		Type:           "boolean",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.`,
+		Exposed:        true,
+		Filterable:     true,
+		Getter:         true,
+		Name:           "metadata",
+		Setter:         true,
+		Stored:         true,
+		SubType:        "metadata_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
