@@ -265,6 +265,7 @@
             "@described",
             "@disabled",
             "@identifiable-pk-stored",
+            "@metadatable",
             "@named",
             "@propagated"
         ],
