@@ -413,7 +413,7 @@
             "required": true,
             "secret": false,
             "setter": null,
-            "stored": true,
+            "stored": false,
             "subtype": null,
             "transient": null,
             "type": "string",
