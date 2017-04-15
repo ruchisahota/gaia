@@ -146,7 +146,8 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini olive">creation only</span>
+                    <span class="ui label mini red">required</span>
+<span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
@@ -281,8 +282,7 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini red">required</span>
-<span class="ui label mini olive">creation only</span>
+                    <span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
@@ -459,8 +459,8 @@ curl -X GET \
 <pre class="bash">
 apoctl api create certificates -n /namespace \
   -k commonname "commonname" \
-  -k name "name" \
-  -k passphrase "passphrase"</pre>
+  -k email "email" \
+  -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre class="go">
@@ -482,8 +482,8 @@ func main () {
 
     obj := vincemodels.NewCertificate()
     obj.CommonName = "commonname"
+    obj.Email = "email"
     obj.Name = "name"
-    obj.Passphrase = "passphrase"
 
     if err = m.Create(nil, obj); err != nil {
         panic(err)
@@ -509,8 +509,8 @@ def main():
 
     obj = Certificate()
     obj.commonName = "commonname"
+    obj.email = "email"
     obj.name = "name"
-    obj.passphrase = "passphrase"
 
     try:
         manipulator.create(None, obj)
@@ -533,8 +533,8 @@ curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d commonname="commonname" \
+  -d email="email" \
   -d name="name" \
-  -d passphrase="passphrase" \
   http://&lt;host&gt;:&lt;port&gt;/certificates
   </pre>
 </div>

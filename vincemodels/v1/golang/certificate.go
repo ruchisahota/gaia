@@ -85,7 +85,7 @@ type Certificate struct {
 	ParentID string `json:"parentID" bson:"parentid"`
 
 	// Passphrase to use for the generated p12.
-	Passphrase string `json:"passphrase" bson:"passphrase"`
+	Passphrase string `json:"passphrase" bson:"-"`
 
 	// SerialNumber of the certificate.
 	SerialNumber string `json:"serialNumber" bson:"serialnumber"`
@@ -162,19 +162,19 @@ func (o *Certificate) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+	if err := elemental.ValidateRequiredString("email", o.Email); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+	if err := elemental.ValidateRequiredString("email", o.Email); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("passphrase", o.Passphrase); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("passphrase", o.Passphrase); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -286,6 +286,7 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "email",
 		Name:           "email",
 		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -365,8 +366,6 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "passphrase",
 		Orderable:      true,
-		Required:       true,
-		Stored:         true,
 		Type:           "string",
 	},
 	"SerialNumber": elemental.AttributeSpecification{
