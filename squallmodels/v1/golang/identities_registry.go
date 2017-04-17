@@ -6,7 +6,6 @@ func init() {
 
 	elemental.RegisterIdentity(APICheckIdentity)
 	elemental.RegisterIdentity(MapNodeIdentity)
-	elemental.RegisterIdentity(DependencyMapSubviewIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
@@ -27,7 +26,6 @@ func init() {
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
-	elemental.RegisterIdentity(DependencyMapViewIdentity)
 	elemental.RegisterIdentity(DependencyMapIdentity)
 	elemental.RegisterIdentity(VulnerabilityIdentity)
 	elemental.RegisterIdentity(EnforcerProfileMappingPolicyIdentity)
@@ -47,8 +45,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAPICheck()
 	case MapNodeIdentity.Name:
 		return NewMapNode()
-	case DependencyMapSubviewIdentity.Name:
-		return NewDependencyMapSubview()
 	case APIAuthorizationPolicyIdentity.Name:
 		return NewAPIAuthorizationPolicy()
 	case SyscallAccessIdentity.Name:
@@ -89,8 +85,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewNamespaceMappingPolicy()
 	case ProcessingUnitIdentity.Name:
 		return NewProcessingUnit()
-	case DependencyMapViewIdentity.Name:
-		return NewDependencyMapView()
 	case DependencyMapIdentity.Name:
 		return NewDependencyMap()
 	case VulnerabilityIdentity.Name:
@@ -116,8 +110,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewAPICheck()
 	case MapNodeIdentity.Category:
 		return NewMapNode()
-	case DependencyMapSubviewIdentity.Category:
-		return NewDependencyMapSubview()
 	case APIAuthorizationPolicyIdentity.Category:
 		return NewAPIAuthorizationPolicy()
 	case SyscallAccessIdentity.Category:
@@ -158,8 +150,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewNamespaceMappingPolicy()
 	case ProcessingUnitIdentity.Category:
 		return NewProcessingUnit()
-	case DependencyMapViewIdentity.Category:
-		return NewDependencyMapView()
 	case DependencyMapIdentity.Category:
 		return NewDependencyMap()
 	case VulnerabilityIdentity.Category:
@@ -185,8 +175,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &APIChecksList{}
 	case MapNodeIdentity.Name:
 		return &MapNodesList{}
-	case DependencyMapSubviewIdentity.Name:
-		return &DependencyMapSubviewsList{}
 	case APIAuthorizationPolicyIdentity.Name:
 		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Name:
@@ -227,8 +215,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &NamespaceMappingPoliciesList{}
 	case ProcessingUnitIdentity.Name:
 		return &ProcessingUnitsList{}
-	case DependencyMapViewIdentity.Name:
-		return &DependencyMapViewsList{}
 	case DependencyMapIdentity.Name:
 		return &DependencyMapsList{}
 	case VulnerabilityIdentity.Name:
@@ -252,8 +238,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &APIChecksList{}
 	case MapNodeIdentity.Category:
 		return &MapNodesList{}
-	case DependencyMapSubviewIdentity.Category:
-		return &DependencyMapSubviewsList{}
 	case APIAuthorizationPolicyIdentity.Category:
 		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Category:
@@ -294,8 +278,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &NamespaceMappingPoliciesList{}
 	case ProcessingUnitIdentity.Category:
 		return &ProcessingUnitsList{}
-	case DependencyMapViewIdentity.Category:
-		return &DependencyMapViewsList{}
 	case DependencyMapIdentity.Category:
 		return &DependencyMapsList{}
 	case VulnerabilityIdentity.Category:
@@ -317,7 +299,6 @@ func AllIdentities() []elemental.Identity {
 	return []elemental.Identity{
 		APICheckIdentity,
 		MapNodeIdentity,
-		DependencyMapSubviewIdentity,
 		APIAuthorizationPolicyIdentity,
 		SyscallAccessIdentity,
 		SystemCallIdentity,
@@ -338,7 +319,6 @@ func AllIdentities() []elemental.Identity {
 		RenderedPolicyIdentity,
 		NamespaceMappingPolicyIdentity,
 		ProcessingUnitIdentity,
-		DependencyMapViewIdentity,
 		DependencyMapIdentity,
 		VulnerabilityIdentity,
 		EnforcerProfileMappingPolicyIdentity,
@@ -393,8 +373,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case APICheckIdentity:
 		return []string{}
 	case MapNodeIdentity:
-		return []string{}
-	case DependencyMapSubviewIdentity:
 		return []string{}
 	case APIAuthorizationPolicyIdentity:
 		return []string{
@@ -466,8 +444,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"pus",
 			"pu",
 		}
-	case DependencyMapViewIdentity:
-		return []string{}
 	case DependencyMapIdentity:
 		return []string{
 			"depmaps",

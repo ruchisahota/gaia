@@ -30,13 +30,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("mapnode")] = MapNodeMainRelationship
 
 	//
-	// Main Relationship for dependencymapsubview
-	//
-	DependencyMapSubviewMainRelationship := &elemental.Relationship{}
-
-	relationshipsRegistry[elemental.IdentityFromName("dependencymapsubview")] = DependencyMapSubviewMainRelationship
-
-	//
 	// Main Relationship for apiauthorizationpolicy
 	//
 	APIAuthorizationPolicyMainRelationship := &elemental.Relationship{
@@ -271,17 +264,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("processingunit")] = ProcessingUnitMainRelationship
 
 	//
-	// Main Relationship for dependencymapview
-	//
-	DependencyMapViewMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("dependencymapview")] = DependencyMapViewMainRelationship
-
-	//
 	// Main Relationship for dependencymap
 	//
 	DependencyMapMainRelationship := &elemental.Relationship{}
@@ -363,16 +345,6 @@ func init() {
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("dependencymap"),
 		&elemental.Relationship{
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-
-	// Children relationship for dependencymapviews in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("dependencymapview"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
