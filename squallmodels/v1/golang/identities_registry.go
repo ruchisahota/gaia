@@ -5,13 +5,12 @@ import "github.com/aporeto-inc/elemental"
 func init() {
 
 	elemental.RegisterIdentity(APICheckIdentity)
-	elemental.RegisterIdentity(MapNodeIdentity)
+	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
-	elemental.RegisterIdentity(MapEdgeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
@@ -24,7 +23,6 @@ func init() {
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
 	elemental.RegisterIdentity(EnforcerProfileIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
-	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
 	elemental.RegisterIdentity(DependencyMapIdentity)
 	elemental.RegisterIdentity(VulnerabilityIdentity)
@@ -43,8 +41,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	switch identity {
 	case APICheckIdentity.Name:
 		return NewAPICheck()
-	case MapNodeIdentity.Name:
-		return NewMapNode()
+	case NamespaceMappingPolicyIdentity.Name:
+		return NewNamespaceMappingPolicy()
 	case APIAuthorizationPolicyIdentity.Name:
 		return NewAPIAuthorizationPolicy()
 	case SyscallAccessIdentity.Name:
@@ -55,8 +53,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Name:
 		return NewEnforcer()
-	case MapEdgeIdentity.Name:
-		return NewMapEdge()
 	case FilePathIdentity.Name:
 		return NewFilePath()
 	case FileAccessIdentity.Name:
@@ -81,8 +77,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewEnforcerProfile()
 	case RenderedPolicyIdentity.Name:
 		return NewRenderedPolicy()
-	case NamespaceMappingPolicyIdentity.Name:
-		return NewNamespaceMappingPolicy()
 	case ProcessingUnitIdentity.Name:
 		return NewProcessingUnit()
 	case DependencyMapIdentity.Name:
@@ -108,8 +102,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 	switch category {
 	case APICheckIdentity.Category:
 		return NewAPICheck()
-	case MapNodeIdentity.Category:
-		return NewMapNode()
+	case NamespaceMappingPolicyIdentity.Category:
+		return NewNamespaceMappingPolicy()
 	case APIAuthorizationPolicyIdentity.Category:
 		return NewAPIAuthorizationPolicy()
 	case SyscallAccessIdentity.Category:
@@ -120,8 +114,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Category:
 		return NewEnforcer()
-	case MapEdgeIdentity.Category:
-		return NewMapEdge()
 	case FilePathIdentity.Category:
 		return NewFilePath()
 	case FileAccessIdentity.Category:
@@ -146,8 +138,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewEnforcerProfile()
 	case RenderedPolicyIdentity.Category:
 		return NewRenderedPolicy()
-	case NamespaceMappingPolicyIdentity.Category:
-		return NewNamespaceMappingPolicy()
 	case ProcessingUnitIdentity.Category:
 		return NewProcessingUnit()
 	case DependencyMapIdentity.Category:
@@ -173,8 +163,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 	switch identity {
 	case APICheckIdentity.Name:
 		return &APIChecksList{}
-	case MapNodeIdentity.Name:
-		return &MapNodesList{}
+	case NamespaceMappingPolicyIdentity.Name:
+		return &NamespaceMappingPoliciesList{}
 	case APIAuthorizationPolicyIdentity.Name:
 		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Name:
@@ -185,8 +175,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Name:
 		return &EnforcersList{}
-	case MapEdgeIdentity.Name:
-		return &MapEdgesList{}
 	case FilePathIdentity.Name:
 		return &FilePathsList{}
 	case FileAccessIdentity.Name:
@@ -211,8 +199,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &EnforcerProfilesList{}
 	case RenderedPolicyIdentity.Name:
 		return &RenderedPoliciesList{}
-	case NamespaceMappingPolicyIdentity.Name:
-		return &NamespaceMappingPoliciesList{}
 	case ProcessingUnitIdentity.Name:
 		return &ProcessingUnitsList{}
 	case DependencyMapIdentity.Name:
@@ -236,8 +222,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 	switch category {
 	case APICheckIdentity.Category:
 		return &APIChecksList{}
-	case MapNodeIdentity.Category:
-		return &MapNodesList{}
+	case NamespaceMappingPolicyIdentity.Category:
+		return &NamespaceMappingPoliciesList{}
 	case APIAuthorizationPolicyIdentity.Category:
 		return &APIAuthorizationPoliciesList{}
 	case SyscallAccessIdentity.Category:
@@ -248,8 +234,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Category:
 		return &EnforcersList{}
-	case MapEdgeIdentity.Category:
-		return &MapEdgesList{}
 	case FilePathIdentity.Category:
 		return &FilePathsList{}
 	case FileAccessIdentity.Category:
@@ -274,8 +258,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &EnforcerProfilesList{}
 	case RenderedPolicyIdentity.Category:
 		return &RenderedPoliciesList{}
-	case NamespaceMappingPolicyIdentity.Category:
-		return &NamespaceMappingPoliciesList{}
 	case ProcessingUnitIdentity.Category:
 		return &ProcessingUnitsList{}
 	case DependencyMapIdentity.Category:
@@ -298,13 +280,12 @@ func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
 		APICheckIdentity,
-		MapNodeIdentity,
+		NamespaceMappingPolicyIdentity,
 		APIAuthorizationPolicyIdentity,
 		SyscallAccessIdentity,
 		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
-		MapEdgeIdentity,
 		FilePathIdentity,
 		FileAccessIdentity,
 		NamespaceIdentity,
@@ -317,7 +298,6 @@ func AllIdentities() []elemental.Identity {
 		FileAccessPolicyIdentity,
 		EnforcerProfileIdentity,
 		RenderedPolicyIdentity,
-		NamespaceMappingPolicyIdentity,
 		ProcessingUnitIdentity,
 		DependencyMapIdentity,
 		VulnerabilityIdentity,
@@ -329,6 +309,10 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
+	"nsmaps":     NamespaceMappingPolicyIdentity,
+	"nsmap":      NamespaceMappingPolicyIdentity,
+	"nspolicies": NamespaceMappingPolicyIdentity,
+	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
 	"fps":        FilePathIdentity,
@@ -344,10 +328,6 @@ var aliasesMap = map[string]elemental.Identity{
 	"profile":    EnforcerProfileIdentity,
 	"rpols":      RenderedPolicyIdentity,
 	"rpol":       RenderedPolicyIdentity,
-	"nsmaps":     NamespaceMappingPolicyIdentity,
-	"nsmap":      NamespaceMappingPolicyIdentity,
-	"nspolicies": NamespaceMappingPolicyIdentity,
-	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"pus":        ProcessingUnitIdentity,
 	"pu":         ProcessingUnitIdentity,
 	"depmaps":    DependencyMapIdentity,
@@ -372,8 +352,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	switch identity {
 	case APICheckIdentity:
 		return []string{}
-	case MapNodeIdentity:
-		return []string{}
+	case NamespaceMappingPolicyIdentity:
+		return []string{
+			"nsmaps",
+			"nsmap",
+			"nspolicies",
+			"nspolicy",
+		}
 	case APIAuthorizationPolicyIdentity:
 		return []string{
 			"apiauth",
@@ -386,8 +371,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case TagIdentity:
 		return []string{}
 	case EnforcerIdentity:
-		return []string{}
-	case MapEdgeIdentity:
 		return []string{}
 	case FilePathIdentity:
 		return []string{
@@ -431,13 +414,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"rpols",
 			"rpol",
-		}
-	case NamespaceMappingPolicyIdentity:
-		return []string{
-			"nsmaps",
-			"nsmap",
-			"nspolicies",
-			"nspolicy",
 		}
 	case ProcessingUnitIdentity:
 		return []string{

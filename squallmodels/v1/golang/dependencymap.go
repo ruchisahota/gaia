@@ -5,6 +5,8 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
+import "github.com/aporeto-inc/gaia/shared/golang/gaiatypes"
+
 // DependencyMapIdentity represents the Identity of the object
 var DependencyMapIdentity = elemental.Identity{
 	Name:     "dependencymap",
@@ -36,13 +38,13 @@ type DependencyMap struct {
 	ID string `json:"ID" bson:"-"`
 
 	// edges are the edges of the map
-	Edges map[string]*MapEdge `json:"edges" bson:"-"`
+	Edges gaiatypes.GraphEdgeMap `json:"edges" bson:"-"`
 
 	// Groups provide information about the group values
-	Groups map[string]map[string]string `json:"groups" bson:"-"`
+	Groups gaiatypes.GraphGroupMap `json:"groups" bson:"-"`
 
 	// nodes refers to the nodes of the map
-	Nodes map[string]*MapNode `json:"nodes" bson:"-"`
+	Nodes gaiatypes.GraphNodeMap `json:"nodes" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
 
@@ -54,8 +56,9 @@ func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
 		ModelVersion: 1.0,
-		Edges:        map[string]*MapEdge{},
-		Nodes:        map[string]*MapNode{},
+		Edges:        gaiatypes.GraphEdgeMap{},
+		Groups:       gaiatypes.GraphGroupMap{},
+		Nodes:        gaiatypes.GraphNodeMap{},
 	}
 }
 
@@ -169,7 +172,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "edges",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "edges_map",
+		SubType:        "graphedges_map",
 		Type:           "external",
 	},
 	"Groups": elemental.AttributeSpecification{
@@ -179,7 +182,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "groups",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "group_description_map",
+		SubType:        "graphgroups_map",
 		Type:           "external",
 	},
 	"Nodes": elemental.AttributeSpecification{
@@ -189,7 +192,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "nodes",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "nodes_map",
+		SubType:        "graphnodes_map",
 		Type:           "external",
 	},
 }

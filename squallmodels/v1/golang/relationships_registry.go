@@ -23,11 +23,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("apicheck")] = APICheckMainRelationship
 
 	//
-	// Main Relationship for mapnode
+	// Main Relationship for namespacemappingpolicy
 	//
-	MapNodeMainRelationship := &elemental.Relationship{}
+	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
 
-	relationshipsRegistry[elemental.IdentityFromName("mapnode")] = MapNodeMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("namespacemappingpolicy")] = NamespaceMappingPolicyMainRelationship
 
 	//
 	// Main Relationship for apiauthorizationpolicy
@@ -83,13 +87,6 @@ func init() {
 		},
 	)
 	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
-
-	//
-	// Main Relationship for mapedge
-	//
-	MapEdgeMainRelationship := &elemental.Relationship{}
-
-	relationshipsRegistry[elemental.IdentityFromName("mapedge")] = MapEdgeMainRelationship
 
 	//
 	// Main Relationship for filepath
@@ -205,17 +202,6 @@ func init() {
 	RenderedPolicyMainRelationship := &elemental.Relationship{}
 
 	relationshipsRegistry[elemental.IdentityFromName("renderedpolicy")] = RenderedPolicyMainRelationship
-
-	//
-	// Main Relationship for namespacemappingpolicy
-	//
-	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("namespacemappingpolicy")] = NamespaceMappingPolicyMainRelationship
 
 	//
 	// Main Relationship for processingunit
