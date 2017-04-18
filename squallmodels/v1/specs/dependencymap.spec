@@ -29,7 +29,7 @@
             "secret": false,
             "setter": false,
             "stored": false,
-            "subtype": "edges_map",
+            "subtype": "graphedges_map",
             "transient": false,
             "type": "external",
             "unique": false,
