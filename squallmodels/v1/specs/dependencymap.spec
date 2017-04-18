@@ -99,7 +99,7 @@
             "secret": false,
             "setter": false,
             "stored": false,
-            "subtype": "nodes_map",
+            "subtype": "graphnodes_map",
             "transient": false,
             "type": "external",
             "unique": false,
