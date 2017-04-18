@@ -5,12 +5,12 @@ type GraphEdgeMap map[string]*GraphEdge
 
 // GraphEdge represents the model of a Edge
 type GraphEdge struct {
-	AcceptedFlows int    `json:"acceptedFlows,omitempty"`
-	DestinationID string `json:"destinationID,omitempty"`
-	ID            string `json:"ID,omitempty"`
-	Name          string `json:"name,omitempty"`
-	RejectedFlows int    `json:"rejectedFlows,omitempty"`
-	SourceID      string `json:"sourceID,omitempty"`
+	AcceptedFlows int    `json:"acceptedFlows"`
+	DestinationID string `json:"destinationID"`
+	ID            string `json:"ID"`
+	Name          string `json:"name"`
+	RejectedFlows int    `json:"rejectedFlows"`
+	SourceID      string `json:"sourceID"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
@@ -34,15 +34,15 @@ type GraphNodeMap map[string]*GraphNode
 
 // GraphNode represents the model of a Node
 type GraphNode struct {
-	Description        string        `json:"description,omitempty"`
-	GroupID            string        `json:"groupID,omitempty"`
-	ID                 string        `json:"ID,omitempty"`
-	Name               string        `json:"name,omitempty"`
-	Namespace          string        `json:"namespace,omitempty"`
-	Status             string        `json:"status,omitempty"`
+	Description        string        `json:"description"`
+	GroupID            string        `json:"groupID"`
+	ID                 string        `json:"ID"`
+	Name               string        `json:"name"`
+	Namespace          string        `json:"namespace"`
+	Status             string        `json:"status"`
 	Tags               []string      `json:"tags,omitempty"`
-	Type               GraphNodeType `json:"type,omitempty"`
-	VulnerabilityLevel string        `json:"vulnerabilityLevel,omitempty"`
+	Type               GraphNodeType `json:"type"`
+	VulnerabilityLevel string        `json:"vulnerabilityLevel"`
 }
 
 // NewGraphNode returns a new *GraphNode
@@ -58,11 +58,11 @@ type GraphGroupMap map[string]*GraphGroup
 
 // GraphGroup represents the model of a Group
 type GraphGroup struct {
-	Color    string   `json:"color,omitempty"`
-	ID       string   `json:"ID,omitempty"`
-	Match    []string `json:"match,omitempty"`
-	Name     string   `json:"name,omitempty"`
-	ParentID string   `json:"parentID,omitempty"`
+	Color    string   `json:"color"`
+	ID       string   `json:"ID"`
+	Match    []string `json:"match"`
+	Name     string   `json:"name"`
+	ParentID string   `json:"parentID"`
 }
 
 // NewGraphGroup returns a new *GraphNode
