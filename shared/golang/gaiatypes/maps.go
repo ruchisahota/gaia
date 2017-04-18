@@ -58,10 +58,10 @@ type GraphGroupMap map[string]*GraphGroup
 
 // GraphGroup represents the model of a Group
 type GraphGroup struct {
-	Color    string   `json:"tonality,omitempty"`
+	Color    string   `json:"color,omitempty"`
 	ID       string   `json:"ID,omitempty"`
 	Match    []string `json:"match,omitempty"`
-	Name     string   `json:"label,omitempty"`
+	Name     string   `json:"name,omitempty"`
 	ParentID string   `json:"parentID,omitempty"`
 }
 
