@@ -64,7 +64,7 @@
             "secret": false,
             "setter": false,
             "stored": false,
-            "subtype": "group_description_map",
+            "subtype": "graphgroups_map",
             "transient": false,
             "type": "external",
             "unique": false,
