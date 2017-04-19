@@ -58,17 +58,17 @@ type GraphGroupMap map[string]*GraphGroup
 
 // GraphGroup represents the model of a Group
 type GraphGroup struct {
-	Color    string   `json:"color"`
-	ID       string   `json:"ID"`
-	Match    []string `json:"match"`
-	Name     string   `json:"name"`
-	ParentID string   `json:"parentID"`
+	Color    string     `json:"color"`
+	ID       string     `json:"ID"`
+	Match    [][]string `json:"match"`
+	Name     string     `json:"name"`
+	ParentID string     `json:"parentID"`
 }
 
 // NewGraphGroup returns a new *GraphNode
 func NewGraphGroup() *GraphGroup {
 
 	return &GraphGroup{
-		Match: []string{},
+		Match: [][]string{},
 	}
 }
