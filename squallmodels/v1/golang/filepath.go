@@ -38,7 +38,7 @@ type FilePath struct {
 	ID string `json:"ID" bson:"_id"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string][]string `json:"annotation" bson:"annotation"`
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
@@ -83,6 +83,7 @@ func NewFilePath() *FilePath {
 
 	return &FilePath{
 		ModelVersion:   1.0,
+		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
 		NormalizedTags: []string{},
@@ -259,13 +260,13 @@ var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
-	"Annotation": elemental.AttributeSpecification{
+	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Annotation stores additional information about an entity`,
 		Exposed:        true,
-		Name:           "annotation",
+		Name:           "annotations",
 		Stored:         true,
-		SubType:        "annotation",
+		SubType:        "annotations",
 		Type:           "external",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{

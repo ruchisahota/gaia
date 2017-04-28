@@ -47,7 +47,7 @@ type FileAccessPolicy struct {
 	AllowsWrite bool `json:"allowsWrite" bson:"-"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string][]string `json:"annotation" bson:"annotation"`
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
@@ -107,6 +107,7 @@ func NewFileAccessPolicy() *FileAccessPolicy {
 
 	return &FileAccessPolicy{
 		ModelVersion:   1.0,
+		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
 		NormalizedTags: []string{},
@@ -322,13 +323,13 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Type:           "boolean",
 	},
-	"Annotation": elemental.AttributeSpecification{
+	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Annotation stores additional information about an entity`,
 		Exposed:        true,
-		Name:           "annotation",
+		Name:           "annotations",
 		Stored:         true,
-		SubType:        "annotation",
+		SubType:        "annotations",
 		Type:           "external",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{
