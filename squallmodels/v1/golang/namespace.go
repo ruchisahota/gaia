@@ -38,7 +38,7 @@ type Namespace struct {
 	ID string `json:"ID" bson:"_id"`
 
 	// Annotation stores additional information about an entity
-	Annotation map[string]string `json:"annotation" bson:"annotation"`
+	Annotation map[string][]string `json:"annotation" bson:"annotation"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
