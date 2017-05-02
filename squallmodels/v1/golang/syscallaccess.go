@@ -16,10 +16,11 @@ type SyscallAccessList []*SyscallAccess
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o SyscallAccessList) ContentIdentity() elemental.Identity {
+
 	return SyscallAccessIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o SyscallAccessList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -28,6 +29,12 @@ func (o SyscallAccessList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o SyscallAccessList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // SyscallAccess represents the model of a syscallaccess
@@ -85,6 +92,12 @@ func (o *SyscallAccess) SetIdentifier(ID string) {
 func (o *SyscallAccess) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *SyscallAccess) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

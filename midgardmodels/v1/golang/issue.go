@@ -45,10 +45,11 @@ type IssuesList []*Issue
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o IssuesList) ContentIdentity() elemental.Identity {
+
 	return IssueIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o IssuesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -57,6 +58,12 @@ func (o IssuesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o IssuesList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Issue represents the model of a issue
@@ -112,6 +119,12 @@ func (o *Issue) SetIdentifier(ID string) {
 func (o *Issue) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Issue) DefaultOrder() []string {
+
+	return []string{}
 }
 
 func (o *Issue) String() string {

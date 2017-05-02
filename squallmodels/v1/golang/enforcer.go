@@ -49,10 +49,11 @@ type EnforcersList []*Enforcer
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o EnforcersList) ContentIdentity() elemental.Identity {
+
 	return EnforcerIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o EnforcersList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -61,6 +62,14 @@ func (o EnforcersList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o EnforcersList) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Enforcer represents the model of a enforcer
@@ -166,6 +175,14 @@ func (o *Enforcer) SetIdentifier(ID string) {
 func (o *Enforcer) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Enforcer) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Doc returns the documentation for the object
@@ -455,6 +472,7 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultOrder:   true,
 		Description:    `Name is the name of the entity`,
 		Exposed:        true,
 		Filterable:     true,

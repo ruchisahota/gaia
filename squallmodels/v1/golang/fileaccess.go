@@ -30,10 +30,11 @@ type FileAccessList []*FileAccess
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o FileAccessList) ContentIdentity() elemental.Identity {
+
 	return FileAccessIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o FileAccessList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -42,6 +43,12 @@ func (o FileAccessList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o FileAccessList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // FileAccess represents the model of a fileaccess
@@ -98,6 +105,12 @@ func (o *FileAccess) SetIdentifier(ID string) {
 func (o *FileAccess) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *FileAccess) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

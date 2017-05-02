@@ -35,10 +35,11 @@ type AccountsList []*Account
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o AccountsList) ContentIdentity() elemental.Identity {
+
 	return AccountIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o AccountsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -47,6 +48,12 @@ func (o AccountsList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o AccountsList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Account represents the model of a account
@@ -153,6 +160,12 @@ func (o *Account) SetIdentifier(ID string) {
 func (o *Account) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Account) DefaultOrder() []string {
+
+	return []string{}
 }
 
 func (o *Account) String() string {

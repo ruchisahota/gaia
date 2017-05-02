@@ -18,10 +18,11 @@ type FileAccessPoliciesList []*FileAccessPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o FileAccessPoliciesList) ContentIdentity() elemental.Identity {
+
 	return FileAccessPolicyIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o FileAccessPoliciesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -30,6 +31,14 @@ func (o FileAccessPoliciesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o FileAccessPoliciesList) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // FileAccessPolicy represents the model of a fileaccesspolicy
@@ -136,6 +145,14 @@ func (o *FileAccessPolicy) SetIdentifier(ID string) {
 func (o *FileAccessPolicy) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *FileAccessPolicy) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Doc returns the documentation for the object
@@ -411,6 +428,7 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultOrder:   true,
 		Description:    `Name is the name of the entity`,
 		Exposed:        true,
 		Filterable:     true,

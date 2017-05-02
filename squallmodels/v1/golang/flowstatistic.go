@@ -49,10 +49,11 @@ type FlowStatisticsList []*FlowStatistic
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o FlowStatisticsList) ContentIdentity() elemental.Identity {
+
 	return FlowStatisticIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o FlowStatisticsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -61,6 +62,12 @@ func (o FlowStatisticsList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o FlowStatisticsList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // FlowStatistic represents the model of a flowstatistic
@@ -136,6 +143,12 @@ func (o *FlowStatistic) SetIdentifier(ID string) {
 func (o *FlowStatistic) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *FlowStatistic) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

@@ -16,10 +16,11 @@ type ReportsList []*Report
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o ReportsList) ContentIdentity() elemental.Identity {
+
 	return ReportIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o ReportsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -28,6 +29,12 @@ func (o ReportsList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o ReportsList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Report represents the model of a report
@@ -79,6 +86,12 @@ func (o *Report) SetIdentifier(ID string) {
 func (o *Report) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Report) DefaultOrder() []string {
+
+	return []string{}
 }
 
 func (o *Report) String() string {

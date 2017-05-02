@@ -18,10 +18,11 @@ type NamespacesList []*Namespace
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o NamespacesList) ContentIdentity() elemental.Identity {
+
 	return NamespaceIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o NamespacesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -30,6 +31,12 @@ func (o NamespacesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o NamespacesList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Namespace represents the model of a namespace
@@ -106,6 +113,12 @@ func (o *Namespace) SetIdentifier(ID string) {
 func (o *Namespace) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Namespace) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

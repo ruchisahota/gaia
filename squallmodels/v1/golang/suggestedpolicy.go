@@ -16,10 +16,11 @@ type SuggestedPoliciesList []*SuggestedPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o SuggestedPoliciesList) ContentIdentity() elemental.Identity {
+
 	return SuggestedPolicyIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o SuggestedPoliciesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -28,6 +29,12 @@ func (o SuggestedPoliciesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o SuggestedPoliciesList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // SuggestedPolicy represents the model of a suggestedpolicy
@@ -69,6 +76,12 @@ func (o *SuggestedPolicy) SetIdentifier(ID string) {
 func (o *SuggestedPolicy) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *SuggestedPolicy) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

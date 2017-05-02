@@ -16,10 +16,11 @@ type TagsList []*Tag
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o TagsList) ContentIdentity() elemental.Identity {
+
 	return TagIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o TagsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -28,6 +29,12 @@ func (o TagsList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o TagsList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Tag represents the model of a tag
@@ -79,6 +86,12 @@ func (o *Tag) SetIdentifier(ID string) {
 func (o *Tag) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Tag) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

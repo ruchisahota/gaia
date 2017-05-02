@@ -51,6 +51,12 @@ func (o *Root) Version() float64 {
 	return 1.0
 }
 
+// DefaultOrder returns the list of default ordering fields.
+func (o *Root) DefaultOrder() []string {
+
+	return []string{}
+}
+
 // Doc returns the documentation for the object
 func (o *Root) Doc() string {
 	return nodocString

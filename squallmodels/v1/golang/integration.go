@@ -43,10 +43,11 @@ type IntegrationsList []*Integration
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o IntegrationsList) ContentIdentity() elemental.Identity {
+
 	return IntegrationIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o IntegrationsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -55,6 +56,12 @@ func (o IntegrationsList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o IntegrationsList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Integration represents the model of a integration
@@ -138,6 +145,12 @@ func (o *Integration) SetIdentifier(ID string) {
 func (o *Integration) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Integration) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object

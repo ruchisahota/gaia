@@ -18,10 +18,11 @@ type ExternalServicesList []*ExternalService
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o ExternalServicesList) ContentIdentity() elemental.Identity {
+
 	return ExternalServiceIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o ExternalServicesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -30,6 +31,14 @@ func (o ExternalServicesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o ExternalServicesList) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // ExternalService represents the model of a externalservice
@@ -116,6 +125,14 @@ func (o *ExternalService) SetIdentifier(ID string) {
 func (o *ExternalService) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *ExternalService) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Doc returns the documentation for the object
@@ -334,6 +351,7 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultOrder:   true,
 		Description:    `Name is the name of the entity`,
 		Exposed:        true,
 		Filterable:     true,

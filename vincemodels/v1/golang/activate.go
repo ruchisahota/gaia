@@ -16,10 +16,11 @@ type ActivatesList []*Activate
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o ActivatesList) ContentIdentity() elemental.Identity {
+
 	return ActivateIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o ActivatesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -28,6 +29,12 @@ func (o ActivatesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o ActivatesList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Activate represents the model of a activate
@@ -69,6 +76,12 @@ func (o *Activate) SetIdentifier(ID string) {
 func (o *Activate) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Activate) DefaultOrder() []string {
+
+	return []string{}
 }
 
 func (o *Activate) String() string {

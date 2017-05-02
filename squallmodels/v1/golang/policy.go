@@ -41,10 +41,11 @@ type PoliciesList []*Policy
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o PoliciesList) ContentIdentity() elemental.Identity {
+
 	return PolicyIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o PoliciesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -53,6 +54,14 @@ func (o PoliciesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o PoliciesList) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Policy represents the model of a policy
@@ -161,6 +170,14 @@ func (o *Policy) SetIdentifier(ID string) {
 func (o *Policy) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Policy) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Doc returns the documentation for the object
@@ -441,6 +458,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultOrder:   true,
 		Description:    `Name is the name of the entity`,
 		Exposed:        true,
 		Filterable:     true,

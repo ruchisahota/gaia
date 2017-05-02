@@ -18,10 +18,11 @@ type NetworkAccessPoliciesList []*NetworkAccessPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o NetworkAccessPoliciesList) ContentIdentity() elemental.Identity {
+
 	return NetworkAccessPolicyIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o NetworkAccessPoliciesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -30,6 +31,14 @@ func (o NetworkAccessPoliciesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o NetworkAccessPoliciesList) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // NetworkAccessPolicy represents the model of a networkaccesspolicy
@@ -134,6 +143,14 @@ func (o *NetworkAccessPolicy) SetIdentifier(ID string) {
 func (o *NetworkAccessPolicy) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *NetworkAccessPolicy) DefaultOrder() []string {
+
+	return []string{
+		"name",
+	}
 }
 
 // Doc returns the documentation for the object
@@ -401,6 +418,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		DefaultOrder:   true,
 		Description:    `Name is the name of the entity`,
 		Exposed:        true,
 		Filterable:     true,

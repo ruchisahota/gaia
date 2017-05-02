@@ -16,10 +16,11 @@ type PasswordResetsList []*PasswordReset
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o PasswordResetsList) ContentIdentity() elemental.Identity {
+
 	return PasswordResetIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o PasswordResetsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -28,6 +29,12 @@ func (o PasswordResetsList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o PasswordResetsList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // PasswordReset represents the model of a passwordreset
@@ -72,6 +79,12 @@ func (o *PasswordReset) SetIdentifier(ID string) {
 func (o *PasswordReset) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *PasswordReset) DefaultOrder() []string {
+
+	return []string{}
 }
 
 func (o *PasswordReset) String() string {

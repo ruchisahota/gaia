@@ -29,10 +29,11 @@ type CertificatesList []*Certificate
 
 // ContentIdentity returns the identity of the objects in the list.
 func (o CertificatesList) ContentIdentity() elemental.Identity {
+
 	return CertificateIdentity
 }
 
-// List convert the object to and elemental.IdentifiablesList.
+// List converts the object to and elemental.IdentifiablesList.
 func (o CertificatesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
@@ -41,6 +42,12 @@ func (o CertificatesList) List() elemental.IdentifiablesList {
 	}
 
 	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o CertificatesList) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Certificate represents the model of a certificate
@@ -132,6 +139,12 @@ func (o *Certificate) SetIdentifier(ID string) {
 func (o *Certificate) Version() float64 {
 
 	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Certificate) DefaultOrder() []string {
+
+	return []string{}
 }
 
 // Doc returns the documentation for the object
