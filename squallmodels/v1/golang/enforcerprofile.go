@@ -60,9 +60,6 @@ type EnforcerProfile struct {
 	// IptablesMarkValue is the mark value to be used in an iptables implementation.
 	IPTablesMarkValue int `json:"IPTablesMarkValue" bson:"iptablesmarkvalue"`
 
-	// IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
-	IgnoreExpression [][]string `json:"IgnoreExpression" bson:"ignoreexpression"`
-
 	// PUBookkeepingInterval configures how often the PU will be synchronized.
 	PUBookkeepingInterval string `json:"PUBookkeepingInterval" bson:"pubookkeepinginterval"`
 
@@ -92,6 +89,9 @@ type EnforcerProfile struct {
 
 	// ExcludedNetworks is the list of networks that must be excluded for this enforcer.
 	ExcludedNetworks []string `json:"excludedNetworks" bson:"excludednetworks"`
+
+	// IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
+	IgnoreExpression [][]string `json:"ignoreExpression" bson:"ignoreexpression"`
 
 	// KubernetesSupportEnabled enables kubernetes mode for the enforcer.
 	KubernetesSupportEnabled bool `json:"kubernetesSupportEnabled" bson:"kubernetessupportenabled"`
@@ -420,15 +420,6 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "integer",
 	},
-	"IgnoreExpression": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.`,
-		Exposed:        true,
-		Name:           "IgnoreExpression",
-		Stored:         true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"PUBookkeepingInterval": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
@@ -541,6 +532,15 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		SubType:        "excluded_networks_list",
+		Type:           "external",
+	},
+	"IgnoreExpression": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.`,
+		Exposed:        true,
+		Name:           "ignoreExpression",
+		Stored:         true,
+		SubType:        "policies_list",
 		Type:           "external",
 	},
 	"KubernetesSupportEnabled": elemental.AttributeSpecification{
