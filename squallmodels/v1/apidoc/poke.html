@@ -151,8 +151,8 @@
           <section id="codingexamples">
             <h3>Code example</h3>
               <div>
-  <div id="create_poke_from_enforcer">
-<h4>Create a new Poke in a given Enforcer</h4>
+  <div id="retrieve_all_poke_from_enforcer">
+<h4>Retrieve all Pokes in a given Enforcer</h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -163,37 +163,41 @@
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre class="bash">
-apoctl api create poke in enforcer parent-id -n /namespace</pre>
+apoctl api list poke in enforcer parent-id -n /namespace
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre class="go">
 package main
 
 import (
-    "github.com/aporeto-inc/manipulate/manipwebsocket"
+  "github.com/aporeto-inc/manipulate"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
 
-    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
 )
 
-func main () {
+func main() {
 
-    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
 
-    if err != nil {
-        panic(err)
-    }
+  if err != nil {
+      panic(err)
+  }
 
-    obj := squallmodels.NewPoke()
-    parent := squallmodels.NewEnforcer()
-    parent.SetIdentifier("parent-id")
-    mctx := manipulate.NewContext()
-    mctx.Parent = parent
+  var objects squallmodels.PokesList
 
-    if err = m.Create(mctx, obj); err != nil {
-        panic(err)
-    }
+  parent := squallmodels.NewEnforcer()
+  parent.SetIdentifier("parent-id")
 
-    disconnect()
+  mctx := manipulate.NewContext()
+  mctx.Parent = parent
+
+  if err = m.RetrieveMany(mctx, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
 }
   </pre>
 </div>
@@ -213,17 +217,19 @@ def main():
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
     obj = Poke()
+    objects = []
 
     parent = Enforcer(ID="parent-id")
     mctx = Context(parent=parent)
 
     try:
-        manipulator.create(mctx, obj)
+        manipulator.retrieve_children(mctx, obj.identity(), objects)
     except PyManipulateError as e:
         print "Err: %s" % e.errors[0]
         os._exit(1)
 
-    print obj.to_dict()
+    for obj in objects:
+        print obj.to_dict()
 
     exit(0)
 
@@ -234,14 +240,14 @@ if __name__ == "__main__":
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre class="bash">
-curl -X POST \
+curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers/id/poke
   </pre>
 </div>
 </div>
-<script>$('#create_poke_from_enforcer .menu .item').tab({context: "parent"});</script>
+<script>$('#retrieve_all_poke_from_enforcer .menu .item').tab({context: "parent"});</script>
 
 </div>
 
@@ -263,7 +269,7 @@ curl -X POST \
 
         // Write relations graph
         var data = [
-{"restName": "enforcer", "instanceName": "Enforcer", "resourceName": "enforcers", "type": "parents", "exposed": true, "actions": ['POST']}, {"restName": "poke", "instanceName": "Poke", "resourceName": "poke", "type": "self", "exposed": true, "actions": []}, 
+{"restName": "enforcer", "instanceName": "Enforcer", "resourceName": "enforcers", "type": "parents", "exposed": true, "actions": ['GET']}, {"restName": "poke", "instanceName": "Poke", "resourceName": "poke", "type": "self", "exposed": true, "actions": []}, 
 ]
         drawRelations(data, 1, 0);
 

@@ -91,7 +91,8 @@ func init() {
 	EnforcerMainRelationship.AddChild(
 		elemental.IdentityFromName("poke"),
 		&elemental.Relationship{
-			AllowsCreate: true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
 		},
 	)
 	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
