@@ -337,6 +337,18 @@
             "relationship": "child",
             "rest_name": "enforcerprofile",
             "update": false
+        },
+        {
+            "bulk_create": false,
+            "bulk_delete": false,
+            "bulk_update": false,
+            "create": true,
+            "delete": false,
+            "deprecated": null,
+            "get": false,
+            "relationship": "child",
+            "rest_name": "poke",
+            "update": false
         }
     ],
     "model": {
