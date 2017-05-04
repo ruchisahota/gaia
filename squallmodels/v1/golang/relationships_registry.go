@@ -86,7 +86,22 @@ func init() {
 			AllowsInfo:         true,
 		},
 	)
+
+	// Children relationship for poke in enforcer
+	EnforcerMainRelationship.AddChild(
+		elemental.IdentityFromName("poke"),
+		&elemental.Relationship{
+			AllowsCreate: true,
+		},
+	)
 	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
+
+	//
+	// Main Relationship for poke
+	//
+	PokeMainRelationship := &elemental.Relationship{}
+
+	relationshipsRegistry[elemental.IdentityFromName("poke")] = PokeMainRelationship
 
 	//
 	// Main Relationship for filepath

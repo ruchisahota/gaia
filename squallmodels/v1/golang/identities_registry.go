@@ -11,6 +11,7 @@ func init() {
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
+	elemental.RegisterIdentity(PokeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
@@ -53,6 +54,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Name:
 		return NewEnforcer()
+	case PokeIdentity.Name:
+		return NewPoke()
 	case FilePathIdentity.Name:
 		return NewFilePath()
 	case FileAccessIdentity.Name:
@@ -114,6 +117,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Category:
 		return NewEnforcer()
+	case PokeIdentity.Category:
+		return NewPoke()
 	case FilePathIdentity.Category:
 		return NewFilePath()
 	case FileAccessIdentity.Category:
@@ -175,6 +180,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Name:
 		return &EnforcersList{}
+	case PokeIdentity.Name:
+		return &PokesList{}
 	case FilePathIdentity.Name:
 		return &FilePathsList{}
 	case FileAccessIdentity.Name:
@@ -234,6 +241,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Category:
 		return &EnforcersList{}
+	case PokeIdentity.Category:
+		return &PokesList{}
 	case FilePathIdentity.Category:
 		return &FilePathsList{}
 	case FileAccessIdentity.Category:
@@ -286,6 +295,7 @@ func AllIdentities() []elemental.Identity {
 		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
+		PokeIdentity,
 		FilePathIdentity,
 		FileAccessIdentity,
 		NamespaceIdentity,
@@ -371,6 +381,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case TagIdentity:
 		return []string{}
 	case EnforcerIdentity:
+		return []string{}
+	case PokeIdentity:
 		return []string{}
 	case FilePathIdentity:
 		return []string{
