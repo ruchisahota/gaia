@@ -18,6 +18,7 @@ func init() {
 	elemental.RegisterIdentity(IntegrationIdentity)
 	elemental.RegisterIdentity(PolicyRuleIdentity)
 	elemental.RegisterIdentity(ExternalServiceIdentity)
+	elemental.RegisterIdentity(RoleIdentity)
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
 	elemental.RegisterIdentity(SuggestedPolicyIdentity)
@@ -68,6 +69,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPolicyRule()
 	case ExternalServiceIdentity.Name:
 		return NewExternalService()
+	case RoleIdentity.Name:
+		return NewRole()
 	case PolicyIdentity.Name:
 		return NewPolicy()
 	case FlowStatisticIdentity.Name:
@@ -131,6 +134,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewPolicyRule()
 	case ExternalServiceIdentity.Category:
 		return NewExternalService()
+	case RoleIdentity.Category:
+		return NewRole()
 	case PolicyIdentity.Category:
 		return NewPolicy()
 	case FlowStatisticIdentity.Category:
@@ -194,6 +199,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PolicyRulesList{}
 	case ExternalServiceIdentity.Name:
 		return &ExternalServicesList{}
+	case RoleIdentity.Name:
+		return &RolesList{}
 	case PolicyIdentity.Name:
 		return &PoliciesList{}
 	case FlowStatisticIdentity.Name:
@@ -255,6 +262,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &PolicyRulesList{}
 	case ExternalServiceIdentity.Category:
 		return &ExternalServicesList{}
+	case RoleIdentity.Category:
+		return &RolesList{}
 	case PolicyIdentity.Category:
 		return &PoliciesList{}
 	case FlowStatisticIdentity.Category:
@@ -302,6 +311,7 @@ func AllIdentities() []elemental.Identity {
 		IntegrationIdentity,
 		PolicyRuleIdentity,
 		ExternalServiceIdentity,
+		RoleIdentity,
 		PolicyIdentity,
 		FlowStatisticIdentity,
 		SuggestedPolicyIdentity,
@@ -404,6 +414,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"extsrv",
 			"extsrvs",
 		}
+	case RoleIdentity:
+		return []string{}
 	case PolicyIdentity:
 		return []string{}
 	case FlowStatisticIdentity:

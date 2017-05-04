@@ -163,6 +163,13 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("externalservice")] = ExternalServiceMainRelationship
 
 	//
+	// Main Relationship for role
+	//
+	RoleMainRelationship := &elemental.Relationship{}
+
+	relationshipsRegistry[elemental.IdentityFromName("role")] = RoleMainRelationship
+
+	//
 	// Main Relationship for policy
 	//
 	PolicyMainRelationship := &elemental.Relationship{
@@ -475,6 +482,15 @@ func init() {
 		elemental.IdentityFromName("processingunit"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+
+	// Children relationship for roles in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("role"),
+		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
