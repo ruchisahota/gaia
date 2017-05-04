@@ -45,7 +45,7 @@
             "default_value": null,
             "deprecated": null,
             "description": "Identities of the role.",
-            "exposed": false,
+            "exposed": true,
             "filterable": false,
             "foreign_key": null,
             "format": null,
