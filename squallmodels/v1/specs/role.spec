@@ -110,15 +110,15 @@
     "model": {
         "aliases": [],
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "Role",
         "extends": [],
-        "get": true,
+        "get": false,
         "package": null,
         "resource_name": "roles",
         "rest_name": "role",
         "root": null,
-        "update": true
+        "update": false
     }
 }
