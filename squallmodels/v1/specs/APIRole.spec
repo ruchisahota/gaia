@@ -44,7 +44,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "The name of the role.",
+            "description": "Name of the role.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
