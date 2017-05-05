@@ -2,10 +2,12 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "awsacc"
+        ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "Allows to bind an AWS account to your Aporeto account to allow auto registration of enforcers running on EC2 ",
         "entity_name": "AWSAccount",
         "extends": [],
         "get": true,
