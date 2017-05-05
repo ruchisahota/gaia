@@ -79,8 +79,7 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini red">required</span>
-<span class="ui label mini olive">creation only</span>
+                    <span class="ui label mini olive">creation only</span>
 
                   </div>
                   <strong>accessToken</strong>  <span class="ui blue">string</span>
@@ -326,7 +325,6 @@ curl -X GET \
 <pre class="bash">
 apoctl api create awsaccounts -n /namespace \
   -k accesskeyid "accesskeyid" \
-  -k accesstoken "accesstoken" \
   -k region "region" \
   -k secretaccesskey "secretaccesskey"</pre>
 </div>
@@ -350,7 +348,6 @@ func main () {
 
     obj := vincemodels.NewAWSAccount()
     obj.AccessKeyID = "accesskeyid"
-    obj.AccessToken = "accesstoken"
     obj.Region = "region"
     obj.SecretAccessKey = "secretaccesskey"
 
@@ -378,7 +375,6 @@ def main():
 
     obj = AWSAccount()
     obj.accessKeyID = "accesskeyid"
-    obj.accessToken = "accesstoken"
     obj.region = "region"
     obj.secretAccessKey = "secretaccesskey"
 
@@ -403,7 +399,6 @@ curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d accesskeyid="accesskeyid" \
-  -d accesstoken="accesstoken" \
   -d region="region" \
   -d secretaccesskey="secretaccesskey" \
   http://&lt;host&gt;:&lt;port&gt;/awsaccounts

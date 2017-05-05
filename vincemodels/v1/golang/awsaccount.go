@@ -135,14 +135,6 @@ func (o *AWSAccount) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("accessToken", o.AccessToken); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("accessToken", o.AccessToken); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("region", o.Region); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -216,7 +208,6 @@ var AWSAccountAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "accessToken",
-		Required:       true,
 		Type:           "string",
 	},
 	"AccountID": elemental.AttributeSpecification{
