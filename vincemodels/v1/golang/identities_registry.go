@@ -8,6 +8,7 @@ func init() {
 	elemental.RegisterIdentity(ActivateIdentity)
 	elemental.RegisterIdentity(CertificateIdentity)
 	elemental.RegisterIdentity(PasswordResetIdentity)
+	elemental.RegisterIdentity(AWSAccountIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(CheckIdentity)
 }
@@ -27,6 +28,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewCertificate()
 	case PasswordResetIdentity.Name:
 		return NewPasswordReset()
+	case AWSAccountIdentity.Name:
+		return NewAWSAccount()
 	case RootIdentity.Name:
 		return NewRoot()
 	case CheckIdentity.Name:
@@ -48,6 +51,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewCertificate()
 	case PasswordResetIdentity.Category:
 		return NewPasswordReset()
+	case AWSAccountIdentity.Category:
+		return NewAWSAccount()
 	case RootIdentity.Category:
 		return NewRoot()
 	case CheckIdentity.Category:
@@ -69,6 +74,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &CertificatesList{}
 	case PasswordResetIdentity.Name:
 		return &PasswordResetsList{}
+	case AWSAccountIdentity.Name:
+		return &AWSAccountsList{}
 	case CheckIdentity.Name:
 		return &ChecksList{}
 	default:
@@ -88,6 +95,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &CertificatesList{}
 	case PasswordResetIdentity.Category:
 		return &PasswordResetsList{}
+	case AWSAccountIdentity.Category:
+		return &AWSAccountsList{}
 	case CheckIdentity.Category:
 		return &ChecksList{}
 	default:
@@ -103,12 +112,17 @@ func AllIdentities() []elemental.Identity {
 		ActivateIdentity,
 		CertificateIdentity,
 		PasswordResetIdentity,
+		AWSAccountIdentity,
 		RootIdentity,
 		CheckIdentity,
 	}
 }
 
-var aliasesMap = map[string]elemental.Identity{}
+var aliasesMap = map[string]elemental.Identity{
+	"aws":     AWSAccountIdentity,
+	"awsaccs": AWSAccountIdentity,
+	"awsacc":  AWSAccountIdentity,
+}
 
 // IdentityFromAlias returns the Identity associated to the given alias.
 func IdentityFromAlias(alias string) elemental.Identity {
@@ -128,6 +142,12 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case PasswordResetIdentity:
 		return []string{}
+	case AWSAccountIdentity:
+		return []string{
+			"aws",
+			"awsaccs",
+			"awsacc",
+		}
 	case RootIdentity:
 		return []string{}
 	case CheckIdentity:
