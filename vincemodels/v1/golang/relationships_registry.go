@@ -55,7 +55,6 @@ func init() {
 	//
 	AWSAccountMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
-		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
 

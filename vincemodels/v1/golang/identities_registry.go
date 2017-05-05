@@ -119,9 +119,9 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"aws":     AWSAccountIdentity,
-	"awsaccs": AWSAccountIdentity,
 	"awsacc":  AWSAccountIdentity,
+	"awsaccs": AWSAccountIdentity,
+	"aws":     AWSAccountIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -144,9 +144,9 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case AWSAccountIdentity:
 		return []string{
-			"aws",
-			"awsaccs",
 			"awsacc",
+			"awsaccs",
+			"aws",
 		}
 	case RootIdentity:
 		return []string{}
