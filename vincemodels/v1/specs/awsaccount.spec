@@ -3,6 +3,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "aws",
             "awsaccs",
             "awsacc"
         ],
