@@ -214,9 +214,9 @@
     "children": [],
     "model": {
         "aliases": [
-            "aws",
+            "awsacc",
             "awsaccs",
-            "awsacc"
+            "aws"
         ],
         "create": null,
         "delete": true,
@@ -230,6 +230,6 @@
         "resource_name": "awsaccounts",
         "rest_name": "awsaccount",
         "root": null,
-        "update": true
+        "update": false
     }
 }
