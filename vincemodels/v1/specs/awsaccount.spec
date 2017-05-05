@@ -114,7 +114,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "AWSAccessKeyID contains the aws access key ID. This is used to retrieve your account id, and it is not stored.",
+            "description": "AccessKeyID contains the aws access key ID. This is used to retrieve your account id, and it is not stored.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
