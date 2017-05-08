@@ -60,7 +60,7 @@
             "orderable": true,
             "primary_key": null,
             "read_only": null,
-            "required": true,
+            "required": false,
             "secret": null,
             "setter": null,
             "stored": false,
