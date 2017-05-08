@@ -2,10 +2,12 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "quota"
+        ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "Quotas Policies allows to set quotas on the number of objects that can be created in a namespace.",
         "entity_name": "QuotaPolicy",
         "extends": [
             "@base",
@@ -17,7 +19,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": null,
+        "package": "Policy",
         "resource_name": "quotapolicies",
         "rest_name": "quotapolicy",
         "root": null,
