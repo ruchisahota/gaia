@@ -175,6 +175,106 @@
           <section id="codingexamples">
             <h3>Code example</h3>
               <div>
+  <div id="retrieve_all_plans_from_plan">
+<h4>Retrieve all Plans in a given Plan</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+<pre class="bash">
+apoctl api list plans in plan parent-id -n /namespace
+</pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre class="go">
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  vincemodels "github.com/aporeto-inc/gaia/vincemodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects vincemodels.PlansList
+
+  parent := vincemodels.NewPlan()
+  parent.SetIdentifier("parent-id")
+
+  mctx := manipulate.NewContext()
+  mctx.Parent = parent
+
+  if err = m.RetrieveMany(mctx, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre class="python">
+import os
+
+from vincemodels import Plan, Plan
+from pymanipulate.context import Context
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = Plan()
+    objects = []
+
+    parent = Plan(ID="parent-id")
+    mctx = Context(parent=parent)
+
+    try:
+        manipulator.retrieve_children(mctx, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre class="bash">
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/plans/id/plans
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_plans_from_plan .menu .item').tab({context: "parent"});</script>
+
+</div>
+<div>
   <div id="retrieve_all_plans">
 <h4>Retrieve all Plans </h4>
 
@@ -369,9 +469,9 @@ http://&lt;host&gt;:&lt;port&gt;/plans/identifier
 
         // Write relations graph
         var data = [
-{"restName": "plan", "instanceName": "Plan", "resourceName": "plans", "type": "self", "exposed": true, "actions": ['POST', 'GET']}, 
+{"restName": "plan", "instanceName": "Plan", "resourceName": "plans", "type": "parents", "exposed": true, "actions": ['GET']}, {"restName": "plan", "instanceName": "Plan", "resourceName": "plans", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "plan", "instanceName": "Plan", "resourceName": "plans", "type": "self", "exposed": true, "actions": ['POST', 'GET']}, 
 ]
-        drawRelations(data, 1, 0);
+        drawRelations(data, 2, 1);
 
       });
   </script>

@@ -57,6 +57,14 @@ func init() {
 		AllowsRetrieve: true,
 	}
 
+	// Children relationship for plans in plan
+	PlanMainRelationship.AddChild(
+		elemental.IdentityFromName("plan"),
+		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
 	relationshipsRegistry[elemental.IdentityFromName("plan")] = PlanMainRelationship
 
 	//
