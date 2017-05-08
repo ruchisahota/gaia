@@ -203,9 +203,9 @@
             "required": null,
             "secret": null,
             "setter": null,
-            "stored": false,
+            "stored": true,
             "subtype": null,
-            "transient": null,
+            "transient": false,
             "type": "integer",
             "unique": null,
             "uniqueScope": null
