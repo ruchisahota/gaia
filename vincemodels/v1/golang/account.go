@@ -100,6 +100,9 @@ type Account struct {
 	// AssociatedNamespaceID contains the ID of the associated namespace.
 	AssociatedNamespaceID string `json:"associatedNamespaceID" bson:"associatednamespaceid"`
 
+	// AssociatedPlanKey contains the plan key that is associated to this account.
+	AssociatedPlanKey string `json:"associatedPlanKey" bson:"associatedplankey"`
+
 	// BumpToken contains the tag processing unit must use to be placed in the account's namespace.
 	BumpToken string `json:"bumpToken" bson:"bumptoken"`
 
@@ -384,6 +387,16 @@ var AccountAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "associatedNamespaceID",
 		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"AssociatedPlanKey": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `AssociatedPlanKey contains the plan key that is associated to this account.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "associatedPlanKey",
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",

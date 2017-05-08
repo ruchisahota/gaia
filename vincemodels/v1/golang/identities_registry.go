@@ -8,6 +8,7 @@ func init() {
 	elemental.RegisterIdentity(ActivateIdentity)
 	elemental.RegisterIdentity(CertificateIdentity)
 	elemental.RegisterIdentity(PasswordResetIdentity)
+	elemental.RegisterIdentity(PlanIdentity)
 	elemental.RegisterIdentity(AWSAccountIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(CheckIdentity)
@@ -28,6 +29,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewCertificate()
 	case PasswordResetIdentity.Name:
 		return NewPasswordReset()
+	case PlanIdentity.Name:
+		return NewPlan()
 	case AWSAccountIdentity.Name:
 		return NewAWSAccount()
 	case RootIdentity.Name:
@@ -51,6 +54,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewCertificate()
 	case PasswordResetIdentity.Category:
 		return NewPasswordReset()
+	case PlanIdentity.Category:
+		return NewPlan()
 	case AWSAccountIdentity.Category:
 		return NewAWSAccount()
 	case RootIdentity.Category:
@@ -74,6 +79,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &CertificatesList{}
 	case PasswordResetIdentity.Name:
 		return &PasswordResetsList{}
+	case PlanIdentity.Name:
+		return &PlansList{}
 	case AWSAccountIdentity.Name:
 		return &AWSAccountsList{}
 	case CheckIdentity.Name:
@@ -95,6 +102,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &CertificatesList{}
 	case PasswordResetIdentity.Category:
 		return &PasswordResetsList{}
+	case PlanIdentity.Category:
+		return &PlansList{}
 	case AWSAccountIdentity.Category:
 		return &AWSAccountsList{}
 	case CheckIdentity.Category:
@@ -112,6 +121,7 @@ func AllIdentities() []elemental.Identity {
 		ActivateIdentity,
 		CertificateIdentity,
 		PasswordResetIdentity,
+		PlanIdentity,
 		AWSAccountIdentity,
 		RootIdentity,
 		CheckIdentity,
@@ -141,6 +151,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case CertificateIdentity:
 		return []string{}
 	case PasswordResetIdentity:
+		return []string{}
+	case PlanIdentity:
 		return []string{}
 	case AWSAccountIdentity:
 		return []string{

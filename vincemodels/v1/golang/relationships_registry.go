@@ -51,6 +51,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("passwordreset")] = PasswordResetMainRelationship
 
 	//
+	// Main Relationship for plan
+	//
+	PlanMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("plan")] = PlanMainRelationship
+
+	//
 	// Main Relationship for awsaccount
 	//
 	AWSAccountMainRelationship := &elemental.Relationship{
@@ -122,6 +131,15 @@ func init() {
 		elemental.IdentityFromName("passwordreset"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+
+	// Children relationship for plans in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("plan"),
+		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
