@@ -498,6 +498,16 @@ func init() {
 		},
 	)
 
+	// Children relationship for quotapolicies in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("quotapolicy"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+
 	// Children relationship for roles in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("role"),
