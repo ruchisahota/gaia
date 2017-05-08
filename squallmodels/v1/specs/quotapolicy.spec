@@ -3,6 +3,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "quotapols",
             "quotapol",
             "quotas",
             "quota"
