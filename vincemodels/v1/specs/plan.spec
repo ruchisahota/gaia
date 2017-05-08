@@ -79,7 +79,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "ProcessingUnitsQuota contains the maximum PUs available in the Plan",
+            "description": "ProcessingUnitsQuota contains the maximum PUs available in the Plan.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
