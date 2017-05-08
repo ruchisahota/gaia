@@ -198,6 +198,17 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("suggestedpolicy")] = SuggestedPolicyMainRelationship
 
 	//
+	// Main Relationship for quotapolicy
+	//
+	QuotaPolicyMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("quotapolicy")] = QuotaPolicyMainRelationship
+
+	//
 	// Main Relationship for fileaccesspolicy
 	//
 	FileAccessPolicyMainRelationship := &elemental.Relationship{

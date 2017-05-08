@@ -93,6 +93,15 @@
 </div>
 
       <div class="item">
+        <div class="header">Policy</div>
+        <div class="menu">
+          <div class="item">
+            <a href="javascript:goToURLWithCurrentParameters('quotapolicy.html');" title="API reference for quotapolicy">QuotaPolicy</a>
+          </div>
+        </div>
+</div>
+
+      <div class="item">
         <div class="header">Storage</div>
         <div class="menu">
           <div class="item">
@@ -259,6 +268,18 @@
               <br>
               <div class="meta">
                 This api returns a data structure representing the graph of all processing units and their connections in a particular namespace, in a given time window. To pass the time window you can use the query parameters "startAbsolute", "endAbsolute", "startRelative", "endRelative".  For example "https://squall.aporeto.com/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000"
+              </div>
+              </div>
+              </div>
+              <h2>Policy</h2>
+              <div class="ui card">
+              <div class="content">
+              <a  id="quotapolicies"
+                  href="javascript:goToURLWithCurrentParameters('quotapolicy.html');"
+                  title="API reference for quotapolicy">QuotaPolicy</a>
+              <br>
+              <div class="meta">
+                Quotas Policies allows to set quotas on the number of objects that can be created in a namespace.
               </div>
               </div>
               </div>

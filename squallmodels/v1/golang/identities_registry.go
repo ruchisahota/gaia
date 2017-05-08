@@ -22,6 +22,7 @@ func init() {
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
 	elemental.RegisterIdentity(SuggestedPolicyIdentity)
+	elemental.RegisterIdentity(QuotaPolicyIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
 	elemental.RegisterIdentity(EnforcerProfileIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
@@ -77,6 +78,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewFlowStatistic()
 	case SuggestedPolicyIdentity.Name:
 		return NewSuggestedPolicy()
+	case QuotaPolicyIdentity.Name:
+		return NewQuotaPolicy()
 	case FileAccessPolicyIdentity.Name:
 		return NewFileAccessPolicy()
 	case EnforcerProfileIdentity.Name:
@@ -142,6 +145,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewFlowStatistic()
 	case SuggestedPolicyIdentity.Category:
 		return NewSuggestedPolicy()
+	case QuotaPolicyIdentity.Category:
+		return NewQuotaPolicy()
 	case FileAccessPolicyIdentity.Category:
 		return NewFileAccessPolicy()
 	case EnforcerProfileIdentity.Category:
@@ -207,6 +212,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &FlowStatisticsList{}
 	case SuggestedPolicyIdentity.Name:
 		return &SuggestedPoliciesList{}
+	case QuotaPolicyIdentity.Name:
+		return &QuotaPoliciesList{}
 	case FileAccessPolicyIdentity.Name:
 		return &FileAccessPoliciesList{}
 	case EnforcerProfileIdentity.Name:
@@ -270,6 +277,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &FlowStatisticsList{}
 	case SuggestedPolicyIdentity.Category:
 		return &SuggestedPoliciesList{}
+	case QuotaPolicyIdentity.Category:
+		return &QuotaPoliciesList{}
 	case FileAccessPolicyIdentity.Category:
 		return &FileAccessPoliciesList{}
 	case EnforcerProfileIdentity.Category:
@@ -315,6 +324,7 @@ func AllIdentities() []elemental.Identity {
 		PolicyIdentity,
 		FlowStatisticIdentity,
 		SuggestedPolicyIdentity,
+		QuotaPolicyIdentity,
 		FileAccessPolicyIdentity,
 		EnforcerProfileIdentity,
 		RenderedPolicyIdentity,
@@ -344,6 +354,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"sugg":       SuggestedPolicyIdentity,
 	"sugpols":    SuggestedPolicyIdentity,
 	"sugpol":     SuggestedPolicyIdentity,
+	"quotapols":  QuotaPolicyIdentity,
+	"quotapol":   QuotaPolicyIdentity,
+	"quotas":     QuotaPolicyIdentity,
+	"quota":      QuotaPolicyIdentity,
 	"profiles":   EnforcerProfileIdentity,
 	"profile":    EnforcerProfileIdentity,
 	"rpols":      RenderedPolicyIdentity,
@@ -426,6 +440,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"sugg",
 			"sugpols",
 			"sugpol",
+		}
+	case QuotaPolicyIdentity:
+		return []string{
+			"quotapols",
+			"quotapol",
+			"quotas",
+			"quota",
 		}
 	case FileAccessPolicyIdentity:
 		return []string{}
