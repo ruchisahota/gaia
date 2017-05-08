@@ -26,6 +26,9 @@ const (
 	// PolicyTypeNetwork represents the value Network.
 	PolicyTypeNetwork PolicyTypeValue = "Network"
 
+	// PolicyTypeQuota represents the value Quota.
+	PolicyTypeQuota PolicyTypeValue = "Quota"
+
 	// PolicyTypeSyscall represents the value Syscall.
 	PolicyTypeSyscall PolicyTypeValue = "Syscall"
 )
@@ -315,7 +318,7 @@ func (o *Policy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "EnforcerProfile", "File", "NamespaceMapping", "Network", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "EnforcerProfile", "File", "NamespaceMapping", "Network", "Quota", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -568,7 +571,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "NamespaceMapping", "Network", "Syscall"},
+		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "NamespaceMapping", "Network", "Quota", "Syscall"},
 		CreationOnly:   true,
 		Description:    `Type of the policy`,
 		Exposed:        true,
