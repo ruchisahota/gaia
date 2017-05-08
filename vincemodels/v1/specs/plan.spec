@@ -4,15 +4,15 @@
     "model": {
         "aliases": [],
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "Plan contains the various billing plans available",
         "entity_name": "Plan",
         "extends": [],
         "get": true,
-        "package": null,
+        "package": "billing",
         "resource_name": "plans",
         "rest_name": "plan",
         "root": null,
-        "update": true
+        "update": false
     }
 }
