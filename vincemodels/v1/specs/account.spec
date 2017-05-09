@@ -379,7 +379,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": "associated_aws_policies",
+            "subtype": "associated_policies",
             "transient": null,
             "type": "external",
             "unique": null,
