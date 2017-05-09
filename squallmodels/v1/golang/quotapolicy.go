@@ -61,9 +61,6 @@ type QuotaPolicy struct {
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" bson:"disabled"`
 
-	// LimitedIdentities contains the limitations per identitiy.
-	LimitedIdentities []string `json:"limitedIdentities" bson:"limitedidentities"`
-
 	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
 
@@ -85,7 +82,13 @@ type QuotaPolicy struct {
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
 
-	// TargetNamespace defines on what namespace the policy applies.
+	// Quota contains the maximum number of object matching the policy subject that can be created.
+	Quota int `json:"quota" bson:"-"`
+
+	// Subject contains the subject of the Quota Policy.
+	Subject [][]string `json:"subject" bson:"-"`
+
+	// TargetNamespace contains the base namespace from where the count will be done.
 	TargetNamespace string `json:"targetNamespace" bson:"targetnamespace"`
 
 	// UpdateTime is the time at which an entity was updated.
@@ -100,12 +103,11 @@ type QuotaPolicy struct {
 func NewQuotaPolicy() *QuotaPolicy {
 
 	return &QuotaPolicy{
-		ModelVersion:      1.0,
-		Annotations:       map[string][]string{},
-		AssociatedTags:    []string{},
-		LimitedIdentities: []string{},
-		Metadata:          []string{},
-		NormalizedTags:    []string{},
+		ModelVersion:   1.0,
+		Annotations:    map[string][]string{},
+		AssociatedTags: []string{},
+		Metadata:       []string{},
+		NormalizedTags: []string{},
 	}
 }
 
@@ -252,14 +254,6 @@ func (o *QuotaPolicy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredExternal("limitedIdentities", o.LimitedIdentities); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("limitedIdentities", o.LimitedIdentities); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -370,16 +364,6 @@ var QuotaPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"LimitedIdentities": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `LimitedIdentities contains the limitations per identitiy.`,
-		Exposed:        true,
-		Name:           "limitedIdentities",
-		Required:       true,
-		Stored:         true,
-		SubType:        "limited_identity_list",
-		Type:           "external",
-	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -476,9 +460,25 @@ var QuotaPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
+	"Quota": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Quota contains the maximum number of object matching the policy subject that can be created.`,
+		Exposed:        true,
+		Name:           "quota",
+		Type:           "integer",
+	},
+	"Subject": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Subject contains the subject of the Quota Policy.`,
+		Exposed:        true,
+		Name:           "subject",
+		Orderable:      true,
+		SubType:        "policies_list",
+		Type:           "external",
+	},
 	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `TargetNamespace defines on what namespace the policy applies.`,
+		Description:    `TargetNamespace contains the base namespace from where the count will be done.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",

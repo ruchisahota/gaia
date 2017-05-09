@@ -249,21 +249,6 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini red">required</span>
-
-                  </div>
-                  <strong>limitedIdentities</strong>  <span class="ui blue">limited_identity_list</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    LimitedIdentities contains the limitations per identitiy.
-
-                  </div>
-                </div>
-              </div>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
                     <span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 
@@ -381,6 +366,35 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
+                    
+                  </div>
+                  <strong>quota</strong>  <span class="ui blue">integer</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Quota contains the maximum number of object matching the policy subject that can be created.
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini teal">orderable</span>
+
+                  </div>
+                  <strong>subject</strong>  <span class="ui blue">policies_list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Subject contains the subject of the Quota Policy.
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
                     <span class="ui label mini red">required</span>
 <span class="ui label mini purple">filterable</span>
 
@@ -389,7 +403,7 @@
                 </div>
                 <div class="content">
                   <div class="meta">
-                    TargetNamespace defines on what namespace the policy applies. (format: free)
+                    TargetNamespace contains the base namespace from where the count will be done. (format: free)
 
                   </div>
                 </div>
@@ -521,7 +535,6 @@ curl -X GET \
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre class="bash">
 apoctl api create quotapolicies -n /namespace \
-  -k limitedidentities "limited_identity_list" \
   -k name "name" \
   -k targetnamespace "targetnamespace"</pre>
 </div>
@@ -544,7 +557,6 @@ func main () {
     }
 
     obj := squallmodels.NewQuotaPolicy()
-    obj.LimitedIdentities = "limited_identity_list"
     obj.SetName("name")
     obj.TargetNamespace = "targetnamespace"
 
@@ -571,7 +583,6 @@ def main():
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
     obj = QuotaPolicy()
-    obj.limitedIdentities = "limited_identity_list"
     obj.name = "name"
     obj.targetNamespace = "targetnamespace"
 
@@ -595,7 +606,6 @@ if __name__ == "__main__":
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
-  -d limitedidentities="limited_identity_list" \
   -d name="name" \
   -d targetnamespace="targetnamespace" \
   http://&lt;host&gt;:&lt;port&gt;/quotapolicies
@@ -792,7 +802,6 @@ http://&lt;host&gt;:&lt;port&gt;/quotapolicies/identifier
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre class="bash">
 apoctl api update quotapolicy identitifier -n /namespace \
-  -k limitedidentities "limited_identity_list" \
   -k name "name" \
   -k targetnamespace "targetnamespace"  </pre>
 </div>
@@ -819,7 +828,6 @@ func main() {
       panic(err)
     }
 
-    obj.LimitedIdentities = "limited_identity_list"
     obj.SetName("name")
     obj.TargetNamespace = "targetnamespace"
 
@@ -854,7 +862,6 @@ def main():
         print "Err: %s" % e.errors[0]
         os._exit(1)
 
-    obj.limitedIdentities = "limited_identity_list"
     obj.name = "name"
     obj.targetNamespace = "targetnamespace"
 
@@ -878,7 +885,6 @@ if __name__ == "__main__":
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
-  -d limitedidentities="limited_identity_list" \
   -d name="name" \
   -d targetnamespace="targetnamespace" \
   http://&lt;host&gt;:&lt;port&gt;/quotapolicies/identitifier
