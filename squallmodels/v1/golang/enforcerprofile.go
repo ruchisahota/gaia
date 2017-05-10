@@ -155,7 +155,7 @@ func NewEnforcerProfile() *EnforcerProfile {
 	return &EnforcerProfile{
 		ModelVersion:                  1.0,
 		IPTablesMarkValue:             1000,
-		PUBookkeepingInterval:         "5m",
+		PUBookkeepingInterval:         "15m",
 		PUHeartbeatInterval:           "5s",
 		Annotations:                   map[string][]string{},
 		AssociatedTags:                []string{},
@@ -423,7 +423,7 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"PUBookkeepingInterval": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
 		AllowedChoices: []string{},
-		DefaultValue:   "5m",
+		DefaultValue:   "15m",
 		Description:    `PUBookkeepingInterval configures how often the PU will be synchronized.`,
 		Exposed:        true,
 		Filterable:     true,
