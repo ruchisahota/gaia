@@ -29,7 +29,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": "stringh",
+            "subtype": "string",
             "transient": null,
             "type": "list",
             "unique": null,
