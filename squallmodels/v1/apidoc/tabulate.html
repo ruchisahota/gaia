@@ -176,11 +176,8 @@
           <section id="codingexamples">
             <h3>Code example</h3>
               <div>
-</div>
-
-  <div>
-  <div id="get_tabulate">
-<h4>Retrieve a given Tabulate</h4>
+  <div id="retrieve_all_tabulate">
+<h4>Retrieve all Tabulates </h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -190,36 +187,35 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre class="bash">
-apoctl api get tabulate identitifier -n /namespace
-  </pre>
+<pre class="bash">
+apoctl api list tabulate -n /namespace
+</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre class="go">
 package main
 
 import (
-    "github.com/aporeto-inc/manipulate/manipwebsocket"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
 
-    squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
 )
 
 func main() {
 
-    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
 
-    if err != nil {
-        panic(err)
-    }
+  if err != nil {
+      panic(err)
+  }
 
-    obj := squallmodels.NewTabulate()
-    obj.SetIdentifier("identifier")
+  var objects squallmodels.TabulatesList
 
-    if err = m.Retrieve(nil, obj); err != nil {
-        panic(err)
-    }
+  if err = m.RetrieveMany(nil, &amp;objects); err != nil {
+    panic(err)
+  }
 
-    disconnect()
+  disconnect()
 }
   </pre>
 </div>
@@ -238,15 +234,16 @@ def main():
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
     obj = Tabulate()
-    obj.ID = "identifier"
+    objects = []
 
     try:
-        manipulator.retrieve(None, obj)
+        manipulator.retrieve_children(None, obj.identity(), objects)
     except PyManipulateError as e:
         print "Err: %s" % e.errors[0]
         os._exit(1)
 
-    print obj.to_dict()
+    for obj in objects:
+        print obj.to_dict()
 
     exit(0)
 
@@ -258,14 +255,17 @@ if __name__ == "__main__":
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre class="bash">
 curl -X GET \
--H "X-Namespace: namespace" \
--H "Authorization: token" \
-http://&lt;host&gt;:&lt;port&gt;/tabulate/identifier
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/tabulate
   </pre>
 </div>
 </div>
-<script>$('#get_tabulate .menu .item').tab({context: "parent"});</script>
+<script>$('#retrieve_all_tabulate .menu .item').tab({context: "parent"});</script>
 
+</div>
+
+  <div>
 </div>
 
 
@@ -283,7 +283,7 @@ http://&lt;host&gt;:&lt;port&gt;/tabulate/identifier
 
         // Write relations graph
         var data = [
-{"restName": "tabulate", "instanceName": "Tabulate", "resourceName": "tabulate", "type": "self", "exposed": true, "actions": ['POST', 'GET']}, 
+{"restName": "tabulate", "instanceName": "Tabulate", "resourceName": "tabulate", "type": "self", "exposed": true, "actions": ['POST']}, 
 ]
         drawRelations(data, 1, 0);
 

@@ -355,10 +355,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
-	"table":      TabulateIdentity,
-	"tables":     TabulateIdentity,
-	"tabs":       TabulateIdentity,
 	"tab":        TabulateIdentity,
+	"tabs":       TabulateIdentity,
+	"tables":     TabulateIdentity,
+	"table":      TabulateIdentity,
 	"fps":        FilePathIdentity,
 	"fp":         FilePathIdentity,
 	"ns":         NamespaceIdentity,
@@ -422,10 +422,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case TabulateIdentity:
 		return []string{
-			"table",
-			"tables",
-			"tabs",
 			"tab",
+			"tabs",
+			"tables",
+			"table",
 		}
 	case PokeIdentity:
 		return []string{}

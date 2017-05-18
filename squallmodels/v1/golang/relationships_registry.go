@@ -100,9 +100,7 @@ func init() {
 	//
 	// Main Relationship for tabulate
 	//
-	TabulateMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-	}
+	TabulateMainRelationship := &elemental.Relationship{}
 
 	relationshipsRegistry[elemental.IdentityFromName("tabulate")] = TabulateMainRelationship
 
@@ -548,7 +546,10 @@ func init() {
 	// Children relationship for tabulate in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("tabulate"),
-		&elemental.Relationship{},
+		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
 	)
 
 	// Children relationship for tags in root
