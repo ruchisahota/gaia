@@ -21,7 +21,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "colums",
+            "name": "columns",
             "orderable": false,
             "primary_key": null,
             "read_only": true,
