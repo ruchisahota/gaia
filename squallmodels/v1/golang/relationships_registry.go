@@ -98,6 +98,13 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
 
 	//
+	// Main Relationship for tabulate
+	//
+	TabulateMainRelationship := &elemental.Relationship{}
+
+	relationshipsRegistry[elemental.IdentityFromName("tabulate")] = TabulateMainRelationship
+
+	//
 	// Main Relationship for poke
 	//
 	PokeMainRelationship := &elemental.Relationship{}
@@ -533,6 +540,14 @@ func init() {
 			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
+		},
+	)
+
+	// Children relationship for tabulate in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("tabulate"),
+		&elemental.Relationship{
+			AllowsCreate: true,
 		},
 	)
 

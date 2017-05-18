@@ -11,6 +11,7 @@ func init() {
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
+	elemental.RegisterIdentity(TabulateIdentity)
 	elemental.RegisterIdentity(PokeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
@@ -56,6 +57,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Name:
 		return NewEnforcer()
+	case TabulateIdentity.Name:
+		return NewTabulate()
 	case PokeIdentity.Name:
 		return NewPoke()
 	case FilePathIdentity.Name:
@@ -123,6 +126,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Category:
 		return NewEnforcer()
+	case TabulateIdentity.Category:
+		return NewTabulate()
 	case PokeIdentity.Category:
 		return NewPoke()
 	case FilePathIdentity.Category:
@@ -190,6 +195,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Name:
 		return &EnforcersList{}
+	case TabulateIdentity.Name:
+		return &TabulatesList{}
 	case PokeIdentity.Name:
 		return &PokesList{}
 	case FilePathIdentity.Name:
@@ -255,6 +262,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Category:
 		return &EnforcersList{}
+	case TabulateIdentity.Category:
+		return &TabulatesList{}
 	case PokeIdentity.Category:
 		return &PokesList{}
 	case FilePathIdentity.Category:
@@ -313,6 +322,7 @@ func AllIdentities() []elemental.Identity {
 		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
+		TabulateIdentity,
 		PokeIdentity,
 		FilePathIdentity,
 		FileAccessIdentity,
@@ -345,6 +355,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
+	"tab":        TabulateIdentity,
+	"tabs":       TabulateIdentity,
+	"tables":     TabulateIdentity,
+	"table":      TabulateIdentity,
 	"fps":        FilePathIdentity,
 	"fp":         FilePathIdentity,
 	"ns":         NamespaceIdentity,
@@ -406,6 +420,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case EnforcerIdentity:
 		return []string{}
+	case TabulateIdentity:
+		return []string{
+			"tab",
+			"tabs",
+			"tables",
+			"table",
+		}
 	case PokeIdentity:
 		return []string{}
 	case FilePathIdentity:
