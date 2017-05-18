@@ -3,6 +3,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "hks",
             "hk"
         ],
         "create": null,
