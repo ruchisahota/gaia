@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Columns contains the requests columns that matched.",
+            "description": "Headers contains the requests headers that matched.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
