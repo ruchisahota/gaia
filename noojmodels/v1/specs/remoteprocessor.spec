@@ -99,7 +99,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": "elemental.Operation",
+            "subtype": "elemental_operation",
             "transient": null,
             "type": "external",
             "unique": null,
