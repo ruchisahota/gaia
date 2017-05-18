@@ -2,7 +2,9 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "hk"
+        ],
         "create": null,
         "delete": false,
         "description": null,
