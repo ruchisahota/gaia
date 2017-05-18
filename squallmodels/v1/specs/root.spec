@@ -262,7 +262,7 @@
             "deprecated": null,
             "get": true,
             "relationship": "root",
-            "rest_name": "tabulate",
+            "rest_name": "tabulated",
             "update": false
         },
         {
