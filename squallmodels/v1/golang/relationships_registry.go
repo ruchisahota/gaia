@@ -198,6 +198,13 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("suggestedpolicy")] = SuggestedPolicyMainRelationship
 
 	//
+	// Main Relationship for tabulation
+	//
+	TabulationMainRelationship := &elemental.Relationship{}
+
+	relationshipsRegistry[elemental.IdentityFromName("tabulation")] = TabulationMainRelationship
+
+	//
 	// Main Relationship for quotapolicy
 	//
 	QuotaPolicyMainRelationship := &elemental.Relationship{
@@ -531,6 +538,15 @@ func init() {
 		elemental.IdentityFromName("systemcall"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+
+	// Children relationship for tabulations in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("tabulation"),
+		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},

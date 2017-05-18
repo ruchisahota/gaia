@@ -61,6 +61,9 @@ type QuotaPolicy struct {
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" bson:"disabled"`
 
+	// Identities contains the list of identity names where the quota will be applied.
+	Identities []string `json:"identities" bson:"identities"`
+
 	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
 
@@ -84,9 +87,6 @@ type QuotaPolicy struct {
 
 	// Quota contains the maximum number of object matching the policy subject that can be created.
 	Quota int `json:"quota" bson:"-"`
-
-	// Subject contains the subject of the Quota Policy.
-	Subject [][]string `json:"subject" bson:"-"`
 
 	// TargetNamespace contains the base namespace from where the count will be done.
 	TargetNamespace string `json:"targetNamespace" bson:"targetnamespace"`
@@ -364,6 +364,16 @@ var QuotaPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
+	"Identities": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Identities contains the list of identity names where the quota will be applied.`,
+		Exposed:        true,
+		Name:           "identities",
+		Required:       true,
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
+	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -466,15 +476,6 @@ var QuotaPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "quota",
 		Type:           "integer",
-	},
-	"Subject": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Subject contains the subject of the Quota Policy.`,
-		Exposed:        true,
-		Name:           "subject",
-		Orderable:      true,
-		SubType:        "policies_list",
-		Type:           "external",
 	},
 	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

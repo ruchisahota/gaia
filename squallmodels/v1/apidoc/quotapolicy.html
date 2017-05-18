@@ -249,6 +249,21 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
+                    <span class="ui label mini red">required</span>
+
+                  </div>
+                  <strong>identities</strong>  <span class="ui blue">list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Identities contains the list of identity names where the quota will be applied.
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
                     <span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 
@@ -373,21 +388,6 @@
                 <div class="content">
                   <div class="meta">
                     Quota contains the maximum number of object matching the policy subject that can be created.
-
-                  </div>
-                </div>
-              </div>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
-                    <span class="ui label mini teal">orderable</span>
-
-                  </div>
-                  <strong>subject</strong>  <span class="ui blue">policies_list</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    Subject contains the subject of the Quota Policy.
 
                   </div>
                 </div>
@@ -535,6 +535,7 @@ curl -X GET \
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre class="bash">
 apoctl api create quotapolicies -n /namespace \
+  -k identities []{"a", "b", "c"} \
   -k name "name" \
   -k targetnamespace "targetnamespace"</pre>
 </div>
@@ -557,6 +558,7 @@ func main () {
     }
 
     obj := squallmodels.NewQuotaPolicy()
+    obj.Identities = []{"a", "b", "c"}
     obj.SetName("name")
     obj.TargetNamespace = "targetnamespace"
 
@@ -583,6 +585,7 @@ def main():
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
     obj = QuotaPolicy()
+    obj.identities = []{"a", "b", "c"}
     obj.name = "name"
     obj.targetNamespace = "targetnamespace"
 
@@ -606,6 +609,7 @@ if __name__ == "__main__":
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
+  -d identities=[]{"a", "b", "c"} \
   -d name="name" \
   -d targetnamespace="targetnamespace" \
   http://&lt;host&gt;:&lt;port&gt;/quotapolicies
@@ -802,6 +806,7 @@ http://&lt;host&gt;:&lt;port&gt;/quotapolicies/identifier
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre class="bash">
 apoctl api update quotapolicy identitifier -n /namespace \
+  -k identities []{"a", "b", "c"} \
   -k name "name" \
   -k targetnamespace "targetnamespace"  </pre>
 </div>
@@ -828,6 +833,7 @@ func main() {
       panic(err)
     }
 
+    obj.Identities = []{"a", "b", "c"}
     obj.SetName("name")
     obj.TargetNamespace = "targetnamespace"
 
@@ -862,6 +868,7 @@ def main():
         print "Err: %s" % e.errors[0]
         os._exit(1)
 
+    obj.identities = []{"a", "b", "c"}
     obj.name = "name"
     obj.targetNamespace = "targetnamespace"
 
@@ -885,6 +892,7 @@ if __name__ == "__main__":
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
+  -d identities=[]{"a", "b", "c"} \
   -d name="name" \
   -d targetnamespace="targetnamespace" \
   http://&lt;host&gt;:&lt;port&gt;/quotapolicies/identitifier
