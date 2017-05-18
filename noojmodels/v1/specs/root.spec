@@ -10,7 +10,7 @@
             "deprecated": null,
             "get": false,
             "relationship": "root",
-            "rest_name": "hook",
+            "rest_name": "remoteprocessor",
             "update": false
         }
     ],
