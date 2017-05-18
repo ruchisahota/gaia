@@ -21,7 +21,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "columns",
+            "name": "headers",
             "orderable": false,
             "primary_key": null,
             "read_only": true,
