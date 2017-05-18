@@ -3,6 +3,9 @@
     "children": [],
     "model": {
         "aliases": [
+            "table",
+            "tables",
+            "tabs",
             "tab"
         ],
         "create": null,
