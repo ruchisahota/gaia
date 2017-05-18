@@ -64,7 +64,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": "Interface",
+            "subtype": "interface",
             "transient": null,
             "type": "external",
             "unique": null,
