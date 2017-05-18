@@ -8,7 +8,7 @@
         ],
         "create": null,
         "delete": false,
-        "description": null,
+        "description": "Hook to integrate in an Aporeto service",
         "entity_name": "Hook",
         "extends": [],
         "get": false,
