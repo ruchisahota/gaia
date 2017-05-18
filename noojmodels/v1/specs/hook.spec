@@ -4,6 +4,7 @@
             "allowed_chars": null,
             "allowed_choices": [
                 "create",
+                "patch",
                 "retrieve",
                 "retrieve-many",
                 "update"
