@@ -2,10 +2,12 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "tab"
+        ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "Tabulate API allows you to retrieve a custom table view for any identity using any tags you like as columns.",
         "entity_name": "Tabulate",
         "extends": [],
         "get": true,
