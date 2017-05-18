@@ -176,8 +176,11 @@
           <section id="codingexamples">
             <h3>Code example</h3>
               <div>
-  <div id="create_tabulate_from_root">
-<h4>Create a new Tabulate </h4>
+</div>
+
+  <div>
+  <div id="get_tabulate">
+<h4>Retrieve a given Tabulate</h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -187,8 +190,9 @@
 </div>
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
-<pre class="bash">
-apoctl api create tabulate -n /namespace</pre>
+  <pre class="bash">
+apoctl api get tabulate identitifier -n /namespace
+  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre class="go">
@@ -200,7 +204,7 @@ import (
     squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
 )
 
-func main () {
+func main() {
 
     m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
 
@@ -209,8 +213,9 @@ func main () {
     }
 
     obj := squallmodels.NewTabulate()
+    obj.SetIdentifier("identifier")
 
-    if err = m.Create(nil, obj); err != nil {
+    if err = m.Retrieve(nil, obj); err != nil {
         panic(err)
     }
 
@@ -233,9 +238,10 @@ def main():
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
     obj = Tabulate()
+    obj.ID = "identifier"
 
     try:
-        manipulator.create(None, obj)
+        manipulator.retrieve(None, obj)
     except PyManipulateError as e:
         print "Err: %s" % e.errors[0]
         os._exit(1)
@@ -251,18 +257,15 @@ if __name__ == "__main__":
 </div>
 <div class="ui bottom attached tab segment" data-tab="rest">
   <pre class="bash">
-curl -X POST \
-  -H "X-Namespace: namespace" \
-  -H "Authorization: token" \
-  http://&lt;host&gt;:&lt;port&gt;/tabulate
+curl -X GET \
+-H "X-Namespace: namespace" \
+-H "Authorization: token" \
+http://&lt;host&gt;:&lt;port&gt;/tabulate/identifier
   </pre>
 </div>
 </div>
-<script>$('#create_tabulate_from_root .menu .item').tab({context: "parent"});</script>
+<script>$('#get_tabulate .menu .item').tab({context: "parent"});</script>
 
-</div>
-
-  <div>
 </div>
 
 
@@ -280,7 +283,7 @@ curl -X POST \
 
         // Write relations graph
         var data = [
-{"restName": "tabulate", "instanceName": "Tabulate", "resourceName": "tabulate", "type": "self", "exposed": true, "actions": ['POST']}, 
+{"restName": "tabulate", "instanceName": "Tabulate", "resourceName": "tabulate", "type": "self", "exposed": true, "actions": ['POST', 'GET']}, 
 ]
         drawRelations(data, 1, 0);
 
