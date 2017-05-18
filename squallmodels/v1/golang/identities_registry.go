@@ -11,13 +11,13 @@ func init() {
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
-	elemental.RegisterIdentity(TabulateIdentity)
 	elemental.RegisterIdentity(PokeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
 	elemental.RegisterIdentity(IntegrationIdentity)
 	elemental.RegisterIdentity(PolicyRuleIdentity)
+	elemental.RegisterIdentity(TabulatedIdentity)
 	elemental.RegisterIdentity(ExternalServiceIdentity)
 	elemental.RegisterIdentity(RoleIdentity)
 	elemental.RegisterIdentity(PolicyIdentity)
@@ -57,8 +57,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Name:
 		return NewEnforcer()
-	case TabulateIdentity.Name:
-		return NewTabulate()
 	case PokeIdentity.Name:
 		return NewPoke()
 	case FilePathIdentity.Name:
@@ -71,6 +69,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewIntegration()
 	case PolicyRuleIdentity.Name:
 		return NewPolicyRule()
+	case TabulatedIdentity.Name:
+		return NewTabulated()
 	case ExternalServiceIdentity.Name:
 		return NewExternalService()
 	case RoleIdentity.Name:
@@ -126,8 +126,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Category:
 		return NewEnforcer()
-	case TabulateIdentity.Category:
-		return NewTabulate()
 	case PokeIdentity.Category:
 		return NewPoke()
 	case FilePathIdentity.Category:
@@ -140,6 +138,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewIntegration()
 	case PolicyRuleIdentity.Category:
 		return NewPolicyRule()
+	case TabulatedIdentity.Category:
+		return NewTabulated()
 	case ExternalServiceIdentity.Category:
 		return NewExternalService()
 	case RoleIdentity.Category:
@@ -195,8 +195,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Name:
 		return &EnforcersList{}
-	case TabulateIdentity.Name:
-		return &TabulatesList{}
 	case PokeIdentity.Name:
 		return &PokesList{}
 	case FilePathIdentity.Name:
@@ -209,6 +207,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &IntegrationsList{}
 	case PolicyRuleIdentity.Name:
 		return &PolicyRulesList{}
+	case TabulatedIdentity.Name:
+		return &TabulatedsList{}
 	case ExternalServiceIdentity.Name:
 		return &ExternalServicesList{}
 	case RoleIdentity.Name:
@@ -262,8 +262,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Category:
 		return &EnforcersList{}
-	case TabulateIdentity.Category:
-		return &TabulatesList{}
 	case PokeIdentity.Category:
 		return &PokesList{}
 	case FilePathIdentity.Category:
@@ -276,6 +274,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &IntegrationsList{}
 	case PolicyRuleIdentity.Category:
 		return &PolicyRulesList{}
+	case TabulatedIdentity.Category:
+		return &TabulatedsList{}
 	case ExternalServiceIdentity.Category:
 		return &ExternalServicesList{}
 	case RoleIdentity.Category:
@@ -322,13 +322,13 @@ func AllIdentities() []elemental.Identity {
 		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
-		TabulateIdentity,
 		PokeIdentity,
 		FilePathIdentity,
 		FileAccessIdentity,
 		NamespaceIdentity,
 		IntegrationIdentity,
 		PolicyRuleIdentity,
+		TabulatedIdentity,
 		ExternalServiceIdentity,
 		RoleIdentity,
 		PolicyIdentity,
@@ -355,13 +355,13 @@ var aliasesMap = map[string]elemental.Identity{
 	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
-	"tab":        TabulateIdentity,
-	"tabs":       TabulateIdentity,
-	"tables":     TabulateIdentity,
-	"table":      TabulateIdentity,
 	"fps":        FilePathIdentity,
 	"fp":         FilePathIdentity,
 	"ns":         NamespaceIdentity,
+	"table":      TabulatedIdentity,
+	"tables":     TabulatedIdentity,
+	"tabs":       TabulatedIdentity,
+	"tab":        TabulatedIdentity,
 	"extsrv":     ExternalServiceIdentity,
 	"extsrvs":    ExternalServiceIdentity,
 	"suggs":      SuggestedPolicyIdentity,
@@ -420,13 +420,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case EnforcerIdentity:
 		return []string{}
-	case TabulateIdentity:
-		return []string{
-			"tab",
-			"tabs",
-			"tables",
-			"table",
-		}
 	case PokeIdentity:
 		return []string{}
 	case FilePathIdentity:
@@ -444,6 +437,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case PolicyRuleIdentity:
 		return []string{}
+	case TabulatedIdentity:
+		return []string{
+			"table",
+			"tables",
+			"tabs",
+			"tab",
+		}
 	case ExternalServiceIdentity:
 		return []string{
 			"extsrv",

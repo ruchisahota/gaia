@@ -98,13 +98,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("enforcer")] = EnforcerMainRelationship
 
 	//
-	// Main Relationship for tabulate
-	//
-	TabulateMainRelationship := &elemental.Relationship{}
-
-	relationshipsRegistry[elemental.IdentityFromName("tabulate")] = TabulateMainRelationship
-
-	//
 	// Main Relationship for poke
 	//
 	PokeMainRelationship := &elemental.Relationship{}
@@ -157,6 +150,13 @@ func init() {
 	PolicyRuleMainRelationship := &elemental.Relationship{}
 
 	relationshipsRegistry[elemental.IdentityFromName("policyrule")] = PolicyRuleMainRelationship
+
+	//
+	// Main Relationship for tabulated
+	//
+	TabulatedMainRelationship := &elemental.Relationship{}
+
+	relationshipsRegistry[elemental.IdentityFromName("tabulated")] = TabulatedMainRelationship
 
 	//
 	// Main Relationship for externalservice
@@ -543,9 +543,9 @@ func init() {
 		},
 	)
 
-	// Children relationship for tabulate in root
+	// Children relationship for tabulateds in root
 	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("tabulate"),
+		elemental.IdentityFromName("tabulated"),
 		&elemental.Relationship{
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
