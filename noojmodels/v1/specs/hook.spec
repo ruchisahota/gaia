@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "represents data received from the service",
+            "description": "Represents data received from the service",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
