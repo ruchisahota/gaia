@@ -3,8 +3,6 @@ package rufusmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
-import "sync"
-
 // RemoteProcessorTypeValue represents the possible values for attribute "type".
 type RemoteProcessorTypeValue string
 
@@ -25,71 +23,43 @@ var RemoteProcessorIdentity = elemental.Identity{
 // RemoteProcessorsList represents a list of RemoteProcessors
 type RemoteProcessorsList []*RemoteProcessor
 
-// ContentIdentity returns the identity of the objects in the list.
-func (o RemoteProcessorsList) ContentIdentity() elemental.Identity {
-
-	return RemoteProcessorIdentity
-}
-
-// List converts the object to and elemental.IdentifiablesList.
-func (o RemoteProcessorsList) List() elemental.IdentifiablesList {
-
-	out := elemental.IdentifiablesList{}
-	for _, item := range o {
-		out = append(out, item)
-	}
-
-	return out
-}
-
-// DefaultOrder returns the default ordering fields of the content.
-func (o RemoteProcessorsList) DefaultOrder() []string {
-
-	return []string{
-		"name",
-	}
-}
-
 // RemoteProcessor represents the model of a remoteprocessor
 type RemoteProcessor struct {
 	// Represents the claims of the currently managed object
-	Claims []string `json:"claims" bson:"claims"`
+	Claims []string `json:"claims" cql:"claims,omitempty" bson:"claims"`
 
 	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
+	Description string `json:"description" cql:"description,omitempty" bson:"description"`
 
 	// Disabled defines if the propert is disabled.
-	Disabled bool `json:"disabled" bson:"disabled"`
+	Disabled bool `json:"disabled" cql:"disabled,omitempty" bson:"disabled"`
 
 	// Represents data received from the service
-	InputData interface{} `json:"inputData" bson:"inputdata"`
+	InputData interface{} `json:"inputData" cql:"inputdata,omitempty" bson:"inputdata"`
 
 	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
+	Name string `json:"name" cql:"name,omitempty" bson:"name"`
+
+	// Represents the current namespace
+	Namespace string `json:"namespace" cql:"namespace,omitempty" bson:"namespace"`
 
 	// Define the operation that is currently handled by the service
-	Operation elemental.Operation `json:"operation" bson:"operation"`
+	Operation elemental.Operation `json:"operation" cql:"operation,omitempty" bson:"operation"`
 
 	// Returns the OutputData filled with the processor information
-	OutputData interface{} `json:"outputData" bson:"outputdata"`
+	OutputData interface{} `json:"outputData" cql:"outputdata,omitempty" bson:"outputdata"`
 
 	// Represents the Identity name of the managed object
-	TargetIdentity string `json:"targetIdentity" bson:"targetidentity"`
+	TargetIdentity string `json:"targetIdentity" cql:"targetidentity,omitempty" bson:"targetidentity"`
 
 	// Defines the type of the hook
-	Type RemoteProcessorTypeValue `json:"type" bson:"type"`
-
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
-
-	sync.Mutex
+	Type RemoteProcessorTypeValue `json:"type" cql:"type,omitempty" bson:"type"`
 }
 
 // NewRemoteProcessor returns a new *RemoteProcessor
 func NewRemoteProcessor() *RemoteProcessor {
 
-	return &RemoteProcessor{
-		ModelVersion: 1.0,
-	}
+	return &RemoteProcessor{}
 }
 
 // Identity returns the Identity of the object.
@@ -107,25 +77,6 @@ func (o *RemoteProcessor) Identifier() string {
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *RemoteProcessor) SetIdentifier(ID string) {
 
-}
-
-// Version returns the hardcoded version of the model
-func (o *RemoteProcessor) Version() float64 {
-
-	return 1.0
-}
-
-// DefaultOrder returns the list of default ordering fields.
-func (o *RemoteProcessor) DefaultOrder() []string {
-
-	return []string{
-		"name",
-	}
-}
-
-// Doc returns the documentation for the object
-func (o *RemoteProcessor) Doc() string {
-	return `Hook to integrate in an Aporeto service`
 }
 
 func (o *RemoteProcessor) String() string {
@@ -167,11 +118,27 @@ func (o *RemoteProcessor) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredString("namespace", o.Namespace); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("namespace", o.Namespace); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredExternal("operation", o.Operation); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredExternal("operation", o.Operation); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("targetIdentity", o.TargetIdentity); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("targetIdentity", o.TargetIdentity); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -191,13 +158,13 @@ func (o *RemoteProcessor) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*RemoteProcessor) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (RemoteProcessor) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return RemoteProcessorAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*RemoteProcessor) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (RemoteProcessor) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return RemoteProcessorAttributesMap
 }
@@ -211,6 +178,7 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Name:           "claims",
 		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		SubType:        "string",
 		Type:           "list",
@@ -265,6 +233,18 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
+	"Namespace": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Represents the current namespace`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "namespace",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Operation": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Define the operation that is currently handled by the service`,
@@ -296,6 +276,7 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		Format:         "free",
 		Name:           "targetIdentity",
 		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},

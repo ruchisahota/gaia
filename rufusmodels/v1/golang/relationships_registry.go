@@ -2,8 +2,6 @@ package rufusmodels
 
 import "github.com/aporeto-inc/elemental"
 
-const nodocString = "[nodoc]"
-
 var relationshipsRegistry elemental.RelationshipsRegistry
 
 // Relationships returns the model relationships.
@@ -36,6 +34,7 @@ func init() {
 			AllowsCreate: true,
 		},
 	)
+
 	relationshipsRegistry[elemental.IdentityFromName("root")] = RootMainRelationship
 
 }
