@@ -9,7 +9,8 @@
         "entity_name": "Hook",
         "extends": [
             "@base",
-            "@described"
+            "@described",
+            "@disabled"
         ],
         "get": true,
         "package": null,
