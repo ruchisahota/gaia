@@ -216,6 +216,7 @@
                 "APIAuthorization",
                 "EnforcerProfile",
                 "File",
+                "Hook",
                 "NamespaceMapping",
                 "Network",
                 "Quota",
