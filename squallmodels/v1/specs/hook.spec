@@ -12,7 +12,8 @@
             "@described",
             "@disabled",
             "@metadatable",
-            "@named"
+            "@named",
+            "@propagated"
         ],
         "get": true,
         "package": null,
