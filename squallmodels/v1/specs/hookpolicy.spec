@@ -96,7 +96,7 @@
             "primary_key": null,
             "read_only": null,
             "required": null,
-            "secret": null,
+            "secret": true,
             "setter": null,
             "stored": true,
             "subtype": null,
