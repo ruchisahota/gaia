@@ -11,7 +11,8 @@
             "@base",
             "@described",
             "@disabled",
-            "@metadatable"
+            "@metadatable",
+            "@named"
         ],
         "get": true,
         "package": null,
