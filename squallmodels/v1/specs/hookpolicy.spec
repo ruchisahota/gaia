@@ -3,6 +3,9 @@
     "children": [],
     "model": {
         "aliases": [
+            "hookpols",
+            "hookpol",
+            "hooks",
             "hook"
         ],
         "create": null,
