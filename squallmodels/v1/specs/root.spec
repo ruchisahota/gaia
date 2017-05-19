@@ -142,7 +142,7 @@
             "deprecated": null,
             "get": true,
             "relationship": "root",
-            "rest_name": "hook",
+            "rest_name": "hookpolicy",
             "update": false
         },
         {
