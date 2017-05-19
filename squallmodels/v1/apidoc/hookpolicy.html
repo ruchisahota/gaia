@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NetworkAccessPolicy API Reference 1.0</title>
+    <title>HookPolicy API Reference 1.0</title>
     <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/15617796?v=3&s=200" />
 
     <link rel="stylesheet" href="css/semantic.min.css">
@@ -153,28 +153,12 @@
 
         <div id="main_content" class="sixteen wide tablet thirteen wide computer column">
           <section id="intro">
-              <h2>NetworkAccessPolicy</h2>
-              <p>Allows to define networking policies to allow or prevent processing units identitied by their tags to talk to other processing units or external services (also identified by their tags).</p>
+              <h2>HookPolicy</h2>
+              <p>Hook allows to to define hooks to the write operations in squall. Hooks are sent to an external Rufus server that will do the processing and eventually return a modified version of the object before we save it.</p>
           </section>
 
           <section id="attributes">
               <h3>Attributes</h3>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
-                    <span class="ui label mini purple">filterable</span>
-<span class="ui label mini teal">orderable</span>
-
-                  </div>
-                  <strong>allowsTraffic</strong>  <span class="ui blue">boolean</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
-
-                  </div>
-                </div>
-              </div>
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
@@ -199,6 +183,57 @@
                 <div class="content">
                   <div class="meta">
                     AssociatedTags are the list of tags attached to an entity
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                  </div>
+                  <strong>certificateAuthority</strong>  <span class="ui blue">string</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    CertificateAuthority contains the pem block of the certificate authority used by the remote endpoint. (format: free)
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                  </div>
+                  <strong>clientCertificate</strong>  <span class="ui blue">string</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    ClientCertificate contains the client certificate that will be used to connect to the remote endoint. (format: free)
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                  </div>
+                  <strong>clientCertificateKey</strong>  <span class="ui blue">string</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    ClientCertificateKey contains the key associated to the clientCertificate. (format: free)
 
                   </div>
                 </div>
@@ -243,22 +278,6 @@
 <span class="ui label mini teal">orderable</span>
 
                   </div>
-                  <strong>destinationPorts</strong>  <span class="ui blue">ports_list</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    DestinationPorts contains the list of allowed ports and ranges.
-
-                  </div>
-                </div>
-              </div>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
-                    <span class="ui label mini purple">filterable</span>
-<span class="ui label mini teal">orderable</span>
-
-                  </div>
                   <strong>disabled</strong>  <span class="ui blue">boolean</span>
                 </div>
                 <div class="content">
@@ -271,15 +290,16 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini purple">filterable</span>
+                    <span class="ui label mini red">required</span>
+<span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
                   </div>
-                  <strong>encryptionEnabled</strong>  <span class="ui blue">boolean</span>
+                  <strong>endpoint</strong>  <span class="ui blue">string</span>
                 </div>
                 <div class="content">
                   <div class="meta">
-                    EncryptionEnabled defines if the flow has to be encrypted.
+                    Endpoint contains the full address of the remote processor endoint. (format: free)
 
                   </div>
                 </div>
@@ -306,15 +326,15 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini purple">filterable</span>
+                    <span class="ui label mini red">required</span>
 <span class="ui label mini teal">orderable</span>
 
                   </div>
-                  <strong>logsEnabled</strong>  <span class="ui blue">boolean</span>
+                  <strong>identities</strong>  <span class="ui blue">list</span>
                 </div>
                 <div class="content">
                   <div class="meta">
-                    LogsEnabled defines if the flow has to be logged.
+                    Identities contains the list of identities that should be sent to the remote processor.
 
                   </div>
                 </div>
@@ -331,6 +351,22 @@
                 <div class="content">
                   <div class="meta">
                     Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                  </div>
+                  <strong>mode</strong>  <span class="ui blue">enum (Both | Post | Pre)</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Mode define the type of the hook. (default: Post)
 
                   </div>
                 </div>
@@ -391,21 +427,6 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini teal">orderable</span>
-
-                  </div>
-                  <strong>object</strong>  <span class="ui blue">policies_list</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    Object of the policy.
-
-                  </div>
-                </div>
-              </div>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
                     <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
@@ -454,21 +475,6 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini teal">orderable</span>
-
-                  </div>
-                  <strong>subject</strong>  <span class="ui blue">policies_list</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    Subject of the policy.
-
-                  </div>
-                </div>
-              </div>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
                     <span class="ui label mini grey">read only</span>
 <span class="ui label mini pink">autogenerated</span>
 <span class="ui label mini teal">orderable</span>
@@ -493,8 +499,8 @@
           <section id="codingexamples">
             <h3>Code example</h3>
               <div>
-  <div id="retrieve_all_networkaccesspolicies">
-<h4>Retrieve all NetworkAccessPolicies </h4>
+  <div id="retrieve_all_hookpolicies">
+<h4>Retrieve all HookPolicies </h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -505,7 +511,7 @@
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre class="bash">
-apoctl api list networkaccesspolicies -n /namespace
+apoctl api list hookpolicies -n /namespace
 </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -526,7 +532,7 @@ func main() {
       panic(err)
   }
 
-  var objects squallmodels.NetworkAccessPoliciesList
+  var objects squallmodels.HookPoliciesList
 
   if err = m.RetrieveMany(nil, &amp;objects); err != nil {
     panic(err)
@@ -540,7 +546,7 @@ func main() {
   <pre class="python">
 import os
 
-from squallmodels import NetworkAccessPolicy
+from squallmodels import HookPolicy
 from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
 
 
@@ -550,7 +556,7 @@ def main():
     certificate = ("cert.pem", "key.pem")
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
-    obj = NetworkAccessPolicy()
+    obj = HookPolicy()
     objects = []
 
     try:
@@ -574,14 +580,14 @@ if __name__ == "__main__":
 curl -X GET \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
-  http://&lt;host&gt;:&lt;port&gt;/networkaccesspolicies
+  http://&lt;host&gt;:&lt;port&gt;/hookpolicies
   </pre>
 </div>
 </div>
-<script>$('#retrieve_all_networkaccesspolicies .menu .item').tab({context: "parent"});</script>
+<script>$('#retrieve_all_hookpolicies .menu .item').tab({context: "parent"});</script>
 
-  <div id="create_networkaccesspolicy_from_root">
-<h4>Create a new NetworkAccessPolicy </h4>
+  <div id="create_hookpolicy_from_root">
+<h4>Create a new HookPolicy </h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -592,7 +598,12 @@ curl -X GET \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
 <pre class="bash">
-apoctl api create networkaccesspolicies -n /namespace \
+apoctl api create hookpolicies -n /namespace \
+  -k certificateauthority "certificateauthority" \
+  -k clientcertificate "clientcertificate" \
+  -k clientcertificatekey "clientcertificatekey" \
+  -k endpoint "endpoint" \
+  -k identities []{"a", "b", "c"} \
   -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -613,7 +624,12 @@ func main () {
         panic(err)
     }
 
-    obj := squallmodels.NewNetworkAccessPolicy()
+    obj := squallmodels.NewHookPolicy()
+    obj.CertificateAuthority = "certificateauthority"
+    obj.ClientCertificate = "clientcertificate"
+    obj.ClientCertificateKey = "clientcertificatekey"
+    obj.Endpoint = "endpoint"
+    obj.Identities = []{"a", "b", "c"}
     obj.SetName("name")
 
     if err = m.Create(nil, obj); err != nil {
@@ -628,7 +644,7 @@ func main () {
   <pre class="python">
 import os
 
-from squallmodels import NetworkAccessPolicy
+from squallmodels import HookPolicy
 from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
 
 
@@ -638,7 +654,12 @@ def main():
     certificate = ("cert.pem", "key.pem")
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
-    obj = NetworkAccessPolicy()
+    obj = HookPolicy()
+    obj.certificateAuthority = "certificateauthority"
+    obj.clientCertificate = "clientcertificate"
+    obj.clientCertificateKey = "clientcertificatekey"
+    obj.endpoint = "endpoint"
+    obj.identities = []{"a", "b", "c"}
     obj.name = "name"
 
     try:
@@ -661,18 +682,23 @@ if __name__ == "__main__":
 curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
+  -d certificateauthority="certificateauthority" \
+  -d clientcertificate="clientcertificate" \
+  -d clientcertificatekey="clientcertificatekey" \
+  -d endpoint="endpoint" \
+  -d identities=[]{"a", "b", "c"} \
   -d name="name" \
-  http://&lt;host&gt;:&lt;port&gt;/networkaccesspolicies
+  http://&lt;host&gt;:&lt;port&gt;/hookpolicies
   </pre>
 </div>
 </div>
-<script>$('#create_networkaccesspolicy_from_root .menu .item').tab({context: "parent"});</script>
+<script>$('#create_hookpolicy_from_root .menu .item').tab({context: "parent"});</script>
 
 </div>
 
   <div>
-  <div id="delete_networkaccesspolicy">
-<h4>Delete a given NetworkAccessPolicy</h4>
+  <div id="delete_hookpolicy">
+<h4>Delete a given HookPolicy</h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -683,7 +709,7 @@ curl -X POST \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre class="bash">
-apoctl api delete networkaccesspolicy identitifier -n /namespace
+apoctl api delete hookpolicy identitifier -n /namespace
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -702,7 +728,7 @@ func main() {
         panic(err)
     }
 
-    obj := squallmodels.NewNetworkAccessPolicy()
+    obj := squallmodels.NewHookPolicy()
     obj.SetIdentifier("identifier")
 
     if err = m.Delete(nil, obj); err != nil {
@@ -717,7 +743,7 @@ func main() {
   <pre class="python">
 import os
 
-from squallmodels import NetworkAccessPolicy
+from squallmodels import HookPolicy
 from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
 
 
@@ -727,7 +753,7 @@ def main():
     certificate = ("cert.pem", "key.pem")
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
-    obj = NetworkAccessPolicy()
+    obj = HookPolicy()
     obj.ID = "identifier"
 
     try:
@@ -750,14 +776,14 @@ if __name__ == "__main__":
 curl -X DELETE \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
-  http://&lt;host&gt;:&lt;port&gt;/networkaccesspolicies/identitifier
+  http://&lt;host&gt;:&lt;port&gt;/hookpolicies/identitifier
   </pre>
 </div>
 </div>
-<script>$('#delete_networkaccesspolicy .menu .item').tab({context: "parent"});</script>
+<script>$('#delete_hookpolicy .menu .item').tab({context: "parent"});</script>
 
-  <div id="get_networkaccesspolicy">
-<h4>Retrieve a given NetworkAccessPolicy</h4>
+  <div id="get_hookpolicy">
+<h4>Retrieve a given HookPolicy</h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -768,7 +794,7 @@ curl -X DELETE \
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre class="bash">
-apoctl api get networkaccesspolicy identitifier -n /namespace
+apoctl api get hookpolicy identitifier -n /namespace
   </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -789,7 +815,7 @@ func main() {
         panic(err)
     }
 
-    obj := squallmodels.NewNetworkAccessPolicy()
+    obj := squallmodels.NewHookPolicy()
     obj.SetIdentifier("identifier")
 
     if err = m.Retrieve(nil, obj); err != nil {
@@ -804,7 +830,7 @@ func main() {
   <pre class="python">
 import os
 
-from squallmodels import NetworkAccessPolicy
+from squallmodels import HookPolicy
 from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
 
 
@@ -814,7 +840,7 @@ def main():
     certificate = ("cert.pem", "key.pem")
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
-    obj = NetworkAccessPolicy()
+    obj = HookPolicy()
     obj.ID = "identifier"
 
     try:
@@ -837,14 +863,14 @@ if __name__ == "__main__":
 curl -X GET \
 -H "X-Namespace: namespace" \
 -H "Authorization: token" \
-http://&lt;host&gt;:&lt;port&gt;/networkaccesspolicies/identifier
+http://&lt;host&gt;:&lt;port&gt;/hookpolicies/identifier
   </pre>
 </div>
 </div>
-<script>$('#get_networkaccesspolicy .menu .item').tab({context: "parent"});</script>
+<script>$('#get_hookpolicy .menu .item').tab({context: "parent"});</script>
 
-  <div id="update_networkaccesspolicy">
-<h4>Update a given NetworkAccessPolicy</h4>
+  <div id="update_hookpolicy">
+<h4>Update a given HookPolicy</h4>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="apoctl">apoctl</a>
@@ -855,7 +881,12 @@ http://&lt;host&gt;:&lt;port&gt;/networkaccesspolicies/identifier
 
 <div class="ui bottom attached tab segment active" data-tab="apoctl">
   <pre class="bash">
-apoctl api update networkaccesspolicy identitifier -n /namespace \
+apoctl api update hookpolicy identitifier -n /namespace \
+  -k certificateauthority "certificateauthority" \
+  -k clientcertificate "clientcertificate" \
+  -k clientcertificatekey "clientcertificatekey" \
+  -k endpoint "endpoint" \
+  -k identities []{"a", "b", "c"} \
   -k name "name"  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -874,13 +905,18 @@ func main() {
         panic(err)
     }
 
-    obj := squallmodels.NewNetworkAccessPolicy()
+    obj := squallmodels.NewHookPolicy()
     obj.SetIdentifier("identifier")
 
     if err = m.Retrieve(nil, obj); err != nil {
       panic(err)
     }
 
+    obj.CertificateAuthority = "certificateauthority"
+    obj.ClientCertificate = "clientcertificate"
+    obj.ClientCertificateKey = "clientcertificatekey"
+    obj.Endpoint = "endpoint"
+    obj.Identities = []{"a", "b", "c"}
     obj.SetName("name")
 
     if err = m.Update(nil, obj); err != nil {
@@ -895,7 +931,7 @@ func main() {
   <pre class="python">
 import os
 
-from squallmodels import NetworkAccessPolicy
+from squallmodels import HookPolicy
 from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
 
 
@@ -905,7 +941,7 @@ def main():
     certificate = ("cert.pem", "key.pem")
     manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
 
-    obj = NetworkAccessPolicy()
+    obj = HookPolicy()
     obj.ID = "identifier"
 
     try:
@@ -914,6 +950,11 @@ def main():
         print "Err: %s" % e.errors[0]
         os._exit(1)
 
+    obj.certificateAuthority = "certificateauthority"
+    obj.clientCertificate = "clientcertificate"
+    obj.clientCertificateKey = "clientcertificatekey"
+    obj.endpoint = "endpoint"
+    obj.identities = []{"a", "b", "c"}
     obj.name = "name"
 
     try:
@@ -936,12 +977,17 @@ if __name__ == "__main__":
 curl -X PUT \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
+  -d certificateauthority="certificateauthority" \
+  -d clientcertificate="clientcertificate" \
+  -d clientcertificatekey="clientcertificatekey" \
+  -d endpoint="endpoint" \
+  -d identities=[]{"a", "b", "c"} \
   -d name="name" \
-  http://&lt;host&gt;:&lt;port&gt;/networkaccesspolicies/identitifier
+  http://&lt;host&gt;:&lt;port&gt;/hookpolicies/identitifier
   </pre>
 </div>
 </div>
-<script>$('#update_networkaccesspolicy .menu .item').tab({context: "parent"});</script>
+<script>$('#update_hookpolicy .menu .item').tab({context: "parent"});</script>
 
 </div>
 
@@ -960,7 +1006,7 @@ curl -X PUT \
 
         // Write relations graph
         var data = [
-{"restName": "networkaccesspolicy", "instanceName": "NetworkAccessPolicy", "resourceName": "networkaccesspolicies", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+{"restName": "hookpolicy", "instanceName": "HookPolicy", "resourceName": "hookpolicies", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
 ]
         drawRelations(data, 1, 0);
 

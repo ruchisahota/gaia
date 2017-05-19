@@ -23,15 +23,15 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("apicheck")] = APICheckMainRelationship
 
 	//
-	// Main Relationship for namespacemappingpolicy
+	// Main Relationship for hookpolicy
 	//
-	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
+	HookPolicyMainRelationship := &elemental.Relationship{
 		AllowsRetrieve: true,
 		AllowsUpdate:   true,
 		AllowsDelete:   true,
 	}
 
-	relationshipsRegistry[elemental.IdentityFromName("namespacemappingpolicy")] = NamespaceMappingPolicyMainRelationship
+	relationshipsRegistry[elemental.IdentityFromName("hookpolicy")] = HookPolicyMainRelationship
 
 	//
 	// Main Relationship for apiauthorizationpolicy
@@ -245,6 +245,17 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("renderedpolicy")] = RenderedPolicyMainRelationship
 
 	//
+	// Main Relationship for namespacemappingpolicy
+	//
+	NamespaceMappingPolicyMainRelationship := &elemental.Relationship{
+		AllowsRetrieve: true,
+		AllowsUpdate:   true,
+		AllowsDelete:   true,
+	}
+
+	relationshipsRegistry[elemental.IdentityFromName("namespacemappingpolicy")] = NamespaceMappingPolicyMainRelationship
+
+	//
 	// Main Relationship for processingunit
 	//
 	ProcessingUnitMainRelationship := &elemental.Relationship{
@@ -441,6 +452,16 @@ func init() {
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("flowstatistic"),
 		&elemental.Relationship{
+			AllowsRetrieveMany: true,
+			AllowsInfo:         true,
+		},
+	)
+
+	// Children relationship for hookpolicies in root
+	RootMainRelationship.AddChild(
+		elemental.IdentityFromName("hookpolicy"),
+		&elemental.Relationship{
+			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
