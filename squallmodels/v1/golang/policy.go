@@ -20,6 +20,9 @@ const (
 	// PolicyTypeFile represents the value File.
 	PolicyTypeFile PolicyTypeValue = "File"
 
+	// PolicyTypeHook represents the value Hook.
+	PolicyTypeHook PolicyTypeValue = "Hook"
+
 	// PolicyTypeNamespacemapping represents the value NamespaceMapping.
 	PolicyTypeNamespacemapping PolicyTypeValue = "NamespaceMapping"
 
@@ -318,7 +321,7 @@ func (o *Policy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "EnforcerProfile", "File", "NamespaceMapping", "Network", "Quota", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "Quota", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -571,7 +574,7 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "NamespaceMapping", "Network", "Quota", "Syscall"},
+		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "Quota", "Syscall"},
 		CreationOnly:   true,
 		Description:    `Type of the policy`,
 		Exposed:        true,
