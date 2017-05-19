@@ -95,7 +95,7 @@
             "orderable": true,
             "primary_key": null,
             "read_only": null,
-            "required": null,
+            "required": true,
             "secret": true,
             "setter": null,
             "stored": true,
