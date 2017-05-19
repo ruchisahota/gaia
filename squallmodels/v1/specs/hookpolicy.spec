@@ -168,7 +168,7 @@
             "required": true,
             "secret": null,
             "setter": null,
-            "stored": false,
+            "stored": true,
             "subtype": "string",
             "transient": null,
             "type": "list",
