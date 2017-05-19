@@ -10,7 +10,8 @@
         "extends": [
             "@base",
             "@described",
-            "@disabled"
+            "@disabled",
+            "@metadatable"
         ],
         "get": true,
         "package": null,
