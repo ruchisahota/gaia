@@ -46,7 +46,7 @@
             "deprecated": null,
             "description": "ClientCertificate contains the client certificate that will be used to connect to the remote endoint.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
