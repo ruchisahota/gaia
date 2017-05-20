@@ -73,6 +73,7 @@
         {
             "allowed_chars": null,
             "allowed_choices": [
+                "Both",
                 "Post",
                 "Pre"
             ],
