@@ -81,7 +81,7 @@
             "deprecated": null,
             "description": "ClientCertificateKey contains the key associated to the clientCertificate.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
