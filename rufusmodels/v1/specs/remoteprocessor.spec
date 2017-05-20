@@ -259,11 +259,7 @@
         "delete": false,
         "description": "Hook to integrate in an Aporeto service",
         "entity_name": "RemoteProcessor",
-        "extends": [
-            "@described",
-            "@disabled",
-            "@named"
-        ],
+        "extends": [],
         "get": false,
         "package": null,
         "resource_name": "remoteprocessors",
