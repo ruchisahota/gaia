@@ -323,22 +323,6 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini red">required</span>
-<span class="ui label mini teal">orderable</span>
-
-                  </div>
-                  <strong>identities</strong>  <span class="ui blue">list</span>
-                </div>
-                <div class="content">
-                  <div class="meta">
-                    Identities contains the list of identities that should be sent to the remote processor.
-
-                  </div>
-                </div>
-              </div>
-              <div class="ui card">
-                <div class="content">
-                  <div class="pull-right">
                     <span class="ui label mini olive">creation only</span>
 <span class="ui label mini purple">filterable</span>
 
@@ -465,6 +449,21 @@
                 <div class="content">
                   <div class="meta">
                     Protected defines if the object is protected.
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini red">required</span>
+
+                  </div>
+                  <strong>subject</strong>  <span class="ui blue">policies_list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Subject contains the tag expression that an object must match in order to trigger the hook.
 
                   </div>
                 </div>
@@ -600,8 +599,8 @@ apoctl api create hookpolicies -n /namespace \
   -k clientcertificate "clientcertificate" \
   -k clientcertificatekey "clientcertificatekey" \
   -k endpoint "endpoint" \
-  -k identities []{"a", "b", "c"} \
-  -k name "name"</pre>
+  -k name "name" \
+  -k subject "policies_list"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre class="go">
@@ -626,8 +625,8 @@ func main () {
     obj.ClientCertificate = "clientcertificate"
     obj.ClientCertificateKey = "clientcertificatekey"
     obj.Endpoint = "endpoint"
-    obj.Identities = []{"a", "b", "c"}
     obj.SetName("name")
+    obj.Subject = "policies_list"
 
     if err = m.Create(nil, obj); err != nil {
         panic(err)
@@ -656,8 +655,8 @@ def main():
     obj.clientCertificate = "clientcertificate"
     obj.clientCertificateKey = "clientcertificatekey"
     obj.endpoint = "endpoint"
-    obj.identities = []{"a", "b", "c"}
     obj.name = "name"
+    obj.subject = "policies_list"
 
     try:
         manipulator.create(None, obj)
@@ -683,8 +682,8 @@ curl -X POST \
   -d clientcertificate="clientcertificate" \
   -d clientcertificatekey="clientcertificatekey" \
   -d endpoint="endpoint" \
-  -d identities=[]{"a", "b", "c"} \
   -d name="name" \
+  -d subject="policies_list" \
   http://&lt;host&gt;:&lt;port&gt;/hookpolicies
   </pre>
 </div>
@@ -883,8 +882,8 @@ apoctl api update hookpolicy identitifier -n /namespace \
   -k clientcertificate "clientcertificate" \
   -k clientcertificatekey "clientcertificatekey" \
   -k endpoint "endpoint" \
-  -k identities []{"a", "b", "c"} \
-  -k name "name"  </pre>
+  -k name "name" \
+  -k subject "policies_list"  </pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
   <pre class="go">
@@ -913,8 +912,8 @@ func main() {
     obj.ClientCertificate = "clientcertificate"
     obj.ClientCertificateKey = "clientcertificatekey"
     obj.Endpoint = "endpoint"
-    obj.Identities = []{"a", "b", "c"}
     obj.SetName("name")
+    obj.Subject = "policies_list"
 
     if err = m.Update(nil, obj); err != nil {
       panic(err)
@@ -951,8 +950,8 @@ def main():
     obj.clientCertificate = "clientcertificate"
     obj.clientCertificateKey = "clientcertificatekey"
     obj.endpoint = "endpoint"
-    obj.identities = []{"a", "b", "c"}
     obj.name = "name"
+    obj.subject = "policies_list"
 
     try:
         manipulator.update(None, obj)
@@ -978,8 +977,8 @@ curl -X PUT \
   -d clientcertificate="clientcertificate" \
   -d clientcertificatekey="clientcertificatekey" \
   -d endpoint="endpoint" \
-  -d identities=[]{"a", "b", "c"} \
   -d name="name" \
+  -d subject="policies_list" \
   http://&lt;host&gt;:&lt;port&gt;/hookpolicies/identitifier
   </pre>
 </div>

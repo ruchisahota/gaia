@@ -5,6 +5,8 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
+import "encoding/json"
+
 // RemoteProcessorModeValue represents the possible values for attribute "mode".
 type RemoteProcessorModeValue string
 
@@ -54,7 +56,7 @@ type RemoteProcessor struct {
 	Claims []string `json:"claims" bson:"-"`
 
 	// Represents data received from the service
-	Input elemental.Identifiable `json:"input" bson:"-"`
+	Input json.RawMessage `json:"input" bson:"-"`
 
 	// Node defines the type of the hook
 	Mode RemoteProcessorModeValue `json:"mode" bson:"-"`
@@ -205,7 +207,7 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "input",
 		Required:       true,
-		SubType:        "elemental_identifiable",
+		SubType:        "raw_json",
 		Type:           "external",
 	},
 	"Mode": elemental.AttributeSpecification{
@@ -241,7 +243,7 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "output",
 		ReadOnly:       true,
-		SubType:        "elemental_identifiable",
+		SubType:        "elemental_identitifable",
 		Type:           "external",
 	},
 	"TargetIdentity": elemental.AttributeSpecification{

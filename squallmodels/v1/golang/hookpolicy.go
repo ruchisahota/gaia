@@ -87,9 +87,6 @@ type HookPolicy struct {
 	// Endpoint contains the full address of the remote processor endoint.
 	Endpoint string `json:"endpoint" bson:"endpoint"`
 
-	// Identities contains the list of identities that should be sent to the remote processor.
-	Identities []string `json:"identities" bson:"identities"`
-
 	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
 
@@ -113,6 +110,9 @@ type HookPolicy struct {
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
+
+	// Subject contains the tag expression that an object must match in order to trigger the hook.
+	Subject [][]string `json:"subject" bson:"subject"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
@@ -322,6 +322,14 @@ func (o *HookPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -461,17 +469,6 @@ var HookPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Identities": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Identities contains the list of identities that should be sent to the remote processor.`,
-		Exposed:        true,
-		Name:           "identities",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
-	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -578,6 +575,16 @@ var HookPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"Subject": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Subject contains the tag expression that an object must match in order to trigger the hook.`,
+		Exposed:        true,
+		Name:           "subject",
+		Required:       true,
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
