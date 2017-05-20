@@ -3,6 +3,8 @@ package rufusmodels
 import "fmt"
 import "github.com/aporeto-inc/elemental"
 
+import "sync"
+
 // RootIdentity represents the Identity of the object
 var RootIdentity = elemental.Identity{
 	Name:     "root",
@@ -11,14 +13,19 @@ var RootIdentity = elemental.Identity{
 
 // Root represents the model of a root
 type Root struct {
-	Token        string `json:"APIKey,omitempty"`
-	Organization string `json:"enterprise,omitempty"`
+	Token        string  `json:"APIKey,omitempty"`
+	Organization string  `json:"enterprise,omitempty"`
+	ModelVersion float64 `json:"-" bson:"_modelversion"`
+
+	sync.Mutex
 }
 
 // NewRoot returns a new *Root
 func NewRoot() *Root {
 
-	return &Root{}
+	return &Root{
+		ModelVersion: 1.0,
+	}
 }
 
 // Identity returns the Identity of the object.
@@ -36,6 +43,18 @@ func (o *Root) Identifier() string {
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *Root) SetIdentifier(ID string) {
 
+}
+
+// Version returns the hardcoded version of the model
+func (o *Root) Version() float64 {
+
+	return 1.0
+}
+
+// DefaultOrder returns the list of default ordering fields.
+func (o *Root) DefaultOrder() []string {
+
+	return []string{}
 }
 
 func (o *Root) String() string {
@@ -73,13 +92,13 @@ func (o *Root) SetAPIKey(key string) {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
 	return RootAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (Root) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Root) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
 	return RootAttributesMap
 }
