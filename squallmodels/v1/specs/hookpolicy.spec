@@ -143,7 +143,6 @@
         {
             "allowed_chars": null,
             "allowed_choices": [
-                "Both",
                 "Post",
                 "Pre"
             ],
@@ -151,7 +150,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": "Post",
+            "default_value": "Pre",
             "deprecated": null,
             "description": "Mode define the type of the hook.",
             "exposed": true,
