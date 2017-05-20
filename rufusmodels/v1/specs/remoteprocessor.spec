@@ -64,7 +64,7 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": "elemental_identifiable",
+            "subtype": "raw_json",
             "transient": null,
             "type": "external",
             "unique": null,
