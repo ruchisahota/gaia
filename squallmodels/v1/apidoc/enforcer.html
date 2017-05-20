@@ -603,7 +603,7 @@ curl -X GET \
 <pre class="bash">
 apoctl api create enforcers -n /namespace \
   -k fqdn "fqdn" \
-  -k lastsynctime "2017-05-19T18:56:52Z" \
+  -k lastsynctime "2017-05-19T20:01:25Z" \
   -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -626,7 +626,7 @@ func main () {
 
     obj := squallmodels.NewEnforcer()
     obj.FQDN = "fqdn"
-    obj.LastSyncTime = "2017-05-19T18:56:52Z"
+    obj.LastSyncTime = "2017-05-19T20:01:25Z"
     obj.SetName("name")
 
     if err = m.Create(nil, obj); err != nil {
@@ -653,7 +653,7 @@ def main():
 
     obj = Enforcer()
     obj.FQDN = "fqdn"
-    obj.lastSyncTime = "2017-05-19T18:56:52Z"
+    obj.lastSyncTime = "2017-05-19T20:01:25Z"
     obj.name = "name"
 
     try:
@@ -677,7 +677,7 @@ curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d fqdn="fqdn" \
-  -d lastsynctime="2017-05-19T18:56:52Z" \
+  -d lastsynctime="2017-05-19T20:01:25Z" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
   </pre>

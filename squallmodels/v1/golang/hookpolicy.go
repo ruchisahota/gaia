@@ -11,9 +11,6 @@ import "time"
 type HookPolicyModeValue string
 
 const (
-	// HookPolicyModeBoth represents the value Both.
-	HookPolicyModeBoth HookPolicyModeValue = "Both"
-
 	// HookPolicyModePost represents the value Post.
 	HookPolicyModePost HookPolicyModeValue = "Post"
 
@@ -130,7 +127,7 @@ func NewHookPolicy() *HookPolicy {
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
-		Mode:           "Post",
+		Mode:           "Pre",
 		NormalizedTags: []string{},
 	}
 }
@@ -310,7 +307,7 @@ func (o *HookPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("mode", string(o.Mode), []string{"Both", "Post", "Pre"}, false); err != nil {
+	if err := elemental.ValidateStringInList("mode", string(o.Mode), []string{"Post", "Pre"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -483,8 +480,8 @@ var HookPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Mode": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Both", "Post", "Pre"},
-		DefaultValue:   HookPolicyModeValue("Post"),
+		AllowedChoices: []string{"Post", "Pre"},
+		DefaultValue:   HookPolicyModeValue("Pre"),
 		Description:    `Mode define the type of the hook.`,
 		Exposed:        true,
 		Filterable:     true,
