@@ -11,7 +11,7 @@
             "deprecated": null,
             "description": "CertificateAuthority contains the pem block of the certificate authority used by the remote endpoint.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
