@@ -125,9 +125,6 @@ type ProcessingUnit struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	// Vulnerabilities contains the list of vulnerabilities of the processing unit.
-	Vulnerabilities []string `json:"vulnerabilities" bson:"vulnerabilities"`
-
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -493,14 +490,5 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
-	},
-	"Vulnerabilities": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Vulnerabilities contains the list of vulnerabilities of the processing unit.`,
-		Exposed:        true,
-		Name:           "vulnerabilities",
-		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
 	},
 }
