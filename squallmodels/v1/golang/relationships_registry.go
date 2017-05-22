@@ -586,6 +586,7 @@ func init() {
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("vulnerability"),
 		&elemental.Relationship{
+			AllowsCreate:       true,
 			AllowsRetrieveMany: true,
 			AllowsInfo:         true,
 		},
