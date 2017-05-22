@@ -196,7 +196,7 @@
             "deprecated": null,
             "description": "Vulnerabilities contains the list of vulnerabilities of the processing unit.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": null,
             "getter": null,
