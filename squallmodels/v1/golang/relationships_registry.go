@@ -315,14 +315,6 @@ func init() {
 		AllowsRetrieve: true,
 	}
 
-	// Children relationship for processingunits in vulnerability
-	VulnerabilityMainRelationship.AddChild(
-		elemental.IdentityFromName("processingunit"),
-		&elemental.Relationship{
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
 	relationshipsRegistry[elemental.IdentityFromName("vulnerability")] = VulnerabilityMainRelationship
 
 	//

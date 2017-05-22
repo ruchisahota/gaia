@@ -498,7 +498,6 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Vulnerabilities contains the list of vulnerabilities of the processing unit.`,
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "vulnerabilities",
 		Stored:         true,
 		SubType:        "string",
