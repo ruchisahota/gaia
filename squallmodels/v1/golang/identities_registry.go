@@ -394,8 +394,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"pu":         ProcessingUnitIdentity,
 	"depmaps":    DependencyMapIdentity,
 	"depmap":     DependencyMapIdentity,
-	"vulns":      VulnerabilityIdentity,
+	"vuls":       VulnerabilityIdentity,
+	"vuln":       VulnerabilityIdentity,
 	"vul":        VulnerabilityIdentity,
+	"vulns":      VulnerabilityIdentity,
 	"srvpol":     EnforcerProfileMappingPolicyIdentity,
 	"srvpols":    EnforcerProfileMappingPolicyIdentity,
 	"netpols":    NetworkAccessPolicyIdentity,
@@ -514,8 +516,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case VulnerabilityIdentity:
 		return []string{
-			"vulns",
+			"vuls",
+			"vuln",
 			"vul",
+			"vulns",
 		}
 	case EnforcerProfileMappingPolicyIdentity:
 		return []string{
