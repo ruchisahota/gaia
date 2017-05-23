@@ -120,7 +120,7 @@
             "foreign_key": false,
             "format": "free",
             "getter": false,
-            "identifier": true,
+            "identifier": false,
             "index": false,
             "max_length": null,
             "max_value": null,
