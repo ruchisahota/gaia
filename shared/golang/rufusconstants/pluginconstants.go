@@ -21,6 +21,6 @@ func (p *PluginInfo) String() string {
 // PluginInfoFunc is the method that describe the plugin
 type PluginInfoFunc func() *PluginInfo
 
-// PluginExecuteFunc is the executed method of the plugin
+// PluginProcessFunc is the executed method of the plugin
 // It returns an OutputData and an error.
-type PluginExecuteFunc func(elemental.Operation, rufusmodels.RemoteProcessorModeValue, elemental.Identifiable, []string) error
+type PluginProcessFunc func(elemental.Operation, rufusmodels.RemoteProcessorModeValue, elemental.Identifiable, []string) error
