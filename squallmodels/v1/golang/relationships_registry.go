@@ -134,17 +134,6 @@ func init() {
 	relationshipsRegistry[elemental.IdentityFromName("namespace")] = NamespaceMainRelationship
 
 	//
-	// Main Relationship for integration
-	//
-	IntegrationMainRelationship := &elemental.Relationship{
-		AllowsRetrieve: true,
-		AllowsUpdate:   true,
-		AllowsDelete:   true,
-	}
-
-	relationshipsRegistry[elemental.IdentityFromName("integration")] = IntegrationMainRelationship
-
-	//
 	// Main Relationship for policyrule
 	//
 	PolicyRuleMainRelationship := &elemental.Relationship{}
@@ -452,16 +441,6 @@ func init() {
 	// Children relationship for hookpolicies in root
 	RootMainRelationship.AddChild(
 		elemental.IdentityFromName("hookpolicy"),
-		&elemental.Relationship{
-			AllowsCreate:       true,
-			AllowsRetrieveMany: true,
-			AllowsInfo:         true,
-		},
-	)
-
-	// Children relationship for integrations in root
-	RootMainRelationship.AddChild(
-		elemental.IdentityFromName("integration"),
 		&elemental.Relationship{
 			AllowsCreate:       true,
 			AllowsRetrieveMany: true,

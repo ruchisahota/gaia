@@ -15,7 +15,6 @@ func init() {
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
-	elemental.RegisterIdentity(IntegrationIdentity)
 	elemental.RegisterIdentity(PolicyRuleIdentity)
 	elemental.RegisterIdentity(ExternalServiceIdentity)
 	elemental.RegisterIdentity(RoleIdentity)
@@ -66,8 +65,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewFileAccess()
 	case NamespaceIdentity.Name:
 		return NewNamespace()
-	case IntegrationIdentity.Name:
-		return NewIntegration()
 	case PolicyRuleIdentity.Name:
 		return NewPolicyRule()
 	case ExternalServiceIdentity.Name:
@@ -137,8 +134,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewFileAccess()
 	case NamespaceIdentity.Category:
 		return NewNamespace()
-	case IntegrationIdentity.Category:
-		return NewIntegration()
 	case PolicyRuleIdentity.Category:
 		return NewPolicyRule()
 	case ExternalServiceIdentity.Category:
@@ -208,8 +203,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &FileAccessList{}
 	case NamespaceIdentity.Name:
 		return &NamespacesList{}
-	case IntegrationIdentity.Name:
-		return &IntegrationsList{}
 	case PolicyRuleIdentity.Name:
 		return &PolicyRulesList{}
 	case ExternalServiceIdentity.Name:
@@ -277,8 +270,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &FileAccessList{}
 	case NamespaceIdentity.Category:
 		return &NamespacesList{}
-	case IntegrationIdentity.Category:
-		return &IntegrationsList{}
 	case PolicyRuleIdentity.Category:
 		return &PolicyRulesList{}
 	case ExternalServiceIdentity.Category:
@@ -335,7 +326,6 @@ func AllIdentities() []elemental.Identity {
 		FilePathIdentity,
 		FileAccessIdentity,
 		NamespaceIdentity,
-		IntegrationIdentity,
 		PolicyRuleIdentity,
 		ExternalServiceIdentity,
 		RoleIdentity,
@@ -449,8 +439,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"ns",
 		}
-	case IntegrationIdentity:
-		return []string{}
 	case PolicyRuleIdentity:
 		return []string{}
 	case ExternalServiceIdentity:
