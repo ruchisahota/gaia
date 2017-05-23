@@ -22,7 +22,7 @@
             "min_length": null,
             "min_value": null,
             "name": "egressPolicies",
-            "orderable": true,
+            "orderable": false,
             "primary_key": false,
             "read_only": true,
             "required": false,
