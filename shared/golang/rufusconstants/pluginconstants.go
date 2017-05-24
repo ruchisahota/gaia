@@ -23,4 +23,4 @@ type PluginInfoFunc func() *PluginInfo
 
 // PluginProcessFunc is the executed method of the plugin
 // It returns an OutputData and an error.
-type PluginProcessFunc func(elemental.Operation, rufusmodels.RemoteProcessorModeValue, elemental.Identifiable, []string) error
+type PluginProcessFunc func(string, elemental.Operation, rufusmodels.RemoteProcessorModeValue, elemental.Identifiable, []string) error
