@@ -426,6 +426,106 @@
           <section id="codingexamples">
             <h3>Code example</h3>
               <div>
+  <div id="retrieve_all_processingunits_from_vulnerability">
+<h4>Retrieve all ProcessingUnits in a given Vulnerability</h4>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="apoctl">apoctl</a>
+  <a class="item" data-tab="golang">Go</a>
+  <a class="item" data-tab="python">Python</a>
+  <a class="item" data-tab="rest">REST</a>
+</div>
+
+<div class="ui bottom attached tab segment active" data-tab="apoctl">
+<pre class="bash">
+apoctl api list processingunits in vulnerability parent-id -n /namespace
+</pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="golang">
+  <pre class="go">
+package main
+
+import (
+  "github.com/aporeto-inc/manipulate"
+  "github.com/aporeto-inc/manipulate/manipwebsocket"
+
+  squallmodels "github.com/aporeto-inc/gaia/squallmodels/current/golang"
+)
+
+func main() {
+
+  m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
+
+  if err != nil {
+      panic(err)
+  }
+
+  var objects squallmodels.ProcessingUnitsList
+
+  parent := squallmodels.NewVulnerability()
+  parent.SetIdentifier("parent-id")
+
+  mctx := manipulate.NewContext()
+  mctx.Parent = parent
+
+  if err = m.RetrieveMany(mctx, &amp;objects); err != nil {
+    panic(err)
+  }
+
+  disconnect()
+}
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="python">
+  <pre class="python">
+import os
+
+from squallmodels import ProcessingUnit, Vulnerability
+from pymanipulate.context import Context
+from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
+
+
+def main():
+    """
+    """
+    certificate = ("cert.pem", "key.pem")
+    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
+
+    obj = ProcessingUnit()
+    objects = []
+
+    parent = Vulnerability(ID="parent-id")
+    mctx = Context(parent=parent)
+
+    try:
+        manipulator.retrieve_children(mctx, obj.identity(), objects)
+    except PyManipulateError as e:
+        print "Err: %s" % e.errors[0]
+        os._exit(1)
+
+    for obj in objects:
+        print obj.to_dict()
+
+    exit(0)
+
+
+if __name__ == "__main__":
+    main()
+  </pre>
+</div>
+<div class="ui bottom attached tab segment" data-tab="rest">
+  <pre class="bash">
+curl -X GET \
+  -H "X-Namespace: namespace" \
+  -H "Authorization: token" \
+  http://&lt;host&gt;:&lt;port&gt;/vulnerabilities/id/processingunits
+  </pre>
+</div>
+</div>
+<script>$('#retrieve_all_processingunits_from_vulnerability .menu .item').tab({context: "parent"});</script>
+
+</div>
+<div>
   <div id="retrieve_all_processingunits">
 <h4>Retrieve all ProcessingUnits </h4>
 
@@ -897,9 +997,9 @@ curl -X PUT \
 
         // Write relations graph
         var data = [
-{"restName": "fileaccess", "instanceName": "FileAccess", "resourceName": "fileaccesses", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "renderedpolicy", "instanceName": "RenderedPolicy", "resourceName": "renderedpolicies", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "syscallaccess", "instanceName": "SyscallAccess", "resourceName": "syscallaccesses", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "processingunit", "instanceName": "ProcessingUnit", "resourceName": "processingunits", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+{"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "parents", "exposed": false, "actions": ['GET']}, {"restName": "fileaccess", "instanceName": "FileAccess", "resourceName": "fileaccesses", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "renderedpolicy", "instanceName": "RenderedPolicy", "resourceName": "renderedpolicies", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "syscallaccess", "instanceName": "SyscallAccess", "resourceName": "syscallaccesses", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "processingunit", "instanceName": "ProcessingUnit", "resourceName": "processingunits", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
 ]
-        drawRelations(data, 1, 4);
+        drawRelations(data, 2, 4);
 
       });
   </script>
