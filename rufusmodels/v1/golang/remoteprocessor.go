@@ -70,6 +70,9 @@ type RemoteProcessor struct {
 	// Returns the OutputData filled with the processor information
 	Output elemental.Identifiable `json:"output" bson:"-"`
 
+	// requestID identifies the current context
+	RequestID string `json:"requestID" bson:"requestid"`
+
 	// Represents the Identity name of the managed object
 	TargetIdentity string `json:"targetIdentity" bson:"-"`
 
@@ -245,6 +248,17 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		SubType:        "elemental_identitifable",
 		Type:           "external",
+	},
+	"RequestID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `requestID identifies the current context`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "requestID",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"TargetIdentity": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
