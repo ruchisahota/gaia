@@ -1,7 +1,6 @@
 package vincemodels
 
 import "fmt"
-import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -110,7 +109,12 @@ func (o *Activate) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Activate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ActivateAttributesMap[strings.ToLower(name)]
+	if v, ok := ActivateAttributesMap[name]; ok {
+		return v
+	}
+
+	// We could not find it, so let's check on the lower case indexed spec map
+	return ActivateLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -121,6 +125,19 @@ func (*Activate) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 
 // ActivateAttributesMap represents the map of attribute for Activate.
 var ActivateAttributesMap = map[string]elemental.AttributeSpecification{
+	"Token": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Token contains the activation token`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "token",
+		Type:           "string",
+	},
+}
+
+// ActivateLowerCaseAttributesMap represents the map of attribute for Activate.
+var ActivateLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,

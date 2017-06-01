@@ -1,7 +1,6 @@
 package vincemodels
 
 import "fmt"
-import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -129,7 +128,12 @@ func (o *PasswordReset) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*PasswordReset) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return PasswordResetAttributesMap[strings.ToLower(name)]
+	if v, ok := PasswordResetAttributesMap[name]; ok {
+		return v
+	}
+
+	// We could not find it, so let's check on the lower case indexed spec map
+	return PasswordResetLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -140,6 +144,28 @@ func (*PasswordReset) AttributeSpecifications() map[string]elemental.AttributeSp
 
 // PasswordResetAttributesMap represents the map of attribute for PasswordReset.
 var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
+	"Password": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Password contains the new password.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "password",
+		Required:       true,
+		Type:           "string",
+	},
+	"Token": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Token contains the reset password token`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "token",
+		Required:       true,
+		Type:           "string",
+	},
+}
+
+// PasswordResetLowerCaseAttributesMap represents the map of attribute for PasswordReset.
+var PasswordResetLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"password": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Password contains the new password.`,

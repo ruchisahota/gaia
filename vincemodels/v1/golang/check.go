@@ -1,7 +1,6 @@
 package vincemodels
 
 import "fmt"
-import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -112,7 +111,12 @@ func (o *Check) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Check) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return CheckAttributesMap[strings.ToLower(name)]
+	if v, ok := CheckAttributesMap[name]; ok {
+		return v
+	}
+
+	// We could not find it, so let's check on the lower case indexed spec map
+	return CheckLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -123,3 +127,6 @@ func (*Check) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 
 // CheckAttributesMap represents the map of attribute for Check.
 var CheckAttributesMap = map[string]elemental.AttributeSpecification{}
+
+// CheckLowerCaseAttributesMap represents the map of attribute for Check.
+var CheckLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{}

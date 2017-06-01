@@ -1,7 +1,6 @@
 package squallmodels
 
 import "fmt"
-import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -115,7 +114,12 @@ func (o *SuggestedPolicy) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*SuggestedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return SuggestedPolicyAttributesMap[strings.ToLower(name)]
+	if v, ok := SuggestedPolicyAttributesMap[name]; ok {
+		return v
+	}
+
+	// We could not find it, so let's check on the lower case indexed spec map
+	return SuggestedPolicyLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -126,6 +130,21 @@ func (*SuggestedPolicy) AttributeSpecifications() map[string]elemental.Attribute
 
 // SuggestedPolicyAttributesMap represents the map of attribute for SuggestedPolicy.
 var SuggestedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+	"NetworkAccessPolicies": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `List of suggested network access policies`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "networkAccessPolicies",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "network_access_policies_list",
+		Type:           "external",
+	},
+}
+
+// SuggestedPolicyLowerCaseAttributesMap represents the map of attribute for SuggestedPolicy.
+var SuggestedPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"networkaccesspolicies": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `List of suggested network access policies`,

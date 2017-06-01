@@ -1,7 +1,6 @@
 package zackmodels
 
 import "fmt"
-import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -120,7 +119,12 @@ func (o *Report) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Report) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ReportAttributesMap[strings.ToLower(name)]
+	if v, ok := ReportAttributesMap[name]; ok {
+		return v
+	}
+
+	// We could not find it, so let's check on the lower case indexed spec map
+	return ReportLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -131,6 +135,41 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
+	"Name": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Name contains the name metric of statistics data.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "name",
+		Type:           "string",
+	},
+	"Tags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Tags contains the tags associated to the data point.`,
+		Exposed:        true,
+		Name:           "tags",
+		SubType:        "tags_map",
+		Type:           "external",
+	},
+	"Timestamp": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Timestamp contains the unix timestamp for the report.`,
+		Exposed:        true,
+		Name:           "timestamp",
+		SubType:        "int64",
+		Type:           "external",
+	},
+	"Value": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Value contains the value for the report.`,
+		Exposed:        true,
+		Name:           "value",
+		Type:           "float",
+	},
+}
+
+// ReportLowerCaseAttributesMap represents the map of attribute for Report.
+var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name contains the name metric of statistics data.`,

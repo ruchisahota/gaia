@@ -1,7 +1,6 @@
 package squallmodels
 
 import "fmt"
-import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -112,7 +111,12 @@ func (o *Poke) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Poke) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return PokeAttributesMap[strings.ToLower(name)]
+	if v, ok := PokeAttributesMap[name]; ok {
+		return v
+	}
+
+	// We could not find it, so let's check on the lower case indexed spec map
+	return PokeLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -123,3 +127,6 @@ func (*Poke) AttributeSpecifications() map[string]elemental.AttributeSpecificati
 
 // PokeAttributesMap represents the map of attribute for Poke.
 var PokeAttributesMap = map[string]elemental.AttributeSpecification{}
+
+// PokeLowerCaseAttributesMap represents the map of attribute for Poke.
+var PokeLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{}
