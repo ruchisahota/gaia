@@ -1,6 +1,7 @@
 package rufusmodels
 
 import "fmt"
+import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -94,7 +95,7 @@ func (o *Root) SetAPIKey(key string) {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Root) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return RootAttributesMap[name]
+	return RootAttributesMap[strings.ToLower(name)]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.

@@ -1,6 +1,7 @@
 package vincemodels
 
 import "fmt"
+import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -128,7 +129,7 @@ func (o *PasswordReset) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*PasswordReset) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return PasswordResetAttributesMap[name]
+	return PasswordResetAttributesMap[strings.ToLower(name)]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -139,7 +140,7 @@ func (*PasswordReset) AttributeSpecifications() map[string]elemental.AttributeSp
 
 // PasswordResetAttributesMap represents the map of attribute for PasswordReset.
 var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
-	"Password": elemental.AttributeSpecification{
+	"password": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Password contains the new password.`,
 		Exposed:        true,
@@ -148,7 +149,7 @@ var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"Token": elemental.AttributeSpecification{
+	"token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Token contains the reset password token`,
 		Exposed:        true,

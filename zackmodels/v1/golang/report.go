@@ -1,6 +1,7 @@
 package zackmodels
 
 import "fmt"
+import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -119,7 +120,7 @@ func (o *Report) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Report) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return ReportAttributesMap[name]
+	return ReportAttributesMap[strings.ToLower(name)]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -130,7 +131,7 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Name": elemental.AttributeSpecification{
+	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name contains the name metric of statistics data.`,
 		Exposed:        true,
@@ -138,7 +139,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "name",
 		Type:           "string",
 	},
-	"Tags": elemental.AttributeSpecification{
+	"tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Tags contains the tags associated to the data point.`,
 		Exposed:        true,
@@ -146,7 +147,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_map",
 		Type:           "external",
 	},
-	"Timestamp": elemental.AttributeSpecification{
+	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Timestamp contains the unix timestamp for the report.`,
 		Exposed:        true,
@@ -154,7 +155,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "int64",
 		Type:           "external",
 	},
-	"Value": elemental.AttributeSpecification{
+	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Value contains the value for the report.`,
 		Exposed:        true,

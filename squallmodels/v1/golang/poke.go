@@ -1,6 +1,7 @@
 package squallmodels
 
 import "fmt"
+import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -111,7 +112,7 @@ func (o *Poke) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*Poke) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return PokeAttributesMap[name]
+	return PokeAttributesMap[strings.ToLower(name)]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.

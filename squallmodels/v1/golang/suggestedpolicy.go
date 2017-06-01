@@ -1,6 +1,7 @@
 package squallmodels
 
 import "fmt"
+import "strings"
 import "github.com/aporeto-inc/elemental"
 
 import "sync"
@@ -114,7 +115,7 @@ func (o *SuggestedPolicy) Validate() error {
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
 func (*SuggestedPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	return SuggestedPolicyAttributesMap[name]
+	return SuggestedPolicyAttributesMap[strings.ToLower(name)]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
@@ -125,7 +126,7 @@ func (*SuggestedPolicy) AttributeSpecifications() map[string]elemental.Attribute
 
 // SuggestedPolicyAttributesMap represents the map of attribute for SuggestedPolicy.
 var SuggestedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
-	"NetworkAccessPolicies": elemental.AttributeSpecification{
+	"networkaccesspolicies": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `List of suggested network access policies`,
 		Exposed:        true,
