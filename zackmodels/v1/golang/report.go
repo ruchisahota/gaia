@@ -48,6 +48,9 @@ type Report struct {
 	// Timestamp contains the unix timestamp for the report.
 	Timestamp int64 `json:"timestamp" bson:"-"`
 
+	// TTL set the time to live for the report in seconds.
+	Ttl int `json:"ttl" bson:"-"`
+
 	// Value contains the value for the report.
 	Value float64 `json:"value" bson:"-"`
 
@@ -159,6 +162,13 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "int64",
 		Type:           "external",
 	},
+	"Ttl": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `TTL set the time to live for the report in seconds.`,
+		Exposed:        true,
+		Name:           "ttl",
+		Type:           "integer",
+	},
 	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Value contains the value for the report.`,
@@ -193,6 +203,13 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "timestamp",
 		SubType:        "int64",
 		Type:           "external",
+	},
+	"ttl": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `TTL set the time to live for the report in seconds.`,
+		Exposed:        true,
+		Name:           "ttl",
+		Type:           "integer",
 	},
 	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
