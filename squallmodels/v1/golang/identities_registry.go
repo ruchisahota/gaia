@@ -7,7 +7,6 @@ func init() {
 	elemental.RegisterIdentity(APICheckIdentity)
 	elemental.RegisterIdentity(HookPolicyIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
-	elemental.RegisterIdentity(SyscallAccessIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
@@ -49,8 +48,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewHookPolicy()
 	case APIAuthorizationPolicyIdentity.Name:
 		return NewAPIAuthorizationPolicy()
-	case SyscallAccessIdentity.Name:
-		return NewSyscallAccess()
 	case SystemCallIdentity.Name:
 		return NewSystemCall()
 	case TagIdentity.Name:
@@ -118,8 +115,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewHookPolicy()
 	case APIAuthorizationPolicyIdentity.Category:
 		return NewAPIAuthorizationPolicy()
-	case SyscallAccessIdentity.Category:
-		return NewSyscallAccess()
 	case SystemCallIdentity.Category:
 		return NewSystemCall()
 	case TagIdentity.Category:
@@ -187,8 +182,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &HookPoliciesList{}
 	case APIAuthorizationPolicyIdentity.Name:
 		return &APIAuthorizationPoliciesList{}
-	case SyscallAccessIdentity.Name:
-		return &SyscallAccessList{}
 	case SystemCallIdentity.Name:
 		return &SystemCallsList{}
 	case TagIdentity.Name:
@@ -254,8 +247,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &HookPoliciesList{}
 	case APIAuthorizationPolicyIdentity.Category:
 		return &APIAuthorizationPoliciesList{}
-	case SyscallAccessIdentity.Category:
-		return &SyscallAccessList{}
 	case SystemCallIdentity.Category:
 		return &SystemCallsList{}
 	case TagIdentity.Category:
@@ -318,7 +309,6 @@ func AllIdentities() []elemental.Identity {
 		APICheckIdentity,
 		HookPolicyIdentity,
 		APIAuthorizationPolicyIdentity,
-		SyscallAccessIdentity,
 		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
@@ -418,8 +408,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"apiauth",
 			"apiauths",
 		}
-	case SyscallAccessIdentity:
-		return []string{}
 	case SystemCallIdentity:
 		return []string{}
 	case TagIdentity:

@@ -60,17 +60,6 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("syscallaccess")] = &elemental.Relationship{
-		AllowsRetrieve: map[string]bool{
-			"processingunit": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"processingunit": true,
-		},
-		AllowsInfo: map[string]bool{
-			"processingunit": true,
-		},
-	}
 	relationshipsRegistry[elemental.IdentityFromName("systemcall")] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,

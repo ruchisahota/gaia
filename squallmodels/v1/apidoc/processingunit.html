@@ -997,9 +997,9 @@ curl -X PUT \
 
         // Write relations graph
         var data = [
-{"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "parents", "exposed": false, "actions": ['GET']}, {"restName": "fileaccess", "instanceName": "FileAccess", "resourceName": "fileaccesses", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "renderedpolicy", "instanceName": "RenderedPolicy", "resourceName": "renderedpolicies", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "syscallaccess", "instanceName": "SyscallAccess", "resourceName": "syscallaccesses", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "processingunit", "instanceName": "ProcessingUnit", "resourceName": "processingunits", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+{"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "parents", "exposed": false, "actions": ['GET']}, {"restName": "fileaccess", "instanceName": "FileAccess", "resourceName": "fileaccesses", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "renderedpolicy", "instanceName": "RenderedPolicy", "resourceName": "renderedpolicies", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "vulnerability", "instanceName": "Vulnerability", "resourceName": "vulnerabilities", "type": "children", "exposed": false, "actions": ['GET']}, {"restName": "processingunit", "instanceName": "ProcessingUnit", "resourceName": "processingunits", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
 ]
-        drawRelations(data, 2, 4);
+        drawRelations(data, 2, 3);
 
       });
   </script>
