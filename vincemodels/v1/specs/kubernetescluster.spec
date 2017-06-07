@@ -44,7 +44,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "The name of your cluster",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
