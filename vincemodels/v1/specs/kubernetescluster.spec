@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "Link to the certificate created for this cluster",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
