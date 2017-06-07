@@ -7,6 +7,23 @@ import "sync"
 
 import "time"
 
+// ReportKindValue represents the possible values for attribute "kind".
+type ReportKindValue string
+
+const (
+	// ReportKindFileaccess represents the value FileAccess.
+	ReportKindFileaccess ReportKindValue = "FileAccess"
+
+	// ReportKindFlow represents the value Flow.
+	ReportKindFlow ReportKindValue = "Flow"
+
+	// ReportKindProcessingunit represents the value ProcessingUnit.
+	ReportKindProcessingunit ReportKindValue = "ProcessingUnit"
+
+	// ReportKindSyscall represents the value Syscall.
+	ReportKindSyscall ReportKindValue = "Syscall"
+)
+
 // ReportIdentity represents the Identity of the object
 var ReportIdentity = elemental.Identity{
 	Name:     "report",
@@ -41,8 +58,8 @@ func (o ReportsList) DefaultOrder() []string {
 
 // Report represents the model of a report
 type Report struct {
-	// Name contains the name metric of statistics data.
-	Name string `json:"name" bson:"-"`
+	// Kind contains the kind of report.
+	Kind ReportKindValue `json:"kind" bson:"-"`
 
 	// Tags contains the tags associated to the data point.
 	Tags map[string]string `json:"tags" bson:"-"`
@@ -107,6 +124,10 @@ func (o *Report) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateStringInList("kind", string(o.Kind), []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -137,13 +158,12 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Name contains the name metric of statistics data.`,
+	"Kind": elemental.AttributeSpecification{
+		AllowedChoices: []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "name",
-		Type:           "string",
+		Name:           "kind",
+		Type:           "enum",
 	},
 	"Tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -171,13 +191,12 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 
 // ReportLowerCaseAttributesMap represents the map of attribute for Report.
 var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Name contains the name metric of statistics data.`,
+	"kind": elemental.AttributeSpecification{
+		AllowedChoices: []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "name",
-		Type:           "string",
+		Name:           "kind",
+		Type:           "enum",
 	},
 	"tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
