@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "base64 of the .tar.gz file thjat contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
