@@ -5,6 +5,8 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
+import "time"
+
 // ReportIdentity represents the Identity of the object
 var ReportIdentity = elemental.Identity{
 	Name:     "report",
@@ -45,8 +47,8 @@ type Report struct {
 	// Tags contains the tags associated to the data point.
 	Tags map[string]string `json:"tags" bson:"-"`
 
-	// Timestamp contains the unix timestamp for the report.
-	Timestamp int64 `json:"timestamp" bson:"-"`
+	// Timestamp contains the time for the report.
+	Timestamp time.Time `json:"timestamp" bson:"-"`
 
 	// TTL set the time to live for the report in seconds.
 	Ttl int `json:"ttl" bson:"-"`
@@ -156,11 +158,10 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Timestamp contains the unix timestamp for the report.`,
+		Description:    `Timestamp contains the time for the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
-		SubType:        "int64",
-		Type:           "external",
+		Type:           "time",
 	},
 	"Ttl": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -198,11 +199,10 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Timestamp contains the unix timestamp for the report.`,
+		Description:    `Timestamp contains the time for the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
-		SubType:        "int64",
-		Type:           "external",
+		Type:           "time",
 	},
 	"ttl": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
