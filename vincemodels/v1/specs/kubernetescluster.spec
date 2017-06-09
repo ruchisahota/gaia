@@ -129,7 +129,7 @@
             "name": "namespaceID",
             "orderable": true,
             "primary_key": null,
-            "read_only": null,
+            "read_only": true,
             "required": null,
             "secret": null,
             "setter": null,
