@@ -106,6 +106,9 @@ func init() {
 		},
 	}
 	relationshipsRegistry[elemental.IdentityFromName("kubernetescluster")] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
 		AllowsUpdate: map[string]bool{
 			"root": true,
 		},
