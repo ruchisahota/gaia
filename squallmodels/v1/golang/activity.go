@@ -69,7 +69,7 @@ type Activity struct {
 	OriginalData interface{} `json:"originalData" bson:"originaldata"`
 
 	// Source contains meta information abbout the source.
-	Source string `json:"source" bson:"-"`
+	Source string `json:"source" bson:"source"`
 
 	// TargetIdentity is the Identity of the related object.
 	TargetIdentity string `json:"targetIdentity" bson:"targetidentity"`
@@ -288,6 +288,7 @@ var ActivityAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "source",
 		Orderable:      true,
 		ReadOnly:       true,
+		Stored:         true,
 		Type:           "string",
 	},
 	"TargetIdentity": elemental.AttributeSpecification{
@@ -432,6 +433,7 @@ var ActivityLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		Name:           "source",
 		Orderable:      true,
 		ReadOnly:       true,
+		Stored:         true,
 		Type:           "string",
 	},
 	"targetidentity": elemental.AttributeSpecification{
