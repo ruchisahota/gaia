@@ -308,7 +308,7 @@
             "required": null,
             "secret": null,
             "setter": null,
-            "stored": false,
+            "stored": true,
             "subtype": null,
             "transient": null,
             "type": "string",
