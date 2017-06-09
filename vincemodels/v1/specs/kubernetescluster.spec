@@ -32,7 +32,7 @@
             "subtype": null,
             "transient": null,
             "type": "string",
-            "unique": null,
+            "unique": true,
             "uniqueScope": null
         },
         {
