@@ -204,7 +204,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": null,
+            "subtype": "target_networks_list",
             "transient": null,
             "type": "external",
             "unique": null,
