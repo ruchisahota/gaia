@@ -44,14 +44,14 @@ type Kubernetescluster struct {
 	// ID of the object.
 	ID string `json:"ID" bson:"_id"`
 
-	// Link to the certificate created for this cluster
+	// Link to the certificate created in Vince for this cluster
 	CertificateID string `json:"certificateID" bson:"certificateid"`
 
 	// createdAt represents the creation date of the object.
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
-	// base64 of the .tar.gz file thjat contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster
-	KubernetesDefinitions string `json:"kubernetesDefinitions" bson:"kubernetesdefinitions"`
+	// base64 of the .tar.gz file that contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster
+	KubernetesDefinitions string `json:"kubernetesDefinitions" bson:"-"`
 
 	// The name of your cluster
 	Name string `json:"name" bson:"name"`
@@ -61,6 +61,9 @@ type Kubernetescluster struct {
 
 	// None
 	ParentID string `json:"parentID" bson:"parentid"`
+
+	// None
+	TargetNetworks []string `json:"targetNetworks" bson:"targetnetworks"`
 
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
@@ -166,7 +169,7 @@ var KubernetesclusterAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"CertificateID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Link to the certificate created for this cluster`,
+		Description:    `Link to the certificate created in Vince for this cluster `,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -174,6 +177,7 @@ var KubernetesclusterAttributesMap = map[string]elemental.AttributeSpecification
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+		Unique:         true,
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -189,13 +193,12 @@ var KubernetesclusterAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"KubernetesDefinitions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `base64 of the .tar.gz file thjat contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster`,
+		Description:    `base64 of the .tar.gz file that contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
 		Name:           "kubernetesDefinitions",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
@@ -217,6 +220,7 @@ var KubernetesclusterAttributesMap = map[string]elemental.AttributeSpecification
 		Format:         "free",
 		Name:           "namespaceID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -227,8 +231,19 @@ var KubernetesclusterAttributesMap = map[string]elemental.AttributeSpecification
 		Format:         "free",
 		Name:           "parentID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"TargetNetworks": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "targetNetworks",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "target_networks_list",
+		Type:           "external",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -263,7 +278,7 @@ var KubernetesclusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 	},
 	"certificateid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Link to the certificate created for this cluster`,
+		Description:    `Link to the certificate created in Vince for this cluster `,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -271,6 +286,7 @@ var KubernetesclusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+		Unique:         true,
 	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -286,13 +302,12 @@ var KubernetesclusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 	},
 	"kubernetesdefinitions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `base64 of the .tar.gz file thjat contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster`,
+		Description:    `base64 of the .tar.gz file that contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
 		Name:           "kubernetesDefinitions",
 		Orderable:      true,
-		Stored:         true,
 		Type:           "string",
 	},
 	"name": elemental.AttributeSpecification{
@@ -314,6 +329,7 @@ var KubernetesclusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		Format:         "free",
 		Name:           "namespaceID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -324,8 +340,19 @@ var KubernetesclusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		Format:         "free",
 		Name:           "parentID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"targetnetworks": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "targetNetworks",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "target_networks_list",
+		Type:           "external",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

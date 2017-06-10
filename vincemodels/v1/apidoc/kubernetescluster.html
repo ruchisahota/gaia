@@ -74,13 +74,14 @@
                   <div class="pull-right">
                     <span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
+<span class="ui label mini orange">locally unique</span>
 
                   </div>
                   <strong>certificateID</strong>  <span class="ui blue">string</span>
                 </div>
                 <div class="content">
                   <div class="meta">
-                    Link to the certificate created for this cluster (format: free)
+                    Link to the certificate created in Vince for this cluster  (format: free)
 
                   </div>
                 </div>
@@ -132,7 +133,7 @@
                 </div>
                 <div class="content">
                   <div class="meta">
-                    base64 of the .tar.gz file thjat contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster (format: free)
+                    base64 of the .tar.gz file that contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster (format: free)
 
                   </div>
                 </div>
@@ -156,7 +157,8 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini purple">filterable</span>
+                    <span class="ui label mini grey">read only</span>
+<span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
                   </div>
@@ -172,7 +174,8 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    <span class="ui label mini purple">filterable</span>
+                    <span class="ui label mini grey">read only</span>
+<span class="ui label mini purple">filterable</span>
 <span class="ui label mini teal">orderable</span>
 
                   </div>
@@ -181,6 +184,22 @@
                 <div class="content">
                   <div class="meta">
                     None (format: free)
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    <span class="ui label mini purple">filterable</span>
+<span class="ui label mini teal">orderable</span>
+
+                  </div>
+                  <strong>targetNetworks</strong>  <span class="ui blue">target_networks_list</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    None
 
                   </div>
                 </div>
