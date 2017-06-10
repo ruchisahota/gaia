@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Link to the certificate created for this cluster",
+            "description": "Link to the certificate created in Vince for this cluster ",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
