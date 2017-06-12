@@ -33,7 +33,7 @@
       <div class="row">
 
         <div id="main_menu" class="sixteen wide tablet three wide computer column">
-          
+
 <div class="ui vertical menu fluid">
   <div class="item">
     <a href="index.html">
@@ -159,7 +159,7 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    
+
                   </div>
                   <strong>annotations</strong>  <span class="ui blue">annotations</span>
                 </div>
@@ -173,7 +173,7 @@
               <div class="ui card">
                 <div class="content">
                   <div class="pull-right">
-                    
+
                   </div>
                   <strong>associatedTags</strong>  <span class="ui blue">tags_list</span>
                 </div>
@@ -600,7 +600,7 @@ curl -X GET \
 <pre class="bash">
 apoctl api create enforcers -n /namespace \
   -k fqdn "fqdn" \
-  -k lastsynctime "2017-06-10T14:43:45Z" \
+  -k lastsynctime "2017-06-09T11:39:27Z" \
   -k name "name"</pre>
 </div>
 <div class="ui bottom attached tab segment" data-tab="golang">
@@ -623,7 +623,7 @@ func main () {
 
     obj := squallmodels.NewEnforcer()
     obj.FQDN = "fqdn"
-    obj.LastSyncTime = "2017-06-10T14:43:45Z"
+    obj.LastSyncTime = "2017-06-09T11:39:27Z"
     obj.SetName("name")
 
     if err = m.Create(nil, obj); err != nil {
@@ -650,7 +650,7 @@ def main():
 
     obj = Enforcer()
     obj.FQDN = "fqdn"
-    obj.lastSyncTime = "2017-06-10T14:43:45Z"
+    obj.lastSyncTime = "2017-06-09T11:39:27Z"
     obj.name = "name"
 
     try:
@@ -674,7 +674,7 @@ curl -X POST \
   -H "X-Namespace: namespace" \
   -H "Authorization: token" \
   -d fqdn="fqdn" \
-  -d lastsynctime="2017-06-10T14:43:45Z" \
+  -d lastsynctime="2017-06-09T11:39:27Z" \
   -d name="name" \
   http://&lt;host&gt;:&lt;port&gt;/enforcers
   </pre>
@@ -974,7 +974,7 @@ curl -X PUT \
 
         // Write relations graph
         var data = [
-{"restName": "enforcerprofile", "instanceName": "EnforcerProfile", "resourceName": "enforcerprofiles", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "poke", "instanceName": "Poke", "resourceName": "poke", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "enforcer", "instanceName": "Enforcer", "resourceName": "enforcers", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+{"restName": "enforcerprofile", "instanceName": "EnforcerProfile", "resourceName": "enforcerprofiles", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "poke", "instanceName": "Poke", "resourceName": "poke", "type": "children", "exposed": true, "actions": ['GET']}, {"restName": "enforcer", "instanceName": "Enforcer", "resourceName": "enforcers", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']},
 ]
         drawRelations(data, 1, 2);
 
