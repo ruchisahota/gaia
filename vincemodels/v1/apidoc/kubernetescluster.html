@@ -578,102 +578,6 @@ http://&lt;host&gt;:&lt;port&gt;/kubernetesclusters/identifier
 </div>
 <script>$('#get_kubernetescluster .menu .item').tab({context: "parent"});</script>
 
-  <div id="update_kubernetescluster">
-<h4>Update a given Kubernetescluster</h4>
-
-<div class="ui top attached tabular menu">
-  <a class="item active" data-tab="apoctl">apoctl</a>
-  <a class="item" data-tab="golang">Go</a>
-  <a class="item" data-tab="python">Python</a>
-  <a class="item" data-tab="rest">REST</a>
-</div>
-
-<div class="ui bottom attached tab segment active" data-tab="apoctl">
-  <pre class="bash">
-apoctl api update kubernetescluster identitifier -n /namespace  </pre>
-</div>
-<div class="ui bottom attached tab segment" data-tab="golang">
-  <pre class="go">
-import (
-    "github.com/aporeto-inc/manipulate/manipwebsocket"
-
-    vincemodels "github.com/aporeto-inc/gaia/vincemodels/current/golang"
-)
-
-func main() {
-
-    m, disconnect, err := manipwebsocket.NewWebSocketManipulator("username", "token", "url", "namespace")
-
-    if err != nil {
-        panic(err)
-    }
-
-    obj := vincemodels.NewKubernetescluster()
-    obj.SetIdentifier("identifier")
-
-    if err = m.Retrieve(nil, obj); err != nil {
-      panic(err)
-    }
-
-
-    if err = m.Update(nil, obj); err != nil {
-      panic(err)
-    }
-
-    disconnect()
-}
-  </pre>
-</div>
-<div class="ui bottom attached tab segment" data-tab="python">
-  <pre class="python">
-import os
-
-from vincemodels import Kubernetescluster
-from pymanipulate.maniphttp import HTTPManipulator, PyManipulateError
-
-
-def main():
-    """
-    """
-    certificate = ("cert.pem", "key.pem")
-    manipulator = HTTPManipulator("url", "/namespace", "username", "password", None, certificate)
-
-    obj = Kubernetescluster()
-    obj.ID = "identifier"
-
-    try:
-        manipulator.retrieve(None, obj)
-    except PyManipulateError as e:
-        print "Err: %s" % e.errors[0]
-        os._exit(1)
-
-
-    try:
-        manipulator.update(None, obj)
-    except PyManipulateError as e:
-        print "Err: %s" % e.errors[0]
-        os._exit(1)
-
-    print obj.to_dict()
-
-    exit(0)
-
-
-if __name__ == "__main__":
-    main()
-  </pre>
-</div>
-<div class="ui bottom attached tab segment" data-tab="rest">
-  <pre class="bash">
-curl -X PUT \
-  -H "X-Namespace: namespace" \
-  -H "Authorization: token" \
-  http://&lt;host&gt;:&lt;port&gt;/kubernetesclusters/identitifier
-  </pre>
-</div>
-</div>
-<script>$('#update_kubernetescluster .menu .item').tab({context: "parent"});</script>
-
 </div>
 
 
@@ -691,7 +595,7 @@ curl -X PUT \
 
         // Write relations graph
         var data = [
-{"restName": "kubernetescluster", "instanceName": "Kubernetescluster", "resourceName": "kubernetesclusters", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'PUT', 'DELETE']}, 
+{"restName": "kubernetescluster", "instanceName": "Kubernetescluster", "resourceName": "kubernetesclusters", "type": "self", "exposed": true, "actions": ['POST', 'GET', 'DELETE']}, 
 ]
         drawRelations(data, 1, 0);
 

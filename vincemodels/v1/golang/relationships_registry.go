@@ -109,9 +109,6 @@ func init() {
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
-		AllowsUpdate: map[string]bool{
-			"root": true,
-		},
 		AllowsDelete: map[string]bool{
 			"root": true,
 		},
