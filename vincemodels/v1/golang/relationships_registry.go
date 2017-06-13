@@ -105,6 +105,23 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[elemental.IdentityFromName("kubernetescluster")] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[elemental.IdentityFromName("root")] = &elemental.Relationship{}
 	relationshipsRegistry[elemental.IdentityFromName("check")] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{

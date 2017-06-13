@@ -10,6 +10,7 @@ func init() {
 	elemental.RegisterIdentity(PasswordResetIdentity)
 	elemental.RegisterIdentity(PlanIdentity)
 	elemental.RegisterIdentity(AWSAccountIdentity)
+	elemental.RegisterIdentity(KubernetesClusterIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(CheckIdentity)
 }
@@ -33,6 +34,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPlan()
 	case AWSAccountIdentity.Name:
 		return NewAWSAccount()
+	case KubernetesClusterIdentity.Name:
+		return NewKubernetesCluster()
 	case RootIdentity.Name:
 		return NewRoot()
 	case CheckIdentity.Name:
@@ -58,6 +61,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewPlan()
 	case AWSAccountIdentity.Category:
 		return NewAWSAccount()
+	case KubernetesClusterIdentity.Category:
+		return NewKubernetesCluster()
 	case RootIdentity.Category:
 		return NewRoot()
 	case CheckIdentity.Category:
@@ -83,6 +88,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PlansList{}
 	case AWSAccountIdentity.Name:
 		return &AWSAccountsList{}
+	case KubernetesClusterIdentity.Name:
+		return &KubernetesClustersList{}
 	case CheckIdentity.Name:
 		return &ChecksList{}
 	default:
@@ -106,6 +113,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &PlansList{}
 	case AWSAccountIdentity.Category:
 		return &AWSAccountsList{}
+	case KubernetesClusterIdentity.Category:
+		return &KubernetesClustersList{}
 	case CheckIdentity.Category:
 		return &ChecksList{}
 	default:
@@ -123,6 +132,7 @@ func AllIdentities() []elemental.Identity {
 		PasswordResetIdentity,
 		PlanIdentity,
 		AWSAccountIdentity,
+		KubernetesClusterIdentity,
 		RootIdentity,
 		CheckIdentity,
 	}
@@ -160,6 +170,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"awsaccs",
 			"aws",
 		}
+	case KubernetesClusterIdentity:
+		return []string{}
 	case RootIdentity:
 		return []string{}
 	case CheckIdentity:
