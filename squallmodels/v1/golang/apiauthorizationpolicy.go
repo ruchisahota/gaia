@@ -46,24 +46,6 @@ type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"-"`
 
-	// AllowsDelete defines if DELETE request is authorized.
-	AllowsDelete bool `json:"allowsDelete" bson:"-"`
-
-	// AllowsGet defines if GET request is authorized.
-	AllowsGet bool `json:"allowsGet" bson:"-"`
-
-	// AllowsHead defines if HEAD request is authorized.
-	AllowsHead bool `json:"allowsHead" bson:"-"`
-
-	// AllowsPatch defines if PATCH request is authorized.
-	AllowsPatch bool `json:"allowsPatch" bson:"-"`
-
-	// AllowsPost defines if POST request is authorized.
-	AllowsPost bool `json:"allowsPost" bson:"-"`
-
-	// AllowsPut defines if PUT request is authorized.
-	AllowsPut bool `json:"allowsPut" bson:"-"`
-
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
@@ -351,60 +333,6 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Type:           "string",
 		Unique:         true,
 	},
-	"AllowsDelete": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsDelete defines if DELETE request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsDelete",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsGet": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsGet defines if GET request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsGet",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsHead": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsHead defines if HEAD request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsHead",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsPatch": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsPatch defines if PATCH request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsPatch",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsPost": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsPost defines if POST request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsPost",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"AllowsPut": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsPut defines if PUT request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsPut",
-		Orderable:      true,
-		Type:           "boolean",
-	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Annotation stores additional information about an entity`,
@@ -615,60 +543,6 @@ var APIAuthorizationPolicyLowerCaseAttributesMap = map[string]elemental.Attribut
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
-	},
-	"allowsdelete": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsDelete defines if DELETE request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsDelete",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"allowsget": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsGet defines if GET request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsGet",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"allowshead": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsHead defines if HEAD request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsHead",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"allowspatch": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsPatch defines if PATCH request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsPatch",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"allowspost": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsPost defines if POST request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsPost",
-		Orderable:      true,
-		Type:           "boolean",
-	},
-	"allowsput": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AllowsPut defines if PUT request is authorized.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsPut",
-		Orderable:      true,
-		Type:           "boolean",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
