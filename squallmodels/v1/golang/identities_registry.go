@@ -10,6 +10,7 @@ func init() {
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
+	elemental.RegisterIdentity(MessageIdentity)
 	elemental.RegisterIdentity(PokeIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FileAccessIdentity)
@@ -54,6 +55,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Name:
 		return NewEnforcer()
+	case MessageIdentity.Name:
+		return NewMessage()
 	case PokeIdentity.Name:
 		return NewPoke()
 	case FilePathIdentity.Name:
@@ -121,6 +124,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewTag()
 	case EnforcerIdentity.Category:
 		return NewEnforcer()
+	case MessageIdentity.Category:
+		return NewMessage()
 	case PokeIdentity.Category:
 		return NewPoke()
 	case FilePathIdentity.Category:
@@ -188,6 +193,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Name:
 		return &EnforcersList{}
+	case MessageIdentity.Name:
+		return &MessagesList{}
 	case PokeIdentity.Name:
 		return &PokesList{}
 	case FilePathIdentity.Name:
@@ -253,6 +260,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case EnforcerIdentity.Category:
 		return &EnforcersList{}
+	case MessageIdentity.Category:
+		return &MessagesList{}
 	case PokeIdentity.Category:
 		return &PokesList{}
 	case FilePathIdentity.Category:
@@ -312,6 +321,7 @@ func AllIdentities() []elemental.Identity {
 		SystemCallIdentity,
 		TagIdentity,
 		EnforcerIdentity,
+		MessageIdentity,
 		PokeIdentity,
 		FilePathIdentity,
 		FileAccessIdentity,
@@ -345,6 +355,7 @@ var aliasesMap = map[string]elemental.Identity{
 	"hook":       HookPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
+	"mess":       MessageIdentity,
 	"fps":        FilePathIdentity,
 	"fp":         FilePathIdentity,
 	"ns":         NamespaceIdentity,
@@ -414,6 +425,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case EnforcerIdentity:
 		return []string{}
+	case MessageIdentity:
+		return []string{
+			"mess",
+		}
 	case PokeIdentity:
 		return []string{}
 	case FilePathIdentity:
