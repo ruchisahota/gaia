@@ -7,18 +7,18 @@ import "sync"
 
 import "time"
 
-// MessageImportanceValue represents the possible values for attribute "importance".
-type MessageImportanceValue string
+// MessageLevelValue represents the possible values for attribute "level".
+type MessageLevelValue string
 
 const (
-	// MessageImportanceDanger represents the value Danger.
-	MessageImportanceDanger MessageImportanceValue = "Danger"
+	// MessageLevelDanger represents the value Danger.
+	MessageLevelDanger MessageLevelValue = "Danger"
 
-	// MessageImportanceInfo represents the value Info.
-	MessageImportanceInfo MessageImportanceValue = "Info"
+	// MessageLevelInfo represents the value Info.
+	MessageLevelInfo MessageLevelValue = "Info"
 
-	// MessageImportanceWarning represents the value Warning.
-	MessageImportanceWarning MessageImportanceValue = "Warning"
+	// MessageLevelWarning represents the value Warning.
+	MessageLevelWarning MessageLevelValue = "Warning"
 )
 
 // MessageIdentity represents the Identity of the object
@@ -72,11 +72,11 @@ type Message struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
-	// ExpiresIn set using golang time duration, when the message will be automatically deleted.
-	ExpiresIn string `json:"expiresIn" bson:"expiresin"`
+	// expirationTime is the time after which the message will be deleted.
+	ExpirationTime string `json:"-" bson:"expirationtime"`
 
-	// Importance defines how the message is important.
-	Importance MessageImportanceValue `json:"importance" bson:"importance"`
+	// Level defines how the message is important.
+	Level MessageLevelValue `json:"level" bson:"level"`
 
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
@@ -93,6 +93,9 @@ type Message struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
+	// Validity set using golang time duration, when the message will be automatically deleted.
+	Validity string `json:"validity" bson:"validity"`
+
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -105,7 +108,7 @@ func NewMessage() *Message {
 		ModelVersion:   1.0,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
-		Importance:     "Info",
+		Level:          "Info",
 		NormalizedTags: []string{},
 	}
 }
@@ -223,11 +226,7 @@ func (o *Message) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidatePattern("expiresIn", o.ExpiresIn, `^[0-9]+[smh]$`); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("importance", string(o.Importance), []string{"Danger", "Info", "Warning"}, false); err != nil {
+	if err := elemental.ValidateStringInList("level", string(o.Level), []string{"Danger", "Info", "Warning"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -236,6 +235,10 @@ func (o *Message) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidatePattern("validity", o.Validity, `^[0-9]+[smh]$`); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -329,23 +332,21 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"ExpiresIn": elemental.AttributeSpecification{
-		AllowedChars:   `^[0-9]+[smh]$`,
+	"ExpirationTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `ExpiresIn set using golang time duration, when the message will be automatically deleted.`,
-		Exposed:        true,
+		Description:    `expirationTime is the time after which the message will be deleted.`,
 		Format:         "free",
-		Name:           "expiresIn",
+		Name:           "expirationTime",
 		Stored:         true,
 		Type:           "string",
 	},
-	"Importance": elemental.AttributeSpecification{
+	"Level": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
-		DefaultValue:   MessageImportanceValue("Info"),
-		Description:    `Importance defines how the message is important.`,
+		DefaultValue:   MessageLevelValue("Info"),
+		Description:    `Level defines how the message is important.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "importance",
+		Name:           "level",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "enum",
@@ -422,6 +423,16 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
+	"Validity": elemental.AttributeSpecification{
+		AllowedChars:   `^[0-9]+[smh]$`,
+		AllowedChoices: []string{},
+		Description:    `Validity set using golang time duration, when the message will be automatically deleted.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "validity",
+		Stored:         true,
+		Type:           "string",
+	},
 }
 
 // MessageLowerCaseAttributesMap represents the map of attribute for Message.
@@ -486,23 +497,21 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"expiresin": elemental.AttributeSpecification{
-		AllowedChars:   `^[0-9]+[smh]$`,
+	"expirationtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `ExpiresIn set using golang time duration, when the message will be automatically deleted.`,
-		Exposed:        true,
+		Description:    `expirationTime is the time after which the message will be deleted.`,
 		Format:         "free",
-		Name:           "expiresIn",
+		Name:           "expirationTime",
 		Stored:         true,
 		Type:           "string",
 	},
-	"importance": elemental.AttributeSpecification{
+	"level": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
-		DefaultValue:   MessageImportanceValue("Info"),
-		Description:    `Importance defines how the message is important.`,
+		DefaultValue:   MessageLevelValue("Info"),
+		Description:    `Level defines how the message is important.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "importance",
+		Name:           "level",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "enum",
@@ -578,5 +587,15 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"validity": elemental.AttributeSpecification{
+		AllowedChars:   `^[0-9]+[smh]$`,
+		AllowedChoices: []string{},
+		Description:    `Validity set using golang time duration, when the message will be automatically deleted.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "validity",
+		Stored:         true,
+		Type:           "string",
 	},
 }

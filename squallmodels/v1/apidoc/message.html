@@ -222,11 +222,11 @@
                   <div class="pull-right">
                     
                   </div>
-                  <strong>expiresIn</strong>  <span class="ui blue">string</span>
+                  <strong>expirationTime</strong>  <span class="ui blue">string</span>
                 </div>
                 <div class="content">
                   <div class="meta">
-                    ExpiresIn set using golang time duration, when the message will be automatically deleted. (characters: ^[0-9]+[smh]$ | format: free)
+                    expirationTime is the time after which the message will be deleted. (format: free)
 
                   </div>
                 </div>
@@ -257,11 +257,11 @@
 <span class="ui label mini teal">orderable</span>
 
                   </div>
-                  <strong>importance</strong>  <span class="ui blue">enum (Danger | Info | Warning)</span>
+                  <strong>level</strong>  <span class="ui blue">enum (Danger | Info | Warning)</span>
                 </div>
                 <div class="content">
                   <div class="meta">
-                    Importance defines how the message is important. (default: Info)
+                    Level defines how the message is important. (default: Info)
 
                   </div>
                 </div>
@@ -348,6 +348,20 @@
                 <div class="content">
                   <div class="meta">
                     UpdateTime is the time at which an entity was updated.
+
+                  </div>
+                </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="pull-right">
+                    
+                  </div>
+                  <strong>validity</strong>  <span class="ui blue">string</span>
+                </div>
+                <div class="content">
+                  <div class="meta">
+                    Validity set using golang time duration, when the message will be automatically deleted. (characters: ^[0-9]+[smh]$ | format: free)
 
                   </div>
                 </div>
