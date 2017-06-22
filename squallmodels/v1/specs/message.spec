@@ -11,6 +11,7 @@
         "entity_name": "Message",
         "extends": [
             "@described",
+            "@identifiable-pk-stored",
             "@named"
         ],
         "get": true,
