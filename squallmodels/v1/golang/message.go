@@ -105,6 +105,7 @@ func NewMessage() *Message {
 		ModelVersion:   1.0,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
+		Importance:     "Info",
 		NormalizedTags: []string{},
 	}
 }
@@ -340,6 +341,7 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Importance": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
+		DefaultValue:   MessageImportanceValue("Info"),
 		Description:    `Importance defines how the message is important.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -496,6 +498,7 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"importance": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
+		DefaultValue:   MessageImportanceValue("Info"),
 		Description:    `Importance defines how the message is important.`,
 		Exposed:        true,
 		Filterable:     true,
