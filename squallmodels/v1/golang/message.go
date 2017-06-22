@@ -73,7 +73,7 @@ type Message struct {
 	Description string `json:"description" bson:"description"`
 
 	// expirationTime is the time after which the message will be deleted.
-	ExpirationTime string `json:"-" bson:"expirationtime"`
+	ExpirationTime time.Time `json:"expirationTime" bson:"expirationtime"`
 
 	// Level defines how the message is important.
 	Level MessageLevelValue `json:"level" bson:"level"`
@@ -335,10 +335,12 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 	"ExpirationTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `expirationTime is the time after which the message will be deleted.`,
-		Format:         "free",
+		Exposed:        true,
+		Filterable:     true,
 		Name:           "expirationTime",
+		Orderable:      true,
 		Stored:         true,
-		Type:           "string",
+		Type:           "time",
 	},
 	"Level": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
@@ -500,10 +502,12 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"expirationtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `expirationTime is the time after which the message will be deleted.`,
-		Format:         "free",
+		Exposed:        true,
+		Filterable:     true,
 		Name:           "expirationTime",
+		Orderable:      true,
 		Stored:         true,
-		Type:           "string",
+		Type:           "time",
 	},
 	"level": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
