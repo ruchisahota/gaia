@@ -46,7 +46,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": null,
+            "default_value": "Info",
             "deprecated": null,
             "description": "Importance defines how the message is important.",
             "exposed": true,
