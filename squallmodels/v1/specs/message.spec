@@ -9,7 +9,9 @@
         "delete": true,
         "description": "The Message API allows to post public messages that will be visible through all children namespaces",
         "entity_name": "Message",
-        "extends": [],
+        "extends": [
+            "@described"
+        ],
         "get": true,
         "package": null,
         "resource_name": "messages",
