@@ -196,7 +196,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "parentNamespace",
+            "name": "targetNamespace",
             "orderable": true,
             "primary_key": null,
             "read_only": false,
