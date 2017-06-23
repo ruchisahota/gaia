@@ -63,7 +63,7 @@ type KubernetesCluster struct {
 	ParentID string `json:"parentID" bson:"parentid"`
 
 	// The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.
-	ParentNamespace string `json:"parentNamespace" bson:"parentnamespace"`
+	TargetNamespace string `json:"targetNamespace" bson:"targetnamespace"`
 
 	// None
 	TargetNetworks []string `json:"targetNetworks" bson:"targetnetworks"`
@@ -238,13 +238,13 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		Type:           "string",
 	},
-	"ParentNamespace": elemental.AttributeSpecification{
+	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "parentNamespace",
+		Name:           "targetNamespace",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
@@ -358,13 +358,13 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		Stored:         true,
 		Type:           "string",
 	},
-	"parentnamespace": elemental.AttributeSpecification{
+	"targetnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "parentNamespace",
+		Name:           "targetNamespace",
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
