@@ -111,6 +111,26 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[elemental.IdentityFromName("message")] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[elemental.IdentityFromName("poke")] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"enforcer": true,
