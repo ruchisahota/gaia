@@ -7,11 +7,9 @@ codegen_v1:
 	@echo '* Generating Squall models v1'
 	rm -rf codegen
 	monogen -f v1/specs -L elemental
-	monogen -f v1/specs -L monodoc
 	# monogen -f v1/specs -L pyelemental
 	# rm -rf ./v1/python/* && cp -a codegen/pyelemental/* ./v1/python
 	rm -rf ./v1/golang/*.go && cp codegen/elemental/*.go ./v1/golang
-	rm -rf ./v1/apidoc/* && cp -a codegen/monodoc/* ./v1/apidoc
 	rm -rf codegen
 
 publish:
@@ -19,3 +17,12 @@ publish:
 	make codegen
 	git commit -am "codegen"
 	git push
+
+make_docgen: make_docgen_v1
+
+make_docgen_v1:
+	@echo '* Generating Squall Documentation v1'
+	rm -rf codegen
+	monogen -f v1/specs -L monodoc
+	rm -rf ./v1/apidoc/* && cp -a codegen/monodoc/* ./v1/apidoc
+	rm -rf codegen

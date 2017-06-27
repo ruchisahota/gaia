@@ -1,0 +1,131 @@
+entries:
+- title: squall_sidebar
+  product: Aporeto
+  version: 1.0
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage
+      output: pdf
+      type: frontmatter
+
+
+  - title: Authorization
+    output: web, pdf
+    folderitems:
+
+      - title: APICheck
+        output: web, pdf
+        url: /squall_apicheck.html
+
+      - title: APIAuthorizationPolicy
+        output: web, pdf
+        url: /squall_apiauthorizationpolicy.html
+
+      - title: Tag
+        output: web, pdf
+        url: /squall_tag.html
+
+      - title: Namespace
+        output: web, pdf
+        url: /squall_namespace.html
+
+  - title: Compute
+    output: web, pdf
+    folderitems:
+
+      - title: ExternalService
+        output: web, pdf
+        url: /squall_externalservice.html
+
+      - title: SuggestedPolicy
+        output: web, pdf
+        url: /squall_suggestedpolicy.html
+
+      - title: RenderedPolicy
+        output: web, pdf
+        url: /squall_renderedpolicy.html
+
+      - title: NamespaceMappingPolicy
+        output: web, pdf
+        url: /squall_namespacemappingpolicy.html
+
+      - title: ProcessingUnit
+        output: web, pdf
+        url: /squall_processingunit.html
+
+      - title: NetworkAccessPolicy
+        output: web, pdf
+        url: /squall_networkaccesspolicy.html
+
+  - title: Platform
+    output: web, pdf
+    folderitems:
+
+      - title: FileAccess
+        output: web, pdf
+        url: /squall_fileaccess.html
+
+      - title: FlowStatistic
+        output: web, pdf
+        url: /squall_flowstatistic.html
+
+      - title: DependencyMap
+        output: web, pdf
+        url: /squall_dependencymap.html
+
+  - title: Policies
+    output: web, pdf
+    folderitems:
+
+      - title: HookPolicy
+        output: web, pdf
+        url: /squall_hookpolicy.html
+
+  - title: Policy
+    output: web, pdf
+    folderitems:
+
+      - title: QuotaPolicy
+        output: web, pdf
+        url: /squall_quotapolicy.html
+
+  - title: Storage
+    output: web, pdf
+    folderitems:
+
+      - title: FilePath
+        output: web, pdf
+        url: /squall_filepath.html
+
+      - title: FileAccessPolicy
+        output: web, pdf
+        url: /squall_fileaccesspolicy.html
+
+  - title: System
+    output: web, pdf
+    folderitems:
+
+      - title: Enforcer
+        output: web, pdf
+        url: /squall_enforcer.html
+
+      - title: EnforcerProfile
+        output: web, pdf
+        url: /squall_enforcerprofile.html
+
+      - title: EnforcerProfileMappingPolicy
+        output: web, pdf
+        url: /squall_enforcerprofilemappingpolicy.html
+
+      - title: Activity
+        output: web, pdf
+        url: /squall_activity.html
