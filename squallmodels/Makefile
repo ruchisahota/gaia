@@ -18,9 +18,9 @@ publish:
 	git commit -am "codegen"
 	git push
 
-make_docgen: make_docgen_v1
+docgen: docgen_v1
 
-make_docgen_v1:
+docgen_v1:
 	@echo '* Generating Squall Documentation v1'
 	rm -rf codegen
 	monogen -f v1/specs -L monodoc

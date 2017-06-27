@@ -14,7 +14,7 @@ folder: apidoc
 
 {% include attribute.html
   name="allowsTraffic"
-  description="AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected."
+  description="AllowsTraffic if true, the flow will be accepted. Otherwise other actions like \"logs\" can still be done, but the traffic will be rejected."
   type="boolean"
   choices=""
   required="None"
