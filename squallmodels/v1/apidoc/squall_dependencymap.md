@@ -3,7 +3,7 @@ title: DependencyMap
 keywords: api, Squall,
 last_updated: June 9, 2017
 tags: [Api,Squall]
-summary: "This api returns a data structure representing the graph of all processing units and their connections in a particular namespace, in a given time window. To pass the time window you can use the query parameters "startAbsolute", "endAbsolute", "startRelative", "endRelative".  For example "https://squall.aporeto.com/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000""
+summary: "This api returns a data structure representing the graph of all processing units and their connections in a particular namespace, in a given time window. To pass the time window you can use the query parameters \"startAbsolute\", \"endAbsolute\", \"startRelative\", \"endRelative\".  For example \"https://squall.aporeto.com/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000\""
 sidebar: squall_sidebar
 permalink: squall_dependencymap.html
 folder: apidoc
