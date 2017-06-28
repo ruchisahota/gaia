@@ -39,10 +39,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "suggs",
-            "sugg",
+            "sugpol",
             "sugpols",
-            "sugpol"
+            "sugg",
+            "suggs"
         ],
         "create": null,
         "delete": true,
@@ -50,7 +50,7 @@
         "entity_name": "SuggestedPolicy",
         "extends": [],
         "get": true,
-        "package": "Compute",
+        "package": "Squall API",
         "resource_name": "suggestedpolicies",
         "rest_name": "suggestedpolicy",
         "root": null,
