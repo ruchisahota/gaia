@@ -109,10 +109,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "quotapols",
-            "quotapol",
+            "quota",
             "quotas",
-            "quota"
+            "quotapol",
+            "quotapols"
         ],
         "create": null,
         "delete": true,
@@ -128,7 +128,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Policy",
+        "package": "Squall API",
         "resource_name": "quotapolicies",
         "rest_name": "quotapolicy",
         "root": null,
