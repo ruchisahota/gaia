@@ -707,8 +707,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "profiles",
-            "profile"
+            "profile",
+            "profiles"
         ],
         "create": null,
         "delete": true,
@@ -721,7 +721,7 @@
             "@named"
         ],
         "get": true,
-        "package": "System",
+        "package": "Squall API",
         "resource_name": "enforcerprofiles",
         "rest_name": "enforcerprofile",
         "root": null,
