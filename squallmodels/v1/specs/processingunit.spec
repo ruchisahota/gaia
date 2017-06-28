@@ -226,8 +226,8 @@
     ],
     "model": {
         "aliases": [
-            "pus",
-            "pu"
+            "pu",
+            "pus"
         ],
         "create": false,
         "delete": true,
@@ -241,7 +241,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Compute",
+        "package": "Squall API",
         "resource_name": "processingunits",
         "rest_name": "processingunit",
         "root": null,
