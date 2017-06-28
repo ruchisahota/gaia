@@ -336,7 +336,7 @@
             "@identifiable-nopk-nostored"
         ],
         "get": false,
-        "package": "Platform",
+        "package": "Squall API",
         "resource_name": "flowstatistics",
         "rest_name": "flowstatistic",
         "root": null,
