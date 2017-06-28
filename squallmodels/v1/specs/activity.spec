@@ -362,7 +362,7 @@
             "@identifiable-pk-stored"
         ],
         "get": true,
-        "package": "System",
+        "package": "Squall API",
         "resource_name": "activities",
         "rest_name": "activity",
         "root": null,
