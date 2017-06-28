@@ -126,7 +126,7 @@
             "@named"
         ],
         "get": true,
-        "package": null,
+        "package": "Squall API",
         "resource_name": "messages",
         "rest_name": "message",
         "root": null,
