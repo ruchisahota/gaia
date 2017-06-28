@@ -74,8 +74,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "srvpol",
-            "srvpols"
+            "srvpols",
+            "srvpol"
         ],
         "create": null,
         "delete": true,
@@ -91,7 +91,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "System",
+        "package": "Squall API",
         "resource_name": "enforcerprofilemappingpolicies",
         "rest_name": "enforcerprofilemappingpolicy",
         "root": null,
