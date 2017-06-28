@@ -109,10 +109,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "tab",
-            "tabs",
+            "table",
             "tables",
-            "table"
+            "tabs",
+            "tab"
         ],
         "create": null,
         "delete": false,
@@ -120,7 +120,7 @@
         "entity_name": "Tabulation",
         "extends": [],
         "get": false,
-        "package": null,
+        "package": "Squall API",
         "resource_name": "tabulations",
         "rest_name": "tabulation",
         "root": null,
