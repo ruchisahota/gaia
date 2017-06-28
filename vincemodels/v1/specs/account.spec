@@ -921,13 +921,13 @@
         "aliases": [],
         "create": null,
         "delete": false,
-        "description": null,
+        "description": "Manage your Account.",
         "entity_name": "Account",
         "extends": [
             "@base"
         ],
         "get": true,
-        "package": null,
+        "package": "Vince API",
         "resource_name": "accounts",
         "rest_name": "account",
         "root": null,
