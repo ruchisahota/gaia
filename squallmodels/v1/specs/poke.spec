@@ -9,7 +9,7 @@
         "entity_name": "Poke",
         "extends": [],
         "get": false,
-        "package": null,
+        "package": "Squall API",
         "resource_name": "poke",
         "rest_name": "poke",
         "root": null,
