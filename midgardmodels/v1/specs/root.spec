@@ -27,6 +27,7 @@
         }
     ],
     "model": {
+        "aliases": [],
         "create": false,
         "delete": false,
         "description": "Root object of the API",
@@ -35,7 +36,7 @@
             "@base"
         ],
         "get": true,
-        "package": "midgard",
+        "package": "",
         "resource_name": "root",
         "rest_name": "root",
         "root": true,
