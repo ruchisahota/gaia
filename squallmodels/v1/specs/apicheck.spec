@@ -193,7 +193,7 @@
         "entity_name": "APICheck",
         "extends": [],
         "get": false,
-        "package": "Authorization",
+        "package": "Squall API",
         "resource_name": "apichecks",
         "rest_name": "apicheck",
         "root": null,
