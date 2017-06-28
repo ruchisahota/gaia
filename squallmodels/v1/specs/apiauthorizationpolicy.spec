@@ -109,8 +109,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "apiauth",
-            "apiauths"
+            "apiauths",
+            "apiauth"
         ],
         "create": null,
         "delete": true,
@@ -126,7 +126,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Authorization",
+        "package": "Squall API",
         "resource_name": "apiauthorizationpolicies",
         "rest_name": "apiauthorizationpolicy",
         "root": null,
