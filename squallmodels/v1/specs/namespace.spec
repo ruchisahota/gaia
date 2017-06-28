@@ -52,7 +52,7 @@
             "@metadatable"
         ],
         "get": true,
-        "package": "Authorization",
+        "package": "Squall API",
         "resource_name": "namespaces",
         "rest_name": "namespace",
         "root": null,
