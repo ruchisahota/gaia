@@ -349,50 +349,50 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"hookpols":   HookPolicyIdentity,
-	"hookpol":    HookPolicyIdentity,
-	"hooks":      HookPolicyIdentity,
 	"hook":       HookPolicyIdentity,
-	"apiauth":    APIAuthorizationPolicyIdentity,
+	"hooks":      HookPolicyIdentity,
+	"hookpol":    HookPolicyIdentity,
+	"hookpols":   HookPolicyIdentity,
 	"apiauths":   APIAuthorizationPolicyIdentity,
+	"apiauth":    APIAuthorizationPolicyIdentity,
 	"mess":       MessageIdentity,
-	"fps":        FilePathIdentity,
 	"fp":         FilePathIdentity,
+	"fps":        FilePathIdentity,
 	"ns":         NamespaceIdentity,
-	"extsrv":     ExternalServiceIdentity,
 	"extsrvs":    ExternalServiceIdentity,
-	"suggs":      SuggestedPolicyIdentity,
-	"sugg":       SuggestedPolicyIdentity,
-	"sugpols":    SuggestedPolicyIdentity,
+	"extsrv":     ExternalServiceIdentity,
 	"sugpol":     SuggestedPolicyIdentity,
-	"tab":        TabulationIdentity,
-	"tabs":       TabulationIdentity,
-	"tables":     TabulationIdentity,
+	"sugpols":    SuggestedPolicyIdentity,
+	"sugg":       SuggestedPolicyIdentity,
+	"suggs":      SuggestedPolicyIdentity,
 	"table":      TabulationIdentity,
-	"quotapols":  QuotaPolicyIdentity,
-	"quotapol":   QuotaPolicyIdentity,
-	"quotas":     QuotaPolicyIdentity,
+	"tables":     TabulationIdentity,
+	"tabs":       TabulationIdentity,
+	"tab":        TabulationIdentity,
 	"quota":      QuotaPolicyIdentity,
-	"profiles":   EnforcerProfileIdentity,
+	"quotas":     QuotaPolicyIdentity,
+	"quotapol":   QuotaPolicyIdentity,
+	"quotapols":  QuotaPolicyIdentity,
 	"profile":    EnforcerProfileIdentity,
-	"rpols":      RenderedPolicyIdentity,
+	"profiles":   EnforcerProfileIdentity,
 	"rpol":       RenderedPolicyIdentity,
-	"nsmaps":     NamespaceMappingPolicyIdentity,
-	"nsmap":      NamespaceMappingPolicyIdentity,
-	"nspolicies": NamespaceMappingPolicyIdentity,
+	"rpols":      RenderedPolicyIdentity,
 	"nspolicy":   NamespaceMappingPolicyIdentity,
-	"pus":        ProcessingUnitIdentity,
+	"nspolicies": NamespaceMappingPolicyIdentity,
+	"nsmap":      NamespaceMappingPolicyIdentity,
+	"nsmaps":     NamespaceMappingPolicyIdentity,
 	"pu":         ProcessingUnitIdentity,
-	"depmaps":    DependencyMapIdentity,
+	"pus":        ProcessingUnitIdentity,
 	"depmap":     DependencyMapIdentity,
-	"vuls":       VulnerabilityIdentity,
-	"vuln":       VulnerabilityIdentity,
-	"vul":        VulnerabilityIdentity,
+	"depmaps":    DependencyMapIdentity,
 	"vulns":      VulnerabilityIdentity,
-	"srvpol":     EnforcerProfileMappingPolicyIdentity,
+	"vul":        VulnerabilityIdentity,
+	"vuln":       VulnerabilityIdentity,
+	"vuls":       VulnerabilityIdentity,
 	"srvpols":    EnforcerProfileMappingPolicyIdentity,
-	"netpols":    NetworkAccessPolicyIdentity,
+	"srvpol":     EnforcerProfileMappingPolicyIdentity,
 	"netpol":     NetworkAccessPolicyIdentity,
+	"netpols":    NetworkAccessPolicyIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -409,15 +409,15 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case HookPolicyIdentity:
 		return []string{
-			"hookpols",
-			"hookpol",
-			"hooks",
 			"hook",
+			"hooks",
+			"hookpol",
+			"hookpols",
 		}
 	case APIAuthorizationPolicyIdentity:
 		return []string{
-			"apiauth",
 			"apiauths",
+			"apiauth",
 		}
 	case SystemCallIdentity:
 		return []string{}
@@ -433,8 +433,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case FilePathIdentity:
 		return []string{
-			"fps",
 			"fp",
+			"fps",
 		}
 	case FileAccessIdentity:
 		return []string{}
@@ -446,8 +446,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ExternalServiceIdentity:
 		return []string{
-			"extsrv",
 			"extsrvs",
+			"extsrv",
 		}
 	case RoleIdentity:
 		return []string{}
@@ -457,65 +457,65 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case SuggestedPolicyIdentity:
 		return []string{
-			"suggs",
-			"sugg",
-			"sugpols",
 			"sugpol",
+			"sugpols",
+			"sugg",
+			"suggs",
 		}
 	case TabulationIdentity:
 		return []string{
-			"tab",
-			"tabs",
-			"tables",
 			"table",
+			"tables",
+			"tabs",
+			"tab",
 		}
 	case QuotaPolicyIdentity:
 		return []string{
-			"quotapols",
-			"quotapol",
-			"quotas",
 			"quota",
+			"quotas",
+			"quotapol",
+			"quotapols",
 		}
 	case FileAccessPolicyIdentity:
 		return []string{}
 	case EnforcerProfileIdentity:
 		return []string{
-			"profiles",
 			"profile",
+			"profiles",
 		}
 	case RenderedPolicyIdentity:
 		return []string{
-			"rpols",
 			"rpol",
+			"rpols",
 		}
 	case NamespaceMappingPolicyIdentity:
 		return []string{
-			"nsmaps",
-			"nsmap",
-			"nspolicies",
 			"nspolicy",
+			"nspolicies",
+			"nsmap",
+			"nsmaps",
 		}
 	case ProcessingUnitIdentity:
 		return []string{
-			"pus",
 			"pu",
+			"pus",
 		}
 	case DependencyMapIdentity:
 		return []string{
-			"depmaps",
 			"depmap",
+			"depmaps",
 		}
 	case VulnerabilityIdentity:
 		return []string{
-			"vuls",
-			"vuln",
-			"vul",
 			"vulns",
+			"vul",
+			"vuln",
+			"vuls",
 		}
 	case EnforcerProfileMappingPolicyIdentity:
 		return []string{
-			"srvpol",
 			"srvpols",
+			"srvpol",
 		}
 	case ActivityIdentity:
 		return []string{}
@@ -523,8 +523,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case NetworkAccessPolicyIdentity:
 		return []string{
-			"netpols",
 			"netpol",
+			"netpols",
 		}
 	}
 

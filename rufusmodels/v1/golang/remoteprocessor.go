@@ -70,9 +70,6 @@ type RemoteProcessor struct {
 	// Returns the OutputData filled with the processor information
 	Output elemental.Identifiable `json:"output" bson:"-"`
 
-	// requestID identifies the current context
-	RequestID string `json:"requestID" bson:"requestid"`
-
 	// Represents the Identity name of the managed object
 	TargetIdentity string `json:"targetIdentity" bson:"-"`
 
@@ -120,7 +117,7 @@ func (o *RemoteProcessor) DefaultOrder() []string {
 
 // Doc returns the documentation for the object
 func (o *RemoteProcessor) Doc() string {
-	return `Hook to integrate in an Aporeto service`
+	return `Hook to integrate an Aporeto service.`
 }
 
 func (o *RemoteProcessor) String() string {
@@ -254,17 +251,6 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "elemental_identitifable",
 		Type:           "external",
 	},
-	"RequestID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `requestID identifies the current context`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "requestID",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"TargetIdentity": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Represents the Identity name of the managed object`,
@@ -331,17 +317,6 @@ var RemoteProcessorLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		ReadOnly:       true,
 		SubType:        "elemental_identitifable",
 		Type:           "external",
-	},
-	"requestid": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `requestID identifies the current context`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "requestID",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
 	},
 	"targetidentity": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

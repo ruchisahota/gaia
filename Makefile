@@ -15,7 +15,7 @@ install_monolithe_plugins:
 	pip install 'git+https://github.com/aporeto-inc/elemental.git#subdirectory=monolithe'
 	pip install 'git+https://github.com/aporeto-inc/pyelemental.git#subdirectory=monolithe'
 
-codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus, codegen_yuffie
+codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus codegen_yuffie
 
 codegen_zack:
 	cd $(zack_folder) && make codegen

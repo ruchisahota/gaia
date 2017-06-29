@@ -69,8 +69,8 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"hk":  RemoteProcessorIdentity,
 	"hks": RemoteProcessorIdentity,
+	"hk":  RemoteProcessorIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -85,8 +85,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	switch identity {
 	case RemoteProcessorIdentity:
 		return []string{
-			"hk",
 			"hks",
+			"hk",
 		}
 	case RootIdentity:
 		return []string{}

@@ -87,6 +87,11 @@ func (o *Auth) DefaultOrder() []string {
 	return []string{}
 }
 
+// Doc returns the documentation for the object
+func (o *Auth) Doc() string {
+	return `This API verifies if the given token is valid or not.`
+}
+
 func (o *Auth) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

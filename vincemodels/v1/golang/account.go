@@ -192,6 +192,11 @@ func (o *Account) DefaultOrder() []string {
 	return []string{}
 }
 
+// Doc returns the documentation for the object
+func (o *Account) Doc() string {
+	return `Manage your Account.`
+}
+
 func (o *Account) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
