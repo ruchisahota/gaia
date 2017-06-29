@@ -26,3 +26,4 @@ To generate the code, run:
     $ make
 
 Then push to Github. Remember to update the `glide.lock` files for all the projects you want to use the newly generated version.
+
