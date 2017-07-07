@@ -40,7 +40,7 @@ const (
 	GraphNodeTypeContainer GraphNodeType = "Container"
 
 	// GraphNodeTypeExternalService represents the value EternalService.
-	GraphNodeTypeExternalService GraphNodeType = "EternalService"
+	GraphNodeTypeExternalService GraphNodeType = "ExternalService"
 
 	// GraphNodeTypeVolume represents the value Volume.
 	GraphNodeTypeVolume GraphNodeType = "Volume"
