@@ -272,7 +272,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "System",
+        "package": "Squall API",
         "resource_name": "policies",
         "rest_name": "policy",
         "root": null,

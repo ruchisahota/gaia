@@ -3,6 +3,7 @@ squall_folder := squallmodels
 vince_folder := vincemodels
 zack_folder := zackmodels
 rufus_folder := rufusmodels
+yuffie_folder := yuffiemodels
 
 init: install_monolithe install_monolithe_plugins
 default: codegen
@@ -14,7 +15,7 @@ install_monolithe_plugins:
 	pip install 'git+https://github.com/aporeto-inc/elemental.git#subdirectory=monolithe'
 	pip install 'git+https://github.com/aporeto-inc/pyelemental.git#subdirectory=monolithe'
 
-codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus
+codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus codegen_yuffie
 
 codegen_zack:
 	cd $(zack_folder) && make codegen
@@ -36,14 +37,12 @@ codegen_rufus:
 	cd $(rufus_folder) && make codegen
 	# cd $(rufus_folder)/golang && go build
 
+codegen_yuffie:
+	cd $(yuffie_folder) && make codegen
+	# cd $(rufus_folder)/golang && go build
+
 publish:
 	git pull
 	make codegen
 	git commit -am "codegen"
 	git push
-
-upload:
-	gsutil -m rsync -d -R vincemodels/v1/apidoc gs://doc.aporeto.com/api/v1/vince
-	gsutil -m rsync -d -R midgardmodels/v1/apidoc gs://doc.aporeto.com/api/v1/midgard
-	gsutil -m rsync -d -R squallmodels/v1/apidoc gs://doc.aporeto.com/api/v1/squall
-	gsutil -m rsync -d -R zackmodels/v1/apidoc gs://doc.aporeto.com/api/v1/zack

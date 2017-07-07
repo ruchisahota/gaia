@@ -214,8 +214,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "netpols",
-            "netpol"
+            "netpol",
+            "netpols"
         ],
         "create": null,
         "delete": true,
@@ -231,7 +231,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Compute",
+        "package": "Squall API",
         "resource_name": "networkaccesspolicies",
         "rest_name": "networkaccesspolicy",
         "root": null,

@@ -218,10 +218,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "hookpols",
-            "hookpol",
+            "hook",
             "hooks",
-            "hook"
+            "hookpol",
+            "hookpols"
         ],
         "create": null,
         "delete": true,
@@ -237,7 +237,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Policies",
+        "package": "Squall API",
         "resource_name": "hookpolicies",
         "rest_name": "hookpolicy",
         "root": null,

@@ -179,8 +179,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "rpols",
-            "rpol"
+            "rpol",
+            "rpols"
         ],
         "create": false,
         "delete": false,
@@ -188,7 +188,7 @@
         "entity_name": "RenderedPolicy",
         "extends": [],
         "get": false,
-        "package": "Compute",
+        "package": "Squall API",
         "resource_name": "renderedpolicies",
         "rest_name": "renderedpolicy",
         "root": false,

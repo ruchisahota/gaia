@@ -109,8 +109,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "depmaps",
-            "depmap"
+            "depmap",
+            "depmaps"
         ],
         "create": false,
         "delete": false,
@@ -120,7 +120,7 @@
             "@identifiable-nopk-nostored"
         ],
         "get": false,
-        "package": "Platform",
+        "package": "Squall API",
         "resource_name": "dependencymaps",
         "rest_name": "dependencymap",
         "root": null,

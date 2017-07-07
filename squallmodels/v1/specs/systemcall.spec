@@ -15,7 +15,7 @@
             "@named"
         ],
         "get": true,
-        "package": "System",
+        "package": "",
         "resource_name": "systemcalls",
         "rest_name": "systemcall",
         "root": null,

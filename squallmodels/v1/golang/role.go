@@ -94,6 +94,11 @@ func (o *Role) DefaultOrder() []string {
 	return []string{}
 }
 
+// Doc returns the documentation for the object
+func (o *Role) Doc() string {
+	return `Roles returns the available roles that can be used with API Authorization Policies.`
+}
+
 func (o *Role) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

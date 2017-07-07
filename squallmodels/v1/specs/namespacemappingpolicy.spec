@@ -74,10 +74,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "nsmaps",
-            "nsmap",
+            "nspolicy",
             "nspolicies",
-            "nspolicy"
+            "nsmap",
+            "nsmaps"
         ],
         "create": null,
         "delete": true,
@@ -92,7 +92,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Compute",
+        "package": "Squall API",
         "resource_name": "namespacemappingpolicies",
         "rest_name": "namespacemappingpolicy",
         "root": null,

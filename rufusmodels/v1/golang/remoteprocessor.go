@@ -70,7 +70,7 @@ type RemoteProcessor struct {
 	// Returns the OutputData filled with the processor information
 	Output elemental.Identifiable `json:"output" bson:"-"`
 
-	// requestID identifies the current context
+	// RequestID gives the id of the request coming from the main server.
 	RequestID string `json:"requestID" bson:"requestid"`
 
 	// Represents the Identity name of the managed object
@@ -120,7 +120,7 @@ func (o *RemoteProcessor) DefaultOrder() []string {
 
 // Doc returns the documentation for the object
 func (o *RemoteProcessor) Doc() string {
-	return `Hook to integrate in an Aporeto service`
+	return `Hook to integrate an Aporeto service.`
 }
 
 func (o *RemoteProcessor) String() string {
@@ -256,7 +256,7 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"RequestID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `requestID identifies the current context`,
+		Description:    `RequestID gives the id of the request coming from the main server.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -334,7 +334,7 @@ var RemoteProcessorLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 	},
 	"requestid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `requestID identifies the current context`,
+		Description:    `RequestID gives the id of the request coming from the main server.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",

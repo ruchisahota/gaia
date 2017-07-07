@@ -505,7 +505,7 @@
             "@base"
         ],
         "get": true,
-        "package": "Security",
+        "package": "Vince API",
         "resource_name": "certificates",
         "rest_name": "certificate",
         "root": null,

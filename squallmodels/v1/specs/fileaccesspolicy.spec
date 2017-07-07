@@ -263,7 +263,7 @@
             "@propagated"
         ],
         "get": true,
-        "package": "Storage",
+        "package": "Squall API",
         "resource_name": "fileaccesspolicies",
         "rest_name": "fileaccesspolicy",
         "root": null,

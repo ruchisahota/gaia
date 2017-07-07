@@ -109,8 +109,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "extsrv",
-            "extsrvs"
+            "extsrvs",
+            "extsrv"
         ],
         "create": false,
         "delete": true,
@@ -124,7 +124,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Compute",
+        "package": "Squall API",
         "resource_name": "externalservices",
         "rest_name": "externalservice",
         "root": null,

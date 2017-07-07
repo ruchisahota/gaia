@@ -222,7 +222,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "requestID identifies the current context",
+            "description": "RequestID gives the id of the request coming from the main server.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
@@ -287,16 +287,16 @@
     "children": [],
     "model": {
         "aliases": [
-            "hk",
-            "hks"
+            "hks",
+            "hk"
         ],
         "create": null,
         "delete": false,
-        "description": "Hook to integrate in an Aporeto service",
+        "description": "Hook to integrate an Aporeto service.",
         "entity_name": "RemoteProcessor",
         "extends": [],
         "get": false,
-        "package": null,
+        "package": "Rufus API",
         "resource_name": "remoteprocessors",
         "rest_name": "remoteprocessor",
         "root": null,

@@ -365,7 +365,7 @@
             "@named"
         ],
         "get": true,
-        "package": "System",
+        "package": "Squall API",
         "resource_name": "enforcers",
         "rest_name": "enforcer",
         "root": null,

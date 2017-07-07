@@ -74,8 +74,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "fps",
-            "fp"
+            "fp",
+            "fps"
         ],
         "create": false,
         "delete": true,
@@ -89,7 +89,7 @@
             "@named"
         ],
         "get": true,
-        "package": "Storage",
+        "package": "Squall API",
         "resource_name": "filepaths",
         "rest_name": "filepath",
         "root": null,

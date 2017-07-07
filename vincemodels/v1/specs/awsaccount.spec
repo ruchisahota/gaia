@@ -249,9 +249,9 @@
     "children": [],
     "model": {
         "aliases": [
-            "awsacc",
+            "aws",
             "awsaccs",
-            "aws"
+            "awsacc"
         ],
         "create": null,
         "delete": true,
@@ -261,7 +261,7 @@
             "@base"
         ],
         "get": true,
-        "package": null,
+        "package": "Vince API",
         "resource_name": "awsaccounts",
         "rest_name": "awsaccount",
         "root": null,
