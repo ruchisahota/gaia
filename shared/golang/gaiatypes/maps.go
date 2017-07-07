@@ -3,14 +3,28 @@ package gaiatypes
 // GraphEdgeMap is a map of id to GraphEdge
 type GraphEdgeMap map[string]*GraphEdge
 
+// GraphEdgeExtremityType represents the source or destination type.
+type GraphEdgeExtremityType string
+
+const (
+	// GraphEdgeExtremityTypePU represents the value of a pu extremity.
+	GraphEdgeExtremityTypePU GraphEdgeExtremityType = "pu"
+
+	// GraphEdgeExtremityTypeExternalService represents the value of a pu external service.
+	GraphEdgeExtremityTypeExternalService GraphEdgeExtremityType = "extsrv"
+)
+
 // GraphEdge represents the model of a Edge
 type GraphEdge struct {
-	AcceptedFlows int    `json:"acceptedFlows"`
-	DestinationID string `json:"destinationID"`
-	ID            string `json:"ID"`
-	Name          string `json:"name"`
-	RejectedFlows int    `json:"rejectedFlows"`
-	SourceID      string `json:"sourceID"`
+	AcceptedFlows   int                    `json:"acceptedFlows"`
+	DestinationID   string                 `json:"destinationID"`
+	DestinationType GraphEdgeExtremityType `json:"destinationType"`
+	ID              string                 `json:"ID"`
+	Name            string                 `json:"name"`
+	RejectedFlows   int                    `json:"rejectedFlows"`
+	LoggedFlows     int                    `json:"LoggedFlows"`
+	SourceID        string                 `json:"sourceID"`
+	SourceType      GraphEdgeExtremityType `json:"sourceType"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
@@ -24,6 +38,9 @@ type GraphNodeType string
 const (
 	// GraphNodeTypeContainer represents the value Container.
 	GraphNodeTypeContainer GraphNodeType = "Container"
+
+	// GraphNodeTypeExternalService represents the value EternalService.
+	GraphNodeTypeExternalService GraphNodeType = "EternalService"
 
 	// GraphNodeTypeVolume represents the value Volume.
 	GraphNodeTypeVolume GraphNodeType = "Volume"
