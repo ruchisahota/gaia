@@ -22,7 +22,6 @@ type GraphEdge struct {
 	ID              string                 `json:"ID"`
 	Name            string                 `json:"name"`
 	RejectedFlows   int                    `json:"rejectedFlows"`
-	LoggedFlows     int                    `json:"LoggedFlows"`
 	SourceID        string                 `json:"sourceID"`
 	SourceType      GraphEdgeExtremityType `json:"sourceType"`
 }

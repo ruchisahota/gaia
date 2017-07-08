@@ -57,8 +57,14 @@ const (
 	// StatsTagKeyDestinationID represents the destination ID tag.
 	StatsTagKeyDestinationID = "@destid"
 
+	// StatsTagKeyDestinationIP represents the destination IP tag.
+	StatsTagKeyDestinationIP = "@destip"
+
 	// StatsTagKeySourceID represents the source ID tag.
 	StatsTagKeySourceID = "@srcid"
+
+	// StatsTagKeySourceIP represents the source IP tag.
+	StatsTagKeySourceIP = "@srcip"
 
 	// StatsTagKeyDestinationPort represents the destination port tag.
 	StatsTagKeyDestinationPort = "@destport"
