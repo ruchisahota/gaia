@@ -2,15 +2,17 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "extacs"
+        ],
         "create": null,
         "delete": true,
         "description": null,
-        "entity_name": "ExternalAccess",
+        "entity_name": "Externalaccess",
         "extends": [],
         "get": true,
         "package": null,
-        "resource_name": "ExternalAccess",
+        "resource_name": "externalaccess",
         "rest_name": "ExternalAccess",
         "root": null,
         "update": true
