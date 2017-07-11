@@ -3,6 +3,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "extac",
             "extacs"
         ],
         "create": null,
