@@ -74,8 +74,8 @@
     "children": [],
     "model": {
         "aliases": [
-            "extacs",
-            "extac"
+            "extac",
+            "extacs"
         ],
         "create": null,
         "delete": false,
@@ -83,7 +83,7 @@
         "entity_name": "ExternalAccess",
         "extends": [],
         "get": false,
-        "package": null,
+        "package": "Squall API",
         "resource_name": "externalaccesses",
         "rest_name": "externalaccess",
         "root": null,
