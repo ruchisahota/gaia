@@ -13,6 +13,16 @@ import (
 	"github.com/aporeto-inc/gaia/squallmodels/current/golang"
 )
 
+// NamespaceSetter is an interface that allows to set a namespace
+type NamespaceSetter interface {
+	SetNamespace(string)
+}
+
+// NamespaceGetter is an interface that allows to get a namespace
+type NamespaceGetter interface {
+	GetNamespace() string
+}
+
 // ParentNamespaceFromString returns the parent namespace of a namespace
 // It returns empty it the string is invalid
 func ParentNamespaceFromString(namespace string) (string, error) {
