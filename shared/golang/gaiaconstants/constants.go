@@ -120,3 +120,18 @@ const (
 	// StatsTagKeySyscallAccessProcessName represents the name of the related process.
 	StatsTagKeySyscallAccessProcessName = "@processname"
 )
+
+const (
+	// FlowsFieldDestinationID TODO
+	FlowsFieldDestinationID = "@destid"
+	// FlowsFieldDestinationIP TODO
+	FlowsFieldDestinationIP = "@destip"
+	// FlowsFieldSourceID TODO
+	FlowsFieldSourceID = "@srcid"
+	// FlowsFieldSourceIP TODO
+	FlowsFieldSourceIP = "@srcip"
+	// FlowsReasonExternalServiceIsDestination TODO
+	FlowsReasonExternalServiceIsDestination = "extdst"
+	// FlowsReasonExternalServiceIsSrouce TODO
+	FlowsReasonExternalServiceIsSrouce = "extsrc"
+)
