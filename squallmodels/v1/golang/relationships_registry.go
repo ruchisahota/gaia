@@ -60,6 +60,17 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[elemental.IdentityFromName("externalaccess")] = &elemental.Relationship{
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[elemental.IdentityFromName("systemcall")] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
