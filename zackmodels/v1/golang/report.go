@@ -113,6 +113,11 @@ func (o *Report) DefaultOrder() []string {
 	return []string{}
 }
 
+// Doc returns the documentation for the object
+func (o *Report) Doc() string {
+	return `Post a new statistics report.`
+}
+
 func (o *Report) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
