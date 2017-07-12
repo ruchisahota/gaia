@@ -43,7 +43,7 @@ type ExternalAccess struct {
 	IPs []string `json:"IPs" bson:"-"`
 
 	// externalService contains the associated external service information
-	ExternalService ExternalService `json:"externalService" bson:"-"`
+	ExternalService *ExternalService `json:"externalService" bson:"-"`
 
 	ModelVersion float64 `json:"-" bson:"_modelversion"`
 
