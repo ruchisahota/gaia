@@ -132,6 +132,6 @@ const (
 	FlowsFieldSourceIP = "@srcip"
 	// FlowsReasonExternalServiceIsDestination TODO
 	FlowsReasonExternalServiceIsDestination = "extdst"
-	// FlowsReasonExternalServiceIsSrouce TODO
-	FlowsReasonExternalServiceIsSrouce = "extsrc"
+	// FlowsReasonExternalServiceIsSource TODO
+	FlowsReasonExternalServiceIsSource = "extsrc"
 )
