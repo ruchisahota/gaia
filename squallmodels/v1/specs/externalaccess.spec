@@ -29,7 +29,7 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": null,
+            "subtype": "ip_records",
             "transient": null,
             "type": "external",
             "unique": null,
