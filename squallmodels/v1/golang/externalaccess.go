@@ -54,7 +54,8 @@ type ExternalAccess struct {
 func NewExternalAccess() *ExternalAccess {
 
 	return &ExternalAccess{
-		ModelVersion: 1.0,
+		ModelVersion:    1.0,
+		ExternalService: NewExternalService(),
 	}
 }
 
