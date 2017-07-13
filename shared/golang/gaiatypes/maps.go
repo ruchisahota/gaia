@@ -1,5 +1,10 @@
 package gaiatypes
 
+import (
+	"net"
+	"sync"
+)
+
 // GraphEdgeMap is a map of id to GraphEdge
 type GraphEdgeMap map[string]*GraphEdge
 
@@ -86,5 +91,25 @@ func NewGraphGroup() *GraphGroup {
 
 	return &GraphGroup{
 		Match: [][]string{},
+	}
+}
+
+// IPRecord represent an IP record.
+type IPRecord struct {
+	IP        string   `json:"IP"`
+	Hostnames []string `json:"hostnames"`
+	Hits      int      `json:"hits"`
+}
+
+// NewIPRecord returns a new IPRecord.
+func NewIPRecord() *IPRecord {
+	return &IPRecord{}
+}
+
+// ResolveHostnames resolves hostnames for the current IP.
+func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) {
+	r.Hostnames, _ = net.LookupAddr(r.IP)
+	if wg != nil {
+		wg.Done()
 	}
 }
