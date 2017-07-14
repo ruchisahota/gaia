@@ -117,7 +117,7 @@ func NewIPRecord() *IPRecord {
 }
 
 // ResolveHostnames resolves hostnames for the current IP.
-func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) error {
+func (r *IPRecord) ResolveHostnames() error {
 
 	var err error
 
@@ -129,7 +129,7 @@ func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) error {
 }
 
 // ResolveLocation tries to geolocate the current IP.
-func (r *IPRecord) ResolveLocation(wg *sync.WaitGroup, geoipurl string) error {
+func (r *IPRecord) ResolveLocation(geoipurl string) error {
 
 	r.Lock()
 	ip := r.IP
@@ -162,10 +162,6 @@ func (r *IPRecord) ResolveLocation(wg *sync.WaitGroup, geoipurl string) error {
 	r.Country = s.Country
 	r.City = s.City
 	r.Unlock()
-
-	if wg != nil {
-		wg.Done()
-	}
 
 	return nil
 }
