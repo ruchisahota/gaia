@@ -1,7 +1,10 @@
 package gaiatypes
 
 import (
+	"encoding/json"
+	"fmt"
 	"net"
+	"net/http"
 	"sync"
 )
 
@@ -100,6 +103,10 @@ type IPRecord struct {
 	Hostnames        []string `json:"hostnames"`
 	DestinationPorts []string `json:"destinationPorts"`
 	Hits             int      `json:"hits"`
+	Latitude         float32  `json:"latitude"`
+	Longitude        float32  `json:"longitude"`
+	Country          string   `json:"country"`
+	City             string   `json:"city"`
 
 	sync.Mutex `json:"-"`
 }
@@ -110,12 +117,55 @@ func NewIPRecord() *IPRecord {
 }
 
 // ResolveHostnames resolves hostnames for the current IP.
-func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) {
+func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) error {
+
+	var err error
+
 	r.Lock()
-	r.Hostnames, _ = net.LookupAddr(r.IP)
+	r.Hostnames, err = net.LookupAddr(r.IP)
+	r.Unlock()
+
+	return err
+}
+
+// ResolveLocation tries to geolocate the current IP.
+func (r *IPRecord) ResolveLocation(wg *sync.WaitGroup, geoipurl string) error {
+
+	r.Lock()
+	ip := r.IP
+	r.Unlock()
+
+	resp, err := http.Get(geoipurl + "/json/" + ip)
+	if err != nil {
+		return fmt.Errorf("Unable to retrieve info from geoip service: %s", err.Error())
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("Unable to retrieve info from geoip service: %s", resp.Status)
+	}
+
+	s := struct {
+		Latitude  float32
+		Longitude float32
+		Country   string
+		City      string
+	}{}
+
+	defer resp.Body.Close()
+	if err := json.NewDecoder(resp.Body).Decode(&s); err != nil {
+		return fmt.Errorf("Unable to decode info from geoip service: %s", err.Error())
+	}
+
+	r.Lock()
+	r.Latitude = s.Latitude
+	r.Longitude = s.Longitude
+	r.Country = s.Country
+	r.City = s.City
 	r.Unlock()
 
 	if wg != nil {
 		wg.Done()
 	}
+
+	return nil
 }
