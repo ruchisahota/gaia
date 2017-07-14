@@ -96,9 +96,10 @@ func NewGraphGroup() *GraphGroup {
 
 // IPRecord represent an IP record.
 type IPRecord struct {
-	IP        string   `json:"IP"`
-	Hostnames []string `json:"hostnames"`
-	Hits      int      `json:"hits"`
+	IP               string   `json:"IP"`
+	Hostnames        []string `json:"hostnames"`
+	DestinationPorts []string `json:"destinationPorts"`
+	Hits             int      `json:"hits"`
 }
 
 // NewIPRecord returns a new IPRecord.
@@ -107,8 +108,11 @@ func NewIPRecord() *IPRecord {
 }
 
 // ResolveHostnames resolves hostnames for the current IP.
-func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) {
+func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup, l *sync.Mutex) {
+	l.Lock()
 	r.Hostnames, _ = net.LookupAddr(r.IP)
+	l.Unlock()
+
 	if wg != nil {
 		wg.Done()
 	}
