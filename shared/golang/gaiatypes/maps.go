@@ -99,6 +99,7 @@ func NewGraphGroup() *GraphGroup {
 
 // IPRecord represent an IP record.
 type IPRecord struct {
+	Actions          []string `json:"actions"`
 	IP               string   `json:"IP"`
 	Hostnames        []string `json:"hostnames"`
 	DestinationPorts []string `json:"destinationPorts"`
@@ -113,7 +114,11 @@ type IPRecord struct {
 
 // NewIPRecord returns a new IPRecord.
 func NewIPRecord() *IPRecord {
-	return &IPRecord{}
+	return &IPRecord{
+		Actions:          []string{},
+		Hostnames:        []string{},
+		DestinationPorts: []string{},
+	}
 }
 
 // ResolveHostnames resolves hostnames for the current IP.
