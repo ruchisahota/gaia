@@ -100,6 +100,8 @@ type IPRecord struct {
 	Hostnames        []string `json:"hostnames"`
 	DestinationPorts []string `json:"destinationPorts"`
 	Hits             int      `json:"hits"`
+
+	sync.Mutex `json:"-"`
 }
 
 // NewIPRecord returns a new IPRecord.
@@ -108,10 +110,10 @@ func NewIPRecord() *IPRecord {
 }
 
 // ResolveHostnames resolves hostnames for the current IP.
-func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup, l *sync.Mutex) {
-	l.Lock()
+func (r *IPRecord) ResolveHostnames(wg *sync.WaitGroup) {
+	r.Lock()
 	r.Hostnames, _ = net.LookupAddr(r.IP)
-	l.Unlock()
+	r.Unlock()
 
 	if wg != nil {
 		wg.Done()
