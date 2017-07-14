@@ -151,7 +151,7 @@ func (r *IPRecord) ResolveLocation(wg *sync.WaitGroup, geoipurl string) error {
 		City      string
 	}{}
 
-	defer resp.Body.Close()
+	defer resp.Body.Close() // nolint: errcheck
 	if err := json.NewDecoder(resp.Body).Decode(&s); err != nil {
 		return fmt.Errorf("Unable to decode info from geoip service: %s", err.Error())
 	}
