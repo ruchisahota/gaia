@@ -207,7 +207,7 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": "list_elemental_identitifable",
+            "subtype": "content_identitifable",
             "transient": null,
             "type": "external",
             "unique": null,
