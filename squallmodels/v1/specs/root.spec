@@ -332,11 +332,7 @@
         "delete": false,
         "description": "[nodoc]",
         "entity_name": "Root",
-        "extends": [
-            "@base",
-            "@identifiable-nopk-nostored",
-            "@identifiable-pk-stored"
-        ],
+        "extends": [],
         "get": true,
         "package": "",
         "resource_name": "root",
