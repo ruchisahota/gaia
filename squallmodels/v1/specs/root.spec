@@ -333,6 +333,7 @@
         "description": "[nodoc]",
         "entity_name": "Root",
         "extends": [
+            "@base",
             "@identifiable-nopk-nostored"
         ],
         "get": true,
