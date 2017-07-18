@@ -118,6 +118,7 @@
         "entity_name": "ExternalService",
         "extends": [
             "@base",
+            "@deletable",
             "@described",
             "@identifiable-pk-stored",
             "@metadatable",
