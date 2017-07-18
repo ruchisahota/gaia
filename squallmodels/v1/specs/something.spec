@@ -80,7 +80,8 @@
         "entity_name": "Something",
         "extends": [
             "@base",
-            "@identifiable-pk-stored"
+            "@identifiable-pk-stored",
+            "@metadatable"
         ],
         "get": true,
         "package": null,
