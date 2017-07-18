@@ -334,7 +334,8 @@
         "entity_name": "Root",
         "extends": [
             "@base",
-            "@identifiable-nopk-nostored"
+            "@identifiable-nopk-nostored",
+            "@identifiable-pk-stored"
         ],
         "get": true,
         "package": "",
