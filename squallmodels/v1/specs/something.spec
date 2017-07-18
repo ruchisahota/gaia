@@ -76,9 +76,12 @@
         "aliases": [],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "sasd",
         "entity_name": "Something",
-        "extends": [],
+        "extends": [
+            "@base",
+            "@identifiable-pk-stored"
+        ],
         "get": true,
         "package": null,
         "resource_name": "somethings",
