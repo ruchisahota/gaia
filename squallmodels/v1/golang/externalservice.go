@@ -55,6 +55,9 @@ type ExternalService struct {
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
+	// None
+	Deleted bool `json:"-" bson:"deleted"`
+
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
@@ -341,6 +344,12 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
+	"Deleted": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Name:           "deleted",
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Description is the description of the object.`,
@@ -523,6 +532,12 @@ var ExternalServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"deleted": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Name:           "deleted",
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
