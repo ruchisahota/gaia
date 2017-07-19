@@ -5,6 +5,25 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
+import "time"
+
+// ReportKindValue represents the possible values for attribute "kind".
+type ReportKindValue string
+
+const (
+	// ReportKindFileaccess represents the value FileAccess.
+	ReportKindFileaccess ReportKindValue = "FileAccess"
+
+	// ReportKindFlow represents the value Flow.
+	ReportKindFlow ReportKindValue = "Flow"
+
+	// ReportKindProcessingunit represents the value ProcessingUnit.
+	ReportKindProcessingunit ReportKindValue = "ProcessingUnit"
+
+	// ReportKindSyscall represents the value Syscall.
+	ReportKindSyscall ReportKindValue = "Syscall"
+)
+
 // ReportIdentity represents the Identity of the object
 var ReportIdentity = elemental.Identity{
 	Name:     "report",
@@ -39,17 +58,14 @@ func (o ReportsList) DefaultOrder() []string {
 
 // Report represents the model of a report
 type Report struct {
-	// Name contains the name metric of statistics data.
-	Name string `json:"name" bson:"-"`
+	// Kind contains the kind of report.
+	Kind ReportKindValue `json:"kind" bson:"-"`
 
 	// Tags contains the tags associated to the data point.
 	Tags map[string]string `json:"tags" bson:"-"`
 
-	// Timestamp contains the unix timestamp for the report.
-	Timestamp int64 `json:"timestamp" bson:"-"`
-
-	// TTL set the time to live for the report in seconds.
-	Ttl int `json:"ttl" bson:"-"`
+	// Timestamp contains the time for the report.
+	Timestamp time.Time `json:"timestamp" bson:"-"`
 
 	// Value contains the value for the report.
 	Value float64 `json:"value" bson:"-"`
@@ -97,6 +113,11 @@ func (o *Report) DefaultOrder() []string {
 	return []string{}
 }
 
+// Doc returns the documentation for the object
+func (o *Report) Doc() string {
+	return `Post a new statistics report.`
+}
+
 func (o *Report) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
@@ -107,6 +128,10 @@ func (o *Report) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateStringInList("kind", string(o.Kind), []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"}, false); err != nil {
+		errors = append(errors, err)
+	}
 
 	if len(requiredErrors) > 0 {
 		return requiredErrors
@@ -138,13 +163,12 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Name contains the name metric of statistics data.`,
+	"Kind": elemental.AttributeSpecification{
+		AllowedChoices: []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "name",
-		Type:           "string",
+		Name:           "kind",
+		Type:           "enum",
 	},
 	"Tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -156,18 +180,10 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Timestamp contains the unix timestamp for the report.`,
+		Description:    `Timestamp contains the time for the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
-		SubType:        "int64",
-		Type:           "external",
-	},
-	"Ttl": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `TTL set the time to live for the report in seconds.`,
-		Exposed:        true,
-		Name:           "ttl",
-		Type:           "integer",
+		Type:           "time",
 	},
 	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -180,13 +196,12 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 
 // ReportLowerCaseAttributesMap represents the map of attribute for Report.
 var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"name": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `Name contains the name metric of statistics data.`,
+	"kind": elemental.AttributeSpecification{
+		AllowedChoices: []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "name",
-		Type:           "string",
+		Name:           "kind",
+		Type:           "enum",
 	},
 	"tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -198,18 +213,10 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Timestamp contains the unix timestamp for the report.`,
+		Description:    `Timestamp contains the time for the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
-		SubType:        "int64",
-		Type:           "external",
-	},
-	"ttl": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `TTL set the time to live for the report in seconds.`,
-		Exposed:        true,
-		Name:           "ttl",
-		Type:           "integer",
+		Type:           "time",
 	},
 	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
