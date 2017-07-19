@@ -49,6 +49,9 @@ type ExternalService struct {
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
+	// Archived defines if the object is archived.
+	Archived bool `json:"-" bson:"archived"`
+
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
@@ -143,6 +146,16 @@ func (o *ExternalService) Doc() string {
 func (o *ExternalService) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
+}
+
+// GetArchived returns the archived of the receiver
+func (o *ExternalService) GetArchived() bool {
+	return o.Archived
+}
+
+// SetArchived set the given archived of the receiver
+func (o *ExternalService) SetArchived(archived bool) {
+	o.Archived = archived
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
@@ -316,6 +329,15 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "annotations",
 		Type:           "external",
+	},
+	"Archived": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Archived defines if the object is archived.`,
+		Getter:         true,
+		Name:           "archived",
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -499,6 +521,15 @@ var ExternalServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Stored:         true,
 		SubType:        "annotations",
 		Type:           "external",
+	},
+	"archived": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Archived defines if the object is archived.`,
+		Getter:         true,
+		Name:           "archived",
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
 	},
 	"associatedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
