@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.",
             "exposed": false,
             "filterable": false,
             "foreign_key": null,
