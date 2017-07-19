@@ -37,6 +37,12 @@ func (o ActivatesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o ActivatesList) Version() float64 {
+
+	return 1.0
+}
+
 // Activate represents the model of a activate
 type Activate struct {
 	// Token contains the activation token

@@ -55,6 +55,12 @@ func (o HookPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o HookPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // HookPolicy represents the model of a hookpolicy
 type HookPolicy struct {
 	// ID is the identifier of the object.

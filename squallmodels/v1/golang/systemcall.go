@@ -41,6 +41,12 @@ func (o SystemCallsList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o SystemCallsList) Version() float64 {
+
+	return 1.0
+}
+
 // SystemCall represents the model of a systemcall
 type SystemCall struct {
 	// ID is the identifier of the object.

@@ -75,6 +75,12 @@ func (o ProcessingUnitsList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o ProcessingUnitsList) Version() float64 {
+
+	return 1.0
+}
+
 // ProcessingUnit represents the model of a processingunit
 type ProcessingUnit struct {
 	// ID is the identifier of the object.

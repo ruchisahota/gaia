@@ -41,6 +41,12 @@ func (o APIAuthorizationPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o APIAuthorizationPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // APIAuthorizationPolicy represents the model of a apiauthorizationpolicy
 type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.

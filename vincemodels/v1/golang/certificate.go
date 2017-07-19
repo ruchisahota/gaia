@@ -50,6 +50,12 @@ func (o CertificatesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o CertificatesList) Version() float64 {
+
+	return 1.0
+}
+
 // Certificate represents the model of a certificate
 type Certificate struct {
 	// ID of the object.

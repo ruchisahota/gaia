@@ -39,6 +39,12 @@ func (o NamespacesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o NamespacesList) Version() float64 {
+
+	return 1.0
+}
+
 // Namespace represents the model of a namespace
 type Namespace struct {
 	// ID is the identifier of the object.

@@ -41,6 +41,12 @@ func (o NamespaceMappingPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o NamespaceMappingPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // NamespaceMappingPolicy represents the model of a namespacemappingpolicy
 type NamespaceMappingPolicy struct {
 	// ID is the identifier of the object.

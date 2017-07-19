@@ -66,6 +66,12 @@ func (o IssuesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o IssuesList) Version() float64 {
+
+	return 1.0
+}
+
 // Issue represents the model of a issue
 type Issue struct {
 	// Data contains additional data. The value depends on the issuer type.

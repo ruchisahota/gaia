@@ -37,6 +37,12 @@ func (o PasswordResetsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o PasswordResetsList) Version() float64 {
+
+	return 1.0
+}
+
 // PasswordReset represents the model of a passwordreset
 type PasswordReset struct {
 	// Password contains the new password.

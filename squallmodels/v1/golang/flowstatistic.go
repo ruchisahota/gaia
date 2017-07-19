@@ -70,6 +70,12 @@ func (o FlowStatisticsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o FlowStatisticsList) Version() float64 {
+
+	return 1.0
+}
+
 // FlowStatistic represents the model of a flowstatistic
 type FlowStatistic struct {
 	// ID is the identifier of the object.

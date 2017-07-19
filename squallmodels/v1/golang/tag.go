@@ -37,6 +37,12 @@ func (o TagsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o TagsList) Version() float64 {
+
+	return 1.0
+}
+
 // Tag represents the model of a tag
 type Tag struct {
 	// ID is the identifier of the object.

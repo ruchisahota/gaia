@@ -56,6 +56,12 @@ func (o AccountsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o AccountsList) Version() float64 {
+
+	return 1.0
+}
+
 // Account represents the model of a account
 type Account struct {
 	// ID of the object.

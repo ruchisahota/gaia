@@ -37,6 +37,12 @@ func (o ChecksList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o ChecksList) Version() float64 {
+
+	return 1.0
+}
+
 // Check represents the model of a check
 type Check struct {
 	ModelVersion float64 `json:"-" bson:"_modelversion"`

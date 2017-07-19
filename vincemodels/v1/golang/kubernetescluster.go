@@ -39,6 +39,12 @@ func (o KubernetesClustersList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o KubernetesClustersList) Version() float64 {
+
+	return 1.0
+}
+
 // KubernetesCluster represents the model of a kubernetescluster
 type KubernetesCluster struct {
 	// ID of the object.

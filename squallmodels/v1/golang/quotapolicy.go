@@ -41,6 +41,12 @@ func (o QuotaPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o QuotaPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // QuotaPolicy represents the model of a quotapolicy
 type QuotaPolicy struct {
 	// ID is the identifier of the object.

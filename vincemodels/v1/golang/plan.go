@@ -37,6 +37,12 @@ func (o PlansList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o PlansList) Version() float64 {
+
+	return 1.0
+}
+
 // Plan represents the model of a plan
 type Plan struct {
 	// Description contains the description of the Plan.

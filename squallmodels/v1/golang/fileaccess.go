@@ -51,6 +51,12 @@ func (o FileAccessList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o FileAccessList) Version() float64 {
+
+	return 1.0
+}
+
 // FileAccess represents the model of a fileaccess
 type FileAccess struct {
 	// Action tells if the access has been allowed or not.

@@ -72,6 +72,12 @@ func (o EnforcersList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o EnforcersList) Version() float64 {
+
+	return 1.0
+}
+
 // Enforcer represents the model of a enforcer
 type Enforcer struct {
 	// FQDN contains the fqdn of the server where the enforcer is running.

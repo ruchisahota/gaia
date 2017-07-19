@@ -39,6 +39,12 @@ func (o AWSAccountsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o AWSAccountsList) Version() float64 {
+
+	return 1.0
+}
+
 // AWSAccount represents the model of a awsaccount
 type AWSAccount struct {
 	// ID of the object.

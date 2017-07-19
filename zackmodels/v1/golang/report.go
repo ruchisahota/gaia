@@ -37,6 +37,12 @@ func (o ReportsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o ReportsList) Version() float64 {
+
+	return 1.0
+}
+
 // Report represents the model of a report
 type Report struct {
 	// Name contains the name metric of statistics data.
