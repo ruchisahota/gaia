@@ -41,6 +41,12 @@ func (o NetworkAccessPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o NetworkAccessPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // NetworkAccessPolicy represents the model of a networkaccesspolicy
 type NetworkAccessPolicy struct {
 	// ID is the identifier of the object.

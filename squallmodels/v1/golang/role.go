@@ -37,6 +37,12 @@ func (o RolesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o RolesList) Version() float64 {
+
+	return 1.0
+}
+
 // Role represents the model of a role
 type Role struct {
 	// Authorizations of the role.

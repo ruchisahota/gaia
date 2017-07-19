@@ -37,6 +37,12 @@ func (o PokesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o PokesList) Version() float64 {
+
+	return 1.0
+}
+
 // Poke represents the model of a poke
 type Poke struct {
 	ModelVersion float64 `json:"-" bson:"_modelversion"`

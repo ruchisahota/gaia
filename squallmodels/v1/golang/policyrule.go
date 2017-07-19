@@ -39,6 +39,12 @@ func (o PolicyRulesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o PolicyRulesList) Version() float64 {
+
+	return 1.0
+}
+
 // PolicyRule represents the model of a policyrule
 type PolicyRule struct {
 	// ID is the identifier of the object.

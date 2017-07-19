@@ -41,6 +41,12 @@ func (o FilePathsList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o FilePathsList) Version() float64 {
+
+	return 1.0
+}
+
 // FilePath represents the model of a filepath
 type FilePath struct {
 	// ID is the identifier of the object.

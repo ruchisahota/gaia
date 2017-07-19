@@ -39,6 +39,12 @@ func (o RenderedPoliciesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o RenderedPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // RenderedPolicy represents the model of a renderedpolicy
 type RenderedPolicy struct {
 	// EgressPolicies lists all the egress policies attached to ProcessingUnit

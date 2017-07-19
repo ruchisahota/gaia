@@ -37,6 +37,12 @@ func (o SuggestedPoliciesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o SuggestedPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // SuggestedPolicy represents the model of a suggestedpolicy
 type SuggestedPolicy struct {
 	// List of suggested network access policies

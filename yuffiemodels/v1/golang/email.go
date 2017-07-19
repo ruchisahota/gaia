@@ -37,6 +37,12 @@ func (o EmailsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o EmailsList) Version() float64 {
+
+	return 1.0
+}
+
 // Email represents the model of a email
 type Email struct {
 	// Attachments is a list of attachments to send

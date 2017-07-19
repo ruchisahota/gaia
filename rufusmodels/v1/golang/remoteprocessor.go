@@ -50,6 +50,12 @@ func (o RemoteProcessorsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o RemoteProcessorsList) Version() float64 {
+
+	return 1.0
+}
+
 // RemoteProcessor represents the model of a remoteprocessor
 type RemoteProcessor struct {
 	// Represents the claims of the currently managed object

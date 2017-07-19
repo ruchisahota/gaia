@@ -52,6 +52,12 @@ func (o EnforcerProfilesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o EnforcerProfilesList) Version() float64 {
+
+	return 1.0
+}
+
 // EnforcerProfile represents the model of a enforcerprofile
 type EnforcerProfile struct {
 	// ID is the identifier of the object.

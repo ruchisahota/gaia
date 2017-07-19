@@ -55,6 +55,12 @@ func (o MessagesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o MessagesList) Version() float64 {
+
+	return 1.0
+}
+
 // Message represents the model of a message
 type Message struct {
 	// ID is the identifier of the object.

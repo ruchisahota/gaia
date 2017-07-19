@@ -41,6 +41,12 @@ func (o FileAccessPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o FileAccessPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // FileAccessPolicy represents the model of a fileaccesspolicy
 type FileAccessPolicy struct {
 	// ID is the identifier of the object.

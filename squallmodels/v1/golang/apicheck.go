@@ -63,6 +63,12 @@ func (o APIChecksList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o APIChecksList) Version() float64 {
+
+	return 1.0
+}
+
 // APICheck represents the model of a apicheck
 type APICheck struct {
 	// Authorized contains the results of the check.

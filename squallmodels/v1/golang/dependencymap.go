@@ -39,6 +39,12 @@ func (o DependencyMapsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o DependencyMapsList) Version() float64 {
+
+	return 1.0
+}
+
 // DependencyMap represents the model of a dependencymap
 type DependencyMap struct {
 	// ID is the identifier of the object.

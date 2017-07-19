@@ -39,6 +39,12 @@ func (o ActivitiesList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o ActivitiesList) Version() float64 {
+
+	return 1.0
+}
+
 // Activity represents the model of a activity
 type Activity struct {
 	// ID is the identifier of the object.

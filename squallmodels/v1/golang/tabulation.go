@@ -37,6 +37,12 @@ func (o TabulationsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o TabulationsList) Version() float64 {
+
+	return 1.0
+}
+
 // Tabulation represents the model of a tabulation
 type Tabulation struct {
 	// Headers contains the requests headers that matched.

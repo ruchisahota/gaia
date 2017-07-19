@@ -41,6 +41,12 @@ func (o EnforcerProfileMappingPoliciesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o EnforcerProfileMappingPoliciesList) Version() float64 {
+
+	return 1.0
+}
+
 // EnforcerProfileMappingPolicy represents the model of a enforcerprofilemappingpolicy
 type EnforcerProfileMappingPolicy struct {
 	// ID is the identifier of the object.

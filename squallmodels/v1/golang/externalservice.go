@@ -41,6 +41,12 @@ func (o ExternalServicesList) DefaultOrder() []string {
 	}
 }
 
+// Version returns the version of the content.
+func (o ExternalServicesList) Version() float64 {
+
+	return 1.0
+}
+
 // ExternalService represents the model of a externalservice
 type ExternalService struct {
 	// ID is the identifier of the object.

@@ -39,6 +39,12 @@ func (o AuthsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o AuthsList) Version() float64 {
+
+	return 1.0
+}
+
 // Auth represents the model of a auth
 type Auth struct {
 	// Claims are the claims.
