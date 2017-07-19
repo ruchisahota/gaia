@@ -21,7 +21,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "deleted",
+            "name": "archived",
             "orderable": false,
             "primary_key": null,
             "read_only": null,
