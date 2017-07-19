@@ -168,6 +168,16 @@ func (o *ExternalService) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
 }
 
+// GetDeleted returns the deleted of the receiver
+func (o *ExternalService) GetDeleted() bool {
+	return o.Deleted
+}
+
+// SetDeleted set the given deleted of the receiver
+func (o *ExternalService) SetDeleted(deleted bool) {
+	o.Deleted = deleted
+}
+
 // GetMetadata returns the metadata of the receiver
 func (o *ExternalService) GetMetadata() []string {
 	return o.Metadata
@@ -346,7 +356,9 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Deleted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Getter:         true,
 		Name:           "deleted",
+		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
 	},
@@ -535,7 +547,9 @@ var ExternalServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 	},
 	"deleted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Getter:         true,
 		Name:           "deleted",
+		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
 	},
