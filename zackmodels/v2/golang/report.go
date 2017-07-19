@@ -56,6 +56,12 @@ func (o ReportsList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o ReportsList) Version() float64 {
+
+	return 2.0
+}
+
 // Report represents the model of a report
 type Report struct {
 	// Kind contains the kind of report.
@@ -79,7 +85,7 @@ type Report struct {
 func NewReport() *Report {
 
 	return &Report{
-		ModelVersion: 1.0,
+		ModelVersion: 2.0,
 		Tags:         map[string]string{},
 	}
 }
@@ -104,7 +110,7 @@ func (o *Report) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Report) Version() float64 {
 
-	return 1.0
+	return 2.0
 }
 
 // DefaultOrder returns the list of default ordering fields.

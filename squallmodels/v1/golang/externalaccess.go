@@ -39,6 +39,12 @@ func (o ExternalAccessList) DefaultOrder() []string {
 	return []string{}
 }
 
+// Version returns the version of the content.
+func (o ExternalAccessList) Version() float64 {
+
+	return 1.0
+}
+
 // ExternalAccess represents the model of a externalaccess
 type ExternalAccess struct {
 	// IPRecords refers to a list of IPRecord that contains the IP information
