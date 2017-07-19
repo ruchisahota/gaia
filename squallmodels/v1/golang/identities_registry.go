@@ -371,8 +371,8 @@ var aliasesMap = map[string]elemental.Identity{
 	"fp":         FilePathIdentity,
 	"fps":        FilePathIdentity,
 	"ns":         NamespaceIdentity,
-	"extsrvs":    ExternalServiceIdentity,
 	"extsrv":     ExternalServiceIdentity,
+	"extsrvs":    ExternalServiceIdentity,
 	"sugpol":     SuggestedPolicyIdentity,
 	"sugpols":    SuggestedPolicyIdentity,
 	"sugg":       SuggestedPolicyIdentity,
@@ -463,8 +463,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ExternalServiceIdentity:
 		return []string{
-			"extsrvs",
 			"extsrv",
+			"extsrvs",
 		}
 	case RoleIdentity:
 		return []string{}

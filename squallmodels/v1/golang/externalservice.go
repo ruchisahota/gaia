@@ -49,14 +49,14 @@ type ExternalService struct {
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
+	// Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.
+	Archived bool `json:"-" bson:"archived"`
+
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
 
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
-	// None
-	Deleted bool `json:"-" bson:"deleted"`
 
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
@@ -140,12 +140,22 @@ func (o *ExternalService) DefaultOrder() []string {
 
 // Doc returns the documentation for the object
 func (o *ExternalService) Doc() string {
-	return `An External Service represents a random network or ip that is not managed by the system. They can be used in Network Access Policies in order to allow traffic from or to the declared network or IP, using the provided protocol and port or ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0 as address, and 1-65000 for the ports. You will need to use the External Services tags to set some policies. A good example would benet=any or net=intranet.`
+	return `An External Service represents a random network or ip that is not managed by the system. They can be used in Network Access Policies in order to allow traffic from or to the declared network or IP, using the provided protocol and port or ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0 as address, and 1-65000 for the ports. You will need to use the External Services tags to set some policies.`
 }
 
 func (o *ExternalService) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
+}
+
+// GetArchived returns the archived of the receiver
+func (o *ExternalService) GetArchived() bool {
+	return o.Archived
+}
+
+// SetArchived set the given archived of the receiver
+func (o *ExternalService) SetArchived(archived bool) {
+	o.Archived = archived
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
@@ -166,16 +176,6 @@ func (o *ExternalService) GetCreateTime() time.Time {
 // SetCreateTime set the given createTime of the receiver
 func (o *ExternalService) SetCreateTime(createTime time.Time) {
 	o.CreateTime = createTime
-}
-
-// GetDeleted returns the deleted of the receiver
-func (o *ExternalService) GetDeleted() bool {
-	return o.Deleted
-}
-
-// SetDeleted set the given deleted of the receiver
-func (o *ExternalService) SetDeleted(deleted bool) {
-	o.Deleted = deleted
 }
 
 // GetMetadata returns the metadata of the receiver
@@ -330,6 +330,15 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "annotations",
 		Type:           "external",
 	},
+	"Archived": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.`,
+		Getter:         true,
+		Name:           "archived",
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `AssociatedTags are the list of tags attached to an entity`,
@@ -353,14 +362,6 @@ var ExternalServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
-	},
-	"Deleted": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Getter:         true,
-		Name:           "deleted",
-		Setter:         true,
-		Stored:         true,
-		Type:           "boolean",
 	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -521,6 +522,15 @@ var ExternalServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		SubType:        "annotations",
 		Type:           "external",
 	},
+	"archived": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.`,
+		Getter:         true,
+		Name:           "archived",
+		Setter:         true,
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"associatedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `AssociatedTags are the list of tags attached to an entity`,
@@ -544,14 +554,6 @@ var ExternalServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
-	},
-	"deleted": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Getter:         true,
-		Name:           "deleted",
-		Setter:         true,
-		Stored:         true,
-		Type:           "boolean",
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
