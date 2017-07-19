@@ -83,7 +83,7 @@ type ProcessingUnit struct {
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
-	// Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.
+	// Archived defines if the object is archived.
 	Archived bool `json:"-" bson:"archived"`
 
 	// AssociatedTags are the list of tags attached to an entity
@@ -352,7 +352,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Archived": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.`,
+		Description:    `Archived defines if the object is archived.`,
 		Getter:         true,
 		Name:           "archived",
 		Setter:         true,
@@ -561,7 +561,7 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 	},
 	"archived": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `Archived maked the entity as archived. It will be considered as deleted and it will bbe possible to retrieve an archived entity only if you know its ID.`,
+		Description:    `Archived defines if the object is archived.`,
 		Getter:         true,
 		Name:           "archived",
 		Setter:         true,
