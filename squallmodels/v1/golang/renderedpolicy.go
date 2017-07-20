@@ -40,7 +40,7 @@ func (o RenderedPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o RenderedPoliciesList) Version() float64 {
+func (o RenderedPoliciesList) Version() int {
 
 	return 1.0
 }
@@ -62,7 +62,7 @@ type RenderedPolicy struct {
 	// Profile is the trust profile of the processing unit that should be used during all communications.
 	Profile map[string]string `json:"profile" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -95,7 +95,7 @@ func (o *RenderedPolicy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *RenderedPolicy) Version() float64 {
+func (o *RenderedPolicy) Version() int {
 
 	return 1.0
 }

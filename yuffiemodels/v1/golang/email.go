@@ -38,7 +38,7 @@ func (o EmailsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o EmailsList) Version() float64 {
+func (o EmailsList) Version() int {
 
 	return 1.0
 }
@@ -66,7 +66,7 @@ type Email struct {
 	// To represents receivers of the email
 	To []string `json:"to" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -97,7 +97,7 @@ func (o *Email) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Email) Version() float64 {
+func (o *Email) Version() int {
 
 	return 1.0
 }

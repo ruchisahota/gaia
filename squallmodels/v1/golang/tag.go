@@ -38,7 +38,7 @@ func (o TagsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o TagsList) Version() float64 {
+func (o TagsList) Version() int {
 
 	return 1.0
 }
@@ -57,7 +57,7 @@ type Tag struct {
 	// Value represents the value of the tag.
 	Value string `json:"value" bson:"value"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -89,7 +89,7 @@ func (o *Tag) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Tag) Version() float64 {
+func (o *Tag) Version() int {
 
 	return 1.0
 }

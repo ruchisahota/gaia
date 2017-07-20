@@ -42,7 +42,7 @@ func (o EnforcerProfileMappingPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o EnforcerProfileMappingPoliciesList) Version() float64 {
+func (o EnforcerProfileMappingPoliciesList) Version() int {
 
 	return 1.0
 }
@@ -97,7 +97,7 @@ type EnforcerProfileMappingPolicy struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -133,7 +133,7 @@ func (o *EnforcerProfileMappingPolicy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *EnforcerProfileMappingPolicy) Version() float64 {
+func (o *EnforcerProfileMappingPolicy) Version() int {
 
 	return 1.0
 }

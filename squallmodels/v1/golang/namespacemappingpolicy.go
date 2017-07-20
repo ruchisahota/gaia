@@ -42,7 +42,7 @@ func (o NamespaceMappingPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o NamespaceMappingPoliciesList) Version() float64 {
+func (o NamespaceMappingPoliciesList) Version() int {
 
 	return 1.0
 }
@@ -91,7 +91,7 @@ type NamespaceMappingPolicy struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -127,7 +127,7 @@ func (o *NamespaceMappingPolicy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *NamespaceMappingPolicy) Version() float64 {
+func (o *NamespaceMappingPolicy) Version() int {
 
 	return 1.0
 }

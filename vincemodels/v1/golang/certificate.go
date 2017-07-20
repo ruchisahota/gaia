@@ -51,7 +51,7 @@ func (o CertificatesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o CertificatesList) Version() float64 {
+func (o CertificatesList) Version() int {
 
 	return 1.0
 }
@@ -109,7 +109,7 @@ type Certificate struct {
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -142,7 +142,7 @@ func (o *Certificate) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Certificate) Version() float64 {
+func (o *Certificate) Version() int {
 
 	return 1.0
 }

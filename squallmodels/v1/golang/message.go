@@ -56,7 +56,7 @@ func (o MessagesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o MessagesList) Version() float64 {
+func (o MessagesList) Version() int {
 
 	return 1.0
 }
@@ -102,7 +102,7 @@ type Message struct {
 	// Validity set using golang time duration, when the message will be automatically deleted.
 	Validity string `json:"validity" bson:"validity"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -138,7 +138,7 @@ func (o *Message) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Message) Version() float64 {
+func (o *Message) Version() int {
 
 	return 1.0
 }

@@ -71,7 +71,7 @@ func (o PoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o PoliciesList) Version() float64 {
+func (o PoliciesList) Version() int {
 
 	return 1.0
 }
@@ -141,7 +141,7 @@ type Policy struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -179,7 +179,7 @@ func (o *Policy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Policy) Version() float64 {
+func (o *Policy) Version() int {
 
 	return 1.0
 }

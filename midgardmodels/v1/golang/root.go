@@ -30,9 +30,9 @@ type Root struct {
 	// UpdatedAt represents the last update time of the object.
 	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
 
-	Token        string  `json:"APIKey,omitempty"`
-	Organization string  `json:"enterprise,omitempty"`
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	Token        string `json:"APIKey,omitempty"`
+	Organization string `json:"enterprise,omitempty"`
+	ModelVersion int    `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -64,7 +64,7 @@ func (o *Root) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Root) Version() float64 {
+func (o *Root) Version() int {
 
 	return 1.0
 }

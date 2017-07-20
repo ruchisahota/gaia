@@ -40,7 +40,7 @@ func (o ActivitiesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ActivitiesList) Version() float64 {
+func (o ActivitiesList) Version() int {
 
 	return 1.0
 }
@@ -80,7 +80,7 @@ type Activity struct {
 	// TargetIdentity is the Identity of the related object.
 	TargetIdentity string `json:"targetIdentity" bson:"targetidentity"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -112,7 +112,7 @@ func (o *Activity) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Activity) Version() float64 {
+func (o *Activity) Version() int {
 
 	return 1.0
 }

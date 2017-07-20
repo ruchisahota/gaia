@@ -51,7 +51,7 @@ func (o RemoteProcessorsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o RemoteProcessorsList) Version() float64 {
+func (o RemoteProcessorsList) Version() int {
 
 	return 1.0
 }
@@ -82,7 +82,7 @@ type RemoteProcessor struct {
 	// Represents the Identity name of the managed object
 	TargetIdentity string `json:"targetIdentity" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -113,7 +113,7 @@ func (o *RemoteProcessor) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *RemoteProcessor) Version() float64 {
+func (o *RemoteProcessor) Version() int {
 
 	return 1.0
 }

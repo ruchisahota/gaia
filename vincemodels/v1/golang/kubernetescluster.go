@@ -40,7 +40,7 @@ func (o KubernetesClustersList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o KubernetesClustersList) Version() float64 {
+func (o KubernetesClustersList) Version() int {
 
 	return 1.0
 }
@@ -77,7 +77,7 @@ type KubernetesCluster struct {
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -109,7 +109,7 @@ func (o *KubernetesCluster) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *KubernetesCluster) Version() float64 {
+func (o *KubernetesCluster) Version() int {
 
 	return 1.0
 }

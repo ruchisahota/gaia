@@ -42,7 +42,7 @@ func (o NetworkAccessPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o NetworkAccessPoliciesList) Version() float64 {
+func (o NetworkAccessPoliciesList) Version() int {
 
 	return 1.0
 }
@@ -109,7 +109,7 @@ type NetworkAccessPolicy struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -146,7 +146,7 @@ func (o *NetworkAccessPolicy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *NetworkAccessPolicy) Version() float64 {
+func (o *NetworkAccessPolicy) Version() int {
 
 	return 1.0
 }

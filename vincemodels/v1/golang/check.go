@@ -38,14 +38,14 @@ func (o ChecksList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ChecksList) Version() float64 {
+func (o ChecksList) Version() int {
 
 	return 1.0
 }
 
 // Check represents the model of a check
 type Check struct {
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -76,7 +76,7 @@ func (o *Check) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Check) Version() float64 {
+func (o *Check) Version() int {
 
 	return 1.0
 }

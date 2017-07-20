@@ -76,7 +76,7 @@ func (o ProcessingUnitsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ProcessingUnitsList) Version() float64 {
+func (o ProcessingUnitsList) Version() int {
 
 	return 1.0
 }
@@ -134,7 +134,7 @@ type ProcessingUnit struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -171,7 +171,7 @@ func (o *ProcessingUnit) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *ProcessingUnit) Version() float64 {
+func (o *ProcessingUnit) Version() int {
 
 	return 1.0
 }

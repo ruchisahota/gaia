@@ -38,14 +38,14 @@ func (o PokesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o PokesList) Version() float64 {
+func (o PokesList) Version() int {
 
 	return 1.0
 }
 
 // Poke represents the model of a poke
 type Poke struct {
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -76,7 +76,7 @@ func (o *Poke) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Poke) Version() float64 {
+func (o *Poke) Version() int {
 
 	return 1.0
 }

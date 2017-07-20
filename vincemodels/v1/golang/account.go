@@ -57,7 +57,7 @@ func (o AccountsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AccountsList) Version() float64 {
+func (o AccountsList) Version() int {
 
 	return 1.0
 }
@@ -151,7 +151,7 @@ type Account struct {
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -187,7 +187,7 @@ func (o *Account) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Account) Version() float64 {
+func (o *Account) Version() int {
 
 	return 1.0
 }

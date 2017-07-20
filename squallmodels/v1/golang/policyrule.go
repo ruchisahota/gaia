@@ -40,7 +40,7 @@ func (o PolicyRulesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o PolicyRulesList) Version() float64 {
+func (o PolicyRulesList) Version() int {
 
 	return 1.0
 }
@@ -80,7 +80,7 @@ type PolicyRule struct {
 	// Policy target tags
 	TagClauses [][]string `json:"tagClauses" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -117,7 +117,7 @@ func (o *PolicyRule) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *PolicyRule) Version() float64 {
+func (o *PolicyRule) Version() int {
 
 	return 1.0
 }

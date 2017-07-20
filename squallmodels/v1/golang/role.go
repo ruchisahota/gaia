@@ -38,7 +38,7 @@ func (o RolesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o RolesList) Version() float64 {
+func (o RolesList) Version() int {
 
 	return 1.0
 }
@@ -57,7 +57,7 @@ type Role struct {
 	// Name of the role.
 	Name string `json:"name" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -89,7 +89,7 @@ func (o *Role) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Role) Version() float64 {
+func (o *Role) Version() int {
 
 	return 1.0
 }

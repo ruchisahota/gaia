@@ -57,7 +57,7 @@ func (o ReportsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ReportsList) Version() float64 {
+func (o ReportsList) Version() int {
 
 	return 2.0
 }
@@ -76,7 +76,7 @@ type Report struct {
 	// Value contains the value for the report.
 	Value float64 `json:"value" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -108,7 +108,7 @@ func (o *Report) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Report) Version() float64 {
+func (o *Report) Version() int {
 
 	return 2.0
 }

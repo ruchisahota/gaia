@@ -13,9 +13,9 @@ var RootIdentity = elemental.Identity{
 
 // Root represents the model of a root
 type Root struct {
-	Token        string  `json:"APIKey,omitempty"`
-	Organization string  `json:"enterprise,omitempty"`
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	Token        string `json:"APIKey,omitempty"`
+	Organization string `json:"enterprise,omitempty"`
+	ModelVersion int    `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -46,7 +46,7 @@ func (o *Root) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Root) Version() float64 {
+func (o *Root) Version() int {
 
 	return 1.0
 }

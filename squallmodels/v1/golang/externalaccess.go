@@ -40,7 +40,7 @@ func (o ExternalAccessList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ExternalAccessList) Version() float64 {
+func (o ExternalAccessList) Version() int {
 
 	return 1.0
 }
@@ -50,7 +50,7 @@ type ExternalAccess struct {
 	// IPRecords refers to a list of IPRecord that contains the IP information
 	IPRecords []*gaiatypes.IPRecord `json:"IPRecords" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -82,7 +82,7 @@ func (o *ExternalAccess) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *ExternalAccess) Version() float64 {
+func (o *ExternalAccess) Version() int {
 
 	return 1.0
 }

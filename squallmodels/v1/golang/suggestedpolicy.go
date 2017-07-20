@@ -38,7 +38,7 @@ func (o SuggestedPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o SuggestedPoliciesList) Version() float64 {
+func (o SuggestedPoliciesList) Version() int {
 
 	return 1.0
 }
@@ -48,7 +48,7 @@ type SuggestedPolicy struct {
 	// List of suggested network access policies
 	NetworkAccessPolicies []*NetworkAccessPolicy `json:"networkAccessPolicies" bson:"networkaccesspolicies"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -79,7 +79,7 @@ func (o *SuggestedPolicy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *SuggestedPolicy) Version() float64 {
+func (o *SuggestedPolicy) Version() int {
 
 	return 1.0
 }

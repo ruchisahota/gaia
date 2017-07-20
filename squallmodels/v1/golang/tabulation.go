@@ -38,7 +38,7 @@ func (o TabulationsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o TabulationsList) Version() float64 {
+func (o TabulationsList) Version() int {
 
 	return 1.0
 }
@@ -54,7 +54,7 @@ type Tabulation struct {
 	// TargetIdentity contains the requested target identity.
 	TargetIdentity string `json:"targetIdentity" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -86,7 +86,7 @@ func (o *Tabulation) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Tabulation) Version() float64 {
+func (o *Tabulation) Version() int {
 
 	return 1.0
 }
