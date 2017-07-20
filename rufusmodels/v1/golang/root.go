@@ -24,7 +24,7 @@ type Root struct {
 func NewRoot() *Root {
 
 	return &Root{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -48,7 +48,7 @@ func (o *Root) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Root) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

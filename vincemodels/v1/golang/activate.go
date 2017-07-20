@@ -40,7 +40,7 @@ func (o ActivatesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o ActivatesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Activate represents the model of a activate
@@ -57,7 +57,7 @@ type Activate struct {
 func NewActivate() *Activate {
 
 	return &Activate{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -81,7 +81,7 @@ func (o *Activate) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Activate) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

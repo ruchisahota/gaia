@@ -44,7 +44,7 @@ func (o SystemCallsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o SystemCallsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // SystemCall represents the model of a systemcall
@@ -91,7 +91,7 @@ type SystemCall struct {
 func NewSystemCall() *SystemCall {
 
 	return &SystemCall{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -120,7 +120,7 @@ func (o *SystemCall) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *SystemCall) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

@@ -53,7 +53,7 @@ func (o RemoteProcessorsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o RemoteProcessorsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // RemoteProcessor represents the model of a remoteprocessor
@@ -91,7 +91,7 @@ type RemoteProcessor struct {
 func NewRemoteProcessor() *RemoteProcessor {
 
 	return &RemoteProcessor{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -115,7 +115,7 @@ func (o *RemoteProcessor) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *RemoteProcessor) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

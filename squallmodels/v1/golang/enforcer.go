@@ -75,7 +75,7 @@ func (o EnforcersList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o EnforcersList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Enforcer represents the model of a enforcer
@@ -149,7 +149,7 @@ type Enforcer struct {
 func NewEnforcer() *Enforcer {
 
 	return &Enforcer{
-		ModelVersion:      1.0,
+		ModelVersion:      1,
 		Annotations:       map[string][]string{},
 		AssociatedTags:    []string{},
 		CertificateStatus: "VALID",
@@ -180,7 +180,7 @@ func (o *Enforcer) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Enforcer) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

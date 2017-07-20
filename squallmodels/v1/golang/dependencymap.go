@@ -42,7 +42,7 @@ func (o DependencyMapsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o DependencyMapsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DependencyMap represents the model of a dependencymap
@@ -68,7 +68,7 @@ type DependencyMap struct {
 func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 		Edges:        gaiatypes.GraphEdgeMap{},
 		Groups:       gaiatypes.GraphGroupMap{},
 		Nodes:        gaiatypes.GraphNodeMap{},
@@ -96,7 +96,7 @@ func (o *DependencyMap) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *DependencyMap) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

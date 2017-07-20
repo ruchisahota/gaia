@@ -40,7 +40,7 @@ func (o ChecksList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o ChecksList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Check represents the model of a check
@@ -54,7 +54,7 @@ type Check struct {
 func NewCheck() *Check {
 
 	return &Check{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -78,7 +78,7 @@ func (o *Check) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Check) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

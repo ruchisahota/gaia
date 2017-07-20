@@ -78,7 +78,7 @@ func (o ProcessingUnitsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o ProcessingUnitsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // ProcessingUnit represents the model of a processingunit
@@ -143,7 +143,7 @@ type ProcessingUnit struct {
 func NewProcessingUnit() *ProcessingUnit {
 
 	return &ProcessingUnit{
-		ModelVersion:      1.0,
+		ModelVersion:      1,
 		Annotations:       map[string][]string{},
 		AssociatedTags:    []string{},
 		Metadata:          []string{},
@@ -173,7 +173,7 @@ func (o *ProcessingUnit) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *ProcessingUnit) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

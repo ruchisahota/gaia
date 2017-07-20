@@ -42,7 +42,7 @@ func (o NamespacesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o NamespacesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Namespace represents the model of a namespace
@@ -89,7 +89,7 @@ type Namespace struct {
 func NewNamespace() *Namespace {
 
 	return &Namespace{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -118,7 +118,7 @@ func (o *Namespace) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Namespace) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

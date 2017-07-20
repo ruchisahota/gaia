@@ -40,7 +40,7 @@ func (o SuggestedPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o SuggestedPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // SuggestedPolicy represents the model of a suggestedpolicy
@@ -57,7 +57,7 @@ type SuggestedPolicy struct {
 func NewSuggestedPolicy() *SuggestedPolicy {
 
 	return &SuggestedPolicy{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -81,7 +81,7 @@ func (o *SuggestedPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *SuggestedPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

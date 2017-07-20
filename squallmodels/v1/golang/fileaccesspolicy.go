@@ -44,7 +44,7 @@ func (o FileAccessPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o FileAccessPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // FileAccessPolicy represents the model of a fileaccesspolicy
@@ -121,7 +121,7 @@ type FileAccessPolicy struct {
 func NewFileAccessPolicy() *FileAccessPolicy {
 
 	return &FileAccessPolicy{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -150,7 +150,7 @@ func (o *FileAccessPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *FileAccessPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

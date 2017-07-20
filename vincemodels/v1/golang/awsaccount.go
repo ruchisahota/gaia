@@ -42,7 +42,7 @@ func (o AWSAccountsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o AWSAccountsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // AWSAccount represents the model of a awsaccount
@@ -86,7 +86,7 @@ type AWSAccount struct {
 func NewAWSAccount() *AWSAccount {
 
 	return &AWSAccount{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -111,7 +111,7 @@ func (o *AWSAccount) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *AWSAccount) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

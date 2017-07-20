@@ -44,7 +44,7 @@ func (o EnforcerProfileMappingPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o EnforcerProfileMappingPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // EnforcerProfileMappingPolicy represents the model of a enforcerprofilemappingpolicy
@@ -106,7 +106,7 @@ type EnforcerProfileMappingPolicy struct {
 func NewEnforcerProfileMappingPolicy() *EnforcerProfileMappingPolicy {
 
 	return &EnforcerProfileMappingPolicy{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -135,7 +135,7 @@ func (o *EnforcerProfileMappingPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *EnforcerProfileMappingPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

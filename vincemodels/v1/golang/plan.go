@@ -40,7 +40,7 @@ func (o PlansList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o PlansList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Plan represents the model of a plan
@@ -72,7 +72,7 @@ type Plan struct {
 func NewPlan() *Plan {
 
 	return &Plan{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -96,7 +96,7 @@ func (o *Plan) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Plan) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

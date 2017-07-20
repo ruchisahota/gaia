@@ -40,7 +40,7 @@ func (o EmailsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o EmailsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Email represents the model of a email
@@ -75,7 +75,7 @@ type Email struct {
 func NewEmail() *Email {
 
 	return &Email{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -99,7 +99,7 @@ func (o *Email) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Email) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

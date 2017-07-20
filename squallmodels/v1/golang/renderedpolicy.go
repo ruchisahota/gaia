@@ -42,7 +42,7 @@ func (o RenderedPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o RenderedPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // RenderedPolicy represents the model of a renderedpolicy
@@ -71,7 +71,7 @@ type RenderedPolicy struct {
 func NewRenderedPolicy() *RenderedPolicy {
 
 	return &RenderedPolicy{
-		ModelVersion:    1.0,
+		ModelVersion:    1,
 		EgressPolicies:  map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
 		IngressPolicies: map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
 	}
@@ -97,7 +97,7 @@ func (o *RenderedPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *RenderedPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

@@ -58,7 +58,7 @@ func (o HookPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o HookPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // HookPolicy represents the model of a hookpolicy
@@ -132,7 +132,7 @@ type HookPolicy struct {
 func NewHookPolicy() *HookPolicy {
 
 	return &HookPolicy{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -162,7 +162,7 @@ func (o *HookPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *HookPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

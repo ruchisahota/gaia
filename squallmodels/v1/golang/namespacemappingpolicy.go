@@ -44,7 +44,7 @@ func (o NamespaceMappingPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o NamespaceMappingPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // NamespaceMappingPolicy represents the model of a namespacemappingpolicy
@@ -100,7 +100,7 @@ type NamespaceMappingPolicy struct {
 func NewNamespaceMappingPolicy() *NamespaceMappingPolicy {
 
 	return &NamespaceMappingPolicy{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -129,7 +129,7 @@ func (o *NamespaceMappingPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *NamespaceMappingPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

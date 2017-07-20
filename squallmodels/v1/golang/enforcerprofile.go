@@ -55,7 +55,7 @@ func (o EnforcerProfilesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o EnforcerProfilesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // EnforcerProfile represents the model of a enforcerprofile
@@ -159,7 +159,7 @@ type EnforcerProfile struct {
 func NewEnforcerProfile() *EnforcerProfile {
 
 	return &EnforcerProfile{
-		ModelVersion:                  1.0,
+		ModelVersion:                  1,
 		IPTablesMarkValue:             1000,
 		PUBookkeepingInterval:         "15m",
 		PUHeartbeatInterval:           "5s",
@@ -203,7 +203,7 @@ func (o *EnforcerProfile) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *EnforcerProfile) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

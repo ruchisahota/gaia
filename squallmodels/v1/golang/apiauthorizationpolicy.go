@@ -44,7 +44,7 @@ func (o APIAuthorizationPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o APIAuthorizationPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // APIAuthorizationPolicy represents the model of a apiauthorizationpolicy
@@ -109,7 +109,7 @@ type APIAuthorizationPolicy struct {
 func NewAPIAuthorizationPolicy() *APIAuthorizationPolicy {
 
 	return &APIAuthorizationPolicy{
-		ModelVersion:         1.0,
+		ModelVersion:         1,
 		Annotations:          map[string][]string{},
 		AssociatedTags:       []string{},
 		AuthorizedIdentities: []string{},
@@ -139,7 +139,7 @@ func (o *APIAuthorizationPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *APIAuthorizationPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

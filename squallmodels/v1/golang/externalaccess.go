@@ -42,7 +42,7 @@ func (o ExternalAccessList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o ExternalAccessList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // ExternalAccess represents the model of a externalaccess
@@ -59,7 +59,7 @@ type ExternalAccess struct {
 func NewExternalAccess() *ExternalAccess {
 
 	return &ExternalAccess{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 		IPRecords:    []*gaiatypes.IPRecord{},
 	}
 }
@@ -84,7 +84,7 @@ func (o *ExternalAccess) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *ExternalAccess) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

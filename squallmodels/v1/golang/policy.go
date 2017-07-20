@@ -73,7 +73,7 @@ func (o PoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o PoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Policy represents the model of a policy
@@ -150,7 +150,7 @@ type Policy struct {
 func NewPolicy() *Policy {
 
 	return &Policy{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		AllObjectTags:  []string{},
 		AllSubjectTags: []string{},
 		Annotations:    map[string][]string{},
@@ -181,7 +181,7 @@ func (o *Policy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Policy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

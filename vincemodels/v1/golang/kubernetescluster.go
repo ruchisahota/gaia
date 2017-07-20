@@ -42,7 +42,7 @@ func (o KubernetesClustersList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o KubernetesClustersList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // KubernetesCluster represents the model of a kubernetescluster
@@ -86,7 +86,7 @@ type KubernetesCluster struct {
 func NewKubernetesCluster() *KubernetesCluster {
 
 	return &KubernetesCluster{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -111,7 +111,7 @@ func (o *KubernetesCluster) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *KubernetesCluster) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

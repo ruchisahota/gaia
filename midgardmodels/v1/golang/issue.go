@@ -69,7 +69,7 @@ func (o IssuesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o IssuesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Issue represents the model of a issue
@@ -98,7 +98,7 @@ type Issue struct {
 func NewIssue() *Issue {
 
 	return &Issue{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 		Metadata:     map[string]interface{}{},
 		Validity:     "24h",
 	}
@@ -124,7 +124,7 @@ func (o *Issue) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Issue) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

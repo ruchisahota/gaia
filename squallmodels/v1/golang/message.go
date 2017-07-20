@@ -58,7 +58,7 @@ func (o MessagesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o MessagesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Message represents the model of a message
@@ -111,7 +111,7 @@ type Message struct {
 func NewMessage() *Message {
 
 	return &Message{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Level:          "Info",
@@ -140,7 +140,7 @@ func (o *Message) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *Message) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

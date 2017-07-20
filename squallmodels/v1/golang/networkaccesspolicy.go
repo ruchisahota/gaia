@@ -44,7 +44,7 @@ func (o NetworkAccessPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o NetworkAccessPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // NetworkAccessPolicy represents the model of a networkaccesspolicy
@@ -118,7 +118,7 @@ type NetworkAccessPolicy struct {
 func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 
 	return &NetworkAccessPolicy{
-		ModelVersion:     1.0,
+		ModelVersion:     1,
 		Annotations:      map[string][]string{},
 		AssociatedTags:   []string{},
 		DestinationPorts: []string{},
@@ -148,7 +148,7 @@ func (o *NetworkAccessPolicy) SetIdentifier(ID string) {
 // Version returns the hardcoded version of the model
 func (o *NetworkAccessPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
