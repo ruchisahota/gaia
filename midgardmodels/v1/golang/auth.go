@@ -42,7 +42,7 @@ func (o AuthsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o AuthsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Auth represents the model of a auth
@@ -50,7 +50,7 @@ type Auth struct {
 	// Claims are the claims.
 	Claims *claims.MidgardClaims `json:"claims" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -59,7 +59,7 @@ type Auth struct {
 func NewAuth() *Auth {
 
 	return &Auth{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 		Claims:       claims.NewMidgardClaims(),
 	}
 }
@@ -82,9 +82,9 @@ func (o *Auth) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Auth) Version() float64 {
+func (o *Auth) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

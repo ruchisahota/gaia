@@ -40,7 +40,7 @@ func (o ActivatesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o ActivatesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Activate represents the model of a activate
@@ -48,7 +48,7 @@ type Activate struct {
 	// Token contains the activation token
 	Token string `json:"token" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -57,7 +57,7 @@ type Activate struct {
 func NewActivate() *Activate {
 
 	return &Activate{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -79,9 +79,9 @@ func (o *Activate) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Activate) Version() float64 {
+func (o *Activate) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

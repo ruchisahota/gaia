@@ -69,7 +69,7 @@ func (o IssuesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o IssuesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Issue represents the model of a issue
@@ -89,7 +89,7 @@ type Issue struct {
 	// Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped.
 	Validity string `json:"validity" bson:"validity"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -98,7 +98,7 @@ type Issue struct {
 func NewIssue() *Issue {
 
 	return &Issue{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 		Metadata:     map[string]interface{}{},
 		Validity:     "24h",
 	}
@@ -122,9 +122,9 @@ func (o *Issue) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Issue) Version() float64 {
+func (o *Issue) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

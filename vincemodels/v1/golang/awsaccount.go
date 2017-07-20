@@ -42,7 +42,7 @@ func (o AWSAccountsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o AWSAccountsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // AWSAccount represents the model of a awsaccount
@@ -77,7 +77,7 @@ type AWSAccount struct {
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -86,7 +86,7 @@ type AWSAccount struct {
 func NewAWSAccount() *AWSAccount {
 
 	return &AWSAccount{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -109,9 +109,9 @@ func (o *AWSAccount) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *AWSAccount) Version() float64 {
+func (o *AWSAccount) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

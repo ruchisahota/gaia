@@ -44,7 +44,7 @@ func (o ExternalServicesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o ExternalServicesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // ExternalService represents the model of a externalservice
@@ -94,7 +94,7 @@ type ExternalService struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -103,7 +103,7 @@ type ExternalService struct {
 func NewExternalService() *ExternalService {
 
 	return &ExternalService{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -131,9 +131,9 @@ func (o *ExternalService) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *ExternalService) Version() float64 {
+func (o *ExternalService) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

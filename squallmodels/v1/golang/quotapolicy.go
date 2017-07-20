@@ -44,7 +44,7 @@ func (o QuotaPoliciesList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o QuotaPoliciesList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // QuotaPolicy represents the model of a quotapolicy
@@ -100,7 +100,7 @@ type QuotaPolicy struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -109,7 +109,7 @@ type QuotaPolicy struct {
 func NewQuotaPolicy() *QuotaPolicy {
 
 	return &QuotaPolicy{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -136,9 +136,9 @@ func (o *QuotaPolicy) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *QuotaPolicy) Version() float64 {
+func (o *QuotaPolicy) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

@@ -73,7 +73,7 @@ func (o FlowStatisticsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o FlowStatisticsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // FlowStatistic represents the model of a flowstatistic
@@ -108,7 +108,7 @@ type FlowStatistic struct {
 	// UserIdentifier can be set by the user as a query parameter. It will be returned in the FlowStatistic object.
 	UserIdentifier string `json:"userIdentifier" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -117,7 +117,7 @@ type FlowStatistic struct {
 func NewFlowStatistic() *FlowStatistic {
 
 	return &FlowStatistic{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		DataPoints:     []map[string]interface{}{},
 		DestinationIDs: []string{},
 		Metric:         "Flows",
@@ -146,9 +146,9 @@ func (o *FlowStatistic) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *FlowStatistic) Version() float64 {
+func (o *FlowStatistic) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

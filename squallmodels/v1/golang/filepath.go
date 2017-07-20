@@ -44,7 +44,7 @@ func (o FilePathsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o FilePathsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // FilePath represents the model of a filepath
@@ -88,7 +88,7 @@ type FilePath struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -97,7 +97,7 @@ type FilePath struct {
 func NewFilePath() *FilePath {
 
 	return &FilePath{
-		ModelVersion:   1.0,
+		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -124,9 +124,9 @@ func (o *FilePath) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *FilePath) Version() float64 {
+func (o *FilePath) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

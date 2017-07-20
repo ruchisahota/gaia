@@ -59,7 +59,7 @@ func (o AccountsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o AccountsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // Account represents the model of a account
@@ -151,7 +151,7 @@ type Account struct {
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -160,7 +160,7 @@ type Account struct {
 func NewAccount() *Account {
 
 	return &Account{
-		ModelVersion:            1.0,
+		ModelVersion:            1,
 		AssociatedAWSPolicies:   map[string]string{},
 		AssociatedPlanKey:       "aporeto.plan.free",
 		AssociatedQuotaPolicies: map[string]string{},
@@ -187,9 +187,9 @@ func (o *Account) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *Account) Version() float64 {
+func (o *Account) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

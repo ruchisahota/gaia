@@ -40,7 +40,7 @@ func (o PasswordResetsList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o PasswordResetsList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // PasswordReset represents the model of a passwordreset
@@ -51,7 +51,7 @@ type PasswordReset struct {
 	// Token contains the reset password token
 	Token string `json:"token" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -60,7 +60,7 @@ type PasswordReset struct {
 func NewPasswordReset() *PasswordReset {
 
 	return &PasswordReset{
-		ModelVersion: 1.0,
+		ModelVersion: 1,
 	}
 }
 
@@ -82,9 +82,9 @@ func (o *PasswordReset) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *PasswordReset) Version() float64 {
+func (o *PasswordReset) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.

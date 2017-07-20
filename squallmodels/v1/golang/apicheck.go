@@ -66,7 +66,7 @@ func (o APIChecksList) DefaultOrder() []string {
 // Version returns the version of the content.
 func (o APIChecksList) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // APICheck represents the model of a apicheck
@@ -86,7 +86,7 @@ type APICheck struct {
 	// Token is the token to use to check api authentication
 	Token string `json:"token" bson:"-"`
 
-	ModelVersion float64 `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -95,7 +95,7 @@ type APICheck struct {
 func NewAPICheck() *APICheck {
 
 	return &APICheck{
-		ModelVersion:     1.0,
+		ModelVersion:     1,
 		Authorized:       map[string]bool{},
 		TargetIdentities: []string{},
 	}
@@ -119,9 +119,9 @@ func (o *APICheck) SetIdentifier(ID string) {
 }
 
 // Version returns the hardcoded version of the model
-func (o *APICheck) Version() float64 {
+func (o *APICheck) Version() int {
 
-	return 1.0
+	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
