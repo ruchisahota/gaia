@@ -38,7 +38,7 @@ func (o TagsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o TagsList) Version() float64 {
+func (o TagsList) Version() int {
 
 	return 1.0
 }

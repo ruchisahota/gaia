@@ -40,7 +40,7 @@ func (o DependencyMapsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o DependencyMapsList) Version() float64 {
+func (o DependencyMapsList) Version() int {
 
 	return 1.0
 }

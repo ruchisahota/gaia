@@ -56,7 +56,7 @@ func (o MessagesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o MessagesList) Version() float64 {
+func (o MessagesList) Version() int {
 
 	return 1.0
 }

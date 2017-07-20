@@ -53,7 +53,7 @@ func (o EnforcerProfilesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o EnforcerProfilesList) Version() float64 {
+func (o EnforcerProfilesList) Version() int {
 
 	return 1.0
 }

@@ -51,7 +51,7 @@ func (o RemoteProcessorsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o RemoteProcessorsList) Version() float64 {
+func (o RemoteProcessorsList) Version() int {
 
 	return 1.0
 }

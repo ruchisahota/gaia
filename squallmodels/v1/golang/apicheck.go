@@ -64,7 +64,7 @@ func (o APIChecksList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o APIChecksList) Version() float64 {
+func (o APIChecksList) Version() int {
 
 	return 1.0
 }

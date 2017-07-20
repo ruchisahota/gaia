@@ -57,7 +57,7 @@ func (o AccountsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AccountsList) Version() float64 {
+func (o AccountsList) Version() int {
 
 	return 1.0
 }

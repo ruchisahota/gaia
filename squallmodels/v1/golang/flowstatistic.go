@@ -71,7 +71,7 @@ func (o FlowStatisticsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o FlowStatisticsList) Version() float64 {
+func (o FlowStatisticsList) Version() int {
 
 	return 1.0
 }

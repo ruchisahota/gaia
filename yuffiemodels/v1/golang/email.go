@@ -38,7 +38,7 @@ func (o EmailsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o EmailsList) Version() float64 {
+func (o EmailsList) Version() int {
 
 	return 1.0
 }

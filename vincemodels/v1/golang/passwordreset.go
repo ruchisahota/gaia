@@ -38,7 +38,7 @@ func (o PasswordResetsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o PasswordResetsList) Version() float64 {
+func (o PasswordResetsList) Version() int {
 
 	return 1.0
 }

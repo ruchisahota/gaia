@@ -38,7 +38,7 @@ func (o ActivatesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ActivatesList) Version() float64 {
+func (o ActivatesList) Version() int {
 
 	return 1.0
 }

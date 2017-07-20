@@ -71,7 +71,7 @@ func (o PoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o PoliciesList) Version() float64 {
+func (o PoliciesList) Version() int {
 
 	return 1.0
 }

@@ -52,7 +52,7 @@ func (o FileAccessList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o FileAccessList) Version() float64 {
+func (o FileAccessList) Version() int {
 
 	return 1.0
 }

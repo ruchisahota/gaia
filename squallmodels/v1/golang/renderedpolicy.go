@@ -40,7 +40,7 @@ func (o RenderedPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o RenderedPoliciesList) Version() float64 {
+func (o RenderedPoliciesList) Version() int {
 
 	return 1.0
 }

@@ -51,7 +51,7 @@ func (o CertificatesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o CertificatesList) Version() float64 {
+func (o CertificatesList) Version() int {
 
 	return 1.0
 }

@@ -42,7 +42,7 @@ func (o SystemCallsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o SystemCallsList) Version() float64 {
+func (o SystemCallsList) Version() int {
 
 	return 1.0
 }

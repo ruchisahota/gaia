@@ -40,7 +40,7 @@ func (o NamespacesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o NamespacesList) Version() float64 {
+func (o NamespacesList) Version() int {
 
 	return 1.0
 }

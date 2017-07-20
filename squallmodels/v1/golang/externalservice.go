@@ -42,7 +42,7 @@ func (o ExternalServicesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ExternalServicesList) Version() float64 {
+func (o ExternalServicesList) Version() int {
 
 	return 1.0
 }

@@ -38,7 +38,7 @@ func (o ChecksList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ChecksList) Version() float64 {
+func (o ChecksList) Version() int {
 
 	return 1.0
 }

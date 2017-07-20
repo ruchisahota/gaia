@@ -56,7 +56,7 @@ func (o HookPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o HookPoliciesList) Version() float64 {
+func (o HookPoliciesList) Version() int {
 
 	return 1.0
 }

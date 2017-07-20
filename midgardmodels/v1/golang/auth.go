@@ -40,7 +40,7 @@ func (o AuthsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AuthsList) Version() float64 {
+func (o AuthsList) Version() int {
 
 	return 1.0
 }

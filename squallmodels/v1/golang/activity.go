@@ -40,7 +40,7 @@ func (o ActivitiesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ActivitiesList) Version() float64 {
+func (o ActivitiesList) Version() int {
 
 	return 1.0
 }

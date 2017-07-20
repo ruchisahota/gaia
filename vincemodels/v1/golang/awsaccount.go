@@ -40,7 +40,7 @@ func (o AWSAccountsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AWSAccountsList) Version() float64 {
+func (o AWSAccountsList) Version() int {
 
 	return 1.0
 }

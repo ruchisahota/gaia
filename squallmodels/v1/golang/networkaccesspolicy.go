@@ -42,7 +42,7 @@ func (o NetworkAccessPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o NetworkAccessPoliciesList) Version() float64 {
+func (o NetworkAccessPoliciesList) Version() int {
 
 	return 1.0
 }

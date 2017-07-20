@@ -42,7 +42,7 @@ func (o QuotaPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o QuotaPoliciesList) Version() float64 {
+func (o QuotaPoliciesList) Version() int {
 
 	return 1.0
 }

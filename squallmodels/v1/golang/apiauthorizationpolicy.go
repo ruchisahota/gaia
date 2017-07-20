@@ -42,7 +42,7 @@ func (o APIAuthorizationPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o APIAuthorizationPoliciesList) Version() float64 {
+func (o APIAuthorizationPoliciesList) Version() int {
 
 	return 1.0
 }

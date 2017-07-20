@@ -42,7 +42,7 @@ func (o FilePathsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o FilePathsList) Version() float64 {
+func (o FilePathsList) Version() int {
 
 	return 1.0
 }

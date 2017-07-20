@@ -42,7 +42,7 @@ func (o EnforcerProfileMappingPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o EnforcerProfileMappingPoliciesList) Version() float64 {
+func (o EnforcerProfileMappingPoliciesList) Version() int {
 
 	return 1.0
 }

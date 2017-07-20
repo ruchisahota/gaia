@@ -40,7 +40,7 @@ func (o KubernetesClustersList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o KubernetesClustersList) Version() float64 {
+func (o KubernetesClustersList) Version() int {
 
 	return 1.0
 }

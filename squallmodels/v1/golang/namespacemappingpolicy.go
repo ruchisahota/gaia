@@ -42,7 +42,7 @@ func (o NamespaceMappingPoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o NamespaceMappingPoliciesList) Version() float64 {
+func (o NamespaceMappingPoliciesList) Version() int {
 
 	return 1.0
 }
