@@ -15,10 +15,10 @@ func Relationships() elemental.RelationshipsRegistry {
 func init() {
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
-	relationshipsRegistry[elemental.IdentityFromName("remoteprocessor")] = &elemental.Relationship{
+	relationshipsRegistry[RemoteProcessorIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("root")] = &elemental.Relationship{}
+	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
 }

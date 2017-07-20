@@ -15,8 +15,7 @@ func Relationships() elemental.RelationshipsRegistry {
 func init() {
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
-	relationshipsRegistry[elemental.IdentityFromName("root")] = &elemental.Relationship{}
-	relationshipsRegistry[elemental.IdentityFromName("email")] = &elemental.Relationship{
+	relationshipsRegistry[EmailIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
@@ -36,4 +35,5 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
 }
