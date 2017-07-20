@@ -15,7 +15,7 @@ func Relationships() elemental.RelationshipsRegistry {
 func init() {
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
-	relationshipsRegistry[elemental.IdentityFromName("account")] = &elemental.Relationship{
+	relationshipsRegistry[AccountIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
@@ -32,7 +32,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("activate")] = &elemental.Relationship{
+	relationshipsRegistry[ActivateIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
 		},
@@ -43,7 +43,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("certificate")] = &elemental.Relationship{
+	relationshipsRegistry[CertificateIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
@@ -63,7 +63,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("passwordreset")] = &elemental.Relationship{
+	relationshipsRegistry[PasswordResetIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
@@ -77,7 +77,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("plan")] = &elemental.Relationship{
+	relationshipsRegistry[PlanIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
 		},
@@ -88,24 +88,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("awsaccount")] = &elemental.Relationship{
-		AllowsCreate: map[string]bool{
-			"root": true,
-		},
-		AllowsDelete: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
-	relationshipsRegistry[elemental.IdentityFromName("kubernetescluster")] = &elemental.Relationship{
+	relationshipsRegistry[AWSAccountIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
@@ -122,8 +105,25 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[elemental.IdentityFromName("root")] = &elemental.Relationship{}
-	relationshipsRegistry[elemental.IdentityFromName("check")] = &elemental.Relationship{
+	relationshipsRegistry[KubernetesClusterIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
+	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+	relationshipsRegistry[CheckIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
 		},
