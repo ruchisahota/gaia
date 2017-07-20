@@ -43,11 +43,56 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[AWSAccountIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[CertificateIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
 		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
+	relationshipsRegistry[CheckIdentity] = &elemental.Relationship{
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
+	relationshipsRegistry[KubernetesClusterIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
 			"root": true,
 		},
 		AllowsDelete: map[string]bool{
@@ -88,50 +133,5 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[AWSAccountIdentity] = &elemental.Relationship{
-		AllowsCreate: map[string]bool{
-			"root": true,
-		},
-		AllowsDelete: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
-	relationshipsRegistry[KubernetesClusterIdentity] = &elemental.Relationship{
-		AllowsCreate: map[string]bool{
-			"root": true,
-		},
-		AllowsDelete: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
-	relationshipsRegistry[CheckIdentity] = &elemental.Relationship{
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
 }
