@@ -5,7 +5,7 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
-import "github.com/aporeto-inc/gaia/shared/golang/gaiatypes"
+import "github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
 
 // ExternalAccessIdentity represents the Identity of the object
 var ExternalAccessIdentity = elemental.Identity{
@@ -48,7 +48,7 @@ func (o ExternalAccessList) Version() int {
 // ExternalAccess represents the model of a externalaccess
 type ExternalAccess struct {
 	// IPRecords refers to a list of IPRecord that contains the IP information
-	IPRecords []*gaiatypes.IPRecord `json:"IPRecords" bson:"-"`
+	IPRecords []*types.IPRecord `json:"IPRecords" bson:"-"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -60,7 +60,7 @@ func NewExternalAccess() *ExternalAccess {
 
 	return &ExternalAccess{
 		ModelVersion: 1,
-		IPRecords:    []*gaiatypes.IPRecord{},
+		IPRecords:    []*types.IPRecord{},
 	}
 }
 
