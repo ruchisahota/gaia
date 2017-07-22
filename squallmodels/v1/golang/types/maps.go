@@ -1,4 +1,4 @@
-package gaiatypes
+package types
 
 // GraphEdgeMap is a map of id to GraphEdge
 type GraphEdgeMap map[string]*GraphEdge

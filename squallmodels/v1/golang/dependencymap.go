@@ -5,7 +5,7 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
-import "github.com/aporeto-inc/gaia/shared/golang/gaiatypes"
+import "github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
 
 // DependencyMapIdentity represents the Identity of the object
 var DependencyMapIdentity = elemental.Identity{
@@ -51,13 +51,13 @@ type DependencyMap struct {
 	ID string `json:"ID" bson:"-"`
 
 	// edges are the edges of the map
-	Edges gaiatypes.GraphEdgeMap `json:"edges" bson:"-"`
+	Edges types.GraphEdgeMap `json:"edges" bson:"-"`
 
 	// Groups provide information about the group values
-	Groups gaiatypes.GraphGroupMap `json:"groups" bson:"-"`
+	Groups types.GraphGroupMap `json:"groups" bson:"-"`
 
 	// nodes refers to the nodes of the map
-	Nodes gaiatypes.GraphNodeMap `json:"nodes" bson:"-"`
+	Nodes types.GraphNodeMap `json:"nodes" bson:"-"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -69,9 +69,9 @@ func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
 		ModelVersion: 1,
-		Edges:        gaiatypes.GraphEdgeMap{},
-		Groups:       gaiatypes.GraphGroupMap{},
-		Nodes:        gaiatypes.GraphNodeMap{},
+		Edges:        types.GraphEdgeMap{},
+		Groups:       types.GraphGroupMap{},
+		Nodes:        types.GraphNodeMap{},
 	}
 }
 
