@@ -1,4 +1,4 @@
-package gaiaconstants
+package constants
 
 // RenderedPolicyType defines the type of the RenderedPolicyType
 type RenderedPolicyType string

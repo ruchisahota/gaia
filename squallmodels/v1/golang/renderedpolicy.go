@@ -5,7 +5,7 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
-import "github.com/aporeto-inc/gaia/shared/golang/gaiaconstants"
+import "github.com/aporeto-inc/gaia/squallmodels/v1/golang/constants"
 
 // RenderedPolicyIdentity represents the Identity of the object
 var RenderedPolicyIdentity = elemental.Identity{
@@ -72,8 +72,8 @@ func NewRenderedPolicy() *RenderedPolicy {
 
 	return &RenderedPolicy{
 		ModelVersion:    1,
-		EgressPolicies:  map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
-		IngressPolicies: map[string]PolicyRulesList{string(gaiaconstants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeFile): PolicyRulesList{}, string(gaiaconstants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
+		EgressPolicies:  map[string]PolicyRulesList{string(constants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(constants.RenderedPolicyTypeFile): PolicyRulesList{}, string(constants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
+		IngressPolicies: map[string]PolicyRulesList{string(constants.RenderedPolicyTypeNetwork): PolicyRulesList{}, string(constants.RenderedPolicyTypeFile): PolicyRulesList{}, string(constants.RenderedPolicyTypeSystemCall): PolicyRulesList{}},
 	}
 }
 

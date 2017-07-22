@@ -1,4 +1,4 @@
-package gaiatypes
+package types
 
 import (
 	"encoding/json"
