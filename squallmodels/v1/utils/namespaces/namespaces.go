@@ -6,11 +6,10 @@ import (
 	"strings"
 
 	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/gaia/squallmodels/v1/golang"
 	"github.com/aporeto-inc/manipulate"
 	"github.com/aporeto-inc/squall/constants"
 	"github.com/aporeto-inc/squall/errors"
-
-	"github.com/aporeto-inc/gaia/squallmodels/current/golang"
 )
 
 // ParentNamespaceFromString returns the parent namespace of a namespace

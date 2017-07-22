@@ -1,10 +1,10 @@
-package rufusconstants
+package constants
 
 import (
 	"fmt"
 
 	"github.com/aporeto-inc/elemental"
-	"github.com/aporeto-inc/gaia/rufusmodels/current/golang"
+	"github.com/aporeto-inc/gaia/rufusmodels/v1/golang"
 )
 
 // PluginInfo carries information about a plugin

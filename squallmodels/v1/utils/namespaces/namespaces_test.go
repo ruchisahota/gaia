@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/aporeto-inc/elemental"
-	"github.com/aporeto-inc/gaia/squallmodels/current/golang"
+	"github.com/aporeto-inc/gaia/squallmodels/v1/golang"
 	"github.com/aporeto-inc/manipulate"
 	"github.com/aporeto-inc/manipulate/maniptest"
 	. "github.com/smartystreets/goconvey/convey"
