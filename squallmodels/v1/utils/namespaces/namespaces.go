@@ -8,29 +8,19 @@ import (
 	"github.com/aporeto-inc/elemental"
 	"github.com/aporeto-inc/gaia/squallmodels/v1/golang"
 	"github.com/aporeto-inc/manipulate"
-	"github.com/aporeto-inc/squall/constants"
-	"github.com/aporeto-inc/squall/errors"
 )
 
-// NamespaceSetter is an interface that allows to set a namespace
-type NamespaceSetter interface {
-	SetNamespace(string)
-}
-
-// NamespaceGetter is an interface that allows to get a namespace
-type NamespaceGetter interface {
-	GetNamespace() string
-}
+const nsSeparator = "/"
 
 // ParentNamespaceFromString returns the parent namespace of a namespace
 // It returns empty it the string is invalid
 func ParentNamespaceFromString(namespace string) (string, error) {
 
-	if namespace == constants.NamespaceSeparator {
+	if namespace == nsSeparator {
 		return "", nil
 	}
 
-	index := strings.LastIndex(namespace, constants.NamespaceSeparator)
+	index := strings.LastIndex(namespace, nsSeparator)
 
 	switch index {
 	case -1:
@@ -80,12 +70,12 @@ func IsNamespaceChildrenOfNamespace(ns string, parent string) bool {
 // array for the root namespace
 func NamespaceAncestorsNames(namespace string) []string {
 
-	if namespace == constants.NamespaceSeparator {
+	if namespace == nsSeparator {
 		return []string{}
 	}
 
-	parts := strings.Split(namespace, constants.NamespaceSeparator)
-	sep := constants.NamespaceSeparator
+	parts := strings.Split(namespace, nsSeparator)
+	sep := nsSeparator
 	namespaces := []string{}
 
 	for i := len(parts) - 1; i >= 2; i-- {
@@ -136,7 +126,7 @@ L:
 
 		for _, r := range namespace {
 			if r == '/' {
-				errs = append(errs, errors.New("Reserved Characther", "Namespace name cannot contains a /", 42, nil))
+				errs = append(errs, elemental.NewError("Reserved Character", "Namespace name cannot contains a /", "gaia", http.StatusUnprocessableEntity))
 				continue L
 			}
 		}
@@ -170,11 +160,15 @@ func ValidateNamespaceBump(m manipulate.Manipulator, policyNamespace string, req
 	}
 
 	if IsNamespaceParentOfNamespace(policyNamespace, requestNamespace) {
-		return errors.New("Invalid mapped namespace", "You cannot map a processing unit to a higher level namespace", http.StatusUnprocessableEntity, data)
+		err := elemental.NewError("Invalid mapped namespace", "You cannot map a processing unit to a higher level namespace", "gaia", http.StatusUnprocessableEntity)
+		err.Data = data
+		return err
 	}
 
 	if !IsNamespaceChildrenOfNamespace(policyNamespace, requestNamespace) {
-		return errors.New("Invalid mapped namespace", "You cannot map a processing unit to this level namespace, it needs to be a lower namespace", http.StatusUnprocessableEntity, data)
+		err := elemental.NewError("Invalid mapped namespace", "You cannot map a processing unit to this level namespace, it needs to be a lower namespace", "gaia", http.StatusUnprocessableEntity)
+		err.Data = data
+		return err
 	}
 
 	mctx := manipulate.NewContextWithFilter(manipulate.NewFilterComposer().WithKey("name").Equals(policyNamespace).Done())
@@ -184,7 +178,9 @@ func ValidateNamespaceBump(m manipulate.Manipulator, policyNamespace string, req
 	}
 
 	if count == 0 {
-		return errors.New("Invalid mapped namespace", "The mapped namespace doesn't exist", http.StatusUnprocessableEntity, data)
+		err := elemental.NewError("Invalid mapped namespace", "The mapped namespace doesn't exist", "gaia", http.StatusUnprocessableEntity)
+		err.Data = data
+		return err
 	}
 
 	return nil
