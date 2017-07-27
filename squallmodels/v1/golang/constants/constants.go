@@ -69,6 +69,9 @@ const (
 	// StatsTagKeyDestinationPort represents the destination port tag.
 	StatsTagKeyDestinationPort = "@destport"
 
+	// StatsTagKeyPolicyID represents the policy ID tag.
+	StatsTagKeyPolicyID = "@policyid"
+
 	// StatsTagKeyProcessingUnitID represents the processing unit ID tag.
 	StatsTagKeyProcessingUnitID = "$id"
 

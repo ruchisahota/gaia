@@ -32,6 +32,7 @@ type GraphEdge struct {
 	RejectedFlows   int                    `json:"rejectedFlows"`
 	SourceID        string                 `json:"sourceID"`
 	SourceType      GraphEdgeExtremityType `json:"sourceType"`
+	PolicyID        string                 `json:"policyID"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
