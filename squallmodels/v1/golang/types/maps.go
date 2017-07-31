@@ -19,7 +19,7 @@ const (
 	GraphEdgeExtremityTypePU GraphEdgeExtremityType = "pu"
 
 	// GraphEdgeExtremityTypeExternalService represents the value of a pu external service.
-	GraphEdgeExtremityTypeExternalService GraphEdgeExtremityType = "extsrv"
+	GraphEdgeExtremityTypeExternalService GraphEdgeExtremityType = "ext"
 )
 
 // GraphEdge represents the model of a Edge
