@@ -60,14 +60,23 @@ const (
 	// StatsTagKeyDestinationIP represents the destination IP tag.
 	StatsTagKeyDestinationIP = "@destip"
 
+	// StatsTagKeyDestinationType represents the destination type tag.
+	StatsTagKeyDestinationType = "@desttype"
+
 	// StatsTagKeySourceID represents the source ID tag.
 	StatsTagKeySourceID = "@srcid"
 
 	// StatsTagKeySourceIP represents the source IP tag.
 	StatsTagKeySourceIP = "@srcip"
 
+	// StatsTagKeySourceType represents the source type tag.
+	StatsTagKeySourceType = "@srctype"
+
 	// StatsTagKeyDestinationPort represents the destination port tag.
 	StatsTagKeyDestinationPort = "@destport"
+
+	// StatsTagKeyEncrypted represents the encrypted tag.
+	StatsTagKeyEncrypted = "@encrypted"
 
 	// StatsTagKeyPolicyID represents the policy ID tag.
 	StatsTagKeyPolicyID = "@policyid"
