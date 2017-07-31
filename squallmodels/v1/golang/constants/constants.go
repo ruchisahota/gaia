@@ -129,9 +129,9 @@ const (
 	// StatsTagKeySyscallAccessProcessName represents the name of the related process.
 	StatsTagKeySyscallAccessProcessName = "@processname"
 
-	// StatsTagKeyReasonExternalServiceDestination represents the extdst value.
-	StatsTagKeyReasonExternalServiceDestination = "extdst"
+	// StatsTagKeyFlowTypeProcessingUnit represents the pu type value.
+	StatsTagKeyFlowTypeProcessingUnit = "pu"
 
-	// StatsTagKeyReasonExternalServiceSource represents the extsrc value.
-	StatsTagKeyReasonExternalServiceSource = "extsrc"
+	// StatsTagKeyFlowTypeExternalService represents the ext value.
+	StatsTagKeyFlowTypeExternalService = "ext"
 )
