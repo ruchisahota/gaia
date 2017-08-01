@@ -84,6 +84,12 @@ type Policy struct {
 	// Action defines set of actions that must be enforced when a dependency is met.
 	Action map[string]map[string]string `json:"action" bson:"action"`
 
+	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+	ActiveDuration string `json:"activeDuration" bson:"activeduration"`
+
+	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
+
 	// This is a set of all object tags for matching in the DB
 	AllObjectTags []string `json:"-" bson:"allobjecttags"`
 
@@ -200,6 +206,26 @@ func (o *Policy) Doc() string {
 func (o *Policy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
+}
+
+// GetActiveDuration returns the activeDuration of the receiver
+func (o *Policy) GetActiveDuration() string {
+	return o.ActiveDuration
+}
+
+// SetActiveDuration set the given activeDuration of the receiver
+func (o *Policy) SetActiveDuration(activeDuration string) {
+	o.ActiveDuration = activeDuration
+}
+
+// GetActiveSchedule returns the activeSchedule of the receiver
+func (o *Policy) GetActiveSchedule() string {
+	return o.ActiveSchedule
+}
+
+// SetActiveSchedule set the given activeSchedule of the receiver
+func (o *Policy) SetActiveSchedule(activeSchedule string) {
+	o.ActiveSchedule = activeSchedule
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
@@ -396,6 +422,28 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "actions_list",
 		Type:           "external",
+	},
+	"ActiveDuration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeDuration",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"ActiveSchedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeSchedule",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"AllObjectTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -649,6 +697,28 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "actions_list",
 		Type:           "external",
+	},
+	"activeduration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeDuration",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"activeschedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeSchedule",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"allobjecttags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

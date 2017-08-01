@@ -52,6 +52,12 @@ type APIAuthorizationPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"-"`
 
+	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+	ActiveDuration string `json:"activeDuration" bson:"activeduration"`
+
+	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
+
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
@@ -158,6 +164,26 @@ func (o *APIAuthorizationPolicy) Doc() string {
 func (o *APIAuthorizationPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
+}
+
+// GetActiveDuration returns the activeDuration of the receiver
+func (o *APIAuthorizationPolicy) GetActiveDuration() string {
+	return o.ActiveDuration
+}
+
+// SetActiveDuration set the given activeDuration of the receiver
+func (o *APIAuthorizationPolicy) SetActiveDuration(activeDuration string) {
+	o.ActiveDuration = activeDuration
+}
+
+// GetActiveSchedule returns the activeSchedule of the receiver
+func (o *APIAuthorizationPolicy) GetActiveSchedule() string {
+	return o.ActiveSchedule
+}
+
+// SetActiveSchedule set the given activeSchedule of the receiver
+func (o *APIAuthorizationPolicy) SetActiveSchedule(activeSchedule string) {
+	o.ActiveSchedule = activeSchedule
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
@@ -338,6 +364,28 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"ActiveDuration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeDuration",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"ActiveSchedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeSchedule",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -549,6 +597,28 @@ var APIAuthorizationPolicyLowerCaseAttributesMap = map[string]elemental.Attribut
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"activeduration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeDuration",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"activeschedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeSchedule",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

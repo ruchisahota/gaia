@@ -123,7 +123,8 @@
             "@identifiable-nopk-nostored",
             "@metadatable",
             "@named",
-            "@propagated"
+            "@propagated",
+            "@schedulable"
         ],
         "get": true,
         "package": "Squall API",

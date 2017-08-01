@@ -52,6 +52,12 @@ type NetworkAccessPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"-"`
 
+	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+	ActiveDuration string `json:"activeDuration" bson:"activeduration"`
+
+	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
+
 	// AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
 	AllowsTraffic bool `json:"allowsTraffic" bson:"-"`
 
@@ -167,6 +173,26 @@ func (o *NetworkAccessPolicy) Doc() string {
 func (o *NetworkAccessPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
+}
+
+// GetActiveDuration returns the activeDuration of the receiver
+func (o *NetworkAccessPolicy) GetActiveDuration() string {
+	return o.ActiveDuration
+}
+
+// SetActiveDuration set the given activeDuration of the receiver
+func (o *NetworkAccessPolicy) SetActiveDuration(activeDuration string) {
+	o.ActiveDuration = activeDuration
+}
+
+// GetActiveSchedule returns the activeSchedule of the receiver
+func (o *NetworkAccessPolicy) GetActiveSchedule() string {
+	return o.ActiveSchedule
+}
+
+// SetActiveSchedule set the given activeSchedule of the receiver
+func (o *NetworkAccessPolicy) SetActiveSchedule(activeSchedule string) {
+	o.ActiveSchedule = activeSchedule
 }
 
 // GetAssociatedTags returns the associatedTags of the receiver
@@ -331,6 +357,28 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"ActiveDuration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeDuration",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"ActiveSchedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeSchedule",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"AllowsTraffic": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -569,6 +617,28 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"activeduration": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeDuration",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"activeschedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Getter:         true,
+		Name:           "activeSchedule",
+		Setter:         true,
+		Stored:         true,
+		Type:           "string",
 	},
 	"allowstraffic": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
