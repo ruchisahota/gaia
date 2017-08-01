@@ -308,10 +308,6 @@ func (o *FileAccessPolicy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidatePattern("activeDuration", o.ActiveDuration, `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -365,7 +361,6 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Unique:         true,
 	},
 	"ActiveDuration": elemental.AttributeSpecification{
-		AllowedChars:   `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`,
 		AllowedChoices: []string{},
 		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
 		Exposed:        true,
@@ -634,7 +629,6 @@ var FileAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 		Unique:         true,
 	},
 	"activeduration": elemental.AttributeSpecification{
-		AllowedChars:   `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`,
 		AllowedChoices: []string{},
 		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
 		Exposed:        true,
