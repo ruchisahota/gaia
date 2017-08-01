@@ -52,6 +52,12 @@ type FileAccessPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"-"`
 
+	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+	ActiveDuration string `json:"activeDuration" bson:"activeduration"`
+
+	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
+
 	// AllowsExecute allows to execute the files.
 	AllowsExecute bool `json:"allowsExecute" bson:"-"`
 
@@ -282,6 +288,10 @@ func (o *FileAccessPolicy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidatePattern("activeDuration", o.ActiveDuration, `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -333,6 +343,25 @@ var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"ActiveDuration": elemental.AttributeSpecification{
+		AllowedChars:   `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`,
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "activeDuration",
+		Stored:         true,
+		Type:           "string",
+	},
+	"ActiveSchedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "activeSchedule",
+		Stored:         true,
+		Type:           "string",
 	},
 	"AllowsExecute": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -579,6 +608,25 @@ var FileAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 		ReadOnly:       true,
 		Type:           "string",
 		Unique:         true,
+	},
+	"activeduration": elemental.AttributeSpecification{
+		AllowedChars:   `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`,
+		AllowedChoices: []string{},
+		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "activeDuration",
+		Stored:         true,
+		Type:           "string",
+	},
+	"activeschedule": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "activeSchedule",
+		Stored:         true,
+		Type:           "string",
 	},
 	"allowsexecute": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
