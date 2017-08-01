@@ -208,6 +208,26 @@ func (o *Policy) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
+// GetActiveDuration returns the activeDuration of the receiver
+func (o *Policy) GetActiveDuration() string {
+	return o.ActiveDuration
+}
+
+// SetActiveDuration set the given activeDuration of the receiver
+func (o *Policy) SetActiveDuration(activeDuration string) {
+	o.ActiveDuration = activeDuration
+}
+
+// GetActiveSchedule returns the activeSchedule of the receiver
+func (o *Policy) GetActiveSchedule() string {
+	return o.ActiveSchedule
+}
+
+// SetActiveSchedule set the given activeSchedule of the receiver
+func (o *Policy) SetActiveSchedule(activeSchedule string) {
+	o.ActiveSchedule = activeSchedule
+}
+
 // GetAssociatedTags returns the associatedTags of the receiver
 func (o *Policy) GetAssociatedTags() []string {
 	return o.AssociatedTags
@@ -413,7 +433,9 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeDuration",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -422,7 +444,9 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeSchedule",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -685,7 +709,9 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeDuration",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -694,7 +720,9 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeSchedule",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},

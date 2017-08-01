@@ -166,6 +166,26 @@ func (o *APIAuthorizationPolicy) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
+// GetActiveDuration returns the activeDuration of the receiver
+func (o *APIAuthorizationPolicy) GetActiveDuration() string {
+	return o.ActiveDuration
+}
+
+// SetActiveDuration set the given activeDuration of the receiver
+func (o *APIAuthorizationPolicy) SetActiveDuration(activeDuration string) {
+	o.ActiveDuration = activeDuration
+}
+
+// GetActiveSchedule returns the activeSchedule of the receiver
+func (o *APIAuthorizationPolicy) GetActiveSchedule() string {
+	return o.ActiveSchedule
+}
+
+// SetActiveSchedule set the given activeSchedule of the receiver
+func (o *APIAuthorizationPolicy) SetActiveSchedule(activeSchedule string) {
+	o.ActiveSchedule = activeSchedule
+}
+
 // GetAssociatedTags returns the associatedTags of the receiver
 func (o *APIAuthorizationPolicy) GetAssociatedTags() []string {
 	return o.AssociatedTags
@@ -355,7 +375,9 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeDuration",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -364,7 +386,9 @@ var APIAuthorizationPolicyAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeSchedule",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -585,7 +609,9 @@ var APIAuthorizationPolicyLowerCaseAttributesMap = map[string]elemental.Attribut
 		Description:    `ActiveDuration defines for how long the policy will be active according to the activeSchedule.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeDuration",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -594,7 +620,9 @@ var APIAuthorizationPolicyLowerCaseAttributesMap = map[string]elemental.Attribut
 		Description:    `ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.`,
 		Exposed:        true,
 		Format:         "free",
+		Getter:         true,
 		Name:           "activeSchedule",
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
