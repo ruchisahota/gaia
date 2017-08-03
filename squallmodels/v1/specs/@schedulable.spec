@@ -48,7 +48,7 @@
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
-            "format": "free",
+            "format": null,
             "getter": true,
             "identifier": null,
             "index": null,
@@ -64,9 +64,9 @@
             "secret": null,
             "setter": true,
             "stored": true,
-            "subtype": null,
+            "subtype": "cron_expression",
             "transient": null,
-            "type": "string",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         }
