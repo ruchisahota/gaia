@@ -89,24 +89,24 @@
             "bulk_create": false,
             "bulk_delete": false,
             "bulk_update": false,
-            "create": false,
-            "delete": false,
-            "deprecated": null,
-            "get": true,
-            "relationship": "root",
-            "rest_name": "externalaccess",
-            "update": false
-        },
-        {
-            "bulk_create": false,
-            "bulk_delete": false,
-            "bulk_update": false,
             "create": true,
             "delete": false,
             "deprecated": null,
             "get": true,
             "relationship": "root",
             "rest_name": "externalservice",
+            "update": false
+        },
+        {
+            "bulk_create": false,
+            "bulk_delete": false,
+            "bulk_update": false,
+            "create": false,
+            "delete": false,
+            "deprecated": null,
+            "get": true,
+            "relationship": "root",
+            "rest_name": "fileaccess",
             "update": false
         },
         {
@@ -320,7 +320,9 @@
         "delete": false,
         "description": "[nodoc]",
         "entity_name": "Root",
-        "extends": [],
+        "extends": [
+            "@identifiable-nopk-nostored"
+        ],
         "get": true,
         "package": "",
         "resource_name": "root",
