@@ -125,17 +125,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[ExternalAccessIdentity] = &elemental.Relationship{
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
+	relationshipsRegistry[ExternalAccessIdentity] = &elemental.Relationship{}
 	relationshipsRegistry[ExternalServiceIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
@@ -158,12 +148,15 @@ func init() {
 	}
 	relationshipsRegistry[FileAccessIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
+			"root":           true,
 			"processingunit": true,
 		},
 		AllowsRetrieveMany: map[string]bool{
+			"root":           true,
 			"processingunit": true,
 		},
 		AllowsInfo: map[string]bool{
+			"root":           true,
 			"processingunit": true,
 		},
 	}
