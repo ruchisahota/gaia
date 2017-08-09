@@ -141,7 +141,7 @@ type Enforcer struct {
 	PublicToken string `json:"publicToken" bson:"publictoken"`
 
 	// Tells if the the version of enforcerd is outdated and should be updated.
-	UpdateAvailable string `json:"updateAvailable" bson:"updateavailable"`
+	UpdateAvailable bool `json:"updateAvailable" bson:"updateavailable"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
@@ -597,11 +597,10 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Tells if the the version of enforcerd is outdated and should be updated.`,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
 		Name:           "updateAvailable",
 		Orderable:      true,
 		Stored:         true,
-		Type:           "string",
+		Type:           "boolean",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -871,11 +870,10 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		Description:    `Tells if the the version of enforcerd is outdated and should be updated.`,
 		Exposed:        true,
 		Filterable:     true,
-		Format:         "free",
 		Name:           "updateAvailable",
 		Orderable:      true,
 		Stored:         true,
-		Type:           "string",
+		Type:           "boolean",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
