@@ -33,7 +33,7 @@ type GraphEdge struct {
 	SourceID        string                 `json:"sourceID"`
 	SourceType      GraphEdgeExtremityType `json:"sourceType"`
 	PolicyID        string                 `json:"policyID"`
-	Encrypted       bool                   `json:"encrypted"`
+	Encrypted       int                    `json:"encrypted"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
