@@ -189,6 +189,7 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 		Format:         "free",
 		Name:           "certificateID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
@@ -213,6 +214,7 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 		Format:         "free",
 		Name:           "kubernetesDefinitions",
 		Orderable:      true,
+		ReadOnly:       true,
 		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
@@ -251,7 +253,6 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Description:    `The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -310,6 +311,7 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		Format:         "free",
 		Name:           "certificateID",
 		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 		Unique:         true,
@@ -334,6 +336,7 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		Format:         "free",
 		Name:           "kubernetesDefinitions",
 		Orderable:      true,
+		ReadOnly:       true,
 		Type:           "string",
 	},
 	"name": elemental.AttributeSpecification{
@@ -372,7 +375,6 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 	},
 	"targetnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Description:    `The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.`,
 		Exposed:        true,
 		Filterable:     true,
