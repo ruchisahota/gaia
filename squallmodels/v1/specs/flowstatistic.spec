@@ -328,6 +328,7 @@
     "children": [],
     "model": {
         "aliases": [
+            "flowstats",
             "flowstat"
         ],
         "create": false,
