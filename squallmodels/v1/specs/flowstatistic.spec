@@ -327,7 +327,9 @@
     ],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "flowstat"
+        ],
         "create": false,
         "delete": false,
         "description": "Returns network access statistics on a particular processing unit or group of processing units based on their tags.",
