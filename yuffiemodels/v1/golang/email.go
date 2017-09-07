@@ -5,6 +5,17 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
+// EmailTypeValue represents the possible values for attribute "type".
+type EmailTypeValue string
+
+const (
+	// EmailTypeEmail represents the value Email.
+	EmailTypeEmail EmailTypeValue = "Email"
+
+	// EmailTypePlain represents the value Plain.
+	EmailTypePlain EmailTypeValue = "Plain"
+)
+
 // EmailIdentity represents the Identity of the object
 var EmailIdentity = elemental.Identity{
 	Name:     "email",
@@ -66,6 +77,9 @@ type Email struct {
 	// To represents receivers of the email
 	To []string `json:"to" bson:"-"`
 
+	// Type represents the type of the content.
+	Type EmailTypeValue `json:"type" bson:"-"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -76,6 +90,7 @@ func NewEmail() *Email {
 
 	return &Email{
 		ModelVersion: 1,
+		Type:         "Plain",
 	}
 }
 
@@ -129,6 +144,10 @@ func (o *Email) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("from", o.From); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Email", "Plain"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -219,6 +238,14 @@ var EmailAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "list_emails",
 		Type:           "external",
 	},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Email", "Plain"},
+		DefaultValue:   EmailTypeValue("Plain"),
+		Description:    `Type represents the type of the content.`,
+		Exposed:        true,
+		Name:           "type",
+		Type:           "enum",
+	},
 }
 
 // EmailLowerCaseAttributesMap represents the map of attribute for Email.
@@ -279,5 +306,13 @@ var EmailLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "to",
 		SubType:        "list_emails",
 		Type:           "external",
+	},
+	"type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Email", "Plain"},
+		DefaultValue:   EmailTypeValue("Plain"),
+		Description:    `Type represents the type of the content.`,
+		Exposed:        true,
+		Name:           "type",
+		Type:           "enum",
 	},
 }
