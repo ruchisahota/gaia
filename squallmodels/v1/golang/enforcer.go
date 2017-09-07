@@ -122,6 +122,9 @@ type Enforcer struct {
 	// Contains the ID of the profile used by the instance of enforcerd.
 	EnforcerProfileID string `json:"enforcerProfileID" bson:"enforcerprofileid"`
 
+	// LastCollectionTime represents the date and time when the info have been collected.
+	LastCollectionTime time.Time `json:"lastCollectionTime" bson:"lastcollectiontime"`
+
 	// LastSyncTime holds the last heart beat time.
 	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime"`
 
@@ -508,6 +511,14 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"LastCollectionTime": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LastCollectionTime represents the date and time when the info have been collected.`,
+		Exposed:        true,
+		Name:           "lastCollectionTime",
+		Stored:         true,
+		Type:           "time",
+	},
 	"LastSyncTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `LastSyncTime holds the last heart beat time.`,
@@ -797,6 +808,14 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		Orderable:      true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"lastcollectiontime": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LastCollectionTime represents the date and time when the info have been collected.`,
+		Exposed:        true,
+		Name:           "lastCollectionTime",
+		Stored:         true,
+		Type:           "time",
 	},
 	"lastsynctime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
