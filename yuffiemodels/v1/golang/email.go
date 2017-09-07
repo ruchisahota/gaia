@@ -9,8 +9,8 @@ import "sync"
 type EmailTypeValue string
 
 const (
-	// EmailTypeEmail represents the value Email.
-	EmailTypeEmail EmailTypeValue = "Email"
+	// EmailTypeHtml represents the value HTML.
+	EmailTypeHtml EmailTypeValue = "HTML"
 
 	// EmailTypePlain represents the value Plain.
 	EmailTypePlain EmailTypeValue = "Plain"
@@ -147,7 +147,7 @@ func (o *Email) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Email", "Plain"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"HTML", "Plain"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -239,7 +239,7 @@ var EmailAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Email", "Plain"},
+		AllowedChoices: []string{"HTML", "Plain"},
 		DefaultValue:   EmailTypeValue("Plain"),
 		Description:    `Type represents the type of the content.`,
 		Exposed:        true,
@@ -308,7 +308,7 @@ var EmailLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Email", "Plain"},
+		AllowedChoices: []string{"HTML", "Plain"},
 		DefaultValue:   EmailTypeValue("Plain"),
 		Description:    `Type represents the type of the content.`,
 		Exposed:        true,
