@@ -126,6 +126,24 @@ func DescendentsOfNamespace(manipulator manipulate.Manipulator, namespace *squal
 	return out, nil
 }
 
+// AscendentsOfNamespace returns the list of namespace object that are parent of the given namespace.
+func AscendentsOfNamespace(manipulator manipulate.Manipulator, namespace *squallmodels.Namespace) (squallmodels.NamespacesList, error) {
+
+	names := NamespaceAncestorsNames(namespace.Name)
+	filter := manipulate.NewFilterComposer().WithKey("name").Equals(namespace.Name).Done()
+	for _, name := range names {
+		filter.OrKey("name").Equals(name)
+	}
+
+	mctx := manipulate.NewContextWithFilter(filter)
+	nss := squallmodels.NamespacesList{}
+	if err := manipulator.RetrieveMany(mctx, &nss); err != nil {
+		return nil, err
+	}
+
+	return nss, nil
+}
+
 // ValidateNamespaceStrings validates the name of the given namespaces.
 func ValidateNamespaceStrings(namespaces ...string) error {
 
