@@ -144,6 +144,30 @@ func AscendentsOfNamespace(manipulator manipulate.Manipulator, namespace *squall
 	return nss, nil
 }
 
+// NamespaceByName returns the namespace with the given name.
+func NamespaceByName(manipulator manipulate.Manipulator, name string) (*squallmodels.Namespace, error) {
+
+	mctx := manipulate.NewContextWithFilter(
+		manipulate.NewFilterComposer().
+			WithKey("name").Equals(name).
+			Done(),
+	)
+
+	nslist := squallmodels.NamespacesList{}
+	if err := manipulator.RetrieveMany(mctx, &nslist); err != nil {
+		return nil, err
+	}
+
+	switch len(nslist) {
+	case 0:
+		return nil, manipulate.NewErrObjectNotFound("Cannot find object with the given ID")
+	case 1:
+		return nslist[0], nil
+	default:
+		return nil, fmt.Errorf("Found more than one namespace named %s", name)
+	}
+}
+
 // ValidateNamespaceStrings validates the name of the given namespaces.
 func ValidateNamespaceStrings(namespaces ...string) error {
 
