@@ -96,6 +96,9 @@ type Message struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
+	// If enabled, the message will be sent to the email associated in namespaces annotations.
+	NotifyByEmail bool `json:"notifyByEmail" bson:"-"`
+
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
 
@@ -420,6 +423,15 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
+	"NotifyByEmail": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `If enabled, the message will be sent to the email associated in namespaces annotations.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "notifyByEmail",
+		Type:           "boolean",
+	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Protected defines if the object is protected.`,
@@ -596,6 +608,15 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Transient:      true,
 		Type:           "external",
+	},
+	"notifybyemail": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `If enabled, the message will be sent to the email associated in namespaces annotations.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "notifyByEmail",
+		Type:           "boolean",
 	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
