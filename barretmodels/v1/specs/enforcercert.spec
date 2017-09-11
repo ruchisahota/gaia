@@ -9,6 +9,7 @@
         "entity_name": "EnforcerCert",
         "extends": [
             "@certificate",
+            "@public",
             "@server"
         ],
         "get": true,
