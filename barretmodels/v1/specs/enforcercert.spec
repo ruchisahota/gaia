@@ -7,7 +7,7 @@
             "enforcer"
         ],
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": "This api allows to create an enforcerd certificate.",
         "entity_name": "EnforcerCert",
         "extends": [
@@ -15,11 +15,11 @@
             "@public",
             "@server"
         ],
-        "get": true,
+        "get": false,
         "package": "barret",
         "resource_name": "enforcercerts",
         "rest_name": "enforcercert",
         "root": null,
-        "update": true
+        "update": false
     }
 }
