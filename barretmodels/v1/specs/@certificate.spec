@@ -44,7 +44,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Organization contains the list of requested organizations.",
+            "description": "Organizations contains the list of requested organizations.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
