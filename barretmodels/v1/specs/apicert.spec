@@ -12,7 +12,9 @@
         "delete": false,
         "description": "This API allows to retrieve an client certifcate for api authentication.",
         "entity_name": "APICert",
-        "extends": [],
+        "extends": [
+            "@certificate"
+        ],
         "get": false,
         "package": "barret",
         "resource_name": "apicerts",
