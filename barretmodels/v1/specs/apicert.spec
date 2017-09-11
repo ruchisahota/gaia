@@ -15,6 +15,7 @@
         "extends": [
             "@certificate",
             "@client",
+            "@p12",
             "@public"
         ],
         "get": false,
