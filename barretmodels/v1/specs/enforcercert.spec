@@ -2,20 +2,23 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "enforcers",
+            "enforcer"
+        ],
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "This api allows to retrieve an Aporeto enforcerd\u00a0certificate,",
         "entity_name": "EnforcerCert",
         "extends": [
             "@certificate",
             "@server"
         ],
-        "get": true,
-        "package": null,
+        "get": false,
+        "package": "barret",
         "resource_name": "enforcercerts",
         "rest_name": "enforcercert",
         "root": null,
-        "update": true
+        "update": false
     }
 }
