@@ -99,9 +99,9 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": null,
+            "subtype": "string",
             "transient": null,
-            "type": "time",
+            "type": "list",
             "unique": null,
             "uniqueScope": null
         },
