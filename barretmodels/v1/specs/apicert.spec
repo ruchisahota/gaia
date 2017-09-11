@@ -3,10 +3,10 @@
     "children": [],
     "model": {
         "aliases": [
-            "api",
-            "apicert",
+            "apicerts",
             "apis",
-            "apicerts"
+            "apicert",
+            "api"
         ],
         "create": null,
         "delete": false,
@@ -16,11 +16,11 @@
             "@certificate",
             "@client"
         ],
-        "get": true,
+        "get": false,
         "package": "barret",
         "resource_name": "apicerts",
         "rest_name": "apicert",
         "root": null,
-        "update": true
+        "update": false
     }
 }
