@@ -134,9 +134,9 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": "organizational_units_list",
+            "subtype": "string",
             "transient": null,
-            "type": "external",
+            "type": "list",
             "unique": null,
             "uniqueScope": null
         },
