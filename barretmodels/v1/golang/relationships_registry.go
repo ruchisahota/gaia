@@ -21,7 +21,19 @@ func init() {
 		},
 	}
 	relationshipsRegistry[EnforcerCertIdentity] = &elemental.Relationship{
-		AllowsCreate: map[string]bool{
+		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
 			"root": true,
 		},
 	}
