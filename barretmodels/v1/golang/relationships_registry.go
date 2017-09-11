@@ -22,9 +22,4 @@ func init() {
 	}
 	relationshipsRegistry[EnforcerCertIdentity] = &elemental.Relationship{}
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
-	relationshipsRegistry[TriremeCertIdentity] = &elemental.Relationship{
-		AllowsCreate: map[string]bool{
-			"root": true,
-		},
-	}
 }

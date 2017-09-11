@@ -7,7 +7,6 @@ func init() {
 	elemental.RegisterIdentity(APICertIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(EnforcerCertIdentity)
-	elemental.RegisterIdentity(TriremeCertIdentity)
 }
 
 // ModelVersion returns the current version of the model
@@ -23,8 +22,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewRoot()
 	case EnforcerCertIdentity.Name:
 		return NewEnforcerCert()
-	case TriremeCertIdentity.Name:
-		return NewTriremeCert()
 	default:
 		return nil
 	}
@@ -40,8 +37,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewRoot()
 	case EnforcerCertIdentity.Category:
 		return NewEnforcerCert()
-	case TriremeCertIdentity.Category:
-		return NewTriremeCert()
 	default:
 		return nil
 	}
@@ -55,8 +50,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &APICertsList{}
 	case EnforcerCertIdentity.Name:
 		return &EnforcerCertsList{}
-	case TriremeCertIdentity.Name:
-		return &TriremeCertsList{}
 	default:
 		return nil
 	}
@@ -70,8 +63,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &APICertsList{}
 	case EnforcerCertIdentity.Category:
 		return &EnforcerCertsList{}
-	case TriremeCertIdentity.Category:
-		return &TriremeCertsList{}
 	default:
 		return nil
 	}
@@ -84,7 +75,6 @@ func AllIdentities() []elemental.Identity {
 		APICertIdentity,
 		RootIdentity,
 		EnforcerCertIdentity,
-		TriremeCertIdentity,
 	}
 }
 
@@ -95,7 +85,6 @@ var aliasesMap = map[string]elemental.Identity{
 	"api":       APICertIdentity,
 	"enforcers": EnforcerCertIdentity,
 	"enforcer":  EnforcerCertIdentity,
-	"trireme":   TriremeCertIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -121,10 +110,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"enforcers",
 			"enforcer",
-		}
-	case TriremeCertIdentity:
-		return []string{
-			"trireme",
 		}
 	}
 
