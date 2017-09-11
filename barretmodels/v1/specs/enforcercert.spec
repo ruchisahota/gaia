@@ -13,7 +13,8 @@
         "extends": [
             "@certificate",
             "@public",
-            "@server"
+            "@server",
+            "@signingrequest"
         ],
         "get": false,
         "package": "barret",
