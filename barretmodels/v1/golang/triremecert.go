@@ -68,6 +68,9 @@ type TriremeCert struct {
 	// SerialNumber contains the generated certificate serial number.
 	SerialNumber string `json:"serialNumber" bson:"-"`
 
+	// SigningRequest contains the eventual signing request.
+	SigningRequest string `json:"signingRequest" bson:"-"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -139,6 +142,14 @@ func (o *TriremeCert) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("signingRequest", o.SigningRequest); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("signingRequest", o.SigningRequest); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -241,6 +252,16 @@ var TriremeCertAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 	},
+	"SigningRequest": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `SigningRequest contains the eventual signing request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "signingRequest",
+		Required:       true,
+		Type:           "string",
+	},
 }
 
 // TriremeCertLowerCaseAttributesMap represents the map of attribute for TriremeCert.
@@ -312,6 +333,16 @@ var TriremeCertLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Format:         "free",
 		Name:           "serialNumber",
 		ReadOnly:       true,
+		Type:           "string",
+	},
+	"signingrequest": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `SigningRequest contains the eventual signing request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "signingRequest",
+		Required:       true,
 		Type:           "string",
 	},
 }
