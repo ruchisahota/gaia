@@ -64,9 +64,9 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": "emails_list",
+            "subtype": "string",
             "transient": null,
-            "type": "external",
+            "type": "list",
             "unique": null,
             "uniqueScope": null
         },
