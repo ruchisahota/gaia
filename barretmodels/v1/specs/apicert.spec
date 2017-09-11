@@ -16,7 +16,8 @@
             "@certificate",
             "@client",
             "@p12",
-            "@public"
+            "@public",
+            "@signingrequest"
         ],
         "get": false,
         "package": "barret",
