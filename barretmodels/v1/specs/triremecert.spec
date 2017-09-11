@@ -11,7 +11,8 @@
         "entity_name": "TriremeCert",
         "extends": [
             "@certificate",
-            "@server"
+            "@server",
+            "@signingrequest"
         ],
         "get": false,
         "package": "barret",
