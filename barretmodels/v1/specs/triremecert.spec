@@ -8,7 +8,8 @@
         "description": null,
         "entity_name": "TriremeCert",
         "extends": [
-            "@certificate"
+            "@certificate",
+            "@server"
         ],
         "get": true,
         "package": null,
