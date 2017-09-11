@@ -2,17 +2,19 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "trireme"
+        ],
         "create": null,
         "delete": false,
-        "description": null,
+        "description": "This api allows to retrieve a free short lived certificate for open source Trireme based product.",
         "entity_name": "TriremeCert",
         "extends": [
             "@certificate",
             "@server"
         ],
         "get": false,
-        "package": null,
+        "package": "barret",
         "resource_name": "triremecerts",
         "rest_name": "triremecert",
         "root": null,
