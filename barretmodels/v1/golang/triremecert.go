@@ -137,14 +137,6 @@ func (o *TriremeCert) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("signingRequest", o.SigningRequest); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("signingRequest", o.SigningRequest); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -250,7 +242,6 @@ var TriremeCertAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "signingRequest",
-		Required:       true,
 		Type:           "string",
 	},
 }
@@ -332,7 +323,6 @@ var TriremeCertLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Exposed:        true,
 		Format:         "free",
 		Name:           "signingRequest",
-		Required:       true,
 		Type:           "string",
 	},
 }

@@ -74,6 +74,9 @@ type EnforcerCert struct {
 	// SerialNumber contains the generated certificate serial number.
 	SerialNumber string `json:"serialNumber" bson:"-"`
 
+	// SigningRequest contains the eventual signing request.
+	SigningRequest string `json:"signingRequest" bson:"-"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -258,6 +261,15 @@ var EnforcerCertAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 	},
+	"SigningRequest": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `SigningRequest contains the eventual signing request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "signingRequest",
+		Type:           "string",
+	},
 }
 
 // EnforcerCertLowerCaseAttributesMap represents the map of attribute for EnforcerCert.
@@ -348,6 +360,15 @@ var EnforcerCertLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Format:         "free",
 		Name:           "serialNumber",
 		ReadOnly:       true,
+		Type:           "string",
+	},
+	"signingrequest": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `SigningRequest contains the eventual signing request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "signingRequest",
 		Type:           "string",
 	},
 }
