@@ -7,7 +7,9 @@
         "delete": true,
         "description": null,
         "entity_name": "TriremeCert",
-        "extends": [],
+        "extends": [
+            "@certificate"
+        ],
         "get": true,
         "package": null,
         "resource_name": "triremecerts",
