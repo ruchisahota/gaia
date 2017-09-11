@@ -101,7 +101,7 @@
             "stored": false,
             "subtype": "string",
             "transient": null,
-            "type": "list",
+            "type": "time",
             "unique": null,
             "uniqueScope": null
         },
