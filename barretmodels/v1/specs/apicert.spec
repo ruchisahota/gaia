@@ -14,7 +14,8 @@
         "entity_name": "APICert",
         "extends": [
             "@certificate",
-            "@client"
+            "@client",
+            "@public"
         ],
         "get": false,
         "package": "barret",
