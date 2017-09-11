@@ -4,18 +4,18 @@
     "model": {
         "aliases": [],
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "TriremeCert",
         "extends": [
             "@certificate",
             "@server"
         ],
-        "get": true,
+        "get": false,
         "package": null,
         "resource_name": "triremecerts",
         "rest_name": "triremecert",
         "root": null,
-        "update": true
+        "update": false
     }
 }
