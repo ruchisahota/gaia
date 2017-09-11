@@ -8,8 +8,7 @@
         "description": null,
         "entity_name": "EnforcerCert",
         "extends": [
-            "@certificate",
-            "@client"
+            "@certificate"
         ],
         "get": true,
         "package": null,
