@@ -140,14 +140,6 @@ func (o *EnforcerCert) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -213,7 +205,6 @@ var EnforcerCertAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ExpirationDate contains the requested expiration date.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		SubType:        "string",
 		Type:           "time",
 	},
@@ -306,7 +297,6 @@ var EnforcerCertLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Description:    `ExpirationDate contains the requested expiration date.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		SubType:        "string",
 		Type:           "time",
 	},

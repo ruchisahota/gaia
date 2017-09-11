@@ -146,14 +146,6 @@ func (o *APICert) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("password", o.Password); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -228,7 +220,6 @@ var APICertAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ExpirationDate contains the requested expiration date.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		SubType:        "string",
 		Type:           "time",
 	},
@@ -342,7 +333,6 @@ var APICertLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ExpirationDate contains the requested expiration date.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		SubType:        "string",
 		Type:           "time",
 	},

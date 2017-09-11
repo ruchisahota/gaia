@@ -137,14 +137,6 @@ func (o *TriremeCert) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("signingRequest", o.SigningRequest); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -208,7 +200,6 @@ var TriremeCertAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `ExpirationDate contains the requested expiration date.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		SubType:        "string",
 		Type:           "time",
 	},
@@ -291,7 +282,6 @@ var TriremeCertLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Description:    `ExpirationDate contains the requested expiration date.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		SubType:        "string",
 		Type:           "time",
 	},
