@@ -4,7 +4,10 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
+	elemental.RegisterIdentity(APICertIdentity)
 	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(EnforcerCertIdentity)
+	elemental.RegisterIdentity(TriremeCertIdentity)
 }
 
 // ModelVersion returns the current version of the model
@@ -14,8 +17,14 @@ func ModelVersion() float64 { return 1 }
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
+	case APICertIdentity.Name:
+		return NewAPICert()
 	case RootIdentity.Name:
 		return NewRoot()
+	case EnforcerCertIdentity.Name:
+		return NewEnforcerCert()
+	case TriremeCertIdentity.Name:
+		return NewTriremeCert()
 	default:
 		return nil
 	}
@@ -25,8 +34,14 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
+	case APICertIdentity.Category:
+		return NewAPICert()
 	case RootIdentity.Category:
 		return NewRoot()
+	case EnforcerCertIdentity.Category:
+		return NewEnforcerCert()
+	case TriremeCertIdentity.Category:
+		return NewTriremeCert()
 	default:
 		return nil
 	}
@@ -36,6 +51,12 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
+	case APICertIdentity.Name:
+		return &APICertsList{}
+	case EnforcerCertIdentity.Name:
+		return &EnforcerCertsList{}
+	case TriremeCertIdentity.Name:
+		return &TriremeCertsList{}
 	default:
 		return nil
 	}
@@ -45,6 +66,12 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
+	case APICertIdentity.Category:
+		return &APICertsList{}
+	case EnforcerCertIdentity.Category:
+		return &EnforcerCertsList{}
+	case TriremeCertIdentity.Category:
+		return &TriremeCertsList{}
 	default:
 		return nil
 	}
@@ -54,11 +81,22 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
+		APICertIdentity,
 		RootIdentity,
+		EnforcerCertIdentity,
+		TriremeCertIdentity,
 	}
 }
 
-var aliasesMap = map[string]elemental.Identity{}
+var aliasesMap = map[string]elemental.Identity{
+	"apicerts":  APICertIdentity,
+	"apis":      APICertIdentity,
+	"apicert":   APICertIdentity,
+	"api":       APICertIdentity,
+	"enforcers": EnforcerCertIdentity,
+	"enforcer":  EnforcerCertIdentity,
+	"trireme":   TriremeCertIdentity,
+}
 
 // IdentityFromAlias returns the Identity associated to the given alias.
 func IdentityFromAlias(alias string) elemental.Identity {
@@ -70,8 +108,24 @@ func IdentityFromAlias(alias string) elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
+	case APICertIdentity:
+		return []string{
+			"apicerts",
+			"apis",
+			"apicert",
+			"api",
+		}
 	case RootIdentity:
 		return []string{}
+	case EnforcerCertIdentity:
+		return []string{
+			"enforcers",
+			"enforcer",
+		}
+	case TriremeCertIdentity:
+		return []string{
+			"trireme",
+		}
 	}
 
 	return nil

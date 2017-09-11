@@ -15,5 +15,20 @@ func Relationships() elemental.RelationshipsRegistry {
 func init() {
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
+	relationshipsRegistry[APICertIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
+	relationshipsRegistry[EnforcerCertIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+	relationshipsRegistry[TriremeCertIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
 }
