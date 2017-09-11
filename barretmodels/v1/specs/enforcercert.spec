@@ -2,10 +2,13 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "enforcers",
+            "enforcer"
+        ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "This api allows to create an enforcerd certificate.",
         "entity_name": "EnforcerCert",
         "extends": [
             "@certificate",
@@ -13,7 +16,7 @@
             "@server"
         ],
         "get": true,
-        "package": null,
+        "package": "barret",
         "resource_name": "enforcercerts",
         "rest_name": "enforcercert",
         "root": null,
