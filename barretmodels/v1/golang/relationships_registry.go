@@ -20,6 +20,10 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[EnforcerCertIdentity] = &elemental.Relationship{}
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+	relationshipsRegistry[TokenIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
 }

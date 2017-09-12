@@ -5,8 +5,8 @@ import "github.com/aporeto-inc/elemental"
 func init() {
 
 	elemental.RegisterIdentity(APICertIdentity)
+	elemental.RegisterIdentity(TokenIdentity)
 	elemental.RegisterIdentity(RootIdentity)
-	elemental.RegisterIdentity(EnforcerCertIdentity)
 }
 
 // ModelVersion returns the current version of the model
@@ -18,10 +18,10 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	switch identity {
 	case APICertIdentity.Name:
 		return NewAPICert()
+	case TokenIdentity.Name:
+		return NewToken()
 	case RootIdentity.Name:
 		return NewRoot()
-	case EnforcerCertIdentity.Name:
-		return NewEnforcerCert()
 	default:
 		return nil
 	}
@@ -33,10 +33,10 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 	switch category {
 	case APICertIdentity.Category:
 		return NewAPICert()
+	case TokenIdentity.Category:
+		return NewToken()
 	case RootIdentity.Category:
 		return NewRoot()
-	case EnforcerCertIdentity.Category:
-		return NewEnforcerCert()
 	default:
 		return nil
 	}
@@ -48,8 +48,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 	switch identity {
 	case APICertIdentity.Name:
 		return &APICertsList{}
-	case EnforcerCertIdentity.Name:
-		return &EnforcerCertsList{}
+	case TokenIdentity.Name:
+		return &TokensList{}
 	default:
 		return nil
 	}
@@ -61,8 +61,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 	switch category {
 	case APICertIdentity.Category:
 		return &APICertsList{}
-	case EnforcerCertIdentity.Category:
-		return &EnforcerCertsList{}
+	case TokenIdentity.Category:
+		return &TokensList{}
 	default:
 		return nil
 	}
@@ -73,18 +73,16 @@ func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
 		APICertIdentity,
+		TokenIdentity,
 		RootIdentity,
-		EnforcerCertIdentity,
 	}
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"apicerts":  APICertIdentity,
-	"apis":      APICertIdentity,
-	"apicert":   APICertIdentity,
-	"api":       APICertIdentity,
-	"enforcers": EnforcerCertIdentity,
-	"enforcer":  EnforcerCertIdentity,
+	"apicerts": APICertIdentity,
+	"apis":     APICertIdentity,
+	"apicert":  APICertIdentity,
+	"api":      APICertIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -104,13 +102,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"apicert",
 			"api",
 		}
+	case TokenIdentity:
+		return []string{}
 	case RootIdentity:
 		return []string{}
-	case EnforcerCertIdentity:
-		return []string{
-			"enforcers",
-			"enforcer",
-		}
 	}
 
 	return nil
