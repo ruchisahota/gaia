@@ -4,15 +4,15 @@
     "model": {
         "aliases": [],
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "This api issue signed token from the given certificate.",
         "entity_name": "Token",
         "extends": [],
-        "get": true,
-        "package": null,
+        "get": false,
+        "package": "barret",
         "resource_name": "tokens",
         "rest_name": "token",
         "root": null,
-        "update": true
+        "update": false
     }
 }
