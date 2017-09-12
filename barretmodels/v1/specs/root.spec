@@ -10,7 +10,7 @@
             "deprecated": null,
             "get": false,
             "relationship": "root",
-            "rest_name": "apicert",
+            "rest_name": "cert",
             "update": false
         },
         {
