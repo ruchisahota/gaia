@@ -7,23 +7,37 @@ import "sync"
 
 import "time"
 
-// APICertIdentity represents the Identity of the object
-var APICertIdentity = elemental.Identity{
-	Name:     "apicert",
-	Category: "apicerts",
+// CertificateUsageValue represents the possible values for attribute "usage".
+type CertificateUsageValue string
+
+const (
+	// CertificateUsageClient represents the value Client.
+	CertificateUsageClient CertificateUsageValue = "Client"
+
+	// CertificateUsageServer represents the value Server.
+	CertificateUsageServer CertificateUsageValue = "Server"
+
+	// CertificateUsageServerclient represents the value ServerClient.
+	CertificateUsageServerclient CertificateUsageValue = "ServerClient"
+)
+
+// CertificateIdentity represents the Identity of the object
+var CertificateIdentity = elemental.Identity{
+	Name:     "certificate",
+	Category: "certificates",
 }
 
-// APICertsList represents a list of APICerts
-type APICertsList []*APICert
+// CertificatesList represents a list of Certificates
+type CertificatesList []*Certificate
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o APICertsList) ContentIdentity() elemental.Identity {
+func (o CertificatesList) ContentIdentity() elemental.Identity {
 
-	return APICertIdentity
+	return CertificateIdentity
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o APICertsList) List() elemental.IdentifiablesList {
+func (o CertificatesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -34,19 +48,19 @@ func (o APICertsList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o APICertsList) DefaultOrder() []string {
+func (o CertificatesList) DefaultOrder() []string {
 
 	return []string{}
 }
 
 // Version returns the version of the content.
-func (o APICertsList) Version() int {
+func (o CertificatesList) Version() int {
 
 	return 1
 }
 
-// APICert represents the model of a apicert
-type APICert struct {
+// Certificate represents the model of a certificate
+type Certificate struct {
 	// CSR contains the Certificate Signing Request as a PEM encoded string.
 	CSR string `json:"CSR" bson:"-"`
 
@@ -59,61 +73,65 @@ type APICert struct {
 	// ExpirationDate contains the requested expiration date.
 	ExpirationDate time.Time `json:"expirationDate" bson:"-"`
 
+	// Usage defines the requested key usage.
+	Usage CertificateUsageValue `json:"usage" bson:"usage"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
 
-// NewAPICert returns a new *APICert
-func NewAPICert() *APICert {
+// NewCertificate returns a new *Certificate
+func NewCertificate() *Certificate {
 
-	return &APICert{
+	return &Certificate{
 		ModelVersion: 1,
+		Usage:        "Client",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *APICert) Identity() elemental.Identity {
+func (o *Certificate) Identity() elemental.Identity {
 
-	return APICertIdentity
+	return CertificateIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *APICert) Identifier() string {
+func (o *Certificate) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *APICert) SetIdentifier(ID string) {
+func (o *Certificate) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
 // Version returns the hardcoded version of the model
-func (o *APICert) Version() int {
+func (o *Certificate) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *APICert) DefaultOrder() []string {
+func (o *Certificate) DefaultOrder() []string {
 
 	return []string{}
 }
 
 // Doc returns the documentation for the object
-func (o *APICert) Doc() string {
+func (o *Certificate) Doc() string {
 	return `This API allows to retrieve an client certifcate for api authentication.`
 }
 
-func (o *APICert) String() string {
+func (o *Certificate) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // Validate valides the current information stored into the structure.
-func (o *APICert) Validate() error {
+func (o *Certificate) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -123,6 +141,10 @@ func (o *APICert) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("CSR", o.CSR); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("usage", string(o.Usage), []string{"Client", "Server", "ServerClient"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -138,24 +160,24 @@ func (o *APICert) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*APICert) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Certificate) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := APICertAttributesMap[name]; ok {
+	if v, ok := CertificateAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return APICertLowerCaseAttributesMap[name]
+	return CertificateLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*APICert) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Certificate) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return APICertAttributesMap
+	return CertificateAttributesMap
 }
 
-// APICertAttributesMap represents the map of attribute for APICert.
-var APICertAttributesMap = map[string]elemental.AttributeSpecification{
+// CertificateAttributesMap represents the map of attribute for Certificate.
+var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	"CSR": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -197,10 +219,21 @@ var APICertAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "string",
 		Type:           "time",
 	},
+	"Usage": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Client", "Server", "ServerClient"},
+		DefaultValue:   CertificateUsageValue("Client"),
+		Description:    `Usage defines the requested key usage.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "usage",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
+	},
 }
 
-// APICertLowerCaseAttributesMap represents the map of attribute for APICert.
-var APICertLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// CertificateLowerCaseAttributesMap represents the map of attribute for Certificate.
+var CertificateLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"csr": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -241,5 +274,16 @@ var APICertLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "expirationDate",
 		SubType:        "string",
 		Type:           "time",
+	},
+	"usage": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Client", "Server", "ServerClient"},
+		DefaultValue:   CertificateUsageValue("Client"),
+		Description:    `Usage defines the requested key usage.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "usage",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 }

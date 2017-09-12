@@ -4,9 +4,9 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
-	elemental.RegisterIdentity(APICertIdentity)
 	elemental.RegisterIdentity(TokenIdentity)
 	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(CertificateIdentity)
 }
 
 // ModelVersion returns the current version of the model
@@ -16,12 +16,12 @@ func ModelVersion() float64 { return 1 }
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
-	case APICertIdentity.Name:
-		return NewAPICert()
 	case TokenIdentity.Name:
 		return NewToken()
 	case RootIdentity.Name:
 		return NewRoot()
+	case CertificateIdentity.Name:
+		return NewCertificate()
 	default:
 		return nil
 	}
@@ -31,12 +31,12 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
-	case APICertIdentity.Category:
-		return NewAPICert()
 	case TokenIdentity.Category:
 		return NewToken()
 	case RootIdentity.Category:
 		return NewRoot()
+	case CertificateIdentity.Category:
+		return NewCertificate()
 	default:
 		return nil
 	}
@@ -46,10 +46,10 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
-	case APICertIdentity.Name:
-		return &APICertsList{}
 	case TokenIdentity.Name:
 		return &TokensList{}
+	case CertificateIdentity.Name:
+		return &CertificatesList{}
 	default:
 		return nil
 	}
@@ -59,10 +59,10 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
-	case APICertIdentity.Category:
-		return &APICertsList{}
 	case TokenIdentity.Category:
 		return &TokensList{}
+	case CertificateIdentity.Category:
+		return &CertificatesList{}
 	default:
 		return nil
 	}
@@ -72,17 +72,17 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
-		APICertIdentity,
 		TokenIdentity,
 		RootIdentity,
+		CertificateIdentity,
 	}
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"apicerts": APICertIdentity,
-	"apis":     APICertIdentity,
-	"apicert":  APICertIdentity,
-	"api":      APICertIdentity,
+	"api":      CertificateIdentity,
+	"apicert":  CertificateIdentity,
+	"apis":     CertificateIdentity,
+	"apicerts": CertificateIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -95,17 +95,17 @@ func IdentityFromAlias(alias string) elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
-	case APICertIdentity:
-		return []string{
-			"apicerts",
-			"apis",
-			"apicert",
-			"api",
-		}
 	case TokenIdentity:
 		return []string{}
 	case RootIdentity:
 		return []string{}
+	case CertificateIdentity:
+		return []string{
+			"api",
+			"apicert",
+			"apis",
+			"apicerts",
+		}
 	}
 
 	return nil
