@@ -10,7 +10,7 @@
             "deprecated": null,
             "get": false,
             "relationship": "root",
-            "rest_name": "cert",
+            "rest_name": "certificate",
             "update": false
         },
         {
