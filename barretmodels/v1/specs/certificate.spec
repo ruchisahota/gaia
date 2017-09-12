@@ -13,7 +13,8 @@
         "description": "This API allows to retrieve an client certifcate for api authentication.",
         "entity_name": "Certificate",
         "extends": [
-            "@certificate"
+            "@certificate",
+            "@usage"
         ],
         "get": false,
         "package": "barret",
