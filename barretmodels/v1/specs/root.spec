@@ -20,6 +20,18 @@
             "create": true,
             "delete": false,
             "deprecated": null,
+            "get": true,
+            "relationship": "root",
+            "rest_name": "revoke",
+            "update": false
+        },
+        {
+            "bulk_create": false,
+            "bulk_delete": false,
+            "bulk_update": false,
+            "create": true,
+            "delete": false,
+            "deprecated": null,
             "get": false,
             "relationship": "root",
             "rest_name": "token",
