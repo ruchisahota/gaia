@@ -45,6 +45,9 @@ func (o ChecksList) Version() int {
 
 // Check represents the model of a check
 type Check struct {
+	// ID contains the certificate serialNumber
+	ID string `json:"ID" bson:"-"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -67,12 +70,13 @@ func (o *Check) Identity() elemental.Identity {
 // Identifier returns the value of the object's unique identifier.
 func (o *Check) Identifier() string {
 
-	return ""
+	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *Check) SetIdentifier(ID string) {
 
+	o.ID = ID
 }
 
 // Version returns the hardcoded version of the model
@@ -97,6 +101,14 @@ func (o *Check) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("ID", o.ID); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("ID", o.ID); err != nil {
+		errors = append(errors, err)
+	}
 
 	if len(requiredErrors) > 0 {
 		return requiredErrors
@@ -127,7 +139,29 @@ func (*Check) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 }
 
 // CheckAttributesMap represents the map of attribute for Check.
-var CheckAttributesMap = map[string]elemental.AttributeSpecification{}
+var CheckAttributesMap = map[string]elemental.AttributeSpecification{
+	"ID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ID contains the certificate serialNumber`,
+		Exposed:        true,
+		Format:         "free",
+		Identifier:     true,
+		Name:           "ID",
+		Required:       true,
+		Type:           "string",
+	},
+}
 
 // CheckLowerCaseAttributesMap represents the map of attribute for Check.
-var CheckLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{}
+var CheckLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+	"id": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `ID contains the certificate serialNumber`,
+		Exposed:        true,
+		Format:         "free",
+		Identifier:     true,
+		Name:           "ID",
+		Required:       true,
+		Type:           "string",
+	},
+}
