@@ -20,6 +20,37 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[CheckIdentity] = &elemental.Relationship{
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
+	relationshipsRegistry[RevocationIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
 	relationshipsRegistry[TokenIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
