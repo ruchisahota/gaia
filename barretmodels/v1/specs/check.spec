@@ -4,7 +4,7 @@
     "model": {
         "aliases": [],
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": null,
         "entity_name": "Check",
         "extends": [],
@@ -13,6 +13,6 @@
         "resource_name": "checks",
         "rest_name": "check",
         "root": null,
-        "update": true
+        "update": false
     }
 }
