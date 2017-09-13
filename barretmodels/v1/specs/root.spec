@@ -22,7 +22,7 @@
             "deprecated": null,
             "get": true,
             "relationship": "root",
-            "rest_name": "revoke",
+            "rest_name": "revocation",
             "update": false
         },
         {
