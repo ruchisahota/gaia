@@ -147,13 +147,16 @@ func init() {
 			"root": true,
 		},
 		AllowsRetrieve: map[string]bool{
-			"root": true,
+			"root":                true,
+			"networkaccesspolicy": true,
 		},
 		AllowsRetrieveMany: map[string]bool{
-			"root": true,
+			"root":                true,
+			"networkaccesspolicy": true,
 		},
 		AllowsInfo: map[string]bool{
-			"root": true,
+			"root":                true,
+			"networkaccesspolicy": true,
 		},
 	}
 	relationshipsRegistry[FileAccessIdentity] = &elemental.Relationship{
@@ -355,16 +358,19 @@ func init() {
 			"root": true,
 		},
 		AllowsRetrieve: map[string]bool{
-			"vulnerability": true,
-			"root":          true,
+			"vulnerability":       true,
+			"root":                true,
+			"networkaccesspolicy": true,
 		},
 		AllowsRetrieveMany: map[string]bool{
-			"vulnerability": true,
-			"root":          true,
+			"vulnerability":       true,
+			"root":                true,
+			"networkaccesspolicy": true,
 		},
 		AllowsInfo: map[string]bool{
-			"vulnerability": true,
-			"root":          true,
+			"vulnerability":       true,
+			"root":                true,
+			"networkaccesspolicy": true,
 		},
 	}
 	relationshipsRegistry[QuotaPolicyIdentity] = &elemental.Relationship{
