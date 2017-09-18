@@ -20,6 +20,13 @@ func (o RolesList) ContentIdentity() elemental.Identity {
 	return RoleIdentity
 }
 
+// Copy returns a pointer to a copy the RolesList.
+func (o RolesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(RolesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o RolesList) List() elemental.IdentifiablesList {
 

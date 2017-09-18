@@ -22,6 +22,13 @@ func (o AWSAccountsList) ContentIdentity() elemental.Identity {
 	return AWSAccountIdentity
 }
 
+// Copy returns a pointer to a copy the AWSAccountsList.
+func (o AWSAccountsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(AWSAccountsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o AWSAccountsList) List() elemental.IdentifiablesList {
 

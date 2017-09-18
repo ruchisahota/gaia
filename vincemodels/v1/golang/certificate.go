@@ -33,6 +33,13 @@ func (o CertificatesList) ContentIdentity() elemental.Identity {
 	return CertificateIdentity
 }
 
+// Copy returns a pointer to a copy the CertificatesList.
+func (o CertificatesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(CertificatesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o CertificatesList) List() elemental.IdentifiablesList {
 

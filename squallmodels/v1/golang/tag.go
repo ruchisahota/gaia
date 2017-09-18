@@ -20,6 +20,13 @@ func (o TagsList) ContentIdentity() elemental.Identity {
 	return TagIdentity
 }
 
+// Copy returns a pointer to a copy the TagsList.
+func (o TagsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(TagsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o TagsList) List() elemental.IdentifiablesList {
 

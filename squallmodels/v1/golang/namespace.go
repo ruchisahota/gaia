@@ -22,6 +22,13 @@ func (o NamespacesList) ContentIdentity() elemental.Identity {
 	return NamespaceIdentity
 }
 
+// Copy returns a pointer to a copy the NamespacesList.
+func (o NamespacesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(NamespacesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o NamespacesList) List() elemental.IdentifiablesList {
 

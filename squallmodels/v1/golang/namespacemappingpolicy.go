@@ -22,6 +22,13 @@ func (o NamespaceMappingPoliciesList) ContentIdentity() elemental.Identity {
 	return NamespaceMappingPolicyIdentity
 }
 
+// Copy returns a pointer to a copy the NamespaceMappingPoliciesList.
+func (o NamespaceMappingPoliciesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(NamespaceMappingPoliciesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o NamespaceMappingPoliciesList) List() elemental.IdentifiablesList {
 

@@ -20,6 +20,13 @@ func (o TokensList) ContentIdentity() elemental.Identity {
 	return TokenIdentity
 }
 
+// Copy returns a pointer to a copy the TokensList.
+func (o TokensList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(TokensList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o TokensList) List() elemental.IdentifiablesList {
 

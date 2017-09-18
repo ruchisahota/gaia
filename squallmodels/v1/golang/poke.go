@@ -20,6 +20,13 @@ func (o PokesList) ContentIdentity() elemental.Identity {
 	return PokeIdentity
 }
 
+// Copy returns a pointer to a copy the PokesList.
+func (o PokesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(PokesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o PokesList) List() elemental.IdentifiablesList {
 

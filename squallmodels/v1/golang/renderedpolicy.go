@@ -22,6 +22,13 @@ func (o RenderedPoliciesList) ContentIdentity() elemental.Identity {
 	return RenderedPolicyIdentity
 }
 
+// Copy returns a pointer to a copy the RenderedPoliciesList.
+func (o RenderedPoliciesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(RenderedPoliciesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o RenderedPoliciesList) List() elemental.IdentifiablesList {
 

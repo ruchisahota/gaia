@@ -22,6 +22,13 @@ func (o ActivitiesList) ContentIdentity() elemental.Identity {
 	return ActivityIdentity
 }
 
+// Copy returns a pointer to a copy the ActivitiesList.
+func (o ActivitiesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(ActivitiesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ActivitiesList) List() elemental.IdentifiablesList {
 

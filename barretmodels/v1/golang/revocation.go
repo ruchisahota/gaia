@@ -20,6 +20,13 @@ func (o RevocationsList) ContentIdentity() elemental.Identity {
 	return RevocationIdentity
 }
 
+// Copy returns a pointer to a copy the RevocationsList.
+func (o RevocationsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(RevocationsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o RevocationsList) List() elemental.IdentifiablesList {
 

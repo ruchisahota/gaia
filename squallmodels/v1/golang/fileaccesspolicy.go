@@ -22,6 +22,13 @@ func (o FileAccessPoliciesList) ContentIdentity() elemental.Identity {
 	return FileAccessPolicyIdentity
 }
 
+// Copy returns a pointer to a copy the FileAccessPoliciesList.
+func (o FileAccessPoliciesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(FileAccessPoliciesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o FileAccessPoliciesList) List() elemental.IdentifiablesList {
 

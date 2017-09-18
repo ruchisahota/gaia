@@ -56,6 +56,13 @@ func (o FlowStatisticsList) ContentIdentity() elemental.Identity {
 	return FlowStatisticIdentity
 }
 
+// Copy returns a pointer to a copy the FlowStatisticsList.
+func (o FlowStatisticsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(FlowStatisticsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o FlowStatisticsList) List() elemental.IdentifiablesList {
 

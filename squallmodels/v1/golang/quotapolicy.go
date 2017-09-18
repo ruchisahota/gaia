@@ -22,6 +22,13 @@ func (o QuotaPoliciesList) ContentIdentity() elemental.Identity {
 	return QuotaPolicyIdentity
 }
 
+// Copy returns a pointer to a copy the QuotaPoliciesList.
+func (o QuotaPoliciesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(QuotaPoliciesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o QuotaPoliciesList) List() elemental.IdentifiablesList {
 

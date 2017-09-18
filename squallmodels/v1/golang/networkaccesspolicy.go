@@ -22,6 +22,13 @@ func (o NetworkAccessPoliciesList) ContentIdentity() elemental.Identity {
 	return NetworkAccessPolicyIdentity
 }
 
+// Copy returns a pointer to a copy the NetworkAccessPoliciesList.
+func (o NetworkAccessPoliciesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(NetworkAccessPoliciesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o NetworkAccessPoliciesList) List() elemental.IdentifiablesList {
 

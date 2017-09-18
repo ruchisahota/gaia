@@ -22,6 +22,13 @@ func (o DependencyMapsList) ContentIdentity() elemental.Identity {
 	return DependencyMapIdentity
 }
 
+// Copy returns a pointer to a copy the DependencyMapsList.
+func (o DependencyMapsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(DependencyMapsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o DependencyMapsList) List() elemental.IdentifiablesList {
 

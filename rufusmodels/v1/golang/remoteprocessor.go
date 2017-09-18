@@ -33,6 +33,13 @@ func (o RemoteProcessorsList) ContentIdentity() elemental.Identity {
 	return RemoteProcessorIdentity
 }
 
+// Copy returns a pointer to a copy the RemoteProcessorsList.
+func (o RemoteProcessorsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(RemoteProcessorsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o RemoteProcessorsList) List() elemental.IdentifiablesList {
 

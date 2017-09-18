@@ -20,6 +20,13 @@ func (o ActivatesList) ContentIdentity() elemental.Identity {
 	return ActivateIdentity
 }
 
+// Copy returns a pointer to a copy the ActivatesList.
+func (o ActivatesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(ActivatesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ActivatesList) List() elemental.IdentifiablesList {
 

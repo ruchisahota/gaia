@@ -33,6 +33,13 @@ func (o ExternalServicesList) ContentIdentity() elemental.Identity {
 	return ExternalServiceIdentity
 }
 
+// Copy returns a pointer to a copy the ExternalServicesList.
+func (o ExternalServicesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(ExternalServicesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ExternalServicesList) List() elemental.IdentifiablesList {
 

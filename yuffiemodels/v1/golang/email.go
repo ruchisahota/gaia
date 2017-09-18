@@ -31,6 +31,13 @@ func (o EmailsList) ContentIdentity() elemental.Identity {
 	return EmailIdentity
 }
 
+// Copy returns a pointer to a copy the EmailsList.
+func (o EmailsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(EmailsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o EmailsList) List() elemental.IdentifiablesList {
 

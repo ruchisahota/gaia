@@ -22,6 +22,13 @@ func (o FilePathsList) ContentIdentity() elemental.Identity {
 	return FilePathIdentity
 }
 
+// Copy returns a pointer to a copy the FilePathsList.
+func (o FilePathsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(FilePathsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o FilePathsList) List() elemental.IdentifiablesList {
 

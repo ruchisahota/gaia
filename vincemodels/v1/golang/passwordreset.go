@@ -20,6 +20,13 @@ func (o PasswordResetsList) ContentIdentity() elemental.Identity {
 	return PasswordResetIdentity
 }
 
+// Copy returns a pointer to a copy the PasswordResetsList.
+func (o PasswordResetsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(PasswordResetsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o PasswordResetsList) List() elemental.IdentifiablesList {
 

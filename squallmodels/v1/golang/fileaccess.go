@@ -34,6 +34,13 @@ func (o FileAccessList) ContentIdentity() elemental.Identity {
 	return FileAccessIdentity
 }
 
+// Copy returns a pointer to a copy the FileAccessList.
+func (o FileAccessList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(FileAccessList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o FileAccessList) List() elemental.IdentifiablesList {
 

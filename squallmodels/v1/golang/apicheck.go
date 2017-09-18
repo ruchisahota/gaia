@@ -46,6 +46,13 @@ func (o APIChecksList) ContentIdentity() elemental.Identity {
 	return APICheckIdentity
 }
 
+// Copy returns a pointer to a copy the APIChecksList.
+func (o APIChecksList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(APIChecksList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o APIChecksList) List() elemental.IdentifiablesList {
 

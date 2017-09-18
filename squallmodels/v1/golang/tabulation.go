@@ -20,6 +20,13 @@ func (o TabulationsList) ContentIdentity() elemental.Identity {
 	return TabulationIdentity
 }
 
+// Copy returns a pointer to a copy the TabulationsList.
+func (o TabulationsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(TabulationsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o TabulationsList) List() elemental.IdentifiablesList {
 

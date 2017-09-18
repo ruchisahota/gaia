@@ -49,6 +49,13 @@ func (o IssuesList) ContentIdentity() elemental.Identity {
 	return IssueIdentity
 }
 
+// Copy returns a pointer to a copy the IssuesList.
+func (o IssuesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(IssuesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o IssuesList) List() elemental.IdentifiablesList {
 

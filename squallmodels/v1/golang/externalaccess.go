@@ -22,6 +22,13 @@ func (o ExternalAccessList) ContentIdentity() elemental.Identity {
 	return ExternalAccessIdentity
 }
 
+// Copy returns a pointer to a copy the ExternalAccessList.
+func (o ExternalAccessList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(ExternalAccessList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ExternalAccessList) List() elemental.IdentifiablesList {
 

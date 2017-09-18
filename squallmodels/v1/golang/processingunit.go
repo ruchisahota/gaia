@@ -56,6 +56,13 @@ func (o ProcessingUnitsList) ContentIdentity() elemental.Identity {
 	return ProcessingUnitIdentity
 }
 
+// Copy returns a pointer to a copy the ProcessingUnitsList.
+func (o ProcessingUnitsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(ProcessingUnitsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
 

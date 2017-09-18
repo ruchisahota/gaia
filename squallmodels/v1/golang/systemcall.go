@@ -22,6 +22,13 @@ func (o SystemCallsList) ContentIdentity() elemental.Identity {
 	return SystemCallIdentity
 }
 
+// Copy returns a pointer to a copy the SystemCallsList.
+func (o SystemCallsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(SystemCallsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o SystemCallsList) List() elemental.IdentifiablesList {
 

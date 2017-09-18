@@ -20,6 +20,13 @@ func (o ChecksList) ContentIdentity() elemental.Identity {
 	return CheckIdentity
 }
 
+// Copy returns a pointer to a copy the ChecksList.
+func (o ChecksList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(ChecksList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ChecksList) List() elemental.IdentifiablesList {
 

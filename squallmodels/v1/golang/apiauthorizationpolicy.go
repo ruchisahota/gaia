@@ -22,6 +22,13 @@ func (o APIAuthorizationPoliciesList) ContentIdentity() elemental.Identity {
 	return APIAuthorizationPolicyIdentity
 }
 
+// Copy returns a pointer to a copy the APIAuthorizationPoliciesList.
+func (o APIAuthorizationPoliciesList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(APIAuthorizationPoliciesList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o APIAuthorizationPoliciesList) List() elemental.IdentifiablesList {
 

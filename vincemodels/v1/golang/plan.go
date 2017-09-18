@@ -20,6 +20,13 @@ func (o PlansList) ContentIdentity() elemental.Identity {
 	return PlanIdentity
 }
 
+// Copy returns a pointer to a copy the PlansList.
+func (o PlansList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(PlansList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o PlansList) List() elemental.IdentifiablesList {
 

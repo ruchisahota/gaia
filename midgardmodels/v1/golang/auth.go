@@ -22,6 +22,13 @@ func (o AuthsList) ContentIdentity() elemental.Identity {
 	return AuthIdentity
 }
 
+// Copy returns a pointer to a copy the AuthsList.
+func (o AuthsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(AuthsList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o AuthsList) List() elemental.IdentifiablesList {
 

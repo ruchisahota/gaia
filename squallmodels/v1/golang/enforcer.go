@@ -53,6 +53,13 @@ func (o EnforcersList) ContentIdentity() elemental.Identity {
 	return EnforcerIdentity
 }
 
+// Copy returns a pointer to a copy the EnforcersList.
+func (o EnforcersList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(EnforcersList{}, o...)
+	return &copy
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o EnforcersList) List() elemental.IdentifiablesList {
 
