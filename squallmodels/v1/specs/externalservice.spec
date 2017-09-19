@@ -108,6 +108,7 @@
         {
             "allowed_chars": null,
             "allowed_choices": [
+                "LoadBalancerHTTP",
                 "LoadBalancerTCP",
                 "Network"
             ],
