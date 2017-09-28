@@ -121,7 +121,7 @@ func NewIPRecord() *IPRecord {
 type TagGraphStats struct {
 	Key         string `json:"key"`
 	ValuesCount int    `json:"valuesCount"`
-	Occurences  int    `json:"occurences"`
+	Occurrences int    `json:"Occurrences"`
 }
 
 // NewTagGraphStats creates a new NewTagGraphStats
@@ -131,7 +131,7 @@ func NewTagGraphStats() *TagGraphStats {
 
 // IsEqual returns true if both TagGraphStats are equal
 func (a *TagGraphStats) IsEqual(b *TagGraphStats) bool {
-	return a.Key == b.Key && a.ValuesCount == b.ValuesCount && a.Occurences == b.Occurences
+	return a.Key == b.Key && a.ValuesCount == b.ValuesCount && a.Occurrences == b.Occurrences
 }
 
 // TagGraphStatsList represents a list of TagGraphStats
@@ -153,11 +153,11 @@ func (a TagGraphStatsList) Less(i, j int) bool {
 		return true
 	}
 
-	if a[i].ValuesCount == a[j].ValuesCount && a[i].Occurences > a[j].Occurences {
+	if a[i].ValuesCount == a[j].ValuesCount && a[i].Occurrences > a[j].Occurrences {
 		return true
 	}
 
-	if a[i].Occurences == a[j].Occurences {
+	if a[i].Occurrences == a[j].Occurrences {
 		return a[i].Key < a[j].Key
 	}
 
