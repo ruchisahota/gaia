@@ -132,6 +132,14 @@ func (o *RenderedPolicy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredExternal("processingUnit", o.ProcessingUnit); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredExternal("processingUnit", o.ProcessingUnit); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -198,6 +206,7 @@ var RenderedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Can be set during a POST operation to render a policy on a Processing Unit that has not been created yet.`,
 		Exposed:        true,
 		Name:           "processingUnit",
+		Required:       true,
 		SubType:        "processingunit",
 		Type:           "external",
 	},
@@ -261,6 +270,7 @@ var RenderedPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		Description:    `Can be set during a POST operation to render a policy on a Processing Unit that has not been created yet.`,
 		Exposed:        true,
 		Name:           "processingUnit",
+		Required:       true,
 		SubType:        "processingunit",
 		Type:           "external",
 	},
