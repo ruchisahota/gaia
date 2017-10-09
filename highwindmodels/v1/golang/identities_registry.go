@@ -1,4 +1,4 @@
-package servicelaunchermodels
+package highwindmodels
 
 import "github.com/aporeto-inc/elemental"
 

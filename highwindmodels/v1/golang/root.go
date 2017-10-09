@@ -1,4 +1,4 @@
-package servicelaunchermodels
+package highwindmodels
 
 import "fmt"
 import "github.com/aporeto-inc/elemental"
