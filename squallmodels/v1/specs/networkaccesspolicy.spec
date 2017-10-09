@@ -186,7 +186,7 @@
             "deprecated": null,
             "description": "List of tags expressions to match the list of entity to pass the flow through.",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": null,
             "getter": null,
