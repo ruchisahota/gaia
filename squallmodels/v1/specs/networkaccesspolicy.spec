@@ -204,7 +204,7 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": "policies_lists",
+            "subtype": "policies_list",
             "transient": null,
             "type": "external",
             "unique": null,
