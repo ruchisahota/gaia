@@ -86,6 +86,9 @@ type PolicyRule struct {
 	// Policy target networks
 	Namespaces NamespacesList `json:"namespaces" bson:"-"`
 
+	// List of external services the policy mandate to pass through before reaching the destination.
+	PassthroughExternalServices ExternalServicesList `json:"passthroughExternalServices" bson:"-"`
+
 	// Propagated indicates if the policy is propagated.
 	Propagated bool `json:"propagated" bson:"-"`
 
@@ -107,12 +110,13 @@ type PolicyRule struct {
 func NewPolicyRule() *PolicyRule {
 
 	return &PolicyRule{
-		ModelVersion:     1,
-		EnforcerProfiles: EnforcerProfilesList{},
-		ExternalServices: ExternalServicesList{},
-		FilePaths:        FilePathsList{},
-		Namespaces:       NamespacesList{},
-		SystemCalls:      SystemCallsList{},
+		ModelVersion:                1,
+		EnforcerProfiles:            EnforcerProfilesList{},
+		ExternalServices:            ExternalServicesList{},
+		FilePaths:                   FilePathsList{},
+		Namespaces:                  NamespacesList{},
+		PassthroughExternalServices: ExternalServicesList{},
+		SystemCalls:                 SystemCallsList{},
 	}
 }
 
@@ -282,6 +286,14 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "namespace_entities",
 		Type:           "external",
 	},
+	"PassthroughExternalServices": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `List of external services the policy mandate to pass through before reaching the destination.`,
+		Exposed:        true,
+		Name:           "passthroughExternalServices",
+		SubType:        "network_entities",
+		Type:           "external",
+	},
 	"Propagated": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Propagated indicates if the policy is propagated.`,
@@ -385,6 +397,14 @@ var PolicyRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Exposed:        true,
 		Name:           "namespaces",
 		SubType:        "namespace_entities",
+		Type:           "external",
+	},
+	"passthroughexternalservices": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `List of external services the policy mandate to pass through before reaching the destination.`,
+		Exposed:        true,
+		Name:           "passthroughExternalServices",
+		SubType:        "network_entities",
 		Type:           "external",
 	},
 	"propagated": elemental.AttributeSpecification{
