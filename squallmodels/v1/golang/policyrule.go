@@ -69,7 +69,7 @@ type PolicyRule struct {
 	ID string `json:"ID" bson:"-"`
 
 	// Action defines set of actions that must be enforced when a dependency is met.
-	Action map[string]map[string]string `json:"action" bson:"-"`
+	Action map[string]map[string]interface{} `json:"action" bson:"-"`
 
 	// EnforcerProfiles provides the information about the server profile.
 	EnforcerProfiles EnforcerProfilesList `json:"enforcerProfiles" bson:"-"`
