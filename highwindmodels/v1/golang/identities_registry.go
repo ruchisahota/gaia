@@ -5,6 +5,7 @@ import "github.com/aporeto-inc/elemental"
 func init() {
 
 	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(InstallationIdentity)
 	elemental.RegisterIdentity(ServiceIdentity)
 }
 
@@ -17,6 +18,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	switch identity {
 	case RootIdentity.Name:
 		return NewRoot()
+	case InstallationIdentity.Name:
+		return NewInstallation()
 	case ServiceIdentity.Name:
 		return NewService()
 	default:
@@ -30,6 +33,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 	switch category {
 	case RootIdentity.Category:
 		return NewRoot()
+	case InstallationIdentity.Category:
+		return NewInstallation()
 	case ServiceIdentity.Category:
 		return NewService()
 	default:
@@ -41,6 +46,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
+	case InstallationIdentity.Name:
+		return &InstallationsList{}
 	case ServiceIdentity.Name:
 		return &ServicesList{}
 	default:
@@ -52,6 +59,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
+	case InstallationIdentity.Category:
+		return &InstallationsList{}
 	case ServiceIdentity.Category:
 		return &ServicesList{}
 	default:
@@ -64,6 +73,7 @@ func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
 		RootIdentity,
+		InstallationIdentity,
 		ServiceIdentity,
 	}
 }
@@ -81,6 +91,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
 	case RootIdentity:
+		return []string{}
+	case InstallationIdentity:
 		return []string{}
 	case ServiceIdentity:
 		return []string{}
