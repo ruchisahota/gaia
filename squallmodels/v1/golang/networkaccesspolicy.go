@@ -118,6 +118,9 @@ type NetworkAccessPolicy struct {
 	// Object of the policy.
 	Object [][]string `json:"object" bson:"-"`
 
+	// List of tags expressions to match the list of entity to pass the flow through.
+	Passthrough [][]string `json:"passthrough" bson:"-"`
+
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" bson:"propagate"`
 
@@ -578,6 +581,14 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "policies_list",
 		Type:           "external",
 	},
+	"Passthrough": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `List of tags expressions to match the list of entity to pass the flow through.`,
+		Exposed:        true,
+		Name:           "passthrough",
+		SubType:        "policies_list",
+		Type:           "external",
+	},
 	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Propagate will propagate the policy to all of its children.`,
@@ -838,6 +849,14 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		Exposed:        true,
 		Name:           "object",
 		Orderable:      true,
+		SubType:        "policies_list",
+		Type:           "external",
+	},
+	"passthrough": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `List of tags expressions to match the list of entity to pass the flow through.`,
+		Exposed:        true,
+		Name:           "passthrough",
 		SubType:        "policies_list",
 		Type:           "external",
 	},

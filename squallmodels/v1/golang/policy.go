@@ -100,7 +100,7 @@ type Policy struct {
 	ID string `json:"ID" bson:"_id"`
 
 	// Action defines set of actions that must be enforced when a dependency is met.
-	Action map[string]map[string]string `json:"action" bson:"action"`
+	Action map[string]map[string]interface{} `json:"action" bson:"action"`
 
 	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
 	ActiveDuration string `json:"activeDuration" bson:"activeduration"`

@@ -1,12 +1,3 @@
-midgard_folder := midgardmodels
-squall_folder := squallmodels
-vince_folder := vincemodels
-zack_folder := zackmodels
-rufus_folder := rufusmodels
-yuffie_folder := yuffiemodels
-barret_folder := barretmodels
-highwind_folder := highwindmodels
-
 init: install_monolithe install_monolithe_plugins
 default: codegen
 
@@ -20,32 +11,28 @@ install_monolithe_plugins:
 codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus codegen_yuffie codegen_barret codegen_highwind
 
 codegen_zack:
-	cd $(zack_folder) && make codegen
-	# cd $(zack_folder)/golang && go build
+	cd zackmodels && make codegen
 
 codegen_vince:
-	cd $(vince_folder) && make codegen
-	# cd $(vince_folder)/golang && go build
+	cd vincemodels && make codegen
 
 codegen_midgard:
-	cd $(midgard_folder) && make codegen
-	# cd $(midgard_folder)/golang && go build
+	cd midgardmodels && make codegen
 
 codegen_squall:
-	cd $(squall_folder) && make codegen
-	# cd $(squall_folder)/golang && go build
+	cd squallmodels && make codegen
 
 codegen_rufus:
-	cd $(rufus_folder) && make codegen
-	# cd $(rufus_folder)/golang && go build
+	cd rufusmodels && make codegen
 
 codegen_yuffie:
-	cd $(yuffie_folder) && make codegen
-	# cd $(rufus_folder)/golang && go build
+	cd yuffiemodels && make codegen
 
 codegen_barret:
-	cd $(barret_folder) && make codegen
-	# cd $(rufus_folder)/golang && go build
+	cd barretmodels && make codegen
+
+codegen_highwind:
+	cd highwindmodels && make codegen
 
 codegen_highwind:
 	cd $(highwind_folder) && make codegen
@@ -53,6 +40,6 @@ codegen_highwind:
 
 publish:
 	git pull
-	make codegen
+	make codegen -j 8
 	git commit -am "codegen"
 	git push
