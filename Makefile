@@ -5,6 +5,7 @@ zack_folder := zackmodels
 rufus_folder := rufusmodels
 yuffie_folder := yuffiemodels
 barret_folder := barretmodels
+highwind_folder := highwindmodels
 
 init: install_monolithe install_monolithe_plugins
 default: codegen
@@ -16,7 +17,7 @@ install_monolithe_plugins:
 	pip install 'git+https://github.com/aporeto-inc/elemental.git#subdirectory=monolithe'
 	pip install 'git+https://github.com/aporeto-inc/pyelemental.git#subdirectory=monolithe'
 
-codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus codegen_yuffie codegen_barret
+codegen: codegen_squall codegen_zack codegen_vince codegen_midgard codegen_squall codegen_rufus codegen_yuffie codegen_barret codegen_highwind
 
 codegen_zack:
 	cd $(zack_folder) && make codegen
@@ -44,6 +45,10 @@ codegen_yuffie:
 
 codegen_barret:
 	cd $(barret_folder) && make codegen
+	# cd $(rufus_folder)/golang && go build
+
+codegen_highwind:
+	cd $(highwind_folder) && make codegen
 	# cd $(rufus_folder)/golang && go build
 
 publish:
