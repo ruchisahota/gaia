@@ -36,6 +36,6 @@ codegen_highwind:
 
 publish:
 	git pull
-	make codegen
+	make codegen -j 8
 	git commit -am "codegen"
 	git push
