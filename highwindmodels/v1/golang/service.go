@@ -29,6 +29,17 @@ func (o ServicesList) Copy() elemental.ContentIdentifiable {
 	return &copy
 }
 
+// Append appends the objects to the a new copy of the ServicesList.
+func (o ServicesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+
+	out := append(ServicesList{}, o...)
+	for _, obj := range objects {
+		out = append(out, obj.(*Service))
+	}
+
+	return out
+}
+
 // List converts the object to an elemental.IdentifiablesList.
 func (o ServicesList) List() elemental.IdentifiablesList {
 
