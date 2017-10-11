@@ -106,7 +106,7 @@
             "deprecated": null,
             "get": false,
             "relationship": "root",
-            "rest_name": "servic",
+            "rest_name": "service",
             "update": false
         }
     ],
