@@ -1,45 +1,5 @@
 package types
 
-import "go.uber.org/zap"
-
-// ServiceDescription describe the service.
-type ServiceDescription struct {
-	Parameters            ServiceParameters
-	Image                 string
-	Replicas              int32
-	Labels                map[string]string
-	UsesClientCertificate bool
-}
-
-// ServiceParameters is a map of ServiceParameter.
-type ServiceParameters map[string]*ServiceParameter
-
-// SetParameter sets a new value for the key.
-func (p ServiceParameters) SetParameter(key string, value string) {
-
-	param, ok := p[key]
-
-	if !ok {
-		zap.L().Error("Unable to set parameter value. Key not found", zap.String("key", key))
-		return
-	}
-
-	param.Value = value
-}
-
-// GetParameter sets a new value for the key.
-func (p ServiceParameters) GetParameter(key string) string {
-
-	param, ok := p[key]
-
-	if !ok {
-		zap.L().Error("Unable to set parameter value. Key not found", zap.String("key", key))
-		return ""
-	}
-
-	return param.Value
-}
-
 // ServiceParameter defines a parameter for the service.
 type ServiceParameter struct {
 	Key       string `json:"key"`
