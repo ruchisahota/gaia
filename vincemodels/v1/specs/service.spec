@@ -178,7 +178,9 @@
     ],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "srv"
+        ],
         "create": null,
         "delete": true,
         "description": "Service represents a service that can be launched",
