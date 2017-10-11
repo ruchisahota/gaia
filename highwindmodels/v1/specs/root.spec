@@ -30,7 +30,7 @@
         "aliases": [],
         "create": false,
         "delete": false,
-        "description": null,
+        "description": "[nodoc]",
         "entity_name": "Root",
         "extends": [],
         "get": true,
