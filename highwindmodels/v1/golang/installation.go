@@ -63,9 +63,6 @@ func (o InstallationsList) Version() int {
 
 // Installation represents the model of a installation
 type Installation struct {
-	// AccountName represents the vince account name
-	AccountName string `json:"accountName" bson:"-"`
-
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -153,25 +150,7 @@ func (*Installation) AttributeSpecifications() map[string]elemental.AttributeSpe
 }
 
 // InstallationAttributesMap represents the map of attribute for Installation.
-var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
-	"AccountName": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AccountName represents the vince account name`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "accountName",
-		Type:           "string",
-	},
-}
+var InstallationAttributesMap = map[string]elemental.AttributeSpecification{}
 
 // InstallationLowerCaseAttributesMap represents the map of attribute for Installation.
-var InstallationLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"accountname": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `AccountName represents the vince account name`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "accountName",
-		Type:           "string",
-	},
-}
+var InstallationLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{}

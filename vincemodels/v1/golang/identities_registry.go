@@ -6,12 +6,10 @@ func init() {
 
 	elemental.RegisterIdentity(AccountIdentity)
 	elemental.RegisterIdentity(ActivateIdentity)
-	elemental.RegisterIdentity(ServiceIdentity)
 	elemental.RegisterIdentity(CertificateIdentity)
 	elemental.RegisterIdentity(PasswordResetIdentity)
 	elemental.RegisterIdentity(PlanIdentity)
 	elemental.RegisterIdentity(AWSAccountIdentity)
-	elemental.RegisterIdentity(AvailableServiceIdentity)
 	elemental.RegisterIdentity(KubernetesClusterIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(CheckIdentity)
@@ -28,8 +26,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAccount()
 	case ActivateIdentity.Name:
 		return NewActivate()
-	case ServiceIdentity.Name:
-		return NewService()
 	case CertificateIdentity.Name:
 		return NewCertificate()
 	case PasswordResetIdentity.Name:
@@ -38,8 +34,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPlan()
 	case AWSAccountIdentity.Name:
 		return NewAWSAccount()
-	case AvailableServiceIdentity.Name:
-		return NewAvailableService()
 	case KubernetesClusterIdentity.Name:
 		return NewKubernetesCluster()
 	case RootIdentity.Name:
@@ -59,8 +53,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewAccount()
 	case ActivateIdentity.Category:
 		return NewActivate()
-	case ServiceIdentity.Category:
-		return NewService()
 	case CertificateIdentity.Category:
 		return NewCertificate()
 	case PasswordResetIdentity.Category:
@@ -69,8 +61,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewPlan()
 	case AWSAccountIdentity.Category:
 		return NewAWSAccount()
-	case AvailableServiceIdentity.Category:
-		return NewAvailableService()
 	case KubernetesClusterIdentity.Category:
 		return NewKubernetesCluster()
 	case RootIdentity.Category:
@@ -90,8 +80,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &AccountsList{}
 	case ActivateIdentity.Name:
 		return &ActivatesList{}
-	case ServiceIdentity.Name:
-		return &ServicesList{}
 	case CertificateIdentity.Name:
 		return &CertificatesList{}
 	case PasswordResetIdentity.Name:
@@ -100,8 +88,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PlansList{}
 	case AWSAccountIdentity.Name:
 		return &AWSAccountsList{}
-	case AvailableServiceIdentity.Name:
-		return &AvailableServicesList{}
 	case KubernetesClusterIdentity.Name:
 		return &KubernetesClustersList{}
 	case CheckIdentity.Name:
@@ -119,8 +105,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &AccountsList{}
 	case ActivateIdentity.Category:
 		return &ActivatesList{}
-	case ServiceIdentity.Category:
-		return &ServicesList{}
 	case CertificateIdentity.Category:
 		return &CertificatesList{}
 	case PasswordResetIdentity.Category:
@@ -129,8 +113,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &PlansList{}
 	case AWSAccountIdentity.Category:
 		return &AWSAccountsList{}
-	case AvailableServiceIdentity.Category:
-		return &AvailableServicesList{}
 	case KubernetesClusterIdentity.Category:
 		return &KubernetesClustersList{}
 	case CheckIdentity.Category:
@@ -146,12 +128,10 @@ func AllIdentities() []elemental.Identity {
 	return []elemental.Identity{
 		AccountIdentity,
 		ActivateIdentity,
-		ServiceIdentity,
 		CertificateIdentity,
 		PasswordResetIdentity,
 		PlanIdentity,
 		AWSAccountIdentity,
-		AvailableServiceIdentity,
 		KubernetesClusterIdentity,
 		RootIdentity,
 		CheckIdentity,
@@ -159,11 +139,9 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"srv":     ServiceIdentity,
 	"aws":     AWSAccountIdentity,
 	"awsaccs": AWSAccountIdentity,
 	"awsacc":  AWSAccountIdentity,
-	"asrv":    AvailableServiceIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -180,10 +158,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ActivateIdentity:
 		return []string{}
-	case ServiceIdentity:
-		return []string{
-			"srv",
-		}
 	case CertificateIdentity:
 		return []string{}
 	case PasswordResetIdentity:
@@ -195,10 +169,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"aws",
 			"awsaccs",
 			"awsacc",
-		}
-	case AvailableServiceIdentity:
-		return []string{
-			"asrv",
 		}
 	case KubernetesClusterIdentity:
 		return []string{}
