@@ -10,7 +10,7 @@
             "deprecated": null,
             "get": false,
             "relationship": "root",
-            "rest_name": "service",
+            "rest_name": "installation",
             "update": false
         },
         {
@@ -20,9 +20,9 @@
             "create": true,
             "delete": false,
             "deprecated": null,
-            "get": false,
+            "get": true,
             "relationship": "root",
-            "rest_name": "installation",
+            "rest_name": "service",
             "update": false
         }
     ],
