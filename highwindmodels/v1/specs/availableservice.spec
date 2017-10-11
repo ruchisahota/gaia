@@ -116,7 +116,7 @@
         "description": "AvailableService represents a service that is available for launching",
         "entity_name": "AvailableService",
         "extends": [],
-        "get": true,
+        "get": false,
         "package": null,
         "resource_name": "availableservices",
         "rest_name": "availableservice",
