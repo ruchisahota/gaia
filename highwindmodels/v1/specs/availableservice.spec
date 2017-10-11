@@ -2,10 +2,12 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "asrv"
+        ],
         "create": null,
         "delete": true,
-        "description": null,
+        "description": "AvailableService represents a service that is available for launching",
         "entity_name": "AvailableService",
         "extends": [],
         "get": true,
