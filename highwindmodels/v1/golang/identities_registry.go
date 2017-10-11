@@ -78,7 +78,9 @@ func AllIdentities() []elemental.Identity {
 	}
 }
 
-var aliasesMap = map[string]elemental.Identity{}
+var aliasesMap = map[string]elemental.Identity{
+	"srv": ServiceIdentity,
+}
 
 // IdentityFromAlias returns the Identity associated to the given alias.
 func IdentityFromAlias(alias string) elemental.Identity {
@@ -95,7 +97,9 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case InstallationIdentity:
 		return []string{}
 	case ServiceIdentity:
-		return []string{}
+		return []string{
+			"srv",
+		}
 	}
 
 	return nil

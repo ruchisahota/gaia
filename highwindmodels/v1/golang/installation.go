@@ -156,7 +156,6 @@ func (*Installation) AttributeSpecifications() map[string]elemental.AttributeSpe
 var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
 	"AccountName": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Description:    `AccountName represents the vince account name`,
 		Exposed:        true,
 		Format:         "free",
@@ -169,7 +168,6 @@ var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
 var InstallationLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"accountname": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		CreationOnly:   true,
 		Description:    `AccountName represents the vince account name`,
 		Exposed:        true,
 		Format:         "free",

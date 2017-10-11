@@ -149,6 +149,7 @@ func AllIdentities() []elemental.Identity {
 }
 
 var aliasesMap = map[string]elemental.Identity{
+	"srv":     ServiceIdentity,
 	"aws":     AWSAccountIdentity,
 	"awsaccs": AWSAccountIdentity,
 	"awsacc":  AWSAccountIdentity,
@@ -169,7 +170,9 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case ActivateIdentity:
 		return []string{}
 	case ServiceIdentity:
-		return []string{}
+		return []string{
+			"srv",
+		}
 	case CertificateIdentity:
 		return []string{}
 	case PasswordResetIdentity:
