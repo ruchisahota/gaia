@@ -11,6 +11,7 @@ func init() {
 	elemental.RegisterIdentity(PasswordResetIdentity)
 	elemental.RegisterIdentity(PlanIdentity)
 	elemental.RegisterIdentity(AWSAccountIdentity)
+	elemental.RegisterIdentity(AvailableServiceIdentity)
 	elemental.RegisterIdentity(KubernetesClusterIdentity)
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(CheckIdentity)
@@ -37,6 +38,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPlan()
 	case AWSAccountIdentity.Name:
 		return NewAWSAccount()
+	case AvailableServiceIdentity.Name:
+		return NewAvailableService()
 	case KubernetesClusterIdentity.Name:
 		return NewKubernetesCluster()
 	case RootIdentity.Name:
@@ -66,6 +69,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewPlan()
 	case AWSAccountIdentity.Category:
 		return NewAWSAccount()
+	case AvailableServiceIdentity.Category:
+		return NewAvailableService()
 	case KubernetesClusterIdentity.Category:
 		return NewKubernetesCluster()
 	case RootIdentity.Category:
@@ -95,6 +100,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PlansList{}
 	case AWSAccountIdentity.Name:
 		return &AWSAccountsList{}
+	case AvailableServiceIdentity.Name:
+		return &AvailableServicesList{}
 	case KubernetesClusterIdentity.Name:
 		return &KubernetesClustersList{}
 	case CheckIdentity.Name:
@@ -122,6 +129,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &PlansList{}
 	case AWSAccountIdentity.Category:
 		return &AWSAccountsList{}
+	case AvailableServiceIdentity.Category:
+		return &AvailableServicesList{}
 	case KubernetesClusterIdentity.Category:
 		return &KubernetesClustersList{}
 	case CheckIdentity.Category:
@@ -142,6 +151,7 @@ func AllIdentities() []elemental.Identity {
 		PasswordResetIdentity,
 		PlanIdentity,
 		AWSAccountIdentity,
+		AvailableServiceIdentity,
 		KubernetesClusterIdentity,
 		RootIdentity,
 		CheckIdentity,
@@ -153,6 +163,7 @@ var aliasesMap = map[string]elemental.Identity{
 	"aws":     AWSAccountIdentity,
 	"awsaccs": AWSAccountIdentity,
 	"awsacc":  AWSAccountIdentity,
+	"asrv":    AvailableServiceIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -184,6 +195,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"aws",
 			"awsaccs",
 			"awsacc",
+		}
+	case AvailableServiceIdentity:
+		return []string{
+			"asrv",
 		}
 	case KubernetesClusterIdentity:
 		return []string{}

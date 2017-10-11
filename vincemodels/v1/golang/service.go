@@ -81,7 +81,7 @@ type Service struct {
 	Parameters []*types.ServiceParameter `json:"parameters" bson:"parameters"`
 
 	// Replicas is the number of replicas for the service
-	Replicas string `json:"replicas" bson:"replicas"`
+	Replicas int `json:"replicas" bson:"-"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -234,12 +234,8 @@ var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Replicas is the number of replicas for the service`,
 		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
 		Name:           "replicas",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
+		Type:           "integer",
 	},
 }
 
@@ -306,11 +302,7 @@ var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Replicas is the number of replicas for the service`,
 		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
 		Name:           "replicas",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
+		Type:           "integer",
 	},
 }
