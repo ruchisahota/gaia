@@ -80,6 +80,9 @@ type Service struct {
 	// Parameters is a list of parameters to start the service
 	Parameters []*types.ServiceParameter `json:"parameters" bson:"parameters"`
 
+	// Replicas represents the number of replicas for the service.
+	Replicas int `json:"replicas" bson:"replicas"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -227,6 +230,14 @@ var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "service_parameters",
 		Type:           "external",
 	},
+	"Replicas": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Replicas represents the number of replicas for the service.`,
+		Exposed:        true,
+		Name:           "replicas",
+		Stored:         true,
+		Type:           "integer",
+	},
 }
 
 // ServiceLowerCaseAttributesMap represents the map of attribute for Service.
@@ -287,5 +298,13 @@ var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "service_parameters",
 		Type:           "external",
+	},
+	"replicas": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Replicas represents the number of replicas for the service.`,
+		Exposed:        true,
+		Name:           "replicas",
+		Stored:         true,
+		Type:           "integer",
 	},
 }

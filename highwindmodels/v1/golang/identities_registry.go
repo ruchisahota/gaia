@@ -5,6 +5,7 @@ import "github.com/aporeto-inc/elemental"
 func init() {
 
 	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(AvailableServiceIdentity)
 	elemental.RegisterIdentity(InstallationIdentity)
 	elemental.RegisterIdentity(ServiceIdentity)
 }
@@ -18,6 +19,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 	switch identity {
 	case RootIdentity.Name:
 		return NewRoot()
+	case AvailableServiceIdentity.Name:
+		return NewAvailableService()
 	case InstallationIdentity.Name:
 		return NewInstallation()
 	case ServiceIdentity.Name:
@@ -33,6 +36,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 	switch category {
 	case RootIdentity.Category:
 		return NewRoot()
+	case AvailableServiceIdentity.Category:
+		return NewAvailableService()
 	case InstallationIdentity.Category:
 		return NewInstallation()
 	case ServiceIdentity.Category:
@@ -46,6 +51,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
+	case AvailableServiceIdentity.Name:
+		return &AvailableServicesList{}
 	case InstallationIdentity.Name:
 		return &InstallationsList{}
 	case ServiceIdentity.Name:
@@ -59,6 +66,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
+	case AvailableServiceIdentity.Category:
+		return &AvailableServicesList{}
 	case InstallationIdentity.Category:
 		return &InstallationsList{}
 	case ServiceIdentity.Category:
@@ -73,13 +82,15 @@ func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
 		RootIdentity,
+		AvailableServiceIdentity,
 		InstallationIdentity,
 		ServiceIdentity,
 	}
 }
 
 var aliasesMap = map[string]elemental.Identity{
-	"srv": ServiceIdentity,
+	"asrv": AvailableServiceIdentity,
+	"srv":  ServiceIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -94,6 +105,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	switch identity {
 	case RootIdentity:
 		return []string{}
+	case AvailableServiceIdentity:
+		return []string{
+			"asrv",
+		}
 	case InstallationIdentity:
 		return []string{}
 	case ServiceIdentity:
