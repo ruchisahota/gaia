@@ -6,6 +6,7 @@ func init() {
 
 	elemental.RegisterIdentity(AccountIdentity)
 	elemental.RegisterIdentity(ActivateIdentity)
+	elemental.RegisterIdentity(ServiceIdentity)
 	elemental.RegisterIdentity(CertificateIdentity)
 	elemental.RegisterIdentity(PasswordResetIdentity)
 	elemental.RegisterIdentity(PlanIdentity)
@@ -26,6 +27,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAccount()
 	case ActivateIdentity.Name:
 		return NewActivate()
+	case ServiceIdentity.Name:
+		return NewService()
 	case CertificateIdentity.Name:
 		return NewCertificate()
 	case PasswordResetIdentity.Name:
@@ -53,6 +56,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewAccount()
 	case ActivateIdentity.Category:
 		return NewActivate()
+	case ServiceIdentity.Category:
+		return NewService()
 	case CertificateIdentity.Category:
 		return NewCertificate()
 	case PasswordResetIdentity.Category:
@@ -80,6 +85,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &AccountsList{}
 	case ActivateIdentity.Name:
 		return &ActivatesList{}
+	case ServiceIdentity.Name:
+		return &ServicesList{}
 	case CertificateIdentity.Name:
 		return &CertificatesList{}
 	case PasswordResetIdentity.Name:
@@ -105,6 +112,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &AccountsList{}
 	case ActivateIdentity.Category:
 		return &ActivatesList{}
+	case ServiceIdentity.Category:
+		return &ServicesList{}
 	case CertificateIdentity.Category:
 		return &CertificatesList{}
 	case PasswordResetIdentity.Category:
@@ -128,6 +137,7 @@ func AllIdentities() []elemental.Identity {
 	return []elemental.Identity{
 		AccountIdentity,
 		ActivateIdentity,
+		ServiceIdentity,
 		CertificateIdentity,
 		PasswordResetIdentity,
 		PlanIdentity,
@@ -157,6 +167,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case AccountIdentity:
 		return []string{}
 	case ActivateIdentity:
+		return []string{}
+	case ServiceIdentity:
 		return []string{}
 	case CertificateIdentity:
 		return []string{}
