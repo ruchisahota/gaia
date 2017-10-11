@@ -112,7 +112,7 @@
             "asrv"
         ],
         "create": null,
-        "delete": true,
+        "delete": false,
         "description": "AvailableService represents a service that is available for launching",
         "entity_name": "AvailableService",
         "extends": [],
@@ -121,6 +121,6 @@
         "resource_name": "availableservices",
         "rest_name": "availableservice",
         "root": null,
-        "update": true
+        "update": false
     }
 }
