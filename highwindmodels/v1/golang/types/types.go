@@ -1,52 +1,14 @@
 package types
 
-import "go.uber.org/zap"
-
-// ServiceDescription describe the service.
-type ServiceDescription struct {
-	Parameters            ServiceParameters
-	Image                 string
-	Replicas              int32
-	Labels                map[string]string
-	UsesClientCertificate bool
-}
-
-// ServiceParameters is a map of ServiceParameter.
-type ServiceParameters map[string]*ServiceParameter
-
-// SetParameter sets a new value for the key.
-func (p ServiceParameters) SetParameter(key string, value string) {
-
-	param, ok := p[key]
-
-	if !ok {
-		zap.L().Error("Unable to set parameter value. Key not found", zap.String("key", key))
-		return
-	}
-
-	param.Value = value
-}
-
-// GetParameter sets a new value for the key.
-func (p ServiceParameters) GetParameter(key string) string {
-
-	param, ok := p[key]
-
-	if !ok {
-		zap.L().Error("Unable to set parameter value. Key not found", zap.String("key", key))
-		return ""
-	}
-
-	return param.Value
-}
-
 // ServiceParameter defines a parameter for the service.
 type ServiceParameter struct {
-	Key       string `json:"key"`
-	Value     string `json:"value"`
-	Env       string `json:"-"`
-	Secret    bool   `json:"secret"`
-	MountPath string `json:"-"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Key         string `json:"key"`
+	Value       string `json:"value"`
+	Env         string `json:"-"`
+	Secret      bool   `json:"secret"`
+	MountPath   string `json:"-"`
 }
 
 // NewServiceParameter creates a new parameter.
@@ -59,6 +21,8 @@ func NewServiceParameter() *ServiceParameter {
 func (p *ServiceParameter) Copy() *ServiceParameter {
 
 	copy := NewServiceParameter()
+	copy.Name = p.Name
+	copy.Description = p.Description
 	copy.Key = p.Key
 	copy.Value = p.Value
 	copy.Env = p.Env
@@ -67,3 +31,19 @@ func (p *ServiceParameter) Copy() *ServiceParameter {
 
 	return copy
 }
+
+// ServiceRelatedObject defines a related object.
+type ServiceRelatedObject struct {
+	Namespace string `json:"-"`
+	Identity  string `json:"-"`
+	ID        string `json:"-"`
+}
+
+// NewServiceRelatedObject creates a new related object.
+func NewServiceRelatedObject() *ServiceRelatedObject {
+
+	return &ServiceRelatedObject{}
+}
+
+// ServiceRelatedObjectOption is to prepare the future :)
+type ServiceRelatedObjectOption struct{}

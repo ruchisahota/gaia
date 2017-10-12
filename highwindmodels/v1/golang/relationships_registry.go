@@ -15,6 +15,37 @@ func Relationships() elemental.RelationshipsRegistry {
 func init() {
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
+	relationshipsRegistry[AvailableServiceIdentity] = &elemental.Relationship{
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
+	relationshipsRegistry[InstallationIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
 	relationshipsRegistry[ServiceIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{

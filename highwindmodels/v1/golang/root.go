@@ -57,6 +57,11 @@ func (o *Root) DefaultOrder() []string {
 	return []string{}
 }
 
+// Doc returns the documentation for the object
+func (o *Root) Doc() string {
+	return nodocString
+}
+
 func (o *Root) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
