@@ -34,10 +34,6 @@ codegen_barret:
 codegen_highwind:
 	cd highwindmodels && make codegen
 
-codegen_highwind:
-	cd $(highwind_folder) && make codegen
-	# cd $(rufus_folder)/golang && go build
-
 publish:
 	git pull
 	make codegen -j 8

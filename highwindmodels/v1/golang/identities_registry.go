@@ -4,9 +4,9 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
-	elemental.RegisterIdentity(RootIdentity)
-	elemental.RegisterIdentity(AvailableServiceIdentity)
 	elemental.RegisterIdentity(InstallationIdentity)
+	elemental.RegisterIdentity(AvailableServiceIdentity)
+	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(ServiceIdentity)
 }
 
@@ -17,12 +17,12 @@ func ModelVersion() float64 { return 1 }
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
-	case RootIdentity.Name:
-		return NewRoot()
-	case AvailableServiceIdentity.Name:
-		return NewAvailableService()
 	case InstallationIdentity.Name:
 		return NewInstallation()
+	case AvailableServiceIdentity.Name:
+		return NewAvailableService()
+	case RootIdentity.Name:
+		return NewRoot()
 	case ServiceIdentity.Name:
 		return NewService()
 	default:
@@ -34,12 +34,12 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
-	case RootIdentity.Category:
-		return NewRoot()
-	case AvailableServiceIdentity.Category:
-		return NewAvailableService()
 	case InstallationIdentity.Category:
 		return NewInstallation()
+	case AvailableServiceIdentity.Category:
+		return NewAvailableService()
+	case RootIdentity.Category:
+		return NewRoot()
 	case ServiceIdentity.Category:
 		return NewService()
 	default:
@@ -51,10 +51,10 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
-	case AvailableServiceIdentity.Name:
-		return &AvailableServicesList{}
 	case InstallationIdentity.Name:
 		return &InstallationsList{}
+	case AvailableServiceIdentity.Name:
+		return &AvailableServicesList{}
 	case ServiceIdentity.Name:
 		return &ServicesList{}
 	default:
@@ -66,10 +66,10 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
-	case AvailableServiceIdentity.Category:
-		return &AvailableServicesList{}
 	case InstallationIdentity.Category:
 		return &InstallationsList{}
+	case AvailableServiceIdentity.Category:
+		return &AvailableServicesList{}
 	case ServiceIdentity.Category:
 		return &ServicesList{}
 	default:
@@ -81,9 +81,9 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
-		RootIdentity,
-		AvailableServiceIdentity,
 		InstallationIdentity,
+		AvailableServiceIdentity,
+		RootIdentity,
 		ServiceIdentity,
 	}
 }
@@ -103,13 +103,13 @@ func IdentityFromAlias(alias string) elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
-	case RootIdentity:
+	case InstallationIdentity:
 		return []string{}
 	case AvailableServiceIdentity:
 		return []string{
 			"asrv",
 		}
-	case InstallationIdentity:
+	case RootIdentity:
 		return []string{}
 	case ServiceIdentity:
 		return []string{
