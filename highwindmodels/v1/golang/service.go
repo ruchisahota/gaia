@@ -80,6 +80,9 @@ type Service struct {
 	// Parameters is a list of parameters to start the service
 	Parameters []*types.ServiceParameter `json:"parameters" bson:"parameters"`
 
+	// RelatedObjects retains all objects created to use this service.
+	RelatedObjects []*types.ServiceRelatedObject `json:"-" bson:"relatedobjects"`
+
 	// Replicas represents the number of replicas for the service.
 	Replicas int `json:"replicas" bson:"replicas"`
 
@@ -92,8 +95,9 @@ type Service struct {
 func NewService() *Service {
 
 	return &Service{
-		ModelVersion: 1,
-		Parameters:   []*types.ServiceParameter{},
+		ModelVersion:   1,
+		Parameters:     []*types.ServiceParameter{},
+		RelatedObjects: []*types.ServiceRelatedObject{},
 	}
 }
 
@@ -230,6 +234,14 @@ var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "service_parameters",
 		Type:           "external",
 	},
+	"RelatedObjects": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `RelatedObjects retains all objects created to use this service.`,
+		Name:           "relatedObjects",
+		Stored:         true,
+		SubType:        "service_relatedobjects",
+		Type:           "external",
+	},
 	"Replicas": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Replicas represents the number of replicas for the service.`,
@@ -297,6 +309,14 @@ var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "parameters",
 		Stored:         true,
 		SubType:        "service_parameters",
+		Type:           "external",
+	},
+	"relatedobjects": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `RelatedObjects retains all objects created to use this service.`,
+		Name:           "relatedObjects",
+		Stored:         true,
+		SubType:        "service_relatedobjects",
 		Type:           "external",
 	},
 	"replicas": elemental.AttributeSpecification{

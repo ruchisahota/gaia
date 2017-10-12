@@ -31,3 +31,19 @@ func (p *ServiceParameter) Copy() *ServiceParameter {
 
 	return copy
 }
+
+// ServiceRelatedObject defines a related object.
+type ServiceRelatedObject struct {
+	Namespace string `json:"-"`
+	Identity  string `json:"-"`
+	ID        string `json:"-"`
+}
+
+// NewServiceRelatedObject creates a new related object.
+func NewServiceRelatedObject() *ServiceRelatedObject {
+
+	return &ServiceRelatedObject{}
+}
+
+// ServiceRelatedObjectOption is to prepare the future :)
+type ServiceRelatedObjectOption struct{}
