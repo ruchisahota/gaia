@@ -7,6 +7,17 @@ import "sync"
 
 import "time"
 
+// CertificateSignerValue represents the possible values for attribute "signer".
+type CertificateSignerValue string
+
+const (
+	// CertificateSignerPublic represents the value Public.
+	CertificateSignerPublic CertificateSignerValue = "Public"
+
+	// CertificateSignerSystem represents the value System.
+	CertificateSignerSystem CertificateSignerValue = "System"
+)
+
 // CertificateUsageValue represents the possible values for attribute "usage".
 type CertificateUsageValue string
 
@@ -91,6 +102,9 @@ type Certificate struct {
 	// ExpirationDate contains the requested expiration date.
 	ExpirationDate time.Time `json:"expirationDate" bson:"-"`
 
+	// Selects what CA should sign the certificate.
+	Signer CertificateSignerValue `json:"signer" bson:"-"`
+
 	// Usage defines the requested key usage.
 	Usage CertificateUsageValue `json:"usage" bson:"usage"`
 
@@ -104,6 +118,7 @@ func NewCertificate() *Certificate {
 
 	return &Certificate{
 		ModelVersion: 1,
+		Signer:       "Public",
 		Usage:        "Client",
 	}
 }
@@ -159,6 +174,10 @@ func (o *Certificate) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredString("CSR", o.CSR); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("signer", string(o.Signer), []string{"Public", "System"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -237,6 +256,14 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "string",
 		Type:           "time",
 	},
+	"Signer": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Public", "System"},
+		DefaultValue:   CertificateSignerValue("Public"),
+		Description:    `Selects what CA should sign the certificate.`,
+		Exposed:        true,
+		Name:           "signer",
+		Type:           "enum",
+	},
 	"Usage": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Client", "Server", "ServerClient"},
 		DefaultValue:   CertificateUsageValue("Client"),
@@ -292,6 +319,14 @@ var CertificateLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "expirationDate",
 		SubType:        "string",
 		Type:           "time",
+	},
+	"signer": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Public", "System"},
+		DefaultValue:   CertificateSignerValue("Public"),
+		Description:    `Selects what CA should sign the certificate.`,
+		Exposed:        true,
+		Name:           "signer",
+		Type:           "enum",
 	},
 	"usage": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Client", "Server", "ServerClient"},
