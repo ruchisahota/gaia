@@ -10,7 +10,7 @@
             "channel": null,
             "creation_only": null,
             "default_order": null,
-            "default_value": "System",
+            "default_value": "Public",
             "deprecated": null,
             "description": "Selects what CA should sign the certificate.",
             "exposed": true,
