@@ -5,6 +5,8 @@ import "github.com/aporeto-inc/elemental"
 
 import "sync"
 
+import "time"
+
 // RevocationIdentity represents the Identity of the object
 var RevocationIdentity = elemental.Identity{
 	Name:     "revocation",
@@ -65,6 +67,9 @@ func (o RevocationsList) Version() int {
 type Revocation struct {
 	// ID contains the ID of the revocation.
 	ID string `json:"-" bson:"_id"`
+
+	// Contains the certificate expiration date. This will be used to clean up revoked certificates that have expired.
+	ExpirationDate time.Time `json:"expirationDate" bson:"expirationdate"`
 
 	// Status of the revocation.
 	Revoked bool `json:"revoked" bson:"revoked"`
@@ -129,6 +134,14 @@ func (o *Revocation) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -170,6 +183,16 @@ var RevocationAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"ExpirationDate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Contains the certificate expiration date. This will be used to clean up revoked certificates that have expired.`,
+		Exposed:        true,
+		Name:           "expirationDate",
+		Required:       true,
+		Stored:         true,
+		Type:           "time",
 	},
 	"Revoked": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -214,6 +237,16 @@ var RevocationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"expirationdate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `Contains the certificate expiration date. This will be used to clean up revoked certificates that have expired.`,
+		Exposed:        true,
+		Name:           "expirationDate",
+		Required:       true,
+		Stored:         true,
+		Type:           "time",
 	},
 	"revoked": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
