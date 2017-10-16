@@ -134,14 +134,6 @@ func (o *Revocation) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("expirationDate", o.ExpirationDate); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -190,7 +182,6 @@ var RevocationAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Contains the certificate expiration date. This will be used to clean up revoked certificates that have expired.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -244,7 +235,6 @@ var RevocationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Description:    `Contains the certificate expiration date. This will be used to clean up revoked certificates that have expired.`,
 		Exposed:        true,
 		Name:           "expirationDate",
-		Required:       true,
 		Stored:         true,
 		Type:           "time",
 	},
