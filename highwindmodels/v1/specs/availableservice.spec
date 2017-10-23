@@ -11,7 +11,7 @@
             "deprecated": null,
             "description": "Description of the service",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
