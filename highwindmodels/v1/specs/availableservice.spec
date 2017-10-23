@@ -81,7 +81,7 @@
             "deprecated": null,
             "description": "Name of the Service",
             "exposed": true,
-            "filterable": true,
+            "filterable": false,
             "foreign_key": null,
             "format": "free",
             "getter": null,
@@ -102,7 +102,7 @@
             "subtype": null,
             "transient": null,
             "type": "string",
-            "unique": true,
+            "unique": false,
             "uniqueScope": null
         },
         {
