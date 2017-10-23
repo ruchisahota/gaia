@@ -17,38 +17,38 @@ const (
 	ServiceParameterTypeStringSlice ServiceParameterType = "stringSlice"
 )
 
-// ServiceParameterLink defines the link of the service parameter.
-type ServiceParameterLink int
+// ServiceParameterBackend defines the link of the service parameter.
+type ServiceParameterBackend int
 
 const (
-	// ServiceParameterLinkInstallationSecret defines a link to installation secret.
-	ServiceParameterLinkInstallationSecret ServiceParameterLink = iota
+	// ServiceParameterBackendGlobalSecret defines a link to installation secret.
+	ServiceParameterBackendGlobalSecret ServiceParameterBackend = iota
 
-	// ServiceParameterLinkInstallationConfigMap defines a link to installation config map.
-	ServiceParameterLinkInstallationConfigMap
+	// ServiceParameterBackendGlobalConfigMap defines a link to installation config map.
+	ServiceParameterBackendGlobalConfigMap
 
-	// ServiceParameterLinkServiceSecret defines a link to service secret.
-	ServiceParameterLinkServiceSecret
+	// ServiceParameterBackendLocalSecret defines a link to service secret.
+	ServiceParameterBackendLocalSecret
 
-	// ServiceParameterLinkServiceConfigMap defines a link to service config map.
-	ServiceParameterLinkServiceConfigMap
+	// ServiceParameterBackendLocalConfigMap defines a link to service config map.
+	ServiceParameterBackendLocalConfigMap
 )
 
 // ServiceParameter defines a parameter for the service.
 type ServiceParameter struct {
-	Name            string               `json:"name"`
-	Description     string               `json:"description"`
-	LongDescription string               `json:"longDescription"`
-	Key             string               `json:"key"`
-	Value           string               `json:"value"`
-	Env             string               `json:"-"`
-	Secret          bool                 `json:"secret"`
-	Type            ServiceParameterType `json:"type"`
-	AllowedValues   []interface{}        `json:"allowedValues"`
-	DefaultValue    interface{}          `json:"defaultValue"`
-	MountPath       string               `json:"-"`
-	LinkType        ServiceParameterLink `json:"-"`
-	Optional        bool                 `json:"optional"`
+	Name            string                  `json:"name"`
+	Description     string                  `json:"description"`
+	LongDescription string                  `json:"longDescription"`
+	Key             string                  `json:"key"`
+	Value           string                  `json:"value"`
+	Env             string                  `json:"-"`
+	Secret          bool                    `json:"secret"`
+	Type            ServiceParameterType    `json:"type"`
+	AllowedValues   []interface{}           `json:"allowedValues"`
+	DefaultValue    interface{}             `json:"defaultValue"`
+	MountPath       string                  `json:"-"`
+	Backend         ServiceParameterBackend `json:"-"`
+	Optional        bool                    `json:"optional"`
 }
 
 // NewServiceParameter creates a new parameter.
@@ -70,7 +70,7 @@ func (p *ServiceParameter) Copy() *ServiceParameter {
 	copy.MountPath = p.MountPath
 	copy.Type = p.Type
 	copy.Optional = p.Optional
-	copy.LinkType = p.LinkType
+	copy.Backend = p.Backend
 	copy.AllowedValues = append(copy.AllowedValues, copy.AllowedValues...)
 
 	return copy
