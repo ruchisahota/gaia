@@ -12,6 +12,7 @@ const (
 	ServiceParameterTypeInt         ServiceParameterType = "int"
 	ServiceParameterTypeFloat       ServiceParameterType = "float"
 	ServiceParameterTypeFloatSlice  ServiceParameterType = "floatSlice"
+	ServiceParameterTypePassword    ServiceParameterType = "password"
 	ServiceParameterTypeString      ServiceParameterType = "string"
 	ServiceParameterTypeStringSlice ServiceParameterType = "stringSlice"
 )
