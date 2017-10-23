@@ -68,6 +68,9 @@ type AvailableService struct {
 	// Description of the service
 	Description string `json:"description" bson:"-"`
 
+	// LongDescription contains a more detailed description of the service.
+	LongDescription string `json:"longDescription" bson:"-"`
+
 	// Name of the Service
 	Name string `json:"name" bson:"-"`
 
@@ -167,20 +170,25 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Description of the service`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
+		Type:           "string",
+	},
+	"LongDescription": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LongDescription contains a more detailed description of the service.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "longDescription",
 		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name of the Service`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "name",
 		Type:           "string",
-		Unique:         true,
 	},
 	"Parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -198,20 +206,25 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 		AllowedChoices: []string{},
 		Description:    `Description of the service`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
+		Type:           "string",
+	},
+	"longdescription": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `LongDescription contains a more detailed description of the service.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "longDescription",
 		Type:           "string",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Name of the Service`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "name",
 		Type:           "string",
-		Unique:         true,
 	},
 	"parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
