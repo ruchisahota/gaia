@@ -77,6 +77,9 @@ type AvailableService struct {
 	// Parameters of the service the user can or has to specify
 	Parameters []*types.ServiceParameter `json:"parameters" bson:"-"`
 
+	// Title represents the title of the service.
+	Title string `json:"title" bson:"-"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -198,6 +201,14 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "service_parameters",
 		Type:           "external",
 	},
+	"Title": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Title represents the title of the service.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "title",
+		Type:           "string",
+	},
 }
 
 // AvailableServiceLowerCaseAttributesMap represents the map of attribute for AvailableService.
@@ -233,5 +244,13 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 		Name:           "parameters",
 		SubType:        "service_parameters",
 		Type:           "external",
+	},
+	"title": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Title represents the title of the service.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "title",
+		Type:           "string",
 	},
 }
