@@ -1,5 +1,10 @@
 package types
 
+import (
+	"strconv"
+	"strings"
+)
+
 // ServiceParameterType is the type representing the type of a parameter
 type ServiceParameterType string
 
@@ -40,9 +45,8 @@ type ServiceParameter struct {
 	Description     string                  `json:"description"`
 	LongDescription string                  `json:"longDescription"`
 	Key             string                  `json:"key"`
-	Value           string                  `json:"value"`
+	Value           interface{}             `json:"value"`
 	Env             string                  `json:"-"`
-	Secret          bool                    `json:"secret"`
 	Type            ServiceParameterType    `json:"type"`
 	AllowedValues   []interface{}           `json:"allowedValues"`
 	DefaultValue    interface{}             `json:"defaultValue"`
@@ -63,17 +67,107 @@ func (p *ServiceParameter) Copy() *ServiceParameter {
 	copy := NewServiceParameter()
 	copy.Name = p.Name
 	copy.Description = p.Description
+	copy.LongDescription = p.LongDescription
 	copy.Key = p.Key
 	copy.Value = p.Value
 	copy.Env = p.Env
-	copy.Secret = p.Secret
-	copy.MountPath = p.MountPath
 	copy.Type = p.Type
-	copy.Optional = p.Optional
+	copy.AllowedValues = append(copy.AllowedValues, p.AllowedValues...)
+	copy.DefaultValue = p.DefaultValue
+	copy.MountPath = p.MountPath
 	copy.Backend = p.Backend
-	copy.AllowedValues = append(copy.AllowedValues, copy.AllowedValues...)
+	copy.Optional = p.Optional
 
 	return copy
+}
+
+// Validate validates the service parameter.
+func (p *ServiceParameter) Validate() error {
+
+	switch p.Type {
+	case ServiceParameterTypeString, ServiceParameterTypePassword:
+		return p.validateStringValue()
+
+	case ServiceParameterTypeInt:
+		return p.validateIntValue()
+
+	case ServiceParameterTypeFloat:
+		return p.validateFloatValue()
+
+	case ServiceParameterTypeBool:
+		return p.validateBoolValue()
+
+	case ServiceParameterTypeDuration:
+		return p.validateDurationValue()
+
+	case ServiceParameterTypeStringSlice,
+		ServiceParameterTypeIntSlice,
+		ServiceParameterTypeFloatSlice:
+		return p.validateSliceValue()
+
+	}
+
+	return nil
+}
+
+// ValueToString returns the value as a string.
+func (p *ServiceParameter) ValueToString() string {
+
+	switch p.Type {
+	case ServiceParameterTypePassword, ServiceParameterTypeString:
+		if value, ok := p.Value.(string); ok {
+			return value
+		}
+
+	case ServiceParameterTypeBool:
+		if value, ok := p.Value.(bool); ok {
+			return strconv.FormatBool(value)
+		}
+
+	case ServiceParameterTypeInt:
+		if value, ok := p.Value.(int); ok {
+			return strconv.Itoa(value)
+		}
+
+	case ServiceParameterTypeFloat:
+		if value, ok := p.Value.(float64); ok {
+			return strconv.FormatFloat(value, 'f', -1, 32)
+		}
+
+	case ServiceParameterTypeDuration:
+		if value, ok := p.Value.(string); ok {
+			return value
+		}
+
+	case ServiceParameterTypeStringSlice, ServiceParameterTypeEmum:
+		values := []string{}
+		if vs, ok := p.Value.([]interface{}); ok {
+			for _, v := range vs {
+				values = append(values, v.(string))
+			}
+		}
+		return strings.Join(values, " ")
+
+	case ServiceParameterTypeIntSlice:
+		values := []string{}
+		if vs, ok := p.Value.([]interface{}); ok {
+			for _, v := range vs {
+				values = append(values, strconv.Itoa(v.(int)))
+			}
+		}
+		return strings.Join(values, " ")
+
+	case ServiceParameterTypeFloatSlice:
+		values := []string{}
+		if vs, ok := p.Value.([]interface{}); ok {
+			for _, v := range vs {
+				values = append(values, strconv.FormatFloat(v.(float64), 'f', -1, 64))
+			}
+		}
+		return strings.Join(values, " ")
+	}
+
+	return ""
 }
 
 // ServiceRelatedObject defines a related object.
