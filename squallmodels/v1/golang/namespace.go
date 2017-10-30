@@ -254,7 +254,7 @@ func (o *Namespace) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidatePattern("name", o.Name, `^[^\*\=]*$`, true); err != nil {
+	if err := elemental.ValidatePattern("name", o.Name, `^[a-zA-Z0-9-_]+$`, true); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -397,7 +397,7 @@ var NamespaceAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
-		AllowedChars:   `^[^\*\=]*$`,
+		AllowedChars:   `^[a-zA-Z0-9-_]+$`,
 		AllowedChoices: []string{},
 		CreationOnly:   true,
 		Description:    `Name is the name of the namespace.`,
@@ -579,7 +579,7 @@ var NamespaceLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Type:           "external",
 	},
 	"name": elemental.AttributeSpecification{
-		AllowedChars:   `^[^\*\=]*$`,
+		AllowedChars:   `^[a-zA-Z0-9-_]+$`,
 		AllowedChoices: []string{},
 		CreationOnly:   true,
 		Description:    `Name is the name of the namespace.`,
