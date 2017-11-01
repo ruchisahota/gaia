@@ -117,6 +117,8 @@ func NewIPRecord() *IPRecord {
 	}
 }
 
+// >>> TODO DELETE WHEN MERGED
+
 // TagGraphStats represents Tag statistics in a Graph
 type TagGraphStats struct {
 	Key         string `json:"key"`
@@ -163,3 +165,5 @@ func (a TagGraphStatsList) Less(i, j int) bool {
 
 	return false
 }
+
+// <<< TODO DELETE WHEN MERGED

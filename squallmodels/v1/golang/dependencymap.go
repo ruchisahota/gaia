@@ -77,8 +77,8 @@ type DependencyMap struct {
 	// nodes refers to the nodes of the map
 	Nodes types.GraphNodeMap `json:"nodes" bson:"-"`
 
-	// TagsStatistics provides statistics for relevant tags
-	TagsStatistics types.TagGraphStatsList `json:"tagsStatistics" bson:"-"`
+	// viewSuggestions provides suggestion of views based on relevant tags.
+	ViewSuggestions []string `json:"viewSuggestions" bson:"-"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -89,11 +89,10 @@ type DependencyMap struct {
 func NewDependencyMap() *DependencyMap {
 
 	return &DependencyMap{
-		ModelVersion:   1,
-		Edges:          types.GraphEdgeMap{},
-		Groups:         types.GraphGroupMap{},
-		Nodes:          types.GraphNodeMap{},
-		TagsStatistics: types.TagGraphStatsList{},
+		ModelVersion: 1,
+		Edges:        types.GraphEdgeMap{},
+		Groups:       types.GraphGroupMap{},
+		Nodes:        types.GraphNodeMap{},
 	}
 }
 
@@ -167,11 +166,11 @@ func (o *DependencyMap) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("tagsStatistics", o.TagsStatistics); err != nil {
+	if err := elemental.ValidateRequiredExternal("viewSuggestions", o.ViewSuggestions); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("tagsStatistics", o.TagsStatistics); err != nil {
+	if err := elemental.ValidateRequiredExternal("viewSuggestions", o.ViewSuggestions); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -249,14 +248,14 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "graphnodes_map",
 		Type:           "external",
 	},
-	"TagsStatistics": elemental.AttributeSpecification{
+	"ViewSuggestions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `TagsStatistics provides statistics for relevant tags`,
+		Description:    `viewSuggestions provides suggestion of views based on relevant tags.`,
 		Exposed:        true,
-		Name:           "tagsStatistics",
+		Name:           "viewSuggestions",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "tags_statistics",
+		SubType:        "view_suggestions",
 		Type:           "external",
 	},
 }
@@ -307,14 +306,14 @@ var DependencyMapLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		SubType:        "graphnodes_map",
 		Type:           "external",
 	},
-	"tagsstatistics": elemental.AttributeSpecification{
+	"viewsuggestions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `TagsStatistics provides statistics for relevant tags`,
+		Description:    `viewSuggestions provides suggestion of views based on relevant tags.`,
 		Exposed:        true,
-		Name:           "tagsStatistics",
+		Name:           "viewSuggestions",
 		ReadOnly:       true,
 		Required:       true,
-		SubType:        "tags_statistics",
+		SubType:        "view_suggestions",
 		Type:           "external",
 	},
 }
