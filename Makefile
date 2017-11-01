@@ -1,5 +1,7 @@
-init: install_monolithe install_monolithe_plugins
-default: codegen
+include domingo.mk
+
+init: domingo_init
+test: domingo_unit_tests
 
 install_monolithe:
 	pip install -U git+https://github.com/aporeto-inc/monolithe.git
