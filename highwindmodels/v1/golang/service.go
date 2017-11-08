@@ -7,6 +7,20 @@ import "sync"
 
 import "github.com/aporeto-inc/gaia/highwindmodels/v1/golang/types"
 
+// ServiceStatusValue represents the possible values for attribute "status".
+type ServiceStatusValue string
+
+const (
+	// ServiceStatusError represents the value Error.
+	ServiceStatusError ServiceStatusValue = "Error"
+
+	// ServiceStatusPending represents the value Pending.
+	ServiceStatusPending ServiceStatusValue = "Pending"
+
+	// ServiceStatusRunning represents the value Running.
+	ServiceStatusRunning ServiceStatusValue = "Running"
+)
+
 // ServiceIdentity represents the Identity of the object
 var ServiceIdentity = elemental.Identity{
 	Name:     "service",
@@ -71,6 +85,9 @@ type Service struct {
 	// AccountName represents the vince account name
 	AccountName string `json:"accountName" bson:"accountname"`
 
+	// CategoryID of the service.
+	CategoryID string `json:"categoryID" bson:"categoryid"`
+
 	// Name of the service
 	Name string `json:"name" bson:"name"`
 
@@ -85,6 +102,9 @@ type Service struct {
 
 	// Replicas represents the number of replicas for the service.
 	Replicas int `json:"replicas" bson:"replicas"`
+
+	// Status of the service.
+	Status ServiceStatusValue `json:"status" bson:"status"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -147,6 +167,10 @@ func (o *Service) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Error", "Pending", "Running"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -202,6 +226,18 @@ var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"CategoryID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `CategoryID of the service.`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "categoryID",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
@@ -250,6 +286,17 @@ var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "integer",
 	},
+	"Status": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Error", "Pending", "Running"},
+		Description:    `Status of the service.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "status",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "enum",
+	},
 }
 
 // ServiceLowerCaseAttributesMap represents the map of attribute for Service.
@@ -276,6 +323,18 @@ var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "accountName",
+		Stored:         true,
+		Type:           "string",
+	},
+	"categoryid": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `CategoryID of the service.`,
+		Exposed:        true,
+		Filterable:     true,
+		Format:         "free",
+		Name:           "categoryID",
+		Orderable:      true,
+		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -326,5 +385,16 @@ var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "replicas",
 		Stored:         true,
 		Type:           "integer",
+	},
+	"status": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Error", "Pending", "Running"},
+		Description:    `Status of the service.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "status",
+		Orderable:      true,
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "enum",
 	},
 }

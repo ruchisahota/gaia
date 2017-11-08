@@ -26,6 +26,17 @@ func init() {
 			"root": true,
 		},
 	}
+	relationshipsRegistry[CategoryIdentity] = &elemental.Relationship{
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 	relationshipsRegistry[InstallationIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
