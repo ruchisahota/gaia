@@ -65,14 +65,14 @@ func (o KubernetesClustersList) Version() int {
 
 // KubernetesCluster represents the model of a kubernetescluster
 type KubernetesCluster struct {
-	// None
+	// Link to the API authorization policy.
 	APIAuthorizationPolicyID string `json:"-" bson:"apiauthorizationpolicyid"`
 
 	// ID of the object.
 	ID string `json:"ID" bson:"_id"`
 
 	// Link to the certificate created in Vince for this cluster
-	CertificateID string `json:"certificateID" bson:"certificateid"`
+	CertificateID string `json:"-" bson:"certificateid"`
 
 	// createdAt represents the creation date of the object.
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
@@ -84,9 +84,9 @@ type KubernetesCluster struct {
 	Name string `json:"name" bson:"name"`
 
 	// Link to your namespace
-	NamespaceID string `json:"namespaceID" bson:"namespaceid"`
+	NamespaceID string `json:"-" bson:"namespaceid"`
 
-	// None
+	// ID of the parent account.
 	ParentID string `json:"parentID" bson:"parentid"`
 
 	// Regenerates the k8s files and certificates.
@@ -95,7 +95,7 @@ type KubernetesCluster struct {
 	// The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.
 	TargetNamespace string `json:"targetNamespace" bson:"targetnamespace"`
 
-	// None
+	// List of target networks [deprecated]
 	TargetNetworks []string `json:"targetNetworks" bson:"targetnetworks"`
 
 	// UpdateTime represents the last update date of the objct.
@@ -192,6 +192,7 @@ func (*KubernetesCluster) AttributeSpecifications() map[string]elemental.Attribu
 var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification{
 	"APIAuthorizationPolicyID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `Link to the API authorization policy.`,
 		Format:         "free",
 		Name:           "APIAuthorizationPolicyID",
 		Stored:         true,
@@ -215,15 +216,10 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 	"CertificateID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Link to the certificate created in Vince for this cluster `,
-		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "certificateID",
-		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
-		Unique:         true,
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -262,17 +258,14 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 	"NamespaceID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Link to your namespace `,
-		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "namespaceID",
-		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
 	"ParentID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `ID of the parent account.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -302,6 +295,7 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"TargetNetworks": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `List of target networks [deprecated]`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "targetNetworks",
@@ -328,6 +322,7 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"apiauthorizationpolicyid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `Link to the API authorization policy.`,
 		Format:         "free",
 		Name:           "APIAuthorizationPolicyID",
 		Stored:         true,
@@ -351,15 +346,10 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 	"certificateid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Link to the certificate created in Vince for this cluster `,
-		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "certificateID",
-		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
-		Unique:         true,
 	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -398,17 +388,14 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 	"namespaceid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `Link to your namespace `,
-		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "namespaceID",
-		Orderable:      true,
-		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
 	},
 	"parentid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `ID of the parent account.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -438,6 +425,7 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 	},
 	"targetnetworks": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		Description:    `List of target networks [deprecated]`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "targetNetworks",
