@@ -205,7 +205,7 @@
             "setter": null,
             "stored": false,
             "subtype": null,
-            "transient": null,
+            "transient": true,
             "type": "string",
             "unique": null,
             "uniqueScope": null
