@@ -9,7 +9,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "Link to the API authorization policy.",
             "exposed": false,
             "filterable": false,
             "foreign_key": null,
