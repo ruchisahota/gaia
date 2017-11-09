@@ -184,7 +184,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "ID of the parent account.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
