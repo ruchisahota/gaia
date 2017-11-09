@@ -119,8 +119,11 @@ type Enforcer struct {
 	// CertificateKey is the secret key of the enforcer. Returned only when a enforcer is created or the certificate is updated.
 	CertificateKey string `json:"certificateKey" bson:"-"`
 
-	// CertificateSigningRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.
-	CertificateSigningRequest string `json:"certificateSigningRequest" bson:"-"`
+	// CertificateRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.
+	CertificateRequest string `json:"certificateRequest" bson:"-"`
+
+	// If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.
+	CertificateRequestEnabled string `json:"certificateRequestEnabled" bson:"-"`
 
 	// CertificateStatus indicates if the certificate is valid.
 	CertificateStatus EnforcerCertificateStatusValue `json:"certificateStatus" bson:"certificatestatus"`
@@ -473,13 +476,22 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 	},
-	"CertificateSigningRequest": elemental.AttributeSpecification{
+	"CertificateRequest": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `CertificateSigningRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.`,
+		Description:    `CertificateRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.`,
 		Exposed:        true,
 		Format:         "free",
-		Name:           "certificateSigningRequest",
+		Name:           "certificateRequest",
 		Transient:      true,
+		Type:           "string",
+	},
+	"CertificateRequestEnabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificateRequestEnabled",
 		Type:           "string",
 	},
 	"CertificateStatus": elemental.AttributeSpecification{
@@ -792,13 +804,22 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		ReadOnly:       true,
 		Type:           "string",
 	},
-	"certificatesigningrequest": elemental.AttributeSpecification{
+	"certificaterequest": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Description:    `CertificateSigningRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.`,
+		Description:    `CertificateRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.`,
 		Exposed:        true,
 		Format:         "free",
-		Name:           "certificateSigningRequest",
+		Name:           "certificateRequest",
 		Transient:      true,
+		Type:           "string",
+	},
+	"certificaterequestenabled": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		CreationOnly:   true,
+		Description:    `If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificateRequestEnabled",
 		Type:           "string",
 	},
 	"certificatestatus": elemental.AttributeSpecification{
