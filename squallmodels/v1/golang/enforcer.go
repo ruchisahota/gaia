@@ -346,14 +346,6 @@ func (o *Enforcer) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredTime("lastSyncTime", o.LastSyncTime); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredTime("lastSyncTime", o.LastSyncTime); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -583,7 +575,6 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Name:           "lastSyncTime",
 		Orderable:      true,
-		Required:       true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -911,7 +902,6 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		Filterable:     true,
 		Name:           "lastSyncTime",
 		Orderable:      true,
-		Required:       true,
 		Stored:         true,
 		Type:           "time",
 	},
