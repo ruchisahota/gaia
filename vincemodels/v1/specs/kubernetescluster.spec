@@ -289,7 +289,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": null,
+            "description": "List of target networks [deprecated]",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
