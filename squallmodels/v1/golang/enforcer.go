@@ -123,7 +123,7 @@ type Enforcer struct {
 	CertificateRequest string `json:"certificateRequest" bson:"-"`
 
 	// If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.
-	CertificateRequestEnabled string `json:"certificateRequestEnabled" bson:"-"`
+	CertificateRequestEnabled bool `json:"certificateRequestEnabled" bson:"-"`
 
 	// CertificateStatus indicates if the certificate is valid.
 	CertificateStatus EnforcerCertificateStatusValue `json:"certificateStatus" bson:"certificatestatus"`
@@ -490,10 +490,9 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		CreationOnly:   true,
 		Description:    `If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
 		Exposed:        true,
-		Format:         "free",
 		Name:           "certificateRequestEnabled",
 		Transient:      true,
-		Type:           "string",
+		Type:           "boolean",
 	},
 	"CertificateStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
@@ -819,10 +818,9 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		CreationOnly:   true,
 		Description:    `If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
 		Exposed:        true,
-		Format:         "free",
 		Name:           "certificateRequestEnabled",
 		Transient:      true,
-		Type:           "string",
+		Type:           "boolean",
 	},
 	"certificatestatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
