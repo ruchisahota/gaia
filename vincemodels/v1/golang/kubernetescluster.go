@@ -86,6 +86,9 @@ type KubernetesCluster struct {
 	// None
 	ParentID string `json:"parentID" bson:"parentid"`
 
+	// Regenerates the k8s files and certificates.
+	Regenerate bool `json:"regenerate" bson:"-"`
+
 	// The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.
 	TargetNamespace string `json:"targetNamespace" bson:"targetnamespace"`
 
@@ -269,6 +272,13 @@ var KubernetesClusterAttributesMap = map[string]elemental.AttributeSpecification
 		Stored:         true,
 		Type:           "string",
 	},
+	"Regenerate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Regenerates the k8s files and certificates.`,
+		Exposed:        true,
+		Name:           "regenerate",
+		Type:           "boolean",
+	},
 	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.`,
@@ -390,6 +400,13 @@ var KubernetesClusterLowerCaseAttributesMap = map[string]elemental.AttributeSpec
 		ReadOnly:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"regenerate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `Regenerates the k8s files and certificates.`,
+		Exposed:        true,
+		Name:           "regenerate",
+		Type:           "boolean",
 	},
 	"targetnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
