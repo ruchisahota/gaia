@@ -184,7 +184,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.",
+            "description": "If set during creation,the server will not initially generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
