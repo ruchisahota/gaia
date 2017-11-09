@@ -492,6 +492,7 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "certificateRequestEnabled",
+		Transient:      true,
 		Type:           "string",
 	},
 	"CertificateStatus": elemental.AttributeSpecification{
@@ -820,6 +821,7 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		Exposed:        true,
 		Format:         "free",
 		Name:           "certificateRequestEnabled",
+		Transient:      true,
 		Type:           "string",
 	},
 	"certificatestatus": elemental.AttributeSpecification{
