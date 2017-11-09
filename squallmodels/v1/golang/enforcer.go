@@ -119,6 +119,9 @@ type Enforcer struct {
 	// CertificateKey is the secret key of the enforcer. Returned only when a enforcer is created or the certificate is updated.
 	CertificateKey string `json:"certificateKey" bson:"-"`
 
+	// CertificateSigningRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.
+	CertificateSigningRequest string `json:"certificateSigningRequest" bson:"-"`
+
 	// CertificateStatus indicates if the certificate is valid.
 	CertificateStatus EnforcerCertificateStatusValue `json:"certificateStatus" bson:"certificatestatus"`
 
@@ -470,6 +473,15 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 	},
+	"CertificateSigningRequest": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `CertificateSigningRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificateSigningRequest",
+		Transient:      true,
+		Type:           "string",
+	},
 	"CertificateStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
 		DefaultValue:   EnforcerCertificateStatusValue("VALID"),
@@ -778,6 +790,15 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 		Name:           "certificateKey",
 		Orderable:      true,
 		ReadOnly:       true,
+		Type:           "string",
+	},
+	"certificatesigningrequest": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `CertificateSigningRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "certificateSigningRequest",
+		Transient:      true,
 		Type:           "string",
 	},
 	"certificatestatus": elemental.AttributeSpecification{
