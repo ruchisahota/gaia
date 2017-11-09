@@ -122,7 +122,7 @@ type Enforcer struct {
 	// CertificateRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.
 	CertificateRequest string `json:"certificateRequest" bson:"-"`
 
-	// If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.
+	// If set during creation,the server will not initially generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.
 	CertificateRequestEnabled bool `json:"certificateRequestEnabled" bson:"-"`
 
 	// CertificateStatus indicates if the certificate is valid.
@@ -480,7 +480,7 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 	"CertificateRequestEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
-		Description:    `If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
+		Description:    `If set during creation,the server will not initially generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
 		Exposed:        true,
 		Name:           "certificateRequestEnabled",
 		Transient:      true,
@@ -807,7 +807,7 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 	"certificaterequestenabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		CreationOnly:   true,
-		Description:    `If set during creation,the server will not initialy generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
+		Description:    `If set during creation,the server will not initially generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.`,
 		Exposed:        true,
 		Name:           "certificateRequestEnabled",
 		Transient:      true,
