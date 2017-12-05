@@ -45,7 +45,7 @@
             "default_value": null,
             "deprecated": null,
             "description": "Destination ID of the flow.",
-            "exposed": false,
+            "exposed": true,
             "filterable": false,
             "foreign_key": null,
             "format": "free",
