@@ -2,17 +2,20 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "flowrecs",
+            "flowrec"
+        ],
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "Returns flow records",
         "entity_name": "FlowRecord",
         "extends": [],
-        "get": true,
-        "package": null,
+        "get": false,
+        "package": "squall",
         "resource_name": "flowrecords",
         "rest_name": "flowrecord",
         "root": null,
-        "update": true
+        "update": false
     }
 }
