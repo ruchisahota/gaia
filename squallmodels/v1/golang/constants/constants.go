@@ -70,7 +70,7 @@ const (
 	StatsTagKeySourceIP = "@srcip"
 
 	// StatsTagKeyObservationMode represents the that the flow is oberserved.
-	StatsTagKeyObservationMode = "@observe"
+	StatsTagKeyObservationMode = "@observed"
 
 	// StatsTagKeySourceType represents the source type tag.
 	StatsTagKeySourceType = "@srctype"
