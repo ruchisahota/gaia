@@ -11,6 +11,9 @@ import "time"
 type ReportKindValue string
 
 const (
+	// ReportKindEnforcer represents the value Enforcer.
+	ReportKindEnforcer ReportKindValue = "Enforcer"
+
 	// ReportKindFileaccess represents the value FileAccess.
 	ReportKindFileaccess ReportKindValue = "FileAccess"
 
@@ -153,7 +156,7 @@ func (o *Report) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("kind", string(o.Kind), []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("kind", string(o.Kind), []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -188,7 +191,7 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"Kind": elemental.AttributeSpecification{
-		AllowedChoices: []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		AllowedChoices: []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
 		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
 		Name:           "kind",
@@ -221,7 +224,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 // ReportLowerCaseAttributesMap represents the map of attribute for Report.
 var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"kind": elemental.AttributeSpecification{
-		AllowedChoices: []string{"FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		AllowedChoices: []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
 		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
 		Name:           "kind",
