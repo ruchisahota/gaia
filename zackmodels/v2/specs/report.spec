@@ -3,6 +3,7 @@
         {
             "allowed_chars": null,
             "allowed_choices": [
+                "Enforcer",
                 "FileAccess",
                 "Flow",
                 "ProcessingUnit",
