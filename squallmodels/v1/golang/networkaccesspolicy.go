@@ -76,6 +76,9 @@ type NetworkAccessPolicy struct {
 	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
 	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
 
+	// If observationEnabled is set to true, this will be the final action taken on the packets.
+	AllowsObservedTraffic bool `json:"allowsObservedTraffic" bson:"-"`
+
 	// AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
 	AllowsTraffic bool `json:"allowsTraffic" bson:"-"`
 
@@ -419,6 +422,15 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "cron_expression",
 		Type:           "external",
 	},
+	"AllowsObservedTraffic": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsObservedTraffic",
+		Orderable:      true,
+		Type:           "boolean",
+	},
 	"AllowsTraffic": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.`,
@@ -698,6 +710,15 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		Stored:         true,
 		SubType:        "cron_expression",
 		Type:           "external",
+	},
+	"allowsobservedtraffic": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "allowsObservedTraffic",
+		Orderable:      true,
+		Type:           "boolean",
 	},
 	"allowstraffic": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
