@@ -7,6 +7,20 @@ import "sync"
 
 import "time"
 
+// NetworkAccessPolicyObservedTrafficActionValue represents the possible values for attribute "observedTrafficAction".
+type NetworkAccessPolicyObservedTrafficActionValue string
+
+const (
+	// NetworkAccessPolicyObservedTrafficActionAccept represents the value Accept.
+	NetworkAccessPolicyObservedTrafficActionAccept NetworkAccessPolicyObservedTrafficActionValue = "Accept"
+
+	// NetworkAccessPolicyObservedTrafficActionContinue represents the value Continue.
+	NetworkAccessPolicyObservedTrafficActionContinue NetworkAccessPolicyObservedTrafficActionValue = "Continue"
+
+	// NetworkAccessPolicyObservedTrafficActionReject represents the value Reject.
+	NetworkAccessPolicyObservedTrafficActionReject NetworkAccessPolicyObservedTrafficActionValue = "Reject"
+)
+
 // NetworkAccessPolicyIdentity represents the Identity of the object
 var NetworkAccessPolicyIdentity = elemental.Identity{
 	Name:     "networkaccesspolicy",
@@ -76,9 +90,6 @@ type NetworkAccessPolicy struct {
 	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
 	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
 
-	// If observationEnabled is set to true, this will be the final action taken on the packets.
-	AllowsObservedTraffic bool `json:"allowsObservedTraffic" bson:"-"`
-
 	// AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
 	AllowsTraffic bool `json:"allowsTraffic" bson:"-"`
 
@@ -124,6 +135,9 @@ type NetworkAccessPolicy struct {
 	// If set to true, the flow will be in observation mode.
 	ObservationEnabled bool `json:"observationEnabled" bson:"-"`
 
+	// If observationEnabled is set to true, this will be the final action taken on the packets.
+	ObservedTrafficAction NetworkAccessPolicyObservedTrafficActionValue `json:"observedTrafficAction" bson:"-"`
+
 	// List of tags expressions to match the list of entity to pass the flow through.
 	Passthrough [][]string `json:"passthrough" bson:"-"`
 
@@ -151,12 +165,13 @@ type NetworkAccessPolicy struct {
 func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 
 	return &NetworkAccessPolicy{
-		ModelVersion:     1,
-		Annotations:      map[string][]string{},
-		AssociatedTags:   []string{},
-		DestinationPorts: []string{},
-		Metadata:         []string{},
-		NormalizedTags:   []string{},
+		ModelVersion:          1,
+		Annotations:           map[string][]string{},
+		AssociatedTags:        []string{},
+		DestinationPorts:      []string{},
+		Metadata:              []string{},
+		NormalizedTags:        []string{},
+		ObservedTrafficAction: "Continue",
 	}
 }
 
@@ -355,6 +370,10 @@ func (o *NetworkAccessPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateStringInList("observedTrafficAction", string(o.ObservedTrafficAction), []string{"Accept", "Continue", "Reject"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -421,15 +440,6 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Stored:         true,
 		SubType:        "cron_expression",
 		Type:           "external",
-	},
-	"AllowsObservedTraffic": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsObservedTraffic",
-		Orderable:      true,
-		Type:           "boolean",
 	},
 	"AllowsTraffic": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -605,6 +615,16 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Orderable:      true,
 		Type:           "boolean",
 	},
+	"ObservedTrafficAction": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Accept", "Continue", "Reject"},
+		DefaultValue:   NetworkAccessPolicyObservedTrafficActionValue("Continue"),
+		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "observedTrafficAction",
+		Orderable:      true,
+		Type:           "enum",
+	},
 	"Passthrough": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Description:    `List of tags expressions to match the list of entity to pass the flow through.`,
@@ -710,15 +730,6 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		Stored:         true,
 		SubType:        "cron_expression",
 		Type:           "external",
-	},
-	"allowsobservedtraffic": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "allowsObservedTraffic",
-		Orderable:      true,
-		Type:           "boolean",
 	},
 	"allowstraffic": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -893,6 +904,16 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		Name:           "observationEnabled",
 		Orderable:      true,
 		Type:           "boolean",
+	},
+	"observedtrafficaction": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Accept", "Continue", "Reject"},
+		DefaultValue:   NetworkAccessPolicyObservedTrafficActionValue("Continue"),
+		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "observedTrafficAction",
+		Orderable:      true,
+		Type:           "enum",
 	},
 	"passthrough": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
