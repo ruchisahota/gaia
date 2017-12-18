@@ -72,6 +72,12 @@ const (
 	// StatsTagKeyObservationMode represents the that the flow is oberserved.
 	StatsTagKeyObservationMode = "@observed"
 
+	// StatsTagKeyObservedAction represents the action taken on an oberserved flow.
+	StatsTagKeyObservedAction = "@obsaction"
+
+	// StatsTagKeyObservedPolicyID represents the observation policy ID.
+	StatsTagKeyObservedPolicyID = "@obspolicyid"
+
 	// StatsTagKeySourceType represents the source type tag.
 	StatsTagKeySourceType = "@srctype"
 
