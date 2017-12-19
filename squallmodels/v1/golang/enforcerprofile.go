@@ -7,6 +7,20 @@ import "sync"
 
 import "time"
 
+// EnforcerProfileMetadataExtractorValue represents the possible values for attribute "metadataExtractor".
+type EnforcerProfileMetadataExtractorValue string
+
+const (
+	// EnforcerProfileMetadataExtractorDocker represents the value Docker.
+	EnforcerProfileMetadataExtractorDocker EnforcerProfileMetadataExtractorValue = "Docker"
+
+	// EnforcerProfileMetadataExtractorEcs represents the value ECS.
+	EnforcerProfileMetadataExtractorEcs EnforcerProfileMetadataExtractorValue = "ECS"
+
+	// EnforcerProfileMetadataExtractorKubernetes represents the value Kubernetes.
+	EnforcerProfileMetadataExtractorKubernetes EnforcerProfileMetadataExtractorValue = "Kubernetes"
+)
+
 // EnforcerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
 type EnforcerProfileDockerSocketTypeValue string
 
@@ -123,6 +137,9 @@ type EnforcerProfile struct {
 	// LinuxProcessesSupportEnabled configures support for Linux processes.
 	LinuxProcessesSupportEnabled bool `json:"linuxProcessesSupportEnabled" bson:"linuxprocessessupportenabled"`
 
+	// Select which metadata extractor to use to process new processing units.
+	MetadataExtractor EnforcerProfileMetadataExtractorValue `json:"metadataExtractor" bson:"metadataextractor"`
+
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
@@ -190,6 +207,7 @@ func NewEnforcerProfile() *EnforcerProfile {
 		DockerSocketType:              "unix",
 		KubernetesSupportEnabled:      false,
 		LinuxProcessesSupportEnabled:  true,
+		MetadataExtractor:             "Docker",
 		NormalizedTags:                []string{},
 		PolicySynchronizationInterval: "10m",
 		ProxyListenAddress:            ":9443",
@@ -344,6 +362,10 @@ func (o *EnforcerProfile) Validate() error {
 	}
 
 	if err := elemental.ValidateStringInList("dockerSocketType", string(o.DockerSocketType), []string{"tcp", "unix"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("metadataExtractor", string(o.MetadataExtractor), []string{"Docker", "ECS", "Kubernetes"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -610,6 +632,17 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "linuxProcessesSupportEnabled",
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"MetadataExtractor": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Docker", "ECS", "Kubernetes"},
+		DefaultValue:   EnforcerProfileMetadataExtractorValue("Docker"),
+		Description:    `Select which metadata extractor to use to process new processing units.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "metadataExtractor",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -993,6 +1026,17 @@ var EnforcerProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Name:           "linuxProcessesSupportEnabled",
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"metadataextractor": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Docker", "ECS", "Kubernetes"},
+		DefaultValue:   EnforcerProfileMetadataExtractorValue("Docker"),
+		Description:    `Select which metadata extractor to use to process new processing units.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "metadataExtractor",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
