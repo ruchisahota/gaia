@@ -11,14 +11,11 @@ import "time"
 type NetworkAccessPolicyObservedTrafficActionValue string
 
 const (
-	// NetworkAccessPolicyObservedTrafficActionAccept represents the value Accept.
-	NetworkAccessPolicyObservedTrafficActionAccept NetworkAccessPolicyObservedTrafficActionValue = "Accept"
+	// NetworkAccessPolicyObservedTrafficActionApply represents the value Apply.
+	NetworkAccessPolicyObservedTrafficActionApply NetworkAccessPolicyObservedTrafficActionValue = "Apply"
 
 	// NetworkAccessPolicyObservedTrafficActionContinue represents the value Continue.
 	NetworkAccessPolicyObservedTrafficActionContinue NetworkAccessPolicyObservedTrafficActionValue = "Continue"
-
-	// NetworkAccessPolicyObservedTrafficActionReject represents the value Reject.
-	NetworkAccessPolicyObservedTrafficActionReject NetworkAccessPolicyObservedTrafficActionValue = "Reject"
 )
 
 // NetworkAccessPolicyIdentity represents the Identity of the object
@@ -370,7 +367,7 @@ func (o *NetworkAccessPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("observedTrafficAction", string(o.ObservedTrafficAction), []string{"Accept", "Continue", "Reject"}, false); err != nil {
+	if err := elemental.ValidateStringInList("observedTrafficAction", string(o.ObservedTrafficAction), []string{"Apply", "Continue"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -616,7 +613,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 		Type:           "boolean",
 	},
 	"ObservedTrafficAction": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Accept", "Continue", "Reject"},
+		AllowedChoices: []string{"Apply", "Continue"},
 		DefaultValue:   NetworkAccessPolicyObservedTrafficActionValue("Continue"),
 		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
 		Exposed:        true,
@@ -906,7 +903,7 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		Type:           "boolean",
 	},
 	"observedtrafficaction": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Accept", "Continue", "Reject"},
+		AllowedChoices: []string{"Apply", "Continue"},
 		DefaultValue:   NetworkAccessPolicyObservedTrafficActionValue("Continue"),
 		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
 		Exposed:        true,
