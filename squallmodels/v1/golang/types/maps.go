@@ -18,17 +18,18 @@ const (
 
 // GraphEdge represents the model of a Edge
 type GraphEdge struct {
-	AcceptedFlows   int                    `json:"acceptedFlows"`
-	DestinationID   string                 `json:"destinationID"`
-	DestinationType GraphEdgeExtremityType `json:"destinationType"`
-	ID              string                 `json:"ID"`
-	Name            string                 `json:"name"`
-	RejectedFlows   int                    `json:"rejectedFlows"`
-	SourceID        string                 `json:"sourceID"`
-	SourceType      GraphEdgeExtremityType `json:"sourceType"`
-	PolicyID        string                 `json:"policyID"`
-	Encrypted       int                    `json:"encrypted"`
-	Observed        int                    `json:"observed"`
+	AcceptedFlows         int                    `json:"acceptedFlows"`
+	DestinationID         string                 `json:"destinationID"`
+	DestinationType       GraphEdgeExtremityType `json:"destinationType"`
+	ID                    string                 `json:"ID"`
+	Name                  string                 `json:"name"`
+	RejectedFlows         int                    `json:"rejectedFlows"`
+	SourceID              string                 `json:"sourceID"`
+	SourceType            GraphEdgeExtremityType `json:"sourceType"`
+	PolicyID              string                 `json:"policyID"`
+	Encrypted             int                    `json:"encrypted"`
+	ObservedAcceptedFlows int                    `json:"observedAcceptedFlows"`
+	ObservedRejectedFlows int                    `json:"observedRejectedFlows"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
