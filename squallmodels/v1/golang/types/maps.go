@@ -31,6 +31,7 @@ type GraphEdge struct {
 	ObservedAcceptedFlows int                    `json:"observedAcceptedFlows"`
 	ObservedRejectedFlows int                    `json:"observedRejectedFlows"`
 	ObservedPolicyIDs     map[string]int         `json:"observedPolicyIDs"`
+	ObservedEncrypted     int                    `json:"observedEncrypted"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
