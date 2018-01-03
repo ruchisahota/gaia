@@ -62,13 +62,40 @@ func Test_BoolParameterValueToString(t *testing.T) {
 }
 
 func Test_IntParameterValueToString(t *testing.T) {
-	Convey("Given a parameter with a correct value, it should return a string", t, func() {
+	Convey("Given a parameter with a int value, it should return a string", t, func() {
 		parameter := &ServiceParameter{
 			Name:  "DemoParam",
 			Value: 10,
 			Type:  ServiceParameterTypeInt,
 		}
 		So(parameter.ValueToString(), ShouldEqual, "10")
+	})
+
+	Convey("Given a parameter with a int value as zero , it should return a string", t, func() {
+		parameter := &ServiceParameter{
+			Name:  "DemoParam",
+			Value: 0,
+			Type:  ServiceParameterTypeInt,
+		}
+		So(parameter.ValueToString(), ShouldEqual, "0")
+	})
+
+	Convey("Given a parameter as a float64, it should return a string", t, func() {
+		parameter := &ServiceParameter{
+			Name:  "DemoParam",
+			Value: float64(3),
+			Type:  ServiceParameterTypeInt,
+		}
+		So(parameter.ValueToString(), ShouldEqual, "3")
+	})
+
+	Convey("Given a parameter as a float64 as zero, it should return a string", t, func() {
+		parameter := &ServiceParameter{
+			Name:  "DemoParam",
+			Value: float64(0),
+			Type:  ServiceParameterTypeInt,
+		}
+		So(parameter.ValueToString(), ShouldEqual, "0")
 	})
 }
 

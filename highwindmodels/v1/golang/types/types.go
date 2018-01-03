@@ -132,6 +132,10 @@ func (p *ServiceParameter) ValueToString() string {
 			return strconv.Itoa(value)
 		}
 
+		if value, ok := p.Value.(float64); ok {
+			return strconv.FormatFloat(value, 'f', -1, 32)
+		}
+
 	case ServiceParameterTypeFloat:
 		if value, ok := p.Value.(float64); ok {
 			return strconv.FormatFloat(value, 'f', -1, 32)

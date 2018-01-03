@@ -25,12 +25,17 @@ func (p *ServiceParameter) validateStringValue() error {
 // validateIntValue validates a int parameter.
 func (p *ServiceParameter) validateIntValue() error {
 
-	if !p.Optional && p.Value == nil {
+	if !p.Optional && (p.Value == nil || p.Value == 0) {
 		return fmt.Errorf("%s is required", p.Name)
 	}
 
 	if p.Value == nil {
 		return nil
+	}
+
+	// Convert from float64 as it seems that's what we receive from a json request.
+	if v, ok := p.Value.(float64); ok {
+		p.Value = int(v)
 	}
 
 	if _, ok := p.Value.(int); !ok {
