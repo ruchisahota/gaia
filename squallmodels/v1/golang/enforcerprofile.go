@@ -385,6 +385,10 @@ func (o *EnforcerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("proxyListenAddress", o.ProxyListenAddress, 512, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateMaximumInt("receiverNumberOfQueues", o.ReceiverNumberOfQueues, 16, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -728,6 +732,7 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
+		MaxLength:      512,
 		Name:           "proxyListenAddress",
 		Orderable:      true,
 		Stored:         true,
@@ -1123,6 +1128,7 @@ var EnforcerProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
+		MaxLength:      512,
 		Name:           "proxyListenAddress",
 		Orderable:      true,
 		Stored:         true,
