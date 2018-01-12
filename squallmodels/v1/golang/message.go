@@ -1,11 +1,12 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // MessageLevelValue represents the possible values for attribute "level".
 type MessageLevelValue string
@@ -21,7 +22,7 @@ const (
 	MessageLevelWarning MessageLevelValue = "Warning"
 )
 
-// MessageIdentity represents the Identity of the object
+// MessageIdentity represents the Identity of the object.
 var MessageIdentity = elemental.Identity{
 	Name:     "message",
 	Category: "messages",
@@ -81,8 +82,20 @@ func (o MessagesList) Version() int {
 
 // Message represents the model of a message
 type Message struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
+	// expirationTime is the time after which the message will be deleted.
+	ExpirationTime time.Time `json:"expirationTime" bson:"expirationtime"`
+
+	// Level defines how the message is important.
+	Level MessageLevelValue `json:"level" bson:"level"`
+
+	// If local is set, the message will only be visible in the current namespace.
+	Local bool `json:"local" bson:"local"`
+
+	// If enabled, the message will be sent to the email associated in namespaces annotations.
+	NotifyByEmail bool `json:"notifyByEmail" bson:"-"`
+
+	// Validity set using golang time duration, when the message will be automatically deleted.
+	Validity string `json:"validity" bson:"validity"`
 
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
@@ -93,29 +106,11 @@ type Message struct {
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
-
-	// expirationTime is the time after which the message will be deleted.
-	ExpirationTime time.Time `json:"expirationTime" bson:"expirationtime"`
-
-	// Level defines how the message is important.
-	Level MessageLevelValue `json:"level" bson:"level"`
-
-	// If local is set, the message will only be visible in the current namespace.
-	Local bool `json:"local" bson:"local"`
-
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
-
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" bson:"namespace"`
 
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
-
-	// If enabled, the message will be sent to the email associated in namespaces annotations.
-	NotifyByEmail bool `json:"notifyByEmail" bson:"-"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected"`
@@ -123,8 +118,14 @@ type Message struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
-	// Validity set using golang time duration, when the message will be automatically deleted.
-	Validity string `json:"validity" bson:"validity"`
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -156,12 +157,12 @@ func (o *Message) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Message) SetIdentifier(ID string) {
+func (o *Message) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Message) Version() int {
 
 	return 1
@@ -185,79 +186,94 @@ func (o *Message) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *Message) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *Message) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *Message) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *Message) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *Message) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *Message) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetName returns the name of the receiver
-func (o *Message) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *Message) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *Message) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *Message) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *Message) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *Message) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *Message) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *Message) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *Message) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetName returns the Name of the receiver.
+func (o *Message) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *Message) SetName(name string) {
+
+	o.Name = name
 }
 
 // Validate valides the current information stored into the structure.
@@ -270,15 +286,15 @@ func (o *Message) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidatePattern("validity", o.Validity, `^[0-9]+[smh]$`, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidatePattern("validity", o.Validity, `^[0-9]+[smh]$`, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -386,7 +402,7 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Level": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
-		DefaultValue:   MessageLevelValue("Info"),
+		DefaultValue:   MessageLevelInfo,
 		Description:    `Level defines how the message is important.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -574,7 +590,7 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"level": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Danger", "Info", "Warning"},
-		DefaultValue:   MessageLevelValue("Info"),
+		DefaultValue:   MessageLevelInfo,
 		Description:    `Level defines how the message is important.`,
 		Exposed:        true,
 		Filterable:     true,

@@ -1,13 +1,14 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// KubernetesClusterIdentity represents the Identity of the object
+// KubernetesClusterIdentity represents the Identity of the object.
 var KubernetesClusterIdentity = elemental.Identity{
 	Name:     "kubernetescluster",
 	Category: "kubernetesclusters",
@@ -68,14 +69,8 @@ type KubernetesCluster struct {
 	// Link to the API authorization policy.
 	APIAuthorizationPolicyID string `json:"-" bson:"apiauthorizationpolicyid"`
 
-	// ID of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// Link to the certificate created in Vince for this cluster
 	CertificateID string `json:"-" bson:"certificateid"`
-
-	// createdAt represents the creation date of the object.
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// base64 of the .tar.gz file that contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster
 	KubernetesDefinitions string `json:"kubernetesDefinitions" bson:"-"`
@@ -97,6 +92,12 @@ type KubernetesCluster struct {
 
 	// List of target networks [deprecated]
 	TargetNetworks []string `json:"targetNetworks" bson:"targetnetworks"`
+
+	// ID of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// createdAt represents the creation date of the object.
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
@@ -127,12 +128,12 @@ func (o *KubernetesCluster) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *KubernetesCluster) SetIdentifier(ID string) {
+func (o *KubernetesCluster) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *KubernetesCluster) Version() int {
 
 	return 1

@@ -1,11 +1,12 @@
 package rufusmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "encoding/json"
+	"encoding/json"
+	"github.com/aporeto-inc/elemental"
+)
 
 // RemoteProcessorModeValue represents the possible values for attribute "mode".
 type RemoteProcessorModeValue string
@@ -18,7 +19,7 @@ const (
 	RemoteProcessorModePre RemoteProcessorModeValue = "Pre"
 )
 
-// RemoteProcessorIdentity represents the Identity of the object
+// RemoteProcessorIdentity represents the Identity of the object.
 var RemoteProcessorIdentity = elemental.Identity{
 	Name:     "remoteprocessor",
 	Category: "remoteprocessors",
@@ -126,11 +127,11 @@ func (o *RemoteProcessor) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *RemoteProcessor) SetIdentifier(ID string) {
+func (o *RemoteProcessor) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *RemoteProcessor) Version() int {
 
 	return 1

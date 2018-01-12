@@ -6,40 +6,41 @@ func init() {
 
 	elemental.RegisterIdentity(AccountIdentity)
 	elemental.RegisterIdentity(ActivateIdentity)
+	elemental.RegisterIdentity(AWSAccountIdentity)
 	elemental.RegisterIdentity(CertificateIdentity)
+	elemental.RegisterIdentity(CheckIdentity)
+	elemental.RegisterIdentity(KubernetesClusterIdentity)
 	elemental.RegisterIdentity(PasswordResetIdentity)
 	elemental.RegisterIdentity(PlanIdentity)
-	elemental.RegisterIdentity(AWSAccountIdentity)
-	elemental.RegisterIdentity(KubernetesClusterIdentity)
 	elemental.RegisterIdentity(RootIdentity)
-	elemental.RegisterIdentity(CheckIdentity)
 }
 
-// ModelVersion returns the current version of the model
+// ModelVersion returns the current version of the model.
 func ModelVersion() float64 { return 1 }
 
 // IdentifiableForIdentity returns a new instance of the Identifiable for the given identity name.
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
+
 	case AccountIdentity.Name:
 		return NewAccount()
 	case ActivateIdentity.Name:
 		return NewActivate()
+	case AWSAccountIdentity.Name:
+		return NewAWSAccount()
 	case CertificateIdentity.Name:
 		return NewCertificate()
+	case CheckIdentity.Name:
+		return NewCheck()
+	case KubernetesClusterIdentity.Name:
+		return NewKubernetesCluster()
 	case PasswordResetIdentity.Name:
 		return NewPasswordReset()
 	case PlanIdentity.Name:
 		return NewPlan()
-	case AWSAccountIdentity.Name:
-		return NewAWSAccount()
-	case KubernetesClusterIdentity.Name:
-		return NewKubernetesCluster()
 	case RootIdentity.Name:
 		return NewRoot()
-	case CheckIdentity.Name:
-		return NewCheck()
 	default:
 		return nil
 	}
@@ -49,24 +50,25 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
+
 	case AccountIdentity.Category:
 		return NewAccount()
 	case ActivateIdentity.Category:
 		return NewActivate()
+	case AWSAccountIdentity.Category:
+		return NewAWSAccount()
 	case CertificateIdentity.Category:
 		return NewCertificate()
+	case CheckIdentity.Category:
+		return NewCheck()
+	case KubernetesClusterIdentity.Category:
+		return NewKubernetesCluster()
 	case PasswordResetIdentity.Category:
 		return NewPasswordReset()
 	case PlanIdentity.Category:
 		return NewPlan()
-	case AWSAccountIdentity.Category:
-		return NewAWSAccount()
-	case KubernetesClusterIdentity.Category:
-		return NewKubernetesCluster()
 	case RootIdentity.Category:
 		return NewRoot()
-	case CheckIdentity.Category:
-		return NewCheck()
 	default:
 		return nil
 	}
@@ -76,22 +78,25 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
+
 	case AccountIdentity.Name:
 		return &AccountsList{}
 	case ActivateIdentity.Name:
 		return &ActivatesList{}
+	case AWSAccountIdentity.Name:
+		return &AWSAccountsList{}
 	case CertificateIdentity.Name:
 		return &CertificatesList{}
+	case CheckIdentity.Name:
+		return &ChecksList{}
+	case KubernetesClusterIdentity.Name:
+		return &KubernetesClustersList{}
 	case PasswordResetIdentity.Name:
 		return &PasswordResetsList{}
 	case PlanIdentity.Name:
 		return &PlansList{}
-	case AWSAccountIdentity.Name:
-		return &AWSAccountsList{}
-	case KubernetesClusterIdentity.Name:
-		return &KubernetesClustersList{}
-	case CheckIdentity.Name:
-		return &ChecksList{}
+	case RootIdentity.Name:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -101,22 +106,25 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
+
 	case AccountIdentity.Category:
 		return &AccountsList{}
 	case ActivateIdentity.Category:
 		return &ActivatesList{}
+	case AWSAccountIdentity.Category:
+		return &AWSAccountsList{}
 	case CertificateIdentity.Category:
 		return &CertificatesList{}
+	case CheckIdentity.Category:
+		return &ChecksList{}
+	case KubernetesClusterIdentity.Category:
+		return &KubernetesClustersList{}
 	case PasswordResetIdentity.Category:
 		return &PasswordResetsList{}
 	case PlanIdentity.Category:
 		return &PlansList{}
-	case AWSAccountIdentity.Category:
-		return &AWSAccountsList{}
-	case KubernetesClusterIdentity.Category:
-		return &KubernetesClustersList{}
-	case CheckIdentity.Category:
-		return &ChecksList{}
+	case RootIdentity.Category:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -128,13 +136,13 @@ func AllIdentities() []elemental.Identity {
 	return []elemental.Identity{
 		AccountIdentity,
 		ActivateIdentity,
+		AWSAccountIdentity,
 		CertificateIdentity,
+		CheckIdentity,
+		KubernetesClusterIdentity,
 		PasswordResetIdentity,
 		PlanIdentity,
-		AWSAccountIdentity,
-		KubernetesClusterIdentity,
 		RootIdentity,
-		CheckIdentity,
 	}
 }
 
@@ -158,23 +166,23 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ActivateIdentity:
 		return []string{}
-	case CertificateIdentity:
-		return []string{}
-	case PasswordResetIdentity:
-		return []string{}
-	case PlanIdentity:
-		return []string{}
 	case AWSAccountIdentity:
 		return []string{
 			"aws",
 			"awsaccs",
 			"awsacc",
 		}
-	case KubernetesClusterIdentity:
-		return []string{}
-	case RootIdentity:
+	case CertificateIdentity:
 		return []string{}
 	case CheckIdentity:
+		return []string{}
+	case KubernetesClusterIdentity:
+		return []string{}
+	case PasswordResetIdentity:
+		return []string{}
+	case PlanIdentity:
+		return []string{}
+	case RootIdentity:
 		return []string{}
 	}
 

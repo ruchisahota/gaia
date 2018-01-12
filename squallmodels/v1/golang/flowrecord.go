@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// FlowRecordIdentity represents the Identity of the object
+// FlowRecordIdentity represents the Identity of the object.
 var FlowRecordIdentity = elemental.Identity{
 	Name:     "flowrecord",
 	Category: "flowrecords",
@@ -133,11 +134,11 @@ func (o *FlowRecord) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *FlowRecord) SetIdentifier(ID string) {
+func (o *FlowRecord) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *FlowRecord) Version() int {
 
 	return 1

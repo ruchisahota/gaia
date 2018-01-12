@@ -1,11 +1,13 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// TabulationIdentity represents the Identity of the object
+// TabulationIdentity represents the Identity of the object.
 var TabulationIdentity = elemental.Identity{
 	Name:     "tabulation",
 	Category: "tabulations",
@@ -99,11 +101,11 @@ func (o *Tabulation) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Tabulation) SetIdentifier(ID string) {
+func (o *Tabulation) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Tabulation) Version() int {
 
 	return 1

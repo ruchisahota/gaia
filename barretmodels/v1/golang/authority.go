@@ -1,13 +1,14 @@
 package barretmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// AuthorityIdentity represents the Identity of the object
+// AuthorityIdentity represents the Identity of the object.
 var AuthorityIdentity = elemental.Identity{
 	Name:     "authority",
 	Category: "authorities",
@@ -109,12 +110,12 @@ func (o *Authority) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Authority) SetIdentifier(ID string) {
+func (o *Authority) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Authority) Version() int {
 
 	return 1

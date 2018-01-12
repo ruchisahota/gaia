@@ -13,7 +13,26 @@ func Relationships() elemental.RelationshipsRegistry {
 }
 
 func init() {
+
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
+
+	relationshipsRegistry[AWSAccountIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
 
 	relationshipsRegistry[AccountIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
@@ -35,6 +54,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[ActivateIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
@@ -46,23 +66,7 @@ func init() {
 			"root": true,
 		},
 	}
-	relationshipsRegistry[AWSAccountIdentity] = &elemental.Relationship{
-		AllowsCreate: map[string]bool{
-			"root": true,
-		},
-		AllowsDelete: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
+
 	relationshipsRegistry[CertificateIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
@@ -83,6 +87,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[CheckIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
@@ -94,6 +99,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[KubernetesClusterIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
@@ -114,6 +120,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[PasswordResetIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
@@ -128,6 +135,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[PlanIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
@@ -139,5 +147,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+
 }

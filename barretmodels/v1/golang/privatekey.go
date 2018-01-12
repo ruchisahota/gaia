@@ -1,11 +1,13 @@
 package barretmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// PrivateKeyIdentity represents the Identity of the object
+// PrivateKeyIdentity represents the Identity of the object.
 var PrivateKeyIdentity = elemental.Identity{
 	Name:     "privatekey",
 	Category: "privatekeys",
@@ -98,12 +100,12 @@ func (o *PrivateKey) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *PrivateKey) SetIdentifier(ID string) {
+func (o *PrivateKey) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *PrivateKey) Version() int {
 
 	return 1

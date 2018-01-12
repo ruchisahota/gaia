@@ -1,9 +1,11 @@
 package midgardmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
 // IssueRealmValue represents the possible values for attribute "realm".
 type IssueRealmValue string
@@ -34,7 +36,7 @@ const (
 	IssueRealmVince IssueRealmValue = "Vince"
 )
 
-// IssueIdentity represents the Identity of the object
+// IssueIdentity represents the Identity of the object.
 var IssueIdentity = elemental.Identity{
 	Name:     "issue",
 	Category: "issue",
@@ -98,14 +100,14 @@ type Issue struct {
 	// Metadata contains various additional information. Meaning depends on the realm.
 	Metadata map[string]interface{} `json:"metadata" bson:"-"`
 
-	// Realm is the realm
-	Realm IssueRealmValue `json:"realm" bson:"-"`
-
 	// Token is the token to use for the registration.
 	Token string `json:"token" bson:"-"`
 
 	// Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped.
 	Validity string `json:"validity" bson:"validity"`
+
+	// Realm is the realm
+	Realm IssueRealmValue `json:"realm" bson:"-"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -135,11 +137,11 @@ func (o *Issue) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Issue) SetIdentifier(ID string) {
+func (o *Issue) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Issue) Version() int {
 
 	return 1
@@ -167,11 +169,11 @@ func (o *Issue) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("realm", string(o.Realm), []string{"AWSIdentityDocument", "Certificate", "Facebook", "Github", "Google", "LDAP", "Twitter", "Vince"}, false); err != nil {
+	if err := elemental.ValidatePattern("validity", o.Validity, `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`, false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidatePattern("validity", o.Validity, `^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`, false); err != nil {
+	if err := elemental.ValidateStringInList("realm", string(o.Realm), []string{"AWSIdentityDocument", "Certificate", "Facebook", "Github", "Google", "LDAP", "Twitter", "Vince"}, false); err != nil {
 		errors = append(errors, err)
 	}
 

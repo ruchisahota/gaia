@@ -13,6 +13,7 @@ func Relationships() elemental.RelationshipsRegistry {
 }
 
 func init() {
+
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
 	relationshipsRegistry[AuthorityIdentity] = &elemental.Relationship{
@@ -23,11 +24,13 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[CertificateIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[CheckIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
@@ -39,6 +42,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[PrivateKeyIdentity] = &elemental.Relationship{
 		AllowsUpdate: map[string]bool{
 			"root": true,
@@ -56,15 +60,19 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[RevocationIdentity] = &elemental.Relationship{
 		AllowsUpdate: map[string]bool{
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+
 	relationshipsRegistry[TokenIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
 	}
+
 }

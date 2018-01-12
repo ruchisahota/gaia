@@ -1,11 +1,13 @@
 package barretmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// TokenIdentity represents the Identity of the object
+// TokenIdentity represents the Identity of the object.
 var TokenIdentity = elemental.Identity{
 	Name:     "token",
 	Category: "tokens",
@@ -101,11 +103,11 @@ func (o *Token) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Token) SetIdentifier(ID string) {
+func (o *Token) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Token) Version() int {
 
 	return 1

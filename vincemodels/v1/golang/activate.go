@@ -1,11 +1,13 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// ActivateIdentity represents the Identity of the object
+// ActivateIdentity represents the Identity of the object.
 var ActivateIdentity = elemental.Identity{
 	Name:     "activate",
 	Category: "activate",
@@ -92,11 +94,11 @@ func (o *Activate) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Activate) SetIdentifier(ID string) {
+func (o *Activate) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Activate) Version() int {
 
 	return 1

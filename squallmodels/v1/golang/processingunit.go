@@ -1,11 +1,12 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
 type ProcessingUnitOperationalStatusValue string
@@ -44,7 +45,7 @@ const (
 	ProcessingUnitTypeUser ProcessingUnitTypeValue = "User"
 )
 
-// ProcessingUnitIdentity represents the Identity of the object
+// ProcessingUnitIdentity represents the Identity of the object.
 var ProcessingUnitIdentity = elemental.Identity{
 	Name:     "processingunit",
 	Category: "processingunits",
@@ -104,14 +105,26 @@ func (o ProcessingUnitsList) Version() int {
 
 // ProcessingUnit represents the model of a processingunit
 type ProcessingUnit struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
+	// EnforcerID is the ID of the enforcer associated with the processing unit
+	EnforcerID string `json:"enforcerID" bson:"enforcerid"`
 
-	// Annotation stores additional information about an entity
-	Annotations map[string][]string `json:"annotations" bson:"annotations"`
+	// LastSyncTime is the time when the policy was last resolved
+	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime"`
+
+	// NativeContextID is the Docker UUID or service PID
+	NativeContextID string `json:"nativeContextID" bson:"nativecontextid"`
+
+	// OperationalStatus of the processing unit
+	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" bson:"operationalstatus"`
+
+	// Type of the container ecosystem
+	Type ProcessingUnitTypeValue `json:"type" bson:"type"`
 
 	// Archived defines if the object is archived.
 	Archived bool `json:"-" bson:"archived"`
+
+	// Annotation stores additional information about an entity
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
 	// AssociatedTags are the list of tags attached to an entity
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
@@ -119,41 +132,29 @@ type ProcessingUnit struct {
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace" bson:"namespace"`
+
+	// NormalizedTags contains the list of normalized tags of the entities
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
+
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" bson:"protected"`
+
+	// UpdateTime is the time at which an entity was updated.
+	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
-	// EnforcerID is the ID of the enforcer associated with the processing unit
-	EnforcerID string `json:"enforcerID" bson:"enforcerid"`
-
-	// LastSyncTime is the time when the policy was last resolved
-	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime"`
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
 
 	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
 
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
-
-	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" bson:"namespace"`
-
-	// NativeContextID is the Docker UUID or service PID
-	NativeContextID string `json:"nativeContextID" bson:"nativecontextid"`
-
-	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
-
-	// OperationalStatus of the processing unit
-	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" bson:"operationalstatus"`
-
-	// Protected defines if the object is protected.
-	Protected bool `json:"protected" bson:"protected"`
-
-	// Type of the container ecosystem
-	Type ProcessingUnitTypeValue `json:"type" bson:"type"`
-
-	// UpdateTime is the time at which an entity was updated.
-	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -186,12 +187,12 @@ func (o *ProcessingUnit) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ProcessingUnit) SetIdentifier(ID string) {
+func (o *ProcessingUnit) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *ProcessingUnit) Version() int {
 
 	return 1
@@ -215,99 +216,118 @@ func (o *ProcessingUnit) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
-func (o *ProcessingUnit) GetAnnotations() map[string][]string {
-	return o.Annotations
-}
-
-// SetAnnotations set the given annotations of the receiver
-func (o *ProcessingUnit) SetAnnotations(annotations map[string][]string) {
-	o.Annotations = annotations
-}
-
-// GetArchived returns the archived of the receiver
+// GetArchived returns the Archived of the receiver.
 func (o *ProcessingUnit) GetArchived() bool {
+
 	return o.Archived
 }
 
-// SetArchived set the given archived of the receiver
+// SetArchived sets the given Archived of the receiver.
 func (o *ProcessingUnit) SetArchived(archived bool) {
+
 	o.Archived = archived
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAnnotations returns the Annotations of the receiver.
+func (o *ProcessingUnit) GetAnnotations() map[string][]string {
+
+	return o.Annotations
+}
+
+// SetAnnotations sets the given Annotations of the receiver.
+func (o *ProcessingUnit) SetAnnotations(annotations map[string][]string) {
+
+	o.Annotations = annotations
+}
+
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *ProcessingUnit) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *ProcessingUnit) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *ProcessingUnit) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *ProcessingUnit) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetMetadata returns the metadata of the receiver
-func (o *ProcessingUnit) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *ProcessingUnit) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
-func (o *ProcessingUnit) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *ProcessingUnit) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *ProcessingUnit) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *ProcessingUnit) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *ProcessingUnit) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *ProcessingUnit) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *ProcessingUnit) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *ProcessingUnit) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *ProcessingUnit) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *ProcessingUnit) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *ProcessingUnit) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
+// GetName returns the Name of the receiver.
+func (o *ProcessingUnit) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *ProcessingUnit) SetName(name string) {
+
+	o.Name = name
 }
 
 // Validate valides the current information stored into the structure.
@@ -316,19 +336,19 @@ func (o *ProcessingUnit) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT", "User"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -526,7 +546,7 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"OperationalStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
-		DefaultValue:   ProcessingUnitOperationalStatusValue("Initialized"),
+		DefaultValue:   ProcessingUnitOperationalStatusInitialized,
 		Description:    `OperationalStatus of the processing unit`,
 		Exposed:        true,
 		Filterable:     true,
@@ -737,7 +757,7 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 	},
 	"operationalstatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
-		DefaultValue:   ProcessingUnitOperationalStatusValue("Initialized"),
+		DefaultValue:   ProcessingUnitOperationalStatusInitialized,
 		Description:    `OperationalStatus of the processing unit`,
 		Exposed:        true,
 		Filterable:     true,

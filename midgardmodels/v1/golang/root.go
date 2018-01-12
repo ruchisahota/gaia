@@ -1,16 +1,67 @@
 package midgardmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// RootIdentity represents the Identity of the object
+// RootIdentity represents the Identity of the object.
 var RootIdentity = elemental.Identity{
 	Name:     "root",
 	Category: "root",
+}
+
+// RootsList represents a list of Roots
+type RootsList []*Root
+
+// ContentIdentity returns the identity of the objects in the list.
+func (o RootsList) ContentIdentity() elemental.Identity {
+
+	return RootIdentity
+}
+
+// Copy returns a pointer to a copy the RootsList.
+func (o RootsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(RootsList{}, o...)
+	return &copy
+}
+
+// Append appends the objects to the a new copy of the RootsList.
+func (o RootsList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+
+	out := append(RootsList{}, o...)
+	for _, obj := range objects {
+		out = append(out, obj.(*Root))
+	}
+
+	return out
+}
+
+// List converts the object to an elemental.IdentifiablesList.
+func (o RootsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o RootsList) DefaultOrder() []string {
+
+	return []string{}
+}
+
+// Version returns the version of the content.
+func (o RootsList) Version() int {
+
+	return 1
 }
 
 // Root represents the model of a root
@@ -30,9 +81,7 @@ type Root struct {
 	// UpdatedAt represents the last update time of the object.
 	UpdatedAt time.Time `json:"updatedAt" bson:"updatedat"`
 
-	Token        string `json:"APIKey,omitempty"`
-	Organization string `json:"enterprise,omitempty"`
-	ModelVersion int    `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -58,12 +107,12 @@ func (o *Root) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Root) SetIdentifier(ID string) {
+func (o *Root) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Root) Version() int {
 
 	return 1
@@ -85,43 +134,51 @@ func (o *Root) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetCreatedAt returns the createdAt of the receiver
+// GetCreatedAt returns the CreatedAt of the receiver.
 func (o *Root) GetCreatedAt() time.Time {
+
 	return o.CreatedAt
 }
 
-// SetCreatedAt set the given createdAt of the receiver
+// SetCreatedAt sets the given CreatedAt of the receiver.
 func (o *Root) SetCreatedAt(createdAt time.Time) {
+
 	o.CreatedAt = createdAt
 }
 
-// GetParentID returns the parentID of the receiver
+// GetParentID returns the ParentID of the receiver.
 func (o *Root) GetParentID() string {
+
 	return o.ParentID
 }
 
-// SetParentID set the given parentID of the receiver
+// SetParentID sets the given ParentID of the receiver.
 func (o *Root) SetParentID(parentID string) {
+
 	o.ParentID = parentID
 }
 
-// GetParentType returns the parentType of the receiver
+// GetParentType returns the ParentType of the receiver.
 func (o *Root) GetParentType() string {
+
 	return o.ParentType
 }
 
-// SetParentType set the given parentType of the receiver
+// SetParentType sets the given ParentType of the receiver.
 func (o *Root) SetParentType(parentType string) {
+
 	o.ParentType = parentType
 }
 
-// GetUpdatedAt returns the updatedAt of the receiver
+// GetUpdatedAt returns the UpdatedAt of the receiver.
 func (o *Root) GetUpdatedAt() time.Time {
+
 	return o.UpdatedAt
 }
 
-// SetUpdatedAt set the given updatedAt of the receiver
+// SetUpdatedAt sets the given UpdatedAt of the receiver.
 func (o *Root) SetUpdatedAt(updatedAt time.Time) {
+
 	o.UpdatedAt = updatedAt
 }
 
@@ -140,18 +197,6 @@ func (o *Root) Validate() error {
 	}
 
 	return nil
-}
-
-// APIKey returns a the API Key
-func (o *Root) APIKey() string {
-
-	return o.Token
-}
-
-// SetAPIKey sets a the API Key
-func (o *Root) SetAPIKey(key string) {
-
-	o.Token = key
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.

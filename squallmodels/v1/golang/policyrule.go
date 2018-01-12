@@ -1,11 +1,13 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// PolicyRuleIdentity represents the Identity of the object
+// PolicyRuleIdentity represents the Identity of the object.
 var PolicyRuleIdentity = elemental.Identity{
 	Name:     "policyrule",
 	Category: "policyrules",
@@ -65,9 +67,6 @@ func (o PolicyRulesList) Version() int {
 
 // PolicyRule represents the model of a policyrule
 type PolicyRule struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"-"`
-
 	// Action defines set of actions that must be enforced when a dependency is met.
 	Action map[string]map[string]interface{} `json:"action" bson:"-"`
 
@@ -79,9 +78,6 @@ type PolicyRule struct {
 
 	// Policy target networks
 	FilePaths FilePathsList `json:"filePaths" bson:"-"`
-
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
 
 	// Policy target networks
 	Namespaces NamespacesList `json:"namespaces" bson:"-"`
@@ -100,6 +96,12 @@ type PolicyRule struct {
 
 	// Policy target tags
 	TagClauses [][]string `json:"tagClauses" bson:"-"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"-"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -133,12 +135,12 @@ func (o *PolicyRule) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *PolicyRule) SetIdentifier(ID string) {
+func (o *PolicyRule) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *PolicyRule) Version() int {
 
 	return 1
@@ -162,13 +164,15 @@ func (o *PolicyRule) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetName returns the name of the receiver
+// GetName returns the Name of the receiver.
 func (o *PolicyRule) GetName() string {
+
 	return o.Name
 }
 
-// SetName set the given name of the receiver
+// SetName sets the given Name of the receiver.
 func (o *PolicyRule) SetName(name string) {
+
 	o.Name = name
 }
 

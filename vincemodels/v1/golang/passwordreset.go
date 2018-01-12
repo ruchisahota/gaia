@@ -1,11 +1,13 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// PasswordResetIdentity represents the Identity of the object
+// PasswordResetIdentity represents the Identity of the object.
 var PasswordResetIdentity = elemental.Identity{
 	Name:     "passwordreset",
 	Category: "passwordreset",
@@ -95,11 +97,11 @@ func (o *PasswordReset) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *PasswordReset) SetIdentifier(ID string) {
+func (o *PasswordReset) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *PasswordReset) Version() int {
 
 	return 1

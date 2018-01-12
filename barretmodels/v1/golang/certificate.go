@@ -1,11 +1,12 @@
 package barretmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // CertificateSignerValue represents the possible values for attribute "signer".
 type CertificateSignerValue string
@@ -32,7 +33,7 @@ const (
 	CertificateUsageServerclient CertificateUsageValue = "ServerClient"
 )
 
-// CertificateIdentity represents the Identity of the object
+// CertificateIdentity represents the Identity of the object.
 var CertificateIdentity = elemental.Identity{
 	Name:     "certificate",
 	Category: "certificates",
@@ -136,12 +137,12 @@ func (o *Certificate) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Certificate) SetIdentifier(ID string) {
+func (o *Certificate) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Certificate) Version() int {
 
 	return 1
@@ -258,7 +259,7 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Signer": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Public", "System"},
-		DefaultValue:   CertificateSignerValue("Public"),
+		DefaultValue:   CertificateSignerPublic,
 		Description:    `Selects what CA should sign the certificate.`,
 		Exposed:        true,
 		Name:           "signer",
@@ -266,7 +267,7 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Usage": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Client", "Server", "ServerClient"},
-		DefaultValue:   CertificateUsageValue("Client"),
+		DefaultValue:   CertificateUsageClient,
 		Description:    `Usage defines the requested key usage.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -322,7 +323,7 @@ var CertificateLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 	},
 	"signer": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Public", "System"},
-		DefaultValue:   CertificateSignerValue("Public"),
+		DefaultValue:   CertificateSignerPublic,
 		Description:    `Selects what CA should sign the certificate.`,
 		Exposed:        true,
 		Name:           "signer",
@@ -330,7 +331,7 @@ var CertificateLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 	},
 	"usage": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Client", "Server", "ServerClient"},
-		DefaultValue:   CertificateUsageValue("Client"),
+		DefaultValue:   CertificateUsageClient,
 		Description:    `Usage defines the requested key usage.`,
 		Exposed:        true,
 		Filterable:     true,

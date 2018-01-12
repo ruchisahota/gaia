@@ -1,11 +1,13 @@
 package highwindmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// CategoryIdentity represents the Identity of the object
+// CategoryIdentity represents the Identity of the object.
 var CategoryIdentity = elemental.Identity{
 	Name:     "category",
 	Category: "categories",
@@ -98,12 +100,12 @@ func (o *Category) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Category) SetIdentifier(ID string) {
+func (o *Category) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Category) Version() int {
 
 	return 1

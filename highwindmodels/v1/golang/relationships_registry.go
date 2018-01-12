@@ -13,6 +13,7 @@ func Relationships() elemental.RelationshipsRegistry {
 }
 
 func init() {
+
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
 	relationshipsRegistry[AvailableServiceIdentity] = &elemental.Relationship{
@@ -26,6 +27,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[CategoryIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
@@ -37,6 +39,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[InstallationIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
@@ -57,6 +60,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[LogIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"service": true,
@@ -68,7 +72,9 @@ func init() {
 			"service": true,
 		},
 	}
+
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+
 	relationshipsRegistry[ServiceIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,
@@ -89,4 +95,5 @@ func init() {
 			"root": true,
 		},
 	}
+
 }

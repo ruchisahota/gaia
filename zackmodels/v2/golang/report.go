@@ -1,11 +1,12 @@
 package zackmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // ReportKindValue represents the possible values for attribute "kind".
 type ReportKindValue string
@@ -27,7 +28,7 @@ const (
 	ReportKindSyscall ReportKindValue = "Syscall"
 )
 
-// ReportIdentity represents the Identity of the object
+// ReportIdentity represents the Identity of the object.
 var ReportIdentity = elemental.Identity{
 	Name:     "report",
 	Category: "reports",
@@ -124,11 +125,11 @@ func (o *Report) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Report) SetIdentifier(ID string) {
+func (o *Report) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Report) Version() int {
 
 	return 2

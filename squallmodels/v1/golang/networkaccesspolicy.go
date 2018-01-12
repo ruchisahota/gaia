@@ -1,11 +1,12 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // NetworkAccessPolicyObservedTrafficActionValue represents the possible values for attribute "observedTrafficAction".
 type NetworkAccessPolicyObservedTrafficActionValue string
@@ -18,7 +19,7 @@ const (
 	NetworkAccessPolicyObservedTrafficActionContinue NetworkAccessPolicyObservedTrafficActionValue = "Continue"
 )
 
-// NetworkAccessPolicyIdentity represents the Identity of the object
+// NetworkAccessPolicyIdentity represents the Identity of the object.
 var NetworkAccessPolicyIdentity = elemental.Identity{
 	Name:     "networkaccesspolicy",
 	Category: "networkaccesspolicies",
@@ -78,53 +79,17 @@ func (o NetworkAccessPoliciesList) Version() int {
 
 // NetworkAccessPolicy represents the model of a networkaccesspolicy
 type NetworkAccessPolicy struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"-"`
-
-	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
-	ActiveDuration string `json:"activeDuration" bson:"activeduration"`
-
-	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
-	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
-
 	// AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
 	AllowsTraffic bool `json:"allowsTraffic" bson:"-"`
 
-	// Annotation stores additional information about an entity
-	Annotations map[string][]string `json:"annotations" bson:"annotations"`
-
-	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
-
-	// CreatedTime is the time at which the object was created
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
-
 	// DestinationPorts contains the list of allowed ports and ranges.
 	DestinationPorts []string `json:"destinationPorts" bson:"-"`
-
-	// Disabled defines if the propert is disabled.
-	Disabled bool `json:"disabled" bson:"disabled"`
 
 	// EncryptionEnabled defines if the flow has to be encrypted.
 	EncryptionEnabled bool `json:"encryptionEnabled" bson:"-"`
 
 	// LogsEnabled defines if the flow has to be logged.
 	LogsEnabled bool `json:"logsEnabled" bson:"-"`
-
-	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata"`
-
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
-
-	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" bson:"namespace"`
-
-	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
 	// Object of the policy.
 	Object [][]string `json:"object" bson:"-"`
@@ -138,20 +103,56 @@ type NetworkAccessPolicy struct {
 	// List of tags expressions to match the list of entity to pass the flow through.
 	Passthrough [][]string `json:"passthrough" bson:"-"`
 
+	// Subject of the policy.
+	Subject [][]string `json:"subject" bson:"-"`
+
+	// Annotation stores additional information about an entity
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
+
+	// CreatedTime is the time at which the object was created
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace" bson:"namespace"`
+
+	// NormalizedTags contains the list of normalized tags of the entities
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
+
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" bson:"protected"`
+
+	// UpdateTime is the time at which an entity was updated.
+	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"-"`
+
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
+
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" bson:"propagate"`
 
 	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
 	PropagationHidden bool `json:"propagationHidden" bson:"propagationhidden"`
 
-	// Protected defines if the object is protected.
-	Protected bool `json:"protected" bson:"protected"`
+	// ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+	ActiveDuration string `json:"activeDuration" bson:"activeduration"`
 
-	// Subject of the policy.
-	Subject [][]string `json:"subject" bson:"-"`
-
-	// UpdateTime is the time at which an entity was updated.
-	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+	// ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+	ActiveSchedule string `json:"activeSchedule" bson:"activeschedule"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -185,12 +186,12 @@ func (o *NetworkAccessPolicy) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *NetworkAccessPolicy) SetIdentifier(ID string) {
+func (o *NetworkAccessPolicy) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *NetworkAccessPolicy) Version() int {
 
 	return 1
@@ -214,139 +215,166 @@ func (o *NetworkAccessPolicy) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetActiveDuration returns the activeDuration of the receiver
-func (o *NetworkAccessPolicy) GetActiveDuration() string {
-	return o.ActiveDuration
-}
-
-// SetActiveDuration set the given activeDuration of the receiver
-func (o *NetworkAccessPolicy) SetActiveDuration(activeDuration string) {
-	o.ActiveDuration = activeDuration
-}
-
-// GetActiveSchedule returns the activeSchedule of the receiver
-func (o *NetworkAccessPolicy) GetActiveSchedule() string {
-	return o.ActiveSchedule
-}
-
-// SetActiveSchedule set the given activeSchedule of the receiver
-func (o *NetworkAccessPolicy) SetActiveSchedule(activeSchedule string) {
-	o.ActiveSchedule = activeSchedule
-}
-
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *NetworkAccessPolicy) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *NetworkAccessPolicy) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *NetworkAccessPolicy) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *NetworkAccessPolicy) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *NetworkAccessPolicy) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *NetworkAccessPolicy) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetDisabled returns the disabled of the receiver
-func (o *NetworkAccessPolicy) GetDisabled() bool {
-	return o.Disabled
-}
-
-// SetDisabled set the given disabled of the receiver
-func (o *NetworkAccessPolicy) SetDisabled(disabled bool) {
-	o.Disabled = disabled
-}
-
-// GetMetadata returns the metadata of the receiver
-func (o *NetworkAccessPolicy) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *NetworkAccessPolicy) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
-func (o *NetworkAccessPolicy) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *NetworkAccessPolicy) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *NetworkAccessPolicy) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *NetworkAccessPolicy) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *NetworkAccessPolicy) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *NetworkAccessPolicy) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetPropagate returns the propagate of the receiver
-func (o *NetworkAccessPolicy) GetPropagate() bool {
-	return o.Propagate
-}
-
-// SetPropagate set the given propagate of the receiver
-func (o *NetworkAccessPolicy) SetPropagate(propagate bool) {
-	o.Propagate = propagate
-}
-
-// GetPropagationHidden returns the propagationHidden of the receiver
-func (o *NetworkAccessPolicy) GetPropagationHidden() bool {
-	return o.PropagationHidden
-}
-
-// SetPropagationHidden set the given propagationHidden of the receiver
-func (o *NetworkAccessPolicy) SetPropagationHidden(propagationHidden bool) {
-	o.PropagationHidden = propagationHidden
-}
-
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *NetworkAccessPolicy) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *NetworkAccessPolicy) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *NetworkAccessPolicy) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetDisabled returns the Disabled of the receiver.
+func (o *NetworkAccessPolicy) GetDisabled() bool {
+
+	return o.Disabled
+}
+
+// SetDisabled sets the given Disabled of the receiver.
+func (o *NetworkAccessPolicy) SetDisabled(disabled bool) {
+
+	o.Disabled = disabled
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *NetworkAccessPolicy) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *NetworkAccessPolicy) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
+// GetName returns the Name of the receiver.
+func (o *NetworkAccessPolicy) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *NetworkAccessPolicy) SetName(name string) {
+
+	o.Name = name
+}
+
+// GetPropagate returns the Propagate of the receiver.
+func (o *NetworkAccessPolicy) GetPropagate() bool {
+
+	return o.Propagate
+}
+
+// SetPropagate sets the given Propagate of the receiver.
+func (o *NetworkAccessPolicy) SetPropagate(propagate bool) {
+
+	o.Propagate = propagate
+}
+
+// GetPropagationHidden returns the PropagationHidden of the receiver.
+func (o *NetworkAccessPolicy) GetPropagationHidden() bool {
+
+	return o.PropagationHidden
+}
+
+// SetPropagationHidden sets the given PropagationHidden of the receiver.
+func (o *NetworkAccessPolicy) SetPropagationHidden(propagationHidden bool) {
+
+	o.PropagationHidden = propagationHidden
+}
+
+// GetActiveDuration returns the ActiveDuration of the receiver.
+func (o *NetworkAccessPolicy) GetActiveDuration() string {
+
+	return o.ActiveDuration
+}
+
+// SetActiveDuration sets the given ActiveDuration of the receiver.
+func (o *NetworkAccessPolicy) SetActiveDuration(activeDuration string) {
+
+	o.ActiveDuration = activeDuration
+}
+
+// GetActiveSchedule returns the ActiveSchedule of the receiver.
+func (o *NetworkAccessPolicy) GetActiveSchedule() string {
+
+	return o.ActiveSchedule
+}
+
+// SetActiveSchedule sets the given ActiveSchedule of the receiver.
+func (o *NetworkAccessPolicy) SetActiveSchedule(activeSchedule string) {
+
+	o.ActiveSchedule = activeSchedule
 }
 
 // Validate valides the current information stored into the structure.
@@ -355,7 +383,7 @@ func (o *NetworkAccessPolicy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidatePattern("activeDuration", o.ActiveDuration, `^[0-9]+[smh]$`, false); err != nil {
+	if err := elemental.ValidateStringInList("observedTrafficAction", string(o.ObservedTrafficAction), []string{"Apply", "Continue"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -367,7 +395,7 @@ func (o *NetworkAccessPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("observedTrafficAction", string(o.ObservedTrafficAction), []string{"Apply", "Continue"}, false); err != nil {
+	if err := elemental.ValidatePattern("activeDuration", o.ActiveDuration, `^[0-9]+[smh]$`, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -614,7 +642,7 @@ var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"ObservedTrafficAction": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Apply", "Continue"},
-		DefaultValue:   NetworkAccessPolicyObservedTrafficActionValue("Continue"),
+		DefaultValue:   NetworkAccessPolicyObservedTrafficActionContinue,
 		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -904,7 +932,7 @@ var NetworkAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSp
 	},
 	"observedtrafficaction": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Apply", "Continue"},
-		DefaultValue:   NetworkAccessPolicyObservedTrafficActionValue("Continue"),
+		DefaultValue:   NetworkAccessPolicyObservedTrafficActionContinue,
 		Description:    `If observationEnabled is set to true, this will be the final action taken on the packets.`,
 		Exposed:        true,
 		Filterable:     true,

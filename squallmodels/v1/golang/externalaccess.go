@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
+)
 
-import "github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
-
-// ExternalAccessIdentity represents the Identity of the object
+// ExternalAccessIdentity represents the Identity of the object.
 var ExternalAccessIdentity = elemental.Identity{
 	Name:     "externalaccess",
 	Category: "externalaccesses",
@@ -95,11 +96,11 @@ func (o *ExternalAccess) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ExternalAccess) SetIdentifier(ID string) {
+func (o *ExternalAccess) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *ExternalAccess) Version() int {
 
 	return 1

@@ -4,21 +4,22 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
-	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(EmailIdentity)
+	elemental.RegisterIdentity(RootIdentity)
 }
 
-// ModelVersion returns the current version of the model
+// ModelVersion returns the current version of the model.
 func ModelVersion() float64 { return 1 }
 
 // IdentifiableForIdentity returns a new instance of the Identifiable for the given identity name.
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
-	case RootIdentity.Name:
-		return NewRoot()
+
 	case EmailIdentity.Name:
 		return NewEmail()
+	case RootIdentity.Name:
+		return NewRoot()
 	default:
 		return nil
 	}
@@ -28,10 +29,11 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
-	case RootIdentity.Category:
-		return NewRoot()
+
 	case EmailIdentity.Category:
 		return NewEmail()
+	case RootIdentity.Category:
+		return NewRoot()
 	default:
 		return nil
 	}
@@ -41,8 +43,11 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
+
 	case EmailIdentity.Name:
 		return &EmailsList{}
+	case RootIdentity.Name:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -52,8 +57,11 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
+
 	case EmailIdentity.Category:
 		return &EmailsList{}
+	case RootIdentity.Category:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -63,8 +71,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
-		RootIdentity,
 		EmailIdentity,
+		RootIdentity,
 	}
 }
 
@@ -80,9 +88,9 @@ func IdentityFromAlias(alias string) elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
-	case RootIdentity:
-		return []string{}
 	case EmailIdentity:
+		return []string{}
+	case RootIdentity:
 		return []string{}
 	}
 

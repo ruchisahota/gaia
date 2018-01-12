@@ -1,11 +1,13 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// CheckIdentity represents the Identity of the object
+// CheckIdentity represents the Identity of the object.
 var CheckIdentity = elemental.Identity{
 	Name:     "check",
 	Category: "check",
@@ -89,11 +91,11 @@ func (o *Check) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Check) SetIdentifier(ID string) {
+func (o *Check) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Check) Version() int {
 
 	return 1

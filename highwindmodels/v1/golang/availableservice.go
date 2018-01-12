@@ -1,13 +1,14 @@
 package highwindmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/gaia/highwindmodels/v1/golang/types"
+)
 
-import "github.com/aporeto-inc/gaia/highwindmodels/v1/golang/types"
-
-// AvailableServiceIdentity represents the Identity of the object
+// AvailableServiceIdentity represents the Identity of the object.
 var AvailableServiceIdentity = elemental.Identity{
 	Name:     "availableservice",
 	Category: "availableservices",
@@ -116,11 +117,11 @@ func (o *AvailableService) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *AvailableService) SetIdentifier(ID string) {
+func (o *AvailableService) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *AvailableService) Version() int {
 
 	return 1

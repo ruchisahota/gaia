@@ -1,9 +1,11 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
 // APICheckOperationValue represents the possible values for attribute "operation".
 type APICheckOperationValue string
@@ -31,7 +33,7 @@ const (
 	APICheckOperationUpdate APICheckOperationValue = "Update"
 )
 
-// APICheckIdentity represents the Identity of the object
+// APICheckIdentity represents the Identity of the object.
 var APICheckIdentity = elemental.Identity{
 	Name:     "apicheck",
 	Category: "apichecks",
@@ -132,11 +134,11 @@ func (o *APICheck) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *APICheck) SetIdentifier(ID string) {
+func (o *APICheck) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *APICheck) Version() int {
 
 	return 1

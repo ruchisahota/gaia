@@ -1,11 +1,13 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// PlanIdentity represents the Identity of the object
+// PlanIdentity represents the Identity of the object.
 var PlanIdentity = elemental.Identity{
 	Name:     "plan",
 	Category: "plans",
@@ -107,11 +109,11 @@ func (o *Plan) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Plan) SetIdentifier(ID string) {
+func (o *Plan) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Plan) Version() int {
 
 	return 1

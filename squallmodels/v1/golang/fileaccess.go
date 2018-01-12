@@ -1,9 +1,11 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
 // FileAccessModeValue represents the possible values for attribute "mode".
 type FileAccessModeValue string
@@ -19,7 +21,7 @@ const (
 	FileAccessModeWrite FileAccessModeValue = "Write"
 )
 
-// FileAccessIdentity represents the Identity of the object
+// FileAccessIdentity represents the Identity of the object.
 var FileAccessIdentity = elemental.Identity{
 	Name:     "fileaccess",
 	Category: "fileaccesses",
@@ -121,11 +123,11 @@ func (o *FileAccess) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *FileAccess) SetIdentifier(ID string) {
+func (o *FileAccess) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *FileAccess) Version() int {
 
 	return 1

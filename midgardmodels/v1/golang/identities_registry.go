@@ -4,24 +4,25 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
+	elemental.RegisterIdentity(AuthIdentity)
 	elemental.RegisterIdentity(IssueIdentity)
 	elemental.RegisterIdentity(RootIdentity)
-	elemental.RegisterIdentity(AuthIdentity)
 }
 
-// ModelVersion returns the current version of the model
+// ModelVersion returns the current version of the model.
 func ModelVersion() float64 { return 1 }
 
 // IdentifiableForIdentity returns a new instance of the Identifiable for the given identity name.
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
+
+	case AuthIdentity.Name:
+		return NewAuth()
 	case IssueIdentity.Name:
 		return NewIssue()
 	case RootIdentity.Name:
 		return NewRoot()
-	case AuthIdentity.Name:
-		return NewAuth()
 	default:
 		return nil
 	}
@@ -31,12 +32,13 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
+
+	case AuthIdentity.Category:
+		return NewAuth()
 	case IssueIdentity.Category:
 		return NewIssue()
 	case RootIdentity.Category:
 		return NewRoot()
-	case AuthIdentity.Category:
-		return NewAuth()
 	default:
 		return nil
 	}
@@ -46,10 +48,13 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
-	case IssueIdentity.Name:
-		return &IssuesList{}
+
 	case AuthIdentity.Name:
 		return &AuthsList{}
+	case IssueIdentity.Name:
+		return &IssuesList{}
+	case RootIdentity.Name:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -59,10 +64,13 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
-	case IssueIdentity.Category:
-		return &IssuesList{}
+
 	case AuthIdentity.Category:
 		return &AuthsList{}
+	case IssueIdentity.Category:
+		return &IssuesList{}
+	case RootIdentity.Category:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -72,9 +80,9 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
+		AuthIdentity,
 		IssueIdentity,
 		RootIdentity,
-		AuthIdentity,
 	}
 }
 
@@ -90,11 +98,11 @@ func IdentityFromAlias(alias string) elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
+	case AuthIdentity:
+		return []string{}
 	case IssueIdentity:
 		return []string{}
 	case RootIdentity:
-		return []string{}
-	case AuthIdentity:
 		return []string{}
 	}
 

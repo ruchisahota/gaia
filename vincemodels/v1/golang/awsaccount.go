@@ -1,13 +1,14 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// AWSAccountIdentity represents the Identity of the object
+// AWSAccountIdentity represents the Identity of the object.
 var AWSAccountIdentity = elemental.Identity{
 	Name:     "awsaccount",
 	Category: "awsaccounts",
@@ -65,9 +66,6 @@ func (o AWSAccountsList) Version() int {
 
 // AWSAccount represents the model of a awsaccount
 type AWSAccount struct {
-	// ID of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// AccessKeyID contains the aws access key ID. This is used to retrieve your account id, and it is not stored.
 	AccessKeyID string `json:"accessKeyID" bson:"-"`
 
@@ -76,9 +74,6 @@ type AWSAccount struct {
 
 	// accountID contains your verified accound id.
 	AccountID string `json:"accountID" bson:"accountid"`
-
-	// createdAt represents the creation date of the object.
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// ParentID contains the parent Vince account ID.
 	ParentID string `json:"parentID" bson:"parentid"`
@@ -91,6 +86,12 @@ type AWSAccount struct {
 
 	// secretAccessKey contains the secret key. It is used to retrieve your account id, and it is not stored.
 	SecretAccessKey string `json:"secretAccessKey" bson:"-"`
+
+	// ID of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// createdAt represents the creation date of the object.
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
@@ -121,12 +122,12 @@ func (o *AWSAccount) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *AWSAccount) SetIdentifier(ID string) {
+func (o *AWSAccount) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *AWSAccount) Version() int {
 
 	return 1

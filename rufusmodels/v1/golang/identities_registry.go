@@ -8,13 +8,14 @@ func init() {
 	elemental.RegisterIdentity(RootIdentity)
 }
 
-// ModelVersion returns the current version of the model
+// ModelVersion returns the current version of the model.
 func ModelVersion() float64 { return 1 }
 
 // IdentifiableForIdentity returns a new instance of the Identifiable for the given identity name.
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
+
 	case RemoteProcessorIdentity.Name:
 		return NewRemoteProcessor()
 	case RootIdentity.Name:
@@ -28,6 +29,7 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
+
 	case RemoteProcessorIdentity.Category:
 		return NewRemoteProcessor()
 	case RootIdentity.Category:
@@ -41,8 +43,11 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
+
 	case RemoteProcessorIdentity.Name:
 		return &RemoteProcessorsList{}
+	case RootIdentity.Name:
+		return &RootsList{}
 	default:
 		return nil
 	}
@@ -52,8 +57,11 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
+
 	case RemoteProcessorIdentity.Category:
 		return &RemoteProcessorsList{}
+	case RootIdentity.Category:
+		return &RootsList{}
 	default:
 		return nil
 	}

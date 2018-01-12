@@ -1,11 +1,12 @@
 package highwindmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "github.com/aporeto-inc/gaia/highwindmodels/v1/golang/types"
+	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/gaia/highwindmodels/v1/golang/types"
+)
 
 // ServiceStatusValue represents the possible values for attribute "status".
 type ServiceStatusValue string
@@ -21,7 +22,7 @@ const (
 	ServiceStatusRunning ServiceStatusValue = "Running"
 )
 
-// ServiceIdentity represents the Identity of the object
+// ServiceIdentity represents the Identity of the object.
 var ServiceIdentity = elemental.Identity{
 	Name:     "service",
 	Category: "services",
@@ -138,12 +139,12 @@ func (o *Service) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Service) SetIdentifier(ID string) {
+func (o *Service) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Service) Version() int {
 
 	return 1
@@ -300,7 +301,7 @@ var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Error", "Pending", "Running"},
-		DefaultValue:   ServiceStatusValue("Pending"),
+		DefaultValue:   ServiceStatusPending,
 		Description:    `Status of the service.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -409,7 +410,7 @@ var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"status": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Error", "Pending", "Running"},
-		DefaultValue:   ServiceStatusValue("Pending"),
+		DefaultValue:   ServiceStatusPending,
 		Description:    `Status of the service.`,
 		Exposed:        true,
 		Filterable:     true,

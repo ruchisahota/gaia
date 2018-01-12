@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// EnforcerProfileMappingPolicyIdentity represents the Identity of the object
+// EnforcerProfileMappingPolicyIdentity represents the Identity of the object.
 var EnforcerProfileMappingPolicyIdentity = elemental.Identity{
 	Name:     "enforcerprofilemappingpolicy",
 	Category: "enforcerprofilemappingpolicies",
@@ -67,8 +68,11 @@ func (o EnforcerProfileMappingPoliciesList) Version() int {
 
 // EnforcerProfileMappingPolicy represents the model of a enforcerprofilemappingpolicy
 type EnforcerProfileMappingPolicy struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"-"`
+	// Object is the list of tags to use to find a enforcer profile.
+	Object [][]string `json:"object" bson:"object"`
+
+	// Subject is the subject of the policy.
+	Subject [][]string `json:"subject" bson:"subject"`
 
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
@@ -79,11 +83,26 @@ type EnforcerProfileMappingPolicy struct {
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace" bson:"namespace"`
+
+	// NormalizedTags contains the list of normalized tags of the entities
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
+
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" bson:"protected"`
+
+	// UpdateTime is the time at which an entity was updated.
+	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description"`
 
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" bson:"disabled"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"-"`
 
 	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
@@ -91,29 +110,11 @@ type EnforcerProfileMappingPolicy struct {
 	// Name is the name of the entity
 	Name string `json:"name" bson:"name"`
 
-	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" bson:"namespace"`
-
-	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
-
-	// Object is the list of tags to use to find a enforcer profile.
-	Object [][]string `json:"object" bson:"object"`
-
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" bson:"propagate"`
 
 	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
 	PropagationHidden bool `json:"propagationHidden" bson:"propagationhidden"`
-
-	// Protected defines if the object is protected.
-	Protected bool `json:"protected" bson:"protected"`
-
-	// Subject is the subject of the policy.
-	Subject [][]string `json:"subject" bson:"subject"`
-
-	// UpdateTime is the time at which an entity was updated.
-	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -145,12 +146,12 @@ func (o *EnforcerProfileMappingPolicy) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *EnforcerProfileMappingPolicy) SetIdentifier(ID string) {
+func (o *EnforcerProfileMappingPolicy) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *EnforcerProfileMappingPolicy) Version() int {
 
 	return 1
@@ -174,119 +175,142 @@ func (o *EnforcerProfileMappingPolicy) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *EnforcerProfileMappingPolicy) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *EnforcerProfileMappingPolicy) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *EnforcerProfileMappingPolicy) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetDisabled returns the disabled of the receiver
-func (o *EnforcerProfileMappingPolicy) GetDisabled() bool {
-	return o.Disabled
-}
-
-// SetDisabled set the given disabled of the receiver
-func (o *EnforcerProfileMappingPolicy) SetDisabled(disabled bool) {
-	o.Disabled = disabled
-}
-
-// GetMetadata returns the metadata of the receiver
-func (o *EnforcerProfileMappingPolicy) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *EnforcerProfileMappingPolicy) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
-func (o *EnforcerProfileMappingPolicy) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *EnforcerProfileMappingPolicy) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *EnforcerProfileMappingPolicy) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *EnforcerProfileMappingPolicy) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetPropagate returns the propagate of the receiver
-func (o *EnforcerProfileMappingPolicy) GetPropagate() bool {
-	return o.Propagate
-}
-
-// SetPropagate set the given propagate of the receiver
-func (o *EnforcerProfileMappingPolicy) SetPropagate(propagate bool) {
-	o.Propagate = propagate
-}
-
-// GetPropagationHidden returns the propagationHidden of the receiver
-func (o *EnforcerProfileMappingPolicy) GetPropagationHidden() bool {
-	return o.PropagationHidden
-}
-
-// SetPropagationHidden set the given propagationHidden of the receiver
-func (o *EnforcerProfileMappingPolicy) SetPropagationHidden(propagationHidden bool) {
-	o.PropagationHidden = propagationHidden
-}
-
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *EnforcerProfileMappingPolicy) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *EnforcerProfileMappingPolicy) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetDisabled returns the Disabled of the receiver.
+func (o *EnforcerProfileMappingPolicy) GetDisabled() bool {
+
+	return o.Disabled
+}
+
+// SetDisabled sets the given Disabled of the receiver.
+func (o *EnforcerProfileMappingPolicy) SetDisabled(disabled bool) {
+
+	o.Disabled = disabled
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *EnforcerProfileMappingPolicy) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *EnforcerProfileMappingPolicy) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
+// GetName returns the Name of the receiver.
+func (o *EnforcerProfileMappingPolicy) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *EnforcerProfileMappingPolicy) SetName(name string) {
+
+	o.Name = name
+}
+
+// GetPropagate returns the Propagate of the receiver.
+func (o *EnforcerProfileMappingPolicy) GetPropagate() bool {
+
+	return o.Propagate
+}
+
+// SetPropagate sets the given Propagate of the receiver.
+func (o *EnforcerProfileMappingPolicy) SetPropagate(propagate bool) {
+
+	o.Propagate = propagate
+}
+
+// GetPropagationHidden returns the PropagationHidden of the receiver.
+func (o *EnforcerProfileMappingPolicy) GetPropagationHidden() bool {
+
+	return o.PropagationHidden
+}
+
+// SetPropagationHidden sets the given PropagationHidden of the receiver.
+func (o *EnforcerProfileMappingPolicy) SetPropagationHidden(propagationHidden bool) {
+
+	o.PropagationHidden = propagationHidden
 }
 
 // Validate valides the current information stored into the structure.
@@ -295,14 +319,6 @@ func (o *EnforcerProfileMappingPolicy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredExternal("object", o.Object); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -316,6 +332,14 @@ func (o *EnforcerProfileMappingPolicy) Validate() error {
 	}
 
 	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 

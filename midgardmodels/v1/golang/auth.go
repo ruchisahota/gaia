@@ -1,13 +1,14 @@
 package midgardmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/midgard-lib/claims"
+)
 
-import "github.com/aporeto-inc/midgard-lib/claims"
-
-// AuthIdentity represents the Identity of the object
+// AuthIdentity represents the Identity of the object.
 var AuthIdentity = elemental.Identity{
 	Name:     "auth",
 	Category: "auth",
@@ -95,11 +96,11 @@ func (o *Auth) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Auth) SetIdentifier(ID string) {
+func (o *Auth) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Auth) Version() int {
 
 	return 1

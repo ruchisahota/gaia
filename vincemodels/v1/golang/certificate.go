@@ -1,11 +1,12 @@
 package vincemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // CertificateStatusValue represents the possible values for attribute "status".
 type CertificateStatusValue string
@@ -18,7 +19,7 @@ const (
 	CertificateStatusValid CertificateStatusValue = "Valid"
 )
 
-// CertificateIdentity represents the Identity of the object
+// CertificateIdentity represents the Identity of the object.
 var CertificateIdentity = elemental.Identity{
 	Name:     "certificate",
 	Category: "certificates",
@@ -76,17 +77,11 @@ func (o CertificatesList) Version() int {
 
 // Certificate represents the model of a certificate
 type Certificate struct {
-	// ID of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// Admin determines if the certificate must be added to the admin list.
 	Admin bool `json:"admin" bson:"admin"`
 
 	// CommonName (CN) for the user certificate
 	CommonName string `json:"commonName" bson:"commonname"`
-
-	// createdAt represents the creation date of the object.
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// Certificate provides a certificate for the user
 	Data string `json:"data" bson:"data"`
@@ -118,6 +113,12 @@ type Certificate struct {
 	// CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.
 	Status CertificateStatusValue `json:"status" bson:"status"`
 
+	// ID of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// createdAt represents the creation date of the object.
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
+
 	// UpdateTime represents the last update date of the objct.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
@@ -148,12 +149,12 @@ func (o *Certificate) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Certificate) SetIdentifier(ID string) {
+func (o *Certificate) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Certificate) Version() int {
 
 	return 1
@@ -400,7 +401,7 @@ var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Status": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Revoked", "Valid"},
-		DefaultValue:   CertificateStatusValue("Valid"),
+		DefaultValue:   CertificateStatusValid,
 		Description:    `CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -582,7 +583,7 @@ var CertificateLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 	},
 	"status": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Revoked", "Valid"},
-		DefaultValue:   CertificateStatusValue("Valid"),
+		DefaultValue:   CertificateStatusValid,
 		Description:    `CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.`,
 		Exposed:        true,
 		Filterable:     true,

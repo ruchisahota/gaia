@@ -1,11 +1,13 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// PokeIdentity represents the Identity of the object
+// PokeIdentity represents the Identity of the object.
 var PokeIdentity = elemental.Identity{
 	Name:     "poke",
 	Category: "poke",
@@ -89,11 +91,11 @@ func (o *Poke) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Poke) SetIdentifier(ID string) {
+func (o *Poke) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Poke) Version() int {
 
 	return 1

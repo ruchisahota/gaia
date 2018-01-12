@@ -1,11 +1,12 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
-
-import "time"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
 // HookPolicyModeValue represents the possible values for attribute "mode".
 type HookPolicyModeValue string
@@ -21,7 +22,7 @@ const (
 	HookPolicyModePre HookPolicyModeValue = "Pre"
 )
 
-// HookPolicyIdentity represents the Identity of the object
+// HookPolicyIdentity represents the Identity of the object.
 var HookPolicyIdentity = elemental.Identity{
 	Name:     "hookpolicy",
 	Category: "hookpolicies",
@@ -81,15 +82,6 @@ func (o HookPoliciesList) Version() int {
 
 // HookPolicy represents the model of a hookpolicy
 type HookPolicy struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"-"`
-
-	// Annotation stores additional information about an entity
-	Annotations map[string][]string `json:"annotations" bson:"annotations"`
-
-	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
-
 	// CertificateAuthority contains the pem block of the certificate authority used by the remote endpoint.
 	CertificateAuthority string `json:"certificateAuthority" bson:"certificateauthority"`
 
@@ -99,26 +91,23 @@ type HookPolicy struct {
 	// ClientCertificateKey contains the key associated to the clientCertificate.
 	ClientCertificateKey string `json:"clientCertificateKey" bson:"clientcertificatekey"`
 
-	// CreatedTime is the time at which the object was created
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
-
-	// Disabled defines if the propert is disabled.
-	Disabled bool `json:"disabled" bson:"disabled"`
-
 	// Endpoint contains the full address of the remote processor endoint.
 	Endpoint string `json:"endpoint" bson:"endpoint"`
-
-	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata"`
 
 	// Mode define the type of the hook.
 	Mode HookPolicyModeValue `json:"mode" bson:"mode"`
 
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
+	// Subject contains the tag expression that an object must match in order to trigger the hook.
+	Subject [][]string `json:"subject" bson:"subject"`
+
+	// Annotation stores additional information about an entity
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
+
+	// CreatedTime is the time at which the object was created
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" bson:"namespace"`
@@ -126,20 +115,32 @@ type HookPolicy struct {
 	// NormalizedTags contains the list of normalized tags of the entities
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
 
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" bson:"protected"`
+
+	// UpdateTime is the time at which an entity was updated.
+	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// Disabled defines if the propert is disabled.
+	Disabled bool `json:"disabled" bson:"disabled"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"-"`
+
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
+
 	// Propagate will propagate the policy to all of its children.
 	Propagate bool `json:"propagate" bson:"propagate"`
 
 	// If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
 	PropagationHidden bool `json:"propagationHidden" bson:"propagationhidden"`
-
-	// Protected defines if the object is protected.
-	Protected bool `json:"protected" bson:"protected"`
-
-	// Subject contains the tag expression that an object must match in order to trigger the hook.
-	Subject [][]string `json:"subject" bson:"subject"`
-
-	// UpdateTime is the time at which an entity was updated.
-	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -172,12 +173,12 @@ func (o *HookPolicy) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *HookPolicy) SetIdentifier(ID string) {
+func (o *HookPolicy) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *HookPolicy) Version() int {
 
 	return 1
@@ -201,119 +202,142 @@ func (o *HookPolicy) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *HookPolicy) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *HookPolicy) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *HookPolicy) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *HookPolicy) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *HookPolicy) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *HookPolicy) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetDisabled returns the disabled of the receiver
-func (o *HookPolicy) GetDisabled() bool {
-	return o.Disabled
-}
-
-// SetDisabled set the given disabled of the receiver
-func (o *HookPolicy) SetDisabled(disabled bool) {
-	o.Disabled = disabled
-}
-
-// GetMetadata returns the metadata of the receiver
-func (o *HookPolicy) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *HookPolicy) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
-func (o *HookPolicy) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *HookPolicy) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *HookPolicy) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *HookPolicy) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *HookPolicy) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *HookPolicy) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetPropagate returns the propagate of the receiver
-func (o *HookPolicy) GetPropagate() bool {
-	return o.Propagate
-}
-
-// SetPropagate set the given propagate of the receiver
-func (o *HookPolicy) SetPropagate(propagate bool) {
-	o.Propagate = propagate
-}
-
-// GetPropagationHidden returns the propagationHidden of the receiver
-func (o *HookPolicy) GetPropagationHidden() bool {
-	return o.PropagationHidden
-}
-
-// SetPropagationHidden set the given propagationHidden of the receiver
-func (o *HookPolicy) SetPropagationHidden(propagationHidden bool) {
-	o.PropagationHidden = propagationHidden
-}
-
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *HookPolicy) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *HookPolicy) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *HookPolicy) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetDisabled returns the Disabled of the receiver.
+func (o *HookPolicy) GetDisabled() bool {
+
+	return o.Disabled
+}
+
+// SetDisabled sets the given Disabled of the receiver.
+func (o *HookPolicy) SetDisabled(disabled bool) {
+
+	o.Disabled = disabled
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *HookPolicy) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *HookPolicy) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
+// GetName returns the Name of the receiver.
+func (o *HookPolicy) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *HookPolicy) SetName(name string) {
+
+	o.Name = name
+}
+
+// GetPropagate returns the Propagate of the receiver.
+func (o *HookPolicy) GetPropagate() bool {
+
+	return o.Propagate
+}
+
+// SetPropagate sets the given Propagate of the receiver.
+func (o *HookPolicy) SetPropagate(propagate bool) {
+
+	o.Propagate = propagate
+}
+
+// GetPropagationHidden returns the PropagationHidden of the receiver.
+func (o *HookPolicy) GetPropagationHidden() bool {
+
+	return o.PropagationHidden
+}
+
+// SetPropagationHidden sets the given PropagationHidden of the receiver.
+func (o *HookPolicy) SetPropagationHidden(propagationHidden bool) {
+
+	o.PropagationHidden = propagationHidden
 }
 
 // Validate valides the current information stored into the structure.
@@ -358,19 +382,19 @@ func (o *HookPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -536,7 +560,7 @@ var HookPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Mode": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Both", "Post", "Pre"},
-		DefaultValue:   HookPolicyModeValue("Pre"),
+		DefaultValue:   HookPolicyModePre,
 		Description:    `Mode define the type of the hook.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -787,7 +811,7 @@ var HookPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"mode": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Both", "Post", "Pre"},
-		DefaultValue:   HookPolicyModeValue("Pre"),
+		DefaultValue:   HookPolicyModePre,
 		Description:    `Mode define the type of the hook.`,
 		Exposed:        true,
 		Filterable:     true,

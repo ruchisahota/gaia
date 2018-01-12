@@ -1,11 +1,13 @@
 package zackmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// ReportIdentity represents the Identity of the object
+// ReportIdentity represents the Identity of the object.
 var ReportIdentity = elemental.Identity{
 	Name:     "report",
 	Category: "reports",
@@ -105,11 +107,11 @@ func (o *Report) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Report) SetIdentifier(ID string) {
+func (o *Report) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Report) Version() int {
 
 	return 1

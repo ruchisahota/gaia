@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// ActivityIdentity represents the Identity of the object
+// ActivityIdentity represents the Identity of the object.
 var ActivityIdentity = elemental.Identity{
 	Name:     "activity",
 	Category: "activities",
@@ -65,9 +66,6 @@ func (o ActivitiesList) Version() int {
 
 // Activity represents the model of a activity
 type Activity struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// Claims of the user who performed the operation.
 	Claims interface{} `json:"claims" bson:"claims"`
 
@@ -98,6 +96,9 @@ type Activity struct {
 	// TargetIdentity is the Identity of the related object.
 	TargetIdentity string `json:"targetIdentity" bson:"targetidentity"`
 
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -124,12 +125,12 @@ func (o *Activity) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Activity) SetIdentifier(ID string) {
+func (o *Activity) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Activity) Version() int {
 
 	return 1

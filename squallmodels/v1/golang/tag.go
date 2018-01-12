@@ -1,11 +1,13 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// TagIdentity represents the Identity of the object
+// TagIdentity represents the Identity of the object.
 var TagIdentity = elemental.Identity{
 	Name:     "tag",
 	Category: "tags",
@@ -63,9 +65,6 @@ func (o TagsList) Version() int {
 
 // Tag represents the model of a tag
 type Tag struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// Count represents the number of time the tag is used.
 	Count int `json:"count" bson:"count"`
 
@@ -74,6 +73,9 @@ type Tag struct {
 
 	// Value represents the value of the tag.
 	Value string `json:"value" bson:"value"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -101,12 +103,12 @@ func (o *Tag) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Tag) SetIdentifier(ID string) {
+func (o *Tag) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Tag) Version() int {
 
 	return 1

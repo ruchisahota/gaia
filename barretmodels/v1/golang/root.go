@@ -1,21 +1,71 @@
 package barretmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// RootIdentity represents the Identity of the object
+// RootIdentity represents the Identity of the object.
 var RootIdentity = elemental.Identity{
 	Name:     "root",
 	Category: "root",
 }
 
+// RootsList represents a list of Roots
+type RootsList []*Root
+
+// ContentIdentity returns the identity of the objects in the list.
+func (o RootsList) ContentIdentity() elemental.Identity {
+
+	return RootIdentity
+}
+
+// Copy returns a pointer to a copy the RootsList.
+func (o RootsList) Copy() elemental.ContentIdentifiable {
+
+	copy := append(RootsList{}, o...)
+	return &copy
+}
+
+// Append appends the objects to the a new copy of the RootsList.
+func (o RootsList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+
+	out := append(RootsList{}, o...)
+	for _, obj := range objects {
+		out = append(out, obj.(*Root))
+	}
+
+	return out
+}
+
+// List converts the object to an elemental.IdentifiablesList.
+func (o RootsList) List() elemental.IdentifiablesList {
+
+	out := elemental.IdentifiablesList{}
+	for _, item := range o {
+		out = append(out, item)
+	}
+
+	return out
+}
+
+// DefaultOrder returns the default ordering fields of the content.
+func (o RootsList) DefaultOrder() []string {
+
+	return []string{}
+}
+
+// Version returns the version of the content.
+func (o RootsList) Version() int {
+
+	return 1
+}
+
 // Root represents the model of a root
 type Root struct {
-	Token        string `json:"APIKey,omitempty"`
-	Organization string `json:"enterprise,omitempty"`
-	ModelVersion int    `json:"-" bson:"_modelversion"`
+	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
 }
@@ -41,11 +91,11 @@ func (o *Root) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Root) SetIdentifier(ID string) {
+func (o *Root) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Root) Version() int {
 
 	return 1
@@ -77,18 +127,6 @@ func (o *Root) Validate() error {
 	}
 
 	return nil
-}
-
-// APIKey returns a the API Key
-func (o *Root) APIKey() string {
-
-	return o.Token
-}
-
-// SetAPIKey sets a the API Key
-func (o *Root) SetAPIKey(key string) {
-
-	o.Token = key
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.

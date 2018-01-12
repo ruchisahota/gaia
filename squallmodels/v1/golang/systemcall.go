@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// SystemCallIdentity represents the Identity of the object
+// SystemCallIdentity represents the Identity of the object.
 var SystemCallIdentity = elemental.Identity{
 	Name:     "systemcall",
 	Category: "systemcalls",
@@ -67,9 +68,6 @@ func (o SystemCallsList) Version() int {
 
 // SystemCall represents the model of a systemcall
 type SystemCall struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
 
@@ -78,15 +76,6 @@ type SystemCall struct {
 
 	// CreatedTime is the time at which the object was created
 	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
-
-	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata"`
-
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" bson:"namespace"`
@@ -99,6 +88,18 @@ type SystemCall struct {
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -130,12 +131,12 @@ func (o *SystemCall) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *SystemCall) SetIdentifier(ID string) {
+func (o *SystemCall) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *SystemCall) Version() int {
 
 	return 1
@@ -159,89 +160,106 @@ func (o *SystemCall) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *SystemCall) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *SystemCall) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *SystemCall) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *SystemCall) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *SystemCall) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *SystemCall) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetMetadata returns the metadata of the receiver
-func (o *SystemCall) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *SystemCall) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
-func (o *SystemCall) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *SystemCall) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *SystemCall) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *SystemCall) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *SystemCall) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *SystemCall) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *SystemCall) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *SystemCall) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *SystemCall) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *SystemCall) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *SystemCall) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
+// GetName returns the Name of the receiver.
+func (o *SystemCall) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *SystemCall) SetName(name string) {
+
+	o.Name = name
 }
 
 // Validate valides the current information stored into the structure.

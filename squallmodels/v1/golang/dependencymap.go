@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
+)
 
-import "github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
-
-// DependencyMapIdentity represents the Identity of the object
+// DependencyMapIdentity represents the Identity of the object.
 var DependencyMapIdentity = elemental.Identity{
 	Name:     "dependencymap",
 	Category: "dependencymaps",
@@ -65,9 +66,6 @@ func (o DependencyMapsList) Version() int {
 
 // DependencyMap represents the model of a dependencymap
 type DependencyMap struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"-"`
-
 	// edges are the edges of the map
 	Edges types.GraphEdgeMap `json:"edges" bson:"-"`
 
@@ -79,6 +77,9 @@ type DependencyMap struct {
 
 	// viewSuggestions provides suggestion of views based on relevant tags.
 	ViewSuggestions []string `json:"viewSuggestions" bson:"-"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"-"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -110,12 +111,12 @@ func (o *DependencyMap) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *DependencyMap) SetIdentifier(ID string) {
+func (o *DependencyMap) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *DependencyMap) Version() int {
 
 	return 1

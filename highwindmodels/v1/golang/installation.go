@@ -1,11 +1,13 @@
 package highwindmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// InstallationIdentity represents the Identity of the object
+// InstallationIdentity represents the Identity of the object.
 var InstallationIdentity = elemental.Identity{
 	Name:     "installation",
 	Category: "installations",
@@ -95,11 +97,11 @@ func (o *Installation) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Installation) SetIdentifier(ID string) {
+func (o *Installation) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Installation) Version() int {
 
 	return 1

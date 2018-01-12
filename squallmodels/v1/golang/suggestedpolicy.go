@@ -1,11 +1,13 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// SuggestedPolicyIdentity represents the Identity of the object
+// SuggestedPolicyIdentity represents the Identity of the object.
 var SuggestedPolicyIdentity = elemental.Identity{
 	Name:     "suggestedpolicy",
 	Category: "suggestedpolicies",
@@ -92,11 +94,11 @@ func (o *SuggestedPolicy) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *SuggestedPolicy) SetIdentifier(ID string) {
+func (o *SuggestedPolicy) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *SuggestedPolicy) Version() int {
 
 	return 1

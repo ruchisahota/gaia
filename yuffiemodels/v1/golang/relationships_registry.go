@@ -13,6 +13,7 @@ func Relationships() elemental.RelationshipsRegistry {
 }
 
 func init() {
+
 	relationshipsRegistry = elemental.RelationshipsRegistry{}
 
 	relationshipsRegistry[EmailIdentity] = &elemental.Relationship{
@@ -35,5 +36,7 @@ func init() {
 			"root": true,
 		},
 	}
+
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+
 }

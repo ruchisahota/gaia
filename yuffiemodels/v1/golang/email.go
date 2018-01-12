@@ -1,9 +1,11 @@
 package yuffiemodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
 // EmailTypeValue represents the possible values for attribute "type".
 type EmailTypeValue string
@@ -16,7 +18,7 @@ const (
 	EmailTypePlain EmailTypeValue = "Plain"
 )
 
-// EmailIdentity represents the Identity of the object
+// EmailIdentity represents the Identity of the object.
 var EmailIdentity = elemental.Identity{
 	Name:     "email",
 	Category: "emails",
@@ -125,11 +127,11 @@ func (o *Email) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Email) SetIdentifier(ID string) {
+func (o *Email) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Email) Version() int {
 
 	return 1
@@ -258,7 +260,7 @@ var EmailAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Type": elemental.AttributeSpecification{
 		AllowedChoices: []string{"HTML", "Plain"},
-		DefaultValue:   EmailTypeValue("Plain"),
+		DefaultValue:   EmailTypePlain,
 		Description:    `Type represents the type of the content.`,
 		Exposed:        true,
 		Name:           "type",
@@ -327,7 +329,7 @@ var EmailLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"type": elemental.AttributeSpecification{
 		AllowedChoices: []string{"HTML", "Plain"},
-		DefaultValue:   EmailTypeValue("Plain"),
+		DefaultValue:   EmailTypePlain,
 		Description:    `Type represents the type of the content.`,
 		Exposed:        true,
 		Name:           "type",

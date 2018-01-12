@@ -4,111 +4,112 @@ import "github.com/aporeto-inc/elemental"
 
 func init() {
 
-	elemental.RegisterIdentity(APICheckIdentity)
-	elemental.RegisterIdentity(HookPolicyIdentity)
-	elemental.RegisterIdentity(FlowRecordIdentity)
-	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
-	elemental.RegisterIdentity(ExternalAccessIdentity)
-	elemental.RegisterIdentity(SystemCallIdentity)
-	elemental.RegisterIdentity(TagIdentity)
-	elemental.RegisterIdentity(EnforcerIdentity)
-	elemental.RegisterIdentity(MessageIdentity)
-	elemental.RegisterIdentity(PokeIdentity)
-	elemental.RegisterIdentity(FilePathIdentity)
-	elemental.RegisterIdentity(FileAccessIdentity)
-	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
-	elemental.RegisterIdentity(NamespaceIdentity)
-	elemental.RegisterIdentity(PolicyRuleIdentity)
-	elemental.RegisterIdentity(ExternalServiceIdentity)
-	elemental.RegisterIdentity(RoleIdentity)
-	elemental.RegisterIdentity(PolicyIdentity)
-	elemental.RegisterIdentity(FlowStatisticIdentity)
-	elemental.RegisterIdentity(SuggestedPolicyIdentity)
-	elemental.RegisterIdentity(TabulationIdentity)
-	elemental.RegisterIdentity(QuotaPolicyIdentity)
-	elemental.RegisterIdentity(FileAccessPolicyIdentity)
-	elemental.RegisterIdentity(EnforcerProfileIdentity)
-	elemental.RegisterIdentity(RenderedPolicyIdentity)
-	elemental.RegisterIdentity(ProcessingUnitIdentity)
-	elemental.RegisterIdentity(DependencyMapIdentity)
-	elemental.RegisterIdentity(VulnerabilityIdentity)
-	elemental.RegisterIdentity(EnforcerProfileMappingPolicyIdentity)
 	elemental.RegisterIdentity(ActivityIdentity)
-	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
+	elemental.RegisterIdentity(APICheckIdentity)
+	elemental.RegisterIdentity(DependencyMapIdentity)
+	elemental.RegisterIdentity(EnforcerIdentity)
+	elemental.RegisterIdentity(EnforcerProfileIdentity)
+	elemental.RegisterIdentity(EnforcerProfileMappingPolicyIdentity)
+	elemental.RegisterIdentity(ExternalAccessIdentity)
+	elemental.RegisterIdentity(ExternalServiceIdentity)
+	elemental.RegisterIdentity(FileAccessIdentity)
+	elemental.RegisterIdentity(FileAccessPolicyIdentity)
+	elemental.RegisterIdentity(FilePathIdentity)
+	elemental.RegisterIdentity(FlowRecordIdentity)
+	elemental.RegisterIdentity(FlowStatisticIdentity)
+	elemental.RegisterIdentity(HookPolicyIdentity)
+	elemental.RegisterIdentity(MessageIdentity)
+	elemental.RegisterIdentity(NamespaceIdentity)
+	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
 	elemental.RegisterIdentity(NetworkAccessPolicyIdentity)
+	elemental.RegisterIdentity(PokeIdentity)
+	elemental.RegisterIdentity(PolicyIdentity)
+	elemental.RegisterIdentity(PolicyRuleIdentity)
+	elemental.RegisterIdentity(ProcessingUnitIdentity)
+	elemental.RegisterIdentity(QuotaPolicyIdentity)
+	elemental.RegisterIdentity(RenderedPolicyIdentity)
+	elemental.RegisterIdentity(RoleIdentity)
+	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(SuggestedPolicyIdentity)
+	elemental.RegisterIdentity(SystemCallIdentity)
+	elemental.RegisterIdentity(TabulationIdentity)
+	elemental.RegisterIdentity(TagIdentity)
+	elemental.RegisterIdentity(VulnerabilityIdentity)
 }
 
-// ModelVersion returns the current version of the model
+// ModelVersion returns the current version of the model.
 func ModelVersion() float64 { return 1 }
 
 // IdentifiableForIdentity returns a new instance of the Identifiable for the given identity name.
 func IdentifiableForIdentity(identity string) elemental.Identifiable {
 
 	switch identity {
-	case APICheckIdentity.Name:
-		return NewAPICheck()
-	case HookPolicyIdentity.Name:
-		return NewHookPolicy()
-	case FlowRecordIdentity.Name:
-		return NewFlowRecord()
-	case NamespaceMappingPolicyIdentity.Name:
-		return NewNamespaceMappingPolicy()
-	case ExternalAccessIdentity.Name:
-		return NewExternalAccess()
-	case SystemCallIdentity.Name:
-		return NewSystemCall()
-	case TagIdentity.Name:
-		return NewTag()
-	case EnforcerIdentity.Name:
-		return NewEnforcer()
-	case MessageIdentity.Name:
-		return NewMessage()
-	case PokeIdentity.Name:
-		return NewPoke()
-	case FilePathIdentity.Name:
-		return NewFilePath()
-	case FileAccessIdentity.Name:
-		return NewFileAccess()
-	case APIAuthorizationPolicyIdentity.Name:
-		return NewAPIAuthorizationPolicy()
-	case NamespaceIdentity.Name:
-		return NewNamespace()
-	case PolicyRuleIdentity.Name:
-		return NewPolicyRule()
-	case ExternalServiceIdentity.Name:
-		return NewExternalService()
-	case RoleIdentity.Name:
-		return NewRole()
-	case PolicyIdentity.Name:
-		return NewPolicy()
-	case FlowStatisticIdentity.Name:
-		return NewFlowStatistic()
-	case SuggestedPolicyIdentity.Name:
-		return NewSuggestedPolicy()
-	case TabulationIdentity.Name:
-		return NewTabulation()
-	case QuotaPolicyIdentity.Name:
-		return NewQuotaPolicy()
-	case FileAccessPolicyIdentity.Name:
-		return NewFileAccessPolicy()
-	case EnforcerProfileIdentity.Name:
-		return NewEnforcerProfile()
-	case RenderedPolicyIdentity.Name:
-		return NewRenderedPolicy()
-	case ProcessingUnitIdentity.Name:
-		return NewProcessingUnit()
-	case DependencyMapIdentity.Name:
-		return NewDependencyMap()
-	case VulnerabilityIdentity.Name:
-		return NewVulnerability()
-	case EnforcerProfileMappingPolicyIdentity.Name:
-		return NewEnforcerProfileMappingPolicy()
+
 	case ActivityIdentity.Name:
 		return NewActivity()
-	case RootIdentity.Name:
-		return NewRoot()
+	case APIAuthorizationPolicyIdentity.Name:
+		return NewAPIAuthorizationPolicy()
+	case APICheckIdentity.Name:
+		return NewAPICheck()
+	case DependencyMapIdentity.Name:
+		return NewDependencyMap()
+	case EnforcerIdentity.Name:
+		return NewEnforcer()
+	case EnforcerProfileIdentity.Name:
+		return NewEnforcerProfile()
+	case EnforcerProfileMappingPolicyIdentity.Name:
+		return NewEnforcerProfileMappingPolicy()
+	case ExternalAccessIdentity.Name:
+		return NewExternalAccess()
+	case ExternalServiceIdentity.Name:
+		return NewExternalService()
+	case FileAccessIdentity.Name:
+		return NewFileAccess()
+	case FileAccessPolicyIdentity.Name:
+		return NewFileAccessPolicy()
+	case FilePathIdentity.Name:
+		return NewFilePath()
+	case FlowRecordIdentity.Name:
+		return NewFlowRecord()
+	case FlowStatisticIdentity.Name:
+		return NewFlowStatistic()
+	case HookPolicyIdentity.Name:
+		return NewHookPolicy()
+	case MessageIdentity.Name:
+		return NewMessage()
+	case NamespaceIdentity.Name:
+		return NewNamespace()
+	case NamespaceMappingPolicyIdentity.Name:
+		return NewNamespaceMappingPolicy()
 	case NetworkAccessPolicyIdentity.Name:
 		return NewNetworkAccessPolicy()
+	case PokeIdentity.Name:
+		return NewPoke()
+	case PolicyIdentity.Name:
+		return NewPolicy()
+	case PolicyRuleIdentity.Name:
+		return NewPolicyRule()
+	case ProcessingUnitIdentity.Name:
+		return NewProcessingUnit()
+	case QuotaPolicyIdentity.Name:
+		return NewQuotaPolicy()
+	case RenderedPolicyIdentity.Name:
+		return NewRenderedPolicy()
+	case RoleIdentity.Name:
+		return NewRole()
+	case RootIdentity.Name:
+		return NewRoot()
+	case SuggestedPolicyIdentity.Name:
+		return NewSuggestedPolicy()
+	case SystemCallIdentity.Name:
+		return NewSystemCall()
+	case TabulationIdentity.Name:
+		return NewTabulation()
+	case TagIdentity.Name:
+		return NewTag()
+	case VulnerabilityIdentity.Name:
+		return NewVulnerability()
 	default:
 		return nil
 	}
@@ -118,70 +119,71 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 func IdentifiableForCategory(category string) elemental.Identifiable {
 
 	switch category {
-	case APICheckIdentity.Category:
-		return NewAPICheck()
-	case HookPolicyIdentity.Category:
-		return NewHookPolicy()
-	case FlowRecordIdentity.Category:
-		return NewFlowRecord()
-	case NamespaceMappingPolicyIdentity.Category:
-		return NewNamespaceMappingPolicy()
-	case ExternalAccessIdentity.Category:
-		return NewExternalAccess()
-	case SystemCallIdentity.Category:
-		return NewSystemCall()
-	case TagIdentity.Category:
-		return NewTag()
-	case EnforcerIdentity.Category:
-		return NewEnforcer()
-	case MessageIdentity.Category:
-		return NewMessage()
-	case PokeIdentity.Category:
-		return NewPoke()
-	case FilePathIdentity.Category:
-		return NewFilePath()
-	case FileAccessIdentity.Category:
-		return NewFileAccess()
-	case APIAuthorizationPolicyIdentity.Category:
-		return NewAPIAuthorizationPolicy()
-	case NamespaceIdentity.Category:
-		return NewNamespace()
-	case PolicyRuleIdentity.Category:
-		return NewPolicyRule()
-	case ExternalServiceIdentity.Category:
-		return NewExternalService()
-	case RoleIdentity.Category:
-		return NewRole()
-	case PolicyIdentity.Category:
-		return NewPolicy()
-	case FlowStatisticIdentity.Category:
-		return NewFlowStatistic()
-	case SuggestedPolicyIdentity.Category:
-		return NewSuggestedPolicy()
-	case TabulationIdentity.Category:
-		return NewTabulation()
-	case QuotaPolicyIdentity.Category:
-		return NewQuotaPolicy()
-	case FileAccessPolicyIdentity.Category:
-		return NewFileAccessPolicy()
-	case EnforcerProfileIdentity.Category:
-		return NewEnforcerProfile()
-	case RenderedPolicyIdentity.Category:
-		return NewRenderedPolicy()
-	case ProcessingUnitIdentity.Category:
-		return NewProcessingUnit()
-	case DependencyMapIdentity.Category:
-		return NewDependencyMap()
-	case VulnerabilityIdentity.Category:
-		return NewVulnerability()
-	case EnforcerProfileMappingPolicyIdentity.Category:
-		return NewEnforcerProfileMappingPolicy()
+
 	case ActivityIdentity.Category:
 		return NewActivity()
-	case RootIdentity.Category:
-		return NewRoot()
+	case APIAuthorizationPolicyIdentity.Category:
+		return NewAPIAuthorizationPolicy()
+	case APICheckIdentity.Category:
+		return NewAPICheck()
+	case DependencyMapIdentity.Category:
+		return NewDependencyMap()
+	case EnforcerIdentity.Category:
+		return NewEnforcer()
+	case EnforcerProfileIdentity.Category:
+		return NewEnforcerProfile()
+	case EnforcerProfileMappingPolicyIdentity.Category:
+		return NewEnforcerProfileMappingPolicy()
+	case ExternalAccessIdentity.Category:
+		return NewExternalAccess()
+	case ExternalServiceIdentity.Category:
+		return NewExternalService()
+	case FileAccessIdentity.Category:
+		return NewFileAccess()
+	case FileAccessPolicyIdentity.Category:
+		return NewFileAccessPolicy()
+	case FilePathIdentity.Category:
+		return NewFilePath()
+	case FlowRecordIdentity.Category:
+		return NewFlowRecord()
+	case FlowStatisticIdentity.Category:
+		return NewFlowStatistic()
+	case HookPolicyIdentity.Category:
+		return NewHookPolicy()
+	case MessageIdentity.Category:
+		return NewMessage()
+	case NamespaceIdentity.Category:
+		return NewNamespace()
+	case NamespaceMappingPolicyIdentity.Category:
+		return NewNamespaceMappingPolicy()
 	case NetworkAccessPolicyIdentity.Category:
 		return NewNetworkAccessPolicy()
+	case PokeIdentity.Category:
+		return NewPoke()
+	case PolicyIdentity.Category:
+		return NewPolicy()
+	case PolicyRuleIdentity.Category:
+		return NewPolicyRule()
+	case ProcessingUnitIdentity.Category:
+		return NewProcessingUnit()
+	case QuotaPolicyIdentity.Category:
+		return NewQuotaPolicy()
+	case RenderedPolicyIdentity.Category:
+		return NewRenderedPolicy()
+	case RoleIdentity.Category:
+		return NewRole()
+	case RootIdentity.Category:
+		return NewRoot()
+	case SuggestedPolicyIdentity.Category:
+		return NewSuggestedPolicy()
+	case SystemCallIdentity.Category:
+		return NewSystemCall()
+	case TabulationIdentity.Category:
+		return NewTabulation()
+	case TagIdentity.Category:
+		return NewTag()
+	case VulnerabilityIdentity.Category:
+		return NewVulnerability()
 	default:
 		return nil
 	}
@@ -191,68 +193,71 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiable {
 
 	switch identity {
-	case APICheckIdentity.Name:
-		return &APIChecksList{}
-	case HookPolicyIdentity.Name:
-		return &HookPoliciesList{}
-	case FlowRecordIdentity.Name:
-		return &FlowRecordsList{}
-	case NamespaceMappingPolicyIdentity.Name:
-		return &NamespaceMappingPoliciesList{}
-	case ExternalAccessIdentity.Name:
-		return &ExternalAccessList{}
-	case SystemCallIdentity.Name:
-		return &SystemCallsList{}
-	case TagIdentity.Name:
-		return &TagsList{}
-	case EnforcerIdentity.Name:
-		return &EnforcersList{}
-	case MessageIdentity.Name:
-		return &MessagesList{}
-	case PokeIdentity.Name:
-		return &PokesList{}
-	case FilePathIdentity.Name:
-		return &FilePathsList{}
-	case FileAccessIdentity.Name:
-		return &FileAccessList{}
-	case APIAuthorizationPolicyIdentity.Name:
-		return &APIAuthorizationPoliciesList{}
-	case NamespaceIdentity.Name:
-		return &NamespacesList{}
-	case PolicyRuleIdentity.Name:
-		return &PolicyRulesList{}
-	case ExternalServiceIdentity.Name:
-		return &ExternalServicesList{}
-	case RoleIdentity.Name:
-		return &RolesList{}
-	case PolicyIdentity.Name:
-		return &PoliciesList{}
-	case FlowStatisticIdentity.Name:
-		return &FlowStatisticsList{}
-	case SuggestedPolicyIdentity.Name:
-		return &SuggestedPoliciesList{}
-	case TabulationIdentity.Name:
-		return &TabulationsList{}
-	case QuotaPolicyIdentity.Name:
-		return &QuotaPoliciesList{}
-	case FileAccessPolicyIdentity.Name:
-		return &FileAccessPoliciesList{}
-	case EnforcerProfileIdentity.Name:
-		return &EnforcerProfilesList{}
-	case RenderedPolicyIdentity.Name:
-		return &RenderedPoliciesList{}
-	case ProcessingUnitIdentity.Name:
-		return &ProcessingUnitsList{}
-	case DependencyMapIdentity.Name:
-		return &DependencyMapsList{}
-	case VulnerabilityIdentity.Name:
-		return &VulnerabilitiesList{}
-	case EnforcerProfileMappingPolicyIdentity.Name:
-		return &EnforcerProfileMappingPoliciesList{}
+
 	case ActivityIdentity.Name:
 		return &ActivitiesList{}
+	case APIAuthorizationPolicyIdentity.Name:
+		return &APIAuthorizationPoliciesList{}
+	case APICheckIdentity.Name:
+		return &APIChecksList{}
+	case DependencyMapIdentity.Name:
+		return &DependencyMapsList{}
+	case EnforcerIdentity.Name:
+		return &EnforcersList{}
+	case EnforcerProfileIdentity.Name:
+		return &EnforcerProfilesList{}
+	case EnforcerProfileMappingPolicyIdentity.Name:
+		return &EnforcerProfileMappingPoliciesList{}
+	case ExternalAccessIdentity.Name:
+		return &ExternalAccessList{}
+	case ExternalServiceIdentity.Name:
+		return &ExternalServicesList{}
+	case FileAccessIdentity.Name:
+		return &FileAccessList{}
+	case FileAccessPolicyIdentity.Name:
+		return &FileAccessPoliciesList{}
+	case FilePathIdentity.Name:
+		return &FilePathsList{}
+	case FlowRecordIdentity.Name:
+		return &FlowRecordsList{}
+	case FlowStatisticIdentity.Name:
+		return &FlowStatisticsList{}
+	case HookPolicyIdentity.Name:
+		return &HookPoliciesList{}
+	case MessageIdentity.Name:
+		return &MessagesList{}
+	case NamespaceIdentity.Name:
+		return &NamespacesList{}
+	case NamespaceMappingPolicyIdentity.Name:
+		return &NamespaceMappingPoliciesList{}
 	case NetworkAccessPolicyIdentity.Name:
 		return &NetworkAccessPoliciesList{}
+	case PokeIdentity.Name:
+		return &PokesList{}
+	case PolicyIdentity.Name:
+		return &PoliciesList{}
+	case PolicyRuleIdentity.Name:
+		return &PolicyRulesList{}
+	case ProcessingUnitIdentity.Name:
+		return &ProcessingUnitsList{}
+	case QuotaPolicyIdentity.Name:
+		return &QuotaPoliciesList{}
+	case RenderedPolicyIdentity.Name:
+		return &RenderedPoliciesList{}
+	case RoleIdentity.Name:
+		return &RolesList{}
+	case RootIdentity.Name:
+		return &RootsList{}
+	case SuggestedPolicyIdentity.Name:
+		return &SuggestedPoliciesList{}
+	case SystemCallIdentity.Name:
+		return &SystemCallsList{}
+	case TabulationIdentity.Name:
+		return &TabulationsList{}
+	case TagIdentity.Name:
+		return &TagsList{}
+	case VulnerabilityIdentity.Name:
+		return &VulnerabilitiesList{}
 	default:
 		return nil
 	}
@@ -262,68 +267,71 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiable {
 
 	switch category {
-	case APICheckIdentity.Category:
-		return &APIChecksList{}
-	case HookPolicyIdentity.Category:
-		return &HookPoliciesList{}
-	case FlowRecordIdentity.Category:
-		return &FlowRecordsList{}
-	case NamespaceMappingPolicyIdentity.Category:
-		return &NamespaceMappingPoliciesList{}
-	case ExternalAccessIdentity.Category:
-		return &ExternalAccessList{}
-	case SystemCallIdentity.Category:
-		return &SystemCallsList{}
-	case TagIdentity.Category:
-		return &TagsList{}
-	case EnforcerIdentity.Category:
-		return &EnforcersList{}
-	case MessageIdentity.Category:
-		return &MessagesList{}
-	case PokeIdentity.Category:
-		return &PokesList{}
-	case FilePathIdentity.Category:
-		return &FilePathsList{}
-	case FileAccessIdentity.Category:
-		return &FileAccessList{}
-	case APIAuthorizationPolicyIdentity.Category:
-		return &APIAuthorizationPoliciesList{}
-	case NamespaceIdentity.Category:
-		return &NamespacesList{}
-	case PolicyRuleIdentity.Category:
-		return &PolicyRulesList{}
-	case ExternalServiceIdentity.Category:
-		return &ExternalServicesList{}
-	case RoleIdentity.Category:
-		return &RolesList{}
-	case PolicyIdentity.Category:
-		return &PoliciesList{}
-	case FlowStatisticIdentity.Category:
-		return &FlowStatisticsList{}
-	case SuggestedPolicyIdentity.Category:
-		return &SuggestedPoliciesList{}
-	case TabulationIdentity.Category:
-		return &TabulationsList{}
-	case QuotaPolicyIdentity.Category:
-		return &QuotaPoliciesList{}
-	case FileAccessPolicyIdentity.Category:
-		return &FileAccessPoliciesList{}
-	case EnforcerProfileIdentity.Category:
-		return &EnforcerProfilesList{}
-	case RenderedPolicyIdentity.Category:
-		return &RenderedPoliciesList{}
-	case ProcessingUnitIdentity.Category:
-		return &ProcessingUnitsList{}
-	case DependencyMapIdentity.Category:
-		return &DependencyMapsList{}
-	case VulnerabilityIdentity.Category:
-		return &VulnerabilitiesList{}
-	case EnforcerProfileMappingPolicyIdentity.Category:
-		return &EnforcerProfileMappingPoliciesList{}
+
 	case ActivityIdentity.Category:
 		return &ActivitiesList{}
+	case APIAuthorizationPolicyIdentity.Category:
+		return &APIAuthorizationPoliciesList{}
+	case APICheckIdentity.Category:
+		return &APIChecksList{}
+	case DependencyMapIdentity.Category:
+		return &DependencyMapsList{}
+	case EnforcerIdentity.Category:
+		return &EnforcersList{}
+	case EnforcerProfileIdentity.Category:
+		return &EnforcerProfilesList{}
+	case EnforcerProfileMappingPolicyIdentity.Category:
+		return &EnforcerProfileMappingPoliciesList{}
+	case ExternalAccessIdentity.Category:
+		return &ExternalAccessList{}
+	case ExternalServiceIdentity.Category:
+		return &ExternalServicesList{}
+	case FileAccessIdentity.Category:
+		return &FileAccessList{}
+	case FileAccessPolicyIdentity.Category:
+		return &FileAccessPoliciesList{}
+	case FilePathIdentity.Category:
+		return &FilePathsList{}
+	case FlowRecordIdentity.Category:
+		return &FlowRecordsList{}
+	case FlowStatisticIdentity.Category:
+		return &FlowStatisticsList{}
+	case HookPolicyIdentity.Category:
+		return &HookPoliciesList{}
+	case MessageIdentity.Category:
+		return &MessagesList{}
+	case NamespaceIdentity.Category:
+		return &NamespacesList{}
+	case NamespaceMappingPolicyIdentity.Category:
+		return &NamespaceMappingPoliciesList{}
 	case NetworkAccessPolicyIdentity.Category:
 		return &NetworkAccessPoliciesList{}
+	case PokeIdentity.Category:
+		return &PokesList{}
+	case PolicyIdentity.Category:
+		return &PoliciesList{}
+	case PolicyRuleIdentity.Category:
+		return &PolicyRulesList{}
+	case ProcessingUnitIdentity.Category:
+		return &ProcessingUnitsList{}
+	case QuotaPolicyIdentity.Category:
+		return &QuotaPoliciesList{}
+	case RenderedPolicyIdentity.Category:
+		return &RenderedPoliciesList{}
+	case RoleIdentity.Category:
+		return &RolesList{}
+	case RootIdentity.Category:
+		return &RootsList{}
+	case SuggestedPolicyIdentity.Category:
+		return &SuggestedPoliciesList{}
+	case SystemCallIdentity.Category:
+		return &SystemCallsList{}
+	case TabulationIdentity.Category:
+		return &TabulationsList{}
+	case TagIdentity.Category:
+		return &TagsList{}
+	case VulnerabilityIdentity.Category:
+		return &VulnerabilitiesList{}
 	default:
 		return nil
 	}
@@ -333,64 +341,80 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
-		APICheckIdentity,
-		HookPolicyIdentity,
-		FlowRecordIdentity,
-		NamespaceMappingPolicyIdentity,
-		ExternalAccessIdentity,
-		SystemCallIdentity,
-		TagIdentity,
-		EnforcerIdentity,
-		MessageIdentity,
-		PokeIdentity,
-		FilePathIdentity,
-		FileAccessIdentity,
-		APIAuthorizationPolicyIdentity,
-		NamespaceIdentity,
-		PolicyRuleIdentity,
-		ExternalServiceIdentity,
-		RoleIdentity,
-		PolicyIdentity,
-		FlowStatisticIdentity,
-		SuggestedPolicyIdentity,
-		TabulationIdentity,
-		QuotaPolicyIdentity,
-		FileAccessPolicyIdentity,
-		EnforcerProfileIdentity,
-		RenderedPolicyIdentity,
-		ProcessingUnitIdentity,
-		DependencyMapIdentity,
-		VulnerabilityIdentity,
-		EnforcerProfileMappingPolicyIdentity,
 		ActivityIdentity,
-		RootIdentity,
+		APIAuthorizationPolicyIdentity,
+		APICheckIdentity,
+		DependencyMapIdentity,
+		EnforcerIdentity,
+		EnforcerProfileIdentity,
+		EnforcerProfileMappingPolicyIdentity,
+		ExternalAccessIdentity,
+		ExternalServiceIdentity,
+		FileAccessIdentity,
+		FileAccessPolicyIdentity,
+		FilePathIdentity,
+		FlowRecordIdentity,
+		FlowStatisticIdentity,
+		HookPolicyIdentity,
+		MessageIdentity,
+		NamespaceIdentity,
+		NamespaceMappingPolicyIdentity,
 		NetworkAccessPolicyIdentity,
+		PokeIdentity,
+		PolicyIdentity,
+		PolicyRuleIdentity,
+		ProcessingUnitIdentity,
+		QuotaPolicyIdentity,
+		RenderedPolicyIdentity,
+		RoleIdentity,
+		RootIdentity,
+		SuggestedPolicyIdentity,
+		SystemCallIdentity,
+		TabulationIdentity,
+		TagIdentity,
+		VulnerabilityIdentity,
 	}
 }
 
 var aliasesMap = map[string]elemental.Identity{
+	"apiauths":   APIAuthorizationPolicyIdentity,
+	"apiauth":    APIAuthorizationPolicyIdentity,
+	"depmap":     DependencyMapIdentity,
+	"depmaps":    DependencyMapIdentity,
+	"profile":    EnforcerProfileIdentity,
+	"profiles":   EnforcerProfileIdentity,
+	"srvpols":    EnforcerProfileMappingPolicyIdentity,
+	"srvpol":     EnforcerProfileMappingPolicyIdentity,
+	"extac":      ExternalAccessIdentity,
+	"extacs":     ExternalAccessIdentity,
+	"extsrv":     ExternalServiceIdentity,
+	"extsrvs":    ExternalServiceIdentity,
+	"fp":         FilePathIdentity,
+	"fps":        FilePathIdentity,
+	"flowrecs":   FlowRecordIdentity,
+	"flowrec":    FlowRecordIdentity,
+	"flowstats":  FlowStatisticIdentity,
+	"flowstat":   FlowStatisticIdentity,
 	"hook":       HookPolicyIdentity,
 	"hooks":      HookPolicyIdentity,
 	"hookpol":    HookPolicyIdentity,
 	"hookpols":   HookPolicyIdentity,
-	"flowrecs":   FlowRecordIdentity,
-	"flowrec":    FlowRecordIdentity,
+	"mess":       MessageIdentity,
+	"ns":         NamespaceIdentity,
 	"nspolicy":   NamespaceMappingPolicyIdentity,
 	"nspolicies": NamespaceMappingPolicyIdentity,
 	"nsmap":      NamespaceMappingPolicyIdentity,
 	"nsmaps":     NamespaceMappingPolicyIdentity,
-	"extac":      ExternalAccessIdentity,
-	"extacs":     ExternalAccessIdentity,
-	"mess":       MessageIdentity,
-	"fp":         FilePathIdentity,
-	"fps":        FilePathIdentity,
-	"apiauths":   APIAuthorizationPolicyIdentity,
-	"apiauth":    APIAuthorizationPolicyIdentity,
-	"ns":         NamespaceIdentity,
-	"extsrv":     ExternalServiceIdentity,
-	"extsrvs":    ExternalServiceIdentity,
-	"flowstats":  FlowStatisticIdentity,
-	"flowstat":   FlowStatisticIdentity,
+	"netpol":     NetworkAccessPolicyIdentity,
+	"netpols":    NetworkAccessPolicyIdentity,
+	"pu":         ProcessingUnitIdentity,
+	"pus":        ProcessingUnitIdentity,
+	"quota":      QuotaPolicyIdentity,
+	"quotas":     QuotaPolicyIdentity,
+	"quotapol":   QuotaPolicyIdentity,
+	"quotapols":  QuotaPolicyIdentity,
+	"rpol":       RenderedPolicyIdentity,
+	"rpols":      RenderedPolicyIdentity,
 	"sugpol":     SuggestedPolicyIdentity,
 	"sugpols":    SuggestedPolicyIdentity,
 	"sugg":       SuggestedPolicyIdentity,
@@ -399,26 +423,10 @@ var aliasesMap = map[string]elemental.Identity{
 	"tables":     TabulationIdentity,
 	"tabs":       TabulationIdentity,
 	"tab":        TabulationIdentity,
-	"quota":      QuotaPolicyIdentity,
-	"quotas":     QuotaPolicyIdentity,
-	"quotapol":   QuotaPolicyIdentity,
-	"quotapols":  QuotaPolicyIdentity,
-	"profile":    EnforcerProfileIdentity,
-	"profiles":   EnforcerProfileIdentity,
-	"rpol":       RenderedPolicyIdentity,
-	"rpols":      RenderedPolicyIdentity,
-	"pu":         ProcessingUnitIdentity,
-	"pus":        ProcessingUnitIdentity,
-	"depmap":     DependencyMapIdentity,
-	"depmaps":    DependencyMapIdentity,
 	"vulns":      VulnerabilityIdentity,
 	"vul":        VulnerabilityIdentity,
 	"vuln":       VulnerabilityIdentity,
 	"vuls":       VulnerabilityIdentity,
-	"srvpols":    EnforcerProfileMappingPolicyIdentity,
-	"srvpol":     EnforcerProfileMappingPolicyIdentity,
-	"netpol":     NetworkAccessPolicyIdentity,
-	"netpols":    NetworkAccessPolicyIdentity,
 }
 
 // IdentityFromAlias returns the Identity associated to the given alias.
@@ -431,8 +439,61 @@ func IdentityFromAlias(alias string) elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
+	case ActivityIdentity:
+		return []string{}
+	case APIAuthorizationPolicyIdentity:
+		return []string{
+			"apiauths",
+			"apiauth",
+		}
 	case APICheckIdentity:
 		return []string{}
+	case DependencyMapIdentity:
+		return []string{
+			"depmap",
+			"depmaps",
+		}
+	case EnforcerIdentity:
+		return []string{}
+	case EnforcerProfileIdentity:
+		return []string{
+			"profile",
+			"profiles",
+		}
+	case EnforcerProfileMappingPolicyIdentity:
+		return []string{
+			"srvpols",
+			"srvpol",
+		}
+	case ExternalAccessIdentity:
+		return []string{
+			"extac",
+			"extacs",
+		}
+	case ExternalServiceIdentity:
+		return []string{
+			"extsrv",
+			"extsrvs",
+		}
+	case FileAccessIdentity:
+		return []string{}
+	case FileAccessPolicyIdentity:
+		return []string{}
+	case FilePathIdentity:
+		return []string{
+			"fp",
+			"fps",
+		}
+	case FlowRecordIdentity:
+		return []string{
+			"flowrecs",
+			"flowrec",
+		}
+	case FlowStatisticIdentity:
+		return []string{
+			"flowstats",
+			"flowstat",
+		}
 	case HookPolicyIdentity:
 		return []string{
 			"hook",
@@ -440,10 +501,13 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"hookpol",
 			"hookpols",
 		}
-	case FlowRecordIdentity:
+	case MessageIdentity:
 		return []string{
-			"flowrecs",
-			"flowrec",
+			"mess",
+		}
+	case NamespaceIdentity:
+		return []string{
+			"ns",
 		}
 	case NamespaceMappingPolicyIdentity:
 		return []string{
@@ -452,68 +516,21 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"nsmap",
 			"nsmaps",
 		}
-	case ExternalAccessIdentity:
+	case NetworkAccessPolicyIdentity:
 		return []string{
-			"extac",
-			"extacs",
-		}
-	case SystemCallIdentity:
-		return []string{}
-	case TagIdentity:
-		return []string{}
-	case EnforcerIdentity:
-		return []string{}
-	case MessageIdentity:
-		return []string{
-			"mess",
+			"netpol",
+			"netpols",
 		}
 	case PokeIdentity:
 		return []string{}
-	case FilePathIdentity:
-		return []string{
-			"fp",
-			"fps",
-		}
-	case FileAccessIdentity:
-		return []string{}
-	case APIAuthorizationPolicyIdentity:
-		return []string{
-			"apiauths",
-			"apiauth",
-		}
-	case NamespaceIdentity:
-		return []string{
-			"ns",
-		}
-	case PolicyRuleIdentity:
-		return []string{}
-	case ExternalServiceIdentity:
-		return []string{
-			"extsrv",
-			"extsrvs",
-		}
-	case RoleIdentity:
-		return []string{}
 	case PolicyIdentity:
 		return []string{}
-	case FlowStatisticIdentity:
+	case PolicyRuleIdentity:
+		return []string{}
+	case ProcessingUnitIdentity:
 		return []string{
-			"flowstats",
-			"flowstat",
-		}
-	case SuggestedPolicyIdentity:
-		return []string{
-			"sugpol",
-			"sugpols",
-			"sugg",
-			"suggs",
-		}
-	case TabulationIdentity:
-		return []string{
-			"table",
-			"tables",
-			"tabs",
-			"tab",
+			"pu",
+			"pus",
 		}
 	case QuotaPolicyIdentity:
 		return []string{
@@ -522,48 +539,39 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"quotapol",
 			"quotapols",
 		}
-	case FileAccessPolicyIdentity:
-		return []string{}
-	case EnforcerProfileIdentity:
-		return []string{
-			"profile",
-			"profiles",
-		}
 	case RenderedPolicyIdentity:
 		return []string{
 			"rpol",
 			"rpols",
 		}
-	case ProcessingUnitIdentity:
+	case RoleIdentity:
+		return []string{}
+	case RootIdentity:
+		return []string{}
+	case SuggestedPolicyIdentity:
 		return []string{
-			"pu",
-			"pus",
+			"sugpol",
+			"sugpols",
+			"sugg",
+			"suggs",
 		}
-	case DependencyMapIdentity:
+	case SystemCallIdentity:
+		return []string{}
+	case TabulationIdentity:
 		return []string{
-			"depmap",
-			"depmaps",
+			"table",
+			"tables",
+			"tabs",
+			"tab",
 		}
+	case TagIdentity:
+		return []string{}
 	case VulnerabilityIdentity:
 		return []string{
 			"vulns",
 			"vul",
 			"vuln",
 			"vuls",
-		}
-	case EnforcerProfileMappingPolicyIdentity:
-		return []string{
-			"srvpols",
-			"srvpol",
-		}
-	case ActivityIdentity:
-		return []string{}
-	case RootIdentity:
-		return []string{}
-	case NetworkAccessPolicyIdentity:
-		return []string{
-			"netpol",
-			"netpols",
 		}
 	}
 

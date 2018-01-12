@@ -1,11 +1,13 @@
 package highwindmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+)
 
-// LogIdentity represents the Identity of the object
+// LogIdentity represents the Identity of the object.
 var LogIdentity = elemental.Identity{
 	Name:     "log",
 	Category: "logs",
@@ -93,11 +95,11 @@ func (o *Log) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Log) SetIdentifier(ID string) {
+func (o *Log) SetIdentifier(id string) {
 
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Log) Version() int {
 
 	return 1

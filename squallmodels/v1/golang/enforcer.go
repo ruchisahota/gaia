@@ -1,11 +1,13 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"time"
 
-import "time"
+	"github.com/aporeto-inc/elemental"
+)
 
 // EnforcerCertificateStatusValue represents the possible values for attribute "certificateStatus".
 type EnforcerCertificateStatusValue string
@@ -38,7 +40,7 @@ const (
 	EnforcerOperationalStatusUnknown EnforcerOperationalStatusValue = "Unknown"
 )
 
-// EnforcerIdentity represents the Identity of the object
+// EnforcerIdentity represents the Identity of the object.
 var EnforcerIdentity = elemental.Identity{
 	Name:     "enforcer",
 	Category: "enforcers",
@@ -101,15 +103,6 @@ type Enforcer struct {
 	// FQDN contains the fqdn of the server where the enforcer is running.
 	FQDN string `json:"FQDN" bson:"fqdn"`
 
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
-
-	// Annotation stores additional information about an entity
-	Annotations map[string][]string `json:"annotations" bson:"annotations"`
-
-	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
-
 	// Certificate is the certificate of the enforcer.
 	Certificate string `json:"certificate" bson:"certificate"`
 
@@ -134,14 +127,8 @@ type Enforcer struct {
 	// CollectedInfo represents the latest info collected by the enforcer.
 	CollectedInfo map[string]string `json:"collectedInfo" bson:"collectedinfo"`
 
-	// CreatedTime is the time at which the object was created
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
 	// CurrentVersion holds the enforcerd binary version that is currently associated to this object.
 	CurrentVersion string `json:"currentVersion" bson:"currentversion"`
-
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
 
 	// Contains the ID of the profile used by the instance of enforcerd.
 	EnforcerProfileID string `json:"enforcerProfileID" bson:"enforcerprofileid"`
@@ -155,23 +142,8 @@ type Enforcer struct {
 	// LocalCA contains the initial chain of trust for the enforcer. This valud is only given when you retrieve a single enforcer.
 	LocalCA string `json:"localCA" bson:"-"`
 
-	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata"`
-
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
-
-	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" bson:"namespace"`
-
-	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
-
 	// OperationalStatus tells the status of the enforcer.
 	OperationalStatus EnforcerOperationalStatusValue `json:"operationalStatus" bson:"-"`
-
-	// Protected defines if the object is protected.
-	Protected bool `json:"protected" bson:"protected"`
 
 	// PublicToken is the public token of the server that will be included in the datapath and its signed by the private CA.
 	PublicToken string `json:"publicToken" bson:"-"`
@@ -179,8 +151,38 @@ type Enforcer struct {
 	// Tells if the the version of enforcerd is outdated and should be updated.
 	UpdateAvailable bool `json:"updateAvailable" bson:"updateavailable"`
 
+	// Annotation stores additional information about an entity
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
+
+	// CreatedTime is the time at which the object was created
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace" bson:"namespace"`
+
+	// NormalizedTags contains the list of normalized tags of the entities
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
+
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" bson:"protected"`
+
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -214,12 +216,12 @@ func (o *Enforcer) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Enforcer) SetIdentifier(ID string) {
+func (o *Enforcer) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Enforcer) Version() int {
 
 	return 1
@@ -243,89 +245,106 @@ func (o *Enforcer) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *Enforcer) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *Enforcer) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *Enforcer) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *Enforcer) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *Enforcer) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *Enforcer) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetMetadata returns the metadata of the receiver
-func (o *Enforcer) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *Enforcer) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
-func (o *Enforcer) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *Enforcer) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *Enforcer) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *Enforcer) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *Enforcer) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *Enforcer) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *Enforcer) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *Enforcer) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *Enforcer) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *Enforcer) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *Enforcer) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
+// GetName returns the Name of the receiver.
+func (o *Enforcer) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *Enforcer) SetName(name string) {
+
+	o.Name = name
 }
 
 // Validate valides the current information stored into the structure.
@@ -488,7 +507,7 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"CertificateStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
-		DefaultValue:   EnforcerCertificateStatusValue("VALID"),
+		DefaultValue:   EnforcerCertificateStatusValid,
 		Description:    `CertificateStatus indicates if the certificate is valid.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -652,7 +671,7 @@ var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 	"OperationalStatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Connected", "Disconnected", "Initialized", "Unknown"},
 		Autogenerated:  true,
-		DefaultValue:   EnforcerOperationalStatusValue("Initialized"),
+		DefaultValue:   EnforcerOperationalStatusInitialized,
 		Description:    `OperationalStatus tells the status of the enforcer.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -814,7 +833,7 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"certificatestatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"RENEW", "REVOKED", "VALID"},
-		DefaultValue:   EnforcerCertificateStatusValue("VALID"),
+		DefaultValue:   EnforcerCertificateStatusValid,
 		Description:    `CertificateStatus indicates if the certificate is valid.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -978,7 +997,7 @@ var EnforcerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 	"operationalstatus": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Connected", "Disconnected", "Initialized", "Unknown"},
 		Autogenerated:  true,
-		DefaultValue:   EnforcerOperationalStatusValue("Initialized"),
+		DefaultValue:   EnforcerOperationalStatusInitialized,
 		Description:    `OperationalStatus tells the status of the enforcer.`,
 		Exposed:        true,
 		Filterable:     true,

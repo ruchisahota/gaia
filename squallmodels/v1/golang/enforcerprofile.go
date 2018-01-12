@@ -1,11 +1,23 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
+// EnforcerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
+type EnforcerProfileDockerSocketTypeValue string
+
+const (
+	// EnforcerProfileDockerSocketTypeTcp represents the value tcp.
+	EnforcerProfileDockerSocketTypeTcp EnforcerProfileDockerSocketTypeValue = "tcp"
+
+	// EnforcerProfileDockerSocketTypeUnix represents the value unix.
+	EnforcerProfileDockerSocketTypeUnix EnforcerProfileDockerSocketTypeValue = "unix"
+)
 
 // EnforcerProfileMetadataExtractorValue represents the possible values for attribute "metadataExtractor".
 type EnforcerProfileMetadataExtractorValue string
@@ -21,18 +33,7 @@ const (
 	EnforcerProfileMetadataExtractorKubernetes EnforcerProfileMetadataExtractorValue = "Kubernetes"
 )
 
-// EnforcerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
-type EnforcerProfileDockerSocketTypeValue string
-
-const (
-	// EnforcerProfileDockerSocketTypeTcp represents the value tcp.
-	EnforcerProfileDockerSocketTypeTcp EnforcerProfileDockerSocketTypeValue = "tcp"
-
-	// EnforcerProfileDockerSocketTypeUnix represents the value unix.
-	EnforcerProfileDockerSocketTypeUnix EnforcerProfileDockerSocketTypeValue = "unix"
-)
-
-// EnforcerProfileIdentity represents the Identity of the object
+// EnforcerProfileIdentity represents the Identity of the object.
 var EnforcerProfileIdentity = elemental.Identity{
 	Name:     "enforcerprofile",
 	Category: "enforcerprofiles",
@@ -92,9 +93,6 @@ func (o EnforcerProfilesList) Version() int {
 
 // EnforcerProfile represents the model of a enforcerprofile
 type EnforcerProfile struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
-
 	// IptablesMarkValue is the mark value to be used in an iptables implementation.
 	IPTablesMarkValue int `json:"IPTablesMarkValue" bson:"iptablesmarkvalue"`
 
@@ -103,18 +101,6 @@ type EnforcerProfile struct {
 
 	// PUHeartbeatInterval configures the heart beat interval.
 	PUHeartbeatInterval string `json:"PUHeartbeatInterval" bson:"puheartbeatinterval"`
-
-	// Annotation stores additional information about an entity
-	Annotations map[string][]string `json:"annotations" bson:"annotations"`
-
-	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
-
-	// CreatedTime is the time at which the object was created
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
 
 	// DockerSocketAddress is the address of the docker daemon.
 	DockerSocketAddress string `json:"dockerSocketAddress" bson:"dockersocketaddress"`
@@ -140,20 +126,8 @@ type EnforcerProfile struct {
 	// Select which metadata extractor to use to process new processing units.
 	MetadataExtractor EnforcerProfileMetadataExtractorValue `json:"metadataExtractor" bson:"metadataextractor"`
 
-	// Name is the name of the entity
-	Name string `json:"name" bson:"name"`
-
-	// Namespace tag attached to an entity
-	Namespace string `json:"namespace" bson:"namespace"`
-
-	// NormalizedTags contains the list of normalized tags of the entities
-	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
-
 	// PolicySynchronizationInterval configures how often the policy will be resynchronized.
 	PolicySynchronizationInterval string `json:"policySynchronizationInterval" bson:"policysynchronizationinterval"`
-
-	// Protected defines if the object is protected.
-	Protected bool `json:"protected" bson:"protected"`
 
 	// ProxyListenAddress is the address the enforcer should use to listen for API calls. It can be a port (example :9443) or socket path (example: unix:/var/run/aporeto.sock)
 	ProxyListenAddress string `json:"proxyListenAddress" bson:"proxylistenaddress"`
@@ -185,8 +159,35 @@ type EnforcerProfile struct {
 	// List of trusted CA. If empty the main chain of trust will be used.
 	TrustedCAs []string `json:"trustedCAs" bson:"trustedcas"`
 
+	// Annotation stores additional information about an entity
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
+
+	// CreatedTime is the time at which the object was created
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
+
+	// Namespace tag attached to an entity
+	Namespace string `json:"namespace" bson:"namespace"`
+
+	// NormalizedTags contains the list of normalized tags of the entities
+	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags"`
+
+	// Protected defines if the object is protected.
+	Protected bool `json:"protected" bson:"protected"`
+
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// Name is the name of the entity
+	Name string `json:"name" bson:"name"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -198,17 +199,17 @@ func NewEnforcerProfile() *EnforcerProfile {
 
 	return &EnforcerProfile{
 		ModelVersion:                  1,
-		IPTablesMarkValue:             1000,
-		PUBookkeepingInterval:         "15m",
-		PUHeartbeatInterval:           "5s",
 		Annotations:                   map[string][]string{},
 		AssociatedTags:                []string{},
 		DockerSocketAddress:           "/var/run/docker.sock",
 		DockerSocketType:              "unix",
+		IPTablesMarkValue:             1000,
 		KubernetesSupportEnabled:      false,
 		LinuxProcessesSupportEnabled:  true,
 		MetadataExtractor:             "Docker",
 		NormalizedTags:                []string{},
+		PUBookkeepingInterval:         "15m",
+		PUHeartbeatInterval:           "5s",
 		PolicySynchronizationInterval: "10m",
 		ProxyListenAddress:            ":9443",
 		ReceiverNumberOfQueues:        4,
@@ -235,12 +236,12 @@ func (o *EnforcerProfile) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *EnforcerProfile) SetIdentifier(ID string) {
+func (o *EnforcerProfile) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *EnforcerProfile) Version() int {
 
 	return 1
@@ -264,79 +265,94 @@ func (o *EnforcerProfile) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
+// GetAnnotations returns the Annotations of the receiver.
 func (o *EnforcerProfile) GetAnnotations() map[string][]string {
+
 	return o.Annotations
 }
 
-// SetAnnotations set the given annotations of the receiver
+// SetAnnotations sets the given Annotations of the receiver.
 func (o *EnforcerProfile) SetAnnotations(annotations map[string][]string) {
+
 	o.Annotations = annotations
 }
 
-// GetAssociatedTags returns the associatedTags of the receiver
+// GetAssociatedTags returns the AssociatedTags of the receiver.
 func (o *EnforcerProfile) GetAssociatedTags() []string {
+
 	return o.AssociatedTags
 }
 
-// SetAssociatedTags set the given associatedTags of the receiver
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
 func (o *EnforcerProfile) SetAssociatedTags(associatedTags []string) {
+
 	o.AssociatedTags = associatedTags
 }
 
-// GetCreateTime returns the createTime of the receiver
+// GetCreateTime returns the CreateTime of the receiver.
 func (o *EnforcerProfile) GetCreateTime() time.Time {
+
 	return o.CreateTime
 }
 
-// SetCreateTime set the given createTime of the receiver
+// SetCreateTime sets the given CreateTime of the receiver.
 func (o *EnforcerProfile) SetCreateTime(createTime time.Time) {
+
 	o.CreateTime = createTime
 }
 
-// GetName returns the name of the receiver
-func (o *EnforcerProfile) GetName() string {
-	return o.Name
-}
-
-// SetName set the given name of the receiver
-func (o *EnforcerProfile) SetName(name string) {
-	o.Name = name
-}
-
-// GetNamespace returns the namespace of the receiver
+// GetNamespace returns the Namespace of the receiver.
 func (o *EnforcerProfile) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *EnforcerProfile) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *EnforcerProfile) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *EnforcerProfile) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *EnforcerProfile) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *EnforcerProfile) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *EnforcerProfile) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetName returns the Name of the receiver.
+func (o *EnforcerProfile) GetName() string {
+
+	return o.Name
+}
+
+// SetName sets the given Name of the receiver.
+func (o *EnforcerProfile) SetName(name string) {
+
+	o.Name = name
 }
 
 // Validate valides the current information stored into the structure.
@@ -345,11 +361,7 @@ func (o *EnforcerProfile) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateMaximumInt("IPTablesMarkValue", o.IPTablesMarkValue, 65000, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMinimumInt("IPTablesMarkValue", o.IPTablesMarkValue, 0, false); err != nil {
+	if err := elemental.ValidateMaximumInt("IPTablesMarkValue", o.IPTablesMarkValue, int(65000), false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -369,14 +381,6 @@ func (o *EnforcerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidatePattern("policySynchronizationInterval", o.PolicySynchronizationInterval, `^[0-9]+[smh]$`, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -385,51 +389,55 @@ func (o *EnforcerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("receiverNumberOfQueues", o.ReceiverNumberOfQueues, 16, false); err != nil {
+	if err := elemental.ValidateMaximumInt("receiverNumberOfQueues", o.ReceiverNumberOfQueues, int(16), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("receiverNumberOfQueues", o.ReceiverNumberOfQueues, 1, false); err != nil {
+	if err := elemental.ValidateMinimumInt("receiverNumberOfQueues", o.ReceiverNumberOfQueues, int(1), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("receiverQueue", o.ReceiverQueue, 1000, false); err != nil {
+	if err := elemental.ValidateMaximumInt("receiverQueue", o.ReceiverQueue, int(1000), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("receiverQueue", o.ReceiverQueue, 0, false); err != nil {
+	if err := elemental.ValidateMaximumInt("receiverQueueSize", o.ReceiverQueueSize, int(5000), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("receiverQueueSize", o.ReceiverQueueSize, 5000, false); err != nil {
+	if err := elemental.ValidateMinimumInt("receiverQueueSize", o.ReceiverQueueSize, int(1), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("receiverQueueSize", o.ReceiverQueueSize, 1, false); err != nil {
+	if err := elemental.ValidateMaximumInt("transmitterNumberOfQueues", o.TransmitterNumberOfQueues, int(16), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("transmitterNumberOfQueues", o.TransmitterNumberOfQueues, 16, false); err != nil {
+	if err := elemental.ValidateMinimumInt("transmitterNumberOfQueues", o.TransmitterNumberOfQueues, int(1), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("transmitterNumberOfQueues", o.TransmitterNumberOfQueues, 1, false); err != nil {
+	if err := elemental.ValidateMaximumInt("transmitterQueue", o.TransmitterQueue, int(1000), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("transmitterQueue", o.TransmitterQueue, 1000, false); err != nil {
+	if err := elemental.ValidateMinimumInt("transmitterQueue", o.TransmitterQueue, int(1), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("transmitterQueue", o.TransmitterQueue, 1, false); err != nil {
+	if err := elemental.ValidateMaximumInt("transmitterQueueSize", o.TransmitterQueueSize, int(1000), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("transmitterQueueSize", o.TransmitterQueueSize, 1000, false); err != nil {
+	if err := elemental.ValidateMinimumInt("transmitterQueueSize", o.TransmitterQueueSize, int(1), false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMinimumInt("transmitterQueueSize", o.TransmitterQueueSize, 1, false); err != nil {
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -577,7 +585,7 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"DockerSocketType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"tcp", "unix"},
-		DefaultValue:   EnforcerProfileDockerSocketTypeValue("unix"),
+		DefaultValue:   EnforcerProfileDockerSocketTypeUnix,
 		Description:    `DockerSocketType is the type of socket to use to talk to the docker daemon.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -639,7 +647,7 @@ var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"MetadataExtractor": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Docker", "ECS", "Kubernetes"},
-		DefaultValue:   EnforcerProfileMetadataExtractorValue("Docker"),
+		DefaultValue:   EnforcerProfileMetadataExtractorDocker,
 		Description:    `Select which metadata extractor to use to process new processing units.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -972,7 +980,7 @@ var EnforcerProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 	},
 	"dockersockettype": elemental.AttributeSpecification{
 		AllowedChoices: []string{"tcp", "unix"},
-		DefaultValue:   EnforcerProfileDockerSocketTypeValue("unix"),
+		DefaultValue:   EnforcerProfileDockerSocketTypeUnix,
 		Description:    `DockerSocketType is the type of socket to use to talk to the docker daemon.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -1034,7 +1042,7 @@ var EnforcerProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 	},
 	"metadataextractor": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Docker", "ECS", "Kubernetes"},
-		DefaultValue:   EnforcerProfileMetadataExtractorValue("Docker"),
+		DefaultValue:   EnforcerProfileMetadataExtractorDocker,
 		Description:    `Select which metadata extractor to use to process new processing units.`,
 		Exposed:        true,
 		Filterable:     true,

@@ -1,13 +1,14 @@
 package squallmodels
 
-import "fmt"
-import "github.com/aporeto-inc/elemental"
+import (
+	"fmt"
+	"sync"
 
-import "sync"
+	"github.com/aporeto-inc/elemental"
+	"time"
+)
 
-import "time"
-
-// NamespaceIdentity represents the Identity of the object
+// NamespaceIdentity represents the Identity of the object.
 var NamespaceIdentity = elemental.Identity{
 	Name:     "namespace",
 	Category: "namespaces",
@@ -65,23 +66,8 @@ func (o NamespacesList) Version() int {
 
 // Namespace represents the model of a namespace
 type Namespace struct {
-	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
-
-	// Annotation stores additional information about an entity
-	Annotations map[string][]string `json:"annotations" bson:"annotations"`
-
 	// AssociatedLocalCAID holds the remote ID of the certificate authority to use.
 	AssociatedLocalCAID string `json:"-" bson:"associatedlocalcaid"`
-
-	// AssociatedTags are the list of tags attached to an entity
-	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
-
-	// CreatedTime is the time at which the object was created
-	CreateTime time.Time `json:"createTime" bson:"createtime"`
-
-	// Description is the description of the object.
-	Description string `json:"description" bson:"description"`
 
 	// LocalCA holds the eventual certificate authority used by this namespace.
 	LocalCA string `json:"localCA" bson:"localca"`
@@ -89,11 +75,17 @@ type Namespace struct {
 	// LocalCAEnabled defines if the namespace should use a local Certificate Authority. Switching it off and on again will regenerate a new CA.
 	LocalCAEnabled bool `json:"localCAEnabled" bson:"localcaenabled"`
 
-	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata"`
-
 	// Name is the name of the namespace.
 	Name string `json:"name" bson:"name"`
+
+	// Annotation stores additional information about an entity
+	Annotations map[string][]string `json:"annotations" bson:"annotations"`
+
+	// AssociatedTags are the list of tags attached to an entity
+	AssociatedTags []string `json:"associatedTags" bson:"associatedtags"`
+
+	// CreatedTime is the time at which the object was created
+	CreateTime time.Time `json:"createTime" bson:"createtime"`
 
 	// Namespace tag attached to an entity
 	Namespace string `json:"namespace" bson:"namespace"`
@@ -106,6 +98,15 @@ type Namespace struct {
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime"`
+
+	// Description is the description of the object.
+	Description string `json:"description" bson:"description"`
+
+	// ID is the identifier of the object.
+	ID string `json:"ID" bson:"_id"`
+
+	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
@@ -137,12 +138,12 @@ func (o *Namespace) Identifier() string {
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Namespace) SetIdentifier(ID string) {
+func (o *Namespace) SetIdentifier(id string) {
 
-	o.ID = ID
+	o.ID = id
 }
 
-// Version returns the hardcoded version of the model
+// Version returns the hardcoded version of the model.
 func (o *Namespace) Version() int {
 
 	return 1
@@ -164,84 +165,100 @@ func (o *Namespace) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
-// GetAnnotations returns the annotations of the receiver
-func (o *Namespace) GetAnnotations() map[string][]string {
-	return o.Annotations
-}
-
-// SetAnnotations set the given annotations of the receiver
-func (o *Namespace) SetAnnotations(annotations map[string][]string) {
-	o.Annotations = annotations
-}
-
-// GetAssociatedTags returns the associatedTags of the receiver
-func (o *Namespace) GetAssociatedTags() []string {
-	return o.AssociatedTags
-}
-
-// SetAssociatedTags set the given associatedTags of the receiver
-func (o *Namespace) SetAssociatedTags(associatedTags []string) {
-	o.AssociatedTags = associatedTags
-}
-
-// GetCreateTime returns the createTime of the receiver
-func (o *Namespace) GetCreateTime() time.Time {
-	return o.CreateTime
-}
-
-// SetCreateTime set the given createTime of the receiver
-func (o *Namespace) SetCreateTime(createTime time.Time) {
-	o.CreateTime = createTime
-}
-
-// GetMetadata returns the metadata of the receiver
-func (o *Namespace) GetMetadata() []string {
-	return o.Metadata
-}
-
-// SetMetadata set the given metadata of the receiver
-func (o *Namespace) SetMetadata(metadata []string) {
-	o.Metadata = metadata
-}
-
-// GetName returns the name of the receiver
+// GetName returns the Name of the receiver.
 func (o *Namespace) GetName() string {
+
 	return o.Name
 }
 
-// GetNamespace returns the namespace of the receiver
+// GetAnnotations returns the Annotations of the receiver.
+func (o *Namespace) GetAnnotations() map[string][]string {
+
+	return o.Annotations
+}
+
+// SetAnnotations sets the given Annotations of the receiver.
+func (o *Namespace) SetAnnotations(annotations map[string][]string) {
+
+	o.Annotations = annotations
+}
+
+// GetAssociatedTags returns the AssociatedTags of the receiver.
+func (o *Namespace) GetAssociatedTags() []string {
+
+	return o.AssociatedTags
+}
+
+// SetAssociatedTags sets the given AssociatedTags of the receiver.
+func (o *Namespace) SetAssociatedTags(associatedTags []string) {
+
+	o.AssociatedTags = associatedTags
+}
+
+// GetCreateTime returns the CreateTime of the receiver.
+func (o *Namespace) GetCreateTime() time.Time {
+
+	return o.CreateTime
+}
+
+// SetCreateTime sets the given CreateTime of the receiver.
+func (o *Namespace) SetCreateTime(createTime time.Time) {
+
+	o.CreateTime = createTime
+}
+
+// GetNamespace returns the Namespace of the receiver.
 func (o *Namespace) GetNamespace() string {
+
 	return o.Namespace
 }
 
-// SetNamespace set the given namespace of the receiver
+// SetNamespace sets the given Namespace of the receiver.
 func (o *Namespace) SetNamespace(namespace string) {
+
 	o.Namespace = namespace
 }
 
-// GetNormalizedTags returns the normalizedTags of the receiver
+// GetNormalizedTags returns the NormalizedTags of the receiver.
 func (o *Namespace) GetNormalizedTags() []string {
+
 	return o.NormalizedTags
 }
 
-// SetNormalizedTags set the given normalizedTags of the receiver
+// SetNormalizedTags sets the given NormalizedTags of the receiver.
 func (o *Namespace) SetNormalizedTags(normalizedTags []string) {
+
 	o.NormalizedTags = normalizedTags
 }
 
-// GetProtected returns the protected of the receiver
+// GetProtected returns the Protected of the receiver.
 func (o *Namespace) GetProtected() bool {
+
 	return o.Protected
 }
 
-// GetUpdateTime returns the updateTime of the receiver
+// GetUpdateTime returns the UpdateTime of the receiver.
 func (o *Namespace) GetUpdateTime() time.Time {
+
 	return o.UpdateTime
 }
 
-// SetUpdateTime set the given updateTime of the receiver
+// SetUpdateTime sets the given UpdateTime of the receiver.
 func (o *Namespace) SetUpdateTime(updateTime time.Time) {
+
 	o.UpdateTime = updateTime
+}
+
+// GetMetadata returns the Metadata of the receiver.
+func (o *Namespace) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *Namespace) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
 }
 
 // Validate valides the current information stored into the structure.
