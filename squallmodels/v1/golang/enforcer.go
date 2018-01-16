@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"time"
-
 	"github.com/aporeto-inc/elemental"
+	"time"
 )
 
 // EnforcerCertificateStatusValue represents the possible values for attribute "certificateStatus".

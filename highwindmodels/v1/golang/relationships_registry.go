@@ -47,6 +47,9 @@ func init() {
 		AllowsUpdate: map[string]bool{
 			"root": true,
 		},
+		AllowsPatch: map[string]bool{
+			"root": true,
+		},
 		AllowsDelete: map[string]bool{
 			"root": true,
 		},
@@ -80,6 +83,9 @@ func init() {
 			"root": true,
 		},
 		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsPatch: map[string]bool{
 			"root": true,
 		},
 		AllowsDelete: map[string]bool{
