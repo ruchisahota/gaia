@@ -160,6 +160,7 @@ func (*PrivateKey) AttributeSpecifications() map[string]elemental.AttributeSpeci
 var PrivateKeyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID is the internal ID of the key.`,
 		Format:         "free",
 		Identifier:     true,
@@ -170,6 +171,7 @@ var PrivateKeyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"CertificateSerialNumber": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "CertificateSerialNumber",
 		Description:    `CertificateSerialNumber represents the certificate serial number associated to this key.`,
 		Format:         "free",
 		Name:           "certificateSerialNumber",
@@ -178,6 +180,7 @@ var PrivateKeyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Data": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Data",
 		CreationOnly:   true,
 		Description:    `Data contains the privateKey data.`,
 		Format:         "free",
@@ -191,6 +194,7 @@ var PrivateKeyAttributesMap = map[string]elemental.AttributeSpecification{
 var PrivateKeyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID is the internal ID of the key.`,
 		Format:         "free",
 		Identifier:     true,
@@ -201,6 +205,7 @@ var PrivateKeyLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"certificateserialnumber": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "CertificateSerialNumber",
 		Description:    `CertificateSerialNumber represents the certificate serial number associated to this key.`,
 		Format:         "free",
 		Name:           "certificateSerialNumber",
@@ -209,6 +214,7 @@ var PrivateKeyLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 	},
 	"data": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Data",
 		CreationOnly:   true,
 		Description:    `Data contains the privateKey data.`,
 		Format:         "free",

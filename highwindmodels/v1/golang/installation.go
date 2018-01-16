@@ -161,6 +161,7 @@ func (*Installation) AttributeSpecifications() map[string]elemental.AttributeSpe
 var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID represents the identifier of the installation.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -172,6 +173,7 @@ var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"AccountName": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "AccountName",
 		Description:    `AccountName that should be installed.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -187,6 +189,7 @@ var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
 var InstallationLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID represents the identifier of the installation.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -198,6 +201,7 @@ var InstallationLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 	},
 	"accountname": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "AccountName",
 		Description:    `AccountName that should be installed.`,
 		Exposed:        true,
 		Filterable:     true,

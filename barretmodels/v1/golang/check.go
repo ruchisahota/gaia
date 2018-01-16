@@ -162,6 +162,7 @@ func (*Check) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 var CheckAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID contains the certificate serialNumber`,
 		Exposed:        true,
 		Format:         "free",
@@ -176,6 +177,7 @@ var CheckAttributesMap = map[string]elemental.AttributeSpecification{
 var CheckLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID contains the certificate serialNumber`,
 		Exposed:        true,
 		Format:         "free",

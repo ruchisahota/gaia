@@ -153,6 +153,7 @@ func (*Activate) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 var ActivateAttributesMap = map[string]elemental.AttributeSpecification{
 	"Token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Token",
 		CreationOnly:   true,
 		Description:    `Token contains the activation token`,
 		Exposed:        true,
@@ -166,6 +167,7 @@ var ActivateAttributesMap = map[string]elemental.AttributeSpecification{
 var ActivateLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Token",
 		CreationOnly:   true,
 		Description:    `Token contains the activation token`,
 		Exposed:        true,

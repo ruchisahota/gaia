@@ -193,6 +193,7 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"Kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		ConvertedName:  "Kind",
 		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
 		Name:           "kind",
@@ -200,6 +201,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Tags",
 		Description:    `Tags contains the tags associated to the data point.`,
 		Exposed:        true,
 		Name:           "tags",
@@ -208,6 +210,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Timestamp",
 		Description:    `Timestamp contains the time for the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
@@ -215,6 +218,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Value",
 		Description:    `Value contains the value for the report.`,
 		Exposed:        true,
 		Name:           "value",
@@ -226,6 +230,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		ConvertedName:  "Kind",
 		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
 		Name:           "kind",
@@ -233,6 +238,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Tags",
 		Description:    `Tags contains the tags associated to the data point.`,
 		Exposed:        true,
 		Name:           "tags",
@@ -241,6 +247,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Timestamp",
 		Description:    `Timestamp contains the time for the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
@@ -248,6 +255,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Value",
 		Description:    `Value contains the value for the report.`,
 		Exposed:        true,
 		Name:           "value",

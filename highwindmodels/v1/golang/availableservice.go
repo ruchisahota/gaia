@@ -181,6 +181,7 @@ func (*AvailableService) AttributeSpecifications() map[string]elemental.Attribut
 var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	"Beta": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Beta",
 		Description:    `Beta indicates if the service is in a beta version.`,
 		Exposed:        true,
 		Name:           "beta",
@@ -189,6 +190,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"CategoryID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "CategoryID",
 		Description:    `CategoryID of the service.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -199,6 +201,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Description",
 		Description:    `Description of the service`,
 		Exposed:        true,
 		Format:         "free",
@@ -207,6 +210,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Icon": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Icon",
 		Description:    `Icon contains a base64 image for the available service. `,
 		Exposed:        true,
 		Format:         "free",
@@ -216,6 +220,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"LongDescription": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "LongDescription",
 		Description:    `LongDescription contains a more detailed description of the service.`,
 		Exposed:        true,
 		Format:         "free",
@@ -224,6 +229,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Name",
 		Description:    `Name of the Service`,
 		Exposed:        true,
 		Format:         "free",
@@ -232,6 +238,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Parameters",
 		Description:    `Parameters of the service the user can or has to specify`,
 		Exposed:        true,
 		Name:           "parameters",
@@ -240,6 +247,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Title": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Title",
 		Description:    `Title represents the title of the service.`,
 		Exposed:        true,
 		Format:         "free",
@@ -252,6 +260,7 @@ var AvailableServiceAttributesMap = map[string]elemental.AttributeSpecification{
 var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"beta": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Beta",
 		Description:    `Beta indicates if the service is in a beta version.`,
 		Exposed:        true,
 		Name:           "beta",
@@ -260,6 +269,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"categoryid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "CategoryID",
 		Description:    `CategoryID of the service.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -270,6 +280,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Description",
 		Description:    `Description of the service`,
 		Exposed:        true,
 		Format:         "free",
@@ -278,6 +289,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"icon": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Icon",
 		Description:    `Icon contains a base64 image for the available service. `,
 		Exposed:        true,
 		Format:         "free",
@@ -287,6 +299,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"longdescription": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "LongDescription",
 		Description:    `LongDescription contains a more detailed description of the service.`,
 		Exposed:        true,
 		Format:         "free",
@@ -295,6 +308,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Name",
 		Description:    `Name of the Service`,
 		Exposed:        true,
 		Format:         "free",
@@ -303,6 +317,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Parameters",
 		Description:    `Parameters of the service the user can or has to specify`,
 		Exposed:        true,
 		Name:           "parameters",
@@ -311,6 +326,7 @@ var AvailableServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	},
 	"title": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Title",
 		Description:    `Title represents the title of the service.`,
 		Exposed:        true,
 		Format:         "free",

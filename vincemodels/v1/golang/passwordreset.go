@@ -172,6 +172,7 @@ func (*PasswordReset) AttributeSpecifications() map[string]elemental.AttributeSp
 var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
 	"Password": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Password",
 		Description:    `Password contains the new password.`,
 		Exposed:        true,
 		Format:         "free",
@@ -181,6 +182,7 @@ var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Token",
 		Description:    `Token contains the reset password token`,
 		Exposed:        true,
 		Format:         "free",
@@ -194,6 +196,7 @@ var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
 var PasswordResetLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"password": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Password",
 		Description:    `Password contains the new password.`,
 		Exposed:        true,
 		Format:         "free",
@@ -203,6 +206,7 @@ var PasswordResetLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	},
 	"token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Token",
 		Description:    `Token contains the reset password token`,
 		Exposed:        true,
 		Format:         "free",

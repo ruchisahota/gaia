@@ -165,6 +165,7 @@ func (*Category) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 var CategoryAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID is the identifier of the category.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -179,6 +180,7 @@ var CategoryAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Description",
 		Description:    `Description is the desription of the category.`,
 		Exposed:        true,
 		Format:         "free",
@@ -187,6 +189,7 @@ var CategoryAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Name",
 		Description:    `Name of the category.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -202,6 +205,7 @@ var CategoryAttributesMap = map[string]elemental.AttributeSpecification{
 var CategoryLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "ID",
 		Description:    `ID is the identifier of the category.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -216,6 +220,7 @@ var CategoryLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Description",
 		Description:    `Description is the desription of the category.`,
 		Exposed:        true,
 		Format:         "free",
@@ -224,6 +229,7 @@ var CategoryLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "Name",
 		Description:    `Name of the category.`,
 		Exposed:        true,
 		Filterable:     true,

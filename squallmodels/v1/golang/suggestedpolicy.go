@@ -158,6 +158,7 @@ func (*SuggestedPolicy) AttributeSpecifications() map[string]elemental.Attribute
 var SuggestedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"NetworkAccessPolicies": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "NetworkAccessPolicies",
 		Description:    `List of suggested network access policies`,
 		Exposed:        true,
 		Filterable:     true,
@@ -173,6 +174,7 @@ var SuggestedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 var SuggestedPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"networkaccesspolicies": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
+		ConvertedName:  "NetworkAccessPolicies",
 		Description:    `List of suggested network access policies`,
 		Exposed:        true,
 		Filterable:     true,
