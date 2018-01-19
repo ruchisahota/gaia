@@ -424,7 +424,7 @@ var aliasesMap = map[string]elemental.Identity{
 	"quotapols":  QuotaPolicyIdentity,
 	"rpol":       RenderedPolicyIdentity,
 	"rpols":      RenderedPolicyIdentity,
-	"ts":         StatsQueryIdentity,
+	"sq":         StatsQueryIdentity,
 	"sugpol":     SuggestedPolicyIdentity,
 	"sugpols":    SuggestedPolicyIdentity,
 	"sugg":       SuggestedPolicyIdentity,
@@ -559,7 +559,7 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case StatsQueryIdentity:
 		return []string{
-			"ts",
+			"sq",
 		}
 	case SuggestedPolicyIdentity:
 		return []string{

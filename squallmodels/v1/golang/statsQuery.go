@@ -11,14 +11,14 @@ import (
 type StatsQueryMeasurementValue string
 
 const (
-	// StatsQueryMeasurementAudit represents the value audit.
-	StatsQueryMeasurementAudit StatsQueryMeasurementValue = "audit"
+	// StatsQueryMeasurementAudit represents the value Audit.
+	StatsQueryMeasurementAudit StatsQueryMeasurementValue = "Audit"
 
-	// StatsQueryMeasurementFiles represents the value files.
-	StatsQueryMeasurementFiles StatsQueryMeasurementValue = "files"
+	// StatsQueryMeasurementFiles represents the value Files.
+	StatsQueryMeasurementFiles StatsQueryMeasurementValue = "Files"
 
-	// StatsQueryMeasurementFlows represents the value flows.
-	StatsQueryMeasurementFlows StatsQueryMeasurementValue = "flows"
+	// StatsQueryMeasurementFlows represents the value Flows.
+	StatsQueryMeasurementFlows StatsQueryMeasurementValue = "Flows"
 )
 
 // StatsQueryIdentity represents the Identity of the object.
@@ -160,7 +160,7 @@ func (o *StatsQuery) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("measurement", string(o.Measurement), []string{"audit", "files", "flows"}, false); err != nil {
+	if err := elemental.ValidateStringInList("measurement", string(o.Measurement), []string{"Audit", "Files", "Flows"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -215,7 +215,7 @@ var StatsQueryAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Measurement": elemental.AttributeSpecification{
-		AllowedChoices: []string{"audit", "files", "flows"},
+		AllowedChoices: []string{"Audit", "Files", "Flows"},
 		ConvertedName:  "Measurement",
 		CreationOnly:   true,
 		DefaultValue:   StatsQueryMeasurementFlows,
@@ -280,7 +280,7 @@ var StatsQueryLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Type:           "external",
 	},
 	"measurement": elemental.AttributeSpecification{
-		AllowedChoices: []string{"audit", "files", "flows"},
+		AllowedChoices: []string{"Audit", "Files", "Flows"},
 		ConvertedName:  "Measurement",
 		CreationOnly:   true,
 		DefaultValue:   StatsQueryMeasurementFlows,
