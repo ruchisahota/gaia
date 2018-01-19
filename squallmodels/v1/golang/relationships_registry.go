@@ -516,6 +516,15 @@ func init() {
 		AllowsCreate: map[string]bool{
 			"root": true,
 		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
 	}
 
 	relationshipsRegistry[SuggestedPolicyIdentity] = &elemental.Relationship{
