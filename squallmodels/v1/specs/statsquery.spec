@@ -218,7 +218,7 @@
     "children": [],
     "model": {
         "aliases": [
-            "ts"
+            "sq"
         ],
         "create": true,
         "delete": false,
@@ -226,7 +226,7 @@
         "entity_name": "StatsQuery",
         "extends": [],
         "get": false,
-        "package": "\nSquall API",
+        "package": "Squall API",
         "resource_name": "statsqueries",
         "rest_name": "statsquery",
         "root": null,
