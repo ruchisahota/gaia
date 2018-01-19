@@ -12,6 +12,9 @@ import (
 type ReportKindValue string
 
 const (
+	// ReportKindAudit represents the value Audit.
+	ReportKindAudit ReportKindValue = "Audit"
+
 	// ReportKindEnforcer represents the value Enforcer.
 	ReportKindEnforcer ReportKindValue = "Enforcer"
 
@@ -86,6 +89,9 @@ func (o ReportsList) Version() int {
 
 // Report represents the model of a report
 type Report struct {
+	// TSDB Fields to set for the report.
+	Fields map[string]interface{} `json:"fields" bson:"-"`
+
 	// Kind contains the kind of report.
 	Kind ReportKindValue `json:"kind" bson:"-"`
 
@@ -108,6 +114,7 @@ func NewReport() *Report {
 
 	return &Report{
 		ModelVersion: 2,
+		Fields:       map[string]interface{}{},
 		Tags:         map[string]string{},
 	}
 }
@@ -157,7 +164,7 @@ func (o *Report) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("kind", string(o.Kind), []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("kind", string(o.Kind), []string{"Audit", "Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -191,8 +198,17 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
+	"Fields": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Fields",
+		Description:    `TSDB Fields to set for the report.`,
+		Exposed:        true,
+		Name:           "fields",
+		SubType:        "tsdb_fields",
+		Type:           "external",
+	},
 	"Kind": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		AllowedChoices: []string{"Audit", "Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
 		ConvertedName:  "Kind",
 		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,
@@ -228,8 +244,17 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 
 // ReportLowerCaseAttributesMap represents the map of attribute for Report.
 var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+	"fields": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Fields",
+		Description:    `TSDB Fields to set for the report.`,
+		Exposed:        true,
+		Name:           "fields",
+		SubType:        "tsdb_fields",
+		Type:           "external",
+	},
 	"kind": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
+		AllowedChoices: []string{"Audit", "Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall"},
 		ConvertedName:  "Kind",
 		Description:    `Kind contains the kind of report.`,
 		Exposed:        true,

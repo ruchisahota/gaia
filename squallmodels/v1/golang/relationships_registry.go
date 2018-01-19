@@ -58,6 +58,30 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[AuditRuleIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+		AllowsUpdate: map[string]bool{
+			"root": true,
+		},
+		AllowsPatch: map[string]bool{
+			"root": true,
+		},
+		AllowsDelete: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieve: map[string]bool{
+			"root": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"root": true,
+		},
+		AllowsInfo: map[string]bool{
+			"root": true,
+		},
+	}
+
 	relationshipsRegistry[DependencyMapIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
@@ -233,18 +257,6 @@ func init() {
 		AllowsDelete: map[string]bool{
 			"root": true,
 		},
-		AllowsRetrieve: map[string]bool{
-			"root": true,
-		},
-		AllowsRetrieveMany: map[string]bool{
-			"root": true,
-		},
-		AllowsInfo: map[string]bool{
-			"root": true,
-		},
-	}
-
-	relationshipsRegistry[FlowRecordIdentity] = &elemental.Relationship{
 		AllowsRetrieve: map[string]bool{
 			"root": true,
 		},
@@ -499,6 +511,12 @@ func init() {
 	}
 
 	relationshipsRegistry[RootIdentity] = &elemental.Relationship{}
+
+	relationshipsRegistry[StatsQueryIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
 
 	relationshipsRegistry[SuggestedPolicyIdentity] = &elemental.Relationship{
 		AllowsUpdate: map[string]bool{

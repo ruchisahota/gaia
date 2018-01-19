@@ -7,6 +7,7 @@ func init() {
 	elemental.RegisterIdentity(ActivityIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(APICheckIdentity)
+	elemental.RegisterIdentity(AuditRuleIdentity)
 	elemental.RegisterIdentity(DependencyMapIdentity)
 	elemental.RegisterIdentity(EnforcerIdentity)
 	elemental.RegisterIdentity(EnforcerProfileIdentity)
@@ -16,7 +17,6 @@ func init() {
 	elemental.RegisterIdentity(FileAccessIdentity)
 	elemental.RegisterIdentity(FileAccessPolicyIdentity)
 	elemental.RegisterIdentity(FilePathIdentity)
-	elemental.RegisterIdentity(FlowRecordIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
 	elemental.RegisterIdentity(HookPolicyIdentity)
 	elemental.RegisterIdentity(MessageIdentity)
@@ -31,6 +31,7 @@ func init() {
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
 	elemental.RegisterIdentity(RoleIdentity)
 	elemental.RegisterIdentity(RootIdentity)
+	elemental.RegisterIdentity(StatsQueryIdentity)
 	elemental.RegisterIdentity(SuggestedPolicyIdentity)
 	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TabulationIdentity)
@@ -52,6 +53,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAPIAuthorizationPolicy()
 	case APICheckIdentity.Name:
 		return NewAPICheck()
+	case AuditRuleIdentity.Name:
+		return NewAuditRule()
 	case DependencyMapIdentity.Name:
 		return NewDependencyMap()
 	case EnforcerIdentity.Name:
@@ -70,8 +73,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewFileAccessPolicy()
 	case FilePathIdentity.Name:
 		return NewFilePath()
-	case FlowRecordIdentity.Name:
-		return NewFlowRecord()
 	case FlowStatisticIdentity.Name:
 		return NewFlowStatistic()
 	case HookPolicyIdentity.Name:
@@ -100,6 +101,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewRole()
 	case RootIdentity.Name:
 		return NewRoot()
+	case StatsQueryIdentity.Name:
+		return NewStatsQuery()
 	case SuggestedPolicyIdentity.Name:
 		return NewSuggestedPolicy()
 	case SystemCallIdentity.Name:
@@ -126,6 +129,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewAPIAuthorizationPolicy()
 	case APICheckIdentity.Category:
 		return NewAPICheck()
+	case AuditRuleIdentity.Category:
+		return NewAuditRule()
 	case DependencyMapIdentity.Category:
 		return NewDependencyMap()
 	case EnforcerIdentity.Category:
@@ -144,8 +149,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewFileAccessPolicy()
 	case FilePathIdentity.Category:
 		return NewFilePath()
-	case FlowRecordIdentity.Category:
-		return NewFlowRecord()
 	case FlowStatisticIdentity.Category:
 		return NewFlowStatistic()
 	case HookPolicyIdentity.Category:
@@ -174,6 +177,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewRole()
 	case RootIdentity.Category:
 		return NewRoot()
+	case StatsQueryIdentity.Category:
+		return NewStatsQuery()
 	case SuggestedPolicyIdentity.Category:
 		return NewSuggestedPolicy()
 	case SystemCallIdentity.Category:
@@ -200,6 +205,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &APIAuthorizationPoliciesList{}
 	case APICheckIdentity.Name:
 		return &APIChecksList{}
+	case AuditRuleIdentity.Name:
+		return &AuditRulesList{}
 	case DependencyMapIdentity.Name:
 		return &DependencyMapsList{}
 	case EnforcerIdentity.Name:
@@ -218,8 +225,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &FileAccessPoliciesList{}
 	case FilePathIdentity.Name:
 		return &FilePathsList{}
-	case FlowRecordIdentity.Name:
-		return &FlowRecordsList{}
 	case FlowStatisticIdentity.Name:
 		return &FlowStatisticsList{}
 	case HookPolicyIdentity.Name:
@@ -248,6 +253,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &RolesList{}
 	case RootIdentity.Name:
 		return &RootsList{}
+	case StatsQueryIdentity.Name:
+		return &StatsQueriesList{}
 	case SuggestedPolicyIdentity.Name:
 		return &SuggestedPoliciesList{}
 	case SystemCallIdentity.Name:
@@ -274,6 +281,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &APIAuthorizationPoliciesList{}
 	case APICheckIdentity.Category:
 		return &APIChecksList{}
+	case AuditRuleIdentity.Category:
+		return &AuditRulesList{}
 	case DependencyMapIdentity.Category:
 		return &DependencyMapsList{}
 	case EnforcerIdentity.Category:
@@ -292,8 +301,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &FileAccessPoliciesList{}
 	case FilePathIdentity.Category:
 		return &FilePathsList{}
-	case FlowRecordIdentity.Category:
-		return &FlowRecordsList{}
 	case FlowStatisticIdentity.Category:
 		return &FlowStatisticsList{}
 	case HookPolicyIdentity.Category:
@@ -322,6 +329,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &RolesList{}
 	case RootIdentity.Category:
 		return &RootsList{}
+	case StatsQueryIdentity.Category:
+		return &StatsQueriesList{}
 	case SuggestedPolicyIdentity.Category:
 		return &SuggestedPoliciesList{}
 	case SystemCallIdentity.Category:
@@ -344,6 +353,7 @@ func AllIdentities() []elemental.Identity {
 		ActivityIdentity,
 		APIAuthorizationPolicyIdentity,
 		APICheckIdentity,
+		AuditRuleIdentity,
 		DependencyMapIdentity,
 		EnforcerIdentity,
 		EnforcerProfileIdentity,
@@ -353,7 +363,6 @@ func AllIdentities() []elemental.Identity {
 		FileAccessIdentity,
 		FileAccessPolicyIdentity,
 		FilePathIdentity,
-		FlowRecordIdentity,
 		FlowStatisticIdentity,
 		HookPolicyIdentity,
 		MessageIdentity,
@@ -368,6 +377,7 @@ func AllIdentities() []elemental.Identity {
 		RenderedPolicyIdentity,
 		RoleIdentity,
 		RootIdentity,
+		StatsQueryIdentity,
 		SuggestedPolicyIdentity,
 		SystemCallIdentity,
 		TabulationIdentity,
@@ -379,6 +389,7 @@ func AllIdentities() []elemental.Identity {
 var aliasesMap = map[string]elemental.Identity{
 	"apiauths":   APIAuthorizationPolicyIdentity,
 	"apiauth":    APIAuthorizationPolicyIdentity,
+	"ar":         AuditRuleIdentity,
 	"depmap":     DependencyMapIdentity,
 	"depmaps":    DependencyMapIdentity,
 	"profile":    EnforcerProfileIdentity,
@@ -391,8 +402,6 @@ var aliasesMap = map[string]elemental.Identity{
 	"extsrvs":    ExternalServiceIdentity,
 	"fp":         FilePathIdentity,
 	"fps":        FilePathIdentity,
-	"flowrecs":   FlowRecordIdentity,
-	"flowrec":    FlowRecordIdentity,
 	"flowstats":  FlowStatisticIdentity,
 	"flowstat":   FlowStatisticIdentity,
 	"hook":       HookPolicyIdentity,
@@ -415,6 +424,7 @@ var aliasesMap = map[string]elemental.Identity{
 	"quotapols":  QuotaPolicyIdentity,
 	"rpol":       RenderedPolicyIdentity,
 	"rpols":      RenderedPolicyIdentity,
+	"ts":         StatsQueryIdentity,
 	"sugpol":     SuggestedPolicyIdentity,
 	"sugpols":    SuggestedPolicyIdentity,
 	"sugg":       SuggestedPolicyIdentity,
@@ -448,6 +458,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case APICheckIdentity:
 		return []string{}
+	case AuditRuleIdentity:
+		return []string{
+			"ar",
+		}
 	case DependencyMapIdentity:
 		return []string{
 			"depmap",
@@ -483,11 +497,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"fp",
 			"fps",
-		}
-	case FlowRecordIdentity:
-		return []string{
-			"flowrecs",
-			"flowrec",
 		}
 	case FlowStatisticIdentity:
 		return []string{
@@ -548,6 +557,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case RootIdentity:
 		return []string{}
+	case StatsQueryIdentity:
+		return []string{
+			"ts",
+		}
 	case SuggestedPolicyIdentity:
 		return []string{
 			"sugpol",
