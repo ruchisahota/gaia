@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/aporeto-inc/elemental"
+	"github.com/aporeto-inc/gaia/squallmodels/v1/golang/types"
 )
 
 // StatsQueryMeasurementValue represents the possible values for attribute "measurement".
@@ -89,7 +90,7 @@ type StatsQuery struct {
 	Measurement StatsQueryMeasurementValue `json:"measurement" bson:"measurement"`
 
 	// Results are the results of the query.
-	Results interface{} `json:"results" bson:"-"`
+	Results *types.TimeSeriesQueryResults `json:"results" bson:"-"`
 
 	// Tags is a list of tags that will be returned by the query. Corresponding of "select tags ..." statement.
 	Tags []string `json:"tags" bson:"-"`
@@ -110,6 +111,7 @@ func NewStatsQuery() *StatsQuery {
 		Fields:       []string{},
 		GroupBy:      []string{},
 		Measurement:  "Flows",
+		Results:      types.NewTimeSeriesQueryResults(),
 		Tags:         []string{},
 		Where:        []string{},
 	}
@@ -233,7 +235,8 @@ var StatsQueryAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "results",
 		ReadOnly:       true,
-		Type:           "object",
+		SubType:        "time_series_results",
+		Type:           "external",
 	},
 	"Tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -298,7 +301,8 @@ var StatsQueryLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Exposed:        true,
 		Name:           "results",
 		ReadOnly:       true,
-		Type:           "object",
+		SubType:        "time_series_results",
+		Type:           "external",
 	},
 	"tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
