@@ -138,9 +138,9 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": null,
+            "subtype": "time_series_results",
             "transient": null,
-            "type": "object",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         },
