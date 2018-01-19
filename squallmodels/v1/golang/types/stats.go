@@ -21,13 +21,13 @@ type StatsFunctionType struct {
 
 // TimeSeriesQueryResults represents the a query result.
 type TimeSeriesQueryResults struct {
-	Rows []TimeSeriesRow `json:"rows"`
+	Rows []*TimeSeriesRow `json:"rows"`
 }
 
 // NewTimeSeriesQueryResults returns a new TimeSeriesQueryResults.
 func NewTimeSeriesQueryResults() *TimeSeriesQueryResults {
 	return &TimeSeriesQueryResults{
-		Rows: []TimeSeriesRow{},
+		Rows: []*TimeSeriesRow{},
 	}
 }
 

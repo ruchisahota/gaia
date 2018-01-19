@@ -90,7 +90,7 @@ type StatsQuery struct {
 	Measurement StatsQueryMeasurementValue `json:"measurement" bson:"measurement"`
 
 	// Results are the results of the query.
-	Results *types.TimeSeriesQueryResults `json:"results" bson:"-"`
+	Results []*types.TimeSeriesQueryResults `json:"results" bson:"-"`
 
 	// Tags is a list of tags that will be returned by the query. Corresponding of "select tags ..." statement.
 	Tags []string `json:"tags" bson:"-"`
@@ -111,7 +111,7 @@ func NewStatsQuery() *StatsQuery {
 		Fields:       []string{},
 		GroupBy:      []string{},
 		Measurement:  "Flows",
-		Results:      types.NewTimeSeriesQueryResults(),
+		Results:      []*types.TimeSeriesQueryResults{},
 		Tags:         []string{},
 		Where:        []string{},
 	}
