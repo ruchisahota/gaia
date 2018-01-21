@@ -93,6 +93,9 @@ const (
 	// StatsTagKeyProcessingUnitID represents the processing unit ID tag.
 	StatsTagKeyProcessingUnitID = "$id"
 
+	// StatsTagKeyEnforcerID represents the processing unit ID tag.
+	StatsTagKeyEnforcerID = "@eid"
+
 	// StatsTagKeyIP represents the IP tag.
 	StatsTagKeyIP = "@ip"
 
