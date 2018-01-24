@@ -9,63 +9,41 @@ import (
 	"time"
 )
 
-// AuditRuleArchitectureValue represents the possible values for attribute "architecture".
-type AuditRuleArchitectureValue string
-
-const (
-	// AuditRuleArchitecture32bit represents the value 32bit.
-	AuditRuleArchitecture32bit AuditRuleArchitectureValue = "32bit"
-
-	// AuditRuleArchitecture64bit represents the value 64bit.
-	AuditRuleArchitecture64bit AuditRuleArchitectureValue = "64bit"
-)
-
-// AuditRuleRuleTypeValue represents the possible values for attribute "ruleType".
-type AuditRuleRuleTypeValue string
-
-const (
-	// AuditRuleRuleTypeFile represents the value File.
-	AuditRuleRuleTypeFile AuditRuleRuleTypeValue = "File"
-
-	// AuditRuleRuleTypeSyscall represents the value Syscall.
-	AuditRuleRuleTypeSyscall AuditRuleRuleTypeValue = "Syscall"
-)
-
-// AuditRuleIdentity represents the Identity of the object.
-var AuditRuleIdentity = elemental.Identity{
-	Name:     "auditrule",
-	Category: "auditrules",
+// AuditProfileIdentity represents the Identity of the object.
+var AuditProfileIdentity = elemental.Identity{
+	Name:     "auditprofile",
+	Category: "auditprofiles",
 }
 
-// AuditRulesList represents a list of AuditRules
-type AuditRulesList []*AuditRule
+// AuditProfilesList represents a list of AuditProfiles
+type AuditProfilesList []*AuditProfile
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o AuditRulesList) ContentIdentity() elemental.Identity {
+func (o AuditProfilesList) ContentIdentity() elemental.Identity {
 
-	return AuditRuleIdentity
+	return AuditProfileIdentity
 }
 
-// Copy returns a pointer to a copy the AuditRulesList.
-func (o AuditRulesList) Copy() elemental.ContentIdentifiable {
+// Copy returns a pointer to a copy the AuditProfilesList.
+func (o AuditProfilesList) Copy() elemental.ContentIdentifiable {
 
-	copy := append(AuditRulesList{}, o...)
+	copy := append(AuditProfilesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the AuditRulesList.
-func (o AuditRulesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+// Append appends the objects to the a new copy of the AuditProfilesList.
+func (o AuditProfilesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
 
-	out := append(AuditRulesList{}, o...)
+	out := append(AuditProfilesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*AuditRule))
+		out = append(out, obj.(*AuditProfile))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o AuditRulesList) List() elemental.IdentifiablesList {
+func (o AuditProfilesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -76,7 +54,7 @@ func (o AuditRulesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o AuditRulesList) DefaultOrder() []string {
+func (o AuditProfilesList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -84,33 +62,18 @@ func (o AuditRulesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AuditRulesList) Version() int {
+func (o AuditProfilesList) Version() int {
 
 	return 1
 }
 
-// AuditRule represents the model of a auditrule
-type AuditRule struct {
-	// Architecture is the processor architecture that this rule applies to. It can be 32-bit or 64-bit.
-	Architecture AuditRuleArchitectureValue `json:"architecture" bson:"architecture"`
-
-	// FilePath is the file path for a file system rule.
-	FilePath string `json:"filePath" bson:"filepath"`
-
-	// FilePermissionType describes the file system permission that the rule is interested in. Valid is r|w|x|a. Default rwxa
-	FilePermission []types.AuditFilePermissions `json:"filePermission" bson:"filepermission"`
-
-	// FilterRules is the list of filter rules that must be applied to the auditing rule.
-	FilterRules []*types.AuditFilter `json:"filterRules" bson:"filterrules"`
-
+// AuditProfile represents the model of a auditprofile
+type AuditProfile struct {
 	// GroupName is the name of the group that this rule must be associated with.
-	GroupName string `json:"groupName" bson:"groupname"`
+	Key string `json:"key" bson:"key"`
 
-	// RuleType is the type of the audit rule and it can be SYSCALL or FILE.
-	RuleType AuditRuleRuleTypeValue `json:"ruleType" bson:"ruletype"`
-
-	// SysCalls is the list of system calls that the rule applies to. It is only valid if ruleType is SYSCALL.
-	Syscalls []types.AuditSystemCallType `json:"syscalls" bson:"syscalls"`
+	// Rules is the list of audit policy rules associated with this policy.
+	Rules types.AuditProfileRuleList `json:"rules" bson:"rules"`
 
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
@@ -150,49 +113,45 @@ type AuditRule struct {
 	sync.Mutex
 }
 
-// NewAuditRule returns a new *AuditRule
-func NewAuditRule() *AuditRule {
+// NewAuditProfile returns a new *AuditProfile
+func NewAuditProfile() *AuditProfile {
 
-	return &AuditRule{
+	return &AuditProfile{
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
-		Architecture:   "64bit",
 		AssociatedTags: []string{},
-		FilePermission: []types.AuditFilePermissions{},
-		FilterRules:    []*types.AuditFilter{},
 		Metadata:       []string{},
 		NormalizedTags: []string{},
-		RuleType:       "Syscall",
-		Syscalls:       []types.AuditSystemCallType{},
+		Rules:          types.AuditProfileRuleList{},
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *AuditRule) Identity() elemental.Identity {
+func (o *AuditProfile) Identity() elemental.Identity {
 
-	return AuditRuleIdentity
+	return AuditProfileIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *AuditRule) Identifier() string {
+func (o *AuditProfile) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *AuditRule) SetIdentifier(id string) {
+func (o *AuditProfile) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *AuditRule) Version() int {
+func (o *AuditProfile) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *AuditRule) DefaultOrder() []string {
+func (o *AuditProfile) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -200,144 +159,132 @@ func (o *AuditRule) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *AuditRule) Doc() string {
-	return `AuditRule describes an audit rule that must be applied to an enforer to detect anomalous events. `
+func (o *AuditProfile) Doc() string {
+	return `AuditProfile is an audit policy that consists of a set of audit rules. An audit policy will determine that types of events that must be captured in the kernel.`
 }
 
-func (o *AuditRule) String() string {
+func (o *AuditProfile) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *AuditRule) GetAnnotations() map[string][]string {
+func (o *AuditProfile) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *AuditRule) SetAnnotations(annotations map[string][]string) {
+func (o *AuditProfile) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *AuditRule) GetAssociatedTags() []string {
+func (o *AuditProfile) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *AuditRule) SetAssociatedTags(associatedTags []string) {
+func (o *AuditProfile) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *AuditRule) GetCreateTime() time.Time {
+func (o *AuditProfile) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *AuditRule) SetCreateTime(createTime time.Time) {
+func (o *AuditProfile) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *AuditRule) GetNamespace() string {
+func (o *AuditProfile) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *AuditRule) SetNamespace(namespace string) {
+func (o *AuditProfile) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *AuditRule) GetNormalizedTags() []string {
+func (o *AuditProfile) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *AuditRule) SetNormalizedTags(normalizedTags []string) {
+func (o *AuditProfile) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *AuditRule) GetProtected() bool {
+func (o *AuditProfile) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *AuditRule) GetUpdateTime() time.Time {
+func (o *AuditProfile) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *AuditRule) SetUpdateTime(updateTime time.Time) {
+func (o *AuditProfile) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *AuditRule) GetMetadata() []string {
+func (o *AuditProfile) GetMetadata() []string {
 
 	return o.Metadata
 }
 
 // SetMetadata sets the given Metadata of the receiver.
-func (o *AuditRule) SetMetadata(metadata []string) {
+func (o *AuditProfile) SetMetadata(metadata []string) {
 
 	o.Metadata = metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *AuditRule) GetName() string {
+func (o *AuditProfile) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *AuditRule) SetName(name string) {
+func (o *AuditProfile) SetName(name string) {
 
 	o.Name = name
 }
 
 // Validate valides the current information stored into the structure.
-func (o *AuditRule) Validate() error {
+func (o *AuditProfile) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("architecture", string(o.Architecture), []string{"32bit", "64bit"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMaximumLength("filePath", o.FilePath, 128, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("groupName", o.GroupName); err != nil {
+	if err := elemental.ValidateRequiredString("key", o.Key); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateMaximumLength("groupName", o.GroupName, 31, false); err != nil {
+	if err := elemental.ValidateMaximumLength("key", o.Key, 31, false); err != nil {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("groupName", o.GroupName); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("ruleType", string(o.RuleType), []string{"File", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateRequiredString("key", o.Key); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -361,24 +308,24 @@ func (o *AuditRule) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*AuditRule) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*AuditProfile) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := AuditRuleAttributesMap[name]; ok {
+	if v, ok := AuditProfileAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return AuditRuleLowerCaseAttributesMap[name]
+	return AuditProfileLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*AuditRule) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*AuditProfile) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return AuditRuleAttributesMap
+	return AuditProfileAttributesMap
 }
 
-// AuditRuleAttributesMap represents the map of attribute for AuditRule.
-var AuditRuleAttributesMap = map[string]elemental.AttributeSpecification{
+// AuditProfileAttributesMap represents the map of attribute for AuditProfile.
+var AuditProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -407,17 +354,6 @@ var AuditRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "annotations",
 		Type:           "external",
-	},
-	"Architecture": elemental.AttributeSpecification{
-		AllowedChoices: []string{"32bit", "64bit"},
-		ConvertedName:  "Architecture",
-		DefaultValue:   AuditRuleArchitecture64bit,
-		Description:    `Architecture is the processor architecture that this rule applies to. It can be 32-bit or 64-bit.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "architecture",
-		Stored:         true,
-		Type:           "enum",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -457,51 +393,15 @@ var AuditRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"FilePath": elemental.AttributeSpecification{
+	"Key": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "FilePath",
-		Description:    `FilePath is the file path for a file system rule.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		MaxLength:      128,
-		Name:           "filePath",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"FilePermission": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "FilePermission",
-		Description:    `FilePermissionType describes the file system permission that the rule is interested in. Valid is r|w|x|a. Default rwxa`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "filePermission",
-		Orderable:      true,
-		Stored:         true,
-		SubType:        "audit_file_permissions_list",
-		Type:           "external",
-	},
-	"FilterRules": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "FilterRules",
-		Description:    `FilterRules is the list of filter rules that must be applied to the auditing rule.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "filterRules",
-		Stored:         true,
-		SubType:        "audit_filter_list",
-		Type:           "external",
-	},
-	"GroupName": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "GroupName",
+		ConvertedName:  "Key",
 		Description:    `GroupName is the name of the group that this rule must be associated with.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
 		MaxLength:      31,
-		Name:           "groupName",
+		Name:           "key",
 		Orderable:      true,
 		Required:       true,
 		Stored:         true,
@@ -584,29 +484,16 @@ var AuditRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"RuleType": elemental.AttributeSpecification{
-		AllowedChoices: []string{"File", "Syscall"},
-		ConvertedName:  "RuleType",
-		DefaultValue:   AuditRuleRuleTypeSyscall,
-		Description:    `RuleType is the type of the audit rule and it can be SYSCALL or FILE.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "ruleType",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
-	},
-	"Syscalls": elemental.AttributeSpecification{
+	"Rules": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Syscalls",
-		Description:    `SysCalls is the list of system calls that the rule applies to. It is only valid if ruleType is SYSCALL.`,
+		ConvertedName:  "Rules",
+		Description:    `Rules is the list of audit policy rules associated with this policy.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "syscalls",
+		Name:           "rules",
 		Orderable:      true,
 		Stored:         true,
-		SubType:        "system_call_list",
+		SubType:        "audit_profile_rule_list",
 		Type:           "external",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
@@ -625,8 +512,8 @@ var AuditRuleAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 }
 
-// AuditRuleLowerCaseAttributesMap represents the map of attribute for AuditRule.
-var AuditRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// AuditProfileLowerCaseAttributesMap represents the map of attribute for AuditProfile.
+var AuditProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -655,17 +542,6 @@ var AuditRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		SubType:        "annotations",
 		Type:           "external",
-	},
-	"architecture": elemental.AttributeSpecification{
-		AllowedChoices: []string{"32bit", "64bit"},
-		ConvertedName:  "Architecture",
-		DefaultValue:   AuditRuleArchitecture64bit,
-		Description:    `Architecture is the processor architecture that this rule applies to. It can be 32-bit or 64-bit.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "architecture",
-		Stored:         true,
-		Type:           "enum",
 	},
 	"associatedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -705,51 +581,15 @@ var AuditRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"filepath": elemental.AttributeSpecification{
+	"key": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "FilePath",
-		Description:    `FilePath is the file path for a file system rule.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		MaxLength:      128,
-		Name:           "filePath",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"filepermission": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "FilePermission",
-		Description:    `FilePermissionType describes the file system permission that the rule is interested in. Valid is r|w|x|a. Default rwxa`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "filePermission",
-		Orderable:      true,
-		Stored:         true,
-		SubType:        "audit_file_permissions_list",
-		Type:           "external",
-	},
-	"filterrules": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "FilterRules",
-		Description:    `FilterRules is the list of filter rules that must be applied to the auditing rule.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "filterRules",
-		Stored:         true,
-		SubType:        "audit_filter_list",
-		Type:           "external",
-	},
-	"groupname": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "GroupName",
+		ConvertedName:  "Key",
 		Description:    `GroupName is the name of the group that this rule must be associated with.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
 		MaxLength:      31,
-		Name:           "groupName",
+		Name:           "key",
 		Orderable:      true,
 		Required:       true,
 		Stored:         true,
@@ -832,29 +672,16 @@ var AuditRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"ruletype": elemental.AttributeSpecification{
-		AllowedChoices: []string{"File", "Syscall"},
-		ConvertedName:  "RuleType",
-		DefaultValue:   AuditRuleRuleTypeSyscall,
-		Description:    `RuleType is the type of the audit rule and it can be SYSCALL or FILE.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "ruleType",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
-	},
-	"syscalls": elemental.AttributeSpecification{
+	"rules": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Syscalls",
-		Description:    `SysCalls is the list of system calls that the rule applies to. It is only valid if ruleType is SYSCALL.`,
+		ConvertedName:  "Rules",
+		Description:    `Rules is the list of audit policy rules associated with this policy.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "syscalls",
+		Name:           "rules",
 		Orderable:      true,
 		Stored:         true,
-		SubType:        "system_call_list",
+		SubType:        "audit_profile_rule_list",
 		Type:           "external",
 	},
 	"updatetime": elemental.AttributeSpecification{
