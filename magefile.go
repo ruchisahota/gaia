@@ -24,6 +24,13 @@ func Init() {
 	)
 }
 
+// Test runs the unit tests.
+func Test() {
+	mg.Deps(
+		domingo.Test,
+	)
+}
+
 // Elegen installs the latest elegen command.
 func Elegen() error {
 
