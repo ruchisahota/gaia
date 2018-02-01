@@ -8,73 +8,64 @@ import (
 	"time"
 )
 
-// PolicyTypeValue represents the possible values for attribute "type".
-type PolicyTypeValue string
+// ProcessingUnitPolicyActionValue represents the possible values for attribute "action".
+type ProcessingUnitPolicyActionValue string
 
 const (
-	// PolicyTypeApiauthorization represents the value APIAuthorization.
-	PolicyTypeApiauthorization PolicyTypeValue = "APIAuthorization"
+	// ProcessingUnitPolicyActionDelete represents the value Delete.
+	ProcessingUnitPolicyActionDelete ProcessingUnitPolicyActionValue = "Delete"
 
-	// PolicyTypeEnforcerprofile represents the value EnforcerProfile.
-	PolicyTypeEnforcerprofile PolicyTypeValue = "EnforcerProfile"
+	// ProcessingUnitPolicyActionEnforce represents the value Enforce.
+	ProcessingUnitPolicyActionEnforce ProcessingUnitPolicyActionValue = "Enforce"
 
-	// PolicyTypeFile represents the value File.
-	PolicyTypeFile PolicyTypeValue = "File"
+	// ProcessingUnitPolicyActionLogcompliance represents the value LogCompliance.
+	ProcessingUnitPolicyActionLogcompliance ProcessingUnitPolicyActionValue = "LogCompliance"
 
-	// PolicyTypeHook represents the value Hook.
-	PolicyTypeHook PolicyTypeValue = "Hook"
+	// ProcessingUnitPolicyActionReject represents the value Reject.
+	ProcessingUnitPolicyActionReject ProcessingUnitPolicyActionValue = "Reject"
 
-	// PolicyTypeNamespacemapping represents the value NamespaceMapping.
-	PolicyTypeNamespacemapping PolicyTypeValue = "NamespaceMapping"
+	// ProcessingUnitPolicyActionSnapshot represents the value Snapshot.
+	ProcessingUnitPolicyActionSnapshot ProcessingUnitPolicyActionValue = "Snapshot"
 
-	// PolicyTypeNetwork represents the value Network.
-	PolicyTypeNetwork PolicyTypeValue = "Network"
-
-	// PolicyTypeProcessingunit represents the value ProcessingUnit.
-	PolicyTypeProcessingunit PolicyTypeValue = "ProcessingUnit"
-
-	// PolicyTypeQuota represents the value Quota.
-	PolicyTypeQuota PolicyTypeValue = "Quota"
-
-	// PolicyTypeSyscall represents the value Syscall.
-	PolicyTypeSyscall PolicyTypeValue = "Syscall"
+	// ProcessingUnitPolicyActionStop represents the value Stop.
+	ProcessingUnitPolicyActionStop ProcessingUnitPolicyActionValue = "Stop"
 )
 
-// PolicyIdentity represents the Identity of the object.
-var PolicyIdentity = elemental.Identity{
-	Name:     "policy",
-	Category: "policies",
+// ProcessingUnitPolicyIdentity represents the Identity of the object.
+var ProcessingUnitPolicyIdentity = elemental.Identity{
+	Name:     "processingunitpolicy",
+	Category: "processingunitpolicies",
 }
 
-// PoliciesList represents a list of Policies
-type PoliciesList []*Policy
+// ProcessingUnitPoliciesList represents a list of ProcessingUnitPolicies
+type ProcessingUnitPoliciesList []*ProcessingUnitPolicy
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o PoliciesList) ContentIdentity() elemental.Identity {
+func (o ProcessingUnitPoliciesList) ContentIdentity() elemental.Identity {
 
-	return PolicyIdentity
+	return ProcessingUnitPolicyIdentity
 }
 
-// Copy returns a pointer to a copy the PoliciesList.
-func (o PoliciesList) Copy() elemental.ContentIdentifiable {
+// Copy returns a pointer to a copy the ProcessingUnitPoliciesList.
+func (o ProcessingUnitPoliciesList) Copy() elemental.ContentIdentifiable {
 
-	copy := append(PoliciesList{}, o...)
+	copy := append(ProcessingUnitPoliciesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the PoliciesList.
-func (o PoliciesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+// Append appends the objects to the a new copy of the ProcessingUnitPoliciesList.
+func (o ProcessingUnitPoliciesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
 
-	out := append(PoliciesList{}, o...)
+	out := append(ProcessingUnitPoliciesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*Policy))
+		out = append(out, obj.(*ProcessingUnitPolicy))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o PoliciesList) List() elemental.IdentifiablesList {
+func (o ProcessingUnitPoliciesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -85,7 +76,7 @@ func (o PoliciesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o PoliciesList) DefaultOrder() []string {
+func (o ProcessingUnitPoliciesList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -93,33 +84,21 @@ func (o PoliciesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o PoliciesList) Version() int {
+func (o ProcessingUnitPoliciesList) Version() int {
 
 	return 1
 }
 
-// Policy represents the model of a policy
-type Policy struct {
-	// Action defines set of actions that must be enforced when a dependency is met.
-	Action map[string]map[string]interface{} `json:"action" bson:"action"`
+// ProcessingUnitPolicy represents the model of a processingunitpolicy
+type ProcessingUnitPolicy struct {
+	// Action determines the action to take while enforcing the isolation profile.
+	Action ProcessingUnitPolicyActionValue `json:"action" bson:"action"`
 
-	// This is a set of all object tags for matching in the DB
-	AllObjectTags []string `json:"-" bson:"allobjecttags"`
+	// IsolationProfileSelector are the profiles that must be applied when this policy matches. Only applies to Enforce and LogCompliance actions.
+	IsolationProfileSelector [][]string `json:"isolationProfileSelector" bson:"isolationprofileselector"`
 
-	// This is a set of all subject tags for matching in the DB
-	AllSubjectTags []string `json:"-" bson:"allsubjecttags"`
-
-	// Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.
-	Object [][]string `json:"object" bson:"object"`
-
-	// Relation describes the required operation to be performed between subjects and objects
-	Relation []string `json:"relation" bson:"relation"`
-
-	// Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
+	// Subject  defines the tag selectors that identitfy the processing units to which this policy applies.
 	Subject [][]string `json:"subject" bson:"subject"`
-
-	// Type of the policy
-	Type PolicyTypeValue `json:"type" bson:"type"`
 
 	// Annotation stores additional information about an entity
 	Annotations map[string][]string `json:"annotations" bson:"annotations"`
@@ -149,7 +128,7 @@ type Policy struct {
 	Disabled bool `json:"disabled" bson:"disabled"`
 
 	// ID is the identifier of the object.
-	ID string `json:"ID" bson:"_id"`
+	ID string `json:"ID" bson:"-"`
 
 	// Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata"`
@@ -174,13 +153,11 @@ type Policy struct {
 	sync.Mutex
 }
 
-// NewPolicy returns a new *Policy
-func NewPolicy() *Policy {
+// NewProcessingUnitPolicy returns a new *ProcessingUnitPolicy
+func NewProcessingUnitPolicy() *ProcessingUnitPolicy {
 
-	return &Policy{
+	return &ProcessingUnitPolicy{
 		ModelVersion:   1,
-		AllObjectTags:  []string{},
-		AllSubjectTags: []string{},
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -189,232 +166,211 @@ func NewPolicy() *Policy {
 }
 
 // Identity returns the Identity of the object.
-func (o *Policy) Identity() elemental.Identity {
+func (o *ProcessingUnitPolicy) Identity() elemental.Identity {
 
-	return PolicyIdentity
+	return ProcessingUnitPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Policy) Identifier() string {
+func (o *ProcessingUnitPolicy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Policy) SetIdentifier(id string) {
+func (o *ProcessingUnitPolicy) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *Policy) Version() int {
+func (o *ProcessingUnitPolicy) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *Policy) DefaultOrder() []string {
+func (o *ProcessingUnitPolicy) DefaultOrder() []string {
 
 	return []string{
 		"name",
 	}
 }
 
-// Doc returns the documentation for the object
-func (o *Policy) Doc() string {
-	return nodocString
-}
-
-func (o *Policy) String() string {
+func (o *ProcessingUnitPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *Policy) GetAnnotations() map[string][]string {
+func (o *ProcessingUnitPolicy) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *Policy) SetAnnotations(annotations map[string][]string) {
+func (o *ProcessingUnitPolicy) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *Policy) GetAssociatedTags() []string {
+func (o *ProcessingUnitPolicy) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *Policy) SetAssociatedTags(associatedTags []string) {
+func (o *ProcessingUnitPolicy) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *Policy) GetCreateTime() time.Time {
+func (o *ProcessingUnitPolicy) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *Policy) SetCreateTime(createTime time.Time) {
+func (o *ProcessingUnitPolicy) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *Policy) GetNamespace() string {
+func (o *ProcessingUnitPolicy) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *Policy) SetNamespace(namespace string) {
+func (o *ProcessingUnitPolicy) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *Policy) GetNormalizedTags() []string {
+func (o *ProcessingUnitPolicy) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *Policy) SetNormalizedTags(normalizedTags []string) {
+func (o *ProcessingUnitPolicy) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *Policy) GetProtected() bool {
+func (o *ProcessingUnitPolicy) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *Policy) GetUpdateTime() time.Time {
+func (o *ProcessingUnitPolicy) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *Policy) SetUpdateTime(updateTime time.Time) {
+func (o *ProcessingUnitPolicy) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // GetDisabled returns the Disabled of the receiver.
-func (o *Policy) GetDisabled() bool {
+func (o *ProcessingUnitPolicy) GetDisabled() bool {
 
 	return o.Disabled
 }
 
 // SetDisabled sets the given Disabled of the receiver.
-func (o *Policy) SetDisabled(disabled bool) {
+func (o *ProcessingUnitPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = disabled
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *Policy) GetMetadata() []string {
+func (o *ProcessingUnitPolicy) GetMetadata() []string {
 
 	return o.Metadata
 }
 
 // SetMetadata sets the given Metadata of the receiver.
-func (o *Policy) SetMetadata(metadata []string) {
+func (o *ProcessingUnitPolicy) SetMetadata(metadata []string) {
 
 	o.Metadata = metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *Policy) GetName() string {
+func (o *ProcessingUnitPolicy) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *Policy) SetName(name string) {
+func (o *ProcessingUnitPolicy) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetPropagate returns the Propagate of the receiver.
-func (o *Policy) GetPropagate() bool {
+func (o *ProcessingUnitPolicy) GetPropagate() bool {
 
 	return o.Propagate
 }
 
 // SetPropagate sets the given Propagate of the receiver.
-func (o *Policy) SetPropagate(propagate bool) {
+func (o *ProcessingUnitPolicy) SetPropagate(propagate bool) {
 
 	o.Propagate = propagate
 }
 
 // GetPropagationHidden returns the PropagationHidden of the receiver.
-func (o *Policy) GetPropagationHidden() bool {
+func (o *ProcessingUnitPolicy) GetPropagationHidden() bool {
 
 	return o.PropagationHidden
 }
 
 // SetPropagationHidden sets the given PropagationHidden of the receiver.
-func (o *Policy) SetPropagationHidden(propagationHidden bool) {
+func (o *ProcessingUnitPolicy) SetPropagationHidden(propagationHidden bool) {
 
 	o.PropagationHidden = propagationHidden
 }
 
 // GetActiveDuration returns the ActiveDuration of the receiver.
-func (o *Policy) GetActiveDuration() string {
+func (o *ProcessingUnitPolicy) GetActiveDuration() string {
 
 	return o.ActiveDuration
 }
 
 // SetActiveDuration sets the given ActiveDuration of the receiver.
-func (o *Policy) SetActiveDuration(activeDuration string) {
+func (o *ProcessingUnitPolicy) SetActiveDuration(activeDuration string) {
 
 	o.ActiveDuration = activeDuration
 }
 
 // GetActiveSchedule returns the ActiveSchedule of the receiver.
-func (o *Policy) GetActiveSchedule() string {
+func (o *ProcessingUnitPolicy) GetActiveSchedule() string {
 
 	return o.ActiveSchedule
 }
 
 // SetActiveSchedule sets the given ActiveSchedule of the receiver.
-func (o *Policy) SetActiveSchedule(activeSchedule string) {
+func (o *ProcessingUnitPolicy) SetActiveSchedule(activeSchedule string) {
 
 	o.ActiveSchedule = activeSchedule
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Policy) Validate() error {
+func (o *ProcessingUnitPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall"}, false); err != nil {
+	if err := elemental.ValidateStringInList("action", string(o.Action), []string{"Delete", "Enforce", "LogCompliance", "Reject", "Snapshot", "Stop"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -442,24 +398,24 @@ func (o *Policy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*Policy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*ProcessingUnitPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := PolicyAttributesMap[name]; ok {
+	if v, ok := ProcessingUnitPolicyAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return PolicyLowerCaseAttributesMap[name]
+	return ProcessingUnitPolicyLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*Policy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*ProcessingUnitPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return PolicyAttributesMap
+	return ProcessingUnitPolicyAttributesMap
 }
 
-// PolicyAttributesMap represents the map of attribute for Policy.
-var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// ProcessingUnitPolicyAttributesMap represents the map of attribute for ProcessingUnitPolicy.
+var ProcessingUnitPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -471,22 +427,20 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		PrimaryKey:     true,
 		ReadOnly:       true,
-		Stored:         true,
 		Type:           "string",
 		Unique:         true,
 	},
 	"Action": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
+		AllowedChoices: []string{"Delete", "Enforce", "LogCompliance", "Reject", "Snapshot", "Stop"},
 		ConvertedName:  "Action",
-		Description:    `Action defines set of actions that must be enforced when a dependency is met.`,
+		Description:    `Action determines the action to take while enforcing the isolation profile.`,
 		Exposed:        true,
+		Filterable:     true,
 		Name:           "action",
-		Required:       true,
+		Orderable:      true,
 		Stored:         true,
-		SubType:        "actions_list",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"ActiveDuration": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
@@ -511,26 +465,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "cron_expression",
-		Type:           "external",
-	},
-	"AllObjectTags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "AllObjectTags",
-		Description:    `This is a set of all object tags for matching in the DB`,
-		Name:           "allObjectTags",
-		Required:       true,
-		Stored:         true,
-		SubType:        "tags_list",
-		Type:           "external",
-	},
-	"AllSubjectTags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "AllSubjectTags",
-		Description:    `This is a set of all subject tags for matching in the DB`,
-		Name:           "allSubjectTags",
-		Required:       true,
-		Stored:         true,
-		SubType:        "tags_list",
 		Type:           "external",
 	},
 	"Annotations": elemental.AttributeSpecification{
@@ -595,6 +529,18 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"IsolationProfileSelector": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "IsolationProfileSelector",
+		Description:    `IsolationProfileSelector are the profiles that must be applied when this policy matches. Only applies to Enforce and LogCompliance actions.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "isolationProfileSelector",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -661,16 +607,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"Object": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Object",
-		Description:    `Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.`,
-		Exposed:        true,
-		Name:           "object",
-		Stored:         true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Propagate",
@@ -709,39 +645,17 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Relation": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Relation",
-		Description:    `Relation describes the required operation to be performed between subjects and objects`,
-		Exposed:        true,
-		Name:           "relation",
-		Stored:         true,
-		SubType:        "relations_list",
-		Type:           "external",
-	},
 	"Subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Subject",
-		Description:    `Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR`,
+		Description:    `Subject  defines the tag selectors that identitfy the processing units to which this policy applies.`,
 		Exposed:        true,
+		Filterable:     true,
 		Name:           "subject",
-		Required:       true,
+		Orderable:      true,
 		Stored:         true,
 		SubType:        "policies_list",
 		Type:           "external",
-	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall"},
-		ConvertedName:  "Type",
-		CreationOnly:   true,
-		Description:    `Type of the policy`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		PrimaryKey:     true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -759,8 +673,8 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 }
 
-// PolicyLowerCaseAttributesMap represents the map of attribute for Policy.
-var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// ProcessingUnitPolicyLowerCaseAttributesMap represents the map of attribute for ProcessingUnitPolicy.
+var ProcessingUnitPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -772,22 +686,20 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Identifier:     true,
 		Name:           "ID",
 		Orderable:      true,
-		PrimaryKey:     true,
 		ReadOnly:       true,
-		Stored:         true,
 		Type:           "string",
 		Unique:         true,
 	},
 	"action": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
+		AllowedChoices: []string{"Delete", "Enforce", "LogCompliance", "Reject", "Snapshot", "Stop"},
 		ConvertedName:  "Action",
-		Description:    `Action defines set of actions that must be enforced when a dependency is met.`,
+		Description:    `Action determines the action to take while enforcing the isolation profile.`,
 		Exposed:        true,
+		Filterable:     true,
 		Name:           "action",
-		Required:       true,
+		Orderable:      true,
 		Stored:         true,
-		SubType:        "actions_list",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"activeduration": elemental.AttributeSpecification{
 		AllowedChars:   `^[0-9]+[smh]$`,
@@ -812,26 +724,6 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		SubType:        "cron_expression",
-		Type:           "external",
-	},
-	"allobjecttags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "AllObjectTags",
-		Description:    `This is a set of all object tags for matching in the DB`,
-		Name:           "allObjectTags",
-		Required:       true,
-		Stored:         true,
-		SubType:        "tags_list",
-		Type:           "external",
-	},
-	"allsubjecttags": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "AllSubjectTags",
-		Description:    `This is a set of all subject tags for matching in the DB`,
-		Name:           "allSubjectTags",
-		Required:       true,
-		Stored:         true,
-		SubType:        "tags_list",
 		Type:           "external",
 	},
 	"annotations": elemental.AttributeSpecification{
@@ -896,6 +788,18 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"isolationprofileselector": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "IsolationProfileSelector",
+		Description:    `IsolationProfileSelector are the profiles that must be applied when this policy matches. Only applies to Enforce and LogCompliance actions.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "isolationProfileSelector",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "policies_list",
+		Type:           "external",
 	},
 	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -962,16 +866,6 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
-	"object": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Object",
-		Description:    `Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.`,
-		Exposed:        true,
-		Name:           "object",
-		Stored:         true,
-		SubType:        "policies_list",
-		Type:           "external",
-	},
 	"propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Propagate",
@@ -1010,39 +904,17 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"relation": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Relation",
-		Description:    `Relation describes the required operation to be performed between subjects and objects`,
-		Exposed:        true,
-		Name:           "relation",
-		Stored:         true,
-		SubType:        "relations_list",
-		Type:           "external",
-	},
 	"subject": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Subject",
-		Description:    `Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR`,
+		Description:    `Subject  defines the tag selectors that identitfy the processing units to which this policy applies.`,
 		Exposed:        true,
+		Filterable:     true,
 		Name:           "subject",
-		Required:       true,
+		Orderable:      true,
 		Stored:         true,
 		SubType:        "policies_list",
 		Type:           "external",
-	},
-	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall"},
-		ConvertedName:  "Type",
-		CreationOnly:   true,
-		Description:    `Type of the policy`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		PrimaryKey:     true,
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

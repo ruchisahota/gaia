@@ -19,6 +19,7 @@ func init() {
 	elemental.RegisterIdentity(FilePathIdentity)
 	elemental.RegisterIdentity(FlowStatisticIdentity)
 	elemental.RegisterIdentity(HookPolicyIdentity)
+	elemental.RegisterIdentity(IsolationProfileIdentity)
 	elemental.RegisterIdentity(MessageIdentity)
 	elemental.RegisterIdentity(NamespaceIdentity)
 	elemental.RegisterIdentity(NamespaceMappingPolicyIdentity)
@@ -27,6 +28,7 @@ func init() {
 	elemental.RegisterIdentity(PolicyIdentity)
 	elemental.RegisterIdentity(PolicyRuleIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
+	elemental.RegisterIdentity(ProcessingUnitPolicyIdentity)
 	elemental.RegisterIdentity(QuotaPolicyIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
 	elemental.RegisterIdentity(RoleIdentity)
@@ -77,6 +79,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewFlowStatistic()
 	case HookPolicyIdentity.Name:
 		return NewHookPolicy()
+	case IsolationProfileIdentity.Name:
+		return NewIsolationProfile()
 	case MessageIdentity.Name:
 		return NewMessage()
 	case NamespaceIdentity.Name:
@@ -93,6 +97,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewPolicyRule()
 	case ProcessingUnitIdentity.Name:
 		return NewProcessingUnit()
+	case ProcessingUnitPolicyIdentity.Name:
+		return NewProcessingUnitPolicy()
 	case QuotaPolicyIdentity.Name:
 		return NewQuotaPolicy()
 	case RenderedPolicyIdentity.Name:
@@ -153,6 +159,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewFlowStatistic()
 	case HookPolicyIdentity.Category:
 		return NewHookPolicy()
+	case IsolationProfileIdentity.Category:
+		return NewIsolationProfile()
 	case MessageIdentity.Category:
 		return NewMessage()
 	case NamespaceIdentity.Category:
@@ -169,6 +177,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewPolicyRule()
 	case ProcessingUnitIdentity.Category:
 		return NewProcessingUnit()
+	case ProcessingUnitPolicyIdentity.Category:
+		return NewProcessingUnitPolicy()
 	case QuotaPolicyIdentity.Category:
 		return NewQuotaPolicy()
 	case RenderedPolicyIdentity.Category:
@@ -229,6 +239,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &FlowStatisticsList{}
 	case HookPolicyIdentity.Name:
 		return &HookPoliciesList{}
+	case IsolationProfileIdentity.Name:
+		return &IsolationProfilesList{}
 	case MessageIdentity.Name:
 		return &MessagesList{}
 	case NamespaceIdentity.Name:
@@ -245,6 +257,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &PolicyRulesList{}
 	case ProcessingUnitIdentity.Name:
 		return &ProcessingUnitsList{}
+	case ProcessingUnitPolicyIdentity.Name:
+		return &ProcessingUnitPoliciesList{}
 	case QuotaPolicyIdentity.Name:
 		return &QuotaPoliciesList{}
 	case RenderedPolicyIdentity.Name:
@@ -305,6 +319,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &FlowStatisticsList{}
 	case HookPolicyIdentity.Category:
 		return &HookPoliciesList{}
+	case IsolationProfileIdentity.Category:
+		return &IsolationProfilesList{}
 	case MessageIdentity.Category:
 		return &MessagesList{}
 	case NamespaceIdentity.Category:
@@ -321,6 +337,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &PolicyRulesList{}
 	case ProcessingUnitIdentity.Category:
 		return &ProcessingUnitsList{}
+	case ProcessingUnitPolicyIdentity.Category:
+		return &ProcessingUnitPoliciesList{}
 	case QuotaPolicyIdentity.Category:
 		return &QuotaPoliciesList{}
 	case RenderedPolicyIdentity.Category:
@@ -365,6 +383,7 @@ func AllIdentities() []elemental.Identity {
 		FilePathIdentity,
 		FlowStatisticIdentity,
 		HookPolicyIdentity,
+		IsolationProfileIdentity,
 		MessageIdentity,
 		NamespaceIdentity,
 		NamespaceMappingPolicyIdentity,
@@ -373,6 +392,7 @@ func AllIdentities() []elemental.Identity {
 		PolicyIdentity,
 		PolicyRuleIdentity,
 		ProcessingUnitIdentity,
+		ProcessingUnitPolicyIdentity,
 		QuotaPolicyIdentity,
 		RenderedPolicyIdentity,
 		RoleIdentity,
@@ -408,6 +428,7 @@ var aliasesMap = map[string]elemental.Identity{
 	"hooks":      HookPolicyIdentity,
 	"hookpol":    HookPolicyIdentity,
 	"hookpols":   HookPolicyIdentity,
+	"ip":         IsolationProfileIdentity,
 	"mess":       MessageIdentity,
 	"ns":         NamespaceIdentity,
 	"nspolicy":   NamespaceMappingPolicyIdentity,
@@ -418,6 +439,7 @@ var aliasesMap = map[string]elemental.Identity{
 	"netpols":    NetworkAccessPolicyIdentity,
 	"pu":         ProcessingUnitIdentity,
 	"pus":        ProcessingUnitIdentity,
+	"pup":        ProcessingUnitPolicyIdentity,
 	"quota":      QuotaPolicyIdentity,
 	"quotas":     QuotaPolicyIdentity,
 	"quotapol":   QuotaPolicyIdentity,
@@ -510,6 +532,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"hookpol",
 			"hookpols",
 		}
+	case IsolationProfileIdentity:
+		return []string{
+			"ip",
+		}
 	case MessageIdentity:
 		return []string{
 			"mess",
@@ -540,6 +566,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"pu",
 			"pus",
+		}
+	case ProcessingUnitPolicyIdentity:
+		return []string{
+			"pup",
 		}
 	case QuotaPolicyIdentity:
 		return []string{

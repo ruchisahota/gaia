@@ -79,6 +79,9 @@ type PolicyRule struct {
 	// Policy target networks
 	FilePaths FilePathsList `json:"filePaths" bson:"-"`
 
+	// IsolationProfiles are the isolation profiles of the rule.
+	IsolationProfiles IsolationProfilesList `json:"isolationProfiles" bson:"isolationprofiles"`
+
 	// Policy target networks
 	Namespaces NamespacesList `json:"namespaces" bson:"-"`
 
@@ -90,9 +93,6 @@ type PolicyRule struct {
 
 	// Relation describes the required operation to be performed between subjects and objects
 	Relation []string `json:"relation" bson:"-"`
-
-	// Policy target networks
-	SystemCalls SystemCallsList `json:"systemCalls" bson:"-"`
 
 	// Policy target tags
 	TagClauses [][]string `json:"tagClauses" bson:"-"`
@@ -116,9 +116,9 @@ func NewPolicyRule() *PolicyRule {
 		EnforcerProfiles:            EnforcerProfilesList{},
 		ExternalServices:            ExternalServicesList{},
 		FilePaths:                   FilePathsList{},
+		IsolationProfiles:           IsolationProfilesList{},
 		Namespaces:                  NamespacesList{},
 		PassthroughExternalServices: ExternalServicesList{},
-		SystemCalls:                 SystemCallsList{},
 	}
 }
 
@@ -271,6 +271,18 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "file_entities",
 		Type:           "external",
 	},
+	"IsolationProfiles": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "IsolationProfiles",
+		Description:    `IsolationProfiles are the isolation profiles of the rule.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "isolationProfiles",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "isolation_profile_entities",
+		Type:           "external",
+	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
@@ -321,15 +333,6 @@ var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "relation",
 		SubType:        "relations_list",
-		Type:           "external",
-	},
-	"SystemCalls": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SystemCalls",
-		Description:    `Policy target networks `,
-		Exposed:        true,
-		Name:           "systemCalls",
-		SubType:        "syscall_entities",
 		Type:           "external",
 	},
 	"TagClauses": elemental.AttributeSpecification{
@@ -396,6 +399,18 @@ var PolicyRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "file_entities",
 		Type:           "external",
 	},
+	"isolationprofiles": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "IsolationProfiles",
+		Description:    `IsolationProfiles are the isolation profiles of the rule.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "isolationProfiles",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "isolation_profile_entities",
+		Type:           "external",
+	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
@@ -446,15 +461,6 @@ var PolicyRuleLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Exposed:        true,
 		Name:           "relation",
 		SubType:        "relations_list",
-		Type:           "external",
-	},
-	"systemcalls": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SystemCalls",
-		Description:    `Policy target networks `,
-		Exposed:        true,
-		Name:           "systemCalls",
-		SubType:        "syscall_entities",
 		Type:           "external",
 	},
 	"tagclauses": elemental.AttributeSpecification{
