@@ -8,7 +8,9 @@
         "description": null,
         "entity_name": "Alarm",
         "exposed": true,
-        "extends": [],
+        "extends": [
+            "@base"
+        ],
         "get": true,
         "package": null,
         "private": null,
