@@ -11,7 +11,8 @@
         "extends": [
             "@base",
             "@described",
-            "@named"
+            "@named",
+            "@timeable"
         ],
         "get": true,
         "package": null,
