@@ -673,20 +673,20 @@ var aliasesMap = map[string]elemental.Identity{
 	"aws":        AWSAccountIdentity,
 	"awsaccs":    AWSAccountIdentity,
 	"awsacc":     AWSAccountIdentity,
-	"depmap":     DependencyMapIdentity,
 	"depmaps":    DependencyMapIdentity,
+	"depmap":     DependencyMapIdentity,
 	"profile":    EnforcerProfileIdentity,
 	"profiles":   EnforcerProfileIdentity,
 	"srvpols":    EnforcerProfileMappingPolicyIdentity,
 	"srvpol":     EnforcerProfileMappingPolicyIdentity,
-	"extac":      ExternalAccessIdentity,
 	"extacs":     ExternalAccessIdentity,
+	"extac":      ExternalAccessIdentity,
 	"extsrv":     ExternalServiceIdentity,
 	"extsrvs":    ExternalServiceIdentity,
 	"fp":         FilePathIdentity,
 	"fps":        FilePathIdentity,
-	"flowstats":  FlowStatisticIdentity,
 	"flowstat":   FlowStatisticIdentity,
+	"flowstats":  FlowStatisticIdentity,
 	"hook":       HookPolicyIdentity,
 	"hooks":      HookPolicyIdentity,
 	"hookpol":    HookPolicyIdentity,
@@ -778,8 +778,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case DependencyMapIdentity:
 		return []string{
-			"depmap",
 			"depmaps",
+			"depmap",
 		}
 	case EmailIdentity:
 		return []string{}
@@ -799,8 +799,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ExternalAccessIdentity:
 		return []string{
-			"extac",
 			"extacs",
+			"extac",
 		}
 	case ExternalServiceIdentity:
 		return []string{
@@ -818,8 +818,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case FlowStatisticIdentity:
 		return []string{
-			"flowstats",
 			"flowstat",
+			"flowstats",
 		}
 	case HookPolicyIdentity:
 		return []string{
