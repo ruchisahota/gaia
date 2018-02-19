@@ -120,8 +120,7 @@
         "extends": [
             "@base",
             "@described",
-            "@named",
-            "@timeable"
+            "@named"
         ],
         "get": true,
         "package": null,
