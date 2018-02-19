@@ -10,6 +10,7 @@
         "exposed": true,
         "extends": [
             "@base",
+            "@described",
             "@named"
         ],
         "get": true,
