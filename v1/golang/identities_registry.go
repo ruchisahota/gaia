@@ -8,11 +8,13 @@ func init() {
 	elemental.RegisterIdentity(AccountCheckIdentity)
 	elemental.RegisterIdentity(ActivateIdentity)
 	elemental.RegisterIdentity(ActivityIdentity)
+	elemental.RegisterIdentity(AlarmIdentity)
 	elemental.RegisterIdentity(APIAuthorizationPolicyIdentity)
 	elemental.RegisterIdentity(APICheckIdentity)
 	elemental.RegisterIdentity(AuditProfileIdentity)
 	elemental.RegisterIdentity(AuthIdentity)
 	elemental.RegisterIdentity(AuthorityIdentity)
+	elemental.RegisterIdentity(AutomationIdentity)
 	elemental.RegisterIdentity(AvailableServiceIdentity)
 	elemental.RegisterIdentity(AWSAccountIdentity)
 	elemental.RegisterIdentity(CategoryIdentity)
@@ -84,6 +86,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewActivate()
 	case ActivityIdentity.Name:
 		return NewActivity()
+	case AlarmIdentity.Name:
+		return NewAlarm()
 	case APIAuthorizationPolicyIdentity.Name:
 		return NewAPIAuthorizationPolicy()
 	case APICheckIdentity.Name:
@@ -94,6 +98,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewAuth()
 	case AuthorityIdentity.Name:
 		return NewAuthority()
+	case AutomationIdentity.Name:
+		return NewAutomation()
 	case AvailableServiceIdentity.Name:
 		return NewAvailableService()
 	case AWSAccountIdentity.Name:
@@ -218,6 +224,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewActivate()
 	case ActivityIdentity.Category:
 		return NewActivity()
+	case AlarmIdentity.Category:
+		return NewAlarm()
 	case APIAuthorizationPolicyIdentity.Category:
 		return NewAPIAuthorizationPolicy()
 	case APICheckIdentity.Category:
@@ -228,6 +236,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewAuth()
 	case AuthorityIdentity.Category:
 		return NewAuthority()
+	case AutomationIdentity.Category:
+		return NewAutomation()
 	case AvailableServiceIdentity.Category:
 		return NewAvailableService()
 	case AWSAccountIdentity.Category:
@@ -352,6 +362,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &ActivatesList{}
 	case ActivityIdentity.Name:
 		return &ActivitiesList{}
+	case AlarmIdentity.Name:
+		return &AlarmsList{}
 	case APIAuthorizationPolicyIdentity.Name:
 		return &APIAuthorizationPoliciesList{}
 	case APICheckIdentity.Name:
@@ -362,6 +374,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &AuthsList{}
 	case AuthorityIdentity.Name:
 		return &AuthoritiesList{}
+	case AutomationIdentity.Name:
+		return &AutomationsList{}
 	case AvailableServiceIdentity.Name:
 		return &AvailableServicesList{}
 	case AWSAccountIdentity.Name:
@@ -485,6 +499,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &ActivatesList{}
 	case ActivityIdentity.Category:
 		return &ActivitiesList{}
+	case AlarmIdentity.Category:
+		return &AlarmsList{}
 	case APIAuthorizationPolicyIdentity.Category:
 		return &APIAuthorizationPoliciesList{}
 	case APICheckIdentity.Category:
@@ -495,6 +511,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &AuthsList{}
 	case AuthorityIdentity.Category:
 		return &AuthoritiesList{}
+	case AutomationIdentity.Category:
+		return &AutomationsList{}
 	case AvailableServiceIdentity.Category:
 		return &AvailableServicesList{}
 	case AWSAccountIdentity.Category:
@@ -613,11 +631,13 @@ func AllIdentities() []elemental.Identity {
 		AccountCheckIdentity,
 		ActivateIdentity,
 		ActivityIdentity,
+		AlarmIdentity,
 		APIAuthorizationPolicyIdentity,
 		APICheckIdentity,
 		AuditProfileIdentity,
 		AuthIdentity,
 		AuthorityIdentity,
+		AutomationIdentity,
 		AvailableServiceIdentity,
 		AWSAccountIdentity,
 		CategoryIdentity,
@@ -756,6 +776,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case ActivityIdentity:
 		return []string{}
+	case AlarmIdentity:
+		return []string{}
 	case APIAuthorizationPolicyIdentity:
 		return []string{
 			"apiauth",
@@ -773,6 +795,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"ca",
 		}
+	case AutomationIdentity:
+		return []string{}
 	case AvailableServiceIdentity:
 		return []string{
 			"asrv",
