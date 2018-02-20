@@ -8,7 +8,13 @@
         "description": null,
         "entity_name": "Automation",
         "exposed": true,
-        "extends": [],
+        "extends": [
+            "@base",
+            "@described",
+            "@disabled",
+            "@identifiable-pk-stored",
+            "@named"
+        ],
         "get": true,
         "package": null,
         "private": null,
