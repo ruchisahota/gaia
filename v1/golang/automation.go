@@ -86,6 +86,9 @@ type Automation struct {
 	// Condition contains the code that will be executed to decide if any action should be taken.
 	Condition string `json:"condition" bson:"condition" mapstructure:"condition,omitempty"`
 
+	// Parameters are passed to the functions.
+	Parameters map[string]interface{} `json:"parameters" bson:"parameters" mapstructure:"parameters,omitempty"`
+
 	// Trigger controls when the automation should be triggered.
 	Trigger AutomationTriggerValue `json:"trigger" bson:"trigger" mapstructure:"trigger,omitempty"`
 
@@ -135,6 +138,7 @@ func NewAutomation() *Automation {
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
+		Parameters:     map[string]interface{}{},
 		Trigger:        "Time",
 	}
 }
@@ -495,6 +499,16 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
+	"Parameters": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Parameters",
+		Description:    `Parameters are passed to the functions.`,
+		Exposed:        true,
+		Name:           "parameters",
+		Stored:         true,
+		SubType:        "automation_parameters",
+		Type:           "external",
+	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -688,6 +702,16 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Stored:         true,
 		SubType:        "tags_list",
 		Transient:      true,
+		Type:           "external",
+	},
+	"parameters": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Parameters",
+		Description:    `Parameters are passed to the functions.`,
+		Exposed:        true,
+		Name:           "parameters",
+		Stored:         true,
+		SubType:        "automation_parameters",
 		Type:           "external",
 	},
 	"protected": elemental.AttributeSpecification{
