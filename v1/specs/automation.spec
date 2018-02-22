@@ -149,7 +149,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "StdOut contains the last run output.",
+            "description": "StdOut contains the last run standard output.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
