@@ -121,6 +121,7 @@
         "extends": [
             "@base",
             "@described",
+            "@identifiable-pk-stored",
             "@named"
         ],
         "get": true,
