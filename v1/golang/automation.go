@@ -81,7 +81,7 @@ func (o AutomationsList) Version() int {
 // Automation represents the model of a automation
 type Automation struct {
 	// Action contains the code that will be executed if the condition is met.
-	Action string `json:"action" bson:"action" mapstructure:"action,omitempty"`
+	Actions []string `json:"actions" bson:"actions" mapstructure:"actions,omitempty"`
 
 	// Condition contains the code that will be executed to decide if any action should be taken.
 	Condition string `json:"condition" bson:"condition" mapstructure:"condition,omitempty"`
@@ -294,14 +294,6 @@ func (o *Automation) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("action", o.Action); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("action", o.Action); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("condition", o.Condition); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -369,16 +361,16 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 		Unique:         true,
 	},
-	"Action": elemental.AttributeSpecification{
+	"Actions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Action",
+		ConvertedName:  "Actions",
 		Description:    `Action contains the code that will be executed if the condition is met.`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "action",
+		Name:           "actions",
 		Required:       true,
 		Stored:         true,
-		Type:           "string",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -598,16 +590,16 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Type:           "string",
 		Unique:         true,
 	},
-	"action": elemental.AttributeSpecification{
+	"actions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Action",
+		ConvertedName:  "Actions",
 		Description:    `Action contains the code that will be executed if the condition is met.`,
 		Exposed:        true,
-		Format:         "free",
-		Name:           "action",
+		Name:           "actions",
 		Required:       true,
 		Stored:         true,
-		Type:           "string",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
