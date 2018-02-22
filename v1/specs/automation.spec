@@ -114,7 +114,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "StdErr contains the last run sandard error output.",
+            "description": "StdErr contains the last run sandard error.",
             "exposed": true,
             "filterable": true,
             "foreign_key": null,
