@@ -86,8 +86,8 @@ type Alarm struct {
 	// Content of the alarm.
 	Content []string `json:"content" bson:"content" mapstructure:"content,omitempty"`
 
-	// Identifier identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.
-	Identifier string `json:"identifier" bson:"identifier" mapstructure:"identifier,omitempty"`
+	// Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.
+	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
 
 	// Number of time this alarm have been seen.
 	Occurences []time.Time `json:"occurences" bson:"occurences" mapstructure:"occurences,omitempty"`
@@ -275,11 +275,11 @@ func (o *Alarm) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("identifier", o.Identifier); err != nil {
+	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("identifier", o.Identifier); err != nil {
+	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -404,15 +404,15 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Identifier": elemental.AttributeSpecification{
+	"Kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Identifier",
+		ConvertedName:  "Kind",
 		CreationOnly:   true,
-		Description:    `Identifier identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.`,
+		Description:    `Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "identifier",
+		Name:           "kind",
 		Orderable:      true,
 		Required:       true,
 		Stored:         true,
@@ -604,15 +604,15 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"identifier": elemental.AttributeSpecification{
+	"kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Identifier",
+		ConvertedName:  "Kind",
 		CreationOnly:   true,
-		Description:    `Identifier identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.`,
+		Description:    `Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
-		Name:           "identifier",
+		Name:           "kind",
 		Orderable:      true,
 		Required:       true,
 		Stored:         true,
