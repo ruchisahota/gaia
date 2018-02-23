@@ -204,7 +204,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": "automation_eventtypes",
+            "subtype": "automation_event_types",
             "transient": null,
             "type": "list",
             "unique": null,
