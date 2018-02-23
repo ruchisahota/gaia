@@ -142,6 +142,7 @@ func NewAlarm() *Alarm {
 		AssociatedTags: []string{},
 		Data:           map[string]interface{}{},
 		NormalizedTags: []string{},
+		Occurences:     []time.Time{},
 		Status:         "Open",
 	}
 }
@@ -501,8 +502,8 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "occurences",
 		ReadOnly:       true,
 		Stored:         true,
-		SubType:        "time.Time",
-		Type:           "list",
+		SubType:        "alarm_occurences",
+		Type:           "external",
 	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -710,8 +711,8 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "occurences",
 		ReadOnly:       true,
 		Stored:         true,
-		SubType:        "time.Time",
-		Type:           "list",
+		SubType:        "alarm_occurences",
+		Type:           "external",
 	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
