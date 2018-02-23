@@ -84,7 +84,7 @@ func (o AlarmsList) Version() int {
 // Alarm represents the model of a alarm
 type Alarm struct {
 	// Content of the alarm.
-	Content []string `json:"content" bson:"content" mapstructure:"content,omitempty"`
+	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
 
 	// Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.
 	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
@@ -275,6 +275,14 @@ func (o *Alarm) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -371,12 +379,11 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "Content",
 		Description:    `Content of the alarm.`,
 		Exposed:        true,
-		Filterable:     true,
+		Format:         "free",
 		Name:           "content",
-		Orderable:      true,
+		Required:       true,
 		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
+		Type:           "string",
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -475,9 +482,7 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "Occurences",
 		Description:    `Number of time this alarm have been seen.`,
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "occurences",
-		Orderable:      true,
 		ReadOnly:       true,
 		Stored:         true,
 		SubType:        "time.Time",
@@ -571,12 +576,11 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "Content",
 		Description:    `Content of the alarm.`,
 		Exposed:        true,
-		Filterable:     true,
+		Format:         "free",
 		Name:           "content",
-		Orderable:      true,
+		Required:       true,
 		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
+		Type:           "string",
 	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -675,9 +679,7 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "Occurences",
 		Description:    `Number of time this alarm have been seen.`,
 		Exposed:        true,
-		Filterable:     true,
 		Name:           "occurences",
-		Orderable:      true,
 		ReadOnly:       true,
 		Stored:         true,
 		SubType:        "time.Time",
