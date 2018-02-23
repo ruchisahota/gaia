@@ -169,7 +169,7 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": null,
+            "subtype": "automation_event_identities",
             "transient": null,
             "type": "list",
             "unique": null,
