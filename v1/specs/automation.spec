@@ -206,7 +206,7 @@
             "stored": true,
             "subtype": "automation_event_types",
             "transient": null,
-            "type": "list",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         },
