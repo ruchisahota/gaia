@@ -92,6 +92,12 @@ type Automation struct {
 	// LastExecTime holds the last sucessful execution tine.
 	LastExecTime time.Time `json:"lastExecTime" bson:"lastexectime" mapstructure:"lastExecTime,omitempty"`
 
+	// OnEventIdentities tells on what identitifies of event to react. Only used when trigger is set to Event.
+	OnEventIdentities []interface{} `json:"onEventIdentities" bson:"oneventidentities" mapstructure:"onEventIdentities,omitempty"`
+
+	// OnEventType tells on what type of event to react. Only used when trigger is set to Event.
+	OnEventType []string `json:"onEventType" bson:"oneventtype" mapstructure:"onEventType,omitempty"`
+
 	// Parameters are passed to the functions.
 	Parameters map[string]interface{} `json:"parameters" bson:"parameters" mapstructure:"parameters,omitempty"`
 
@@ -526,6 +532,25 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
+	"OnEventIdentities": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "OnEventIdentities",
+		Description:    `OnEventIdentities tells on what identitifies of event to react. Only used when trigger is set to Event.`,
+		Exposed:        true,
+		Name:           "onEventIdentities",
+		Stored:         true,
+		Type:           "list",
+	},
+	"OnEventType": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "OnEventType",
+		Description:    `OnEventType tells on what type of event to react. Only used when trigger is set to Event.`,
+		Exposed:        true,
+		Name:           "onEventType",
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
+	},
 	"Parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
@@ -775,6 +800,25 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "tags_list",
 		Transient:      true,
 		Type:           "external",
+	},
+	"oneventidentities": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "OnEventIdentities",
+		Description:    `OnEventIdentities tells on what identitifies of event to react. Only used when trigger is set to Event.`,
+		Exposed:        true,
+		Name:           "onEventIdentities",
+		Stored:         true,
+		Type:           "list",
+	},
+	"oneventtype": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "OnEventType",
+		Description:    `OnEventType tells on what type of event to react. Only used when trigger is set to Event.`,
+		Exposed:        true,
+		Name:           "onEventType",
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
 	},
 	"parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
