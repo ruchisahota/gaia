@@ -134,9 +134,9 @@
             "secret": null,
             "setter": null,
             "stored": true,
-            "subtype": "time.Time",
+            "subtype": "alarm_occurences",
             "transient": null,
-            "type": "list",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         },
