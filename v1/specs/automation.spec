@@ -171,7 +171,7 @@
             "stored": true,
             "subtype": "automation_event_identities",
             "transient": null,
-            "type": "list",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         },
