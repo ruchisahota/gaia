@@ -149,7 +149,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "Schedule tells when to run the automation. Must be a valid CRON format.",
+            "description": "Schedule tells when to run the automation. Must be a valid CRON format. This only applies if the trigger is set to Time.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
