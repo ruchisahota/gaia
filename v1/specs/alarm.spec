@@ -125,7 +125,7 @@
             "@named"
         ],
         "get": true,
-        "package": null,
+        "package": "sephiroth",
         "private": null,
         "resource_name": "alarms",
         "rest_name": "alarm",
