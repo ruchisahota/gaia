@@ -86,6 +86,9 @@ type Alarm struct {
 	// Content of the alarm.
 	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
 
+	// Data represent user data related to the alams
+	Data map[string]interface{} `json:"data" bson:"data" mapstructure:"data,omitempty"`
+
 	// Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.
 	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
 
@@ -137,6 +140,7 @@ func NewAlarm() *Alarm {
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
+		Data:           map[string]interface{}{},
 		NormalizedTags: []string{},
 		Status:         "Open",
 	}
@@ -377,6 +381,7 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 	"Content": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Content",
+		CreationOnly:   true,
 		Description:    `Content of the alarm.`,
 		Exposed:        true,
 		Format:         "free",
@@ -398,6 +403,17 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"Data": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Data",
+		CreationOnly:   true,
+		Description:    `Data represent user data related to the alams`,
+		Exposed:        true,
+		Name:           "data",
+		Stored:         true,
+		SubType:        "alarm_data",
+		Type:           "external",
 	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -574,6 +590,7 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"content": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Content",
+		CreationOnly:   true,
 		Description:    `Content of the alarm.`,
 		Exposed:        true,
 		Format:         "free",
@@ -595,6 +612,17 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"data": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Data",
+		CreationOnly:   true,
+		Description:    `Data represent user data related to the alams`,
+		Exposed:        true,
+		Name:           "data",
+		Stored:         true,
+		SubType:        "alarm_data",
+		Type:           "external",
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
