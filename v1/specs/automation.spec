@@ -356,7 +356,10 @@
     ],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "autos",
+            "auto"
+        ],
         "create": null,
         "delete": true,
         "description": null,
@@ -370,7 +373,7 @@
             "@named"
         ],
         "get": true,
-        "package": null,
+        "package": "sephiroth",
         "private": null,
         "resource_name": "automations",
         "rest_name": "automation",
