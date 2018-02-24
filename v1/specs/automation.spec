@@ -149,7 +149,7 @@
             "default_order": null,
             "default_value": null,
             "deprecated": null,
-            "description": "OnEventType tells on what type of event to react. Only used when trigger is set to Event.",
+            "description": "EventType tells on what type of event to react. Only used when trigger is set to Event.",
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
