@@ -699,6 +699,8 @@ var aliasesMap = map[string]elemental.Identity{
 	"apiauths":   APIAuthorizationPolicyIdentity,
 	"ap":         AuditProfileIdentity,
 	"ca":         AuthorityIdentity,
+	"autos":      AutomationIdentity,
+	"auto":       AutomationIdentity,
 	"asrv":       AvailableServiceIdentity,
 	"aws":        AWSAccountIdentity,
 	"awsaccs":    AWSAccountIdentity,
@@ -796,7 +798,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"ca",
 		}
 	case AutomationIdentity:
-		return []string{}
+		return []string{
+			"autos",
+			"auto",
+		}
 	case AvailableServiceIdentity:
 		return []string{
 			"asrv",
