@@ -161,7 +161,7 @@
             "max_value": null,
             "min_length": null,
             "min_value": null,
-            "name": "eventType",
+            "name": "eventTypes",
             "orderable": false,
             "primary_key": null,
             "read_only": null,
