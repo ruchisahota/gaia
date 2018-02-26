@@ -92,11 +92,8 @@ type Automation struct {
 	// Error contains the eventual error of the last run.
 	Errors []string `json:"errors" bson:"errors" mapstructure:"errors,omitempty"`
 
-	// EventIdentities tells on what identitifies of event to react. Only used when trigger is set to Event.
-	EventIdentities []string `json:"eventIdentities" bson:"eventidentities" mapstructure:"eventIdentities,omitempty"`
-
-	// EventType tells on what type of event to react. Only used when trigger is set to Event.
-	EventTypes []elemental.EventType `json:"eventTypes" bson:"eventtypes" mapstructure:"eventTypes,omitempty"`
+	// Events contains the identity and operation an event must have to trigger the automation
+	Events map[string][]elemental.EventType `json:"events" bson:"events" mapstructure:"events,omitempty"`
 
 	// LastExecTime holds the last sucessful execution tine.
 	LastExecTime time.Time `json:"lastExecTime" bson:"lastexectime" mapstructure:"lastExecTime,omitempty"`
@@ -155,15 +152,14 @@ type Automation struct {
 func NewAutomation() *Automation {
 
 	return &Automation{
-		ModelVersion:    1,
-		Annotations:     map[string][]string{},
-		AssociatedTags:  []string{},
-		Entitlements:    map[string][]elemental.Operation{},
-		EventIdentities: []string{},
-		EventTypes:      []elemental.EventType{},
-		NormalizedTags:  []string{},
-		Parameters:      map[string]interface{}{},
-		Trigger:         "Time",
+		ModelVersion:   1,
+		Annotations:    map[string][]string{},
+		AssociatedTags: []string{},
+		Entitlements:   map[string][]elemental.Operation{},
+		Events:         map[string][]elemental.EventType{},
+		NormalizedTags: []string{},
+		Parameters:     map[string]interface{}{},
+		Trigger:        "Time",
 	}
 }
 
@@ -486,24 +482,14 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "string",
 		Type:           "list",
 	},
-	"EventIdentities": elemental.AttributeSpecification{
+	"Events": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "EventIdentities",
-		Description:    `EventIdentities tells on what identitifies of event to react. Only used when trigger is set to Event.`,
+		ConvertedName:  "Events",
+		Description:    `Events contains the identity and operation an event must have to trigger the automation`,
 		Exposed:        true,
-		Name:           "eventIdentities",
+		Name:           "events",
 		Stored:         true,
-		SubType:        "automation_event_identities",
-		Type:           "external",
-	},
-	"EventTypes": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "EventTypes",
-		Description:    `EventType tells on what type of event to react. Only used when trigger is set to Event.`,
-		Exposed:        true,
-		Name:           "eventTypes",
-		Stored:         true,
-		SubType:        "automation_event_types",
+		SubType:        "automation_events",
 		Type:           "external",
 	},
 	"LastExecTime": elemental.AttributeSpecification{
@@ -766,24 +752,14 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "string",
 		Type:           "list",
 	},
-	"eventidentities": elemental.AttributeSpecification{
+	"events": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "EventIdentities",
-		Description:    `EventIdentities tells on what identitifies of event to react. Only used when trigger is set to Event.`,
+		ConvertedName:  "Events",
+		Description:    `Events contains the identity and operation an event must have to trigger the automation`,
 		Exposed:        true,
-		Name:           "eventIdentities",
+		Name:           "events",
 		Stored:         true,
-		SubType:        "automation_event_identities",
-		Type:           "external",
-	},
-	"eventtypes": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "EventTypes",
-		Description:    `EventType tells on what type of event to react. Only used when trigger is set to Event.`,
-		Exposed:        true,
-		Name:           "eventTypes",
-		Stored:         true,
-		SubType:        "automation_event_types",
+		SubType:        "automation_events",
 		Type:           "external",
 	},
 	"lastexectime": elemental.AttributeSpecification{
