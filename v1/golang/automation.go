@@ -15,6 +15,9 @@ const (
 	// AutomationTriggerEvent represents the value Event.
 	AutomationTriggerEvent AutomationTriggerValue = "Event"
 
+	// AutomationTriggerRemotecall represents the value RemoteCall.
+	AutomationTriggerRemotecall AutomationTriggerValue = "RemoteCall"
+
 	// AutomationTriggerTime represents the value Time.
 	AutomationTriggerTime AutomationTriggerValue = "Time"
 )
@@ -316,7 +319,7 @@ func (o *Automation) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("trigger", string(o.Trigger), []string{"Event", "Time"}, false); err != nil {
+	if err := elemental.ValidateStringInList("trigger", string(o.Trigger), []string{"Event", "RemoteCall", "Time"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -599,7 +602,7 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "string",
 	},
 	"Trigger": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Event", "Time"},
+		AllowedChoices: []string{"Event", "RemoteCall", "Time"},
 		ConvertedName:  "Trigger",
 		DefaultValue:   AutomationTriggerTime,
 		Description:    `Trigger controls when the automation should be triggered.`,
@@ -869,7 +872,7 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Type:           "string",
 	},
 	"trigger": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Event", "Time"},
+		AllowedChoices: []string{"Event", "RemoteCall", "Time"},
 		ConvertedName:  "Trigger",
 		DefaultValue:   AutomationTriggerTime,
 		Description:    `Trigger controls when the automation should be triggered.`,
