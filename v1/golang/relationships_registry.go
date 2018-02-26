@@ -947,6 +947,18 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[TriggerIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"automation": true,
+		},
+		AllowsRetrieveMany: map[string]bool{
+			"automation": true,
+		},
+		AllowsInfo: map[string]bool{
+			"automation": true,
+		},
+	}
+
 	relationshipsRegistry[VulnerabilityIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,

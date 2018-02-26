@@ -65,6 +65,7 @@ func init() {
 	elemental.RegisterIdentity(TabulationIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(TokenIdentity)
+	elemental.RegisterIdentity(TriggerIdentity)
 	elemental.RegisterIdentity(VulnerabilityIdentity)
 	elemental.RegisterIdentity(X509CertificateIdentity)
 	elemental.RegisterIdentity(X509CertificateCheckIdentity)
@@ -200,6 +201,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewTag()
 	case TokenIdentity.Name:
 		return NewToken()
+	case TriggerIdentity.Name:
+		return NewTrigger()
 	case VulnerabilityIdentity.Name:
 		return NewVulnerability()
 	case X509CertificateIdentity.Name:
@@ -338,6 +341,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewTag()
 	case TokenIdentity.Category:
 		return NewToken()
+	case TriggerIdentity.Category:
+		return NewTrigger()
 	case VulnerabilityIdentity.Category:
 		return NewVulnerability()
 	case X509CertificateIdentity.Category:
@@ -475,6 +480,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case TokenIdentity.Name:
 		return &TokensList{}
+	case TriggerIdentity.Name:
+		return &TriggersList{}
 	case VulnerabilityIdentity.Name:
 		return &VulnerabilitiesList{}
 	case X509CertificateIdentity.Name:
@@ -612,6 +619,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &TagsList{}
 	case TokenIdentity.Category:
 		return &TokensList{}
+	case TriggerIdentity.Category:
+		return &TriggersList{}
 	case VulnerabilityIdentity.Category:
 		return &VulnerabilitiesList{}
 	case X509CertificateIdentity.Category:
@@ -688,6 +697,7 @@ func AllIdentities() []elemental.Identity {
 		TabulationIdentity,
 		TagIdentity,
 		TokenIdentity,
+		TriggerIdentity,
 		VulnerabilityIdentity,
 		X509CertificateIdentity,
 		X509CertificateCheckIdentity,
@@ -979,6 +989,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case TagIdentity:
 		return []string{}
 	case TokenIdentity:
+		return []string{}
+	case TriggerIdentity:
 		return []string{}
 	case VulnerabilityIdentity:
 		return []string{
