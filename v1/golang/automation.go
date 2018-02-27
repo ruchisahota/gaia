@@ -628,7 +628,7 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Format:         "free",
 		Name:           "token",
-		ReadOnly:       true,
+		Transient:      true,
 		Type:           "string",
 	},
 	"TokenRenew": elemental.AttributeSpecification{
@@ -927,7 +927,7 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Exposed:        true,
 		Format:         "free",
 		Name:           "token",
-		ReadOnly:       true,
+		Transient:      true,
 		Type:           "string",
 	},
 	"tokenrenew": elemental.AttributeSpecification{
