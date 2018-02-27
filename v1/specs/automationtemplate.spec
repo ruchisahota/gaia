@@ -2,19 +2,21 @@
     "attributes": [],
     "children": [],
     "model": {
-        "aliases": [],
+        "aliases": [
+            "autotmpl"
+        ],
         "create": null,
-        "delete": true,
-        "description": null,
+        "delete": false,
+        "description": "Templates that ca be used in automations",
         "entity_name": "AutomationTemplate",
         "exposed": true,
         "extends": [],
         "get": true,
-        "package": null,
+        "package": "sephiroth",
         "private": null,
         "resource_name": "automationtemplates",
         "rest_name": "automationtemplate",
         "root": null,
-        "update": true
+        "update": false
     }
 }
