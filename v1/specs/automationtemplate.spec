@@ -10,7 +10,10 @@
         "description": "Templates that ca be used in automations",
         "entity_name": "AutomationTemplate",
         "exposed": true,
-        "extends": [],
+        "extends": [
+            "@described",
+            "@named"
+        ],
         "get": true,
         "package": "sephiroth",
         "private": null,
