@@ -156,7 +156,7 @@
             "exposed": true,
             "filterable": false,
             "foreign_key": null,
-            "format": "free",
+            "format": null,
             "getter": null,
             "identifier": null,
             "index": null,
@@ -172,9 +172,9 @@
             "secret": null,
             "setter": null,
             "stored": false,
-            "subtype": null,
+            "subtype": "automation_template_parameters",
             "transient": null,
-            "type": "string",
+            "type": "external",
             "unique": null,
             "uniqueScope": null
         }
