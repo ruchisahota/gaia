@@ -730,6 +730,8 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[PolicyRefreshIdentity] = &elemental.Relationship{}
+
 	relationshipsRegistry[PolicyRuleIdentity] = &elemental.Relationship{}
 
 	relationshipsRegistry[PrivateKeyIdentity] = &elemental.Relationship{
