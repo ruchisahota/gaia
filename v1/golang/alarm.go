@@ -87,7 +87,7 @@ type Alarm struct {
 	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
 
 	// Data represent user data related to the alams
-	Data map[string]interface{} `json:"data" bson:"data" mapstructure:"data,omitempty"`
+	Data map[string][]interface{} `json:"data" bson:"data" mapstructure:"data,omitempty"`
 
 	// Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.
 	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
@@ -140,7 +140,7 @@ func NewAlarm() *Alarm {
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
-		Data:           map[string]interface{}{},
+		Data:           map[string][]interface{}{},
 		NormalizedTags: []string{},
 		Occurences:     []time.Time{},
 		Status:         "Open",
