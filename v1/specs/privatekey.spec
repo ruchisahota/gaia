@@ -117,6 +117,7 @@
         "extends": [],
         "get": true,
         "package": "barret",
+        "private": true,
         "resource_name": "privatekeys",
         "rest_name": "privatekey",
         "root": null,

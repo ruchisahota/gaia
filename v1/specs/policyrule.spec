@@ -400,7 +400,7 @@
         ],
         "get": true,
         "package": "squall",
-        "private": true,
+        "private": false,
         "resource_name": "policyrules",
         "rest_name": "policyrule",
         "root": null,

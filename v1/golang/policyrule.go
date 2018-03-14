@@ -11,7 +11,7 @@ import (
 var PolicyRuleIdentity = elemental.Identity{
 	Name:     "policyrule",
 	Category: "policyrules",
-	Private:  true,
+	Private:  false,
 }
 
 // PolicyRulesList represents a list of PolicyRules
