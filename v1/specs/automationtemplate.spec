@@ -15,7 +15,7 @@
             "type": "string"
         },
         {
-            "description": "Key contais the unique identifier key for the template.",
+            "description": "Key contains the unique identifier key for the template.",
             "exposed": true,
             "format": "free",
             "name": "key",

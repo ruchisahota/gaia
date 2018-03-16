@@ -20,7 +20,7 @@
         },
         {
             "creation_only": true,
-            "description": "Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurence will be incremented.",
+            "description": "Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurrence will be incremented.",
             "exposed": true,
             "filterable": true,
             "format": "free",

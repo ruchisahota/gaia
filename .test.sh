@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+# --enable golint is disabled because Dimitri likes underscores...
 gometalinter \
     --exclude bindata.go \
     --exclude vendor \
@@ -8,7 +9,6 @@ gometalinter \
     --disable-all \
     --enable vet \
     --enable vetshadow \
-    --enable golint \
     --enable ineffassign \
     --enable goconst \
     --enable errcheck \
