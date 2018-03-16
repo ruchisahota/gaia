@@ -1,28 +1,9 @@
-attributes:
-- description: mappedNamespace is the mapped namespace
-  exposed: true
-  filterable: true
-  format: free
-  name: mappedNamespace
-  orderable: true
-  required: true
-  stored: true
-  type: string
-- description: Subject is the subject.
-  exposed: true
-  name: subject
-  orderable: true
-  subtype: policies_list
-  type: external
+# Model
 model:
-  aliases:
-  - nspolicy
-  - nspolicies
-  - nsmap
-  - nsmaps
-  delete: true
-  get: true
-  update: true
+  rest_name: namespacemappingpolicy
+  resource_name: namespacemappingpolicies
+  entity_name: NamespaceMappingPolicy
+  package: squall
   description: A Namespace Mapping Policy defines in which namespace aProcessing Unit
     should be placed when it is created, based on its tags. When an Aporeto Agent
     creates a new Processing Unit, the system will place it in its own namespace if
@@ -34,7 +15,14 @@ model:
     into a particular namespace, based on a lot of factor. You can put in place a
     quarantine namespace that will grab all Processing Units with too much vulnerabilities
     for instances.
-  entity_name: NamespaceMappingPolicy
+  aliases:
+  - nspolicy
+  - nspolicies
+  - nsmap
+  - nsmaps
+  get: true
+  update: true
+  delete: true
   extends:
   - '@base'
   - '@described'
@@ -42,6 +30,22 @@ model:
   - '@identifiable-nopk-nostored'
   - '@metadatable'
   - '@named'
-  package: squall
-  resource_name: namespacemappingpolicies
-  rest_name: namespacemappingpolicy
+
+# Attributes
+attributes:
+- name: mappedNamespace
+  description: mappedNamespace is the mapped namespace
+  type: string
+  exposed: true
+  stored: true
+  required: true
+  filterable: true
+  format: free
+  orderable: true
+
+- name: subject
+  description: Subject is the subject.
+  type: external
+  exposed: true
+  subtype: policies_list
+  orderable: true

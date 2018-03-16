@@ -167,6 +167,11 @@ func (o *IsolationProfile) DefaultOrder() []string {
 	}
 }
 
+// Doc returns the documentation for the object
+func (o *IsolationProfile) Doc() string {
+	return `An IsolationProfile needs documentation`
+}
+
 func (o *IsolationProfile) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

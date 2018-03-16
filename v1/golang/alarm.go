@@ -179,6 +179,11 @@ func (o *Alarm) DefaultOrder() []string {
 	}
 }
 
+// Doc returns the documentation for the object
+func (o *Alarm) Doc() string {
+	return `An alarm represents an event requiring attention.`
+}
+
 func (o *Alarm) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())

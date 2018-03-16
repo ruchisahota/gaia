@@ -204,6 +204,11 @@ func (o *Automation) DefaultOrder() []string {
 	}
 }
 
+// Doc returns the documentation for the object
+func (o *Automation) Doc() string {
+	return `An automation needs documentation.`
+}
+
 func (o *Automation) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
