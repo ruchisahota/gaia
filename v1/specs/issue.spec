@@ -36,8 +36,9 @@ attributes:
   format: free
 
 - name: validity
-  description: Validity configures the max validity time for a token. If it is bigger
-    than the configured max validity, it will be capped.
+  description: |-
+    Validity configures the max validity time for a token. If it is bigger than the
+    configured max validity, it will be capped.
   type: string
   exposed: true
   stored: true

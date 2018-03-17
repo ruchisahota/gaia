@@ -4,7 +4,9 @@ model:
   resource_name: accounts
   entity_name: Account
   package: vince
-  description: Manage your Account.
+  description: |-
+    This api allows to view and manage basic information about your account like
+    your name, password, enable 2 factor authentication.
   get: true
   update: true
   delete: true
@@ -43,7 +45,7 @@ attributes:
   orderable: true
 
 - name: LDAPBindPassword
-  description: 'LDAPBindPassword holds the password to the LDAPBindDN. '
+  description: LDAPBindPassword holds the password to the LDAPBindDN.
   type: string
   exposed: true
   stored: true
@@ -52,8 +54,9 @@ attributes:
   orderable: true
 
 - name: LDAPCertificateAuthority
-  description: LDAPCertificateAuthority contains the optional certificate authority
-    that will be used to connect to the LDAP server. It is not needed if the TLS certificate
+  description: |-
+    LDAPCertificateAuthority contains the optional certificate author ity that will
+    be used to connect to the LDAP server. It is not needed if the TLS certificate
     of the LDAP is issued from a public truster CA.
   type: string
   exposed: true

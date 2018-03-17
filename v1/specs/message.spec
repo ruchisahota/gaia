@@ -4,8 +4,9 @@ model:
   resource_name: messages
   entity_name: Message
   package: squall
-  description: The Message API allows to post public messages that will be visible
-    through all children namespaces
+  description: |-
+    The Message API allows to post public messages that will be visible through all
+    children namespaces.
   aliases:
   - mess
   get: true
@@ -49,7 +50,8 @@ attributes:
   orderable: true
 
 - name: notifyByEmail
-  description: If enabled, the message will be sent to the email associated in namespaces
+  description: |-
+    If enabled, the message will be sent to the email associated in namespaces
     annotations.
   type: boolean
   exposed: true
@@ -57,7 +59,8 @@ attributes:
   filterable: true
 
 - name: validity
-  description: Validity set using golang time duration, when the message will be automatically
+  description: |-
+    Validity set using golang time duration, when the message will be automatically
     deleted.
   type: string
   exposed: true

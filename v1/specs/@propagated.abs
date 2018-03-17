@@ -11,8 +11,9 @@ attributes:
   orderable: true
 
 - name: propagationHidden
-  description: If set to true while the policy is propagating, it won't be visible
-    to children namespace, but still used for policy resolution.
+  description: |-
+    If set to true while the policy is propagating, it won't be visible to children
+    namespace, but still used for policy resolution.
   type: boolean
   exposed: true
   stored: true

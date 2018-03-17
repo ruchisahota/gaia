@@ -21,8 +21,9 @@ attributes:
   primary_key: true
 
 - name: certificateSerialNumber
-  description: CertificateSerialNumber represents the certificate serial number associated
-    to this key.
+  description: |-
+    CertificateSerialNumber represents the certificate serial number associated to
+    this key.
   type: string
   stored: true
   format: free

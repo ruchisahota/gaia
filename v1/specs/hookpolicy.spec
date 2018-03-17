@@ -4,9 +4,10 @@ model:
   resource_name: hookpolicies
   entity_name: HookPolicy
   package: squall
-  description: Hook allows to to define hooks to the write operations in squall. Hooks
-    are sent to an external Rufus server that will do the processing and eventually
-    return a modified version of the object before we save it.
+  description: |-
+    Hook allows to to define hooks to the write operations in squall. Hooks are sent
+    to an external Rufus server that will do the processing and eventually return a
+    modified version of the object before we save it.
   aliases:
   - hook
   - hooks
@@ -27,8 +28,9 @@ model:
 # Attributes
 attributes:
 - name: certificateAuthority
-  description: CertificateAuthority contains the pem block of the certificate authority
-    used by the remote endpoint.
+  description: |-
+    CertificateAuthority contains the pem block of the certificate authority used by
+    the remote endpoint.
   type: string
   exposed: true
   stored: true
@@ -37,8 +39,9 @@ attributes:
   orderable: true
 
 - name: clientCertificate
-  description: ClientCertificate contains the client certificate that will be used
-    to connect to the remote endoint.
+  description: |-
+    ClientCertificate contains the client certificate that will be used to connect
+    to the remote endoint.
   type: string
   exposed: true
   stored: true
@@ -80,8 +83,9 @@ attributes:
   orderable: true
 
 - name: subject
-  description: Subject contains the tag expression that an object must match in order
-    to trigger the hook.
+  description: |-
+    Subject contains the tag expression that an object must match in order to
+    trigger the hook.
   type: external
   exposed: true
   subtype: policies_list

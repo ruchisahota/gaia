@@ -16,7 +16,7 @@ attributes:
   subtype: list_attachments
 
 - name: bcc
-  description: 'Bcc represents email that should be in copy but hidden '
+  description: Bcc represents email that should be in copy but hidden.
   type: external
   exposed: true
   subtype: list_emails
@@ -47,7 +47,7 @@ attributes:
   format: free
 
 - name: to
-  description: 'To represents receivers of the email '
+  description: To represents receivers of the email
   type: external
   exposed: true
   subtype: list_emails

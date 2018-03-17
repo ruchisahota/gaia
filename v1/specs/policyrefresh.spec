@@ -4,8 +4,9 @@ model:
   resource_name: policyrefreshs
   entity_name: PolicyRefresh
   package: squall
-  description: PolicyRefresh is sent to client when as a push event when a policy
-    refresh is needed on their side.
+  description: |-
+    PolicyRefresh is sent to client when as a push event when a policy refresh is
+    needed on their side.
 
 # Attributes
 attributes:

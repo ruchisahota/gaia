@@ -4,10 +4,11 @@ model:
   resource_name: enforcerprofiles
   entity_name: EnforcerProfile
   package: squall
-  description: Allows to create reusable configuration profile for your enforcers.
-    Enforcer Profiles contains various startup information that can (for some) be
-    updated live. Enforcer Profiles are assigned to some Enforcer using a Enforcer
-    Profile Mapping Policy.
+  description: |-
+    Allows to create reusable configuration profile for your enforcers. Enforcer
+    Profiles contains various startup information that can (for some) be updated
+    live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile
+    Mapping Policy.
   aliases:
   - profile
   - profiles
@@ -56,8 +57,9 @@ attributes:
   orderable: true
 
 - name: auditProfileSelectors
-  description: AuditProfileSelectors is the list of tags (key/value pairs) that define
-    the audit policies that must be implemented by this enforcer. The enforcer will
+  description: |-
+    AuditProfileSelectors is the list of tags (key/value pairs) that define the
+    audit policies that must be implemented by this enforcer. The enforcer will
     implement all policies that match any of these tags.
   type: external
   exposed: true
@@ -66,9 +68,9 @@ attributes:
   filterable: true
 
 - name: auditProfiles
-  description: AuditProfiles returns the audit rules associated with the enforcer
-    profile. This is a read only attribute when an enforcer profile is resolved for
-    an enforcer.
+  description: |-
+    AuditProfiles returns the audit rules associated with the enforcer profile. This
+    is a read only attribute when an enforcer profile is resolved for an enforcer.
   type: external
   exposed: true
   subtype: audit_profiles
@@ -119,8 +121,9 @@ attributes:
   orderable: true
 
 - name: excludedNetworks
-  description: ExcludedNetworks is the list of networks that must be excluded for
-    this enforcer.
+  description: |-
+    ExcludedNetworks is the list of networks that must be excluded for this
+    enforcer.
   type: external
   exposed: true
   subtype: excluded_networks_list
@@ -129,8 +132,9 @@ attributes:
   orderable: true
 
 - name: hostServices
-  description: HostServices is a list of services that must be activated by default
-    to all enforcers matching this profile.
+  description: |-
+    HostServices is a list of services that must be activated by default to all
+    enforcers matching this profile.
   type: external
   exposed: true
   subtype: host_services_list
@@ -139,8 +143,9 @@ attributes:
   orderable: true
 
 - name: ignoreExpression
-  description: IgnoreExpression allows to set a tag expression that will make Aporeto
-    to ignore docker container started with labels matching the rule.
+  description: |-
+    IgnoreExpression allows to set a tag expression that will make Aporeto to ignore
+    docker container started with labels matching the rule.
   type: external
   exposed: true
   subtype: policies_list
@@ -176,8 +181,9 @@ attributes:
   orderable: true
 
 - name: policySynchronizationInterval
-  description: PolicySynchronizationInterval configures how often the policy will
-    be resynchronized.
+  description: |-
+    PolicySynchronizationInterval configures how often the policy will be
+    resynchronized.
   type: string
   exposed: true
   stored: true
@@ -188,21 +194,23 @@ attributes:
   orderable: true
 
 - name: proxyListenAddress
-  description: 'ProxyListenAddress is the address the enforcer should use to listen
-    for API calls. It can be a port (example :9443) or socket path (example: unix:/var/run/aporeto.sock) '
+  description: |-
+    ProxyListenAddress is the address the enforcer should use to listen for API
+    calls. It can be a port (example :9443) or socket path
+    (example: unix:/var/run/aporeto.sock)
   type: string
   exposed: true
   stored: true
-  allowed_chars: ^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix:(/[^/
-    ]{1,16}){1,5}/?)$
+  allowed_chars: ^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix:(/[^/]{1,16}){1,5}/?)$
   default_value: :9443
   filterable: true
   format: free
   orderable: true
 
 - name: receiverNumberOfQueues
-  description: ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the
-    network receiver starting at the ReceiverQueue
+  description: |-
+    ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network
+    receiver starting at the ReceiverQueue
   type: integer
   exposed: true
   stored: true
@@ -234,8 +242,9 @@ attributes:
   orderable: true
 
 - name: remoteEnforcerEnabled
-  description: RemoteEnforcerEnabled inidicates whether a single enforcer should be
-    used or a distributed enforcer. True means distributed.
+  description: |-
+    RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a
+    distributed enforcer. True means distributed.
   type: boolean
   exposed: true
   stored: true
@@ -265,8 +274,9 @@ attributes:
   orderable: true
 
 - name: transmitterQueue
-  description: TransmitterQueue is the queue number for traffic from the applications
-    starting at the transmitterQueue
+  description: |-
+    TransmitterQueue is the queue number for traffic from the applications starting
+    at the transmitterQueue
   type: integer
   exposed: true
   stored: true

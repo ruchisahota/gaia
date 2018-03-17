@@ -89,7 +89,8 @@ type Alarm struct {
 	// Data represent user data related to the alams
 	Data map[string][]interface{} `json:"data" bson:"data" mapstructure:"data,omitempty"`
 
-	// Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurrence will be incremented.
+	// Kind identifies the kind of alarms. If two alarms are created with the same
+	// identifier, then only the occurrence will be incremented.
 	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
 
 	// Number of time this alarm have been seen.
@@ -435,15 +436,16 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Kind",
 		CreationOnly:   true,
-		Description:    `Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurrence will be incremented.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "kind",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
+identifier, then only the occurrence will be incremented.`,
+		Exposed:    true,
+		Filterable: true,
+		Format:     "free",
+		Name:       "kind",
+		Orderable:  true,
+		Required:   true,
+		Stored:     true,
+		Type:       "string",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -641,15 +643,16 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Kind",
 		CreationOnly:   true,
-		Description:    `Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurrence will be incremented.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "kind",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
+identifier, then only the occurrence will be incremented.`,
+		Exposed:    true,
+		Filterable: true,
+		Format:     "free",
+		Name:       "kind",
+		Orderable:  true,
+		Required:   true,
+		Stored:     true,
+		Type:       "string",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

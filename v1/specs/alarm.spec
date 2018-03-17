@@ -33,8 +33,9 @@ attributes:
   stored: true
 
 - name: kind
-  description: Kind identifies the kind of alarms. If two alarms are created with
-    the same identifier, then only the occurrence will be incremented.
+  description: |-
+    Kind identifies the kind of alarms. If two alarms are created with the same
+    identifier, then only the occurrence will be incremented.
   type: string
   exposed: true
   stored: true

@@ -40,8 +40,9 @@ attributes:
   orderable: true
 
 - name: isolationProfileSelector
-  description: IsolationProfileSelector are the profiles that must be applied when
-    this policy matches. Only applies to Enforce and LogCompliance actions.
+  description: |-
+    IsolationProfileSelector are the profiles that must be applied when this policy
+    matches. Only applies to Enforce and LogCompliance actions.
   type: external
   exposed: true
   subtype: policies_list
@@ -50,8 +51,9 @@ attributes:
   orderable: true
 
 - name: subject
-  description: Subject defines the tag selectors that identitfy the processing units
-    to which this policy applies.
+  description: |-
+    Subject defines the tag selectors that identitfy the processing units to which
+    this policy applies.
   type: external
   exposed: true
   subtype: policies_list

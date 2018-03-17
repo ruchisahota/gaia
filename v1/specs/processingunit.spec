@@ -4,7 +4,8 @@ model:
   resource_name: processingunits
   entity_name: ProcessingUnit
   package: squall
-  description: A Processing Unit reprents anything that can compute. It can be a Docker
+  description: |-
+    A Processing Unit reprents anything that can compute. It can be a Docker
     container, or a simple Unix process. They are created, updated and deleted by
     the system as they come and go. You can only modify its tags.  Processing Units
     use Network Access Policies to define which other Processing Units or External
@@ -53,9 +54,10 @@ attributes:
   format: free
 
 - name: networkServices
-  description: NetworkServices is the list of services that this processing unit has
-    declared that it will be listening to. This can happen either with an activation
-    command or by exposing the ports in a container manifest.
+  description: |-
+    NetworkServices is the list of services that this processing unit has declared
+    that it will be listening to. This can happen either with an activation command
+    or by exposing the ports in a container manifest.
   type: external
   exposed: true
   subtype: processing_unit_services_list

@@ -4,8 +4,9 @@ model:
   resource_name: networkaccesspolicies
   entity_name: NetworkAccessPolicy
   package: squall
-  description: Allows to define networking policies to allow or prevent processing
-    units identitied by their tags to talk to other processing units or external services
+  description: |-
+    Allows to define networking policies to allow or prevent processing units
+    identitied by their tags to talk to other processing units or external services
     (also identified by their tags).
   aliases:
   - netpol
@@ -26,8 +27,9 @@ model:
 # Attributes
 attributes:
 - name: allowsTraffic
-  description: AllowsTraffic if true, the flow will be accepted. Otherwise other actions
-    like "logs" can still be done, but the traffic will be rejected.
+  description: |-
+    AllowsTraffic if true, the flow will be accepted. Otherwise other actions like
+    "logs" can still be done, but the traffic will be rejected.
   type: boolean
   exposed: true
   filterable: true
@@ -70,8 +72,9 @@ attributes:
   orderable: true
 
 - name: observedTrafficAction
-  description: If observationEnabled is set to true, this will be the final action
-    taken on the packets.
+  description: |-
+    If observationEnabled is set to true, this will be the final action taken on the
+    packets.
   type: enum
   exposed: true
   allowed_choices:

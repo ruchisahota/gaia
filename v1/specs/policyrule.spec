@@ -4,8 +4,9 @@ model:
   resource_name: policyrules
   entity_name: PolicyRule
   package: squall
-  description: 'PolicyRule is an internal policy resolution API. Services can use
-    this API to retrieve a policy resolution. '
+  description: |-
+    PolicyRule is an internal policy resolution API. Services can use this API to
+    retrieve a policy resolution.
   get: true
   extends:
   - '@identifiable-nopk-nostored'
@@ -33,13 +34,13 @@ attributes:
   subtype: enforcerprofiles_list
 
 - name: externalServices
-  description: 'Policy target networks '
+  description: Policy target networks.
   type: external
   exposed: true
   subtype: network_entities
 
 - name: filePaths
-  description: 'Policy target networks '
+  description: Policy target networks.
   type: external
   exposed: true
   subtype: file_entities
@@ -51,14 +52,15 @@ attributes:
   subtype: isolation_profile_entities
 
 - name: namespaces
-  description: 'Policy target networks '
+  description: Policy target networks.
   type: external
   exposed: true
   subtype: namespace_entities
 
 - name: passthroughExternalServices
-  description: List of external services the policy mandate to pass through before
-    reaching the destination.
+  description: |-
+    List of external services the policy mandate to pass through before reaching the
+    destination.
   type: external
   exposed: true
   subtype: network_entities
@@ -69,8 +71,9 @@ attributes:
   exposed: true
 
 - name: relation
-  description: Relation describes the required operation to be performed between subjects
-    and objects
+  description: |-
+    Relation describes the required operation to be performed between subjects and
+    objects
   type: external
   exposed: true
   subtype: relations_list

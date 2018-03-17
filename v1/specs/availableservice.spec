@@ -31,7 +31,7 @@ attributes:
   format: free
 
 - name: icon
-  description: 'Icon contains a base64 image for the available service. '
+  description: Icon contains a base64 image for the available service.
   type: string
   exposed: true
   read_only: true

@@ -4,10 +4,11 @@ model:
   resource_name: activities
   entity_name: Activity
   package: squall
-  description: 'Contains all the activity log that happened in a namespace. All successful
-    or failed actions will be available, and eventual errors as well as the claims
-    of the user who triggered the actiions. This log is capped and only keeps the
-    last 50k entries by default. '
+  description: |-
+    Contains all the activity log that happened in a namespace. All successful or
+    failed actions will be available, and eventual errors as well as the claims of
+    the user who triggered the actiions. This log is capped and only keeps the last
+    50k entries by default.
   get: true
   extends:
   - '@identifiable-pk-stored'
@@ -87,8 +88,9 @@ attributes:
   format: free
 
 - name: originalData
-  description: OriginalData contains the eventual original data of the object that
-    has been modified.
+  description: |-
+    OriginalData contains the eventual original data of the object that has been
+    modified.
   type: external
   exposed: true
   subtype: raw_data

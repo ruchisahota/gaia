@@ -6,15 +6,15 @@
 
 | Object                                                        | Description                                                                         |
 | -                                                             | -                                                                                   |
-| [Account](#account)                                           | Manage your Account.                                                                |
+| [Account](#account)                                           | This api allows to view and manage basic information about your account like        |
 | [AccountCheck](#accountcheck)                                 | [nodoc]                                                                             |
 | [Activate](#activate)                                         | Used to activate a pending account                                                  |
-| [Activity](#activity)                                         | Contains all the activity log that happened in a namespace. All successful or fa... |
+| [Activity](#activity)                                         | Contains all the activity log that happened in a namespace. All successful or       |
 | [Alarm](#alarm)                                               | An alarm represents an event requiring attention.                                   |
-| [APIAuthorizationPolicy](#apiauthorizationpolicy)             | An API Authorization Policy defines what kind of operations a user of a system c... |
-| [APICheck](#apicheck)                                         | This API allows to verify is a client identitied by his token is allowed to do s... |
-| [APIService](#apiservice)                                     | APIService descibes a L4/L7 service and the corresponding implementation. It all... |
-| [AuditProfile](#auditprofile)                                 | AuditProfile is an audit policy that consists of a set of audit rules. An audit ... |
+| [APIAuthorizationPolicy](#apiauthorizationpolicy)             | An API Authorization Policy defines what kind of operations a user of a system      |
+| [APICheck](#apicheck)                                         | This API allows to verify is a client identitied by his token is allowed to do      |
+| [APIService](#apiservice)                                     | APIService descibes a L4/L7 service and the corresponding implementation. It        |
+| [AuditProfile](#auditprofile)                                 | AuditProfile is an audit policy that consists of a set of audit rules. An audit     |
 | [Auth](#auth)                                                 | This API verifies if the given token is valid or not.                               |
 | [Automation](#automation)                                     | An automation needs documentation.                                                  |
 | [AutomationTemplate](#automationtemplate)                     | Templates that ca be used in automations                                            |
@@ -23,58 +23,59 @@
 | [Category](#category)                                         | Category allows to categorized services                                             |
 | [Certificate](#certificate)                                   | A User represents the owner of some certificates.                                   |
 | [DependencyMap](#dependencymap)                               | This api returns a data structure representing the graph of all processing units... |
-| [Enforcer](#enforcer)                                         | A Enforcer Profile contains a configuration for a Enforcer. It contains various ... |
-| [EnforcerProfile](#enforcerprofile)                           | Allows to create reusable configuration profile for your enforcers. Enforcer Pro... |
+| [Enforcer](#enforcer)                                         | An Enforcer Profile contains a configuration for a Enforcer. It contains various... |
+| [EnforcerProfile](#enforcerprofile)                           | Allows to create reusable configuration profile for your enforcers. Enforcer        |
 | [EnforcerProfileMappingPolicy](#enforcerprofilemappingpolicy) | A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used... |
 | [Export](#export)                                             | Export the policies and related objects in a given namespace.                       |
 | [ExternalAccess](#externalaccess)                             | ExternalAccess allows to retrieve connection from or to an external service         |
 | [ExternalService](#externalservice)                           | An External Service represents a random network or ip that is not managed by the... |
 | [FileAccess](#fileaccess)                                     | Returns file access statistics on a particular processing unit.                     |
 | [FileAccessPolicy](#fileaccesspolicy)                         | A File Access Policy allows Processing Units to access various folder and files.... |
-| [FilePath](#filepath)                                         | A File Path represents a random path to a file or a folder. They can be used in ... |
-| [FlowStatistic](#flowstatistic)                               | Returns network access statistics on a particular processing unit or group of pr... |
+| [FilePath](#filepath)                                         | A File Path represents a random path to a file or a folder. They can be used in     |
+| [FlowStatistic](#flowstatistic)                               | Returns network access statistics on a particular processing unit or group of       |
 | [HookPolicy](#hookpolicy)                                     | Hook allows to to define hooks to the write operations in squall. Hooks are sent... |
 | [Import](#import)                                             | Imports an export of policies and related objects into the namespace.               |
 | [Installation](#installation)                                 | Installation represents an installation for a given account                         |
 | [IsolationProfile](#isolationprofile)                         | An IsolationProfile needs documentation                                             |
 | [Issue](#issue)                                               | This API issues a new token according to given data.                                |
-| [Jaegerbatch](#jaegerbatch)                                   | A jaegerbatch is a batch of jaeger spans. This is used by external service to po... |
+| [Jaegerbatch](#jaegerbatch)                                   | A jaegerbatch is a batch of jaeger spans. This is used by external service to       |
 | [KubernetesCluster](#kubernetescluster)                       | Create a remote Kubernetes Cluster integration.                                     |
 | [Log](#log)                                                   | Retrieves the log of a deployed app.                                                |
-| [Message](#message)                                           | The Message API allows to post public messages that will be visible through all ... |
-| [Namespace](#namespace)                                       | A Namespace represents the core organizational unit of the system. All objects a... |
-| [NamespaceMappingPolicy](#namespacemappingpolicy)             | A Namespace Mapping Policy defines in which namespace aProcessing Unit should be... |
-| [NetworkAccessPolicy](#networkaccesspolicy)                   | Allows to define networking policies to allow or prevent processing units identi... |
+| [Message](#message)                                           | The Message API allows to post public messages that will be visible through all     |
+| [Namespace](#namespace)                                       | A Namespace represents the core organizational unit of the system. All objects      |
+| [NamespaceMappingPolicy](#namespacemappingpolicy)             | A Namespace Mapping Policy defines in which namespace a Processing Unit should b... |
+| [NetworkAccessPolicy](#networkaccesspolicy)                   | Allows to define networking policies to allow or prevent processing units           |
 | [PasswordReset](#passwordreset)                               | Used to reset an account password.                                                  |
 | [Plan](#plan)                                                 | Plan contains the various billing plans available                                   |
 | [Poke](#poke)                                                 | When available, poke can be used to update various information about the parent.... |
 | [Policy](#policy)                                             | [nodoc]                                                                             |
-| [PolicyRefresh](#policyrefresh)                               | PolicyRefresh is sent to client when as a push event when a policy refresh is ne... |
-| [PolicyRule](#policyrule)                                     | PolicyRule is an internal policy resolution API. Services can use this API to re... |
-| [ProcessingUnit](#processingunit)                             | A Processing Unit reprents anything that can compute. It can be a Docker contain... |
+| [PolicyRefresh](#policyrefresh)                               | PolicyRefresh is sent to client when as a push event when a policy refresh is       |
+| [PolicyRule](#policyrule)                                     | PolicyRule is an internal policy resolution API. Services can use this API to       |
+| [ProcessingUnit](#processingunit)                             | A Processing Unit reprents anything that can compute. It can be a Docker            |
 | [ProcessingUnitPolicy](#processingunitpolicy)                 | A ProcessingUnitPolicies needs a better description.                                |
-| [QuotaPolicy](#quotapolicy)                                   | Quotas Policies allows to set quotas on the number of objects that can be create... |
+| [QuotaPolicy](#quotapolicy)                                   | Quotas Policies allows to set quotas on the number of objects that can be           |
 | [RemoteProcessor](#remoteprocessor)                           | Hook to integrate an Aporeto service.                                               |
 | [RenderedPolicy](#renderedpolicy)                             | Retrieve the aggregated policies applied to a particular processing unit.           |
 | [Report](#report)                                             | Post a new statistics report.                                                       |
 | [Revocation](#revocation)                                     | Used to revoke a certificate                                                        |
-| [Role](#role)                                                 | Roles returns the available roles that can be used with API Authorization Polici... |
+| [Role](#role)                                                 | Roles returns the available roles that can be used with API Authorization           |
 | [Root](#root)                                                 | [nodoc]                                                                             |
 | [Service](#service)                                           | Service represents a service that can be launched                                   |
-| [StatsQuery](#statsquery)                                     | StatsQuery is a generic API to retrieve time series data stored by the Aporeto s... |
+| [StatsQuery](#statsquery)                                     | StatsQuery is a generic API to retrieve time series data stored by the Aporeto      |
 | [SuggestedPolicy](#suggestedpolicy)                           | Allows to get policy suggestions                                                    |
 | [SystemCall](#systemcall)                                     | [nodoc]                                                                             |
-| [Tabulation](#tabulation)                                     | Tabulate API allows you to retrieve a custom table view for any identity using a... |
-| [Tag](#tag)                                                   | A tag is a string in the form of "key=value" that can applied to all objects in ... |
-| [TokenScopePolicy](#tokenscopepolicy)                         | The TokenScopePolicy defines a set of policies that allow customization of the a... |
+| [Tabulation](#tabulation)                                     | Tabulate API allows you to retrieve a custom table view for any identity using      |
+| [Tag](#tag)                                                   | A tag is a string in the form of "key=value" that can applied to all objects in     |
+| [TokenScopePolicy](#tokenscopepolicy)                         | The TokenScopePolicy defines a set of policies that allow customization of the      |
 | [Trigger](#trigger)                                           | Trigger can be used to remotely trigger an automation.                              |
 | [Vulnerability](#vulnerability)                               | A vulnerabily represents a particular CVE                                           |
 
 # Account
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-Manage your Account.
+This api allows to view and manage basic information about your account like
+your name, password, enable 2 factor authentication.
 
 ## Attributes
 
@@ -128,7 +129,9 @@ LDAPBindPassword holds the password to the LDAPBindDN.
 
 ### `LDAPCertificateAuthority (string)`
 
-LDAPCertificateAuthority contains the optional certificate authority that will be used to connect to the LDAP server. It is not needed if the TLS certificate of the LDAP is issued from a public truster CA.
+LDAPCertificateAuthority contains the optional certificate author ity that will
+be used to connect to the LDAP server. It is not needed if the TLS certificate
+of the LDAP is issued from a public truster CA.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -282,13 +285,13 @@ Last update date of the object
 
 # AccountCheck
 
-## Description
+> Operations:
 
 [nodoc]
 
 # Activate
 
-## Description
+> Operations:
 
 Used to activate a pending account
 
@@ -304,9 +307,12 @@ Token contains the activation token
 
 # Activity
 
-## Description
+> Operations: `GET`
 
-Contains all the activity log that happened in a namespace. All successful or failed actions will be available, and eventual errors as well as the claims of the user who triggered the actiions. This log is capped and only keeps the last 50k entries by default.
+Contains all the activity log that happened in a namespace. All successful or
+failed actions will be available, and eventual errors as well as the claims of
+the user who triggered the actiions. This log is capped and only keeps the last
+50k entries by default.
 
 ## Attributes
 
@@ -397,7 +403,8 @@ Operation describe what kind of operation the notification represents.
 
 ### `originalData (external:raw_data)`
 
-OriginalData contains the eventual original data of the object that has been modified.
+OriginalData contains the eventual original data of the object that has been
+modified.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -430,7 +437,7 @@ TargetIdentity is the Identity of the related object.
 
 # Alarm
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 An alarm represents an event requiring attention.
 
@@ -499,7 +506,8 @@ Description is the description of the object.
 
 ### `kind (string)`
 
-Kind identifies the kind of alarms. If two alarms are created with the same identifier, then only the occurrence will be incremented.
+Kind identifies the kind of alarms. If two alarms are created with the same
+identifier, then only the occurrence will be incremented.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -580,9 +588,15 @@ UpdateTime is the time at which an entity was updated.
 
 # APIAuthorizationPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-An API Authorization Policy defines what kind of operations a user of a system can do in a namespace. The operations can be any combination of GET, POST, PUT, DELETE,PATCH or HEAD. By default, an API Authorization Policy will only give permissions in the context of the current namespace but you can make it propagate to all the child namespaces.  It is also possible restrict permissions to apply only on a particular subset of the apis by setting the target identities.
+An API Authorization Policy defines what kind of operations a user of a system
+can do in a namespace. The operations can be any combination of GET, POST, PUT,
+DELETE,PATCH or HEAD. By default, an API Authorization Policy will only give
+permissions in the context of the current namespace but you can make it
+propagate to all the child namespaces. It is also possible restrict permissions
+to apply only on a particular subset of the apis by setting the target
+identities.
 
 ## Attributes
 
@@ -600,7 +614,8 @@ ID is the identifier of the object.
 
 ### `activeDuration (string)`
 
-ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+ActiveDuration defines for how long the policy will be active according to the
+activeSchedule.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -608,7 +623,8 @@ ActiveDuration defines for how long the policy will be active according to the a
 
 ### `activeSchedule (external:cron_expression)`
 
-ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+ActiveSchedule defines when the policy should be active using the cron notation.
+The policy will be active for the given activeDuration.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -674,7 +690,8 @@ Disabled defines if the propert is disabled.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -723,7 +740,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -759,9 +777,11 @@ UpdateTime is the time at which an entity was updated.
 
 # APICheck
 
-## Description
+> Operations:
 
-This API allows to verify is a client identitied by his token is allowed to do some operations on some apis. For example, it allows third party system to impersonate a user and ensure a proxfied request should be allowed.
+This API allows to verify is a client identitied by his token is allowed to do
+some operations on some apis. For example, it allows third party system to
+impersonate a user and ensure a proxfied request should be allowed.
 
 ## Attributes
 
@@ -794,7 +814,8 @@ Operation is the operation you want to check.
 
 ### `targetIdentities (external:identity_list)`
 
-TargetIdentities contains the list of identities you want to check the authorization.
+TargetIdentities contains the list of identities you want to check the
+authorization.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -810,15 +831,20 @@ Token is the token to use to check api authentication
 
 # APIService
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-APIService descibes a L4/L7 service and the corresponding implementation. It allows users to define their services, the APIs that they expose, the implementation of the service. These definitions can be used by network policy in order to define advanced controls based on the APIs.
+APIService descibes a L4/L7 service and the corresponding implementation. It
+allows users to define their services, the APIs that they expose, the
+implementation of the service. These definitions can be used by network policy
+in order to define advanced controls based on the APIs.
 
 ## Attributes
 
 ### `FQDN (string)`
 
-FQDN is the fully qualified domain name of the service. It is required for external API services. It can be deduced from a service discovery system in advanced environments.
+FQDN is the fully qualified domain name of the service. It is required for
+external API services. It can be deduced from a service discovery system in
+advanced environments.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -846,7 +872,9 @@ IPList is the list of ip address or subnets of the service if available.
 
 ### `JWTSigningCertificate (string)`
 
-JWTSigningCertificate is a certificate that can be used to validate user JWT in HTTP requests. This is an optional field, needed only if user JWT validation is required for this service. The certificate must be in PEM format.
+JWTSigningCertificate is a certificate that can be used to validate user JWT in
+HTTP requests. This is an optional field, needed only if user JWT validation is
+required for this service. The certificate must be in PEM format.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -903,14 +931,17 @@ External is a boolean that indicates if this is an external service.
 
 ### `externalServiceCA (string)`
 
-ExternalServiceCA is the certificate authority that the service is using. This is needed for external API services with private certificate authorities. The field is optional. If provided, this must be a valid PEM CA file.
+ExternalServiceCA is the certificate authority that the service is using. This
+is needed for external API services with private certificate authorities. The
+field is optional. If provided, this must be a valid PEM CA file.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -962,7 +993,8 @@ NormalizedTags contains the list of normalized tags of the entities
 
 ### `ports (external:port_list)`
 
-Ports is a list of ports for the service. Ports are either exact match, or a range portMin:portMax.
+Ports is a list of ports for the service. Ports are either exact match, or a
+range portMin:portMax.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -979,7 +1011,8 @@ Protected defines if the object is protected.
 
 ### `runtimeSelectors (external:target_tags)`
 
-RuntimeSelectors is a list of tag selectors that identifies that Processing Units that will implement this service.
+RuntimeSelectors is a list of tag selectors that identifies that Processing
+Units that will implement this service.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -987,7 +1020,8 @@ RuntimeSelectors is a list of tag selectors that identifies that Processing Unit
 
 ### `type (enum)`
 
-Type is the type of the service (HTTP, TCP, etc). More types will be added to the system.
+Type is the type of the service (HTTP, TCP, etc). More types will be added to
+the system.
 
 | Characteristics | Value           |
 | -               | -:              |
@@ -1009,9 +1043,10 @@ UpdateTime is the time at which an entity was updated.
 
 # AuditProfile
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-AuditProfile is an audit policy that consists of a set of audit rules. An audit policy will determine that types of events that must be captured in the kernel.
+AuditProfile is an audit policy that consists of a set of audit rules. An audit
+policy will determine that types of events that must be captured in the kernel.
 
 ## Attributes
 
@@ -1062,7 +1097,8 @@ Description is the description of the object.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1136,7 +1172,7 @@ UpdateTime is the time at which an entity was updated.
 
 # Auth
 
-## Description
+> Operations:
 
 This API verifies if the given token is valid or not.
 
@@ -1153,7 +1189,7 @@ Claims are the claims.
 
 # Automation
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 An automation needs documentation.
 
@@ -1202,7 +1238,8 @@ AssociatedTags are the list of tags attached to an entity
 
 ### `condition (string)`
 
-Condition contains the code that will be executed to decide if any action should be taken.
+Condition contains the code that will be executed to decide if any action should
+be taken.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1254,7 +1291,8 @@ Error contains the eventual error of the last run.
 
 ### `events (external:automation_events)`
 
-Events contains the identity and operation an event must have to trigger the automation
+Events contains the identity and operation an event must have to trigger the
+automation
 
 | Characteristics | Value |
 | -               | -:    |
@@ -1317,7 +1355,8 @@ Protected defines if the object is protected.
 
 ### `schedule (string)`
 
-Schedule tells when to run the automation. Must be a valid CRON format. This only applies if the trigger is set to Time.
+Schedule tells when to run the automation. Must be a valid CRON format. This
+only applies if the trigger is set to Time.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -1333,7 +1372,8 @@ Stdout contains the last run standard output.
 
 ### `token (string)`
 
-Token holds the unique access token used as a password to trigger the authentication. It will be visible only after creation.
+Token holds the unique access token used as a password to trigger the
+authentication. It will be visible only after creation.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1370,7 +1410,7 @@ UpdateTime is the time at which an entity was updated.
 
 # AutomationTemplate
 
-## Description
+> Operations: `GET`
 
 Templates that ca be used in automations
 
@@ -1434,7 +1474,7 @@ Parameters contains the parameter description of the function.
 
 # AvailableService
 
-## Description
+> Operations:
 
 AvailableService represents a service that is available for launching
 
@@ -1502,9 +1542,10 @@ Title represents the title of the service.
 
 # AWSAccount
 
-## Description
+> Operations: `GET` `DELETE`
 
-Allows to bind an AWS account to your Aporeto account to allow auto registration of enforcers running on EC2
+Allows to bind an AWS account to your Aporeto account to allow auto registration
+of enforcers running on EC2
 
 ## Attributes
 
@@ -1522,7 +1563,8 @@ ID is the identifier of the object.
 
 ### `accessKeyID (string)`
 
-AccessKeyID contains the aws access key ID. This is used to retrieve your account id, and it is not stored.
+AccessKeyID contains the aws access key ID. This is used to retrieve your
+account id, and it is not stored.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1531,7 +1573,8 @@ AccessKeyID contains the aws access key ID. This is used to retrieve your accoun
 
 ### `accessToken (string)`
 
-AccessToken contains your aws access token. It is used to retrieve your account id, and it not stored.
+AccessToken contains your aws access token. It is used to retrieve your account
+id, and it not stored.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1592,7 +1635,8 @@ Region contains your the region where your AWS account is located
 
 ### `secretAccessKey (string)`
 
-secretAccessKey contains the secret key. It is used to retrieve your account id, and it is not stored.
+secretAccessKey contains the secret key. It is used to retrieve your account id,
+and it is not stored.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1612,7 +1656,7 @@ Last update date of the object
 
 # Category
 
-## Description
+> Operations:
 
 Category allows to categorized services
 
@@ -1646,7 +1690,7 @@ Name of the category.
 
 # Certificate
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 A User represents the owner of some certificates.
 
@@ -1728,7 +1772,8 @@ CertificateExpirationDate indicates the expiration day for the certificate.
 
 ### `key (string)`
 
-CertificateKey provides the key for the user. Only available at create or update time.
+CertificateKey provides the key for the user. Only available at create or update
+time.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1787,7 +1832,8 @@ SerialNumber of the certificate.
 
 ### `status (enum)`
 
-CertificateStatus provides the status of the certificate. Update with RENEW to get a new certificate.
+CertificateStatus provides the status of the certificate. Update with RENEW to
+get a new certificate.
 
 | Characteristics | Value            |
 | -               | -:               |
@@ -1809,9 +1855,15 @@ Last update date of the object
 
 # DependencyMap
 
-## Description
+> Operations:
 
-This api returns a data structure representing the graph of all processing units and their connections in a particular namespace, in a given time window. To pass the time window you can use the query parameters "startAbsolute", "endAbsolute", "startRelative", "endRelative".  For example "https://squall.aporeto.com/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000"
+This api returns a data structure representing the graph of all processing units
+and their connections in a particular namespace, in a given time window. To pass
+the time window you can use the query parameters 'startAbsolute', 'endAbsolute',
+'startRelative', 'endRelative'.
+
+For example
+  "/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000"
 
 ## Attributes
 
@@ -1865,9 +1917,16 @@ viewSuggestions provides suggestion of views based on relevant tags.
 
 # Enforcer
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A Enforcer Profile contains a configuration for a Enforcer. It contains various parameters, like what network should not policeds, what processing units should be ignored based on their tags and so on. It also contains more advanced parameters to fine tune the Agent. A Enforcer will decide what profile to apply using aEnforcer Profile Mapping Policy. This policy will decide according the Enforcer's tags what profile to use. If an Enforcer tags are matching more than a single policy, it will refuse to start. Some parameters will be applied directly to a running agent, some will need to restart it.
+An Enforcer Profile contains a configuration for a Enforcer. It contains various
+parameters, like what network should not policeds, what processing units should
+be ignored based on their tags and so on. It also contains more advanced
+parameters to fine tune the Agent. A Enforcer will decide what profile to apply
+using aEnforcer Profile Mapping Policy. This policy will decide according the
+Enforcer's tags what profile to use. If an Enforcer tags are matching more than
+a single policy, it will refuse to start. Some parameters will be applied
+directly to a running agent, some will need to restart it.
 
 ## Relations
 
@@ -1939,7 +1998,8 @@ CertificateExpirationDate is the expiration date of the certificate.
 
 ### `certificateKey (string)`
 
-CertificateKey is the secret key of the enforcer. Returned only when a enforcer is created or the certificate is updated.
+CertificateKey is the secret key of the enforcer. Returned only when a enforcer
+is created or the certificate is updated.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1949,14 +2009,17 @@ CertificateKey is the secret key of the enforcer. Returned only when a enforcer 
 
 ### `certificateRequest (string)`
 
-CertificateRequest can be used to generate a certificate from that CSR instead of letting the server generate your private key for you.
+CertificateRequest can be used to generate a certificate from that CSR instead
+of letting the server generate your private key for you.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `certificateRequestEnabled (boolean)`
 
-If set during creation,the server will not initially generate a certificate. In that case you have to provide a valid CSR through certificateRequest during an update.
+If set during creation,the server will not initially generate a certificate. In
+that case you have to provide a valid CSR through certificateRequest during an
+update.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1999,7 +2062,8 @@ CreatedTime is the time at which the object was created
 
 ### `currentVersion (string)`
 
-CurrentVersion holds the enforcerd binary version that is currently associated to this object.
+CurrentVersion holds the enforcerd binary version that is currently associated
+to this object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2026,7 +2090,8 @@ Contains the ID of the profile used by the instance of enforcerd.
 
 ### `lastCollectionTime (time)`
 
-LastCollectionTime represents the date and time when the info have been collected.
+LastCollectionTime represents the date and time when the info have been
+collected.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -2042,7 +2107,8 @@ LastSyncTime holds the last heart beat time.
 
 ### `localCA (string)`
 
-LocalCA contains the initial chain of trust for the enforcer. This valud is only given when you retrieve a single enforcer.
+LocalCA contains the initial chain of trust for the enforcer. This valud is only
+given when you retrieve a single enforcer.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2050,7 +2116,8 @@ LocalCA contains the initial chain of trust for the enforcer. This valud is only
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2111,7 +2178,8 @@ Protected defines if the object is protected.
 
 ### `publicToken (string)`
 
-PublicToken is the public token of the server that will be included in the datapath and its signed by the private CA.
+PublicToken is the public token of the server that will be included in the
+datapath and its signed by the private CA.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2139,9 +2207,12 @@ UpdateTime is the time at which an entity was updated.
 
 # EnforcerProfile
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-Allows to create reusable configuration profile for your enforcers. Enforcer Profiles contains various startup information that can (for some) be updated live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile Mapping Policy.
+Allows to create reusable configuration profile for your enforcers. Enforcer
+Profiles contains various startup information that can (for some) be updated
+live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile
+Mapping Policy.
 
 ## Relations
 
@@ -2212,7 +2283,9 @@ AssociatedTags are the list of tags attached to an entity
 
 ### `auditProfileSelectors (external:audit_profile_selector)`
 
-AuditProfileSelectors is the list of tags (key/value pairs) that define the audit policies that must be implemented by this enforcer. The enforcer will implement all policies that match any of these tags.
+AuditProfileSelectors is the list of tags (key/value pairs) that define the
+audit policies that must be implemented by this enforcer. The enforcer will
+implement all policies that match any of these tags.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2220,7 +2293,8 @@ AuditProfileSelectors is the list of tags (key/value pairs) that define the audi
 
 ### `auditProfiles (external:audit_profiles)`
 
-AuditProfiles returns the audit rules associated with the enforcer profile. This is a read only attribute when an enforcer profile is resolved for an enforcer.
+AuditProfiles returns the audit rules associated with the enforcer profile. This
+is a read only attribute when an enforcer profile is resolved for an enforcer.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2289,7 +2363,8 @@ ExcludedInterfaces is a list of interfaces that must be excluded.
 
 ### `excludedNetworks (external:excluded_networks_list)`
 
-ExcludedNetworks is the list of networks that must be excluded for this enforcer.
+ExcludedNetworks is the list of networks that must be excluded for this
+enforcer.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2298,7 +2373,8 @@ ExcludedNetworks is the list of networks that must be excluded for this enforcer
 
 ### `hostServices (external:host_services_list)`
 
-HostServices is a list of services that must be activated by default to all enforcers matching this profile.
+HostServices is a list of services that must be activated by default to all
+enforcers matching this profile.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2307,7 +2383,8 @@ HostServices is a list of services that must be activated by default to all enfo
 
 ### `ignoreExpression (external:policies_list)`
 
-IgnoreExpression allows to set a tag expression that will make Aporeto to ignore docker container started with labels matching the rule.
+IgnoreExpression allows to set a tag expression that will make Aporeto to ignore
+docker container started with labels matching the rule.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -2374,7 +2451,8 @@ NormalizedTags contains the list of normalized tags of the entities
 
 ### `policySynchronizationInterval (string)`
 
-PolicySynchronizationInterval configures how often the policy will be resynchronized.
+PolicySynchronizationInterval configures how often the policy will be
+resynchronized.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -2394,18 +2472,21 @@ Protected defines if the object is protected.
 
 ### `proxyListenAddress (string)`
 
-ProxyListenAddress is the address the enforcer should use to listen for API calls. It can be a port (example :9443) or socket path (example: unix:/var/run/aporeto.sock)
+ProxyListenAddress is the address the enforcer should use to listen for API
+calls. It can be a port (example :9443) or socket path
+(example: unix:/var/run/aporeto.sock)
 
-| Characteristics | Value                                                                                                                                      |
-| -               | -:                                                                                                                                         |
-| Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix:(/[^/ ]{1,16}){1,5}/?)$/` |
-| Default         | `:9443`                                                                                                                                    |
-| Orderable       | `true`                                                                                                                                     |
-| Filterable      | `true`                                                                                                                                     |
+| Characteristics | Value                                                                                                                                     |
+| -               | -:                                                                                                                                        |
+| Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix:(/[^/]{1,16}){1,5}/?)$/` |
+| Default         | `:9443`                                                                                                                                   |
+| Orderable       | `true`                                                                                                                                    |
+| Filterable      | `true`                                                                                                                                    |
 
 ### `receiverNumberOfQueues (integer)`
 
-ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network receiver starting at the ReceiverQueue
+ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network
+receiver starting at the ReceiverQueue
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2440,7 +2521,8 @@ ReceiverQueueSize is the queue size of the receiver
 
 ### `remoteEnforcerEnabled (boolean)`
 
-RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a distributed enforcer. True means distributed.
+RemoteEnforcerEnabled inidicates whether a single enforcer should be used or a
+distributed enforcer. True means distributed.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2471,7 +2553,8 @@ TransmitterNumberOfQueues is the number of queues for application traffic.
 
 ### `transmitterQueue (integer)`
 
-TransmitterQueue is the queue number for traffic from the applications starting at the transmitterQueue
+TransmitterQueue is the queue number for traffic from the applications starting
+at the transmitterQueue
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2512,9 +2595,11 @@ UpdateTime is the time at which an entity was updated.
 
 # EnforcerProfileMappingPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used by and Aporeto Agent based on the Enforcer that have been used during the registration. The policy can also be propagated down to the child namespace.
+A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used
+by and Aporeto Agent based on the Enforcer that have been used during the
+registration. The policy can also be propagated down to the child namespace.
 
 ## Relations
 
@@ -2584,7 +2669,8 @@ Disabled defines if the propert is disabled.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2641,7 +2727,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2677,7 +2764,7 @@ UpdateTime is the time at which an entity was updated.
 
 # Export
 
-## Description
+> Operations:
 
 Export the policies and related objects in a given namespace.
 
@@ -2757,7 +2844,7 @@ List of all exported processingUnitPolicies.
 
 # ExternalAccess
 
-## Description
+> Operations:
 
 ExternalAccess allows to retrieve connection from or to an external service
 
@@ -2774,9 +2861,14 @@ IPRecords refers to a list of IPRecord that contains the IP information
 
 # ExternalService
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-An External Service represents a random network or ip that is not managed by the system. They can be used in Network Access Policies in order to allow traffic from or to the declared network or IP, using the provided protocol and port or ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0 as address, and 1-65000 for the ports. You will need to use the External Services tags to set some policies.
+An External Service represents a random network or ip that is not managed by the
+system. They can be used in Network Access Policies in order to allow traffic
+from or to the declared network or IP, using the provided protocol and port or
+ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0
+as address, and 1-65000 for the ports. You will need to use the External
+Services tags to set some policies.
 
 ## Attributes
 
@@ -2827,21 +2919,24 @@ Description is the description of the object.
 
 ### `loadbalancerAddresses (external:addresses_list)`
 
-LoadbalancerAddresses represents the list of adresses of the external services of type LoadBalancer.
+LoadbalancerAddresses represents the list of adresses of the external services
+of type LoadBalancer.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `loadbalancerPortsMapping (external:portmapping_list)`
 
-LoadbalancerPortsMapping is the list of ports mapped by an extenral service of type load balancer.
+LoadbalancerPortsMapping is the list of ports mapped by an extenral service of
+type load balancer.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2890,7 +2985,8 @@ NormalizedTags contains the list of normalized tags of the entities
 
 ### `port (string)`
 
-Port refers to network port which could be a single number or 100:2000 to represent a range of ports
+Port refers to network port which could be a single number or 100:2000 to
+represent a range of ports
 
 | Characteristics | Value                                                                                                                                                                                                            |
 | -               | -:                                                                                                                                                                                                               |
@@ -2940,7 +3036,7 @@ UpdateTime is the time at which an entity was updated.
 
 # FileAccess
 
-## Description
+> Operations:
 
 Returns file access statistics on a particular processing unit.
 
@@ -3003,9 +3099,17 @@ Protocol is the protocol used to access the file.
 
 # FileAccessPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A File Access Policy allows Processing Units to access various folder and files. It will use the tags of a File Path to know what is the path of the file or folder to allow access to. You can allow the Processing Unit to have any combination of read, write or execute. Note: When a Processing Unit is Docker container, then it will police the volumes mount. executewon't have any effect. Note: File path are not supported yet for standard Linux processes.
+A File Access Policy allows Processing Units to access various folder and files.
+It will use the tags of a File Path to know what is the path of the file or
+folder to allow access to. You can allow the Processing Unit to have any
+combination of read, write or execute.
+
+When a Processing Unit is Docker container, then it will police the volumes
+mount. executewon''t have any effect.
+
+File path are not supported yet for standard Linux processes.
 
 ## Attributes
 
@@ -3023,7 +3127,8 @@ ID is the identifier of the object.
 
 ### `activeDuration (string)`
 
-ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+ActiveDuration defines for how long the policy will be active according to the
+activeSchedule.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -3031,7 +3136,8 @@ ActiveDuration defines for how long the policy will be active according to the a
 
 ### `activeSchedule (external:cron_expression)`
 
-ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+ActiveSchedule defines when the policy should be active using the cron notation.
+The policy will be active for the given activeDuration.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -3125,7 +3231,8 @@ LogsEnabled will enable logging when this policy is used.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3182,7 +3289,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3218,9 +3326,12 @@ UpdateTime is the time at which an entity was updated.
 
 # FilePath
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A File Path represents a random path to a file or a folder. They can be used in aFile Access Policiesin order to allow Processing Units to access them, using various modes (read, write, execute). You will need to use the File Paths tags to set some policies. A good example would bevolume=web or file=/etc/passwd.
+A File Path represents a random path to a file or a folder. They can be used in
+aFile Access Policiesin order to allow Processing Units to access them, using
+various modes (read, write, execute). You will need to use the File Paths tags
+to set some policies. A good example would bevolume=web or file=/etc/passwd.
 
 ## Attributes
 
@@ -3280,7 +3391,8 @@ FilePath refer to the file mount path
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3349,9 +3461,10 @@ UpdateTime is the time at which an entity was updated.
 
 # FlowStatistic
 
-## Description
+> Operations:
 
-Returns network access statistics on a particular processing unit or group of processing units based on their tags.
+Returns network access statistics on a particular processing unit or group of
+processing units based on their tags.
 
 ## Attributes
 
@@ -3369,7 +3482,8 @@ ID is the identifier of the object.
 
 ### `dataPoints (external:datapoints_list)`
 
-DataPoints is a list of time/value pairs that represent the flow events over time.
+DataPoints is a list of time/value pairs that represent the flow events over
+time.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3447,7 +3561,8 @@ Type is the type of representation
 
 ### `userIdentifier (string)`
 
-UserIdentifier can be set by the user as a query parameter. It will be returned in the FlowStatistic object.
+UserIdentifier can be set by the user as a query parameter. It will be returned
+in the FlowStatistic object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3456,9 +3571,11 @@ UserIdentifier can be set by the user as a query parameter. It will be returned 
 
 # HookPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-Hook allows to to define hooks to the write operations in squall. Hooks are sent to an external Rufus server that will do the processing and eventually return a modified version of the object before we save it.
+Hook allows to to define hooks to the write operations in squall. Hooks are sent
+to an external Rufus server that will do the processing and eventually return a
+modified version of the object before we save it.
 
 ## Attributes
 
@@ -3490,7 +3607,8 @@ AssociatedTags are the list of tags attached to an entity
 
 ### `certificateAuthority (string)`
 
-CertificateAuthority contains the pem block of the certificate authority used by the remote endpoint.
+CertificateAuthority contains the pem block of the certificate authority used by
+the remote endpoint.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3499,7 +3617,8 @@ CertificateAuthority contains the pem block of the certificate authority used by
 
 ### `clientCertificate (string)`
 
-ClientCertificate contains the client certificate that will be used to connect to the remote endoint.
+ClientCertificate contains the client certificate that will be used to connect
+to the remote endoint.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3555,7 +3674,8 @@ Endpoint contains the full address of the remote processor endoint.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3615,7 +3735,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3633,7 +3754,8 @@ Protected defines if the object is protected.
 
 ### `subject (external:policies_list)`
 
-Subject contains the tag expression that an object must match in order to trigger the hook.
+Subject contains the tag expression that an object must match in order to
+trigger the hook.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3651,7 +3773,7 @@ UpdateTime is the time at which an entity was updated.
 
 # Import
 
-## Description
+> Operations:
 
 Imports an export of policies and related objects into the namespace.
 
@@ -3677,7 +3799,7 @@ How to import the data.
 
 # Installation
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 Installation represents an installation for a given account
 
@@ -3703,7 +3825,7 @@ AccountName that should be installed.
 
 # IsolationProfile
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 An IsolationProfile needs documentation
 
@@ -3737,7 +3859,8 @@ AssociatedTags are the list of tags attached to an entity
 
 ### `capabilitiesActions (external:cap_map)`
 
-CapabilitiesActions identifies the capabilities that should be added or removed from the processing unit.
+CapabilitiesActions identifies the capabilities that should be added or removed
+from the processing unit.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3756,7 +3879,8 @@ CreatedTime is the time at which the object was created
 
 ### `defaultSyscallAction (external:syscall_action)`
 
-DefaultAction is the default action applied to all syscalls of this profile. Default is "Allow".
+DefaultAction is the default action applied to all syscalls of this profile.
+Default is "Allow".
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3774,7 +3898,8 @@ Description is the description of the object.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3823,7 +3948,8 @@ Protected defines if the object is protected.
 
 ### `syscallRules (external:syscall_rules)`
 
-SyscallRules is a list of syscall rules that identify actions for particular syscalls.
+SyscallRules is a list of syscall rules that identify actions for particular
+syscalls.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3832,7 +3958,8 @@ SyscallRules is a list of syscall rules that identify actions for particular sys
 
 ### `targetArchitectures (external:arch_list)`
 
-TargetArchitectures is the target processor architectures where this profile can be applied. Default all.
+TargetArchitectures is the target processor architectures where this profile can
+be applied. Default all.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3851,7 +3978,7 @@ UpdateTime is the time at which an entity was updated.
 
 # Issue
 
-## Description
+> Operations:
 
 This API issues a new token according to given data.
 
@@ -3894,7 +4021,8 @@ Token is the token to use for the registration.
 
 ### `validity (string)`
 
-Validity configures the max validity time for a token. If it is bigger than the configured max validity, it will be capped.
+Validity configures the max validity time for a token. If it is bigger than the
+configured max validity, it will be capped.
 
 | Characteristics | Value                                                                                                             |
 | -               | -:                                                                                                                |
@@ -3905,9 +4033,10 @@ Validity configures the max validity time for a token. If it is bigger than the 
 
 # Jaegerbatch
 
-## Description
+> Operations:
 
-A jaegerbatch is a batch of jaeger spans. This is used by external service to post jaeger span in our private jaeger services
+A jaegerbatch is a batch of jaeger spans. This is used by external service to
+post jaeger span in our private jaeger services
 
 ## Attributes
 
@@ -3921,7 +4050,7 @@ Represent an jaeger batch
 
 # KubernetesCluster
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 Create a remote Kubernetes Cluster integration.
 
@@ -3952,7 +4081,8 @@ Creation date of the object.
 
 ### `kubernetesDefinitions (string)`
 
-base64 of the .tar.gz file that contains all the .YAMLs files needed to create the aporeto side on your kubernetes Cluster
+base64 of the .tar.gz file that contains all the .YAMLs files needed to create
+the aporeto side on your kubernetes Cluster
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3988,7 +4118,8 @@ Regenerates the k8s files and certificates.
 
 ### `targetNamespace (string)`
 
-The namespace in which the Kubernetes specific namespace will be created. By default your account namespace.
+The namespace in which the Kubernetes specific namespace will be created. By
+default your account namespace.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4017,7 +4148,7 @@ Last update date of the object
 
 # Log
 
-## Description
+> Operations:
 
 Retrieves the log of a deployed app.
 
@@ -4034,9 +4165,10 @@ Data contains all logs data.
 
 # Message
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-The Message API allows to post public messages that will be visible through all children namespaces
+The Message API allows to post public messages that will be visible through all
+children namespaces.
 
 ## Attributes
 
@@ -4147,7 +4279,8 @@ NormalizedTags contains the list of normalized tags of the entities
 
 ### `notifyByEmail (boolean)`
 
-If enabled, the message will be sent to the email associated in namespaces annotations.
+If enabled, the message will be sent to the email associated in namespaces
+annotations.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4175,7 +4308,8 @@ UpdateTime is the time at which an entity was updated.
 
 ### `validity (string)`
 
-Validity set using golang time duration, when the message will be automatically deleted.
+Validity set using golang time duration, when the message will be automatically
+deleted.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -4183,9 +4317,12 @@ Validity set using golang time duration, when the message will be automatically 
 
 # Namespace
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A Namespace represents the core organizational unit of the system. All objects always exists in a single namespace. A Namespace can also have child namespaces. They can be used to split the system into organizations, business units, applications, services or any combination you like.
+A Namespace represents the core organizational unit of the system. All objects
+always exists in a single namespace. A Namespace can also have child namespaces.
+They can be used to split the system into organizations, business units,
+applications, services or any combination you like.
 
 ## Attributes
 
@@ -4245,7 +4382,8 @@ LocalCA holds the eventual certificate authority used by this namespace.
 
 ### `localCAEnabled (boolean)`
 
-LocalCAEnabled defines if the namespace should use a local Certificate Authority. Switching it off and on again will regenerate a new CA.
+LocalCAEnabled defines if the namespace should use a local Certificate
+Authority. Switching it off and on again will regenerate a new CA.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4254,7 +4392,8 @@ LocalCAEnabled defines if the namespace should use a local Certificate Authority
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4315,9 +4454,23 @@ UpdateTime is the time at which an entity was updated.
 
 # NamespaceMappingPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A Namespace Mapping Policy defines in which namespace aProcessing Unit should be placed when it is created, based on its tags. When an Aporeto Agent creates a new Processing Unit, the system will place it in its own namespace if no matching Namespace Mapping Policy can be found. If one match is found, then the Processing will be bumped down to the namespace declared in the policy. If it finds in that child namespace another matching Namespace Mapping Policy, then the Processing Unit will be bumped down again, until it reach a namespace with no matching policies.  This is very useful to dispatch processes and containers into a particular namespace, based on a lot of factor. You can put in place a quarantine namespace that will grab all Processing Units with too much vulnerabilities for instances.
+A Namespace Mapping Policy defines in which namespace a Processing Unit should be
+placed when it is created, based on its tags.
+
+When an Aporeto Agent creates a new Processing Unit, the system will place it in
+its own namespace if no matching Namespace Mapping Policy can be found. If one
+match is found, then the Processing will be bumped down to the namespace
+declared in the policy. If it finds in that child namespace another matching
+Namespace Mapping Policy, then the Processing Unit will be bumped down again,
+until it reach a namespace with no matching policies.
+
+This is very useful to dispatch processes and containers into a particular
+namespace, based on a lot of factor.
+
+You can put in place a quarantine namespace that will grab all Processing Units
+with too much vulnerabilities for instances.
 
 ## Attributes
 
@@ -4387,7 +4540,8 @@ mappedNamespace is the mapped namespace
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4454,9 +4608,11 @@ UpdateTime is the time at which an entity was updated.
 
 # NetworkAccessPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-Allows to define networking policies to allow or prevent processing units identitied by their tags to talk to other processing units or external services (also identified by their tags).
+Allows to define networking policies to allow or prevent processing units
+identitied by their tags to talk to other processing units or external services
+(also identified by their tags).
 
 ## Relations
 
@@ -4484,7 +4640,8 @@ ID is the identifier of the object.
 
 ### `activeDuration (string)`
 
-ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+ActiveDuration defines for how long the policy will be active according to the
+activeSchedule.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -4492,14 +4649,16 @@ ActiveDuration defines for how long the policy will be active according to the a
 
 ### `activeSchedule (external:cron_expression)`
 
-ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+ActiveSchedule defines when the policy should be active using the cron notation.
+The policy will be active for the given activeDuration.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `allowsTraffic (boolean)`
 
-AllowsTraffic if true, the flow will be accepted. Otherwise other actions like "logs" can still be done, but the traffic will be rejected.
+AllowsTraffic if true, the flow will be accepted. Otherwise other actions like
+"logs" can still be done, but the traffic will be rejected.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4577,7 +4736,8 @@ LogsEnabled defines if the flow has to be logged.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4634,7 +4794,8 @@ If set to true, the flow will be in observation mode.
 
 ### `observedTrafficAction (enum)`
 
-If observationEnabled is set to true, this will be the final action taken on the packets.
+If observationEnabled is set to true, this will be the final action taken on the
+packets.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -4661,7 +4822,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4697,7 +4859,7 @@ UpdateTime is the time at which an entity was updated.
 
 # PasswordReset
 
-## Description
+> Operations:
 
 Used to reset an account password.
 
@@ -4721,7 +4883,7 @@ Token contains the reset password token
 
 # Plan
 
-## Description
+> Operations: `GET`
 
 Plan contains the various billing plans available
 
@@ -4789,13 +4951,14 @@ ProcessingUnitsQuota contains the maximum PUs available in the Plan.
 
 # Poke
 
-## Description
+> Operations:
 
-When available, poke can be used to update various information about the parent. For instance, for enforcers, poke will be use as the heartbeat.
+When available, poke can be used to update various information about the parent.
+For instance, for enforcers, poke will be use as the heartbeat.
 
 # Policy
 
-## Description
+> Operations: `GET` `DELETE`
 
 [nodoc]
 
@@ -4823,7 +4986,8 @@ Action defines set of actions that must be enforced when a dependency is met.
 
 ### `activeDuration (string)`
 
-ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+ActiveDuration defines for how long the policy will be active according to the
+activeSchedule.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -4831,7 +4995,8 @@ ActiveDuration defines for how long the policy will be active according to the a
 
 ### `activeSchedule (external:cron_expression)`
 
-ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+ActiveSchedule defines when the policy should be active using the cron notation.
+The policy will be active for the given activeDuration.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -4880,7 +5045,8 @@ Disabled defines if the propert is disabled.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4920,7 +5086,8 @@ NormalizedTags contains the list of normalized tags of the entities
 
 ### `object (external:policies_list)`
 
-Object represents set of entities that another entity depends on. As subjects, objects are identified as logical operations on tags when a policy is defined.
+Object represents set of entities that another entity depends on. As subjects,
+objects are identified as logical operations on tags when a policy is defined.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -4936,7 +5103,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4954,14 +5122,17 @@ Protected defines if the object is protected.
 
 ### `relation (external:relations_list)`
 
-Relation describes the required operation to be performed between subjects and objects
+Relation describes the required operation to be performed between subjects and
+objects
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `subject (external:policies_list)`
 
-Subject represent sets of entities that will have a dependency other entities. Subjects are defined as logical operations on tags. Logical operations can includes AND/OR
+Subject represent sets of entities that will have a dependency other entities.
+Subjects are defined as logical operations on tags. Logical operations can
+includes AND/OR
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4990,9 +5161,10 @@ UpdateTime is the time at which an entity was updated.
 
 # PolicyRefresh
 
-## Description
+> Operations:
 
-PolicyRefresh is sent to client when as a push event when a policy refresh is needed on their side.
+PolicyRefresh is sent to client when as a push event when a policy refresh is
+needed on their side.
 
 ## Attributes
 
@@ -5016,9 +5188,10 @@ Type contains the policy type that is affected.
 
 # PolicyRule
 
-## Description
+> Operations: `GET`
 
-PolicyRule is an internal policy resolution API. Services can use this API to retrieve a policy resolution.
+PolicyRule is an internal policy resolution API. Services can use this API to
+retrieve a policy resolution.
 
 ## Attributes
 
@@ -5057,14 +5230,14 @@ EnforcerProfiles provides the information about the server profile.
 
 ### `externalServices (external:network_entities)`
 
-Policy target networks
+Policy target networks.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `filePaths (external:file_entities)`
 
-Policy target networks
+Policy target networks.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -5088,14 +5261,15 @@ Name is the name of the entity
 
 ### `namespaces (external:namespace_entities)`
 
-Policy target networks
+Policy target networks.
 
 | Characteristics | Value |
 | -               | -:    |
 
 ### `passthroughExternalServices (external:network_entities)`
 
-List of external services the policy mandate to pass through before reaching the destination.
+List of external services the policy mandate to pass through before reaching the
+destination.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -5109,7 +5283,8 @@ Propagated indicates if the policy is propagated.
 
 ### `relation (external:relations_list)`
 
-Relation describes the required operation to be performed between subjects and objects
+Relation describes the required operation to be performed between subjects and
+objects
 
 | Characteristics | Value |
 | -               | -:    |
@@ -5123,9 +5298,14 @@ Policy target tags
 
 # ProcessingUnit
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-A Processing Unit reprents anything that can compute. It can be a Docker container, or a simple Unix process. They are created, updated and deleted by the system as they come and go. You can only modify its tags.  Processing Units use Network Access Policies to define which other Processing Units or External Services they can communicate with and File Access Policies to define what File Paths they can use.
+A Processing Unit reprents anything that can compute. It can be a Docker
+container, or a simple Unix process. They are created, updated and deleted by
+the system as they come and go. You can only modify its tags.  Processing Units
+use Network Access Policies to define which other Processing Units or External
+Services they can communicate with and File Access Policies to define what File
+Paths they can use.
 
 ## Relations
 
@@ -5211,7 +5391,8 @@ LastSyncTime is the time when the policy was last resolved
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5250,7 +5431,9 @@ NativeContextID is the Docker UUID or service PID
 
 ### `networkServices (external:processing_unit_services_list)`
 
-NetworkServices is the list of services that this processing unit has declared that it will be listening to. This can happen either with an activation command or by exposing the ports in a container manifest.
+NetworkServices is the list of services that this processing unit has declared
+that it will be listening to. This can happen either with an activation command
+or by exposing the ports in a container manifest.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5308,7 +5491,7 @@ UpdateTime is the time at which an entity was updated.
 
 # ProcessingUnitPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 A ProcessingUnitPolicies needs a better description.
 
@@ -5338,7 +5521,8 @@ Action determines the action to take while enforcing the isolation profile.
 
 ### `activeDuration (string)`
 
-ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+ActiveDuration defines for how long the policy will be active according to the
+activeSchedule.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -5346,7 +5530,8 @@ ActiveDuration defines for how long the policy will be active according to the a
 
 ### `activeSchedule (external:cron_expression)`
 
-ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+ActiveSchedule defines when the policy should be active using the cron notation.
+The policy will be active for the given activeDuration.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -5395,7 +5580,8 @@ Disabled defines if the propert is disabled.
 
 ### `isolationProfileSelector (external:policies_list)`
 
-IsolationProfileSelector are the profiles that must be applied when this policy matches. Only applies to Enforce and LogCompliance actions.
+IsolationProfileSelector are the profiles that must be applied when this policy
+matches. Only applies to Enforce and LogCompliance actions.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5404,7 +5590,8 @@ IsolationProfileSelector are the profiles that must be applied when this policy 
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5453,7 +5640,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5471,7 +5659,8 @@ Protected defines if the object is protected.
 
 ### `subject (external:policies_list)`
 
-Subject defines the tag selectors that identitfy the processing units to which this policy applies.
+Subject defines the tag selectors that identitfy the processing units to which
+this policy applies.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5490,9 +5679,10 @@ UpdateTime is the time at which an entity was updated.
 
 # QuotaPolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-Quotas Policies allows to set quotas on the number of objects that can be created in a namespace.
+Quotas Policies allows to set quotas on the number of objects that can be
+created in a namespace.
 
 ## Attributes
 
@@ -5560,7 +5750,8 @@ Identities contains the list of identity names where the quota will be applied.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5609,7 +5800,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5627,7 +5819,8 @@ Protected defines if the object is protected.
 
 ### `quota (integer)`
 
-Quota contains the maximum number of object matching the policy subject that can be created.
+Quota contains the maximum number of object matching the policy subject that can
+be created.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -5653,7 +5846,7 @@ UpdateTime is the time at which an entity was updated.
 
 # RemoteProcessor
 
-## Description
+> Operations:
 
 Hook to integrate an Aporeto service.
 
@@ -5728,7 +5921,7 @@ Represents the Identity name of the managed object
 
 # RenderedPolicy
 
-## Description
+> Operations:
 
 Retrieve the aggregated policies applied to a particular processing unit.
 
@@ -5736,7 +5929,8 @@ Retrieve the aggregated policies applied to a particular processing unit.
 
 ### `certificate (string)`
 
-Certificate is the certificate associated with this PU. It will identify the PU to any internal or external services.
+Certificate is the certificate associated with this PU. It will identify the PU
+to any internal or external services.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5753,7 +5947,8 @@ EgressPolicies lists all the egress policies attached to ProcessingUnit
 
 ### `exposedAPIServices (external:api_services_entities)`
 
-ExposedAPIServices is the list of services that this processing unit is implementing.
+ExposedAPIServices is the list of services that this processing unit is
+implementing.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -5778,7 +5973,8 @@ MatchingTags contains the list of tags that matched the policies.
 
 ### `processingUnit (external:processingunit)`
 
-Can be set during a POST operation to render a policy on a Processing Unit that has not been created yet.
+Can be set during a POST operation to render a policy on a Processing Unit that
+has not been created yet.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5796,7 +5992,8 @@ Identifier of the ProcessingUnit
 
 ### `profile (external:trust_profile)`
 
-Profile is the trust profile of the processing unit that should be used during all communications.
+Profile is the trust profile of the processing unit that should be used during
+all communications.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5805,14 +6002,15 @@ Profile is the trust profile of the processing unit that should be used during a
 
 ### `scopes (external:scopes_list)`
 
-Scopes is the set of scopes granted to this Processing Unit that it has to present in HTTP requests.
+Scopes is the set of scopes granted to this Processing Unit that it has to
+present in HTTP requests.
 
 | Characteristics | Value |
 | -               | -:    |
 
 # Report
 
-## Description
+> Operations:
 
 Post a new statistics report.
 
@@ -5856,7 +6054,7 @@ Value contains the value for the report.
 
 # Revocation
 
-## Description
+> Operations: `UPDATE`
 
 Used to revoke a certificate
 
@@ -5864,7 +6062,8 @@ Used to revoke a certificate
 
 ### `expirationDate (time)`
 
-Contains the certificate expiration date. This will be used to clean up revoked certificates that have expired.
+Contains the certificate expiration date. This will be used to clean up revoked
+certificates that have expired.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5895,9 +6094,10 @@ Subject of the certificate related to the revocation.
 
 # Role
 
-## Description
+> Operations:
 
-Roles returns the available roles that can be used with API Authorization Policies.
+Roles returns the available roles that can be used with API Authorization
+Policies.
 
 ## Attributes
 
@@ -5939,7 +6139,7 @@ Name of the role.
 
 # Root
 
-## Description
+> Operations: `GET`
 
 [nodoc]
 
@@ -6238,7 +6438,7 @@ ID is the identifier of the object.
 
 # Service
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 Service represents a service that can be launched
 
@@ -6326,9 +6526,11 @@ Status of the service.
 
 # StatsQuery
 
-## Description
+> Operations:
 
-StatsQuery is a generic API to retrieve time series data stored by the Aporeto system. The API allows different types of queries that are all protected within the namespace of the user.
+StatsQuery is a generic API to retrieve time series data stored by the Aporeto
+system. The API allows different types of queries that are all protected within
+the namespace of the user.
 
 ## Attributes
 
@@ -6343,7 +6545,7 @@ Results contains the result of the query.
 
 # SuggestedPolicy
 
-## Description
+> Operations:
 
 Allows to get policy suggestions
 
@@ -6360,7 +6562,7 @@ List of suggested network access policies
 
 # SystemCall
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
 [nodoc]
 
@@ -6413,7 +6615,8 @@ Description is the description of the object.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6472,9 +6675,10 @@ UpdateTime is the time at which an entity was updated.
 
 # Tabulation
 
-## Description
+> Operations:
 
-Tabulate API allows you to retrieve a custom table view for any identity using any tags you like as columns.
+Tabulate API allows you to retrieve a custom table view for any identity using
+any tags you like as columns.
 
 ## Attributes
 
@@ -6507,9 +6711,14 @@ TargetIdentity contains the requested target identity.
 
 # Tag
 
-## Description
+> Operations:
 
-A tag is a string in the form of "key=value" that can applied to all objects in the system. They are used for policy resolution. Tags starting by a "$" are derived from the property of an object (for instance an object with ID set to xxx and a name set to "the name" will be tagged by default with "$name=the name" and "$id=xxx"). Tags starting with an "@" have been generated by an external system.
+A tag is a string in the form of "key=value" that can applied to all objects in
+the system. They are used for policy resolution. Tags starting by a "$" are
+derived from the property of an object (for instance an object with ID set to
+xxx and a name set to "the name" will be tagged by default with "$name=the name"
+and "$id=xxx"). Tags starting with an "@" have been generated by an external
+system.
 
 ## Attributes
 
@@ -6555,9 +6764,11 @@ Value represents the value of the tag.
 
 # TokenScopePolicy
 
-## Description
+> Operations: `GET` `UPDATE` `DELETE`
 
-The TokenScopePolicy defines a set of policies that allow customization of the authorization tokens issued by the Aporeto service. This allows Aporeto generated tokens to be used by external applications.
+The TokenScopePolicy defines a set of policies that allow customization of the
+authorization tokens issued by the Aporeto service. This allows Aporeto
+generated tokens to be used by external applications.
 
 ## Attributes
 
@@ -6575,7 +6786,8 @@ ID is the identifier of the object.
 
 ### `activeDuration (string)`
 
-ActiveDuration defines for how long the policy will be active according to the activeSchedule.
+ActiveDuration defines for how long the policy will be active according to the
+activeSchedule.
 
 | Characteristics | Value             |
 | -               | -:                |
@@ -6583,7 +6795,8 @@ ActiveDuration defines for how long the policy will be active according to the a
 
 ### `activeSchedule (external:cron_expression)`
 
-ActiveSchedule defines when the policy should be active using the cron notation. The policy will be active for the given activeDuration.
+ActiveSchedule defines when the policy should be active using the cron notation.
+The policy will be active for the given activeDuration.
 
 | Characteristics | Value |
 | -               | -:    |
@@ -6641,7 +6854,8 @@ Disabled defines if the propert is disabled.
 
 ### `metadata (external:metadata_list)`
 
-Metadata contains tags that can only be set during creation. They must all start with the '@' prefix, and should only be used by external systems.
+Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6690,7 +6904,8 @@ Propagate will propagate the policy to all of its children.
 
 ### `propagationHidden (boolean)`
 
-If set to true while the policy is propagating, it won't be visible to children namespace, but still used for policy resolution.
+If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6708,7 +6923,8 @@ Protected defines if the object is protected.
 
 ### `subject (external:policies_list)`
 
-Subject defines the selection criteria that this policy must match on identiy and scope request information.
+Subject defines the selection criteria that this policy must match on identiy
+and scope request information.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6727,7 +6943,7 @@ UpdateTime is the time at which an entity was updated.
 
 # Trigger
 
-## Description
+> Operations:
 
 Trigger can be used to remotely trigger an automation.
 
@@ -6735,7 +6951,7 @@ Trigger can be used to remotely trigger an automation.
 
 # Vulnerability
 
-## Description
+> Operations: `GET`
 
 A vulnerabily represents a particular CVE
 

@@ -4,9 +4,10 @@ model:
   resource_name: apichecks
   entity_name: APICheck
   package: squall
-  description: This API allows to verify is a client identitied by his token is allowed
-    to do some operations on some apis. For example, it allows third party system
-    to impersonate a user and ensure a proxfied request should be allowed.
+  description: |-
+    This API allows to verify is a client identitied by his token is allowed to do
+    some operations on some apis. For example, it allows third party system to
+    impersonate a user and ensure a proxfied request should be allowed.
 
 # Attributes
 attributes:
@@ -42,8 +43,9 @@ attributes:
   orderable: true
 
 - name: targetIdentities
-  description: TargetIdentities contains the list of identities you want to check
-    the authorization.
+  description: |-
+    TargetIdentities contains the list of identities you want to check the
+    authorization.
   type: external
   exposed: true
   subtype: identity_list

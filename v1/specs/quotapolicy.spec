@@ -4,8 +4,9 @@ model:
   resource_name: quotapolicies
   entity_name: QuotaPolicy
   package: squall
-  description: Quotas Policies allows to set quotas on the number of objects that
-    can be created in a namespace.
+  description: |-
+    Quotas Policies allows to set quotas on the number of objects that can be
+    created in a namespace.
   aliases:
   - quota
   - quotas
@@ -35,8 +36,9 @@ attributes:
   required: true
 
 - name: quota
-  description: Quota contains the maximum number of object matching the policy subject
-    that can be created.
+  description: |-
+    Quota contains the maximum number of object matching the policy subject that can
+    be created.
   type: integer
   exposed: true
 

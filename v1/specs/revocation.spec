@@ -20,8 +20,9 @@ attributes:
   primary_key: true
 
 - name: expirationDate
-  description: Contains the certificate expiration date. This will be used to clean
-    up revoked certificates that have expired.
+  description: |-
+    Contains the certificate expiration date. This will be used to clean up revoked
+    certificates that have expired.
   type: time
   exposed: true
   stored: true

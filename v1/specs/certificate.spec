@@ -64,8 +64,9 @@ attributes:
   orderable: true
 
 - name: key
-  description: CertificateKey provides the key for the user. Only available at create
-    or update time.
+  description: |-
+    CertificateKey provides the key for the user. Only available at create or update
+    time.
   type: string
   exposed: true
   read_only: true
@@ -122,8 +123,9 @@ attributes:
   orderable: true
 
 - name: status
-  description: CertificateStatus provides the status of the certificate. Update with
-    RENEW to get a new certificate.
+  description: |-
+    CertificateStatus provides the status of the certificate. Update with RENEW to
+    get a new certificate.
   type: enum
   exposed: true
   stored: true

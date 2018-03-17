@@ -21,14 +21,15 @@ attributes:
   format: free
 
 - name: certificateID
-  description: 'Link to the certificate created in Vince for this cluster '
+  description: Link to the certificate created in Vince for this cluster.
   type: string
   stored: true
   format: free
 
 - name: kubernetesDefinitions
-  description: base64 of the .tar.gz file that contains all the .YAMLs files needed
-    to create the aporeto side on your kubernetes Cluster
+  description: |-
+    base64 of the .tar.gz file that contains all the .YAMLs files needed to create
+    the aporeto side on your kubernetes Cluster
   type: string
   exposed: true
   read_only: true
@@ -46,7 +47,7 @@ attributes:
   orderable: true
 
 - name: namespaceID
-  description: 'Link to your namespace '
+  description: Link to your namespace.
   type: string
   stored: true
   format: free
@@ -67,8 +68,9 @@ attributes:
   exposed: true
 
 - name: targetNamespace
-  description: The namespace in which the Kubernetes specific namespace will be created.
-    By default your account namespace.
+  description: |-
+    The namespace in which the Kubernetes specific namespace will be created. By
+    default your account namespace.
   type: string
   exposed: true
   stored: true

@@ -4,8 +4,9 @@ model:
   resource_name: awsaccounts
   entity_name: AWSAccount
   package: vince
-  description: 'Allows to bind an AWS account to your Aporeto account to allow auto
-    registration of enforcers running on EC2 '
+  description: |-
+    Allows to bind an AWS account to your Aporeto account to allow auto registration
+    of enforcers running on EC2
   aliases:
   - aws
   - awsaccs
@@ -19,8 +20,9 @@ model:
 # Attributes
 attributes:
 - name: accessKeyID
-  description: AccessKeyID contains the aws access key ID. This is used to retrieve
-    your account id, and it is not stored.
+  description: |-
+    AccessKeyID contains the aws access key ID. This is used to retrieve your
+    account id, and it is not stored.
   type: string
   exposed: true
   required: true
@@ -28,8 +30,9 @@ attributes:
   format: free
 
 - name: accessToken
-  description: AccessToken contains your aws access token. It is used to retrieve
-    your account id, and it not stored.
+  description: |-
+    AccessToken contains your aws access token. It is used to retrieve your account
+    id, and it not stored.
   type: string
   exposed: true
   creation_only: true
@@ -78,8 +81,9 @@ attributes:
   orderable: true
 
 - name: secretAccessKey
-  description: secretAccessKey contains the secret key. It is used to retrieve your
-    account id, and it is not stored.
+  description: |-
+    secretAccessKey contains the secret key. It is used to retrieve your account id,
+    and it is not stored.
   type: string
   exposed: true
   required: true

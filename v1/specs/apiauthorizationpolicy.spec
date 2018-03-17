@@ -4,12 +4,14 @@ model:
   resource_name: apiauthorizationpolicies
   entity_name: APIAuthorizationPolicy
   package: squall
-  description: An API Authorization Policy defines what kind of operations a user
-    of a system can do in a namespace. The operations can be any combination of GET,
-    POST, PUT, DELETE,PATCH or HEAD. By default, an API Authorization Policy will
-    only give permissions in the context of the current namespace but you can make
-    it propagate to all the child namespaces.  It is also possible restrict permissions
-    to apply only on a particular subset of the apis by setting the target identities.
+  description: |-
+    An API Authorization Policy defines what kind of operations a user of a system
+    can do in a namespace. The operations can be any combination of GET, POST, PUT,
+    DELETE,PATCH or HEAD. By default, an API Authorization Policy will only give
+    permissions in the context of the current namespace but you can make it
+    propagate to all the child namespaces. It is also possible restrict permissions
+    to apply only on a particular subset of the apis by setting the target
+    identities.
   aliases:
   - apiauth
   - apiauths
@@ -29,8 +31,8 @@ model:
 # Attributes
 attributes:
 - name: authorizedIdentities
-  description: 'AuthorizedIdentities defines the list of api identities the policy
-    applies to. '
+  description: AuthorizedIdentities defines the list of api identities the policy
+    applies to.
   type: external
   exposed: true
   subtype: identity_list

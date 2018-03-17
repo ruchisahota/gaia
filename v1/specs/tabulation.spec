@@ -4,8 +4,9 @@ model:
   resource_name: tabulations
   entity_name: Tabulation
   package: squall
-  description: Tabulate API allows you to retrieve a custom table view for any identity
-    using any tags you like as columns.
+  description: |-
+    Tabulate API allows you to retrieve a custom table view for any identity using
+    any tags you like as columns.
   aliases:
   - table
   - tables
