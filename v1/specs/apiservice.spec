@@ -86,7 +86,7 @@ attributes:
   format: free
 
 - name: networkProtocol
-  description: NetworkProtocol is the network protocol of the service. Default is TCP.
+  description: NetworkProtocol is the network protocol of the service.
   type: integer
   exposed: true
   stored: true

@@ -112,7 +112,7 @@ type APIService struct {
 	// field is optional. If provided, this must be a valid PEM CA file.
 	ExternalServiceCA string `json:"externalServiceCA" bson:"externalserviceca" mapstructure:"externalServiceCA,omitempty"`
 
-	// NetworkProtocol is the network protocol of the service. Default is TCP.
+	// NetworkProtocol is the network protocol of the service.
 	NetworkProtocol int `json:"networkProtocol" bson:"networkprotocol" mapstructure:"networkProtocol,omitempty"`
 
 	// Ports is a list of ports for the service. Ports are either exact match, or a
@@ -629,7 +629,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "NetworkProtocol",
 		DefaultValue:   6,
-		Description:    `NetworkProtocol is the network protocol of the service. Default is TCP.`,
+		Description:    `NetworkProtocol is the network protocol of the service.`,
 		Exposed:        true,
 		Filterable:     true,
 		MaxValue:       255,
@@ -932,7 +932,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "NetworkProtocol",
 		DefaultValue:   6,
-		Description:    `NetworkProtocol is the network protocol of the service. Default is TCP.`,
+		Description:    `NetworkProtocol is the network protocol of the service.`,
 		Exposed:        true,
 		Filterable:     true,
 		MaxValue:       255,

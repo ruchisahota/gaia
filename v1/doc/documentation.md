@@ -43,7 +43,7 @@
 | [Log](#log)                                                   | Retrieves the log of a deployed app.                                                |
 | [Message](#message)                                           | The Message API allows to post public messages that will be visible through all     |
 | [Namespace](#namespace)                                       | A Namespace represents the core organizational unit of the system. All objects      |
-| [NamespaceMappingPolicy](#namespacemappingpolicy)             | A Namespace Mapping Policy defines in which namespace a Processing Unit should b... |
+| [NamespaceMappingPolicy](#namespacemappingpolicy)             | A Namespace Mapping Policy defines in which namespace a Processing Unit should      |
 | [NetworkAccessPolicy](#networkaccesspolicy)                   | Allows to define networking policies to allow or prevent processing units           |
 | [PasswordReset](#passwordreset)                               | Used to reset an account password.                                                  |
 | [Plan](#plan)                                                 | Plan contains the various billing plans available                                   |
@@ -972,7 +972,7 @@ Namespace tag attached to an entity
 
 ### `networkProtocol (integer)`
 
-NetworkProtocol is the network protocol of the service. Default is TCP.
+NetworkProtocol is the network protocol of the service.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4456,8 +4456,8 @@ UpdateTime is the time at which an entity was updated.
 
 > Operations: `GET` `UPDATE` `DELETE`
 
-A Namespace Mapping Policy defines in which namespace a Processing Unit should be
-placed when it is created, based on its tags.
+A Namespace Mapping Policy defines in which namespace a Processing Unit should
+be placed when it is created, based on its tags.
 
 When an Aporeto Agent creates a new Processing Unit, the system will place it in
 its own namespace if no matching Namespace Mapping Policy can be found. If one
