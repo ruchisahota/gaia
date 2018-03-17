@@ -4,7 +4,7 @@
 
 > Version: 1
 
-|                                                               |                                                                                     |
+| Object                                                        | Description                                                                         |
 | -                                                             | -                                                                                   |
 | [Account](#account)                                           | Manage your Account.                                                                |
 | [AccountCheck](#accountcheck)                                 | [nodoc]                                                                             |
