@@ -390,6 +390,10 @@ func (o *ProcessingUnitPolicy) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -579,6 +583,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
@@ -841,6 +846,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,

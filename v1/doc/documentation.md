@@ -521,6 +521,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -702,6 +703,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -951,6 +953,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1107,6 +1110,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1307,6 +1311,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1455,6 +1460,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1520,6 +1526,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2127,6 +2134,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2420,6 +2428,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2678,6 +2687,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2943,6 +2953,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3238,6 +3249,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3397,6 +3409,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3690,6 +3703,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3902,6 +3916,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -4241,6 +4256,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -4541,6 +4557,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -4736,6 +4753,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5044,6 +5062,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5240,6 +5259,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5389,6 +5409,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5587,6 +5608,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5746,6 +5768,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -6610,6 +6633,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -6848,6 +6872,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -7005,6 +7030,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |

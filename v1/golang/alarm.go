@@ -310,6 +310,10 @@ func (o *Alarm) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -455,6 +459,7 @@ identifier, then only the occurrence will be incremented.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
@@ -661,6 +666,7 @@ identifier, then only the occurrence will be incremented.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,

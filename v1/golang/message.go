@@ -298,6 +298,10 @@ func (o *Message) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -440,6 +444,7 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
@@ -642,6 +647,7 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,

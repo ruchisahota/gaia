@@ -472,6 +472,10 @@ func (o *EnforcerProfile) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -767,6 +771,7 @@ docker container started with labels matching the rule.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
@@ -1250,6 +1255,7 @@ docker container started with labels matching the rule.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
