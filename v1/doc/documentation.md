@@ -502,7 +502,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `kind (string)`
 
@@ -677,7 +676,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -910,7 +908,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `exposedAPIs (external:exposed_api_list)`
 
@@ -1093,7 +1090,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `metadata (external:metadata_list)`
 
@@ -1262,7 +1258,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -1423,7 +1418,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `entitlements (external:automation_entitlements)`
 
@@ -1499,10 +1493,11 @@ CategoryID of the service.
 
 ### `description (string)`
 
-Description of the service
+Description is the description of the object.
 
-| Characteristics | Value |
-| -               | -:    |
+| Characteristics | Value  |
+| -               | -:     |
+| Orderable       | `true` |
 
 ### `icon (string)`
 
@@ -1521,10 +1516,13 @@ LongDescription contains a more detailed description of the service.
 
 ### `name (string)`
 
-Name of the Service
+Name is the name of the entity
 
-| Characteristics | Value |
-| -               | -:    |
+| Characteristics | Value  |
+| -               | -:     |
+| Required        | `true` |
+| Orderable       | `true` |
+| Filterable      | `true` |
 
 ### `parameters (external:service_parameters)`
 
@@ -2077,7 +2075,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `enforcerProfileID (string)`
 
@@ -2329,7 +2326,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `dockerSocketAddress (string)`
 
@@ -2479,7 +2475,7 @@ calls. It can be a port (example :9443) or socket path
 | Characteristics | Value                                                                                                                                     |
 | -               | -:                                                                                                                                        |
 | Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix:(/[^/]{1,16}){1,5}/?)$/` |
-| Default         | `unix:/var/run/aporeto.sock`                                                                                                                                   |
+| Default         | `unix:/var/run/aporeto.sock`                                                                                                              |
 | Orderable       | `true`                                                                                                                                    |
 | Filterable      | `true`                                                                                                                                    |
 
@@ -2656,7 +2652,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -2915,7 +2910,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `loadbalancerAddresses (external:addresses_list)`
 
@@ -3200,7 +3194,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -3378,7 +3371,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `filepath (string)`
 
@@ -3651,7 +3643,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -3894,7 +3885,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `metadata (external:metadata_list)`
 
@@ -4215,7 +4205,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `expirationTime (time)`
 
@@ -4369,7 +4358,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `localCA (string)`
 
@@ -4517,7 +4505,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -4696,7 +4683,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `destinationPorts (external:ports_list)`
 
@@ -5032,7 +5018,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -5370,7 +5355,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `enforcerID (string)`
 
@@ -5567,7 +5551,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -5729,7 +5712,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -6611,7 +6593,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `metadata (external:metadata_list)`
 
@@ -6841,7 +6822,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `disabled (boolean)`
 
@@ -7006,7 +6986,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ### `link (string)`
 

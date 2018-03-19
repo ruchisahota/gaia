@@ -4,10 +4,9 @@ import (
 	"fmt"
 	"sync"
 
-	"time"
-
 	"github.com/aporeto-inc/elemental"
 	"github.com/aporeto-inc/gaia/v1/golang/types"
+	"time"
 )
 
 // EnforcerProfileDockerSocketTypeValue represents the possible values for attribute "dockerSocketType".
@@ -645,7 +644,6 @@ is a read only attribute when an enforcer profile is resolved for an enforcer.`,
 		ConvertedName:  "Description",
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
@@ -1129,7 +1127,6 @@ is a read only attribute when an enforcer profile is resolved for an enforcer.`,
 		ConvertedName:  "Description",
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
