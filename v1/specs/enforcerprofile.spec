@@ -295,4 +295,6 @@ attributes:
 # Relations
 relations:
 - rest_name: auditprofile
+  descriptions:
+    get: Returns the list of AuditProfiles used by an enforcer profile.
   get: true
