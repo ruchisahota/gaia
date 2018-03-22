@@ -57,7 +57,6 @@
 | [RemoteProcessor](#remoteprocessor)                           | Hook to integrate an Aporeto service.                                               |
 | [RenderedPolicy](#renderedpolicy)                             | Retrieve the aggregated policies applied to a particular processing unit.           |
 | [Report](#report)                                             | Post a new statistics report.                                                       |
-| [Revocation](#revocation)                                     | Used to revoke a certificate                                                        |
 | [Role](#role)                                                 | Roles returns the available roles that can be used with API Authorization           |
 | [Root](#root)                                                 | [nodoc]                                                                             |
 | [Service](#service)                                           | Service represents a service that can be launched                                   |
@@ -2025,17 +2024,6 @@ update.
 | -               | -:     |
 | Creation only   | `true` |
 
-### `certificateStatus (enum)`
-
-CertificateStatus indicates if the certificate is valid.
-
-| Characteristics | Value                   |
-| -               | -:                      |
-| Allowed Value   | `RENEW, REVOKED, VALID` |
-| Default         | `VALID`                 |
-| Orderable       | `true`                  |
-| Filterable      | `true`                  |
-
 ### `collectInfo (boolean)`
 
 CollectInfo indicates to the enforcer it needs to collect information.
@@ -2335,22 +2323,12 @@ Description is the description of the object.
 
 DockerSocketAddress is the address of the docker daemon.
 
-| Characteristics | Value                  |
-| -               | -:                     |
-| Default         | `/var/run/docker.sock` |
-| Orderable       | `true`                 |
-| Filterable      | `true`                 |
-
-### `dockerSocketType (enum)`
-
-DockerSocketType is the type of socket to use to talk to the docker daemon.
-
-| Characteristics | Value       |
-| -               | -:          |
-| Allowed Value   | `tcp, unix` |
-| Default         | `unix`      |
-| Orderable       | `true`      |
-| Filterable      | `true`      |
+| Characteristics | Value                                                                                                                                       |
+| -               | -:                                                                                                                                          |
+| Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix://(/[^/]{1,16}){1,5}/?)$/` |
+| Default         | `unix:///var/run/docker.sock`                                                                                                               |
+| Orderable       | `true`                                                                                                                                      |
+| Filterable      | `true`                                                                                                                                      |
 
 ### `excludedInterfaces (external:excluded_interfaces_list)`
 
@@ -2474,14 +2452,14 @@ Protected defines if the object is protected.
 
 ProxyListenAddress is the address the enforcer should use to listen for API
 calls. It can be a port (example :9443) or socket path
-(example: unix:/var/run/aporeto.sock)
+(example: unix:///var/run/aporeto.sock)
 
-| Characteristics | Value                                                                                                                                     |
-| -               | -:                                                                                                                                        |
-| Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix:(/[^/]{1,16}){1,5}/?)$/` |
-| Default         | `unix:/var/run/aporeto.sock`                                                                                                              |
-| Orderable       | `true`                                                                                                                                    |
-| Filterable      | `true`                                                                                                                                    |
+| Characteristics | Value                                                                                                                                       |
+| -               | -:                                                                                                                                          |
+| Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix://(/[^/]{1,16}){1,5}/?)$/` |
+| Default         | `unix:///var/run/aporeto.sock`                                                                                                              |
+| Orderable       | `true`                                                                                                                                      |
+| Filterable      | `true`                                                                                                                                      |
 
 ### `receiverNumberOfQueues (integer)`
 
@@ -6052,46 +6030,6 @@ Value contains the value for the report.
 | Characteristics | Value |
 | -               | -:    |
 
-# Revocation
-
-> Operations: `UPDATE`
-
-Used to revoke a certificate
-
-## Attributes
-
-### `expirationDate (time)`
-
-Contains the certificate expiration date. This will be used to clean up revoked
-certificates that have expired.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Creation only   | `true` |
-
-### `revokeDate (time)`
-
-Set time from when the certificate will be revoked.
-
-| Characteristics | Value |
-| -               | -:    |
-
-### `serialNumber (string)`
-
-SerialNumber of the revoked certificate.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Creation only   | `true` |
-
-### `subject (string)`
-
-Subject of the certificate related to the revocation.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Creation only   | `true` |
-
 # Role
 
 > Operations:
@@ -6948,7 +6886,6 @@ UpdateTime is the time at which an entity was updated.
 Trigger can be used to remotely trigger an automation.
 
 ## Attributes
-
 # Vulnerability
 
 > Operations: `GET`
