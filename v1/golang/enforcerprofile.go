@@ -457,6 +457,10 @@ func (o *EnforcerProfile) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -629,7 +633,6 @@ is a read only attribute when an enforcer profile is resolved for an enforcer.`,
 		ConvertedName:  "Description",
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
@@ -742,6 +745,7 @@ docker container started with labels matching the rule.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
@@ -1102,7 +1106,6 @@ is a read only attribute when an enforcer profile is resolved for an enforcer.`,
 		ConvertedName:  "Description",
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
@@ -1215,6 +1218,7 @@ docker container started with labels matching the rule.`,
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
