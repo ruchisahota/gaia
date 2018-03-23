@@ -4618,7 +4618,7 @@ ID is the identifier of the object.
 | Orderable       | `true` |
 | Filterable      | `true` |
 
-### `action (enum)`
+#### `action (enum)`
 
 Action defines the action to apply to a flow.
 
@@ -4629,7 +4629,7 @@ Action defines the action to apply to a flow.
 | Orderable       | `true`                    |
 | Filterable      | `true`                    |
 
-### `activeDuration (string)`
+#### `activeDuration (string)`
 
 ActiveDuration defines for how long the policy will be active according to the
 activeSchedule.
@@ -4643,10 +4643,7 @@ activeSchedule.
 ActiveSchedule defines when the policy should be active using the cron notation.
 The policy will be active for the given activeDuration.
 
-| Characteristics | Value |
-| -               | -:    |
-
-### `annotations (external:annotations)`
+#### `annotations (external:annotations)`
 
 Annotation stores additional information about an entity
 
