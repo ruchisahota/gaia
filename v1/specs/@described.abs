@@ -6,4 +6,5 @@ attributes:
   exposed: true
   stored: true
   format: free
+  max_length: 1024
   orderable: true

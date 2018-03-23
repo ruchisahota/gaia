@@ -380,6 +380,10 @@ func (o *APIAuthorizationPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -532,6 +536,7 @@ The policy will be active for the given activeDuration.`,
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Format:         "free",
+		MaxLength:      1024,
 		Name:           "description",
 		Orderable:      true,
 		Stored:         true,
@@ -789,6 +794,7 @@ The policy will be active for the given activeDuration.`,
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Format:         "free",
+		MaxLength:      1024,
 		Name:           "description",
 		Orderable:      true,
 		Stored:         true,

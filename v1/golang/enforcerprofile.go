@@ -453,6 +453,10 @@ func (o *EnforcerProfile) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -634,6 +638,7 @@ is a read only attribute when an enforcer profile is resolved for an enforcer.`,
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Format:         "free",
+		MaxLength:      1024,
 		Name:           "description",
 		Orderable:      true,
 		Stored:         true,
@@ -1107,6 +1112,7 @@ is a read only attribute when an enforcer profile is resolved for an enforcer.`,
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Format:         "free",
+		MaxLength:      1024,
 		Name:           "description",
 		Orderable:      true,
 		Stored:         true,

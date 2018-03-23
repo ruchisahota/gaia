@@ -306,6 +306,10 @@ func (o *Alarm) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -430,6 +434,7 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Format:         "free",
+		MaxLength:      1024,
 		Name:           "description",
 		Orderable:      true,
 		Stored:         true,
@@ -637,6 +642,7 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
 		Format:         "free",
+		MaxLength:      1024,
 		Name:           "description",
 		Orderable:      true,
 		Stored:         true,
