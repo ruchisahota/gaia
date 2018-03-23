@@ -508,7 +508,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `kind (string)`
 
@@ -528,6 +527,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -682,7 +682,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -709,6 +708,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -916,7 +916,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `exposedAPIs (external:exposed_api_list)`
 
@@ -954,6 +953,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1096,7 +1096,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -1114,6 +1113,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1263,7 +1263,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -1307,6 +1306,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1414,7 +1414,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `entitlements (external:automation_entitlements)`
 
@@ -1443,6 +1442,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -1482,7 +1482,11 @@ CategoryID of the service.
 
 #### `description (string)`
 
-Description of the service
+Description is the description of the object.
+
+| Characteristics | Value  |
+| -               | -:     |
+| Orderable       | `true` |
 
 #### `icon (string)`
 
@@ -1498,7 +1502,14 @@ LongDescription contains a more detailed description of the service.
 
 #### `name (string)`
 
-Name of the Service
+Name is the name of the entity
+
+| Characteristics | Value  |
+| -               | -:     |
+| Max length      | `256`  |
+| Required        | `true` |
+| Orderable       | `true` |
+| Filterable      | `true` |
 
 #### `parameters (external:service_parameters)`
 
@@ -2034,7 +2045,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `enforcerProfileID (string)`
 
@@ -2084,6 +2094,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2282,7 +2293,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `dockerSocketAddress (string)`
 
@@ -2364,6 +2374,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2587,7 +2598,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -2614,6 +2624,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -2858,7 +2869,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `loadbalancerAddresses (external:addresses_list)`
 
@@ -2886,6 +2896,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3141,7 +3152,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -3186,6 +3196,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3321,7 +3332,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `filepath (string)`
 
@@ -3348,6 +3358,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3600,7 +3611,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -3648,6 +3658,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -3857,7 +3868,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -3875,6 +3885,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -4191,7 +4202,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `expirationTime (time)`
 
@@ -4228,6 +4238,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -4347,7 +4358,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `localCA (string)`
 
@@ -4497,7 +4507,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -4534,6 +4543,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -4668,7 +4678,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `destinationPorts (external:ports_list)`
 
@@ -4722,6 +4731,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5006,7 +5016,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -5033,6 +5042,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5209,6 +5219,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5299,7 +5310,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `enforcerID (string)`
 
@@ -5334,6 +5344,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5495,7 +5506,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -5532,6 +5542,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -5659,7 +5670,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -5694,6 +5704,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -6205,7 +6216,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -6223,6 +6233,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -6442,7 +6453,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -6469,6 +6479,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
@@ -6606,7 +6617,6 @@ Description is the description of the object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `link (string)`
 
@@ -6626,6 +6636,7 @@ Name is the name of the entity
 
 | Characteristics | Value  |
 | -               | -:     |
+| Max length      | `256`  |
 | Required        | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |

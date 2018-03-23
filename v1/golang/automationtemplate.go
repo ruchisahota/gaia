@@ -184,6 +184,10 @@ func (o *AutomationTemplate) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
@@ -223,7 +227,6 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		ConvertedName:  "Description",
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
@@ -275,6 +278,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
@@ -300,7 +304,6 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		ConvertedName:  "Description",
 		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
 		Name:           "description",
 		Orderable:      true,
@@ -352,6 +355,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Filterable:     true,
 		Format:         "free",
 		Getter:         true,
+		MaxLength:      256,
 		Name:           "name",
 		Orderable:      true,
 		Required:       true,
