@@ -282,10 +282,6 @@ func (o *SystemCall) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}

@@ -27,6 +27,7 @@ attributes:
   exposed: true
   required: true
   creation_only: true
+  example_value: aws access key id
   format: free
 
 - name: accessToken
@@ -76,6 +77,7 @@ attributes:
   stored: true
   required: true
   creation_only: true
+  example_value: us-west-2
   filterable: true
   format: free
   orderable: true
@@ -88,4 +90,5 @@ attributes:
   exposed: true
   required: true
   creation_only: true
+  example_value: aws secret access key
   format: free

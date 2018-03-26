@@ -30,6 +30,7 @@ attributes:
   exposed: true
   stored: true
   required: true
+  example_value: /etc/passwd
   filterable: true
   format: free
 
@@ -38,7 +39,6 @@ attributes:
   type: string
   exposed: true
   stored: true
-  required: true
   creation_only: true
   filterable: true
   format: free

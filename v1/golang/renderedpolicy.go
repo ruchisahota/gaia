@@ -173,10 +173,6 @@ func (o *RenderedPolicy) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("processingUnit", o.ProcessingUnit); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}

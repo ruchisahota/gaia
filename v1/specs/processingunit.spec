@@ -91,6 +91,7 @@ attributes:
   - LinuxService
   - RKT
   - User
+  default_value: Docker
   filterable: true
 
 # Relations

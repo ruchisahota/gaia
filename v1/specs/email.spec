@@ -38,7 +38,7 @@ attributes:
   type: string
   exposed: true
   required: true
-  format: email
+  example_value: sender@server.com
 
 - name: subject
   description: Subject represents the subject of the email

@@ -134,16 +134,8 @@ func (o *PasswordReset) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("password", o.Password); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("token", o.Token); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("token", o.Token); err != nil {
-		errors = append(errors, err)
 	}
 
 	if len(requiredErrors) > 0 {

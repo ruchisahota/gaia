@@ -164,10 +164,6 @@ func (o *Email) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("from", o.From); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"HTML", "Plain"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -243,7 +239,6 @@ var EmailAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "From",
 		Description:    `From represents the sender of the email`,
 		Exposed:        true,
-		Format:         "email",
 		Name:           "from",
 		Required:       true,
 		Type:           "string",
@@ -320,7 +315,6 @@ var EmailLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "From",
 		Description:    `From represents the sender of the email`,
 		Exposed:        true,
-		Format:         "email",
 		Name:           "from",
 		Required:       true,
 		Type:           "string",

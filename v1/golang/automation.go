@@ -330,10 +330,6 @@ func (o *Automation) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("condition", o.Condition); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateStringInList("trigger", string(o.Trigger), []string{"Event", "RemoteCall", "Time"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -347,10 +343,6 @@ func (o *Automation) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -406,7 +398,6 @@ var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Action contains the code that will be executed if the condition is met.`,
 		Exposed:        true,
 		Name:           "actions",
-		Required:       true,
 		Stored:         true,
 		SubType:        "string",
 		Type:           "list",
@@ -699,7 +690,6 @@ var AutomationLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Description:    `Action contains the code that will be executed if the condition is met.`,
 		Exposed:        true,
 		Name:           "actions",
-		Required:       true,
 		Stored:         true,
 		SubType:        "string",
 		Type:           "list",

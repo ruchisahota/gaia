@@ -365,16 +365,8 @@ func (o *APIService) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("ports", o.Ports); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredExternal("runtimeSelectors", o.RuntimeSelectors); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("runtimeSelectors", o.RuntimeSelectors); err != nil {
-		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"HTTP", "L3", "TCP"}, false); err != nil {
@@ -390,10 +382,6 @@ func (o *APIService) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 

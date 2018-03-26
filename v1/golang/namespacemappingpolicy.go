@@ -309,8 +309,8 @@ func (o *NamespaceMappingPolicy) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("mappedNamespace", o.MappedNamespace); err != nil {
-		errors = append(errors, err)
+	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
+		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
@@ -322,10 +322,6 @@ func (o *NamespaceMappingPolicy) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -534,6 +530,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Name:           "subject",
 		Orderable:      true,
+		Required:       true,
 		SubType:        "policies_list",
 		Type:           "external",
 	},
@@ -730,6 +727,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Name:           "subject",
 		Orderable:      true,
+		Required:       true,
 		SubType:        "policies_list",
 		Type:           "external",
 	},

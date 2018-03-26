@@ -29,6 +29,7 @@ attributes:
   stored: true
   required: true
   creation_only: true
+  example_value: john doe
   filterable: true
   format: free
   max_length: 64
@@ -50,6 +51,7 @@ attributes:
   stored: true
   required: true
   creation_only: true
+  example_value: john@doe.com
   filterable: true
   format: email
   orderable: true
@@ -79,6 +81,7 @@ attributes:
   exposed: true
   stored: true
   required: true
+  example_value: john.doe
   filterable: true
   format: free
   orderable: true

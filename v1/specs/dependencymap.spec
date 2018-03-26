@@ -25,7 +25,6 @@ attributes:
   type: external
   exposed: true
   subtype: graphedges_map
-  required: true
   read_only: true
 
 - name: groups
@@ -33,7 +32,6 @@ attributes:
   type: external
   exposed: true
   subtype: graphgroups_map
-  required: true
   read_only: true
 
 - name: nodes
@@ -41,7 +39,6 @@ attributes:
   type: external
   exposed: true
   subtype: graphnodes_map
-  required: true
   read_only: true
 
 - name: viewSuggestions
@@ -49,5 +46,4 @@ attributes:
   type: external
   exposed: true
   subtype: view_suggestions
-  required: true
   read_only: true

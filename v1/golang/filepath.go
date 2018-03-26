@@ -283,18 +283,6 @@ func (o *FilePath) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("filepath", o.Filepath); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("server", o.Server); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -304,10 +292,6 @@ func (o *FilePath) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -506,7 +490,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Filterable:     true,
 		Format:         "free",
 		Name:           "server",
-		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -693,7 +676,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Filterable:     true,
 		Format:         "free",
 		Name:           "server",
-		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},

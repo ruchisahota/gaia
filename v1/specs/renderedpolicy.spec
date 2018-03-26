@@ -62,6 +62,15 @@ attributes:
   subtype: processingunit
   required: true
   creation_only: true
+  example_value: |-
+    {
+      "name": "pu",
+      "type": "Docker",
+      "normalizedTags": [
+        "a=a",
+        "b=b"
+      ]
+    }
 
 - name: processingUnitID
   description: Identifier of the ProcessingUnit

@@ -328,16 +328,8 @@ func (o *EnforcerProfileMappingPolicy) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("object", o.Object); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
@@ -349,10 +341,6 @@ func (o *EnforcerProfileMappingPolicy) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 

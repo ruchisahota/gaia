@@ -164,10 +164,6 @@ func (o *RemoteProcessor) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("input", o.Input); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateStringInList("mode", string(o.Mode), []string{"Post", "Pre"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -176,24 +172,12 @@ func (o *RemoteProcessor) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("namespace", o.Namespace); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredExternal("operation", o.Operation); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredExternal("operation", o.Operation); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("targetIdentity", o.TargetIdentity); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("targetIdentity", o.TargetIdentity); err != nil {
-		errors = append(errors, err)
 	}
 
 	if len(requiredErrors) > 0 {

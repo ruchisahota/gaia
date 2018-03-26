@@ -38,6 +38,7 @@ attributes:
   stored: true
   required: true
   creation_only: true
+  example_value: my ca
   format: free
 
 - name: expirationDate

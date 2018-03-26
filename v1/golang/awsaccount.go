@@ -164,24 +164,12 @@ func (o *AWSAccount) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("accessKeyID", o.AccessKeyID); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("region", o.Region); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("region", o.Region); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("secretAccessKey", o.SecretAccessKey); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("secretAccessKey", o.SecretAccessKey); err != nil {
-		errors = append(errors, err)
 	}
 
 	if len(requiredErrors) > 0 {

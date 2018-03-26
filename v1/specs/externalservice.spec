@@ -51,6 +51,7 @@ attributes:
   exposed: true
   stored: true
   required: true
+  example_value: 0.0.0.0/0
   filterable: true
   format: free
 
@@ -73,6 +74,7 @@ attributes:
   stored: true
   required: true
   allowed_chars: ^(TCP|UDP|tcp|udp|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$
+  example_value: TCP
   filterable: true
 
 - name: type

@@ -358,32 +358,16 @@ func (o *HookPolicy) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("certificateAuthority", o.CertificateAuthority); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("clientCertificate", o.ClientCertificate); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("clientCertificate", o.ClientCertificate); err != nil {
-		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("clientCertificateKey", o.ClientCertificateKey); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("clientCertificateKey", o.ClientCertificateKey); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("endpoint", o.Endpoint); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("endpoint", o.Endpoint); err != nil {
-		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateStringInList("mode", string(o.Mode), []string{"Both", "Post", "Pre"}, false); err != nil {
@@ -392,10 +376,6 @@ func (o *HookPolicy) Validate() error {
 
 	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
@@ -407,10 +387,6 @@ func (o *HookPolicy) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 

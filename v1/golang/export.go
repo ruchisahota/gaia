@@ -155,14 +155,6 @@ func (o *Export) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredExternal("processingUnitPolicies", o.ProcessingUnitPolicies); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("processingUnitPolicies", o.ProcessingUnitPolicies); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -276,7 +268,6 @@ var ExportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `List of all exported processingUnitPolicies.`,
 		Exposed:        true,
 		Name:           "processingUnitPolicies",
-		Required:       true,
 		SubType:        "exported_data_content",
 		Type:           "external",
 	},
@@ -367,7 +358,6 @@ var ExportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `List of all exported processingUnitPolicies.`,
 		Exposed:        true,
 		Name:           "processingUnitPolicies",
-		Required:       true,
 		SubType:        "exported_data_content",
 		Type:           "external",
 	},

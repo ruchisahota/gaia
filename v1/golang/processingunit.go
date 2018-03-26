@@ -180,6 +180,7 @@ func NewProcessingUnit() *ProcessingUnit {
 		NetworkServices:   types.ProcessingUnitServicesList{},
 		NormalizedTags:    []string{},
 		OperationalStatus: "Initialized",
+		Type:              "Docker",
 	}
 }
 
@@ -367,10 +368,6 @@ func (o *ProcessingUnit) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -620,6 +617,7 @@ or by exposing the ports in a container manifest.`,
 		AllowedChoices: []string{"Docker", "LinuxService", "RKT", "User"},
 		ConvertedName:  "Type",
 		CreationOnly:   true,
+		DefaultValue:   ProcessingUnitTypeDocker,
 		Description:    `Type of the container ecosystem`,
 		Exposed:        true,
 		Filterable:     true,
@@ -862,6 +860,7 @@ or by exposing the ports in a container manifest.`,
 		AllowedChoices: []string{"Docker", "LinuxService", "RKT", "User"},
 		ConvertedName:  "Type",
 		CreationOnly:   true,
+		DefaultValue:   ProcessingUnitTypeDocker,
 		Description:    `Type of the container ecosystem`,
 		Exposed:        true,
 		Filterable:     true,

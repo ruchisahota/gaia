@@ -73,6 +73,15 @@
 This api allows to view and manage basic information about your account like
 your name, password, enable 2 factor authentication.
 
+### Example
+
+```json
+{
+  "email": "user@aporeto.com",
+  "name": "acme"
+}
+```
+
 ### Relations
 
 | Method   | URL         | Description |
@@ -446,6 +455,16 @@ TargetIdentity is the Identity of the related object.
 
 An alarm represents an event requiring attention.
 
+### Example
+
+```json
+{
+  "content": "This is an alarm",
+  "kind": "aporeto.alarm.kind",
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method   | URL           | Description                                |
@@ -602,6 +621,18 @@ permissions in the context of the current namespace but you can make it
 propagate to all the child namespaces. It is also possible restrict permissions
 to apply only on a particular subset of the apis by setting the target
 identities.
+
+### Example
+
+```json
+{
+  "authorizedIdentities": [
+    "@auth:role=namespace.editor"
+  ],
+  "authorizedNamespace": "/namespace",
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -788,6 +819,19 @@ This API allows to verify is a client identitied by his token is allowed to do
 some operations on some apis. For example, it allows third party system to
 impersonate a user and ensure a proxfied request should be allowed.
 
+### Example
+
+```json
+{
+  "namespace": "/namespace",
+  "targetIdentities": [
+    "processingunit",
+    "enforcer"
+  ],
+  "token": "valid.jwt.token"
+}
+```
+
 ### Relations
 
 | Method | URL          | Description                                                         |
@@ -846,6 +890,27 @@ APIService descibes a L4/L7 service and the corresponding implementation. It
 allows users to define their services, the APIs that they expose, the
 implementation of the service. These definitions can be used by network policy
 in order to define advanced controls based on the APIs.
+
+### Example
+
+```json
+{
+  "name": "the name",
+  "ports": [
+    80,
+    "445:448"
+  ],
+  "runtimeSelectors": [
+    [
+      "a=a",
+      "b=b"
+    ],
+    [
+      "c=c"
+    ]
+  ]
+}
+```
 
 ### Relations
 
@@ -1049,6 +1114,14 @@ UpdateTime is the time at which an entity was updated.
 AuditProfile is an audit policy that consists of a set of audit rules. An audit
 policy will determine that types of events that must be captured in the kernel.
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method   | URL                                   | Description                                                    |
@@ -1199,17 +1272,28 @@ Claims are the claims.
 
 An automation needs documentation.
 
+### Example
+
+```json
+{
+  "condition": "function when(m, params) { return { continue: true }}",
+  "name": "the name"
+}
+```
+
 ### Relations
 
-| Method   | URL                         | Description                                                                                     |
-| -:       | -                           | -                                                                                               |
-| `GET`    | `/automations`              | Retrieves the list of Automations.                                                              |
-| `POST`   | `/automations`              | Creates a new Automation.                                                                       |
-| `DELETE` | `/automations/:id`          | Deletes the `automation` with the given `:id`.                                                  |
-| `GET`    | `/automations/:id`          | Retrieve the `automation` with the given `:id`.                                                 |
-| `PUT`    | `/automations/:id`          | Updates the `automation` with the given `:id`.                                                  |
-| `GET`    | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set to `RemoteCall`. |
-| `POST`   | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set to `RemoteCall`. |
+| Method         | URL                         | Description                                     |
+| -:             | -                           | -                                               |
+| `GET`          | `/automations`              | Retrieves the list of Automations.              |
+| `POST`         | `/automations`              | Creates a new Automation.                       |
+| `DELETE`       | `/automations/:id`          | Deletes the `automation` with the given `:id`.  |
+| `GET`          | `/automations/:id`          | Retrieve the `automation` with the given `:id`. |
+| `PUT`          | `/automations/:id`          | Updates the `automation` with the given `:id`.  |
+| `GET`          | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set
+to `RemoteCall`. |
+| `POST`         | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set
+to `RemoteCall`. |
 
 ### Attributes
 
@@ -1228,10 +1312,6 @@ ID is the identifier of the object.
 #### `actions (list)`
 
 Action contains the code that will be executed if the condition is met.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Required        | `true` |
 
 #### `annotations (external:annotations)`
 
@@ -1403,6 +1483,14 @@ UpdateTime is the time at which an entity was updated.
 
 Templates that ca be used in automations
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method | URL                        | Description                                             |
@@ -1460,6 +1548,14 @@ Parameters contains the parameter description of the function.
 ## AvailableService
 
 AvailableService represents a service that is available for launching
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -1530,6 +1626,16 @@ Title represents the title of the service.
 
 Allows to bind an AWS account to your Aporeto account to allow auto registration
 of enforcers running on EC2
+
+### Example
+
+```json
+{
+  "accessKeyID": "aws access key id",
+  "region": "us-west-2",
+  "secretAccessKey": "aws secret access key"
+}
+```
 
 ### Relations
 
@@ -1651,6 +1757,14 @@ Last update date of the object
 
 Category allows to categorized services
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Attributes
 
 #### `ID (string)`
@@ -1688,6 +1802,16 @@ Name is the name of the entity
 ## Certificate
 
 A User represents the owner of some certificates.
+
+### Example
+
+```json
+{
+  "commonName": "john doe",
+  "email": "john@doe.com",
+  "name": "john.doe"
+}
+```
 
 ### Relations
 
@@ -1894,7 +2018,6 @@ edges are the edges of the map
 
 | Characteristics | Value  |
 | -               | -:     |
-| Required        | `true` |
 | Read only       | `true` |
 
 #### `groups (external:graphgroups_map)`
@@ -1903,7 +2026,6 @@ Groups provide information about the group values
 
 | Characteristics | Value  |
 | -               | -:     |
-| Required        | `true` |
 | Read only       | `true` |
 
 #### `nodes (external:graphnodes_map)`
@@ -1912,7 +2034,6 @@ nodes refers to the nodes of the map
 
 | Characteristics | Value  |
 | -               | -:     |
-| Required        | `true` |
 | Read only       | `true` |
 
 #### `viewSuggestions (external:view_suggestions)`
@@ -1921,7 +2042,6 @@ viewSuggestions provides suggestion of views based on relevant tags.
 
 | Characteristics | Value  |
 | -               | -:     |
-| Required        | `true` |
 | Read only       | `true` |
 
 ## Enforcer
@@ -1934,6 +2054,15 @@ using aEnforcer Profile Mapping Policy. This policy will decide according the
 Enforcer's tags what profile to use. If an Enforcer tags are matching more than
 a single policy, it will refuse to start. Some parameters will be applied
 directly to a running agent, some will need to restart it.
+
+### Example
+
+```json
+{
+  "FQDN": "server1.domain.com",
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -2194,18 +2323,27 @@ Profiles contains various startup information that can (for some) be updated
 live. Enforcer Profiles are assigned to some Enforcer using a Enforcer Profile
 Mapping Policy.
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
-| Method   | URL                                                    | Description                                                                            |
-| -:       | -                                                      | -                                                                                      |
-| `GET`    | `/enforcerprofiles`                                    | Retrieves the list of enforcer profiles.                                               |
-| `POST`   | `/enforcerprofiles`                                    | Creates a new enforcer profile.                                                        |
-| `DELETE` | `/enforcerprofiles/:id`                                | Deletes the `enforcerprofile` with the given `:id`.                                    |
-| `GET`    | `/enforcerprofiles/:id`                                | Retrieve the `enforcerprofile` with the given `:id`.                                   |
-| `PUT`    | `/enforcerprofiles/:id`                                | Updates the `enforcerprofile` with the given `:id`.                                    |
-| `GET`    | `/enforcerprofilemappingpolicies/:id/enforcerprofiles` | Returns the list of enforcer profiles that an enforcer profile mapping policy matches. |
-| `GET`    | `/enforcers/:id/enforcerprofiles`                      | Returns the enforcer profile that must be used by an enforcer.                         |
-| `GET`    | `/enforcerprofiles/:id/auditprofiles`                  | Returns the list of AuditProfiles used by an enforcer profile.                         |
+| Method   | URL                                                    | Description                                          |
+| -:       | -                                                      | -                                                    |
+| `GET`    | `/enforcerprofiles`                                    | Retrieves the list of enforcer profiles.             |
+| `POST`   | `/enforcerprofiles`                                    | Creates a new enforcer profile.                      |
+| `DELETE` | `/enforcerprofiles/:id`                                | Deletes the `enforcerprofile` with the given `:id`.  |
+| `GET`    | `/enforcerprofiles/:id`                                | Retrieve the `enforcerprofile` with the given `:id`. |
+| `PUT`    | `/enforcerprofiles/:id`                                | Updates the `enforcerprofile` with the given `:id`.  |
+| `GET`    | `/enforcerprofilemappingpolicies/:id/enforcerprofiles` | Returns the list of enforcer profiles that an enforcer profile mapping policy
+matches.   |
+| `GET`    | `/enforcers/:id/enforcerprofiles`     | Returns the enforcer profile that must be used by an enforcer. |
+| `GET`    | `/enforcerprofiles/:id/auditprofiles` | Returns the list of AuditProfiles used by an enforcer profile. |
 
 ### Attributes
 
@@ -2565,17 +2703,44 @@ A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used
 by and Aporeto Agent based on the Enforcer that have been used during the
 registration. The policy can also be propagated down to the child namespace.
 
+### Example
+
+```json
+{
+  "name": "the name",
+  "object": [
+    [
+      "a=a",
+      "b=b"
+    ],
+    [
+      "c=c"
+    ]
+  ],
+  "subject": [
+    [
+      "a=a",
+      "b=b"
+    ],
+    [
+      "c=c"
+    ]
+  ]
+}
+```
+
 ### Relations
 
-| Method   | URL                                                    | Description                                                                            |
-| -:       | -                                                      | -                                                                                      |
-| `GET`    | `/enforcerprofilemappingpolicies`                      | Retrieves the list of enforcer profile mapping policies.                               |
-| `POST`   | `/enforcerprofilemappingpolicies`                      | Creates a new enforcer profile mapping policies.                                       |
-| `DELETE` | `/enforcerprofilemappingpolicies/:id`                  | Deletes the `enforcerprofilemappingpolicy` with the given `:id`.                       |
-| `GET`    | `/enforcerprofilemappingpolicies/:id`                  | Retrieve the `enforcerprofilemappingpolicy` with the given `:id`.                      |
-| `PUT`    | `/enforcerprofilemappingpolicies/:id`                  | Updates the `enforcerprofilemappingpolicy` with the given `:id`.                       |
-| `GET`    | `/enforcerprofilemappingpolicies/:id/enforcerprofiles` | Returns the list of enforcer profiles that an enforcer profile mapping policy matches. |
-| `GET`    | `/enforcerprofilemappingpolicies/:id/enforcers`        | Returns the list of enforcers affected by an enforcer profile mapping policy.          |
+| Method   | URL                                                    | Description                                                       |
+| -:       | -                                                      | -                                                                 |
+| `GET`    | `/enforcerprofilemappingpolicies`                      | Retrieves the list of enforcer profile mapping policies.          |
+| `POST`   | `/enforcerprofilemappingpolicies`                      | Creates a new enforcer profile mapping policies.                  |
+| `DELETE` | `/enforcerprofilemappingpolicies/:id`                  | Deletes the `enforcerprofilemappingpolicy` with the given `:id`.  |
+| `GET`    | `/enforcerprofilemappingpolicies/:id`                  | Retrieve the `enforcerprofilemappingpolicy` with the given `:id`. |
+| `PUT`    | `/enforcerprofilemappingpolicies/:id`                  | Updates the `enforcerprofilemappingpolicy` with the given `:id`.  |
+| `GET`    | `/enforcerprofilemappingpolicies/:id/enforcerprofiles` | Returns the list of enforcer profiles that an enforcer profile mapping policy
+matches.   |
+| `GET`    | `/enforcerprofilemappingpolicies/:id/enforcers` | Returns the list of enforcers affected by an enforcer profile mapping policy. |
 
 ### Attributes
 
@@ -2806,7 +2971,6 @@ List of all exported processingUnitPolicies.
 | Characteristics | Value  |
 | -               | -:     |
 | Autogenerated   | `true` |
-| Required        | `true` |
 
 ## ExternalAccess
 
@@ -2837,6 +3001,16 @@ from or to the declared network or IP, using the provided protocol and port or
 ports range. If you want to describe the Internet (ie. anywhere), use 0.0.0.0/0
 as address, and 1-65000 for the ports. You will need to use the External
 Services tags to set some policies.
+
+### Example
+
+```json
+{
+  "name": "the name",
+  "network": "0.0.0.0/0",
+  "protocol": "TCP"
+}
+```
 
 ### Relations
 
@@ -3082,6 +3256,14 @@ mount. executewon''t have any effect.
 
 File path are not supported yet for standard Linux processes.
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method   | URL                       | Description                                           |
@@ -3304,6 +3486,15 @@ aFile Access Policiesin order to allow Processing Units to access them, using
 various modes (read, write, execute). You will need to use the File Paths tags
 to set some policies. A good example would bevolume=web or file=/etc/passwd.
 
+### Example
+
+```json
+{
+  "filepath": "/etc/passwd",
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method   | URL              | Description                                   |
@@ -3421,7 +3612,6 @@ server is the server name/ID/IP associated with the file path
 
 | Characteristics | Value  |
 | -               | -:     |
-| Required        | `true` |
 | Creation only   | `true` |
 | Filterable      | `true` |
 
@@ -3554,6 +3744,45 @@ in the FlowStatistic object.
 Hook allows to to define hooks to the write operations in squall. Hooks are sent
 to an external Rufus server that will do the processing and eventually return a
 modified version of the object before we save it.
+
+### Example
+
+```json
+{
+  "certificateAuthority": "-----BEGIN CERTIFICATE-----
+MIIBbjCCARSgAwIBAgIRANRbvVzTzBZOvMCb8BiKCLowCgYIKoZIzj0EAwIwJjEN
+MAsGA1UEChMEQWNtZTEVMBMGA1UEAxMMQWNtZSBSb290IENBMB4XDTE4MDExNTE4
+NDgwN1oXDTI3MTEyNDE4NDgwN1owJjENMAsGA1UEChMEQWNtZTEVMBMGA1UEAxMM
+QWNtZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEJ/80HR51+vau
+7XH7zS7b8ABA0e/TdBOg1NznbnXdXil1tDvWloWuH5+/bbaiEg54wksJHFXaukw8
+jhTLU7zT56MjMCEwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wCgYI
+KoZIzj0EAwIDSAAwRQIhALwAZh2KLFFC1qfb5CqFHExlXS0PUltax9PvQCN9P0vl
+AiBl7/st9u/JpERjJgirxJxOgKNlV6pq9ti75EfQtZZcQA==
+-----END CERTIFICATE-----",
+  "clientCertificate": "-----BEGIN CERTIFICATE-----
+MIIBczCCARigAwIBAgIRALD3Vz81Pq10g7n4eAkOsCYwCgYIKoZIzj0EAwIwJjEN
+MAsGA1UEChMEQWNtZTEVMBMGA1UEAxMMQWNtZSBSb290IENBMB4XDTE4MDExNzA2
+NTM1MloXDTI3MTEyNjA2NTM1MlowGDEWMBQGA1UEAxMNY2xhaXJlLWNsaWVudDBZ
+MBMGByqGSM49AgEGCCqGSM49AwEHA0IABOmzPJj+t25T148eQH5gVrZ7nHwckF5O
+evJQ3CjSEMesjZ/u7cW8IBfXlxZKHxl91IEbbB3svci4c8pycUNZ2kujNTAzMA4G
+A1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAA
+MAoGCCqGSM49BAMCA0kAMEYCIQCjAAmkQpTua0HR4q6jnePaFBp/JMXwTXTxzbV6
+peGbBQIhAP+1OR8GFnn2PlacwHqWXHwkvy6CLPVikvgtwEdB6jH8
+-----END CERTIFICATE-----",
+  "clientCertificateKey": "-----BEGIN EC PRIVATE KEY-----
+MHcCAQEEIGOXJI/123456789oamOu4tQAIKFdbyvkIJg9GME0mHzoAoGCCqGSM49
+AwEHoUQDQgAE6bM8mP123456789AfmBWtnucfByQXk568lDcKNIQx6yNn+7txbwg
+F9eXFkofGX3UgRtsHe123456789xQ1naSw==
+-----END EC PRIVATE KEY-----",
+  "endpoint": "https://hooks.hookserver.com/remoteprocessors",
+  "name": "the name",
+  "subject": [
+    [
+      "$identity=processingunit"
+    ]
+  ]
+}
+```
 
 ### Relations
 
@@ -3758,6 +3987,14 @@ UpdateTime is the time at which an entity was updated.
 
 Imports an export of policies and related objects into the namespace.
 
+### Example
+
+```json
+{
+  "data": "previous output of export"
+}
+```
+
 ### Relations
 
 | Method | URL       | Description                          |
@@ -3821,6 +4058,14 @@ AccountName that should be installed.
 ## IsolationProfile
 
 An IsolationProfile needs documentation
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -3977,6 +4222,14 @@ UpdateTime is the time at which an entity was updated.
 ## Issue
 
 This API issues a new token according to given data.
+
+### Example
+
+```json
+{
+  "realm": "Certificate"
+}
+```
 
 ### Relations
 
@@ -4177,6 +4430,14 @@ Data contains all logs data.
 The Message API allows to post public messages that will be visible through all
 children namespaces.
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method   | URL             | Description                                  |
@@ -4334,6 +4595,14 @@ always exists in a single namespace. A Namespace can also have child namespaces.
 They can be used to split the system into organizations, business units,
 applications, services or any combination you like.
 
+### Example
+
+```json
+{
+  "name": "mynamespace"
+}
+```
+
 ### Relations
 
 | Method   | URL               | Description                                    |
@@ -4484,6 +4753,20 @@ namespace, based on a lot of factor.
 You can put in place a quarantine namespace that will grab all Processing Units
 with too much vulnerabilities for instances.
 
+### Example
+
+```json
+{
+  "mappedNamespace": "/blue/namespace",
+  "name": "the name",
+  "subject": [
+    [
+      "color=blue"
+    ]
+  ]
+}
+```
+
 ### Relations
 
 | Method   | URL                             | Description                                                 |
@@ -4611,6 +4894,7 @@ Subject is the subject.
 
 | Characteristics | Value  |
 | -               | -:     |
+| Required        | `true` |
 | Orderable       | `true` |
 
 #### `updateTime (time)`
@@ -4628,6 +4912,14 @@ UpdateTime is the time at which an entity was updated.
 Allows to define networking policies to allow or prevent processing units
 identitied by their tags to talk to other processing units or external services
 (also identified by their tags).
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -4868,6 +5160,15 @@ UpdateTime is the time at which an entity was updated.
 
 Used to reset an account password.
 
+### Example
+
+```json
+{
+  "password": "NewPassword123@",
+  "token": "valid.jwt.token"
+}
+```
+
 ### Relations
 
 | Method | URL              | Description                         |
@@ -4974,6 +5275,14 @@ For instance, for enforcers, poke will be use as the heartbeat.
 ## Policy
 
 [nodoc]
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -5196,6 +5505,14 @@ Type contains the policy type that is affected.
 PolicyRule is an internal policy resolution API. Services can use this API to
 retrieve a policy resolution.
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method | URL                | Description                                     |
@@ -5283,6 +5600,14 @@ the system as they come and go. You can only modify its tags.  Processing Units
 use Network Access Policies to define which other Processing Units or External
 Services they can communicate with and File Access Policies to define what File
 Paths they can use.
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -5445,6 +5770,7 @@ Type of the container ecosystem
 | Characteristics | Value                             |
 | -               | -:                                |
 | Allowed Value   | `Docker, LinuxService, RKT, User` |
+| Default         | `Docker`                          |
 | Required        | `true`                            |
 | Creation only   | `true`                            |
 | Filterable      | `true`                            |
@@ -5462,6 +5788,14 @@ UpdateTime is the time at which an entity was updated.
 ## ProcessingUnitPolicy
 
 A ProcessingUnitPolicies needs a better description.
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -5651,6 +5985,19 @@ UpdateTime is the time at which an entity was updated.
 
 Quotas Policies allows to set quotas on the number of objects that can be
 created in a namespace.
+
+### Example
+
+```json
+{
+  "identities": [
+    "processingunit",
+    "enforcer"
+  ],
+  "name": "the name",
+  "targetNamespace": "/my/namespace"
+}
+```
 
 ### Relations
 
@@ -5896,6 +6243,21 @@ Represents the Identity name of the managed object
 ## RenderedPolicy
 
 Retrieve the aggregated policies applied to a particular processing unit.
+
+### Example
+
+```json
+{
+  "processingUnit": "{
+  \"name\": \"pu\",
+  \"type\": \"Docker\",
+  \"normalizedTags\": [
+    \"a=a\",
+    \"b=b\"
+  ]
+}"
+}
+```
 
 ### Relations
 
@@ -6199,6 +6561,14 @@ List of suggested network access policies
 
 [nodoc]
 
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
+
 ### Relations
 
 | Method   | URL                | Description                                     |
@@ -6360,6 +6730,14 @@ xxx and a name set to "the name" will be tagged by default with "$name=the name"
 and "$id=xxx"). Tags starting with an "@" have been generated by an external
 system.
 
+### Example
+
+```json
+{
+  "value": "key=value"
+}
+```
+
 ### Relations
 
 | Method | URL     | Description                                        |
@@ -6413,6 +6791,14 @@ Value represents the value of the tag.
 The TokenScopePolicy defines a set of policies that allow customization of the
 authorization tokens issued by the Aporeto service. This allows Aporeto
 generated tokens to be used by external applications.
+
+### Example
+
+```json
+{
+  "name": "the name"
+}
+```
 
 ### Relations
 
@@ -6593,14 +6979,26 @@ Trigger can be used to remotely trigger an automation.
 
 ### Relations
 
-| Method | URL                         | Description                                                                                     |
-| -:     | -                           | -                                                                                               |
-| `GET`  | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set to `RemoteCall`. |
-| `POST` | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set to `RemoteCall`. |
+| Method         | URL                         | Description |
+| -:             | -                           | -           |
+| `GET`          | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set
+to `RemoteCall`. |
+| `POST`         | `/automations/:id/triggers` | Allows a system to trigger the automation if its `triggerType` property is set
+to `RemoteCall`. |
 
 ## Vulnerability
 
 A vulnerabily represents a particular CVE
+
+### Example
+
+```json
+{
+  "link": "https://cve.com/CVE-1234",
+  "name": "the name",
+  "severity": 3
+}
+```
 
 ### Relations
 

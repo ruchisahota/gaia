@@ -27,7 +27,6 @@ attributes:
   exposed: true
   subtype: string
   stored: true
-  required: true
 
 - name: condition
   description: |-
@@ -37,6 +36,7 @@ attributes:
   exposed: true
   stored: true
   required: true
+  example_value: 'function when(m, params) { return { continue: true }}'
   format: free
 
 - name: entitlements
@@ -131,9 +131,11 @@ attributes:
 relations:
 - rest_name: trigger
   descriptions:
-    create: Allows a system to trigger the automation if its `triggerType` property
-      is set to `RemoteCall`.
-    get: Allows a system to trigger the automation if its `triggerType` property is
-      set to `RemoteCall`.
+    create: |-
+      Allows a system to trigger the automation if its `triggerType` property is set
+      to `RemoteCall`.
+    get: |-
+      Allows a system to trigger the automation if its `triggerType` property is set
+      to `RemoteCall`.
   get: true
   create: true

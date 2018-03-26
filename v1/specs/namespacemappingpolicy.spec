@@ -44,6 +44,7 @@ attributes:
   exposed: true
   stored: true
   required: true
+  example_value: /blue/namespace
   filterable: true
   format: free
   orderable: true
@@ -53,4 +54,7 @@ attributes:
   type: external
   exposed: true
   subtype: policies_list
+  required: true
+  example_value:
+  - - color=blue
   orderable: true

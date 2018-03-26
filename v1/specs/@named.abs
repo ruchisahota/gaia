@@ -7,6 +7,7 @@ attributes:
   stored: true
   required: true
   default_order: true
+  example_value: the name
   filterable: true
   format: free
   getter: true

@@ -23,6 +23,7 @@ attributes:
   stored: true
   required: true
   creation_only: true
+  example_value: This is an alarm
   format: free
 
 - name: data
@@ -41,6 +42,7 @@ attributes:
   stored: true
   required: true
   creation_only: true
+  example_value: aporeto.alarm.kind
   filterable: true
   format: free
   orderable: true

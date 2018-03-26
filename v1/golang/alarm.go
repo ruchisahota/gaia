@@ -290,16 +290,8 @@ func (o *Alarm) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
-		errors = append(errors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
 		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
-		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Acknowledged", "Open", "Resolved"}, false); err != nil {
@@ -315,10 +307,6 @@ func (o *Alarm) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		errors = append(errors, err)
 	}
 
