@@ -17,6 +17,9 @@ attributes:
   exposed: true
   subtype: string
   required: true
+  example_value:
+  - '@auth:realm=certificate'
+  - '@auth:commonname=john'
 
 - name: input
   description: Represents data received from the service
@@ -24,6 +27,11 @@ attributes:
   exposed: true
   subtype: raw_json
   required: true
+  example_value: |-
+    {
+      "name": "hello",
+      "description": "hello",
+    }
 
 - name: mode
   description: Node defines the type of the hook
@@ -33,12 +41,14 @@ attributes:
   allowed_choices:
   - Post
   - Pre
+  default_value: Pre
 
 - name: namespace
   description: Represents the current namespace
   type: string
   exposed: true
   required: true
+  example_value: /my/namespace
   format: free
 
 - name: operation
@@ -47,6 +57,7 @@ attributes:
   exposed: true
   subtype: elemental_operation
   required: true
+  example_value: create
 
 - name: output
   description: Returns the OutputData filled with the processor information
@@ -70,4 +81,5 @@ attributes:
   type: string
   exposed: true
   required: true
+  example_value: processingunit
   format: free

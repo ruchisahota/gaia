@@ -26,21 +26,18 @@ attributes:
   exposed: true
   subtype: actions_list
   stored: true
-  required: true
 
 - name: allObjectTags
   description: This is a set of all object tags for matching in the DB
   type: external
   subtype: tags_list
   stored: true
-  required: true
 
 - name: allSubjectTags
   description: This is a set of all subject tags for matching in the DB
   type: external
   subtype: tags_list
   stored: true
-  required: true
 
 - name: object
   description: |-
@@ -69,14 +66,12 @@ attributes:
   exposed: true
   subtype: policies_list
   stored: true
-  required: true
 
 - name: type
   description: Type of the policy
   type: enum
   exposed: true
   stored: true
-  required: true
   creation_only: true
   allowed_choices:
   - APIAuthorization

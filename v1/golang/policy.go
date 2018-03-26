@@ -410,14 +410,6 @@ func (o *Policy) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredExternal("action", o.Action); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("subject", o.Subject); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall", "TokenScope"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -490,7 +482,6 @@ var PolicyAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Action defines set of actions that must be enforced when a dependency is met.`,
 		Exposed:        true,
 		Name:           "action",
-		Required:       true,
 		Stored:         true,
 		SubType:        "actions_list",
 		Type:           "external",
@@ -527,7 +518,6 @@ The policy will be active for the given activeDuration.`,
 		ConvertedName:  "AllObjectTags",
 		Description:    `This is a set of all object tags for matching in the DB`,
 		Name:           "allObjectTags",
-		Required:       true,
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
@@ -537,7 +527,6 @@ The policy will be active for the given activeDuration.`,
 		ConvertedName:  "AllSubjectTags",
 		Description:    `This is a set of all subject tags for matching in the DB`,
 		Name:           "allSubjectTags",
-		Required:       true,
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
@@ -738,12 +727,11 @@ objects`,
 		Description: `Subject represent sets of entities that will have a dependency other entities.
 Subjects are defined as logical operations on tags. Logical operations can
 includes AND/OR`,
-		Exposed:  true,
-		Name:     "subject",
-		Required: true,
-		Stored:   true,
-		SubType:  "policies_list",
-		Type:     "external",
+		Exposed: true,
+		Name:    "subject",
+		Stored:  true,
+		SubType: "policies_list",
+		Type:    "external",
 	},
 	"Type": elemental.AttributeSpecification{
 		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall", "TokenScope"},
@@ -754,7 +742,6 @@ includes AND/OR`,
 		Filterable:     true,
 		Name:           "type",
 		PrimaryKey:     true,
-		Required:       true,
 		Stored:         true,
 		Type:           "enum",
 	},
@@ -798,7 +785,6 @@ var PolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Action defines set of actions that must be enforced when a dependency is met.`,
 		Exposed:        true,
 		Name:           "action",
-		Required:       true,
 		Stored:         true,
 		SubType:        "actions_list",
 		Type:           "external",
@@ -835,7 +821,6 @@ The policy will be active for the given activeDuration.`,
 		ConvertedName:  "AllObjectTags",
 		Description:    `This is a set of all object tags for matching in the DB`,
 		Name:           "allObjectTags",
-		Required:       true,
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
@@ -845,7 +830,6 @@ The policy will be active for the given activeDuration.`,
 		ConvertedName:  "AllSubjectTags",
 		Description:    `This is a set of all subject tags for matching in the DB`,
 		Name:           "allSubjectTags",
-		Required:       true,
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
@@ -1046,12 +1030,11 @@ objects`,
 		Description: `Subject represent sets of entities that will have a dependency other entities.
 Subjects are defined as logical operations on tags. Logical operations can
 includes AND/OR`,
-		Exposed:  true,
-		Name:     "subject",
-		Required: true,
-		Stored:   true,
-		SubType:  "policies_list",
-		Type:     "external",
+		Exposed: true,
+		Name:    "subject",
+		Stored:  true,
+		SubType: "policies_list",
+		Type:    "external",
 	},
 	"type": elemental.AttributeSpecification{
 		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall", "TokenScope"},
@@ -1062,7 +1045,6 @@ includes AND/OR`,
 		Filterable:     true,
 		Name:           "type",
 		PrimaryKey:     true,
-		Required:       true,
 		Stored:         true,
 		Type:           "enum",
 	},
