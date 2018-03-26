@@ -98,7 +98,7 @@ type AutomationTemplate struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// Name is the name of the entity
+	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
@@ -150,7 +150,7 @@ func (o *AutomationTemplate) DefaultOrder() []string {
 
 // Doc returns the documentation for the object
 func (o *AutomationTemplate) Doc() string {
-	return `Templates that ca be used in automations`
+	return `Templates that ca be used in automations.`
 }
 
 func (o *AutomationTemplate) String() string {
@@ -274,7 +274,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		DefaultOrder:   true,
-		Description:    `Name is the name of the entity`,
+		Description:    `Name is the name of the entity.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -352,7 +352,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		DefaultOrder:   true,
-		Description:    `Name is the name of the entity`,
+		Description:    `Name is the name of the entity.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",

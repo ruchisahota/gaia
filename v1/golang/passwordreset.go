@@ -69,7 +69,7 @@ type PasswordReset struct {
 	// Password contains the new password.
 	Password string `json:"password" bson:"-" mapstructure:"password,omitempty"`
 
-	// Token contains the reset password token
+	// Token contains the reset password token.
 	Token string `json:"token" bson:"-" mapstructure:"token,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
@@ -181,7 +181,7 @@ var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
 	"Token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Token",
-		Description:    `Token contains the reset password token`,
+		Description:    `Token contains the reset password token.`,
 		Exposed:        true,
 		Format:         "free",
 		Name:           "token",
@@ -205,7 +205,7 @@ var PasswordResetLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Token",
-		Description:    `Token contains the reset password token`,
+		Description:    `Token contains the reset password token.`,
 		Exposed:        true,
 		Format:         "free",
 		Name:           "token",

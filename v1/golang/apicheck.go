@@ -105,7 +105,7 @@ type APICheck struct {
 	// authorization.
 	TargetIdentities []string `json:"targetIdentities" bson:"-" mapstructure:"targetIdentities,omitempty"`
 
-	// Token is the token to use to check api authentication
+	// Token is the token to use to check api authentication.
 	Token string `json:"token" bson:"-" mapstructure:"token,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
@@ -262,7 +262,7 @@ authorization.`,
 	"Token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Token",
-		Description:    `Token is the token to use to check api authentication`,
+		Description:    `Token is the token to use to check api authentication.`,
 		Exposed:        true,
 		Format:         "free",
 		Name:           "token",
@@ -319,7 +319,7 @@ authorization.`,
 	"token": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Token",
-		Description:    `Token is the token to use to check api authentication`,
+		Description:    `Token is the token to use to check api authentication.`,
 		Exposed:        true,
 		Format:         "free",
 		Name:           "token",

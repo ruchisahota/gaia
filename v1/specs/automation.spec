@@ -58,7 +58,7 @@ attributes:
 - name: events
   description: |-
     Events contains the identity and operation an event must have to trigger the
-    automation
+    automation.
   type: external
   exposed: true
   subtype: automation_events

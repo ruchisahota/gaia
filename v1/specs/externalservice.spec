@@ -46,7 +46,7 @@ attributes:
   stored: true
 
 - name: network
-  description: Network refers to either CIDR or domain name
+  description: Network refers to either CIDR or domain name.
   type: string
   exposed: true
   stored: true
@@ -58,7 +58,7 @@ attributes:
 - name: port
   description: |-
     Port refers to network port which could be a single number or 100:2000 to
-    represent a range of ports
+    represent a range of ports.
   type: string
   exposed: true
   stored: true

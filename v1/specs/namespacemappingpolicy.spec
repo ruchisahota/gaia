@@ -39,7 +39,7 @@ model:
 # Attributes
 attributes:
 - name: mappedNamespace
-  description: mappedNamespace is the mapped namespace
+  description: mappedNamespace is the mapped namespace.
   type: string
   exposed: true
   stored: true

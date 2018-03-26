@@ -56,7 +56,7 @@ attributes:
   - enforcer
 
 - name: token
-  description: Token is the token to use to check api authentication
+  description: Token is the token to use to check api authentication.
   type: string
   exposed: true
   required: true

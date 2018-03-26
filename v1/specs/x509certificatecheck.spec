@@ -4,14 +4,14 @@ model:
   resource_name: x509certificatechecks
   entity_name: X509CertificateCheck
   package: barret
-  description: '[nodoc]'
+  description: Verifies a certificate has not been revoked.
   private: true
   get: true
 
 # Attributes
 attributes:
 - name: ID
-  description: ID contains the certificate serialNumber
+  description: ID contains the certificate serialNumber.
   type: string
   exposed: true
   required: true

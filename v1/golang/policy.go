@@ -107,10 +107,10 @@ type Policy struct {
 	// Action defines set of actions that must be enforced when a dependency is met.
 	Action map[string]map[string]interface{} `json:"action" bson:"action" mapstructure:"action,omitempty"`
 
-	// This is a set of all object tags for matching in the DB
+	// This is a set of all object tags for matching in the DB.
 	AllObjectTags []string `json:"-" bson:"allobjecttags" mapstructure:"-,omitempty"`
 
-	// This is a set of all subject tags for matching in the DB
+	// This is a set of all subject tags for matching in the DB.
 	AllSubjectTags []string `json:"-" bson:"allsubjecttags" mapstructure:"-,omitempty"`
 
 	// Object represents set of entities that another entity depends on. As subjects,
@@ -118,30 +118,30 @@ type Policy struct {
 	Object [][]string `json:"object" bson:"object" mapstructure:"object,omitempty"`
 
 	// Relation describes the required operation to be performed between subjects and
-	// objects
+	// objects.
 	Relation []string `json:"relation" bson:"relation" mapstructure:"relation,omitempty"`
 
 	// Subject represent sets of entities that will have a dependency other entities.
 	// Subjects are defined as logical operations on tags. Logical operations can
-	// includes AND/OR
+	// includes AND/OR.
 	Subject [][]string `json:"subject" bson:"subject" mapstructure:"subject,omitempty"`
 
-	// Type of the policy
+	// Type of the policy.
 	Type PolicyTypeValue `json:"type" bson:"type" mapstructure:"type,omitempty"`
 
-	// Annotation stores additional information about an entity
+	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
 
-	// AssociatedTags are the list of tags attached to an entity
+	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
-	// CreatedTime is the time at which the object was created
+	// CreatedTime is the time at which the object was created.
 	CreateTime time.Time `json:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
 
-	// Namespace tag attached to an entity
+	// Namespace tag attached to an entity.
 	Namespace string `json:"namespace" bson:"namespace" mapstructure:"namespace,omitempty"`
 
-	// NormalizedTags contains the list of normalized tags of the entities
+	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
 	// Protected defines if the object is protected.
@@ -163,7 +163,7 @@ type Policy struct {
 	// with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
 
-	// Name is the name of the entity
+	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
 
 	// Propagate will propagate the policy to all of its children.
@@ -234,7 +234,7 @@ func (o *Policy) DefaultOrder() []string {
 
 // Doc returns the documentation for the object
 func (o *Policy) Doc() string {
-	return nodocString
+	return `Policy represents the policy primitive used by all aporeto policies.`
 }
 
 func (o *Policy) String() string {
@@ -516,7 +516,7 @@ The policy will be active for the given activeDuration.`,
 	"AllObjectTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllObjectTags",
-		Description:    `This is a set of all object tags for matching in the DB`,
+		Description:    `This is a set of all object tags for matching in the DB.`,
 		Name:           "allObjectTags",
 		Stored:         true,
 		SubType:        "tags_list",
@@ -525,7 +525,7 @@ The policy will be active for the given activeDuration.`,
 	"AllSubjectTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllSubjectTags",
-		Description:    `This is a set of all subject tags for matching in the DB`,
+		Description:    `This is a set of all subject tags for matching in the DB.`,
 		Name:           "allSubjectTags",
 		Stored:         true,
 		SubType:        "tags_list",
@@ -534,7 +534,7 @@ The policy will be active for the given activeDuration.`,
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
-		Description:    `Annotation stores additional information about an entity`,
+		Description:    `Annotation stores additional information about an entity.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "annotations",
@@ -546,7 +546,7 @@ The policy will be active for the given activeDuration.`,
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AssociatedTags",
-		Description:    `AssociatedTags are the list of tags attached to an entity`,
+		Description:    `AssociatedTags are the list of tags attached to an entity.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "associatedTags",
@@ -559,7 +559,7 @@ The policy will be active for the given activeDuration.`,
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "CreateTime",
-		Description:    `CreatedTime is the time at which the object was created`,
+		Description:    `CreatedTime is the time at which the object was created.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "createTime",
@@ -613,7 +613,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		DefaultOrder:   true,
-		Description:    `Name is the name of the entity`,
+		Description:    `Name is the name of the entity.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -631,7 +631,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Autogenerated:  true,
 		ConvertedName:  "Namespace",
 		CreationOnly:   true,
-		Description:    `Namespace tag attached to an entity`,
+		Description:    `Namespace tag attached to an entity.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -649,7 +649,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "NormalizedTags",
-		Description:    `NormalizedTags contains the list of normalized tags of the entities`,
+		Description:    `NormalizedTags contains the list of normalized tags of the entities.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "normalizedTags",
@@ -714,7 +714,7 @@ namespace, but still used for policy resolution.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "Relation",
 		Description: `Relation describes the required operation to be performed between subjects and
-objects`,
+objects.`,
 		Exposed: true,
 		Name:    "relation",
 		Stored:  true,
@@ -726,7 +726,7 @@ objects`,
 		ConvertedName:  "Subject",
 		Description: `Subject represent sets of entities that will have a dependency other entities.
 Subjects are defined as logical operations on tags. Logical operations can
-includes AND/OR`,
+includes AND/OR.`,
 		Exposed: true,
 		Name:    "subject",
 		Stored:  true,
@@ -737,7 +737,7 @@ includes AND/OR`,
 		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall", "TokenScope"},
 		ConvertedName:  "Type",
 		CreationOnly:   true,
-		Description:    `Type of the policy`,
+		Description:    `Type of the policy.`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "type",
@@ -819,7 +819,7 @@ The policy will be active for the given activeDuration.`,
 	"allobjecttags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllObjectTags",
-		Description:    `This is a set of all object tags for matching in the DB`,
+		Description:    `This is a set of all object tags for matching in the DB.`,
 		Name:           "allObjectTags",
 		Stored:         true,
 		SubType:        "tags_list",
@@ -828,7 +828,7 @@ The policy will be active for the given activeDuration.`,
 	"allsubjecttags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllSubjectTags",
-		Description:    `This is a set of all subject tags for matching in the DB`,
+		Description:    `This is a set of all subject tags for matching in the DB.`,
 		Name:           "allSubjectTags",
 		Stored:         true,
 		SubType:        "tags_list",
@@ -837,7 +837,7 @@ The policy will be active for the given activeDuration.`,
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
-		Description:    `Annotation stores additional information about an entity`,
+		Description:    `Annotation stores additional information about an entity.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "annotations",
@@ -849,7 +849,7 @@ The policy will be active for the given activeDuration.`,
 	"associatedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AssociatedTags",
-		Description:    `AssociatedTags are the list of tags attached to an entity`,
+		Description:    `AssociatedTags are the list of tags attached to an entity.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "associatedTags",
@@ -862,7 +862,7 @@ The policy will be active for the given activeDuration.`,
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "CreateTime",
-		Description:    `CreatedTime is the time at which the object was created`,
+		Description:    `CreatedTime is the time at which the object was created.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "createTime",
@@ -916,7 +916,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		DefaultOrder:   true,
-		Description:    `Name is the name of the entity`,
+		Description:    `Name is the name of the entity.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -934,7 +934,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Autogenerated:  true,
 		ConvertedName:  "Namespace",
 		CreationOnly:   true,
-		Description:    `Namespace tag attached to an entity`,
+		Description:    `Namespace tag attached to an entity.`,
 		Exposed:        true,
 		Filterable:     true,
 		Format:         "free",
@@ -952,7 +952,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "NormalizedTags",
-		Description:    `NormalizedTags contains the list of normalized tags of the entities`,
+		Description:    `NormalizedTags contains the list of normalized tags of the entities.`,
 		Exposed:        true,
 		Getter:         true,
 		Name:           "normalizedTags",
@@ -1017,7 +1017,7 @@ namespace, but still used for policy resolution.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "Relation",
 		Description: `Relation describes the required operation to be performed between subjects and
-objects`,
+objects.`,
 		Exposed: true,
 		Name:    "relation",
 		Stored:  true,
@@ -1029,7 +1029,7 @@ objects`,
 		ConvertedName:  "Subject",
 		Description: `Subject represent sets of entities that will have a dependency other entities.
 Subjects are defined as logical operations on tags. Logical operations can
-includes AND/OR`,
+includes AND/OR.`,
 		Exposed: true,
 		Name:    "subject",
 		Stored:  true,
@@ -1040,7 +1040,7 @@ includes AND/OR`,
 		AllowedChoices: []string{"APIAuthorization", "EnforcerProfile", "File", "Hook", "NamespaceMapping", "Network", "ProcessingUnit", "Quota", "Syscall", "TokenScope"},
 		ConvertedName:  "Type",
 		CreationOnly:   true,
-		Description:    `Type of the policy`,
+		Description:    `Type of the policy.`,
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "type",

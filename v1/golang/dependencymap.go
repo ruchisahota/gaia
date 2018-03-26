@@ -67,13 +67,13 @@ func (o DependencyMapsList) Version() int {
 
 // DependencyMap represents the model of a dependencymap
 type DependencyMap struct {
-	// edges are the edges of the map
+	// edges are the edges of the map.
 	Edges types.GraphEdgeMap `json:"edges" bson:"-" mapstructure:"edges,omitempty"`
 
-	// Groups provide information about the group values
+	// Groups provide information about the group values.
 	Groups types.GraphGroupMap `json:"groups" bson:"-" mapstructure:"groups,omitempty"`
 
-	// nodes refers to the nodes of the map
+	// nodes refers to the nodes of the map.
 	Nodes types.GraphNodeMap `json:"nodes" bson:"-" mapstructure:"nodes,omitempty"`
 
 	// viewSuggestions provides suggestion of views based on relevant tags.
@@ -137,7 +137,7 @@ the time window you can use the query parameters 'startAbsolute', 'endAbsolute',
 'startRelative', 'endRelative'.
 
 For example
-  "/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000"`
+  "/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000".`
 }
 
 func (o *DependencyMap) String() string {
@@ -198,7 +198,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	"Edges": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Edges",
-		Description:    `edges are the edges of the map`,
+		Description:    `edges are the edges of the map.`,
 		Exposed:        true,
 		Name:           "edges",
 		ReadOnly:       true,
@@ -208,7 +208,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	"Groups": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Groups",
-		Description:    `Groups provide information about the group values`,
+		Description:    `Groups provide information about the group values.`,
 		Exposed:        true,
 		Name:           "groups",
 		ReadOnly:       true,
@@ -218,7 +218,7 @@ var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	"Nodes": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Nodes",
-		Description:    `nodes refers to the nodes of the map`,
+		Description:    `nodes refers to the nodes of the map.`,
 		Exposed:        true,
 		Name:           "nodes",
 		ReadOnly:       true,
@@ -256,7 +256,7 @@ var DependencyMapLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"edges": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Edges",
-		Description:    `edges are the edges of the map`,
+		Description:    `edges are the edges of the map.`,
 		Exposed:        true,
 		Name:           "edges",
 		ReadOnly:       true,
@@ -266,7 +266,7 @@ var DependencyMapLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"groups": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Groups",
-		Description:    `Groups provide information about the group values`,
+		Description:    `Groups provide information about the group values.`,
 		Exposed:        true,
 		Name:           "groups",
 		ReadOnly:       true,
@@ -276,7 +276,7 @@ var DependencyMapLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"nodes": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Nodes",
-		Description:    `nodes refers to the nodes of the map`,
+		Description:    `nodes refers to the nodes of the map.`,
 		Exposed:        true,
 		Name:           "nodes",
 		ReadOnly:       true,

@@ -6,7 +6,7 @@ model:
   package: vince
   description: |-
     Allows to bind an AWS account to your Aporeto account to allow auto registration
-    of enforcers running on EC2
+    of enforcers running on EC2.
   aliases:
   - aws
   - awsaccs
@@ -71,7 +71,7 @@ attributes:
   format: free
 
 - name: region
-  description: Region contains your the region where your AWS account is located
+  description: Region contains your the region where your AWS account is located.
   type: string
   exposed: true
   stored: true

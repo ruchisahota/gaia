@@ -17,7 +17,7 @@ attributes:
   format: free
 
 - name: token
-  description: Token contains the reset password token
+  description: Token contains the reset password token.
   type: string
   exposed: true
   required: true

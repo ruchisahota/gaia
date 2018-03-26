@@ -89,7 +89,7 @@ attributes:
   transient: true
 
 - name: OTPSecret
-  description: Stores the 2 factor secret
+  description: Stores the 2 factor secret.
   type: string
   stored: true
   format: free

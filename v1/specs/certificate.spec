@@ -23,7 +23,7 @@ attributes:
   orderable: true
 
 - name: commonName
-  description: CommonName (CN) for the user certificate
+  description: CommonName (CN) for the user certificate.
   type: string
   exposed: true
   stored: true
@@ -36,7 +36,7 @@ attributes:
   orderable: true
 
 - name: data
-  description: Certificate provides a certificate for the user
+  description: Certificate provides a certificate for the user.
   type: string
   exposed: true
   stored: true
@@ -45,7 +45,7 @@ attributes:
   format: free
 
 - name: email
-  description: e-mail address of the user
+  description: e-mail address of the user.
   type: string
   exposed: true
   stored: true
@@ -87,7 +87,7 @@ attributes:
   orderable: true
 
 - name: organizationalUnits
-  description: OrganizationalUnits attribute for the generated certificates
+  description: OrganizationalUnits attribute for the generated certificates.
   type: list
   exposed: true
   subtype: string

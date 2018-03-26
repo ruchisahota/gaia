@@ -7,7 +7,7 @@
 | Object                                                        | Description                                                                         |
 | -                                                             | -                                                                                   |
 | [Account](#account)                                           | This api allows to view and manage basic information about your account like        |
-| [Activate](#activate)                                         | Used to activate a pending account                                                  |
+| [Activate](#activate)                                         | Used to activate a pending account.                                                 |
 | [Activity](#activity)                                         | Contains all the activity log that happened in a namespace. All successful or       |
 | [Alarm](#alarm)                                               | An alarm represents an event requiring attention.                                   |
 | [APIAuthorizationPolicy](#apiauthorizationpolicy)             | An API Authorization Policy defines what kind of operations a user of a system      |
@@ -16,17 +16,17 @@
 | [AuditProfile](#auditprofile)                                 | AuditProfile is an audit policy that consists of a set of audit rules. An audit     |
 | [Auth](#auth)                                                 | This API verifies if the given token is valid or not.                               |
 | [Automation](#automation)                                     | An automation needs documentation.                                                  |
-| [AutomationTemplate](#automationtemplate)                     | Templates that ca be used in automations                                            |
-| [AvailableService](#availableservice)                         | AvailableService represents a service that is available for launching               |
+| [AutomationTemplate](#automationtemplate)                     | Templates that ca be used in automations.                                           |
+| [AvailableService](#availableservice)                         | AvailableService represents a service that is available for launching.              |
 | [AWSAccount](#awsaccount)                                     | Allows to bind an AWS account to your Aporeto account to allow auto registration... |
-| [Category](#category)                                         | Category allows to categorized services                                             |
+| [Category](#category)                                         | Category allows to categorized services.                                            |
 | [Certificate](#certificate)                                   | A User represents the owner of some certificates.                                   |
 | [DependencyMap](#dependencymap)                               | This api returns a data structure representing the graph of all processing units... |
 | [Enforcer](#enforcer)                                         | An Enforcer Profile contains a configuration for a Enforcer. It contains various... |
 | [EnforcerProfile](#enforcerprofile)                           | Allows to create reusable configuration profile for your enforcers. Enforcer        |
 | [EnforcerProfileMappingPolicy](#enforcerprofilemappingpolicy) | A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used... |
 | [Export](#export)                                             | Export the policies and related objects in a given namespace.                       |
-| [ExternalAccess](#externalaccess)                             | ExternalAccess allows to retrieve connection from or to an external service         |
+| [ExternalAccess](#externalaccess)                             | ExternalAccess allows to retrieve connection from or to an external service.        |
 | [ExternalService](#externalservice)                           | An External Service represents a random network or ip that is not managed by the... |
 | [FileAccess](#fileaccess)                                     | Returns file access statistics on a particular processing unit.                     |
 | [FileAccessPolicy](#fileaccesspolicy)                         | A File Access Policy allows Processing Units to access various folder and files.... |
@@ -34,8 +34,8 @@
 | [FlowStatistic](#flowstatistic)                               | Returns network access statistics on a particular processing unit or group of       |
 | [HookPolicy](#hookpolicy)                                     | Hook allows to to define hooks to the write operations in squall. Hooks are sent... |
 | [Import](#import)                                             | Imports an export of policies and related objects into the namespace.               |
-| [Installation](#installation)                                 | Installation represents an installation for a given account                         |
-| [IsolationProfile](#isolationprofile)                         | An IsolationProfile needs documentation                                             |
+| [Installation](#installation)                                 | Installation represents an installation for a given account.                        |
+| [IsolationProfile](#isolationprofile)                         | An IsolationProfile needs documentation.                                            |
 | [Issue](#issue)                                               | This API issues a new token according to given data.                                |
 | [Jaegerbatch](#jaegerbatch)                                   | A jaegerbatch is a batch of jaeger spans. This is used by external service to       |
 | [KubernetesCluster](#kubernetescluster)                       | Create a remote Kubernetes Cluster integration.                                     |
@@ -45,9 +45,9 @@
 | [NamespaceMappingPolicy](#namespacemappingpolicy)             | A Namespace Mapping Policy defines in which namespace a Processing Unit should      |
 | [NetworkAccessPolicy](#networkaccesspolicy)                   | Allows to define networking policies to allow or prevent processing units           |
 | [PasswordReset](#passwordreset)                               | Used to reset an account password.                                                  |
-| [Plan](#plan)                                                 | Plan contains the various billing plans available                                   |
+| [Plan](#plan)                                                 | Plan contains the various billing plans available.                                  |
 | [Poke](#poke)                                                 | When available, poke can be used to update various information about the parent.... |
-| [Policy](#policy)                                             | [nodoc]                                                                             |
+| [Policy](#policy)                                             | Policy represents the policy primitive used by all aporeto policies.                |
 | [PolicyRefresh](#policyrefresh)                               | PolicyRefresh is sent to client when as a push event when a policy refresh is       |
 | [PolicyRule](#policyrule)                                     | PolicyRule is an internal policy resolution API. Services can use this API to       |
 | [ProcessingUnit](#processingunit)                             | A Processing Unit reprents anything that can compute. It can be a Docker            |
@@ -57,16 +57,16 @@
 | [RenderedPolicy](#renderedpolicy)                             | Retrieve the aggregated policies applied to a particular processing unit.           |
 | [Report](#report)                                             | Post a new statistics report.                                                       |
 | [Role](#role)                                                 | Roles returns the available roles that can be used with API Authorization           |
-| [Root](#root)                                                 | [nodoc]ZOB                                                                          |
-| [Service](#service)                                           | Service represents a service that can be launched                                   |
+| [Root](#root)                                                 | root object.                                                                        |
+| [Service](#service)                                           | Service represents a service that can be launched.                                  |
 | [StatsQuery](#statsquery)                                     | StatsQuery is a generic API to retrieve time series data stored by the Aporeto      |
-| [SuggestedPolicy](#suggestedpolicy)                           | Allows to get policy suggestions                                                    |
-| [SystemCall](#systemcall)                                     | [nodoc]                                                                             |
+| [SuggestedPolicy](#suggestedpolicy)                           | Allows to get policy suggestions.                                                   |
+| [SystemCall](#systemcall)                                     | This object has never been used and should be removed.                              |
 | [Tabulation](#tabulation)                                     | Tabulate API allows you to retrieve a custom table view for any identity using      |
 | [Tag](#tag)                                                   | A tag is a string in the form of "key=value" that can applied to all objects in     |
 | [TokenScopePolicy](#tokenscopepolicy)                         | The TokenScopePolicy defines a set of policies that allow customization of the      |
 | [Trigger](#trigger)                                           | Trigger can be used to remotely trigger an automation.                              |
-| [Vulnerability](#vulnerability)                               | A vulnerabily represents a particular CVE                                           |
+| [Vulnerability](#vulnerability)                               | A vulnerabily represents a particular CVE.                                          |
 
 ## Account
 
@@ -87,7 +87,7 @@ your name, password, enable 2 factor authentication.
 | Method   | URL         | Description |
 | -:       | -           | -           |
 | `GET`    | `/accounts` | Retrieves all accounts. This is a private API that can only be done by the
-system     |
+system.    |
 | `POST`   | `/accounts`     | Creates a new Account.                       |
 | `DELETE` | `/accounts/:id` | Deletes the `account` with the given `:id`.  |
 | `GET`    | `/accounts/:id` | Retrieve the `account` with the given `:id`. |
@@ -287,7 +287,7 @@ Status of the account.
 
 #### `updateTime (time)`
 
-Last update date of the object
+Last update date of the object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -298,7 +298,7 @@ Last update date of the object
 
 ## Activate
 
-Used to activate a pending account
+Used to activate a pending account.
 
 ### Relations
 
@@ -310,7 +310,7 @@ Used to activate a pending account
 
 #### `token (string)`
 
-Token contains the activation token
+Token contains the activation token.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -491,11 +491,11 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `content (string)`
 
@@ -508,7 +508,7 @@ Content of the alarm.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -518,7 +518,7 @@ CreatedTime is the time at which the object was created
 
 #### `data (external:alarm_data)`
 
-Data represent user data related to the alams
+Data represent user data related to the alams.
 
 #### `description (string)`
 
@@ -543,7 +543,7 @@ identifier, then only the occurrence will be incremented.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -554,7 +554,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -566,7 +566,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -593,7 +593,7 @@ Protected defines if the object is protected.
 
 #### `status (enum)`
 
-Status of the alarm
+Status of the alarm.
 
 | Characteristics | Value                          |
 | -               | -:                             |
@@ -674,11 +674,11 @@ The policy will be active for the given activeDuration.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `authorizedIdentities (external:identity_list)`
 
@@ -699,7 +699,7 @@ AuthorizedNamespace defines on what namespace the policy applies.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -737,7 +737,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -748,7 +748,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -760,7 +760,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -878,7 +878,7 @@ authorization.
 
 #### `token (string)`
 
-Token is the token to use to check api authentication
+Token is the token to use to check api authentication.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -960,15 +960,15 @@ required for this service. The certificate must be in PEM format.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1017,7 +1017,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1028,7 +1028,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1052,7 +1052,7 @@ NetworkProtocol is the network protocol of the service.
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1149,15 +1149,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1186,7 +1186,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1197,7 +1197,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1209,7 +1209,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1315,11 +1315,11 @@ Action contains the code that will be executed if the condition is met.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `condition (string)`
 
@@ -1332,7 +1332,7 @@ be taken.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1374,7 +1374,7 @@ Error contains the eventual error of the last run.
 #### `events (external:automation_events)`
 
 Events contains the identity and operation an event must have to trigger the
-automation
+automation.
 
 #### `lastExecTime (time)`
 
@@ -1387,7 +1387,7 @@ LastExecTime holds the last successful execution tine.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1398,7 +1398,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1410,7 +1410,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1481,7 +1481,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## AutomationTemplate
 
-Templates that ca be used in automations
+Templates that ca be used in automations.
 
 ### Example
 
@@ -1532,7 +1532,7 @@ Kind represents the kind of template.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1547,7 +1547,7 @@ Parameters contains the parameter description of the function.
 
 ## AvailableService
 
-AvailableService represents a service that is available for launching
+AvailableService represents a service that is available for launching.
 
 ### Example
 
@@ -1605,7 +1605,7 @@ LongDescription contains a more detailed description of the service.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1616,7 +1616,7 @@ Name is the name of the entity
 
 #### `parameters (external:service_parameters)`
 
-Parameters of the service the user can or has to specify
+Parameters of the service the user can or has to specify.
 
 #### `title (string)`
 
@@ -1625,7 +1625,7 @@ Title represents the title of the service.
 ## AWSAccount
 
 Allows to bind an AWS account to your Aporeto account to allow auto registration
-of enforcers running on EC2
+of enforcers running on EC2.
 
 ### Example
 
@@ -1723,7 +1723,7 @@ ParentName contains the name of the Vince parent Account.
 
 #### `region (string)`
 
-Region contains your the region where your AWS account is located
+Region contains your the region where your AWS account is located.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1744,7 +1744,7 @@ and it is not stored.
 
 #### `updateTime (time)`
 
-Last update date of the object
+Last update date of the object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1755,7 +1755,7 @@ Last update date of the object
 
 ## Category
 
-Category allows to categorized services
+Category allows to categorized services.
 
 ### Example
 
@@ -1790,7 +1790,7 @@ Description is the description of the object.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1848,7 +1848,7 @@ Admin determines if the certificate must be added to the admin list.
 
 #### `commonName (string)`
 
-CommonName (CN) for the user certificate
+CommonName (CN) for the user certificate.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1871,7 +1871,7 @@ Creation date of the object.
 
 #### `data (string)`
 
-Certificate provides a certificate for the user
+Certificate provides a certificate for the user.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1880,7 +1880,7 @@ Certificate provides a certificate for the user
 
 #### `email (string)`
 
-e-mail address of the user
+e-mail address of the user.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1921,7 +1921,7 @@ Name of the certificate.
 
 #### `organizationalUnits (list)`
 
-OrganizationalUnits attribute for the generated certificates
+OrganizationalUnits attribute for the generated certificates.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1973,7 +1973,7 @@ get a new certificate.
 
 #### `updateTime (time)`
 
-Last update date of the object
+Last update date of the object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -1990,7 +1990,7 @@ the time window you can use the query parameters 'startAbsolute', 'endAbsolute',
 'startRelative', 'endRelative'.
 
 For example
-  "/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000"
+  "/dependencymaps?startAbsolute=1489132800000&endAbsolute=1489219200000".
 
 ### Relations
 
@@ -2014,7 +2014,7 @@ ID is the identifier of the object.
 
 #### `edges (external:graphedges_map)`
 
-edges are the edges of the map
+edges are the edges of the map.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2022,7 +2022,7 @@ edges are the edges of the map
 
 #### `groups (external:graphgroups_map)`
 
-Groups provide information about the group values
+Groups provide information about the group values.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2030,7 +2030,7 @@ Groups provide information about the group values
 
 #### `nodes (external:graphnodes_map)`
 
-nodes refers to the nodes of the map
+nodes refers to the nodes of the map.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2104,11 +2104,11 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `certificate (string)`
 
@@ -2165,7 +2165,7 @@ CollectedInfo represents the latest info collected by the enforcer.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2236,7 +2236,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2247,7 +2247,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2259,7 +2259,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2394,11 +2394,11 @@ PUHeartbeatInterval configures the heart beat interval.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `auditProfileSelectors (external:audit_profile_selector)`
 
@@ -2433,7 +2433,7 @@ AuditSocketBufferSize is the size of the audit socket buffer. Default 16384.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2526,7 +2526,7 @@ Select which metadata extractor to use to process new processing units.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2537,7 +2537,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2549,7 +2549,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2581,7 +2581,8 @@ Protected defines if the object is protected.
 
 ProxyListenAddress is the address the enforcer should use to listen for API
 calls. It can be a port (example :9443) or socket path
-(example: unix:///var/run/aporeto.sock)
+example:
+  unix:///var/run/aporeto.sock.
 
 | Characteristics | Value                                                                                                                                       |
 | -               | -:                                                                                                                                          |
@@ -2593,7 +2594,7 @@ calls. It can be a port (example :9443) or socket path
 #### `receiverNumberOfQueues (integer)`
 
 ReceiverNumberOfQueues is the number of queues for the NFQUEUE of the network
-receiver starting at the ReceiverQueue
+receiver starting at the ReceiverQueue.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2616,7 +2617,7 @@ ReceiverQueue is the base queue number for traffic from the network.
 
 #### `receiverQueueSize (integer)`
 
-ReceiverQueueSize is the queue size of the receiver
+ReceiverQueueSize is the queue size of the receiver.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2661,7 +2662,7 @@ TransmitterNumberOfQueues is the number of queues for application traffic.
 #### `transmitterQueue (integer)`
 
 TransmitterQueue is the queue number for traffic from the applications starting
-at the transmitterQueue
+at the transmitterQueue.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2758,15 +2759,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2804,7 +2805,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2815,7 +2816,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2827,7 +2828,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2896,14 +2897,13 @@ Export the policies and related objects in a given namespace.
 
 | Method | URL       | Description                                             |
 | -:     | -         | -                                                       |
-| `GET`  | `/export` | Exports all policies and related object of a namespace. |
-| `POST` | `/export` |                                                         |
+| `POST` | `/export` | Exports all policies and related object of a namespace. |
 
 ### Attributes
 
 #### `APIVersion (integer)`
 
-APIVersion of the api used for the exported data
+APIVersion of the api used for the exported data.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2957,7 +2957,7 @@ List of all exported isolation profiles.
 
 #### `networkAccessPolicies (external:exported_data_content)`
 
-List of exported network policies
+List of exported network policies.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -2974,7 +2974,7 @@ List of all exported processingUnitPolicies.
 
 ## ExternalAccess
 
-ExternalAccess allows to retrieve connection from or to an external service
+ExternalAccess allows to retrieve connection from or to an external service.
 
 ### Relations
 
@@ -2986,7 +2986,7 @@ ExternalAccess allows to retrieve connection from or to an external service
 
 #### `IPRecords (external:ip_records)`
 
-IPRecords refers to a list of IPRecord that contains the IP information
+IPRecords refers to a list of IPRecord that contains the IP information.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3039,15 +3039,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3086,7 +3086,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3097,7 +3097,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3109,7 +3109,7 @@ Namespace tag attached to an entity
 
 #### `network (string)`
 
-Network refers to either CIDR or domain name
+Network refers to either CIDR or domain name.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3118,7 +3118,7 @@ Network refers to either CIDR or domain name
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3128,7 +3128,7 @@ NormalizedTags contains the list of normalized tags of the entities
 #### `port (string)`
 
 Port refers to network port which could be a single number or 100:2000 to
-represent a range of ports
+represent a range of ports.
 
 | Characteristics | Value                                                                                                                                                                                                            |
 | -               | -:                                                                                                                                                                                                               |
@@ -3331,15 +3331,15 @@ AllowsWrite allows to write the files.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3367,7 +3367,7 @@ Disabled defines if the propert is disabled.
 
 #### `encryptionEnabled (boolean)`
 
-EncryptionEnabled will enable the automatic encryption
+EncryptionEnabled will enable the automatic encryption.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3395,7 +3395,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3406,7 +3406,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3418,7 +3418,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3463,7 +3463,7 @@ Protected defines if the object is protected.
 
 #### `subject (external:policies_list)`
 
-Subject is the subject of the policy
+Subject is the subject of the policy.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3521,15 +3521,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3548,7 +3548,7 @@ Description is the description of the object.
 
 #### `filepath (string)`
 
-FilePath refer to the file mount path
+FilePath refer to the file mount path.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3567,7 +3567,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3578,7 +3578,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3590,7 +3590,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3608,7 +3608,7 @@ Protected defines if the object is protected.
 
 #### `server (string)`
 
-server is the server name/ID/IP associated with the file path
+server is the server name/ID/IP associated with the file path.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3671,7 +3671,7 @@ DestinationIDs is the IDs of the destination.
 
 #### `destinationTags (external:selectors_list)`
 
-DestinationTags contains the tags used to identify destination
+DestinationTags contains the tags used to identify destination.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3720,7 +3720,7 @@ SourceTags contains the tags used to identify the source.
 
 #### `type (enum)`
 
-Type is the type of representation
+Type is the type of representation.
 
 | Characteristics | Value                |
 | -               | -:                   |
@@ -3788,11 +3788,11 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `certificateAuthority (string)`
 
@@ -3825,7 +3825,7 @@ ClientCertificateKey contains the key associated to the clientCertificate.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3884,7 +3884,7 @@ Mode define the type of the hook.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3895,7 +3895,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -3907,7 +3907,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4001,7 +4001,7 @@ How to import the data.
 
 ## Installation
 
-Installation represents an installation for a given account
+Installation represents an installation for a given account.
 
 ### Relations
 
@@ -4035,7 +4035,7 @@ AccountName that should be installed.
 
 ## IsolationProfile
 
-An IsolationProfile needs documentation
+An IsolationProfile needs documentation.
 
 ### Example
 
@@ -4071,11 +4071,11 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `capabilitiesActions (external:cap_map)`
 
@@ -4089,7 +4089,7 @@ from the processing unit.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4128,7 +4128,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4139,7 +4139,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4151,7 +4151,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4236,7 +4236,7 @@ Metadata contains various additional information. Meaning depends on the realm.
 
 #### `realm (enum)`
 
-Realm is the realm
+Realm is the authentication realm.
 
 | Characteristics | Value                                                                              |
 | -               | -:                                                                                 |
@@ -4267,13 +4267,13 @@ configured max validity, it will be capped.
 ## Jaegerbatch
 
 A jaegerbatch is a batch of jaeger spans. This is used by external service to
-post jaeger span in our private jaeger services
+post jaeger span in our private jaeger services.
 
 ### Attributes
 
 #### `batch (external:jaeger_batch)`
 
-Represent an jaeger batch
+Represents a jaeger batch.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4321,7 +4321,7 @@ Creation date of the object.
 #### `kubernetesDefinitions (string)`
 
 base64 of the .tar.gz file that contains all the .YAMLs files needed to create
-the aporeto side on your kubernetes Cluster
+the aporeto side on your kubernetes Cluster.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4331,7 +4331,7 @@ the aporeto side on your kubernetes Cluster
 
 #### `name (string)`
 
-The name of your cluster
+The name of your cluster.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4363,8 +4363,8 @@ default your account namespace.
 | Filterable      | `true` |
 
 #### `targetNetworks (external:target_networks_list)`
-
-List of target networks [deprecated]
+> This attribute is deprecated
+List of target networks.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4373,7 +4373,7 @@ List of target networks [deprecated]
 
 #### `updateTime (time)`
 
-Last update date of the object
+Last update date of the object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4388,9 +4388,9 @@ Retrieves the log of a deployed app.
 
 ### Relations
 
-| Method | URL                  | Description                    |
-| -:     | -                    | -                              |
-| `GET`  | `/services/:id/logs` | Returns the logs for a service |
+| Method | URL                  | Description                     |
+| -:     | -                    | -                               |
+| `GET`  | `/services/:id/logs` | Returns the logs for a service. |
 
 ### Attributes
 
@@ -4421,7 +4421,7 @@ children namespaces.
 | Method   | URL             | Description                                  |
 | -:       | -               | -                                            |
 | `GET`    | `/messages`     | Retrieves the list of messages.              |
-| `POST`   | `/messages`     | Creates a new message                        |
+| `POST`   | `/messages`     | Creates a new message.                       |
 | `DELETE` | `/messages/:id` | Deletes the `message` with the given `:id`.  |
 | `GET`    | `/messages/:id` | Retrieve the `message` with the given `:id`. |
 | `PUT`    | `/messages/:id` | Updates the `message` with the given `:id`.  |
@@ -4442,15 +4442,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4498,7 +4498,7 @@ If local is set, the message will only be visible in the current namespace.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4509,7 +4509,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4521,7 +4521,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4607,15 +4607,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4675,7 +4675,7 @@ Name is the name of the namespace.
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4687,7 +4687,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4771,15 +4771,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4807,7 +4807,7 @@ Disabled defines if the propert is disabled.
 
 #### `mappedNamespace (string)`
 
-mappedNamespace is the mapped namespace
+mappedNamespace is the mapped namespace.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4827,7 +4827,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4838,7 +4838,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4850,7 +4850,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -4952,15 +4952,15 @@ The policy will be active for the given activeDuration.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5025,7 +5025,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5036,7 +5036,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5048,7 +5048,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5149,10 +5149,10 @@ Used to reset an account password.
 
 ### Relations
 
-| Method | URL              | Description                         |
-| -:     | -                | -                                   |
-| `GET`  | `/passwordreset` |                                     |
-| `POST` | `/passwordreset` | Resets the password for an account. |
+| Method | URL              | Description                                                 |
+| -:     | -                | -                                                           |
+| `GET`  | `/passwordreset` | Sends a link to the account email to reset the password.    |
+| `POST` | `/passwordreset` | Resets the password for an account using the provided link. |
 
 ### Attributes
 
@@ -5166,7 +5166,7 @@ Password contains the new password.
 
 #### `token (string)`
 
-Token contains the reset password token
+Token contains the reset password token.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5174,7 +5174,7 @@ Token contains the reset password token
 
 ## Plan
 
-Plan contains the various billing plans available
+Plan contains the various billing plans available.
 
 ### Relations
 
@@ -5252,7 +5252,7 @@ For instance, for enforcers, poke will be use as the heartbeat.
 
 ## Policy
 
-[nodoc]
+Policy represents the policy primitive used by all aporeto policies.
 
 ### Example
 
@@ -5304,15 +5304,15 @@ The policy will be active for the given activeDuration.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5350,7 +5350,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5361,7 +5361,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5373,7 +5373,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5416,17 +5416,17 @@ Protected defines if the object is protected.
 #### `relation (external:relations_list)`
 
 Relation describes the required operation to be performed between subjects and
-objects
+objects.
 
 #### `subject (external:policies_list)`
 
 Subject represent sets of entities that will have a dependency other entities.
 Subjects are defined as logical operations on tags. Logical operations can
-includes AND/OR
+includes AND/OR.
 
 #### `type (enum)`
 
-Type of the policy
+Type of the policy.
 
 | Characteristics | Value                                                                                                                  |
 | -               | -:                                                                                                                     |
@@ -5530,7 +5530,7 @@ IsolationProfiles are the isolation profiles of the rule.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5555,11 +5555,11 @@ Propagated indicates if the policy is propagated.
 #### `relation (external:relations_list)`
 
 Relation describes the required operation to be performed between subjects and
-objects
+objects.
 
 #### `tagClauses (external:target_tags)`
 
-Policy target tags
+Policy target tags.
 
 ## ProcessingUnit
 
@@ -5610,15 +5610,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5637,7 +5637,7 @@ Description is the description of the object.
 
 #### `enforcerID (string)`
 
-EnforcerID is the ID of the enforcer associated with the processing unit
+EnforcerID is the ID of the enforcer associated with the processing unit.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5645,7 +5645,7 @@ EnforcerID is the ID of the enforcer associated with the processing unit
 
 #### `lastSyncTime (time)`
 
-LastSyncTime is the time when the policy was last resolved
+LastSyncTime is the time when the policy was last resolved.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5664,7 +5664,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5675,7 +5675,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5687,7 +5687,7 @@ Namespace tag attached to an entity
 
 #### `nativeContextID (string)`
 
-NativeContextID is the Docker UUID or service PID
+NativeContextID is the Docker UUID or service PID.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5706,7 +5706,7 @@ or by exposing the ports in a container manifest.
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5715,7 +5715,7 @@ NormalizedTags contains the list of normalized tags of the entities
 
 #### `operationalStatus (enum)`
 
-OperationalStatus of the processing unit
+OperationalStatus of the processing unit.
 
 | Characteristics | Value                                               |
 | -               | -:                                                  |
@@ -5734,7 +5734,7 @@ Protected defines if the object is protected.
 
 #### `type (enum)`
 
-Type of the container ecosystem
+Type of the container ecosystem.
 
 | Characteristics | Value                             |
 | -               | -:                                |
@@ -5816,15 +5816,15 @@ The policy will be active for the given activeDuration.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5872,7 +5872,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5883,7 +5883,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5895,7 +5895,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -5994,15 +5994,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6048,7 +6048,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6059,7 +6059,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6071,7 +6071,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6159,7 +6159,7 @@ Hook to integrate an Aporeto service.
 
 #### `claims (list)`
 
-Represents the claims of the currently managed object
+Represents the claims of the currently managed object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6167,7 +6167,7 @@ Represents the claims of the currently managed object
 
 #### `input (external:raw_json)`
 
-Represents data received from the service
+Represents data received from the service.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6175,7 +6175,7 @@ Represents data received from the service
 
 #### `mode (enum)`
 
-Node defines the type of the hook
+Node defines the type of the hook.
 
 | Characteristics | Value       |
 | -               | -:          |
@@ -6185,7 +6185,7 @@ Node defines the type of the hook
 
 #### `namespace (string)`
 
-Represents the current namespace
+Represents the current namespace.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6193,7 +6193,7 @@ Represents the current namespace
 
 #### `operation (external:elemental_operation)`
 
-Define the operation that is currently handled by the service
+Define the operation that is currently handled by the service.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6201,7 +6201,7 @@ Define the operation that is currently handled by the service
 
 #### `output (external:elemental_identitifable)`
 
-Returns the OutputData filled with the processor information
+Returns the OutputData filled with the processor information.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6219,7 +6219,7 @@ RequestID gives the id of the request coming from the main server.
 
 #### `targetIdentity (string)`
 
-Represents the Identity name of the managed object
+Represents the Identity name of the managed object.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6257,7 +6257,7 @@ to any internal or external services.
 
 #### `egressPolicies (external:rendered_policy)`
 
-EgressPolicies lists all the egress policies attached to ProcessingUnit
+EgressPolicies lists all the egress policies attached to processing unit.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6271,7 +6271,7 @@ implementing.
 
 #### `ingressPolicies (external:rendered_policy)`
 
-IngressPolicies lists all the ingress policies attached to ProcessingUnit
+IngressPolicies lists all the ingress policies attached to processing unit.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6299,7 +6299,7 @@ has not been created yet.
 
 #### `processingUnitID (string)`
 
-Identifier of the ProcessingUnit
+Identifier of the processing unit.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6318,7 +6318,7 @@ all communications.
 
 #### `scopes (external:scopes_list)`
 
-Scopes is the set of scopes granted to this Processing Unit that it has to
+Scopes is the set of scopes granted to this processing unit that it has to
 present in HTTP requests.
 
 ## Report
@@ -6408,7 +6408,7 @@ Name of the role.
 
 ## Service
 
-Service represents a service that can be launched
+Service represents a service that can be launched.
 
 ### Relations
 
@@ -6419,13 +6419,13 @@ Service represents a service that can be launched
 | `DELETE` | `/services/:id`      | Deletes the `service` with the given `:id`.  |
 | `GET`    | `/services/:id`      | Retrieve the `service` with the given `:id`. |
 | `PUT`    | `/services/:id`      | Updates the `service` with the given `:id`.  |
-| `GET`    | `/services/:id/logs` | Returns the logs for a service               |
+| `GET`    | `/services/:id/logs` | Returns the logs for a service.              |
 
 ### Attributes
 
 #### `ID (string)`
 
-ID of the service
+ID of the service.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6436,7 +6436,7 @@ ID of the service
 
 #### `accountName (string)`
 
-AccountName represents the vince account name
+AccountName represents the vince account name.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6454,7 +6454,7 @@ CategoryID of the service.
 
 #### `name (string)`
 
-Name of the service
+Name of the service.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6473,7 +6473,7 @@ Namespace in which the service in running.
 
 #### `parameters (external:service_parameters)`
 
-Parameters is a list of parameters to start the service
+Parameters is a list of parameters to start the service.
 
 #### `replicas (integer)`
 
@@ -6516,7 +6516,7 @@ Results contains the result of the query.
 
 ## SuggestedPolicy
 
-Allows to get policy suggestions
+Allows to get policy suggestions.
 
 ### Relations
 
@@ -6528,7 +6528,7 @@ Allows to get policy suggestions
 
 #### `networkAccessPolicies (external:network_access_policies_list)`
 
-List of suggested network access policies
+List of suggested network access policies.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6537,7 +6537,7 @@ List of suggested network access policies
 
 ## SystemCall
 
-[nodoc]
+This object has never been used and should be removed.
 
 ### Example
 
@@ -6573,15 +6573,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6610,7 +6610,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6621,7 +6621,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6633,7 +6633,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6818,7 +6818,7 @@ The policy will be active for the given activeDuration.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `assignedScopes (external:tags_list)`
 
@@ -6831,11 +6831,11 @@ AssignedScopes is the the list of scopes that the policiy will assigns.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6873,7 +6873,7 @@ with the '@' prefix, and should only be used by external systems.
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6884,7 +6884,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6896,7 +6896,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -6966,7 +6966,7 @@ to `RemoteCall`. |
 
 ## Vulnerability
 
-A vulnerabily represents a particular CVE
+A vulnerabily represents a particular CVE.
 
 ### Example
 
@@ -7004,15 +7004,15 @@ ID is the identifier of the object.
 
 #### `annotations (external:annotations)`
 
-Annotation stores additional information about an entity
+Annotation stores additional information about an entity.
 
 #### `associatedTags (external:tags_list)`
 
-AssociatedTags are the list of tags attached to an entity
+AssociatedTags are the list of tags attached to an entity.
 
 #### `createTime (time)`
 
-CreatedTime is the time at which the object was created
+CreatedTime is the time at which the object was created.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -7031,7 +7031,7 @@ Description is the description of the object.
 
 #### `link (string)`
 
-Link is the URL that refers to the vulnerability
+Link is the URL that refers to the vulnerability.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -7043,7 +7043,7 @@ Link is the URL that refers to the vulnerability
 
 #### `name (string)`
 
-Name is the name of the entity
+Name is the name of the entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -7054,7 +7054,7 @@ Name is the name of the entity
 
 #### `namespace (string)`
 
-Namespace tag attached to an entity
+Namespace tag attached to an entity.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -7066,7 +7066,7 @@ Namespace tag attached to an entity
 
 #### `normalizedTags (external:tags_list)`
 
-NormalizedTags contains the list of normalized tags of the entities
+NormalizedTags contains the list of normalized tags of the entities.
 
 | Characteristics | Value  |
 | -               | -:     |
@@ -7084,7 +7084,7 @@ Protected defines if the object is protected.
 
 #### `severity (external:vulnerability_level)`
 
-Severity refers to the security vulnerability level
+Severity refers to the security vulnerability level.
 
 | Characteristics | Value  |
 | -               | -:     |
