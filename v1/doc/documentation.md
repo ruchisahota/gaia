@@ -4363,7 +4363,9 @@ default your account namespace.
 | Filterable      | `true` |
 
 #### `targetNetworks (external:target_networks_list)`
+
 > This attribute is deprecated
+
 List of target networks.
 
 | Characteristics | Value  |
