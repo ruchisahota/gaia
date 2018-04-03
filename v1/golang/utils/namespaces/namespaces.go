@@ -1,9 +1,11 @@
 package namespaces
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/aporeto-inc/elemental"
 	"github.com/aporeto-inc/gaia/v1/golang"
@@ -242,6 +244,39 @@ func ValidateNamespaceBump(m manipulate.Manipulator, policyNamespace string, req
 		err := elemental.NewError("Invalid mapped namespace", "The mapped namespace doesn't exist", "gaia", http.StatusUnprocessableEntity)
 		err.Data = data
 		return err
+	}
+
+	return nil
+}
+
+// DeleteContent deletes all objects in DB in the given namespace using the
+// given manipulator. The function will retry on communication error until the given context is canceled.
+func DeleteContent(ctx context.Context, manipulator manipulate.TransactionalManipulator, ns *gaia.Namespace) error {
+
+	tid := manipulate.NewTransactionID()
+	mctx := manipulate.NewContextWithTransactionID(tid)
+	now := time.Now()
+
+	mctx.Filter = manipulate.NewFilterComposer().
+		WithKey("namespace").Matches(fmt.Sprintf("^%s$", ns.Name), fmt.Sprintf("^%s/.*$", ns.Name)).
+		WithKey("createTime").LesserThan(now).
+		Done()
+
+	// We loop over all entities possible entities.
+	for _, identity := range gaia.AllIdentities() {
+
+		// the collection is capped, contents cannot be deleted.
+		if identity.IsEqual(gaia.ActivityIdentity) {
+			continue
+		}
+
+		if err := manipulate.Retry(ctx, func() error { return manipulator.DeleteMany(mctx, identity) }, nil); err != nil {
+			return fmt.Errorf("unable to delete '%s' in the namespace '%s': %s", identity.Category, ns.Name, err)
+		}
+	}
+
+	if err := manipulate.Retry(ctx, func() error { return manipulator.Commit(tid) }, nil); err != nil {
+		return fmt.Errorf("Unable to commit objects deletion in namespace '%s': %s", ns.Name, err)
 	}
 
 	return nil
