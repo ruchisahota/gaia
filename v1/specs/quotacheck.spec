@@ -26,7 +26,7 @@ attributes:
     example_value: processingunit
 
   - name: targetNamespace
-    description: The namespace from wich you want to check the quota on.
+    description: The namespace from which you want to check the quota on.
     type: string
     exposed: true
     required: true
