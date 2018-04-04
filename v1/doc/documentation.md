@@ -6016,7 +6016,7 @@ The identity name of the object you want to check the quota on.
 
 #### `targetNamespace (string)`
 
-The namespace from wich you want to check the quota on.
+The namespace from which you want to check the quota on.
 
 | Characteristics | Value  |
 | -               | -:     |

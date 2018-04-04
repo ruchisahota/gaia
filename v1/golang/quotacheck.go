@@ -72,7 +72,7 @@ type QuotaCheck struct {
 	// The identity name of the object you want to check the quota on.
 	TargetIdentity string `json:"targetIdentity" bson:"-" mapstructure:"targetIdentity,omitempty"`
 
-	// The namespace from wich you want to check the quota on.
+	// The namespace from which you want to check the quota on.
 	TargetNamespace string `json:"targetNamespace" bson:"-" mapstructure:"targetNamespace,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
@@ -194,7 +194,7 @@ var QuotaCheckAttributesMap = map[string]elemental.AttributeSpecification{
 	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "TargetNamespace",
-		Description:    `The namespace from wich you want to check the quota on.`,
+		Description:    `The namespace from which you want to check the quota on.`,
 		Exposed:        true,
 		Name:           "targetNamespace",
 		Required:       true,
@@ -226,7 +226,7 @@ var QuotaCheckLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 	"targetnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "TargetNamespace",
-		Description:    `The namespace from wich you want to check the quota on.`,
+		Description:    `The namespace from which you want to check the quota on.`,
 		Exposed:        true,
 		Name:           "targetNamespace",
 		Required:       true,
