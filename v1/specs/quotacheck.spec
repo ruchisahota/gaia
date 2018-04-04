@@ -7,6 +7,7 @@ model:
   description: |-
     This api allows to verify the quota for a given identity in a given namespace
     with the given tags.
+  private: true
 
 # Attributes
 attributes:

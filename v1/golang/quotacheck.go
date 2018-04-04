@@ -11,7 +11,7 @@ import (
 var QuotaCheckIdentity = elemental.Identity{
 	Name:     "quotacheck",
 	Category: "quotacheck",
-	Private:  false,
+	Private:  true,
 }
 
 // QuotaChecksList represents a list of QuotaChecks
