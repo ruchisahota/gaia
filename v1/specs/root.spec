@@ -286,6 +286,11 @@ relations:
   get: true
   create: true
 
+- rest_name: quotacheck
+  descriptions:
+    create: Verifies if the quota is exceeded for a particular object.
+  create: true
+
 - rest_name: quotapolicy
   descriptions:
     create: Creates a new quota policy.

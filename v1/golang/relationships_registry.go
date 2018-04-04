@@ -832,6 +832,12 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[QuotaCheckIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
+
 	relationshipsRegistry[QuotaPolicyIdentity] = &elemental.Relationship{
 		AllowsCreate: map[string]bool{
 			"root": true,

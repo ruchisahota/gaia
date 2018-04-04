@@ -54,6 +54,7 @@ func init() {
 	elemental.RegisterIdentity(PrivateKeyIdentity)
 	elemental.RegisterIdentity(ProcessingUnitIdentity)
 	elemental.RegisterIdentity(ProcessingUnitPolicyIdentity)
+	elemental.RegisterIdentity(QuotaCheckIdentity)
 	elemental.RegisterIdentity(QuotaPolicyIdentity)
 	elemental.RegisterIdentity(RemoteProcessorIdentity)
 	elemental.RegisterIdentity(RenderedPolicyIdentity)
@@ -183,6 +184,8 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewProcessingUnit()
 	case ProcessingUnitPolicyIdentity.Name:
 		return NewProcessingUnitPolicy()
+	case QuotaCheckIdentity.Name:
+		return NewQuotaCheck()
 	case QuotaPolicyIdentity.Name:
 		return NewQuotaPolicy()
 	case RemoteProcessorIdentity.Name:
@@ -331,6 +334,8 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewProcessingUnit()
 	case ProcessingUnitPolicyIdentity.Category:
 		return NewProcessingUnitPolicy()
+	case QuotaCheckIdentity.Category:
+		return NewQuotaCheck()
 	case QuotaPolicyIdentity.Category:
 		return NewQuotaPolicy()
 	case RemoteProcessorIdentity.Category:
@@ -479,6 +484,8 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &ProcessingUnitsList{}
 	case ProcessingUnitPolicyIdentity.Name:
 		return &ProcessingUnitPoliciesList{}
+	case QuotaCheckIdentity.Name:
+		return &QuotaChecksList{}
 	case QuotaPolicyIdentity.Name:
 		return &QuotaPoliciesList{}
 	case RemoteProcessorIdentity.Name:
@@ -626,6 +633,8 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &ProcessingUnitsList{}
 	case ProcessingUnitPolicyIdentity.Category:
 		return &ProcessingUnitPoliciesList{}
+	case QuotaCheckIdentity.Category:
+		return &QuotaChecksList{}
 	case QuotaPolicyIdentity.Category:
 		return &QuotaPoliciesList{}
 	case RemoteProcessorIdentity.Category:
@@ -722,6 +731,7 @@ func AllIdentities() []elemental.Identity {
 		PrivateKeyIdentity,
 		ProcessingUnitIdentity,
 		ProcessingUnitPolicyIdentity,
+		QuotaCheckIdentity,
 		QuotaPolicyIdentity,
 		RemoteProcessorIdentity,
 		RenderedPolicyIdentity,
@@ -987,6 +997,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"pup",
 		}
+	case QuotaCheckIdentity:
+		return []string{}
 	case QuotaPolicyIdentity:
 		return []string{
 			"quota",
