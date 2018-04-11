@@ -143,6 +143,18 @@ LDAPBindPassword holds the password to the LDAPBindDN.
 | Orderable       | `true` |
 | Filterable      | `true` |
 
+#### `LDAPBindSearchFilter (string)`
+
+LDAPBindSearchFilter holds filter to be used to uniquely search a user. For
+Windows based systems, value may be 'sAMAccountName={USERNAME}'. For Linux and
+other systems, value may be 'uid={USERNAME}'.
+
+| Characteristics | Value            |
+| -               | -:               |
+| Default         | `uid={USERNAME}` |
+| Orderable       | `true`           |
+| Filterable      | `true`           |
+
 #### `LDAPCertificateAuthority (string)`
 
 LDAPCertificateAuthority contains the optional certificate author ity that will
@@ -153,6 +165,17 @@ of the LDAP is issued from a public truster CA.
 | -               | -:     |
 | Orderable       | `true` |
 | Filterable      | `true` |
+
+#### `LDAPConnSecurityProtocol (enum)`
+
+LDAPConnProtocol holds the connection type for the LDAP provider.
+
+| Characteristics | Value            |
+| -               | -:               |
+| Allowed Value   | `TLS, InbandTLS` |
+| Default         | `InbandTLS`      |
+| Orderable       | `true`           |
+| Filterable      | `true`           |
 
 #### `LDAPEnabled (boolean)`
 
