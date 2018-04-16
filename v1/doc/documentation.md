@@ -186,6 +186,19 @@ LDAPEnabled triggers if the account uses it's own LDAP for authentication.
 | Orderable       | `true` |
 | Filterable      | `true` |
 
+#### `LDAPSubjectKey (string)`
+
+LDAPSubjectKey holds key to be used to populate the subject. If you want to
+use the user as a subject, for Windows based systems you may use
+'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+also use any alternate key.
+
+| Characteristics | Value  |
+| -               | -:     |
+| Default         | `uid`  |
+| Orderable       | `true` |
+| Filterable      | `true` |
+
 #### `OTPEnabled (boolean)`
 
 Set to enable or disable two factor authentication.

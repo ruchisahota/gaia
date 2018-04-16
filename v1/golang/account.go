@@ -126,6 +126,12 @@ type Account struct {
 	// LDAPEnabled triggers if the account uses it's own LDAP for authentication.
 	LDAPEnabled bool `json:"LDAPEnabled" bson:"ldapenabled" mapstructure:"LDAPEnabled,omitempty"`
 
+	// LDAPSubjectKey holds key to be used to populate the subject. If you want to
+	// use the user as a subject, for Windows based systems you may use
+	// 'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+	// also use any alternate key.
+	LDAPSubjectKey string `json:"LDAPSubjectKey" bson:"ldapsubjectkey" mapstructure:"LDAPSubjectKey,omitempty"`
+
 	// Set to enable or disable two factor authentication.
 	OTPEnabled bool `json:"OTPEnabled" bson:"otpenabled" mapstructure:"OTPEnabled,omitempty"`
 
@@ -210,7 +216,8 @@ func NewAccount() *Account {
 		AssociatedQuotaPolicies:  map[string]string{},
 		LDAPBindSearchFilter:     "uid={USERNAME}",
 		LDAPConnSecurityProtocol: "InbandTLS",
-		Status: "Pending",
+		LDAPSubjectKey:           "uid",
+		Status:                   "Pending",
 	}
 }
 
@@ -426,6 +433,22 @@ of the LDAP is issued from a public truster CA.`,
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"LDAPSubjectKey": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "LDAPSubjectKey",
+		DefaultValue:   "uid",
+		Description: `LDAPSubjectKey holds key to be used to populate the subject. If you want to
+use the user as a subject, for Windows based systems you may use
+'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+also use any alternate key.`,
+		Exposed:    true,
+		Filterable: true,
+		Format:     "free",
+		Name:       "LDAPSubjectKey",
+		Orderable:  true,
+		Stored:     true,
+		Type:       "string",
 	},
 	"OTPEnabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -800,6 +823,22 @@ of the LDAP is issued from a public truster CA.`,
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"ldapsubjectkey": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "LDAPSubjectKey",
+		DefaultValue:   "uid",
+		Description: `LDAPSubjectKey holds key to be used to populate the subject. If you want to
+use the user as a subject, for Windows based systems you may use
+'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+also use any alternate key.`,
+		Exposed:    true,
+		Filterable: true,
+		Format:     "free",
+		Name:       "LDAPSubjectKey",
+		Orderable:  true,
+		Stored:     true,
+		Type:       "string",
 	},
 	"otpenabled": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
