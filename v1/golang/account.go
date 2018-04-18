@@ -126,6 +126,10 @@ type Account struct {
 	// LDAPEnabled triggers if the account uses it's own LDAP for authentication.
 	LDAPEnabled bool `json:"LDAPEnabled" bson:"ldapenabled" mapstructure:"LDAPEnabled,omitempty"`
 
+	// LDAPIgnoredKeys holds a list of keys that must not be imported into Aporeto
+	// authorization system.
+	LDAPIgnoredKeys []string `json:"LDAPIgnoredKeys" bson:"LDAPIgnoredKeys" mapstructure:"LDAPIgnoredKeys,omitempty"`
+
 	// LDAPSubjectKey holds key to be used to populate the subject. If you want to
 	// use the user as a subject, for Windows based systems you may use
 	// 'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
@@ -216,6 +220,7 @@ func NewAccount() *Account {
 		AssociatedQuotaPolicies:  map[string]string{},
 		LDAPBindSearchFilter:     "uid={USERNAME}",
 		LDAPConnSecurityProtocol: "InbandTLS",
+		LDAPIgnoredKeys:           []string{},
 		LDAPSubjectKey:           "uid",
 		Status:                   "Pending",
 	}
@@ -433,6 +438,20 @@ of the LDAP is issued from a public truster CA.`,
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"LDAPIgnoredKeys": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "LDAPIgnoredKeys",
+		Description: `LDAPIgnoredKeys holds a list of keys that must not be imported into Aporeto
+authorization system.`,
+		Exposed:    true,
+		Filterable: true,
+		Format:     "free",
+		Name:       "LDAPIgnoredKeys",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "ignore_list",
+		Type:       "external",
 	},
 	"LDAPSubjectKey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -823,6 +842,20 @@ of the LDAP is issued from a public truster CA.`,
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"LDAPIgnoredKeys": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "LDAPIgnoredKeys",
+		Description: `LDAPIgnoredKeys holds a list of keys that must not be imported into Aporeto
+authorization system.`,
+		Exposed:    true,
+		Filterable: true,
+		Format:     "free",
+		Name:       "LDAPIgnoredKeys",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "ignore_list",
+		Type:       "external",
 	},
 	"ldapsubjectkey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
