@@ -128,7 +128,7 @@ type Account struct {
 
 	// LDAPIgnoredKeys holds a list of keys that must not be imported into Aporeto
 	// authorization system.
-	LDAPIgnoredKeys []string `json:"LDAPIgnoredKeys" bson:"LDAPIgnoredKeys" mapstructure:"LDAPIgnoredKeys,omitempty"`
+	LDAPIgnoredKeys []string `json:"LDAPIgnoredKeys" bson:"ldapignoredkeys" mapstructure:"LDAPIgnoredKeys,omitempty"`
 
 	// LDAPSubjectKey holds key to be used to populate the subject. If you want to
 	// use the user as a subject, for Windows based systems you may use
@@ -220,7 +220,7 @@ func NewAccount() *Account {
 		AssociatedQuotaPolicies:  map[string]string{},
 		LDAPBindSearchFilter:     "uid={USERNAME}",
 		LDAPConnSecurityProtocol: "InbandTLS",
-		LDAPIgnoredKeys:           []string{},
+		LDAPIgnoredKeys:          []string{},
 		LDAPSubjectKey:           "uid",
 		Status:                   "Pending",
 	}
@@ -843,7 +843,7 @@ of the LDAP is issued from a public truster CA.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"LDAPIgnoredKeys": elemental.AttributeSpecification{
+	"ldapignoredkeys": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "LDAPIgnoredKeys",
 		Description: `LDAPIgnoredKeys holds a list of keys that must not be imported into Aporeto
