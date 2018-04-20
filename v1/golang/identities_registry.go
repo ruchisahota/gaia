@@ -66,7 +66,6 @@ func init() {
 	elemental.RegisterIdentity(RootIdentity)
 	elemental.RegisterIdentity(StatsQueryIdentity)
 	elemental.RegisterIdentity(SuggestedPolicyIdentity)
-	elemental.RegisterIdentity(SystemCallIdentity)
 	elemental.RegisterIdentity(TabulationIdentity)
 	elemental.RegisterIdentity(TagIdentity)
 	elemental.RegisterIdentity(TagInjectIdentity)
@@ -210,8 +209,6 @@ func IdentifiableForIdentity(identity string) elemental.Identifiable {
 		return NewStatsQuery()
 	case SuggestedPolicyIdentity.Name:
 		return NewSuggestedPolicy()
-	case SystemCallIdentity.Name:
-		return NewSystemCall()
 	case TabulationIdentity.Name:
 		return NewTabulation()
 	case TagIdentity.Name:
@@ -364,8 +361,6 @@ func IdentifiableForCategory(category string) elemental.Identifiable {
 		return NewStatsQuery()
 	case SuggestedPolicyIdentity.Category:
 		return NewSuggestedPolicy()
-	case SystemCallIdentity.Category:
-		return NewSystemCall()
 	case TabulationIdentity.Category:
 		return NewTabulation()
 	case TagIdentity.Category:
@@ -517,8 +512,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &StatsQueriesList{}
 	case SuggestedPolicyIdentity.Name:
 		return &SuggestedPoliciesList{}
-	case SystemCallIdentity.Name:
-		return &SystemCallsList{}
 	case TabulationIdentity.Name:
 		return &TabulationsList{}
 	case TagIdentity.Name:
@@ -670,8 +663,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &StatsQueriesList{}
 	case SuggestedPolicyIdentity.Category:
 		return &SuggestedPoliciesList{}
-	case SystemCallIdentity.Category:
-		return &SystemCallsList{}
 	case TabulationIdentity.Category:
 		return &TabulationsList{}
 	case TagIdentity.Category:
@@ -761,7 +752,6 @@ func AllIdentities() []elemental.Identity {
 		RootIdentity,
 		StatsQueryIdentity,
 		SuggestedPolicyIdentity,
-		SystemCallIdentity,
 		TabulationIdentity,
 		TagIdentity,
 		TagInjectIdentity,
@@ -1060,8 +1050,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"sugg",
 			"suggs",
 		}
-	case SystemCallIdentity:
-		return []string{}
 	case TabulationIdentity:
 		return []string{
 			"table",

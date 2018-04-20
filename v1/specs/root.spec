@@ -270,13 +270,6 @@ relations:
     create: Render a policy of a given type for a given set of tags.
   create: true
 
-- rest_name: policyrule
-  descriptions:
-    create: Creates a new policy rule.
-    get: Retrieves the list of policy rules.
-  get: true
-  create: true
-
 - rest_name: processingunit
   descriptions:
     create: Creates a new processing unit.
@@ -344,13 +337,6 @@ relations:
   descriptions:
     get: Retrieves a list of network policy suggestion.
   get: true
-
-- rest_name: systemcall
-  descriptions:
-    create: Unused.
-    get: Unused.
-  get: true
-  create: true
 
 - rest_name: tabulation
   descriptions:
