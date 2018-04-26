@@ -238,7 +238,6 @@ var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Node defines the type of the hook.`,
 		Exposed:        true,
 		Name:           "mode",
-		Required:       true,
 		Type:           "enum",
 	},
 	"Namespace": elemental.AttributeSpecification{
@@ -325,7 +324,6 @@ var RemoteProcessorLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Description:    `Node defines the type of the hook.`,
 		Exposed:        true,
 		Name:           "mode",
-		Required:       true,
 		Type:           "enum",
 	},
 	"namespace": elemental.AttributeSpecification{

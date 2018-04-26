@@ -1185,7 +1185,6 @@ the system.
 | -               | -:              |
 | Allowed Value   | `HTTP, L3, TCP` |
 | Default         | `L3`            |
-| Required        | `true`          |
 | Orderable       | `true`          |
 | Filterable      | `true`          |
 
@@ -4154,7 +4153,6 @@ How to import the data.
 | -               | -:                |
 | Allowed Value   | `Append, Replace` |
 | Default         | `Replace`         |
-| Required        | `true`            |
 
 ## Installation
 
@@ -6004,7 +6002,6 @@ Type of the container ecosystem.
 | -               | -:                                |
 | Allowed Value   | `Docker, LinuxService, RKT, User` |
 | Default         | `Docker`                          |
-| Required        | `true`                            |
 | Creation only   | `true`                            |
 | Filterable      | `true`                            |
 
@@ -6470,7 +6467,6 @@ Node defines the type of the hook.
 | -               | -:          |
 | Allowed Value   | `Post, Pre` |
 | Default         | `Pre`       |
-| Required        | `true`      |
 
 #### `namespace (string)`
 
