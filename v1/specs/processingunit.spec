@@ -91,14 +91,14 @@ attributes:
     - LinuxService
     - RKT
     - User
-    default_value: Docker
+    example_value: Docker
     filterable: true
 
 # Relations
 relations:
-- rest_name: apiservice
+- rest_name: service
   descriptions:
-    get: Retrieves the api services used by a processing unit.
+    get: Retrieves the services used by a processing unit.
   get: true
 
 - rest_name: fileaccess

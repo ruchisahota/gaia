@@ -23,5 +23,6 @@ attributes:
     exposed: true
     allowed_choices:
     - Append
-    - Replace
-    default_value: Replace
+    - ReplacePartial
+    - ReplaceFull
+    example_value: Append|ReplacePartial|ReplaceFull

@@ -9,79 +9,42 @@ import (
 	"time"
 )
 
-// ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
-type ProcessingUnitOperationalStatusValue string
-
-const (
-	// ProcessingUnitOperationalStatusInitialized represents the value Initialized.
-	ProcessingUnitOperationalStatusInitialized ProcessingUnitOperationalStatusValue = "Initialized"
-
-	// ProcessingUnitOperationalStatusPaused represents the value Paused.
-	ProcessingUnitOperationalStatusPaused ProcessingUnitOperationalStatusValue = "Paused"
-
-	// ProcessingUnitOperationalStatusRunning represents the value Running.
-	ProcessingUnitOperationalStatusRunning ProcessingUnitOperationalStatusValue = "Running"
-
-	// ProcessingUnitOperationalStatusStopped represents the value Stopped.
-	ProcessingUnitOperationalStatusStopped ProcessingUnitOperationalStatusValue = "Stopped"
-
-	// ProcessingUnitOperationalStatusTerminated represents the value Terminated.
-	ProcessingUnitOperationalStatusTerminated ProcessingUnitOperationalStatusValue = "Terminated"
-)
-
-// ProcessingUnitTypeValue represents the possible values for attribute "type".
-type ProcessingUnitTypeValue string
-
-const (
-	// ProcessingUnitTypeDocker represents the value Docker.
-	ProcessingUnitTypeDocker ProcessingUnitTypeValue = "Docker"
-
-	// ProcessingUnitTypeLinuxService represents the value LinuxService.
-	ProcessingUnitTypeLinuxService ProcessingUnitTypeValue = "LinuxService"
-
-	// ProcessingUnitTypeRKT represents the value RKT.
-	ProcessingUnitTypeRKT ProcessingUnitTypeValue = "RKT"
-
-	// ProcessingUnitTypeUser represents the value User.
-	ProcessingUnitTypeUser ProcessingUnitTypeValue = "User"
-)
-
-// ProcessingUnitIdentity represents the Identity of the object.
-var ProcessingUnitIdentity = elemental.Identity{
-	Name:     "processingunit",
-	Category: "processingunits",
+// RESTAPISpecIdentity represents the Identity of the object.
+var RESTAPISpecIdentity = elemental.Identity{
+	Name:     "restapispec",
+	Category: "restapispecs",
 	Private:  false,
 }
 
-// ProcessingUnitsList represents a list of ProcessingUnits
-type ProcessingUnitsList []*ProcessingUnit
+// RESTAPISpecsList represents a list of RESTAPISpecs
+type RESTAPISpecsList []*RESTAPISpec
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o ProcessingUnitsList) ContentIdentity() elemental.Identity {
+func (o RESTAPISpecsList) ContentIdentity() elemental.Identity {
 
-	return ProcessingUnitIdentity
+	return RESTAPISpecIdentity
 }
 
-// Copy returns a pointer to a copy the ProcessingUnitsList.
-func (o ProcessingUnitsList) Copy() elemental.ContentIdentifiable {
+// Copy returns a pointer to a copy the RESTAPISpecsList.
+func (o RESTAPISpecsList) Copy() elemental.ContentIdentifiable {
 
-	copy := append(ProcessingUnitsList{}, o...)
+	copy := append(RESTAPISpecsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the ProcessingUnitsList.
-func (o ProcessingUnitsList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+// Append appends the objects to the a new copy of the RESTAPISpecsList.
+func (o RESTAPISpecsList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
 
-	out := append(ProcessingUnitsList{}, o...)
+	out := append(RESTAPISpecsList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*ProcessingUnit))
+		out = append(out, obj.(*RESTAPISpec))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
+func (o RESTAPISpecsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -92,7 +55,7 @@ func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o ProcessingUnitsList) DefaultOrder() []string {
+func (o RESTAPISpecsList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -100,13 +63,13 @@ func (o ProcessingUnitsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ProcessingUnitsList) Version() int {
+func (o RESTAPISpecsList) Version() int {
 
 	return 1
 }
 
-// ProcessingUnit represents the model of a processingunit
-type ProcessingUnit struct {
+// RESTAPISpec represents the model of a restapispec
+type RESTAPISpec struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
 
@@ -125,15 +88,8 @@ type ProcessingUnit struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// EnforcerID is the ID of the enforcer associated with the processing unit.
-	EnforcerID string `json:"enforcerID" bson:"enforcerid" mapstructure:"enforcerID,omitempty"`
-
-	// LastSyncTime is the time when the policy was last resolved.
-	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime" mapstructure:"lastSyncTime,omitempty"`
-
-	// Metadata contains tags that can only be set during creation. They must all start
-	// with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
+	// EndPoints is a list of API endpoints that are exposed for the service.
+	Endpoints types.ExposedAPIList `json:"endpoints" bson:"endpoints" mapstructure:"endpoints,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -141,25 +97,18 @@ type ProcessingUnit struct {
 	// Namespace tag attached to an entity.
 	Namespace string `json:"namespace" bson:"namespace" mapstructure:"namespace,omitempty"`
 
-	// NativeContextID is the Docker UUID or service PID.
-	NativeContextID string `json:"nativeContextID" bson:"nativecontextid" mapstructure:"nativeContextID,omitempty"`
-
-	// NetworkServices is the list of services that this processing unit has declared
-	// that it will be listening to. This can happen either with an activation command
-	// or by exposing the ports in a container manifest.
-	NetworkServices types.ProcessingUnitServicesList `json:"networkServices" bson:"networkservices" mapstructure:"networkServices,omitempty"`
-
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// OperationalStatus of the processing unit.
-	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" bson:"operationalstatus" mapstructure:"operationalStatus,omitempty"`
+	// Propagate will propagate the policy to all of its children.
+	Propagate bool `json:"propagate" bson:"propagate" mapstructure:"propagate,omitempty"`
+
+	// If set to true while the policy is propagating, it won't be visible to children
+	// namespace, but still used for policy resolution.
+	PropagationHidden bool `json:"propagationHidden" bson:"propagationhidden" mapstructure:"propagationHidden,omitempty"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
-
-	// Type of the container ecosystem.
-	Type ProcessingUnitTypeValue `json:"type" bson:"type" mapstructure:"type,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -169,46 +118,44 @@ type ProcessingUnit struct {
 	sync.Mutex
 }
 
-// NewProcessingUnit returns a new *ProcessingUnit
-func NewProcessingUnit() *ProcessingUnit {
+// NewRESTAPISpec returns a new *RESTAPISpec
+func NewRESTAPISpec() *RESTAPISpec {
 
-	return &ProcessingUnit{
-		ModelVersion:      1,
-		Annotations:       map[string][]string{},
-		AssociatedTags:    []string{},
-		Metadata:          []string{},
-		NetworkServices:   types.ProcessingUnitServicesList{},
-		NormalizedTags:    []string{},
-		OperationalStatus: "Initialized",
+	return &RESTAPISpec{
+		ModelVersion:   1,
+		Annotations:    map[string][]string{},
+		AssociatedTags: []string{},
+		Endpoints:      types.ExposedAPIList{},
+		NormalizedTags: []string{},
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *ProcessingUnit) Identity() elemental.Identity {
+func (o *RESTAPISpec) Identity() elemental.Identity {
 
-	return ProcessingUnitIdentity
+	return RESTAPISpecIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *ProcessingUnit) Identifier() string {
+func (o *RESTAPISpec) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ProcessingUnit) SetIdentifier(id string) {
+func (o *RESTAPISpec) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *ProcessingUnit) Version() int {
+func (o *RESTAPISpec) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *ProcessingUnit) DefaultOrder() []string {
+func (o *RESTAPISpec) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -216,136 +163,144 @@ func (o *ProcessingUnit) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *ProcessingUnit) Doc() string {
-	return `A Processing Unit reprents anything that can compute. It can be a Docker
-container, or a simple Unix process. They are created, updated and deleted by
-the system as they come and go. You can only modify its tags.  Processing Units
-use Network Access Policies to define which other Processing Units or External
-Services they can communicate with and File Access Policies to define what File
-Paths they can use.`
+func (o *RESTAPISpec) Doc() string {
+	return `RESTAPISpec descibes the REST APIs exposed by a service. These APIs
+can be associated with one or more services.`
 }
 
-func (o *ProcessingUnit) String() string {
+func (o *RESTAPISpec) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *ProcessingUnit) GetAnnotations() map[string][]string {
+func (o *RESTAPISpec) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *ProcessingUnit) SetAnnotations(annotations map[string][]string) {
+func (o *RESTAPISpec) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetArchived returns the Archived of the receiver.
-func (o *ProcessingUnit) GetArchived() bool {
+func (o *RESTAPISpec) GetArchived() bool {
 
 	return o.Archived
 }
 
 // SetArchived sets the given Archived of the receiver.
-func (o *ProcessingUnit) SetArchived(archived bool) {
+func (o *RESTAPISpec) SetArchived(archived bool) {
 
 	o.Archived = archived
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *ProcessingUnit) GetAssociatedTags() []string {
+func (o *RESTAPISpec) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *ProcessingUnit) SetAssociatedTags(associatedTags []string) {
+func (o *RESTAPISpec) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *ProcessingUnit) GetCreateTime() time.Time {
+func (o *RESTAPISpec) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *ProcessingUnit) SetCreateTime(createTime time.Time) {
+func (o *RESTAPISpec) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
-// GetMetadata returns the Metadata of the receiver.
-func (o *ProcessingUnit) GetMetadata() []string {
-
-	return o.Metadata
-}
-
-// SetMetadata sets the given Metadata of the receiver.
-func (o *ProcessingUnit) SetMetadata(metadata []string) {
-
-	o.Metadata = metadata
-}
-
 // GetName returns the Name of the receiver.
-func (o *ProcessingUnit) GetName() string {
+func (o *RESTAPISpec) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *ProcessingUnit) SetName(name string) {
+func (o *RESTAPISpec) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *ProcessingUnit) GetNamespace() string {
+func (o *RESTAPISpec) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *ProcessingUnit) SetNamespace(namespace string) {
+func (o *RESTAPISpec) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *ProcessingUnit) GetNormalizedTags() []string {
+func (o *RESTAPISpec) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *ProcessingUnit) SetNormalizedTags(normalizedTags []string) {
+func (o *RESTAPISpec) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
+// GetPropagate returns the Propagate of the receiver.
+func (o *RESTAPISpec) GetPropagate() bool {
+
+	return o.Propagate
+}
+
+// SetPropagate sets the given Propagate of the receiver.
+func (o *RESTAPISpec) SetPropagate(propagate bool) {
+
+	o.Propagate = propagate
+}
+
+// GetPropagationHidden returns the PropagationHidden of the receiver.
+func (o *RESTAPISpec) GetPropagationHidden() bool {
+
+	return o.PropagationHidden
+}
+
+// SetPropagationHidden sets the given PropagationHidden of the receiver.
+func (o *RESTAPISpec) SetPropagationHidden(propagationHidden bool) {
+
+	o.PropagationHidden = propagationHidden
+}
+
 // GetProtected returns the Protected of the receiver.
-func (o *ProcessingUnit) GetProtected() bool {
+func (o *RESTAPISpec) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *ProcessingUnit) GetUpdateTime() time.Time {
+func (o *RESTAPISpec) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *ProcessingUnit) SetUpdateTime(updateTime time.Time) {
+func (o *RESTAPISpec) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // Validate valides the current information stored into the structure.
-func (o *ProcessingUnit) Validate() error {
+func (o *RESTAPISpec) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -362,14 +317,6 @@ func (o *ProcessingUnit) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT", "User"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -382,24 +329,24 @@ func (o *ProcessingUnit) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*RESTAPISpec) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := ProcessingUnitAttributesMap[name]; ok {
+	if v, ok := RESTAPISpecAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return ProcessingUnitLowerCaseAttributesMap[name]
+	return RESTAPISpecLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*RESTAPISpec) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return ProcessingUnitAttributesMap
+	return RESTAPISpecAttributesMap
 }
 
-// ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
-var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
+// RESTAPISpecAttributesMap represents the map of attribute for RESTAPISpec.
+var RESTAPISpecAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -476,42 +423,15 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"EnforcerID": elemental.AttributeSpecification{
+	"Endpoints": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "EnforcerID",
-		Description:    `EnforcerID is the ID of the enforcer associated with the processing unit.`,
+		ConvertedName:  "Endpoints",
+		Description:    `EndPoints is a list of API endpoints that are exposed for the service.`,
 		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "enforcerID",
+		Name:           "endpoints",
 		Stored:         true,
-		Type:           "string",
-	},
-	"LastSyncTime": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "LastSyncTime",
-		Description:    `LastSyncTime is the time when the policy was last resolved.`,
-		Exposed:        true,
-		Name:           "lastSyncTime",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "time",
-	},
-	"Metadata": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Metadata",
-		CreationOnly:   true,
-		Description: `Metadata contains tags that can only be set during creation. They must all start
-with the '@' prefix, and should only be used by external systems.`,
-		Exposed:    true,
-		Filterable: true,
-		Getter:     true,
-		Name:       "metadata",
-		Setter:     true,
-		Stored:     true,
-		SubType:    "metadata_list",
-		Type:       "external",
+		SubType:        "exposed_api_list",
+		Type:           "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -549,31 +469,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"NativeContextID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NativeContextID",
-		Description:    `NativeContextID is the Docker UUID or service PID.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "nativeContextID",
-		Stored:         true,
-		Type:           "string",
-	},
-	"NetworkServices": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NetworkServices",
-		Description: `NetworkServices is the list of services that this processing unit has declared
-that it will be listening to. This can happen either with an activation command
-or by exposing the ports in a container manifest.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "networkServices",
-		Orderable:  true,
-		Stored:     true,
-		SubType:    "processing_unit_services_list",
-		Type:       "external",
-	},
 	"NormalizedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -589,16 +484,32 @@ or by exposing the ports in a container manifest.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"OperationalStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
-		ConvertedName:  "OperationalStatus",
-		DefaultValue:   ProcessingUnitOperationalStatusInitialized,
-		Description:    `OperationalStatus of the processing unit.`,
+	"Propagate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Propagate",
+		Description:    `Propagate will propagate the policy to all of its children.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "operationalStatus",
+		Getter:         true,
+		Name:           "propagate",
+		Orderable:      true,
+		Setter:         true,
 		Stored:         true,
-		Type:           "enum",
+		Type:           "boolean",
+	},
+	"PropagationHidden": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PropagationHidden",
+		Description: `If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.`,
+		Exposed:    true,
+		Filterable: true,
+		Getter:     true,
+		Name:       "propagationHidden",
+		Orderable:  true,
+		Setter:     true,
+		Stored:     true,
+		Type:       "boolean",
 	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -611,17 +522,6 @@ or by exposing the ports in a container manifest.`,
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Docker", "LinuxService", "RKT", "User"},
-		ConvertedName:  "Type",
-		CreationOnly:   true,
-		Description:    `Type of the container ecosystem.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		Stored:         true,
-		Type:           "enum",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -639,8 +539,8 @@ or by exposing the ports in a container manifest.`,
 	},
 }
 
-// ProcessingUnitLowerCaseAttributesMap represents the map of attribute for ProcessingUnit.
-var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// RESTAPISpecLowerCaseAttributesMap represents the map of attribute for RESTAPISpec.
+var RESTAPISpecLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -717,42 +617,15 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		Stored:         true,
 		Type:           "string",
 	},
-	"enforcerid": elemental.AttributeSpecification{
+	"endpoints": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "EnforcerID",
-		Description:    `EnforcerID is the ID of the enforcer associated with the processing unit.`,
+		ConvertedName:  "Endpoints",
+		Description:    `EndPoints is a list of API endpoints that are exposed for the service.`,
 		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "enforcerID",
+		Name:           "endpoints",
 		Stored:         true,
-		Type:           "string",
-	},
-	"lastsynctime": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "LastSyncTime",
-		Description:    `LastSyncTime is the time when the policy was last resolved.`,
-		Exposed:        true,
-		Name:           "lastSyncTime",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "time",
-	},
-	"metadata": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Metadata",
-		CreationOnly:   true,
-		Description: `Metadata contains tags that can only be set during creation. They must all start
-with the '@' prefix, and should only be used by external systems.`,
-		Exposed:    true,
-		Filterable: true,
-		Getter:     true,
-		Name:       "metadata",
-		Setter:     true,
-		Stored:     true,
-		SubType:    "metadata_list",
-		Type:       "external",
+		SubType:        "exposed_api_list",
+		Type:           "external",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -790,31 +663,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"nativecontextid": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NativeContextID",
-		Description:    `NativeContextID is the Docker UUID or service PID.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "nativeContextID",
-		Stored:         true,
-		Type:           "string",
-	},
-	"networkservices": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NetworkServices",
-		Description: `NetworkServices is the list of services that this processing unit has declared
-that it will be listening to. This can happen either with an activation command
-or by exposing the ports in a container manifest.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "networkServices",
-		Orderable:  true,
-		Stored:     true,
-		SubType:    "processing_unit_services_list",
-		Type:       "external",
-	},
 	"normalizedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -830,16 +678,32 @@ or by exposing the ports in a container manifest.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"operationalstatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
-		ConvertedName:  "OperationalStatus",
-		DefaultValue:   ProcessingUnitOperationalStatusInitialized,
-		Description:    `OperationalStatus of the processing unit.`,
+	"propagate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Propagate",
+		Description:    `Propagate will propagate the policy to all of its children.`,
 		Exposed:        true,
 		Filterable:     true,
-		Name:           "operationalStatus",
+		Getter:         true,
+		Name:           "propagate",
+		Orderable:      true,
+		Setter:         true,
 		Stored:         true,
-		Type:           "enum",
+		Type:           "boolean",
+	},
+	"propagationhidden": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PropagationHidden",
+		Description: `If set to true while the policy is propagating, it won't be visible to children
+namespace, but still used for policy resolution.`,
+		Exposed:    true,
+		Filterable: true,
+		Getter:     true,
+		Name:       "propagationHidden",
+		Orderable:  true,
+		Setter:     true,
+		Stored:     true,
+		Type:       "boolean",
 	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -852,17 +716,6 @@ or by exposing the ports in a container manifest.`,
 		Orderable:      true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Docker", "LinuxService", "RKT", "User"},
-		ConvertedName:  "Type",
-		CreationOnly:   true,
-		Description:    `Type of the container ecosystem.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		Stored:         true,
-		Type:           "enum",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

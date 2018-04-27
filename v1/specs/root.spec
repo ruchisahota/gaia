@@ -55,10 +55,17 @@ relations:
     create: Verfies the authorizations on various identities for a given token.
   create: true
 
-- rest_name: apiservice
+- rest_name: restapispec
   descriptions:
-    create: Creates a new API Service.
-    get: Retrieves the list of API Services.
+    create: Creates a new REST API specification.
+    get: Retrieves the list of REST API specifications.
+  get: true
+  create: true
+
+- rest_name: service
+  descriptions:
+    create: Creates a new Service.
+    get: Retrieves the list of Services.
   get: true
   create: true
 
@@ -143,8 +150,8 @@ relations:
 
 - rest_name: export
   descriptions:
-    create: Exports all policies and related object of a namespace.
-  create: true
+    get: Exports all policies and related object of a namespace.
+  get: true
 
 - rest_name: externalaccess
   descriptions:

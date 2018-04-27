@@ -29,11 +29,13 @@ type GraphEdge struct {
 	SourceID              string                 `json:"sourceID"`
 	SourceType            GraphEdgeExtremityType `json:"sourceType"`
 	PolicyIDs             map[string]int         `json:"policyIDs"`
+	ServiceIDs            map[string]int         `json:"serviceIDs"`
 	Encrypted             int                    `json:"encrypted"`
 	ObservedAcceptedFlows int                    `json:"observedAcceptedFlows"`
 	ObservedRejectedFlows int                    `json:"observedRejectedFlows"`
 	ObservedPolicyIDs     map[string]int         `json:"observedPolicyIDs"`
 	ObservedEncrypted     int                    `json:"observedEncrypted"`
+	ObservedServiceIDs    map[string]int         `json:"observedServiceIDs"`
 }
 
 // NewGraphEdge returns a new *GraphEdge
@@ -45,14 +47,17 @@ func NewGraphEdge() *GraphEdge {
 type GraphNodeType string
 
 const (
-	// GraphNodeTypeContainer represents the value Container.
-	GraphNodeTypeContainer GraphNodeType = "Container"
+	// GraphNodeTypeDocker represents the value Docker.
+	GraphNodeTypeDocker GraphNodeType = "Docker"
 
 	// GraphNodeTypeExternalService represents the value EternalService.
 	GraphNodeTypeExternalService GraphNodeType = "ExternalService"
 
 	// GraphNodeTypeVolume represents the value Volume.
 	GraphNodeTypeVolume GraphNodeType = "Volume"
+
+	// GraphNodeTypeClaim represents the value Claim.
+	GraphNodeTypeClaim GraphNodeType = "Claim"
 )
 
 // GraphNodeMap is a map of id to GraphNode

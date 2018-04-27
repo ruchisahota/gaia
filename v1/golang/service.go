@@ -9,56 +9,53 @@ import (
 	"time"
 )
 
-// APIServiceTypeValue represents the possible values for attribute "type".
-type APIServiceTypeValue string
+// ServiceTypeValue represents the possible values for attribute "type".
+type ServiceTypeValue string
 
 const (
-	// APIServiceTypeHTTP represents the value HTTP.
-	APIServiceTypeHTTP APIServiceTypeValue = "HTTP"
+	// ServiceTypeHTTP represents the value HTTP.
+	ServiceTypeHTTP ServiceTypeValue = "HTTP"
 
-	// APIServiceTypeL3 represents the value L3.
-	APIServiceTypeL3 APIServiceTypeValue = "L3"
-
-	// APIServiceTypeTCP represents the value TCP.
-	APIServiceTypeTCP APIServiceTypeValue = "TCP"
+	// ServiceTypeTCP represents the value TCP.
+	ServiceTypeTCP ServiceTypeValue = "TCP"
 )
 
-// APIServiceIdentity represents the Identity of the object.
-var APIServiceIdentity = elemental.Identity{
-	Name:     "apiservice",
-	Category: "apiservices",
+// ServiceIdentity represents the Identity of the object.
+var ServiceIdentity = elemental.Identity{
+	Name:     "service",
+	Category: "services",
 	Private:  false,
 }
 
-// APIServicesList represents a list of APIServices
-type APIServicesList []*APIService
+// ServicesList represents a list of Services
+type ServicesList []*Service
 
 // ContentIdentity returns the identity of the objects in the list.
-func (o APIServicesList) ContentIdentity() elemental.Identity {
+func (o ServicesList) ContentIdentity() elemental.Identity {
 
-	return APIServiceIdentity
+	return ServiceIdentity
 }
 
-// Copy returns a pointer to a copy the APIServicesList.
-func (o APIServicesList) Copy() elemental.ContentIdentifiable {
+// Copy returns a pointer to a copy the ServicesList.
+func (o ServicesList) Copy() elemental.ContentIdentifiable {
 
-	copy := append(APIServicesList{}, o...)
+	copy := append(ServicesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the APIServicesList.
-func (o APIServicesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
+// Append appends the objects to the a new copy of the ServicesList.
+func (o ServicesList) Append(objects ...elemental.Identifiable) elemental.ContentIdentifiable {
 
-	out := append(APIServicesList{}, o...)
+	out := append(ServicesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*APIService))
+		out = append(out, obj.(*Service))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o APIServicesList) List() elemental.IdentifiablesList {
+func (o ServicesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -69,7 +66,7 @@ func (o APIServicesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o APIServicesList) DefaultOrder() []string {
+func (o ServicesList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -77,35 +74,31 @@ func (o APIServicesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o APIServicesList) Version() int {
+func (o ServicesList) Version() int {
 
 	return 1
 }
 
-// APIService represents the model of a apiservice
-type APIService struct {
-	// FQDN is the fully qualified domain name of the service. It is required
-	// for external API services. For HTTP services, FQND must match the host part
-	// of the URI that is used to call a service. It will be used for automatically
-	// generating service certificates for internal services.
-	FQDN string `json:"FQDN" bson:"fqdn" mapstructure:"FQDN,omitempty"`
-
+// Service represents the model of a service
+type Service struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
 
-	// IPList is the list of ip address or subnets of the service if available. This is
-	// an
-	// optional field and it can be automatically populated at runtime by the enforcers
-	// if DNS resolution is available.
-	IPList types.IPList `json:"IPList" bson:"iplist" mapstructure:"IPList,omitempty"`
+	// IPs is the list of IP addresses where the service can be accessed.
+	// This is an optional attribute and is only required if no host names are
+	// provided.
+	// The system will automatically resolve IP addresses from  host names otherwise.
+	IPs types.IPList `json:"IPs" bson:"ips" mapstructure:"IPs,omitempty"`
 
 	// JWTSigningCertificate is a certificate that can be used to validate user JWT in
 	// HTTP requests. This is an optional field, needed only if user JWT validation is
 	// required for this service. The certificate must be in PEM format.
 	JWTSigningCertificate string `json:"JWTSigningCertificate" bson:"jwtsigningcertificate" mapstructure:"JWTSigningCertificate,omitempty"`
 
-	// AllServiceTags is an internal object that summarizes all the implementedBy tags
-	// to accelerate database searches. It is not exposed.
+	// This is a set of all API tags for matching in the DB.
+	AllAPITags []string `json:"-" bson:"allapitags" mapstructure:"-,omitempty"`
+
+	// This is a set of all selector tags for matching in the DB.
 	AllServiceTags []string `json:"-" bson:"allservicetags" mapstructure:"-,omitempty"`
 
 	// Annotation stores additional information about an entity.
@@ -123,25 +116,27 @@ type APIService struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// ExposedAPIs is a list of API endpoints that are exposed for the service.
-	ExposedAPIs types.ExposedAPIList `json:"exposedAPIs" bson:"exposedapis" mapstructure:"exposedAPIs,omitempty"`
+	// Endpoints is a read only attribute that actually resolves the API
+	// endpoints that the service is exposing. Only valid during policy rendering.
+	Endpoints types.ExposedAPIList `json:"endpoints" bson:"-" mapstructure:"endpoints,omitempty"`
+
+	// ExposedAPIs contains a tag expression that will determine which
+	// APIs a service is exposing. The APIs can be defined as the RESTAPISpec or
+	// similar specifications for other L7 protocols.
+	ExposedAPIs [][]string `json:"exposedAPIs" bson:"exposedapis" mapstructure:"exposedAPIs,omitempty"`
+
+	// ExposedPort is the port that the service can be accessed. Note that
+	// this is different from the Port attribute that describes the port that the
+	// service is actually listening. For example if a load balancer is used, the
+	// ExposedPort is the port that the load balancer is listening for the service,
+	// whereas the port that the implementation is listening can be different.
+	ExposedPort int `json:"exposedPort" bson:"exposedport" mapstructure:"exposedPort,omitempty"`
 
 	// External is a boolean that indicates if this is an external service.
 	External bool `json:"external" bson:"external" mapstructure:"external,omitempty"`
 
-	// ExternalServiceCA is the certificate authority that the service is using. This
-	// is needed for external API services with private certificate authorities. The
-	// field is optional. If provided, this must be a valid PEM CA file.
-	ExternalServiceCA string `json:"externalServiceCA" bson:"externalserviceca" mapstructure:"externalServiceCA,omitempty"`
-
-	// listeningPort is the port that the application is listening to and
-	// it can be different than the ports describing the service. This is needed for
-	// port mapping use cases where there is private and public ports.
-	ListeningPort string `json:"listeningPort" bson:"listeningport" mapstructure:"listeningPort,omitempty"`
-
-	// Metadata contains tags that can only be set during creation. They must all start
-	// with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
+	// Hosts are the names that the service can be accessed with.
+	Hosts []string `json:"hosts" bson:"hosts" mapstructure:"hosts,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -149,29 +144,28 @@ type APIService struct {
 	// Namespace tag attached to an entity.
 	Namespace string `json:"namespace" bson:"namespace" mapstructure:"namespace,omitempty"`
 
-	// NetworkProtocol is the network protocol of the service.
-	NetworkProtocol int `json:"networkProtocol" bson:"networkprotocol" mapstructure:"networkProtocol,omitempty"`
-
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// Ports is a list of the public ports for the service. Ports are either
-	// exact match, or a range portMin:portMax. For HTTP services only exact match
-	// ports aresupported. These should be the ports that are used by other services
-	// to communicate with the defined service.
-	Ports types.PortList `json:"ports" bson:"ports" mapstructure:"ports,omitempty"`
+	// Port is the port that the implementation of the service is listening to and
+	// it can be different than the exposedPorts describing the service. This is needed
+	// for port mapping use cases where there is private and public ports.
+	Port int `json:"port" bson:"port" mapstructure:"port,omitempty"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// RuntimeSelectors is a list of tag selectors that identifies the Processing
-	// Units that will implement this service. The list can be empty for external
-	// services.
-	RuntimeSelectors [][]string `json:"runtimeSelectors" bson:"runtimeselectors" mapstructure:"runtimeSelectors,omitempty"`
+	// Selectors contains the tag expression that an a processing unit
+	// must match in order to implement this particular service.
+	Selectors [][]string `json:"selectors" bson:"selectors" mapstructure:"selectors,omitempty"`
 
-	// Type is the type of the service (HTTP, TCP, etc). More types will be added to
-	// the system.
-	Type APIServiceTypeValue `json:"type" bson:"type" mapstructure:"type,omitempty"`
+	// ServiceCA  is the certificate authority that the service is using. This
+	// is needed for external services with private certificate authorities. The
+	// field is optional. If provided, this must be a valid PEM CA file.
+	ServiceCA string `json:"serviceCA" bson:"serviceca" mapstructure:"serviceCA,omitempty"`
+
+	// Type is the type of the service.
+	Type ServiceTypeValue `json:"type" bson:"type" mapstructure:"type,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -181,51 +175,49 @@ type APIService struct {
 	sync.Mutex
 }
 
-// NewAPIService returns a new *APIService
-func NewAPIService() *APIService {
+// NewService returns a new *Service
+func NewService() *Service {
 
-	return &APIService{
-		ModelVersion:    1,
-		AllServiceTags:  []string{},
-		Annotations:     map[string][]string{},
-		AssociatedTags:  []string{},
-		ExposedAPIs:     types.ExposedAPIList{},
-		External:        false,
-		IPList:          types.IPList{},
-		Metadata:        []string{},
-		NetworkProtocol: 6,
-		NormalizedTags:  []string{},
-		Ports:           types.PortList{},
-		Type:            "L3",
+	return &Service{
+		ModelVersion:   1,
+		AllAPITags:     []string{},
+		AllServiceTags: []string{},
+		Annotations:    map[string][]string{},
+		AssociatedTags: []string{},
+		Endpoints:      types.ExposedAPIList{},
+		External:       false,
+		IPs:            types.IPList{},
+		NormalizedTags: []string{},
+		Type:           "HTTP",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *APIService) Identity() elemental.Identity {
+func (o *Service) Identity() elemental.Identity {
 
-	return APIServiceIdentity
+	return ServiceIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *APIService) Identifier() string {
+func (o *Service) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *APIService) SetIdentifier(id string) {
+func (o *Service) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *APIService) Version() int {
+func (o *Service) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *APIService) DefaultOrder() []string {
+func (o *Service) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -233,134 +225,122 @@ func (o *APIService) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *APIService) Doc() string {
-	return `APIService descibes a L4/L7 service and the corresponding implementation. It
-allows users to define their services, the APIs that they expose, the
-implementation of the service. These definitions can be used by network policy
-in order to define advanced controls based on the APIs.`
+func (o *Service) Doc() string {
+	return `A Service defines a generic service object at L4 or L7 that encapsulates the
+description of a micro-service. A service exposes APIs and can be implemented
+through third party entities (such as a cloud provider) or through  processing
+units.`
 }
 
-func (o *APIService) String() string {
+func (o *Service) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *APIService) GetAnnotations() map[string][]string {
+func (o *Service) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *APIService) SetAnnotations(annotations map[string][]string) {
+func (o *Service) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetArchived returns the Archived of the receiver.
-func (o *APIService) GetArchived() bool {
+func (o *Service) GetArchived() bool {
 
 	return o.Archived
 }
 
 // SetArchived sets the given Archived of the receiver.
-func (o *APIService) SetArchived(archived bool) {
+func (o *Service) SetArchived(archived bool) {
 
 	o.Archived = archived
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *APIService) GetAssociatedTags() []string {
+func (o *Service) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *APIService) SetAssociatedTags(associatedTags []string) {
+func (o *Service) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *APIService) GetCreateTime() time.Time {
+func (o *Service) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *APIService) SetCreateTime(createTime time.Time) {
+func (o *Service) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
-// GetMetadata returns the Metadata of the receiver.
-func (o *APIService) GetMetadata() []string {
-
-	return o.Metadata
-}
-
-// SetMetadata sets the given Metadata of the receiver.
-func (o *APIService) SetMetadata(metadata []string) {
-
-	o.Metadata = metadata
-}
-
 // GetName returns the Name of the receiver.
-func (o *APIService) GetName() string {
+func (o *Service) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *APIService) SetName(name string) {
+func (o *Service) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *APIService) GetNamespace() string {
+func (o *Service) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *APIService) SetNamespace(namespace string) {
+func (o *Service) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *APIService) GetNormalizedTags() []string {
+func (o *Service) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *APIService) SetNormalizedTags(normalizedTags []string) {
+func (o *Service) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *APIService) GetProtected() bool {
+func (o *Service) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *APIService) GetUpdateTime() time.Time {
+func (o *Service) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *APIService) SetUpdateTime(updateTime time.Time) {
+func (o *Service) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // Validate valides the current information stored into the structure.
-func (o *APIService) Validate() error {
+func (o *Service) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -369,7 +349,11 @@ func (o *APIService) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidatePattern("listeningPort", o.ListeningPort, `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)$`, false); err != nil {
+	if err := elemental.ValidateRequiredInt("exposedPort", o.ExposedPort); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
+	if err := elemental.ValidateMaximumInt("exposedPort", o.ExposedPort, int(65535), false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -381,19 +365,15 @@ func (o *APIService) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateMaximumInt("networkProtocol", o.NetworkProtocol, int(255), false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateMinimumInt("networkProtocol", o.NetworkProtocol, int(1), false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("ports", o.Ports); err != nil {
+	if err := elemental.ValidateRequiredInt("port", o.Port); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"HTTP", "L3", "TCP"}, false); err != nil {
+	if err := elemental.ValidateMaximumInt("port", o.Port, int(65535), false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"HTTP", "TCP"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -409,39 +389,24 @@ func (o *APIService) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*APIService) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Service) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := APIServiceAttributesMap[name]; ok {
+	if v, ok := ServiceAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return APIServiceLowerCaseAttributesMap[name]
+	return ServiceLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*APIService) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Service) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return APIServiceAttributesMap
+	return ServiceAttributesMap
 }
 
-// APIServiceAttributesMap represents the map of attribute for APIService.
-var APIServiceAttributesMap = map[string]elemental.AttributeSpecification{
-	"FQDN": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "FQDN",
-		Description: `FQDN is the fully qualified domain name of the service. It is required
-for external API services. For HTTP services, FQND must match the host part
-of the URI that is used to call a service. It will be used for automatically
-generating service certificates for internal services.`,
-		Exposed:    true,
-		Filterable: true,
-		Format:     "free",
-		Name:       "FQDN",
-		Orderable:  true,
-		Stored:     true,
-		Type:       "string",
-	},
+// ServiceAttributesMap represents the map of attribute for Service.
+var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -458,15 +423,15 @@ generating service certificates for internal services.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"IPList": elemental.AttributeSpecification{
+	"IPs": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "IPList",
-		Description: `IPList is the list of ip address or subnets of the service if available. This is
-an
-optional field and it can be automatically populated at runtime by the enforcers
-if DNS resolution is available.`,
+		ConvertedName:  "IPs",
+		Description: `IPs is the list of IP addresses where the service can be accessed.
+This is an optional attribute and is only required if no host names are
+provided.
+The system will automatically resolve IP addresses from  host names otherwise.`,
 		Exposed: true,
-		Name:    "IPList",
+		Name:    "IPs",
 		Stored:  true,
 		SubType: "ip_list",
 		Type:    "external",
@@ -483,15 +448,25 @@ required for this service. The certificate must be in PEM format.`,
 		Stored:  true,
 		Type:    "string",
 	},
+	"AllAPITags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AllAPITags",
+		Description:    `This is a set of all API tags for matching in the DB.`,
+		Name:           "allAPITags",
+		ReadOnly:       true,
+		Stored:         true,
+		SubType:        "tags_list",
+		Type:           "external",
+	},
 	"AllServiceTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllServiceTags",
-		Description: `AllServiceTags is an internal object that summarizes all the implementedBy tags
-to accelerate database searches. It is not exposed.`,
-		Name:    "allServiceTags",
-		Stored:  true,
-		SubType: "tags_list",
-		Type:    "external",
+		Description:    `This is a set of all selector tags for matching in the DB.`,
+		Name:           "allServiceTags",
+		ReadOnly:       true,
+		Stored:         true,
+		SubType:        "tags_list",
+		Type:           "external",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -553,20 +528,47 @@ to accelerate database searches. It is not exposed.`,
 		Stored:         true,
 		Type:           "string",
 	},
+	"Endpoints": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Endpoints",
+		Description: `Endpoints is a read only attribute that actually resolves the API
+endpoints that the service is exposing. Only valid during policy rendering.`,
+		Exposed:  true,
+		Name:     "endpoints",
+		ReadOnly: true,
+		SubType:  "exposed_api_list",
+		Type:     "external",
+	},
 	"ExposedAPIs": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ExposedAPIs",
-		Description:    `ExposedAPIs is a list of API endpoints that are exposed for the service.`,
-		Exposed:        true,
-		Name:           "exposedAPIs",
-		Stored:         true,
-		SubType:        "exposed_api_list",
-		Type:           "external",
+		Description: `ExposedAPIs contains a tag expression that will determine which
+APIs a service is exposing. The APIs can be defined as the RESTAPISpec or
+similar specifications for other L7 protocols.`,
+		Exposed: true,
+		Name:    "exposedAPIs",
+		Stored:  true,
+		SubType: "policies_list",
+		Type:    "external",
+	},
+	"ExposedPort": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "ExposedPort",
+		Description: `ExposedPort is the port that the service can be accessed. Note that
+this is different from the Port attribute that describes the port that the
+service is actually listening. For example if a load balancer is used, the
+ExposedPort is the port that the load balancer is listening for the service,
+whereas the port that the implementation is listening can be different.`,
+		Exposed:  true,
+		MaxValue: 65535,
+		Name:     "exposedPort",
+		Required: true,
+		Stored:   true,
+		Type:     "integer",
 	},
 	"External": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "External",
-		DefaultValue:   false,
 		Description:    `External is a boolean that indicates if this is an external service.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -575,44 +577,17 @@ to accelerate database searches. It is not exposed.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"ExternalServiceCA": elemental.AttributeSpecification{
+	"Hosts": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "ExternalServiceCA",
-		Description: `ExternalServiceCA is the certificate authority that the service is using. This
-is needed for external API services with private certificate authorities. The
-field is optional. If provided, this must be a valid PEM CA file.`,
-		Exposed: true,
-		Format:  "free",
-		Name:    "externalServiceCA",
-		Stored:  true,
-		Type:    "string",
-	},
-	"ListeningPort": elemental.AttributeSpecification{
-		AllowedChars:   `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)$`,
-		AllowedChoices: []string{},
-		ConvertedName:  "ListeningPort",
-		Description: `listeningPort is the port that the application is listening to and
-it can be different than the ports describing the service. This is needed for
-port mapping use cases where there is private and public ports.`,
-		Exposed: true,
-		Name:    "listeningPort",
-		Stored:  true,
-		Type:    "string",
-	},
-	"Metadata": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Metadata",
-		CreationOnly:   true,
-		Description: `Metadata contains tags that can only be set during creation. They must all start
-with the '@' prefix, and should only be used by external systems.`,
-		Exposed:    true,
-		Filterable: true,
-		Getter:     true,
-		Name:       "metadata",
-		Setter:     true,
-		Stored:     true,
-		SubType:    "metadata_list",
-		Type:       "external",
+		ConvertedName:  "Hosts",
+		Description:    `Hosts are the names that the service can be accessed with.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "hosts",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -650,20 +625,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"NetworkProtocol": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NetworkProtocol",
-		DefaultValue:   6,
-		Description:    `NetworkProtocol is the network protocol of the service.`,
-		Exposed:        true,
-		Filterable:     true,
-		MaxValue:       255,
-		MinValue:       1,
-		Name:           "networkProtocol",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "integer",
-	},
 	"NormalizedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -679,19 +640,18 @@ with the '@' prefix, and should only be used by external systems.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"Ports": elemental.AttributeSpecification{
+	"Port": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Ports",
-		Description: `Ports is a list of the public ports for the service. Ports are either
-exact match, or a range portMin:portMax. For HTTP services only exact match
-ports aresupported. These should be the ports that are used by other services
-to communicate with the defined service.`,
+		ConvertedName:  "Port",
+		Description: `Port is the port that the implementation of the service is listening to and
+it can be different than the exposedPorts describing the service. This is needed
+for port mapping use cases where there is private and public ports.`,
 		Exposed:  true,
-		Name:     "ports",
+		MaxValue: 65535,
+		Name:     "port",
 		Required: true,
 		Stored:   true,
-		SubType:  "port_list",
-		Type:     "external",
+		Type:     "integer",
 	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -705,30 +665,38 @@ to communicate with the defined service.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"RuntimeSelectors": elemental.AttributeSpecification{
+	"Selectors": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "RuntimeSelectors",
-		Description: `RuntimeSelectors is a list of tag selectors that identifies the Processing
-Units that will implement this service. The list can be empty for external
-services.`,
+		ConvertedName:  "Selectors",
+		Description: `Selectors contains the tag expression that an a processing unit
+must match in order to implement this particular service.`,
 		Exposed: true,
-		Name:    "runtimeSelectors",
+		Name:    "selectors",
 		Stored:  true,
-		SubType: "target_tags",
+		SubType: "policies_list",
 		Type:    "external",
 	},
+	"ServiceCA": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "ServiceCA",
+		Description: `ServiceCA  is the certificate authority that the service is using. This
+is needed for external services with private certificate authorities. The
+field is optional. If provided, this must be a valid PEM CA file.`,
+		Exposed: true,
+		Format:  "free",
+		Name:    "serviceCA",
+		Stored:  true,
+		Type:    "string",
+	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"HTTP", "L3", "TCP"},
+		AllowedChoices: []string{"HTTP", "TCP"},
 		ConvertedName:  "Type",
-		DefaultValue:   APIServiceTypeL3,
-		Description: `Type is the type of the service (HTTP, TCP, etc). More types will be added to
-the system.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "type",
-		Orderable:  true,
-		Stored:     true,
-		Type:       "enum",
+		DefaultValue:   ServiceTypeHTTP,
+		Description:    `Type is the type of the service.`,
+		Exposed:        true,
+		Name:           "type",
+		Stored:         true,
+		Type:           "enum",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -746,23 +714,8 @@ the system.`,
 	},
 }
 
-// APIServiceLowerCaseAttributesMap represents the map of attribute for APIService.
-var APIServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"fqdn": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "FQDN",
-		Description: `FQDN is the fully qualified domain name of the service. It is required
-for external API services. For HTTP services, FQND must match the host part
-of the URI that is used to call a service. It will be used for automatically
-generating service certificates for internal services.`,
-		Exposed:    true,
-		Filterable: true,
-		Format:     "free",
-		Name:       "FQDN",
-		Orderable:  true,
-		Stored:     true,
-		Type:       "string",
-	},
+// ServiceLowerCaseAttributesMap represents the map of attribute for Service.
+var ServiceLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -779,15 +732,15 @@ generating service certificates for internal services.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"iplist": elemental.AttributeSpecification{
+	"ips": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "IPList",
-		Description: `IPList is the list of ip address or subnets of the service if available. This is
-an
-optional field and it can be automatically populated at runtime by the enforcers
-if DNS resolution is available.`,
+		ConvertedName:  "IPs",
+		Description: `IPs is the list of IP addresses where the service can be accessed.
+This is an optional attribute and is only required if no host names are
+provided.
+The system will automatically resolve IP addresses from  host names otherwise.`,
 		Exposed: true,
-		Name:    "IPList",
+		Name:    "IPs",
 		Stored:  true,
 		SubType: "ip_list",
 		Type:    "external",
@@ -804,15 +757,25 @@ required for this service. The certificate must be in PEM format.`,
 		Stored:  true,
 		Type:    "string",
 	},
+	"allapitags": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AllAPITags",
+		Description:    `This is a set of all API tags for matching in the DB.`,
+		Name:           "allAPITags",
+		ReadOnly:       true,
+		Stored:         true,
+		SubType:        "tags_list",
+		Type:           "external",
+	},
 	"allservicetags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllServiceTags",
-		Description: `AllServiceTags is an internal object that summarizes all the implementedBy tags
-to accelerate database searches. It is not exposed.`,
-		Name:    "allServiceTags",
-		Stored:  true,
-		SubType: "tags_list",
-		Type:    "external",
+		Description:    `This is a set of all selector tags for matching in the DB.`,
+		Name:           "allServiceTags",
+		ReadOnly:       true,
+		Stored:         true,
+		SubType:        "tags_list",
+		Type:           "external",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -874,20 +837,47 @@ to accelerate database searches. It is not exposed.`,
 		Stored:         true,
 		Type:           "string",
 	},
+	"endpoints": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Endpoints",
+		Description: `Endpoints is a read only attribute that actually resolves the API
+endpoints that the service is exposing. Only valid during policy rendering.`,
+		Exposed:  true,
+		Name:     "endpoints",
+		ReadOnly: true,
+		SubType:  "exposed_api_list",
+		Type:     "external",
+	},
 	"exposedapis": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ExposedAPIs",
-		Description:    `ExposedAPIs is a list of API endpoints that are exposed for the service.`,
-		Exposed:        true,
-		Name:           "exposedAPIs",
-		Stored:         true,
-		SubType:        "exposed_api_list",
-		Type:           "external",
+		Description: `ExposedAPIs contains a tag expression that will determine which
+APIs a service is exposing. The APIs can be defined as the RESTAPISpec or
+similar specifications for other L7 protocols.`,
+		Exposed: true,
+		Name:    "exposedAPIs",
+		Stored:  true,
+		SubType: "policies_list",
+		Type:    "external",
+	},
+	"exposedport": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "ExposedPort",
+		Description: `ExposedPort is the port that the service can be accessed. Note that
+this is different from the Port attribute that describes the port that the
+service is actually listening. For example if a load balancer is used, the
+ExposedPort is the port that the load balancer is listening for the service,
+whereas the port that the implementation is listening can be different.`,
+		Exposed:  true,
+		MaxValue: 65535,
+		Name:     "exposedPort",
+		Required: true,
+		Stored:   true,
+		Type:     "integer",
 	},
 	"external": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "External",
-		DefaultValue:   false,
 		Description:    `External is a boolean that indicates if this is an external service.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -896,44 +886,17 @@ to accelerate database searches. It is not exposed.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"externalserviceca": elemental.AttributeSpecification{
+	"hosts": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "ExternalServiceCA",
-		Description: `ExternalServiceCA is the certificate authority that the service is using. This
-is needed for external API services with private certificate authorities. The
-field is optional. If provided, this must be a valid PEM CA file.`,
-		Exposed: true,
-		Format:  "free",
-		Name:    "externalServiceCA",
-		Stored:  true,
-		Type:    "string",
-	},
-	"listeningport": elemental.AttributeSpecification{
-		AllowedChars:   `^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)$`,
-		AllowedChoices: []string{},
-		ConvertedName:  "ListeningPort",
-		Description: `listeningPort is the port that the application is listening to and
-it can be different than the ports describing the service. This is needed for
-port mapping use cases where there is private and public ports.`,
-		Exposed: true,
-		Name:    "listeningPort",
-		Stored:  true,
-		Type:    "string",
-	},
-	"metadata": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Metadata",
-		CreationOnly:   true,
-		Description: `Metadata contains tags that can only be set during creation. They must all start
-with the '@' prefix, and should only be used by external systems.`,
-		Exposed:    true,
-		Filterable: true,
-		Getter:     true,
-		Name:       "metadata",
-		Setter:     true,
-		Stored:     true,
-		SubType:    "metadata_list",
-		Type:       "external",
+		ConvertedName:  "Hosts",
+		Description:    `Hosts are the names that the service can be accessed with.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "hosts",
+		Orderable:      true,
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -971,20 +934,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"networkprotocol": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NetworkProtocol",
-		DefaultValue:   6,
-		Description:    `NetworkProtocol is the network protocol of the service.`,
-		Exposed:        true,
-		Filterable:     true,
-		MaxValue:       255,
-		MinValue:       1,
-		Name:           "networkProtocol",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "integer",
-	},
 	"normalizedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -1000,19 +949,18 @@ with the '@' prefix, and should only be used by external systems.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"ports": elemental.AttributeSpecification{
+	"port": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Ports",
-		Description: `Ports is a list of the public ports for the service. Ports are either
-exact match, or a range portMin:portMax. For HTTP services only exact match
-ports aresupported. These should be the ports that are used by other services
-to communicate with the defined service.`,
+		ConvertedName:  "Port",
+		Description: `Port is the port that the implementation of the service is listening to and
+it can be different than the exposedPorts describing the service. This is needed
+for port mapping use cases where there is private and public ports.`,
 		Exposed:  true,
-		Name:     "ports",
+		MaxValue: 65535,
+		Name:     "port",
 		Required: true,
 		Stored:   true,
-		SubType:  "port_list",
-		Type:     "external",
+		Type:     "integer",
 	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1026,30 +974,38 @@ to communicate with the defined service.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"runtimeselectors": elemental.AttributeSpecification{
+	"selectors": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "RuntimeSelectors",
-		Description: `RuntimeSelectors is a list of tag selectors that identifies the Processing
-Units that will implement this service. The list can be empty for external
-services.`,
+		ConvertedName:  "Selectors",
+		Description: `Selectors contains the tag expression that an a processing unit
+must match in order to implement this particular service.`,
 		Exposed: true,
-		Name:    "runtimeSelectors",
+		Name:    "selectors",
 		Stored:  true,
-		SubType: "target_tags",
+		SubType: "policies_list",
 		Type:    "external",
 	},
+	"serviceca": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "ServiceCA",
+		Description: `ServiceCA  is the certificate authority that the service is using. This
+is needed for external services with private certificate authorities. The
+field is optional. If provided, this must be a valid PEM CA file.`,
+		Exposed: true,
+		Format:  "free",
+		Name:    "serviceCA",
+		Stored:  true,
+		Type:    "string",
+	},
 	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"HTTP", "L3", "TCP"},
+		AllowedChoices: []string{"HTTP", "TCP"},
 		ConvertedName:  "Type",
-		DefaultValue:   APIServiceTypeL3,
-		Description: `Type is the type of the service (HTTP, TCP, etc). More types will be added to
-the system.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "type",
-		Orderable:  true,
-		Stored:     true,
-		Type:       "enum",
+		DefaultValue:   ServiceTypeHTTP,
+		Description:    `Type is the type of the service.`,
+		Exposed:        true,
+		Name:           "type",
+		Stored:         true,
+		Type:           "enum",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
