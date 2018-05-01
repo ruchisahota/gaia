@@ -3,7 +3,6 @@ package gaia
 import "github.com/aporeto-inc/elemental"
 
 func init() {
-
 	elemental.RegisterIdentity(AccountIdentity)
 	elemental.RegisterIdentity(AccountCheckIdentity)
 	elemental.RegisterIdentity(ActivateIdentity)
@@ -512,7 +511,6 @@ func ContentIdentifiableForIdentity(identity string) elemental.ContentIdentifiab
 		return &RevocationsList{}
 	case RoleIdentity.Name:
 		return &RolesList{}
-
 	case ServiceIdentity.Name:
 		return &ServicesList{}
 	case StatsQueryIdentity.Name:
@@ -665,7 +663,6 @@ func ContentIdentifiableForCategory(category string) elemental.ContentIdentifiab
 		return &RevocationsList{}
 	case RoleIdentity.Category:
 		return &RolesList{}
-
 	case ServiceIdentity.Category:
 		return &ServicesList{}
 	case StatsQueryIdentity.Category:
