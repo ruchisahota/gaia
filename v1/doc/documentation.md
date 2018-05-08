@@ -4301,6 +4301,12 @@ configured max validity, it will be capped.
 A jaegerbatch is a batch of jaeger spans. This is used by external service to
 post jaeger span in our private jaeger services.
 
+### Relations
+
+| Method | URL             | Description                   |
+| -:     | -               | -                             |
+| `POST` | `/jaegerbatchs` | Sends a jaeger tracing batch. |
+
 ### Attributes
 
 #### `batch (external:jaeger_batch)`
