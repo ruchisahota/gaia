@@ -5825,6 +5825,7 @@ Type of the container ecosystem.
 | Characteristics | Value                             |
 | -               | -:                                |
 | Allowed Value   | `Docker, LinuxService, RKT, User` |
+| Required        | `true`                            |
 | Creation only   | `true`                            |
 | Filterable      | `true`                            |
 
