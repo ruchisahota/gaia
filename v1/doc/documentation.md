@@ -2257,6 +2257,18 @@ PUHeartbeatInterval configures the heart beat interval.
 
 Annotation stores additional information about an entity.
 
+#### `applicationProxyPort (integer)`
+
+Port used by aporeto application proxy.
+
+| Characteristics | Value            |
+| -               | -:               |
+| Default         | `%!s(int=20992)` |
+| Min length      | `1`              |
+| Max length      | `65535`          |
+| Orderable       | `true`           |
+| Filterable      | `true`           |
+
 #### `associatedTags (external:tags_list)`
 
 AssociatedTags are the list of tags attached to an entity.

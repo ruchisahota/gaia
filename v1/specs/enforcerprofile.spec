@@ -57,6 +57,17 @@ attributes:
     format: free
     orderable: true
 
+  - name: applicationProxyPort
+    description: Port used by aporeto application proxy.
+    type: integer
+    exposed: true
+    stored: true
+    default_value: 20992
+    filterable: true
+    max_value: 65535
+    min_value: 1
+    orderable: true
+
   - name: auditProfileSelectors
     description: |-
       AuditProfileSelectors is the list of tags (key/value pairs) that define the
