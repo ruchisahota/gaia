@@ -357,3 +357,12 @@ elemental:
   extensions_list:
     type: '[]string'
     init: '[]string{}'
+
+  app_versionparameters:
+    type: 'map[string][]*types.AppParameter'
+    init: 'map[string][]*types.AppParameter{}'
+    import: github.com/aporeto-inc/gaia/v1/golang/types
+
+  service_data:
+    type: 'interface{}'
+    init: 'nil'

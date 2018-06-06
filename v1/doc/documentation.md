@@ -1032,13 +1032,13 @@ Name is the name of the entity.
 | Orderable       | `true` |
 | Filterable      | `true` |
 
-#### `parameters (external:app_parameters)`
-
-Parameters of the app the user can or has to specify.
-
 #### `title (string)`
 
 Title represents the title of the app.
+
+#### `versionParameters (external:app_versionparameters)`
+
+VersionParameters contains parameters for each available version.
 
 ## AuditProfile
 
@@ -3918,10 +3918,11 @@ Installation represents an installation for a given account.
 
 #### `ID (string)`
 
-ID represents the identifier of the installation.
+ID is the identifier of the object.
 
 | Characteristics | Value  |
 | -               | -:     |
+| Identifier      | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
 
@@ -3980,6 +3981,10 @@ CategoryID of the app.
 | Orderable       | `true` |
 | Filterable      | `true` |
 
+#### `currentVersion (string)`
+
+Version of the installed app.
+
 #### `name (string)`
 
 Name of the installed app.
@@ -4002,10 +4007,6 @@ Namespace in which the app is running.
 #### `parameters (external:app_parameters)`
 
 Parameters is a list of parameters to start the app.
-
-#### `replicas (integer)`
-
-Replicas represents the number of replicas for the app.
 
 #### `status (enum)`
 
