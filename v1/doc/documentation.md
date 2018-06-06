@@ -2234,12 +2234,12 @@ ID is the identifier of the object.
 
 IptablesMarkValue is the mark value to be used in an iptables implementation.
 
-| Characteristics | Value   |
-| -               | -:      |
-| Default         | `1000`  |
-| Max length      | `65000` |
-| Orderable       | `true`  |
-| Filterable      | `true`  |
+| Characteristics | Value           |
+| -               | -:              |
+| Default         | `%!s(int=1000)` |
+| Max length      | `65000`         |
+| Orderable       | `true`          |
+| Filterable      | `true`          |
 
 #### `PUBookkeepingInterval (string)`
 
@@ -2266,6 +2266,18 @@ PUHeartbeatInterval configures the heart beat interval.
 #### `annotations (external:annotations)`
 
 Annotation stores additional information about an entity.
+
+#### `applicationProxyPort (integer)`
+
+Port used by aporeto application proxy.
+
+| Characteristics | Value            |
+| -               | -:               |
+| Default         | `%!s(int=20992)` |
+| Min length      | `1`              |
+| Max length      | `65535`          |
+| Orderable       | `true`           |
+| Filterable      | `true`           |
 
 #### `associatedTags (external:tags_list)`
 
