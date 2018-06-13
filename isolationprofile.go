@@ -4,61 +4,47 @@ import (
 	"fmt"
 	"sync"
 
-	"time"
-
 	"go.aporeto.io/elemental"
+	"go.aporeto.io/gaia/types"
+	"time"
 )
 
-// AlarmStatusValue represents the possible values for attribute "status".
-type AlarmStatusValue string
-
-const (
-	// AlarmStatusAcknowledged represents the value Acknowledged.
-	AlarmStatusAcknowledged AlarmStatusValue = "Acknowledged"
-
-	// AlarmStatusOpen represents the value Open.
-	AlarmStatusOpen AlarmStatusValue = "Open"
-
-	// AlarmStatusResolved represents the value Resolved.
-	AlarmStatusResolved AlarmStatusValue = "Resolved"
-)
-
-// AlarmIdentity represents the Identity of the object.
-var AlarmIdentity = elemental.Identity{
-	Name:     "alarm",
-	Category: "alarms",
+// IsolationProfileIdentity represents the Identity of the object.
+var IsolationProfileIdentity = elemental.Identity{
+	Name:     "isolationprofile",
+	Category: "isolationprofiles",
 	Private:  false,
 }
 
-// AlarmsList represents a list of Alarms
-type AlarmsList []*Alarm
+// IsolationProfilesList represents a list of IsolationProfiles
+type IsolationProfilesList []*IsolationProfile
 
 // Identity returns the identity of the objects in the list.
-func (o AlarmsList) Identity() elemental.Identity {
+func (o IsolationProfilesList) Identity() elemental.Identity {
 
-	return AlarmIdentity
+	return IsolationProfileIdentity
 }
 
-// Copy returns a pointer to a copy the AlarmsList.
-func (o AlarmsList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the IsolationProfilesList.
+func (o IsolationProfilesList) Copy() elemental.Identifiables {
 
-	copy := append(AlarmsList{}, o...)
+	copy := append(IsolationProfilesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the AlarmsList.
-func (o AlarmsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the IsolationProfilesList.
+func (o IsolationProfilesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(AlarmsList{}, o...)
+	out := append(IsolationProfilesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*Alarm))
+		out = append(out, obj.(*IsolationProfile))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o AlarmsList) List() elemental.IdentifiablesList {
+func (o IsolationProfilesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -69,7 +55,7 @@ func (o AlarmsList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o AlarmsList) DefaultOrder() []string {
+func (o IsolationProfilesList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -77,13 +63,13 @@ func (o AlarmsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AlarmsList) Version() int {
+func (o IsolationProfilesList) Version() int {
 
 	return 1
 }
 
-// Alarm represents the model of a alarm
-type Alarm struct {
+// IsolationProfile represents the model of a isolationprofile
+type IsolationProfile struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
 
@@ -93,21 +79,23 @@ type Alarm struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
-	// Content of the alarm.
-	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
+	// CapabilitiesActions identifies the capabilities that should be added or removed
+	// from the processing unit.
+	CapabilitiesActions types.CapabilitiesTypeMap `json:"capabilitiesActions" bson:"capabilitiesactions" mapstructure:"capabilitiesActions,omitempty"`
 
 	// CreatedTime is the time at which the object was created.
 	CreateTime time.Time `json:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
 
-	// Data represent user data related to the alams.
-	Data []map[string]string `json:"data" bson:"data" mapstructure:"data,omitempty"`
+	// DefaultAction is the default action applied to all syscalls of this profile.
+	// Default is "Allow".
+	DefaultSyscallAction types.SyscallEnforcementAction `json:"defaultSyscallAction" bson:"defaultsyscallaction" mapstructure:"defaultSyscallAction,omitempty"`
 
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// Kind identifies the kind of alarms. If two alarms are created with the same
-	// identifier, then only the occurrence will be incremented.
-	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
+	// Metadata contains tags that can only be set during creation. They must all start
+	// with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -118,14 +106,16 @@ type Alarm struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// Number of time this alarm have been seen.
-	Occurrences []time.Time `json:"occurrences" bson:"occurrences" mapstructure:"occurrences,omitempty"`
-
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// Status of the alarm.
-	Status AlarmStatusValue `json:"status" bson:"status" mapstructure:"status,omitempty"`
+	// SyscallRules is a list of syscall rules that identify actions for particular
+	// syscalls.
+	SyscallRules types.SyscallEnforcementRulesMap `json:"syscallRules" bson:"syscallrules" mapstructure:"syscallRules,omitempty"`
+
+	// TargetArchitectures is the target processor architectures where this profile can
+	// be applied. Default all.
+	TargetArchitectures types.ArchitecturesTypeList `json:"targetArchitectures" bson:"targetarchitectures" mapstructure:"targetArchitectures,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -135,46 +125,47 @@ type Alarm struct {
 	sync.Mutex
 }
 
-// NewAlarm returns a new *Alarm
-func NewAlarm() *Alarm {
+// NewIsolationProfile returns a new *IsolationProfile
+func NewIsolationProfile() *IsolationProfile {
 
-	return &Alarm{
-		ModelVersion:   1,
-		Annotations:    map[string][]string{},
-		AssociatedTags: []string{},
-		Data:           []map[string]string{},
-		NormalizedTags: []string{},
-		Occurrences:    []time.Time{},
-		Status:         "Open",
+	return &IsolationProfile{
+		ModelVersion:        1,
+		Annotations:         map[string][]string{},
+		AssociatedTags:      []string{},
+		CapabilitiesActions: types.CapabilitiesTypeMap{},
+		Metadata:            []string{},
+		NormalizedTags:      []string{},
+		SyscallRules:        types.SyscallEnforcementRulesMap{},
+		TargetArchitectures: types.ArchitecturesTypeList{},
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Alarm) Identity() elemental.Identity {
+func (o *IsolationProfile) Identity() elemental.Identity {
 
-	return AlarmIdentity
+	return IsolationProfileIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Alarm) Identifier() string {
+func (o *IsolationProfile) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Alarm) SetIdentifier(id string) {
+func (o *IsolationProfile) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *Alarm) Version() int {
+func (o *IsolationProfile) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *Alarm) DefaultOrder() []string {
+func (o *IsolationProfile) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -182,121 +173,125 @@ func (o *Alarm) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *Alarm) Doc() string {
-	return `An alarm represents an event requiring attention.`
+func (o *IsolationProfile) Doc() string {
+	return `An IsolationProfile needs documentation.`
 }
 
-func (o *Alarm) String() string {
+func (o *IsolationProfile) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *Alarm) GetAnnotations() map[string][]string {
+func (o *IsolationProfile) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *Alarm) SetAnnotations(annotations map[string][]string) {
+func (o *IsolationProfile) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *Alarm) GetAssociatedTags() []string {
+func (o *IsolationProfile) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *Alarm) SetAssociatedTags(associatedTags []string) {
+func (o *IsolationProfile) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *Alarm) GetCreateTime() time.Time {
+func (o *IsolationProfile) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *Alarm) SetCreateTime(createTime time.Time) {
+func (o *IsolationProfile) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
+// GetMetadata returns the Metadata of the receiver.
+func (o *IsolationProfile) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *IsolationProfile) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
 // GetName returns the Name of the receiver.
-func (o *Alarm) GetName() string {
+func (o *IsolationProfile) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *Alarm) SetName(name string) {
+func (o *IsolationProfile) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *Alarm) GetNamespace() string {
+func (o *IsolationProfile) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *Alarm) SetNamespace(namespace string) {
+func (o *IsolationProfile) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *Alarm) GetNormalizedTags() []string {
+func (o *IsolationProfile) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *Alarm) SetNormalizedTags(normalizedTags []string) {
+func (o *IsolationProfile) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *Alarm) GetProtected() bool {
+func (o *IsolationProfile) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *Alarm) GetUpdateTime() time.Time {
+func (o *IsolationProfile) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *Alarm) SetUpdateTime(updateTime time.Time) {
+func (o *IsolationProfile) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Alarm) Validate() error {
+func (o *IsolationProfile) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
 		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
-		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
@@ -304,10 +299,6 @@ func (o *Alarm) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Acknowledged", "Open", "Resolved"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -323,24 +314,24 @@ func (o *Alarm) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*Alarm) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*IsolationProfile) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := AlarmAttributesMap[name]; ok {
+	if v, ok := IsolationProfileAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return AlarmLowerCaseAttributesMap[name]
+	return IsolationProfileLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*Alarm) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*IsolationProfile) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return AlarmAttributesMap
+	return IsolationProfileAttributesMap
 }
 
-// AlarmAttributesMap represents the map of attribute for Alarm.
-var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
+// IsolationProfileAttributesMap represents the map of attribute for IsolationProfile.
+var IsolationProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -381,17 +372,18 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"Content": elemental.AttributeSpecification{
+	"CapabilitiesActions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Content",
-		CreationOnly:   true,
-		Description:    `Content of the alarm.`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "content",
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		ConvertedName:  "CapabilitiesActions",
+		Description: `CapabilitiesActions identifies the capabilities that should be added or removed
+from the processing unit.`,
+		Exposed:    true,
+		Filterable: true,
+		Name:       "capabilitiesActions",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "cap_map",
+		Type:       "external",
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -407,15 +399,16 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"Data": elemental.AttributeSpecification{
+	"DefaultSyscallAction": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Data",
-		Description:    `Data represent user data related to the alams.`,
-		Exposed:        true,
-		Name:           "data",
-		Stored:         true,
-		SubType:        "alarm_data",
-		Type:           "external",
+		ConvertedName:  "DefaultSyscallAction",
+		Description: `DefaultAction is the default action applied to all syscalls of this profile.
+Default is "Allow".`,
+		Exposed: true,
+		Name:    "defaultSyscallAction",
+		Stored:  true,
+		SubType: "syscall_action",
+		Type:    "external",
 	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -429,20 +422,20 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Kind": elemental.AttributeSpecification{
+	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Kind",
+		ConvertedName:  "Metadata",
 		CreationOnly:   true,
-		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
-identifier, then only the occurrence will be incremented.`,
+		Description: `Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.`,
 		Exposed:    true,
 		Filterable: true,
-		Format:     "free",
-		Name:       "kind",
-		Orderable:  true,
-		Required:   true,
+		Getter:     true,
+		Name:       "metadata",
+		Setter:     true,
 		Stored:     true,
-		Type:       "string",
+		SubType:    "metadata_list",
+		Type:       "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -495,18 +488,6 @@ identifier, then only the occurrence will be incremented.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"Occurrences": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "Occurrences",
-		CreationOnly:   true,
-		Description:    `Number of time this alarm have been seen.`,
-		Exposed:        true,
-		Name:           "occurrences",
-		Stored:         true,
-		SubType:        "alarm_occurrences",
-		Type:           "external",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -519,17 +500,31 @@ identifier, then only the occurrence will be incremented.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Acknowledged", "Open", "Resolved"},
-		ConvertedName:  "Status",
-		DefaultValue:   AlarmStatusOpen,
-		Description:    `Status of the alarm.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "status",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "enum",
+	"SyscallRules": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "SyscallRules",
+		Description: `SyscallRules is a list of syscall rules that identify actions for particular
+syscalls.`,
+		Exposed:    true,
+		Filterable: true,
+		Name:       "syscallRules",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "syscall_rules",
+		Type:       "external",
+	},
+	"TargetArchitectures": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "TargetArchitectures",
+		Description: `TargetArchitectures is the target processor architectures where this profile can
+be applied. Default all.`,
+		Exposed:    true,
+		Filterable: true,
+		Name:       "targetArchitectures",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "arch_list",
+		Type:       "external",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -547,8 +542,8 @@ identifier, then only the occurrence will be incremented.`,
 	},
 }
 
-// AlarmLowerCaseAttributesMap represents the map of attribute for Alarm.
-var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// IsolationProfileLowerCaseAttributesMap represents the map of attribute for IsolationProfile.
+var IsolationProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -589,17 +584,18 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"content": elemental.AttributeSpecification{
+	"capabilitiesactions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Content",
-		CreationOnly:   true,
-		Description:    `Content of the alarm.`,
-		Exposed:        true,
-		Format:         "free",
-		Name:           "content",
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		ConvertedName:  "CapabilitiesActions",
+		Description: `CapabilitiesActions identifies the capabilities that should be added or removed
+from the processing unit.`,
+		Exposed:    true,
+		Filterable: true,
+		Name:       "capabilitiesActions",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "cap_map",
+		Type:       "external",
 	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -615,15 +611,16 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"data": elemental.AttributeSpecification{
+	"defaultsyscallaction": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Data",
-		Description:    `Data represent user data related to the alams.`,
-		Exposed:        true,
-		Name:           "data",
-		Stored:         true,
-		SubType:        "alarm_data",
-		Type:           "external",
+		ConvertedName:  "DefaultSyscallAction",
+		Description: `DefaultAction is the default action applied to all syscalls of this profile.
+Default is "Allow".`,
+		Exposed: true,
+		Name:    "defaultSyscallAction",
+		Stored:  true,
+		SubType: "syscall_action",
+		Type:    "external",
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -637,20 +634,20 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"kind": elemental.AttributeSpecification{
+	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Kind",
+		ConvertedName:  "Metadata",
 		CreationOnly:   true,
-		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
-identifier, then only the occurrence will be incremented.`,
+		Description: `Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.`,
 		Exposed:    true,
 		Filterable: true,
-		Format:     "free",
-		Name:       "kind",
-		Orderable:  true,
-		Required:   true,
+		Getter:     true,
+		Name:       "metadata",
+		Setter:     true,
 		Stored:     true,
-		Type:       "string",
+		SubType:    "metadata_list",
+		Type:       "external",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -703,18 +700,6 @@ identifier, then only the occurrence will be incremented.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"occurrences": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "Occurrences",
-		CreationOnly:   true,
-		Description:    `Number of time this alarm have been seen.`,
-		Exposed:        true,
-		Name:           "occurrences",
-		Stored:         true,
-		SubType:        "alarm_occurrences",
-		Type:           "external",
-	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -727,17 +712,31 @@ identifier, then only the occurrence will be incremented.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"status": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Acknowledged", "Open", "Resolved"},
-		ConvertedName:  "Status",
-		DefaultValue:   AlarmStatusOpen,
-		Description:    `Status of the alarm.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "status",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "enum",
+	"syscallrules": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "SyscallRules",
+		Description: `SyscallRules is a list of syscall rules that identify actions for particular
+syscalls.`,
+		Exposed:    true,
+		Filterable: true,
+		Name:       "syscallRules",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "syscall_rules",
+		Type:       "external",
+	},
+	"targetarchitectures": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "TargetArchitectures",
+		Description: `TargetArchitectures is the target processor architectures where this profile can
+be applied. Default all.`,
+		Exposed:    true,
+		Filterable: true,
+		Name:       "targetArchitectures",
+		Orderable:  true,
+		Stored:     true,
+		SubType:    "arch_list",
+		Type:       "external",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

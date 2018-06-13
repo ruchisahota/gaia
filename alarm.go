@@ -5,46 +5,59 @@ import (
 	"sync"
 
 	"go.aporeto.io/elemental"
-	"go.aporeto.io/gaia/v1/golang/types"
 	"time"
 )
 
-// AuditProfileIdentity represents the Identity of the object.
-var AuditProfileIdentity = elemental.Identity{
-	Name:     "auditprofile",
-	Category: "auditprofiles",
+// AlarmStatusValue represents the possible values for attribute "status".
+type AlarmStatusValue string
+
+const (
+	// AlarmStatusAcknowledged represents the value Acknowledged.
+	AlarmStatusAcknowledged AlarmStatusValue = "Acknowledged"
+
+	// AlarmStatusOpen represents the value Open.
+	AlarmStatusOpen AlarmStatusValue = "Open"
+
+	// AlarmStatusResolved represents the value Resolved.
+	AlarmStatusResolved AlarmStatusValue = "Resolved"
+)
+
+// AlarmIdentity represents the Identity of the object.
+var AlarmIdentity = elemental.Identity{
+	Name:     "alarm",
+	Category: "alarms",
 	Private:  false,
 }
 
-// AuditProfilesList represents a list of AuditProfiles
-type AuditProfilesList []*AuditProfile
+// AlarmsList represents a list of Alarms
+type AlarmsList []*Alarm
 
 // Identity returns the identity of the objects in the list.
-func (o AuditProfilesList) Identity() elemental.Identity {
+func (o AlarmsList) Identity() elemental.Identity {
 
-	return AuditProfileIdentity
+	return AlarmIdentity
 }
 
-// Copy returns a pointer to a copy the AuditProfilesList.
-func (o AuditProfilesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the AlarmsList.
+func (o AlarmsList) Copy() elemental.Identifiables {
 
-	copy := append(AuditProfilesList{}, o...)
+	copy := append(AlarmsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the AuditProfilesList.
-func (o AuditProfilesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the AlarmsList.
+func (o AlarmsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(AuditProfilesList{}, o...)
+	out := append(AlarmsList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*AuditProfile))
+		out = append(out, obj.(*Alarm))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o AuditProfilesList) List() elemental.IdentifiablesList {
+func (o AlarmsList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -55,7 +68,7 @@ func (o AuditProfilesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o AuditProfilesList) DefaultOrder() []string {
+func (o AlarmsList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -63,13 +76,13 @@ func (o AuditProfilesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o AuditProfilesList) Version() int {
+func (o AlarmsList) Version() int {
 
 	return 1
 }
 
-// AuditProfile represents the model of a auditprofile
-type AuditProfile struct {
+// Alarm represents the model of a alarm
+type Alarm struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
 
@@ -79,15 +92,21 @@ type AuditProfile struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
+	// Content of the alarm.
+	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
+
 	// CreatedTime is the time at which the object was created.
 	CreateTime time.Time `json:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
+
+	// Data represent user data related to the alams.
+	Data []map[string]string `json:"data" bson:"data" mapstructure:"data,omitempty"`
 
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// Metadata contains tags that can only be set during creation. They must all start
-	// with the '@' prefix, and should only be used by external systems.
-	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
+	// Kind identifies the kind of alarms. If two alarms are created with the same
+	// identifier, then only the occurrence will be incremented.
+	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -98,14 +117,14 @@ type AuditProfile struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// Propagated indicates if the audit profile is propagated.
-	Propagated bool `json:"propagated" bson:"propagated" mapstructure:"propagated,omitempty"`
+	// Number of time this alarm have been seen.
+	Occurrences []time.Time `json:"occurrences" bson:"occurrences" mapstructure:"occurrences,omitempty"`
 
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// Rules is the list of audit policy rules associated with this policy.
-	Rules types.AuditProfileRuleList `json:"rules" bson:"rules" mapstructure:"rules,omitempty"`
+	// Status of the alarm.
+	Status AlarmStatusValue `json:"status" bson:"status" mapstructure:"status,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -115,45 +134,46 @@ type AuditProfile struct {
 	sync.Mutex
 }
 
-// NewAuditProfile returns a new *AuditProfile
-func NewAuditProfile() *AuditProfile {
+// NewAlarm returns a new *Alarm
+func NewAlarm() *Alarm {
 
-	return &AuditProfile{
+	return &Alarm{
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
-		Metadata:       []string{},
+		Data:           []map[string]string{},
 		NormalizedTags: []string{},
-		Rules:          types.AuditProfileRuleList{},
+		Occurrences:    []time.Time{},
+		Status:         "Open",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *AuditProfile) Identity() elemental.Identity {
+func (o *Alarm) Identity() elemental.Identity {
 
-	return AuditProfileIdentity
+	return AlarmIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *AuditProfile) Identifier() string {
+func (o *Alarm) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *AuditProfile) SetIdentifier(id string) {
+func (o *Alarm) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *AuditProfile) Version() int {
+func (o *Alarm) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *AuditProfile) DefaultOrder() []string {
+func (o *Alarm) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -161,126 +181,121 @@ func (o *AuditProfile) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *AuditProfile) Doc() string {
-	return `AuditProfile is an audit policy that consists of a set of audit rules. An audit
-policy will determine that types of events that must be captured in the kernel.`
+func (o *Alarm) Doc() string {
+	return `An alarm represents an event requiring attention.`
 }
 
-func (o *AuditProfile) String() string {
+func (o *Alarm) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *AuditProfile) GetAnnotations() map[string][]string {
+func (o *Alarm) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *AuditProfile) SetAnnotations(annotations map[string][]string) {
+func (o *Alarm) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *AuditProfile) GetAssociatedTags() []string {
+func (o *Alarm) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *AuditProfile) SetAssociatedTags(associatedTags []string) {
+func (o *Alarm) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *AuditProfile) GetCreateTime() time.Time {
+func (o *Alarm) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *AuditProfile) SetCreateTime(createTime time.Time) {
+func (o *Alarm) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
-// GetMetadata returns the Metadata of the receiver.
-func (o *AuditProfile) GetMetadata() []string {
-
-	return o.Metadata
-}
-
-// SetMetadata sets the given Metadata of the receiver.
-func (o *AuditProfile) SetMetadata(metadata []string) {
-
-	o.Metadata = metadata
-}
-
 // GetName returns the Name of the receiver.
-func (o *AuditProfile) GetName() string {
+func (o *Alarm) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *AuditProfile) SetName(name string) {
+func (o *Alarm) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *AuditProfile) GetNamespace() string {
+func (o *Alarm) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *AuditProfile) SetNamespace(namespace string) {
+func (o *Alarm) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *AuditProfile) GetNormalizedTags() []string {
+func (o *Alarm) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *AuditProfile) SetNormalizedTags(normalizedTags []string) {
+func (o *Alarm) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *AuditProfile) GetProtected() bool {
+func (o *Alarm) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *AuditProfile) GetUpdateTime() time.Time {
+func (o *Alarm) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *AuditProfile) SetUpdateTime(updateTime time.Time) {
+func (o *Alarm) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // Validate valides the current information stored into the structure.
-func (o *AuditProfile) Validate() error {
+func (o *Alarm) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
 		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
+		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
@@ -288,6 +303,10 @@ func (o *AuditProfile) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
+		errors = append(errors, err)
+	}
+
+	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Acknowledged", "Open", "Resolved"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -303,24 +322,24 @@ func (o *AuditProfile) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*AuditProfile) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*Alarm) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := AuditProfileAttributesMap[name]; ok {
+	if v, ok := AlarmAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return AuditProfileLowerCaseAttributesMap[name]
+	return AlarmLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*AuditProfile) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*Alarm) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return AuditProfileAttributesMap
+	return AlarmAttributesMap
 }
 
-// AuditProfileAttributesMap represents the map of attribute for AuditProfile.
-var AuditProfileAttributesMap = map[string]elemental.AttributeSpecification{
+// AlarmAttributesMap represents the map of attribute for Alarm.
+var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -361,6 +380,18 @@ var AuditProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
+	"Content": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Content",
+		CreationOnly:   true,
+		Description:    `Content of the alarm.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "content",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -375,6 +406,16 @@ var AuditProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
+	"Data": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Data",
+		Description:    `Data represent user data related to the alams.`,
+		Exposed:        true,
+		Name:           "data",
+		Stored:         true,
+		SubType:        "alarm_data",
+		Type:           "external",
+	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Description",
@@ -387,20 +428,20 @@ var AuditProfileAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Metadata": elemental.AttributeSpecification{
+	"Kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Metadata",
+		ConvertedName:  "Kind",
 		CreationOnly:   true,
-		Description: `Metadata contains tags that can only be set during creation. They must all start
-with the '@' prefix, and should only be used by external systems.`,
+		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
+identifier, then only the occurrence will be incremented.`,
 		Exposed:    true,
 		Filterable: true,
-		Getter:     true,
-		Name:       "metadata",
-		Setter:     true,
+		Format:     "free",
+		Name:       "kind",
+		Orderable:  true,
+		Required:   true,
 		Stored:     true,
-		SubType:    "metadata_list",
-		Type:       "external",
+		Type:       "string",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -453,15 +494,17 @@ with the '@' prefix, and should only be used by external systems.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"Propagated": elemental.AttributeSpecification{
+	"Occurrences": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Propagated",
-		Description:    `Propagated indicates if the audit profile is propagated.`,
+		Autogenerated:  true,
+		ConvertedName:  "Occurrences",
+		CreationOnly:   true,
+		Description:    `Number of time this alarm have been seen.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "propagated",
+		Name:           "occurrences",
 		Stored:         true,
-		Type:           "boolean",
+		SubType:        "alarm_occurrences",
+		Type:           "external",
 	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -475,15 +518,17 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Rules": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Rules",
-		Description:    `Rules is the list of audit policy rules associated with this policy.`,
+	"Status": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Acknowledged", "Open", "Resolved"},
+		ConvertedName:  "Status",
+		DefaultValue:   AlarmStatusOpen,
+		Description:    `Status of the alarm.`,
 		Exposed:        true,
-		Name:           "rules",
+		Filterable:     true,
+		Name:           "status",
+		Orderable:      true,
 		Stored:         true,
-		SubType:        "audit_profile_rule_list",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -501,8 +546,8 @@ with the '@' prefix, and should only be used by external systems.`,
 	},
 }
 
-// AuditProfileLowerCaseAttributesMap represents the map of attribute for AuditProfile.
-var AuditProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// AlarmLowerCaseAttributesMap represents the map of attribute for Alarm.
+var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -543,6 +588,18 @@ var AuditProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		SubType:        "tags_list",
 		Type:           "external",
 	},
+	"content": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Content",
+		CreationOnly:   true,
+		Description:    `Content of the alarm.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "content",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -557,6 +614,16 @@ var AuditProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Stored:         true,
 		Type:           "time",
 	},
+	"data": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Data",
+		Description:    `Data represent user data related to the alams.`,
+		Exposed:        true,
+		Name:           "data",
+		Stored:         true,
+		SubType:        "alarm_data",
+		Type:           "external",
+	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Description",
@@ -569,20 +636,20 @@ var AuditProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Stored:         true,
 		Type:           "string",
 	},
-	"metadata": elemental.AttributeSpecification{
+	"kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Metadata",
+		ConvertedName:  "Kind",
 		CreationOnly:   true,
-		Description: `Metadata contains tags that can only be set during creation. They must all start
-with the '@' prefix, and should only be used by external systems.`,
+		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
+identifier, then only the occurrence will be incremented.`,
 		Exposed:    true,
 		Filterable: true,
-		Getter:     true,
-		Name:       "metadata",
-		Setter:     true,
+		Format:     "free",
+		Name:       "kind",
+		Orderable:  true,
+		Required:   true,
 		Stored:     true,
-		SubType:    "metadata_list",
-		Type:       "external",
+		Type:       "string",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -635,15 +702,17 @@ with the '@' prefix, and should only be used by external systems.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"propagated": elemental.AttributeSpecification{
+	"occurrences": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Propagated",
-		Description:    `Propagated indicates if the audit profile is propagated.`,
+		Autogenerated:  true,
+		ConvertedName:  "Occurrences",
+		CreationOnly:   true,
+		Description:    `Number of time this alarm have been seen.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "propagated",
+		Name:           "occurrences",
 		Stored:         true,
-		Type:           "boolean",
+		SubType:        "alarm_occurrences",
+		Type:           "external",
 	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -657,15 +726,17 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"rules": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Rules",
-		Description:    `Rules is the list of audit policy rules associated with this policy.`,
+	"status": elemental.AttributeSpecification{
+		AllowedChoices: []string{"Acknowledged", "Open", "Resolved"},
+		ConvertedName:  "Status",
+		DefaultValue:   AlarmStatusOpen,
+		Description:    `Status of the alarm.`,
 		Exposed:        true,
-		Name:           "rules",
+		Filterable:     true,
+		Name:           "status",
+		Orderable:      true,
 		Stored:         true,
-		SubType:        "audit_profile_rule_list",
-		Type:           "external",
+		Type:           "enum",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

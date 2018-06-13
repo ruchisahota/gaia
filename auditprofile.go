@@ -5,46 +5,46 @@ import (
 	"sync"
 
 	"go.aporeto.io/elemental"
-	"go.aporeto.io/gaia/v1/golang/constants"
+	"go.aporeto.io/gaia/types"
 	"time"
 )
 
-// VulnerabilityIdentity represents the Identity of the object.
-var VulnerabilityIdentity = elemental.Identity{
-	Name:     "vulnerability",
-	Category: "vulnerabilities",
+// AuditProfileIdentity represents the Identity of the object.
+var AuditProfileIdentity = elemental.Identity{
+	Name:     "auditprofile",
+	Category: "auditprofiles",
 	Private:  false,
 }
 
-// VulnerabilitiesList represents a list of Vulnerabilities
-type VulnerabilitiesList []*Vulnerability
+// AuditProfilesList represents a list of AuditProfiles
+type AuditProfilesList []*AuditProfile
 
 // Identity returns the identity of the objects in the list.
-func (o VulnerabilitiesList) Identity() elemental.Identity {
+func (o AuditProfilesList) Identity() elemental.Identity {
 
-	return VulnerabilityIdentity
+	return AuditProfileIdentity
 }
 
-// Copy returns a pointer to a copy the VulnerabilitiesList.
-func (o VulnerabilitiesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the AuditProfilesList.
+func (o AuditProfilesList) Copy() elemental.Identifiables {
 
-	copy := append(VulnerabilitiesList{}, o...)
+	copy := append(AuditProfilesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the VulnerabilitiesList.
-func (o VulnerabilitiesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the AuditProfilesList.
+func (o AuditProfilesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(VulnerabilitiesList{}, o...)
+	out := append(AuditProfilesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*Vulnerability))
+		out = append(out, obj.(*AuditProfile))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o VulnerabilitiesList) List() elemental.IdentifiablesList {
+func (o AuditProfilesList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -55,7 +55,7 @@ func (o VulnerabilitiesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o VulnerabilitiesList) DefaultOrder() []string {
+func (o AuditProfilesList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -63,13 +63,13 @@ func (o VulnerabilitiesList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o VulnerabilitiesList) Version() int {
+func (o AuditProfilesList) Version() int {
 
 	return 1
 }
 
-// Vulnerability represents the model of a vulnerability
-type Vulnerability struct {
+// AuditProfile represents the model of a auditprofile
+type AuditProfile struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
 
@@ -85,8 +85,9 @@ type Vulnerability struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// Link is the URL that refers to the vulnerability.
-	Link string `json:"link" bson:"link" mapstructure:"link,omitempty"`
+	// Metadata contains tags that can only be set during creation. They must all start
+	// with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -97,11 +98,14 @@ type Vulnerability struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
+	// Propagated indicates if the audit profile is propagated.
+	Propagated bool `json:"propagated" bson:"propagated" mapstructure:"propagated,omitempty"`
+
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// Severity refers to the security vulnerability level.
-	Severity constants.Vulnerability `json:"severity" bson:"severity" mapstructure:"severity,omitempty"`
+	// Rules is the list of audit policy rules associated with this policy.
+	Rules types.AuditProfileRuleList `json:"rules" bson:"rules" mapstructure:"rules,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -111,44 +115,45 @@ type Vulnerability struct {
 	sync.Mutex
 }
 
-// NewVulnerability returns a new *Vulnerability
-func NewVulnerability() *Vulnerability {
+// NewAuditProfile returns a new *AuditProfile
+func NewAuditProfile() *AuditProfile {
 
-	return &Vulnerability{
+	return &AuditProfile{
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
+		Metadata:       []string{},
 		NormalizedTags: []string{},
-		Severity:       constants.VulnerabilityUnknown,
+		Rules:          types.AuditProfileRuleList{},
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Vulnerability) Identity() elemental.Identity {
+func (o *AuditProfile) Identity() elemental.Identity {
 
-	return VulnerabilityIdentity
+	return AuditProfileIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Vulnerability) Identifier() string {
+func (o *AuditProfile) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Vulnerability) SetIdentifier(id string) {
+func (o *AuditProfile) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *Vulnerability) Version() int {
+func (o *AuditProfile) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *Vulnerability) DefaultOrder() []string {
+func (o *AuditProfile) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -156,107 +161,120 @@ func (o *Vulnerability) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *Vulnerability) Doc() string {
-	return `A vulnerabily represents a particular CVE.`
+func (o *AuditProfile) Doc() string {
+	return `AuditProfile is an audit policy that consists of a set of audit rules. An audit
+policy will determine that types of events that must be captured in the kernel.`
 }
 
-func (o *Vulnerability) String() string {
+func (o *AuditProfile) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *Vulnerability) GetAnnotations() map[string][]string {
+func (o *AuditProfile) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *Vulnerability) SetAnnotations(annotations map[string][]string) {
+func (o *AuditProfile) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *Vulnerability) GetAssociatedTags() []string {
+func (o *AuditProfile) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *Vulnerability) SetAssociatedTags(associatedTags []string) {
+func (o *AuditProfile) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *Vulnerability) GetCreateTime() time.Time {
+func (o *AuditProfile) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *Vulnerability) SetCreateTime(createTime time.Time) {
+func (o *AuditProfile) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
+// GetMetadata returns the Metadata of the receiver.
+func (o *AuditProfile) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *AuditProfile) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
 // GetName returns the Name of the receiver.
-func (o *Vulnerability) GetName() string {
+func (o *AuditProfile) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *Vulnerability) SetName(name string) {
+func (o *AuditProfile) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *Vulnerability) GetNamespace() string {
+func (o *AuditProfile) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *Vulnerability) SetNamespace(namespace string) {
+func (o *AuditProfile) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *Vulnerability) GetNormalizedTags() []string {
+func (o *AuditProfile) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *Vulnerability) SetNormalizedTags(normalizedTags []string) {
+func (o *AuditProfile) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *Vulnerability) GetProtected() bool {
+func (o *AuditProfile) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *Vulnerability) GetUpdateTime() time.Time {
+func (o *AuditProfile) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *Vulnerability) SetUpdateTime(updateTime time.Time) {
+func (o *AuditProfile) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Vulnerability) Validate() error {
+func (o *AuditProfile) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -265,20 +283,12 @@ func (o *Vulnerability) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("link", o.Link); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
 		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredExternal("severity", o.Severity); err != nil {
-		requiredErrors = append(requiredErrors, err)
 	}
 
 	if len(requiredErrors) > 0 {
@@ -293,24 +303,24 @@ func (o *Vulnerability) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*Vulnerability) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*AuditProfile) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := VulnerabilityAttributesMap[name]; ok {
+	if v, ok := AuditProfileAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return VulnerabilityLowerCaseAttributesMap[name]
+	return AuditProfileLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*Vulnerability) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*AuditProfile) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return VulnerabilityAttributesMap
+	return AuditProfileAttributesMap
 }
 
-// VulnerabilityAttributesMap represents the map of attribute for Vulnerability.
-var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
+// AuditProfileAttributesMap represents the map of attribute for AuditProfile.
+var AuditProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -377,20 +387,20 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Link": elemental.AttributeSpecification{
+	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "Link",
+		ConvertedName:  "Metadata",
 		CreationOnly:   true,
-		Description:    `Link is the URL that refers to the vulnerability.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "link",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		Description: `Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.`,
+		Exposed:    true,
+		Filterable: true,
+		Getter:     true,
+		Name:       "metadata",
+		Setter:     true,
+		Stored:     true,
+		SubType:    "metadata_list",
+		Type:       "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -443,6 +453,16 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Transient:      true,
 		Type:           "external",
 	},
+	"Propagated": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Propagated",
+		Description:    `Propagated indicates if the audit profile is propagated.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagated",
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -455,17 +475,14 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Severity": elemental.AttributeSpecification{
+	"Rules": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Severity",
-		CreationOnly:   true,
-		Description:    `Severity refers to the security vulnerability level.`,
+		ConvertedName:  "Rules",
+		Description:    `Rules is the list of audit policy rules associated with this policy.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "severity",
-		Required:       true,
+		Name:           "rules",
 		Stored:         true,
-		SubType:        "vulnerability_level",
+		SubType:        "audit_profile_rule_list",
 		Type:           "external",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
@@ -484,8 +501,8 @@ var VulnerabilityAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 }
 
-// VulnerabilityLowerCaseAttributesMap represents the map of attribute for Vulnerability.
-var VulnerabilityLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// AuditProfileLowerCaseAttributesMap represents the map of attribute for AuditProfile.
+var AuditProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -552,20 +569,20 @@ var VulnerabilityLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Stored:         true,
 		Type:           "string",
 	},
-	"link": elemental.AttributeSpecification{
+	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "Link",
+		ConvertedName:  "Metadata",
 		CreationOnly:   true,
-		Description:    `Link is the URL that refers to the vulnerability.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "link",
-		Orderable:      true,
-		Required:       true,
-		Stored:         true,
-		Type:           "string",
+		Description: `Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.`,
+		Exposed:    true,
+		Filterable: true,
+		Getter:     true,
+		Name:       "metadata",
+		Setter:     true,
+		Stored:     true,
+		SubType:    "metadata_list",
+		Type:       "external",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -618,6 +635,16 @@ var VulnerabilityLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Transient:      true,
 		Type:           "external",
 	},
+	"propagated": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Propagated",
+		Description:    `Propagated indicates if the audit profile is propagated.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "propagated",
+		Stored:         true,
+		Type:           "boolean",
+	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -630,17 +657,14 @@ var VulnerabilityLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"severity": elemental.AttributeSpecification{
+	"rules": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Severity",
-		CreationOnly:   true,
-		Description:    `Severity refers to the security vulnerability level.`,
+		ConvertedName:  "Rules",
+		Description:    `Rules is the list of audit policy rules associated with this policy.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "severity",
-		Required:       true,
+		Name:           "rules",
 		Stored:         true,
-		SubType:        "vulnerability_level",
+		SubType:        "audit_profile_rule_list",
 		Type:           "external",
 	},
 	"updatetime": elemental.AttributeSpecification{
