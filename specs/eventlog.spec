@@ -5,7 +5,6 @@ model:
   entity_name: EventLog
   package: undecided
   description: This api allows to report various event on any objects.
-  get: true
 
 # Attributes
 attributes:
