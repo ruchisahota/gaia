@@ -9,6 +9,15 @@ model:
 # Attributes
 attributes:
   v1:
+  - name: category
+    description: Category of the log.
+    type: string
+    exposed: true
+    stored: true
+    required: true
+    creation_only: true
+    example_value: enforcerd:policy
+
   - name: content
     description: Content of the log.
     type: string

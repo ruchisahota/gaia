@@ -87,6 +87,9 @@ func (o EventLogsList) Version() int {
 
 // EventLog represents the model of a eventlog
 type EventLog struct {
+	// Category of the log.
+	Category string `json:"category" bson:"category" mapstructure:"category,omitempty"`
+
 	// Content of the log.
 	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
 
@@ -180,6 +183,10 @@ func (o *EventLog) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateRequiredString("category", o.Category); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
 	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -230,6 +237,17 @@ func (*EventLog) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 
 // EventLogAttributesMap represents the map of attribute for EventLog.
 var EventLogAttributesMap = map[string]elemental.AttributeSpecification{
+	"Category": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Category",
+		CreationOnly:   true,
+		Description:    `Category of the log.`,
+		Exposed:        true,
+		Name:           "category",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"Content": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Content",
@@ -320,6 +338,17 @@ namespace than the eventlog.`,
 
 // EventLogLowerCaseAttributesMap represents the map of attribute for EventLog.
 var EventLogLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+	"category": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Category",
+		CreationOnly:   true,
+		Description:    `Category of the log.`,
+		Exposed:        true,
+		Name:           "category",
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
 	"content": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Content",
