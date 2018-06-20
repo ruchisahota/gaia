@@ -25,27 +25,18 @@
 [[projects]]
   name = "go.aporeto.io/elemental"
   packages = ["."]
-  revision = "eb16676f7166d109fcf7ffe0ce4d839e79803fe8"
+  revision = "aec735eb01b585a50f91f1bfcaf22c82784c36ee"
   version = "v4.2.1"
-
-[[projects]]
-  name = "go.aporeto.io/gaia"
-  packages = [
-    "constants",
-    "types"
-  ]
-  revision = "080402fd6978a20f29e28dd5b354d668329d3109"
-  version = "v12.1.1"
 
 [[projects]]
   name = "go.aporeto.io/midgard-lib"
   packages = ["claims"]
-  revision = "576749e6c02d7440d1cdea1ca4312cfd7a2d4715"
+  revision = "976b836baf3787b0af8bf8739060b45a76e0a050"
   version = "v8.0.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a174f2e5a70b37487c7a7b8a1452cc1b7fca51b8011e0ab8e831490ecb6e6ecc"
+  inputs-digest = "669c09637de5a0e5dde8e6d3e261f7e9545b16150ba7a9be4ca457ebefa0c5ed"
   solver-name = "gps-cdcl"
   solver-version = 1
