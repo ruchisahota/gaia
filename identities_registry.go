@@ -20,6 +20,7 @@ var (
 		"awsaccount":                   AWSAccountIdentity,
 		"category":                     CategoryIdentity,
 		"certificate":                  CertificateIdentity,
+		"customer":                     CustomerIdentity,
 		"dependencymap":                DependencyMapIdentity,
 		"email":                        EmailIdentity,
 		"enforcer":                     EnforcerIdentity,
@@ -96,6 +97,7 @@ var (
 		"awsaccounts":                    AWSAccountIdentity,
 		"categories":                     CategoryIdentity,
 		"certificates":                   CertificateIdentity,
+		"customers":                      CustomerIdentity,
 		"dependencymaps":                 DependencyMapIdentity,
 		"emails":                         EmailIdentity,
 		"enforcers":                      EnforcerIdentity,
@@ -294,6 +296,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewCategory()
 	case CertificateIdentity:
 		return NewCertificate()
+	case CustomerIdentity:
+		return NewCustomer()
 	case DependencyMapIdentity:
 		return NewDependencyMap()
 	case EmailIdentity:
@@ -454,6 +458,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &CategoriesList{}
 	case CertificateIdentity:
 		return &CertificatesList{}
+	case CustomerIdentity:
+		return &CustomersList{}
 	case DependencyMapIdentity:
 		return &DependencyMapsList{}
 	case EmailIdentity:
@@ -606,6 +612,7 @@ func AllIdentities() []elemental.Identity {
 		AWSAccountIdentity,
 		CategoryIdentity,
 		CertificateIdentity,
+		CustomerIdentity,
 		DependencyMapIdentity,
 		EmailIdentity,
 		EnforcerIdentity,
@@ -717,6 +724,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case CategoryIdentity:
 		return []string{}
 	case CertificateIdentity:
+		return []string{}
+	case CustomerIdentity:
 		return []string{}
 	case DependencyMapIdentity:
 		return []string{
