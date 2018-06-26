@@ -3,7 +3,7 @@ model:
   rest_name: eventlog
   resource_name: eventlogs
   entity_name: EventLog
-  package: undecided
+  package: leon
   description: This api allows to report various event on any objects.
 
 # Attributes
