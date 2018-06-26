@@ -477,6 +477,12 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[FlowReportIdentity] = &elemental.Relationship{
+		AllowsCreate: map[string]bool{
+			"root": true,
+		},
+	}
+
 	relationshipsRegistry[FlowStatisticIdentity] = &elemental.Relationship{
 		AllowsRetrieveMany: map[string]bool{
 			"root": true,

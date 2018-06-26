@@ -34,6 +34,7 @@ var (
 		"fileaccess":                   FileAccessIdentity,
 		"fileaccesspolicy":             FileAccessPolicyIdentity,
 		"filepath":                     FilePathIdentity,
+		"flowreport":                   FlowReportIdentity,
 		"flowstatistic":                FlowStatisticIdentity,
 		"hookpolicy":                   HookPolicyIdentity,
 		"import":                       ImportIdentity,
@@ -115,6 +116,7 @@ var (
 		"fileaccesses":                   FileAccessIdentity,
 		"fileaccesspolicies":             FileAccessPolicyIdentity,
 		"filepaths":                      FilePathIdentity,
+		"flowreports":                    FlowReportIdentity,
 		"flowstatistics":                 FlowStatisticIdentity,
 		"hookpolicies":                   HookPolicyIdentity,
 		"import":                         ImportIdentity,
@@ -332,6 +334,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewFileAccessPolicy()
 	case FilePathIdentity:
 		return NewFilePath()
+	case FlowReportIdentity:
+		return NewFlowReport()
 	case FlowStatisticIdentity:
 		return NewFlowStatistic()
 	case HookPolicyIdentity:
@@ -502,6 +506,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &FileAccessPoliciesList{}
 	case FilePathIdentity:
 		return &FilePathsList{}
+	case FlowReportIdentity:
+		return &FlowReportsList{}
 	case FlowStatisticIdentity:
 		return &FlowStatisticsList{}
 	case HookPolicyIdentity:
@@ -650,6 +656,7 @@ func AllIdentities() []elemental.Identity {
 		FileAccessIdentity,
 		FileAccessPolicyIdentity,
 		FilePathIdentity,
+		FlowReportIdentity,
 		FlowStatisticIdentity,
 		HookPolicyIdentity,
 		ImportIdentity,
@@ -799,6 +806,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"fp",
 			"fps",
 		}
+	case FlowReportIdentity:
+		return []string{}
 	case FlowStatisticIdentity:
 		return []string{
 			"flowstat",

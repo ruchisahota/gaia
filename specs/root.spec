@@ -342,6 +342,11 @@ relations:
     create: Create a statistics report.
   create: true
 
+- rest_name: flowreport
+  descriptions:
+    create: Create a flow statistics report.
+  create: true
+
 - rest_name: revocation
   descriptions:
     get: Verify the revocation of a certificate according to parameters.
