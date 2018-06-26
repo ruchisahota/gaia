@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"sync"
 
-	"go.aporeto.io/elemental"
 	"time"
+
+	"go.aporeto.io/elemental"
 )
 
 // EventLogLevelValue represents the possible values for attribute "level".
