@@ -4861,6 +4861,7 @@ Name is the name of the entity.
 | -               | -:     |
 | Max length      | `256`  |
 | Required        | `true` |
+| Creation only   | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
 
