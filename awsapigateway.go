@@ -7,85 +7,44 @@ import (
 	"time"
 
 	"go.aporeto.io/elemental"
-	"go.aporeto.io/gaia/types"
 )
 
-// ProcessingUnitOperationalStatusValue represents the possible values for attribute "operationalStatus".
-type ProcessingUnitOperationalStatusValue string
-
-const (
-	// ProcessingUnitOperationalStatusInitialized represents the value Initialized.
-	ProcessingUnitOperationalStatusInitialized ProcessingUnitOperationalStatusValue = "Initialized"
-
-	// ProcessingUnitOperationalStatusPaused represents the value Paused.
-	ProcessingUnitOperationalStatusPaused ProcessingUnitOperationalStatusValue = "Paused"
-
-	// ProcessingUnitOperationalStatusRunning represents the value Running.
-	ProcessingUnitOperationalStatusRunning ProcessingUnitOperationalStatusValue = "Running"
-
-	// ProcessingUnitOperationalStatusStopped represents the value Stopped.
-	ProcessingUnitOperationalStatusStopped ProcessingUnitOperationalStatusValue = "Stopped"
-
-	// ProcessingUnitOperationalStatusTerminated represents the value Terminated.
-	ProcessingUnitOperationalStatusTerminated ProcessingUnitOperationalStatusValue = "Terminated"
-)
-
-// ProcessingUnitTypeValue represents the possible values for attribute "type".
-type ProcessingUnitTypeValue string
-
-const (
-	// ProcessingUnitTypeAPIGateway represents the value APIGateway.
-	ProcessingUnitTypeAPIGateway ProcessingUnitTypeValue = "APIGateway"
-
-	// ProcessingUnitTypeDocker represents the value Docker.
-	ProcessingUnitTypeDocker ProcessingUnitTypeValue = "Docker"
-
-	// ProcessingUnitTypeLinuxService represents the value LinuxService.
-	ProcessingUnitTypeLinuxService ProcessingUnitTypeValue = "LinuxService"
-
-	// ProcessingUnitTypeRKT represents the value RKT.
-	ProcessingUnitTypeRKT ProcessingUnitTypeValue = "RKT"
-
-	// ProcessingUnitTypeUser represents the value User.
-	ProcessingUnitTypeUser ProcessingUnitTypeValue = "User"
-)
-
-// ProcessingUnitIdentity represents the Identity of the object.
-var ProcessingUnitIdentity = elemental.Identity{
-	Name:     "processingunit",
-	Category: "processingunits",
+// AWSAPIGatewayIdentity represents the Identity of the object.
+var AWSAPIGatewayIdentity = elemental.Identity{
+	Name:     "awsapigateway",
+	Category: "awsapigateways",
 	Private:  false,
 }
 
-// ProcessingUnitsList represents a list of ProcessingUnits
-type ProcessingUnitsList []*ProcessingUnit
+// AWSAPIGatewaysList represents a list of AWSAPIGateways
+type AWSAPIGatewaysList []*AWSAPIGateway
 
 // Identity returns the identity of the objects in the list.
-func (o ProcessingUnitsList) Identity() elemental.Identity {
+func (o AWSAPIGatewaysList) Identity() elemental.Identity {
 
-	return ProcessingUnitIdentity
+	return AWSAPIGatewayIdentity
 }
 
-// Copy returns a pointer to a copy the ProcessingUnitsList.
-func (o ProcessingUnitsList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the AWSAPIGatewaysList.
+func (o AWSAPIGatewaysList) Copy() elemental.Identifiables {
 
-	copy := append(ProcessingUnitsList{}, o...)
+	copy := append(AWSAPIGatewaysList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the ProcessingUnitsList.
-func (o ProcessingUnitsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the AWSAPIGatewaysList.
+func (o AWSAPIGatewaysList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(ProcessingUnitsList{}, o...)
+	out := append(AWSAPIGatewaysList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*ProcessingUnit))
+		out = append(out, obj.(*AWSAPIGateway))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
+func (o AWSAPIGatewaysList) List() elemental.IdentifiablesList {
 
 	out := elemental.IdentifiablesList{}
 	for _, item := range o {
@@ -96,7 +55,7 @@ func (o ProcessingUnitsList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o ProcessingUnitsList) DefaultOrder() []string {
+func (o AWSAPIGatewaysList) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -104,24 +63,30 @@ func (o ProcessingUnitsList) DefaultOrder() []string {
 }
 
 // Version returns the version of the content.
-func (o ProcessingUnitsList) Version() int {
+func (o AWSAPIGatewaysList) Version() int {
 
 	return 1
 }
 
-// ProcessingUnit represents the model of a processingunit
-type ProcessingUnit struct {
+// AWSAPIGateway represents the model of a awsapigateway
+type AWSAPIGateway struct {
+	// API ID as defined on AWS for the API that handled this request.
+	APIID string `json:"APIID" bson:"-" mapstructure:"APIID,omitempty"`
+
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
+
+	// the account ID for the gateway managing this request.
+	AccountID string `json:"accountID" bson:"-" mapstructure:"accountID,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
 
-	// Archived defines if the object is archived.
-	Archived bool `json:"-" bson:"archived" mapstructure:"-,omitempty"`
-
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
+
+	// The policy decision for this API flow.
+	Authorized bool `json:"authorized" bson:"-" mapstructure:"authorized,omitempty"`
 
 	// CreatedTime is the time at which the object was created.
 	CreateTime time.Time `json:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
@@ -129,15 +94,12 @@ type ProcessingUnit struct {
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// EnforcerID is the ID of the enforcer associated with the processing unit.
-	EnforcerID string `json:"enforcerID" bson:"enforcerid" mapstructure:"enforcerID,omitempty"`
-
-	// LastSyncTime is the time when the policy was last resolved.
-	LastSyncTime time.Time `json:"lastSyncTime" bson:"lastsynctime" mapstructure:"lastSyncTime,omitempty"`
-
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
+
+	// API method that handled this request.
+	Method string `json:"method" bson:"-" mapstructure:"method,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -145,25 +107,26 @@ type ProcessingUnit struct {
 	// Namespace tag attached to an entity.
 	Namespace string `json:"namespace" bson:"namespace" mapstructure:"namespace,omitempty"`
 
-	// NativeContextID is the Docker UUID or service PID.
-	NativeContextID string `json:"nativeContextID" bson:"nativecontextid" mapstructure:"nativeContextID,omitempty"`
-
-	// NetworkServices is the list of services that this processing unit has declared
-	// that it will be listening to. This can happen either with an activation command
-	// or by exposing the ports in a container manifest.
-	NetworkServices types.ProcessingUnitServicesList `json:"networkServices" bson:"networkservices" mapstructure:"networkServices,omitempty"`
+	// Link to the cluster namespace where the AWS API gateway is defined.
+	NamespaceID string `json:"namespaceID" bson:"-" mapstructure:"namespaceID,omitempty"`
 
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// OperationalStatus of the processing unit.
-	OperationalStatus ProcessingUnitOperationalStatusValue `json:"operationalStatus" bson:"operationalstatus" mapstructure:"operationalStatus,omitempty"`
-
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// Type of the container ecosystem.
-	Type ProcessingUnitTypeValue `json:"type" bson:"type" mapstructure:"type,omitempty"`
+	// API resource that handled this request.
+	Resource string `json:"resource" bson:"-" mapstructure:"resource,omitempty"`
+
+	// the client ip for this request.
+	SourceIP string `json:"sourceIP" bson:"-" mapstructure:"sourceIP,omitempty"`
+
+	// the stage name as defined on AWS for the API that handled this request.
+	Stage string `json:"stage" bson:"-" mapstructure:"stage,omitempty"`
+
+	// the JWT token that was optionally attached to this request.
+	Token string `json:"token" bson:"-" mapstructure:"token,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -173,46 +136,44 @@ type ProcessingUnit struct {
 	sync.Mutex
 }
 
-// NewProcessingUnit returns a new *ProcessingUnit
-func NewProcessingUnit() *ProcessingUnit {
+// NewAWSAPIGateway returns a new *AWSAPIGateway
+func NewAWSAPIGateway() *AWSAPIGateway {
 
-	return &ProcessingUnit{
-		ModelVersion:      1,
-		Annotations:       map[string][]string{},
-		AssociatedTags:    []string{},
-		Metadata:          []string{},
-		NetworkServices:   types.ProcessingUnitServicesList{},
-		NormalizedTags:    []string{},
-		OperationalStatus: "Initialized",
+	return &AWSAPIGateway{
+		ModelVersion:   1,
+		Annotations:    map[string][]string{},
+		AssociatedTags: []string{},
+		Metadata:       []string{},
+		NormalizedTags: []string{},
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *ProcessingUnit) Identity() elemental.Identity {
+func (o *AWSAPIGateway) Identity() elemental.Identity {
 
-	return ProcessingUnitIdentity
+	return AWSAPIGatewayIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *ProcessingUnit) Identifier() string {
+func (o *AWSAPIGateway) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *ProcessingUnit) SetIdentifier(id string) {
+func (o *AWSAPIGateway) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *ProcessingUnit) Version() int {
+func (o *AWSAPIGateway) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *ProcessingUnit) DefaultOrder() []string {
+func (o *AWSAPIGateway) DefaultOrder() []string {
 
 	return []string{
 		"name",
@@ -220,136 +181,119 @@ func (o *ProcessingUnit) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *ProcessingUnit) Doc() string {
-	return `A Processing Unit reprents anything that can compute. It can be a Docker
-container, or a simple Unix process. They are created, updated and deleted by
-the system as they come and go. You can only modify its tags.  Processing Units
-use Network Access Policies to define which other Processing Units or External
-Services they can communicate with and File Access Policies to define what File
-Paths they can use.`
+func (o *AWSAPIGateway) Doc() string {
+	return `managed API decisions for the AWS API Gateway.`
 }
 
-func (o *ProcessingUnit) String() string {
+func (o *AWSAPIGateway) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *ProcessingUnit) GetAnnotations() map[string][]string {
+func (o *AWSAPIGateway) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *ProcessingUnit) SetAnnotations(annotations map[string][]string) {
+func (o *AWSAPIGateway) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
-// GetArchived returns the Archived of the receiver.
-func (o *ProcessingUnit) GetArchived() bool {
-
-	return o.Archived
-}
-
-// SetArchived sets the given Archived of the receiver.
-func (o *ProcessingUnit) SetArchived(archived bool) {
-
-	o.Archived = archived
-}
-
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *ProcessingUnit) GetAssociatedTags() []string {
+func (o *AWSAPIGateway) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *ProcessingUnit) SetAssociatedTags(associatedTags []string) {
+func (o *AWSAPIGateway) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *ProcessingUnit) GetCreateTime() time.Time {
+func (o *AWSAPIGateway) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *ProcessingUnit) SetCreateTime(createTime time.Time) {
+func (o *AWSAPIGateway) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *ProcessingUnit) GetMetadata() []string {
+func (o *AWSAPIGateway) GetMetadata() []string {
 
 	return o.Metadata
 }
 
 // SetMetadata sets the given Metadata of the receiver.
-func (o *ProcessingUnit) SetMetadata(metadata []string) {
+func (o *AWSAPIGateway) SetMetadata(metadata []string) {
 
 	o.Metadata = metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *ProcessingUnit) GetName() string {
+func (o *AWSAPIGateway) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *ProcessingUnit) SetName(name string) {
+func (o *AWSAPIGateway) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *ProcessingUnit) GetNamespace() string {
+func (o *AWSAPIGateway) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *ProcessingUnit) SetNamespace(namespace string) {
+func (o *AWSAPIGateway) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *ProcessingUnit) GetNormalizedTags() []string {
+func (o *AWSAPIGateway) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *ProcessingUnit) SetNormalizedTags(normalizedTags []string) {
+func (o *AWSAPIGateway) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *ProcessingUnit) GetProtected() bool {
+func (o *AWSAPIGateway) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *ProcessingUnit) GetUpdateTime() time.Time {
+func (o *AWSAPIGateway) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *ProcessingUnit) SetUpdateTime(updateTime time.Time) {
+func (o *AWSAPIGateway) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // Validate valides the current information stored into the structure.
-func (o *ProcessingUnit) Validate() error {
+func (o *AWSAPIGateway) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -366,14 +310,6 @@ func (o *ProcessingUnit) Validate() error {
 		errors = append(errors, err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Docker", "LinuxService", "RKT", "User", "APIGateway"}, false); err != nil {
-		errors = append(errors, err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -386,24 +322,33 @@ func (o *ProcessingUnit) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*ProcessingUnit) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*AWSAPIGateway) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := ProcessingUnitAttributesMap[name]; ok {
+	if v, ok := AWSAPIGatewayAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return ProcessingUnitLowerCaseAttributesMap[name]
+	return AWSAPIGatewayLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*AWSAPIGateway) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return ProcessingUnitAttributesMap
+	return AWSAPIGatewayAttributesMap
 }
 
-// ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
-var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
+// AWSAPIGatewayAttributesMap represents the map of attribute for AWSAPIGateway.
+var AWSAPIGatewayAttributesMap = map[string]elemental.AttributeSpecification{
+	"APIID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "APIID",
+		Description:    `API ID as defined on AWS for the API that handled this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "APIID",
+		Type:           "string",
+	},
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -420,6 +365,15 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"AccountID": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AccountID",
+		Description:    `the account ID for the gateway managing this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "accountID",
+		Type:           "string",
+	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
@@ -432,16 +386,6 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "annotations",
 		Type:           "external",
 	},
-	"Archived": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Archived",
-		Description:    `Archived defines if the object is archived.`,
-		Getter:         true,
-		Name:           "archived",
-		Setter:         true,
-		Stored:         true,
-		Type:           "boolean",
-	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AssociatedTags",
@@ -453,6 +397,17 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
+	},
+	"Authorized": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Authorized",
+		Description:    `The policy decision for this API flow.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "authorized",
+		Orderable:      true,
+		ReadOnly:       true,
+		Type:           "boolean",
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -480,28 +435,6 @@ var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"EnforcerID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "EnforcerID",
-		Description:    `EnforcerID is the ID of the enforcer associated with the processing unit.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "enforcerID",
-		Stored:         true,
-		Type:           "string",
-	},
-	"LastSyncTime": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "LastSyncTime",
-		Description:    `LastSyncTime is the time when the policy was last resolved.`,
-		Exposed:        true,
-		Name:           "lastSyncTime",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "time",
-	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Metadata",
@@ -516,6 +449,15 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:     true,
 		SubType:    "metadata_list",
 		Type:       "external",
+	},
+	"Method": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Method",
+		Description:    `API method that handled this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "method",
+		Type:           "string",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -553,30 +495,14 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"NativeContextID": elemental.AttributeSpecification{
+	"NamespaceID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "NativeContextID",
-		Description:    `NativeContextID is the Docker UUID or service PID.`,
+		ConvertedName:  "NamespaceID",
+		Description:    `Link to the cluster namespace where the AWS API gateway is defined.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
-		Name:           "nativeContextID",
-		Stored:         true,
+		Name:           "namespaceID",
 		Type:           "string",
-	},
-	"NetworkServices": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NetworkServices",
-		Description: `NetworkServices is the list of services that this processing unit has declared
-that it will be listening to. This can happen either with an activation command
-or by exposing the ports in a container manifest.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "networkServices",
-		Orderable:  true,
-		Stored:     true,
-		SubType:    "processing_unit_services_list",
-		Type:       "external",
 	},
 	"NormalizedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -593,17 +519,6 @@ or by exposing the ports in a container manifest.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"OperationalStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
-		ConvertedName:  "OperationalStatus",
-		DefaultValue:   ProcessingUnitOperationalStatusInitialized,
-		Description:    `OperationalStatus of the processing unit.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "operationalStatus",
-		Stored:         true,
-		Type:           "enum",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -616,17 +531,41 @@ or by exposing the ports in a container manifest.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Docker", "LinuxService", "RKT", "User", "APIGateway"},
-		ConvertedName:  "Type",
-		CreationOnly:   true,
-		Description:    `Type of the container ecosystem.`,
+	"Resource": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Resource",
+		Description:    `API resource that handled this request.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
+		Format:         "free",
+		Name:           "resource",
+		Type:           "string",
+	},
+	"SourceIP": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "SourceIP",
+		Description:    `the client ip for this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "sourceIP",
+		Type:           "string",
+	},
+	"Stage": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Stage",
+		Description:    `the stage name as defined on AWS for the API that handled this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "stage",
+		Type:           "string",
+	},
+	"Token": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Token",
+		Description:    `the JWT token that was optionally attached to this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "token",
+		Type:           "string",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -644,8 +583,17 @@ or by exposing the ports in a container manifest.`,
 	},
 }
 
-// ProcessingUnitLowerCaseAttributesMap represents the map of attribute for ProcessingUnit.
-var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// AWSAPIGatewayLowerCaseAttributesMap represents the map of attribute for AWSAPIGateway.
+var AWSAPIGatewayLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+	"apiid": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "APIID",
+		Description:    `API ID as defined on AWS for the API that handled this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "APIID",
+		Type:           "string",
+	},
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -662,6 +610,15 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		Stored:         true,
 		Type:           "string",
 	},
+	"accountid": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AccountID",
+		Description:    `the account ID for the gateway managing this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "accountID",
+		Type:           "string",
+	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
@@ -674,16 +631,6 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		SubType:        "annotations",
 		Type:           "external",
 	},
-	"archived": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Archived",
-		Description:    `Archived defines if the object is archived.`,
-		Getter:         true,
-		Name:           "archived",
-		Setter:         true,
-		Stored:         true,
-		Type:           "boolean",
-	},
 	"associatedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AssociatedTags",
@@ -695,6 +642,17 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
+	},
+	"authorized": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Authorized",
+		Description:    `The policy decision for this API flow.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "authorized",
+		Orderable:      true,
+		ReadOnly:       true,
+		Type:           "boolean",
 	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -722,28 +680,6 @@ var ProcessingUnitLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		Stored:         true,
 		Type:           "string",
 	},
-	"enforcerid": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "EnforcerID",
-		Description:    `EnforcerID is the ID of the enforcer associated with the processing unit.`,
-		Exposed:        true,
-		Filterable:     true,
-		Format:         "free",
-		Name:           "enforcerID",
-		Stored:         true,
-		Type:           "string",
-	},
-	"lastsynctime": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "LastSyncTime",
-		Description:    `LastSyncTime is the time when the policy was last resolved.`,
-		Exposed:        true,
-		Name:           "lastSyncTime",
-		Orderable:      true,
-		Stored:         true,
-		Type:           "time",
-	},
 	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Metadata",
@@ -758,6 +694,15 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:     true,
 		SubType:    "metadata_list",
 		Type:       "external",
+	},
+	"method": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Method",
+		Description:    `API method that handled this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "method",
+		Type:           "string",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -795,30 +740,14 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "string",
 	},
-	"nativecontextid": elemental.AttributeSpecification{
+	"namespaceid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "NativeContextID",
-		Description:    `NativeContextID is the Docker UUID or service PID.`,
+		ConvertedName:  "NamespaceID",
+		Description:    `Link to the cluster namespace where the AWS API gateway is defined.`,
 		Exposed:        true,
-		Filterable:     true,
 		Format:         "free",
-		Name:           "nativeContextID",
-		Stored:         true,
+		Name:           "namespaceID",
 		Type:           "string",
-	},
-	"networkservices": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "NetworkServices",
-		Description: `NetworkServices is the list of services that this processing unit has declared
-that it will be listening to. This can happen either with an activation command
-or by exposing the ports in a container manifest.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "networkServices",
-		Orderable:  true,
-		Stored:     true,
-		SubType:    "processing_unit_services_list",
-		Type:       "external",
 	},
 	"normalizedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -835,17 +764,6 @@ or by exposing the ports in a container manifest.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"operationalstatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Initialized", "Paused", "Running", "Stopped", "Terminated"},
-		ConvertedName:  "OperationalStatus",
-		DefaultValue:   ProcessingUnitOperationalStatusInitialized,
-		Description:    `OperationalStatus of the processing unit.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "operationalStatus",
-		Stored:         true,
-		Type:           "enum",
-	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -858,17 +776,41 @@ or by exposing the ports in a container manifest.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Docker", "LinuxService", "RKT", "User", "APIGateway"},
-		ConvertedName:  "Type",
-		CreationOnly:   true,
-		Description:    `Type of the container ecosystem.`,
+	"resource": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Resource",
+		Description:    `API resource that handled this request.`,
 		Exposed:        true,
-		Filterable:     true,
-		Name:           "type",
-		Required:       true,
-		Stored:         true,
-		Type:           "enum",
+		Format:         "free",
+		Name:           "resource",
+		Type:           "string",
+	},
+	"sourceip": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "SourceIP",
+		Description:    `the client ip for this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "sourceIP",
+		Type:           "string",
+	},
+	"stage": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Stage",
+		Description:    `the stage name as defined on AWS for the API that handled this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "stage",
+		Type:           "string",
+	},
+	"token": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Token",
+		Description:    `the JWT token that was optionally attached to this request.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "token",
+		Type:           "string",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

@@ -18,6 +18,7 @@ var (
 		"automation":                   AutomationIdentity,
 		"automationtemplate":           AutomationTemplateIdentity,
 		"awsaccount":                   AWSAccountIdentity,
+		"awsapigateway":                AWSAPIGatewayIdentity,
 		"awsregister":                  AWSRegisterIdentity,
 		"category":                     CategoryIdentity,
 		"certificate":                  CertificateIdentity,
@@ -102,6 +103,7 @@ var (
 		"automations":                    AutomationIdentity,
 		"automationtemplates":            AutomationTemplateIdentity,
 		"awsaccounts":                    AWSAccountIdentity,
+		"awsapigateways":                 AWSAPIGatewayIdentity,
 		"awsregister":                    AWSRegisterIdentity,
 		"categories":                     CategoryIdentity,
 		"certificates":                   CertificateIdentity,
@@ -308,6 +310,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewAutomationTemplate()
 	case AWSAccountIdentity:
 		return NewAWSAccount()
+	case AWSAPIGatewayIdentity:
+		return NewAWSAPIGateway()
 	case AWSRegisterIdentity:
 		return NewAWSRegister()
 	case CategoryIdentity:
@@ -484,6 +488,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &AutomationTemplatesList{}
 	case AWSAccountIdentity:
 		return &AWSAccountsList{}
+	case AWSAPIGatewayIdentity:
+		return &AWSAPIGatewaysList{}
 	case AWSRegisterIdentity:
 		return &AWSRegistersList{}
 	case CategoryIdentity:
@@ -654,6 +660,7 @@ func AllIdentities() []elemental.Identity {
 		AutomationIdentity,
 		AutomationTemplateIdentity,
 		AWSAccountIdentity,
+		AWSAPIGatewayIdentity,
 		AWSRegisterIdentity,
 		CategoryIdentity,
 		CertificateIdentity,
@@ -772,6 +779,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"awsaccs",
 			"awsacc",
 		}
+	case AWSAPIGatewayIdentity:
+		return []string{}
 	case AWSRegisterIdentity:
 		return []string{}
 	case CategoryIdentity:
