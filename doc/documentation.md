@@ -6086,9 +6086,11 @@ For instance, for enforcers, poke will be use as the heartbeat.
 
 ### Relations
 
-| Method | URL                   | Description                                                                      |
-| -:     | -                     | -                                                                                |
-| `GET`  | `/enforcers/:id/poke` | Sends a poke empty object. This is used to ensure an enforcer is up and running. |
+| Method  | URL                         | Description                                                                      |
+| -:      | -                           | -                                                                                |
+| `GET`   | `/enforcers/:id/poke`       | Sends a poke empty object. This is used to ensure an enforcer is up and running. |
+| `GET`   | `/processingunits/:id/poke` | Sends a poke empty object. This will send a snaphot of the pu to time series
+database. |
 
 ## Policy
 
@@ -6446,9 +6448,11 @@ Paths they can use.
 | `GET`    | `/services/:id/processingunits`              | Retrieves the Processing Units that implement this service.               |
 | `GET`    | `/vulnerabilities/:id/processingunits`       | Retrieves the processing units affected by the a vulnerabily.             |
 | `GET`    | `/processingunits/:id/fileaccesses`          | Retrieves the file accesses done by the processing unit.                  |
-| `GET`    | `/processingunits/:id/renderedpolicies`      | Retrieves the policies for the processing unit.                           |
-| `GET`    | `/processingunits/:id/services`              | Retrieves the services used by a processing unit.                         |
-| `GET`    | `/processingunits/:id/vulnerabilities`       | Retrieves the vulnerabilities affecting the processing unit.              |
+| `GET`    | `/processingunits/:id/poke`                  | Sends a poke empty object. This will send a snaphot of the pu to time series
+database.  |
+| `GET`    | `/processingunits/:id/renderedpolicies` | Retrieves the policies for the processing unit.              |
+| `GET`    | `/processingunits/:id/services`         | Retrieves the services used by a processing unit.            |
+| `GET`    | `/processingunits/:id/vulnerabilities`  | Retrieves the vulnerabilities affecting the processing unit. |
 
 ### Attributes
 

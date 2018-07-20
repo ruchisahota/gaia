@@ -117,3 +117,10 @@ relations:
   descriptions:
     get: Retrieves the vulnerabilities affecting the processing unit.
   get: true
+
+- rest_name: poke
+  descriptions:
+    get: |-
+      Sends a poke empty object. This will send a snaphot of the pu to time series
+      database.
+  get: true

@@ -839,10 +839,12 @@ func init() {
 
 	relationshipsRegistry[PokeIdentity] = &elemental.Relationship{
 		AllowsRetrieveMany: map[string]bool{
-			"enforcer": true,
+			"enforcer":       true,
+			"processingunit": true,
 		},
 		AllowsInfo: map[string]bool{
-			"enforcer": true,
+			"enforcer":       true,
+			"processingunit": true,
 		},
 	}
 
