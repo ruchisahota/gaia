@@ -283,10 +283,6 @@ func (o *FlowReport) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateRequiredString("destinationNamespace", o.DestinationNamespace); err != nil {
-		requiredErrors = append(requiredErrors, err)
-	}
-
 	if err := elemental.ValidateStringInList("destinationType", string(o.DestinationType), []string{"ProcessingUnit", "ExternalService", "Claims"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -385,7 +381,6 @@ var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Namespace of the receiver.`,
 		Exposed:        true,
 		Name:           "destinationNamespace",
-		Required:       true,
 		Type:           "string",
 	},
 	"DestinationPort": elemental.AttributeSpecification{
@@ -615,7 +610,6 @@ var FlowReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Description:    `Namespace of the receiver.`,
 		Exposed:        true,
 		Name:           "destinationNamespace",
-		Required:       true,
 		Type:           "string",
 	},
 	"destinationport": elemental.AttributeSpecification{

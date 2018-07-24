@@ -35,7 +35,6 @@ attributes:
     description: Namespace of the receiver.
     type: string
     exposed: true
-    required: true
     example_value: /my/namespace
 
   - name: destinationPort

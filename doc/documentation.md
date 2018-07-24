@@ -4006,10 +4006,6 @@ Type of the destination.
 
 Namespace of the receiver.
 
-| Characteristics | Value  |
-| -               | -:     |
-| Required        | `true` |
-
 #### `destinationPort (integer)`
 
 Port of the destination.
