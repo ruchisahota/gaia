@@ -3959,6 +3959,7 @@ Post a new flow statistics report.
   "destinationID": "xxx-xxx-xxx",
   "destinationNamespace": "/my/namespace",
   "destinationType": "ProcessingUnit",
+  "namespace": "/my/namespace",
   "observedPolicyID": "xxx-xxx-xxx",
   "observedPolicyNamespace": "/my/namespace",
   "policyID": "xxx-xxx-xxx",
@@ -4030,6 +4031,16 @@ Reason for the rejection.
 
 Tells is the flow has been encrypted.
 
+#### `namespace (string)`
+
+> This attribute is deprecated
+
+This is here for backward compatibility.
+
+| Characteristics | Value  |
+| -               | -:     |
+| Required        | `true` |
+
 #### `observed (boolean)`
 
 Tells if the flow is from design mode.
@@ -4038,9 +4049,10 @@ Tells if the flow is from design mode.
 
 Action observed on the flow.
 
-| Characteristics | Value            |
-| -               | -:               |
-| Allowed Value   | `Accept, Reject` |
+| Characteristics | Value                           |
+| -               | -:                              |
+| Allowed Value   | `Accept, Reject, NotApplicable` |
+| Default         | `NotApplicable`                 |
 
 #### `protocol (integer)`
 
@@ -4090,10 +4102,6 @@ Type of the source.
 
 Namespace of the receiver.
 
-| Characteristics | Value  |
-| -               | -:     |
-| Required        | `true` |
-
 #### `sourceType (enum)`
 
 Type of the source.
@@ -4111,7 +4119,7 @@ Date of the report.
 | -               | -:     |
 | Required        | `true` |
 
-#### `value (float)`
+#### `value (integer)`
 
 Number of flows in the report.
 
