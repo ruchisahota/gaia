@@ -109,7 +109,6 @@ attributes:
     description: Namespace of the network policy that accepted the flow.
     type: string
     exposed: true
-    required: true
     example_value: /my/namespace
 
   - name: protocol
