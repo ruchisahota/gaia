@@ -1780,6 +1780,10 @@ UpdateTime is the time at which an entity was updated.
 | Read only       | `true` |
 | Orderable       | `true` |
 
+#### `uploadStat (string)`
+
+statistics for the amount of flows managed by the gw.
+
 ## AWSRegister
 
 This api allows AWS customer to register with Aporeto SaaS for billing.

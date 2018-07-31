@@ -131,6 +131,9 @@ type AWSAPIGateway struct {
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
 
+	// statistics for the amount of flows managed by the gw.
+	UploadStat string `json:"uploadStat" bson:"-" mapstructure:"uploadStat,omitempty"`
+
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
 	sync.Mutex
@@ -581,6 +584,15 @@ with the '@' prefix, and should only be used by external systems.`,
 		Stored:         true,
 		Type:           "time",
 	},
+	"UploadStat": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "UploadStat",
+		Description:    `statistics for the amount of flows managed by the gw.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "uploadStat",
+		Type:           "string",
+	},
 }
 
 // AWSAPIGatewayLowerCaseAttributesMap represents the map of attribute for AWSAPIGateway.
@@ -825,5 +837,14 @@ with the '@' prefix, and should only be used by external systems.`,
 		Setter:         true,
 		Stored:         true,
 		Type:           "time",
+	},
+	"uploadstat": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "UploadStat",
+		Description:    `statistics for the amount of flows managed by the gw.`,
+		Exposed:        true,
+		Format:         "free",
+		Name:           "uploadStat",
+		Type:           "string",
 	},
 }

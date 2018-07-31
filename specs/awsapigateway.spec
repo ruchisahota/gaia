@@ -74,3 +74,9 @@ attributes:
     type: string
     exposed: true
     format: free
+
+  - name: uploadStat
+    description: statistics for the amount of flows managed by the gw.
+    type: string
+    exposed: true
+    format: free
