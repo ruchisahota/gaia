@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// AlarmIndexes lists the attribute compound indexes.
+var AlarmIndexes = [][]string{}
+
 // AlarmStatusValue represents the possible values for attribute "status".
 type AlarmStatusValue string
 
@@ -465,7 +468,6 @@ identifier, then only the occurrence will be incremented.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -667,7 +669,6 @@ identifier, then only the occurrence will be incremented.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// AWSAPIGatewayIndexes lists the attribute compound indexes.
+var AWSAPIGatewayIndexes = [][]string{}
+
 // AWSAPIGatewayIdentity represents the Identity of the object.
 var AWSAPIGatewayIdentity = elemental.Identity{
 	Name:     "awsapigateway",
@@ -478,7 +481,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -710,7 +712,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

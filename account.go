@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// AccountIndexes lists the attribute compound indexes.
+var AccountIndexes = [][]string{}
+
 // AccountLDAPConnSecurityProtocolValue represents the possible values for attribute "LDAPConnSecurityProtocol".
 type AccountLDAPConnSecurityProtocolValue string
 

@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// MessageIndexes lists the attribute compound indexes.
+var MessageIndexes = [][]string{}
+
 // MessageLevelValue represents the possible values for attribute "level".
 type MessageLevelValue string
 
@@ -460,7 +463,6 @@ var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -659,7 +661,6 @@ var MessageLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

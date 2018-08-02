@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// K8SClusterIndexes lists the attribute compound indexes.
+var K8SClusterIndexes = [][]string{}
+
 // K8SClusterActivationTypeValue represents the possible values for attribute "activationType".
 type K8SClusterActivationTypeValue string
 
@@ -546,7 +549,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -797,7 +799,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// ProcessingUnitPolicyIndexes lists the attribute compound indexes.
+var ProcessingUnitPolicyIndexes = [][]string{}
+
 // ProcessingUnitPolicyActionValue represents the possible values for attribute "action".
 type ProcessingUnitPolicyActionValue string
 
@@ -628,7 +631,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -898,7 +900,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

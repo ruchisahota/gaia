@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// PolicyIndexes lists the attribute compound indexes.
+var PolicyIndexes = [][]string{}
+
 // PolicyTypeValue represents the possible values for attribute "type".
 type PolicyTypeValue string
 
@@ -670,7 +673,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -983,7 +985,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

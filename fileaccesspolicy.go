@@ -9,6 +9,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// FileAccessPolicyIndexes lists the attribute compound indexes.
+var FileAccessPolicyIndexes = [][]string{}
+
 // FileAccessPolicyIdentity represents the Identity of the object.
 var FileAccessPolicyIdentity = elemental.Identity{
 	Name:     "fileaccesspolicy",
@@ -647,7 +650,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -954,7 +956,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

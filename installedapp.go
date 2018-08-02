@@ -8,6 +8,9 @@ import (
 	"go.aporeto.io/gaia/types"
 )
 
+// InstalledAppIndexes lists the attribute compound indexes.
+var InstalledAppIndexes = [][]string{}
+
 // InstalledAppStatusValue represents the possible values for attribute "status".
 type InstalledAppStatusValue string
 

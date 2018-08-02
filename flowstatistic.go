@@ -7,6 +7,9 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// FlowStatisticIndexes lists the attribute compound indexes.
+var FlowStatisticIndexes = [][]string{}
+
 // FlowStatisticMetricValue represents the possible values for attribute "metric".
 type FlowStatisticMetricValue string
 

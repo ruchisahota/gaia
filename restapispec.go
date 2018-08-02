@@ -10,6 +10,9 @@ import (
 	"go.aporeto.io/gaia/types"
 )
 
+// RESTAPISpecIndexes lists the attribute compound indexes.
+var RESTAPISpecIndexes = [][]string{}
+
 // RESTAPISpecIdentity represents the Identity of the object.
 var RESTAPISpecIdentity = elemental.Identity{
 	Name:     "restapispec",
@@ -489,7 +492,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,
@@ -694,7 +696,6 @@ with the '@' prefix, and should only be used by external systems.`,
 		Exposed:        true,
 		Filterable:     true,
 		Getter:         true,
-		Index:          true,
 		Name:           "namespace",
 		Orderable:      true,
 		PrimaryKey:     true,

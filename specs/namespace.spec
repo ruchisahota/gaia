@@ -63,7 +63,6 @@ attributes:
     example_value: mynamespace
     filterable: true
     getter: true
-    index: true
     orderable: true
     primary_key: true
 

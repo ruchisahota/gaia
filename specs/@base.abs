@@ -41,7 +41,6 @@ attributes:
     filterable: true
     getter: true
     setter: true
-    index: true
     orderable: true
     primary_key: true
 
