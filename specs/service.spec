@@ -11,9 +11,14 @@ model:
     units.
   aliases:
   - srv
-  get: true
-  update: true
-  delete: true
+  get:
+    description: Retrieves the object with the given ID.
+    global_parameters:
+    - $archivable
+  update:
+    description: Updates the object with the given ID.
+  delete:
+    description: Deletes the object with the given ID.
   extends:
   - '@archivable'
   - '@base'
@@ -231,11 +236,18 @@ attributes:
 # Relations
 relations:
 - rest_name: restapispec
-  descriptions:
-    get: Retrieves the REST APIs exposed by this service.
-  get: true
+  get:
+    description: Retrieves the REST APIs exposed by this service.
 
 - rest_name: processingunit
-  descriptions:
-    get: Retrieves the Processing Units that implement this service.
-  get: true
+  get:
+    description: Retrieves the Processing Units that implement this service.
+    parameters:
+      entries:
+      - name: mode
+        description: Matching mode.
+        type: enum
+        allowed_choices:
+        - subjects
+        - object
+        default_value: objects
