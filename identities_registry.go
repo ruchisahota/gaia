@@ -4,11 +4,10 @@ import "go.aporeto.io/elemental"
 
 var (
 	identityNamesMap = map[string]elemental.Identity{
-		"account":      AccountIdentity,
-		"accountcheck": AccountCheckIdentity,
-		"activate":     ActivateIdentity,
-		"activity":     ActivityIdentity,
-
+		"account":                      AccountIdentity,
+		"accountcheck":                 AccountCheckIdentity,
+		"activate":                     ActivateIdentity,
+		"activity":                     ActivityIdentity,
 		"alarm":                        AlarmIdentity,
 		"apiauthorizationpolicy":       APIAuthorizationPolicyIdentity,
 		"apicheck":                     APICheckIdentity,
@@ -91,11 +90,10 @@ var (
 	}
 
 	identitycategoriesMap = map[string]elemental.Identity{
-		"accounts":      AccountIdentity,
-		"accountchecks": AccountCheckIdentity,
-		"activate":      ActivateIdentity,
-		"activities":    ActivityIdentity,
-
+		"accounts":                       AccountIdentity,
+		"accountchecks":                  AccountCheckIdentity,
+		"activate":                       ActivateIdentity,
+		"activities":                     ActivityIdentity,
 		"alarms":                         AlarmIdentity,
 		"apiauthorizationpolicies":       APIAuthorizationPolicyIdentity,
 		"apichecks":                      APICheckIdentity,
