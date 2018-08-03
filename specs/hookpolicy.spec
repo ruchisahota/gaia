@@ -96,7 +96,6 @@ attributes:
     stored: true
     required: true
     example_value: https://hooks.hookserver.com/remoteprocessors
-    filterable: true
     orderable: true
 
   - name: mode
@@ -109,7 +108,6 @@ attributes:
     - Post
     - Pre
     default_value: Pre
-    filterable: true
     orderable: true
 
   - name: subject

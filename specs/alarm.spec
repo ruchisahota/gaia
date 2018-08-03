@@ -46,7 +46,6 @@ attributes:
     required: true
     creation_only: true
     example_value: aporeto.alarm.kind
-    filterable: true
     orderable: true
 
   - name: occurrences
@@ -68,5 +67,4 @@ attributes:
     - Open
     - Resolved
     default_value: Open
-    filterable: true
     orderable: true

@@ -23,7 +23,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: invoiceID
@@ -33,7 +32,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: invoiceRecords
@@ -42,5 +40,4 @@ attributes:
     exposed: true
     subtype: invoicerecord_list
     stored: true
-    filterable: true
     orderable: true

@@ -20,7 +20,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     identifier: true
     orderable: true
     primary_key: true
@@ -30,5 +29,4 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
