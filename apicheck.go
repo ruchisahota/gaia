@@ -116,7 +116,7 @@ type APICheck struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAPICheck returns a new *APICheck

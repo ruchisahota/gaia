@@ -229,7 +229,7 @@ type EnforcerProfile struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEnforcerProfile returns a new *EnforcerProfile

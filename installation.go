@@ -77,7 +77,7 @@ type Installation struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewInstallation returns a new *Installation

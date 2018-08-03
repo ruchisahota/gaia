@@ -74,7 +74,7 @@ type Trigger struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewTrigger returns a new *Trigger

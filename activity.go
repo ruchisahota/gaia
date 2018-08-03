@@ -107,7 +107,7 @@ type Activity struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewActivity returns a new *Activity

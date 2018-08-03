@@ -139,7 +139,7 @@ type TokenScopePolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewTokenScopePolicy returns a new *TokenScopePolicy

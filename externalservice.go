@@ -122,7 +122,7 @@ type ExternalService struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewExternalService returns a new *ExternalService

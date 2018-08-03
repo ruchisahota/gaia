@@ -80,7 +80,7 @@ type QuotaCheck struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewQuotaCheck returns a new *QuotaCheck

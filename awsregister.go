@@ -85,7 +85,7 @@ type AWSRegister struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAWSRegister returns a new *AWSRegister

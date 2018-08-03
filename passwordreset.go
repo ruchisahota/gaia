@@ -77,7 +77,7 @@ type PasswordReset struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPasswordReset returns a new *PasswordReset

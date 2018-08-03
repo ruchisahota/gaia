@@ -221,7 +221,7 @@ type FlowReport struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewFlowReport returns a new *FlowReport

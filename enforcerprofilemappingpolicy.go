@@ -130,7 +130,7 @@ type EnforcerProfileMappingPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEnforcerProfileMappingPolicy returns a new *EnforcerProfileMappingPolicy

@@ -90,7 +90,7 @@ type DependencyMap struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewDependencyMap returns a new *DependencyMap

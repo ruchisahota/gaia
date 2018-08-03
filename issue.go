@@ -116,7 +116,7 @@ type Issue struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewIssue returns a new *Issue

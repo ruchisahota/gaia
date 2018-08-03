@@ -118,7 +118,7 @@ type NamespaceMappingPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewNamespaceMappingPolicy returns a new *NamespaceMappingPolicy

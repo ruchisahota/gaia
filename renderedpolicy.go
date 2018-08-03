@@ -110,7 +110,7 @@ type RenderedPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewRenderedPolicy returns a new *RenderedPolicy

@@ -89,7 +89,7 @@ type Plan struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPlan returns a new *Plan

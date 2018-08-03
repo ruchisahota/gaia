@@ -115,7 +115,7 @@ type FilePath struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewFilePath returns a new *FilePath

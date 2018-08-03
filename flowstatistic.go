@@ -139,7 +139,7 @@ type FlowStatistic struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewFlowStatistic returns a new *FlowStatistic

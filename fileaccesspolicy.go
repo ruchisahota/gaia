@@ -153,7 +153,7 @@ type FileAccessPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewFileAccessPolicy returns a new *FileAccessPolicy

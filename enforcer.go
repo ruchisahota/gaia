@@ -189,7 +189,7 @@ type Enforcer struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEnforcer returns a new *Enforcer

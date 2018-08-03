@@ -75,7 +75,7 @@ type Auth struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAuth returns a new *Auth

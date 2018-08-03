@@ -81,7 +81,7 @@ type PrivateKey struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPrivateKey returns a new *PrivateKey

@@ -119,7 +119,7 @@ type InstalledApp struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewInstalledApp returns a new *InstalledApp

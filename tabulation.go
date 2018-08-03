@@ -80,7 +80,7 @@ type Tabulation struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewTabulation returns a new *Tabulation

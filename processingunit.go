@@ -173,7 +173,7 @@ type ProcessingUnit struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewProcessingUnit returns a new *ProcessingUnit

@@ -135,7 +135,7 @@ type Alarm struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAlarm returns a new *Alarm

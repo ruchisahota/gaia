@@ -166,7 +166,7 @@ type ProcessingUnitPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewProcessingUnitPolicy returns a new *ProcessingUnitPolicy

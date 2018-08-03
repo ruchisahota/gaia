@@ -74,7 +74,7 @@ type Activate struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewActivate returns a new *Activate

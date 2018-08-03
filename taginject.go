@@ -80,7 +80,7 @@ type TagInject struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewTagInject returns a new *TagInject

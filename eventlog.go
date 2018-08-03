@@ -118,7 +118,7 @@ type EventLog struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEventLog returns a new *EventLog

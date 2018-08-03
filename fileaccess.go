@@ -103,7 +103,7 @@ type FileAccess struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewFileAccess returns a new *FileAccess

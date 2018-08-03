@@ -141,7 +141,7 @@ type APIAuthorizationPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAPIAuthorizationPolicy returns a new *APIAuthorizationPolicy

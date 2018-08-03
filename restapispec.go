@@ -123,7 +123,7 @@ type RESTAPISpec struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewRESTAPISpec returns a new *RESTAPISpec

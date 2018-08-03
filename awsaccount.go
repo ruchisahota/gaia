@@ -106,7 +106,7 @@ type AWSAccount struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAWSAccount returns a new *AWSAccount

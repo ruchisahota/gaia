@@ -71,7 +71,7 @@ func (o AccountChecksList) Version() int {
 type AccountCheck struct {
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAccountCheck returns a new *AccountCheck

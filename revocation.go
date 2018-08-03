@@ -89,7 +89,7 @@ type Revocation struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewRevocation returns a new *Revocation

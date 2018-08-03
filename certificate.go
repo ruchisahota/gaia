@@ -131,7 +131,7 @@ type Certificate struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewCertificate returns a new *Certificate

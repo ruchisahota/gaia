@@ -121,7 +121,7 @@ type Namespace struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewNamespace returns a new *Namespace

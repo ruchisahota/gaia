@@ -138,7 +138,7 @@ type ServiceDependency struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewServiceDependency returns a new *ServiceDependency

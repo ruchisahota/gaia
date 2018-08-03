@@ -106,7 +106,7 @@ type AutomationTemplate struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAutomationTemplate returns a new *AutomationTemplate

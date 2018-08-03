@@ -116,7 +116,7 @@ type PolicyRule struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPolicyRule returns a new *PolicyRule

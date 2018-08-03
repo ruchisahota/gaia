@@ -126,7 +126,7 @@ type IsolationProfile struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewIsolationProfile returns a new *IsolationProfile

@@ -77,7 +77,7 @@ type PolicyRefresh struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPolicyRefresh returns a new *PolicyRefresh

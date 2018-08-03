@@ -80,7 +80,7 @@ type SquallTag struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSquallTag returns a new *SquallTag

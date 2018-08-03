@@ -115,7 +115,7 @@ type PolicyRenderer struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPolicyRenderer returns a new *PolicyRenderer

@@ -71,7 +71,7 @@ func (o PokesList) Version() int {
 type Poke struct {
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewPoke returns a new *Poke

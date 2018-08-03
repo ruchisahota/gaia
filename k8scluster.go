@@ -166,7 +166,7 @@ type K8SCluster struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewK8SCluster returns a new *K8SCluster

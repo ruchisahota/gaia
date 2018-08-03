@@ -134,7 +134,7 @@ type QuotaPolicy struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex
+	sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewQuotaPolicy returns a new *QuotaPolicy
