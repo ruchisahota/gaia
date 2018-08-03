@@ -49,7 +49,6 @@ attributes:
     required: true
     creation_only: true
     example_value: server1.domain.com
-    filterable: true
     orderable: true
 
   - name: certificate
@@ -66,7 +65,6 @@ attributes:
     type: time
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: certificateKey
@@ -117,7 +115,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: enforcerProfileID
@@ -125,7 +122,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: lastCollectionTime
@@ -141,7 +137,6 @@ attributes:
     type: time
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: localCA
@@ -186,7 +181,6 @@ attributes:
     type: time
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: updateAvailable
@@ -194,7 +188,6 @@ attributes:
     type: boolean
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
 # Relations

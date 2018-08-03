@@ -660,7 +660,6 @@ identifier, then only the occurrence will be incremented.
 | Required        | `true` |
 | Creation only   | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `name (string)`
 
@@ -710,7 +709,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `status (enum)`
 
@@ -721,7 +719,6 @@ Status of the alarm.
 | Allowed Value   | `Acknowledged, Open, Resolved` |
 | Default         | `"Open"`                       |
 | Orderable       | `true`                         |
-| Filterable      | `true`                         |
 
 #### `updateTime (time)`
 
@@ -834,7 +831,6 @@ AuthorizedNamespace defines on what namespace the policy applies.
 | Characteristics | Value  |
 | -               | -:     |
 | Required        | `true` |
-| Filterable      | `true` |
 
 #### `createTime (time)`
 
@@ -862,7 +858,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -934,7 +929,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -943,7 +937,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -1082,7 +1075,6 @@ CategoryID of the app.
 | Characteristics | Value  |
 | -               | -:     |
 | Read only       | `true` |
-| Filterable      | `true` |
 
 #### `description (string)`
 
@@ -1255,10 +1247,6 @@ NormalizedTags contains the list of normalized tags of the entities.
 
 Propagated indicates if the audit profile is propagated.
 
-| Characteristics | Value  |
-| -               | -:     |
-| Filterable      | `true` |
-
 #### `protected (boolean)`
 
 Protected defines if the object is protected.
@@ -1266,7 +1254,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `rules (external:audit_profile_rule_list)`
 
@@ -1414,7 +1401,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `entitlements (external:automation_entitlements)`
 
@@ -1486,7 +1472,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `schedule (string)`
 
@@ -1525,7 +1510,6 @@ Trigger controls when the automation should be triggered.
 | Allowed Value   | `Event, RemoteCall, Time` |
 | Default         | `"Time"`                  |
 | Orderable       | `true`                    |
-| Filterable      | `true`                    |
 
 #### `updateTime (time)`
 
@@ -1906,7 +1890,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `resource (string)`
 
@@ -2390,7 +2373,6 @@ FQDN contains the fqdn of the server where the enforcer is running.
 | Required        | `true` |
 | Creation only   | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `ID (string)`
 
@@ -2429,7 +2411,6 @@ CertificateExpirationDate is the expiration date of the certificate.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `certificateKey (string)`
 
@@ -2483,7 +2464,6 @@ to this object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `description (string)`
 
@@ -2501,7 +2481,6 @@ Contains the ID of the profile used by the instance of enforcerd.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `lastCollectionTime (time)`
 
@@ -2515,7 +2494,6 @@ LastSyncTime holds the last heart beat time.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `localCA (string)`
 
@@ -2586,7 +2564,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `publicToken (string)`
 
@@ -2606,7 +2583,6 @@ by the enforcer and is is preserved across disconnects.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateAvailable (boolean)`
 
@@ -2615,7 +2591,6 @@ Tells if the the version of enforcerd is outdated and should be updated.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -2705,7 +2680,6 @@ IptablesMarkValue is the mark value to be used in an iptables implementation.
 | Default         | `1000`  |
 | Max length      | `65000` |
 | Orderable       | `true`  |
-| Filterable      | `true`  |
 
 #### `PUBookkeepingInterval (string)`
 
@@ -2716,7 +2690,6 @@ PUBookkeepingInterval configures how often the PU will be synchronized.
 | Format          | `/^[0-9]+[smh]$/` |
 | Default         | `"15m"`           |
 | Orderable       | `true`            |
-| Filterable      | `true`            |
 
 #### `PUHeartbeatInterval (string)`
 
@@ -2727,7 +2700,6 @@ PUHeartbeatInterval configures the heart beat interval.
 | Format          | `/^[0-9]+[smh]$/` |
 | Default         | `"5s"`            |
 | Orderable       | `true`            |
-| Filterable      | `true`            |
 
 #### `annotations (external:annotations)`
 
@@ -2743,7 +2715,6 @@ Port used by aporeto application proxy.
 | Min length      | `1`     |
 | Max length      | `65535` |
 | Orderable       | `true`  |
-| Filterable      | `true`  |
 
 #### `associatedTags (external:tags_list)`
 
@@ -2774,7 +2745,6 @@ AuditSocketBufferSize is the size of the audit socket buffer. Default 16384.
 | Default         | `16384`  |
 | Max length      | `262144` |
 | Orderable       | `true`   |
-| Filterable      | `true`   |
 
 #### `createTime (time)`
 
@@ -2804,7 +2774,6 @@ DockerSocketAddress is the address of the docker daemon.
 | Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix://(/[^/]{1,16}){1,5}/?)$/` |
 | Default         | `"unix:///var/run/docker.sock"`                                                                                                             |
 | Orderable       | `true`                                                                                                                                      |
-| Filterable      | `true`                                                                                                                                      |
 
 #### `excludedInterfaces (external:excluded_interfaces_list)`
 
@@ -2813,7 +2782,6 @@ ExcludedInterfaces is a list of interfaces that must be excluded.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `excludedNetworks (external:excluded_networks_list)`
 
@@ -2823,7 +2791,6 @@ enforcer.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `hostServices (external:host_services_list)`
 
@@ -2845,7 +2812,6 @@ Kubernetes.
 | Allowed Value   | `KubeSquall, PodAtomic, PodContainers` |
 | Default         | `"KubeSquall"`                         |
 | Orderable       | `true`                                 |
-| Filterable      | `true`                                 |
 
 #### `kubernetesSupportEnabled (boolean)`
 
@@ -2855,7 +2821,6 @@ KubernetesSupportEnabled enables kubernetes mode for the enforcer.
 | -               | -:      |
 | Default         | `false` |
 | Orderable       | `true`  |
-| Filterable      | `true`  |
 
 #### `linuxProcessesSupportEnabled (boolean)`
 
@@ -2874,7 +2839,6 @@ Select which metadata extractor to use to process new processing units.
 | Allowed Value   | `Docker, ECS, Kubernetes` |
 | Default         | `"Docker"`                |
 | Orderable       | `true`                    |
-| Filterable      | `true`                    |
 
 #### `name (string)`
 
@@ -2918,7 +2882,6 @@ resynchronized.
 | Format          | `/^[0-9]+[smh]$/` |
 | Default         | `"10m"`           |
 | Orderable       | `true`            |
-| Filterable      | `true`            |
 
 #### `protected (boolean)`
 
@@ -2927,7 +2890,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `proxyListenAddress (string)`
 
@@ -2941,7 +2903,6 @@ example:
 | Format          | `/^(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))$|(unix://(/[^/]{1,16}){1,5}/?)$/` |
 | Default         | `"unix:///var/run/aporeto.sock"`                                                                                                            |
 | Orderable       | `true`                                                                                                                                      |
-| Filterable      | `true`                                                                                                                                      |
 
 #### `receiverNumberOfQueues (integer)`
 
@@ -2954,7 +2915,6 @@ receiver starting at the ReceiverQueue.
 | Min length      | `1`    |
 | Max length      | `16`   |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `receiverQueue (integer)`
 
@@ -2964,7 +2924,6 @@ ReceiverQueue is the base queue number for traffic from the network.
 | -               | -:     |
 | Max length      | `1000` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `receiverQueueSize (integer)`
 
@@ -2976,7 +2935,6 @@ ReceiverQueueSize is the queue size of the receiver.
 | Min length      | `1`    |
 | Max length      | `5000` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `remoteEnforcerEnabled (boolean)`
 
@@ -2987,7 +2945,6 @@ distributed enforcer. True means distributed.
 | -               | -:     |
 | Default         | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `targetNetworks (external:target_networks_list)`
 
@@ -2996,7 +2953,6 @@ TargetNetworks is the list of networks that authorization should be applied.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `transmitterNumberOfQueues (integer)`
 
@@ -3008,7 +2964,6 @@ TransmitterNumberOfQueues is the number of queues for application traffic.
 | Min length      | `1`    |
 | Max length      | `16`   |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `transmitterQueue (integer)`
 
@@ -3021,7 +2976,6 @@ at the transmitterQueue.
 | Min length      | `1`    |
 | Max length      | `1000` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `transmitterQueueSize (integer)`
 
@@ -3033,7 +2987,6 @@ TransmitterQueueSize is the size of the queue for application traffic.
 | Min length      | `1`    |
 | Max length      | `1000` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `trustedCAs (external:trusted_cas_list)`
 
@@ -3166,7 +3119,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -3246,7 +3198,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -3255,7 +3206,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -3626,7 +3576,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protocols (list)`
 
@@ -3779,10 +3728,6 @@ Namespace tag attached to an entity.
 
 Network refers to either CIDR or domain name.
 
-| Characteristics | Value  |
-| -               | -:     |
-| Filterable      | `true` |
-
 #### `normalizedTags (external:tags_list)`
 
 NormalizedTags contains the list of normalized tags of the entities.
@@ -3801,7 +3746,6 @@ represent a range of ports.
 | -               | -:                                                                                                                                                                                                               |
 | Format          | `/^([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535)(:([1-9]|[1-9][0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|65535))?$/` |
 | Default         | `"1:65535"`                                                                                                                                                                                                      |
-| Filterable      | `true`                                                                                                                                                                                                           |
 
 #### `protected (boolean)`
 
@@ -3810,7 +3754,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protocol (string)`
 
@@ -3820,7 +3763,6 @@ Protocol refers to network protocol like TCP/UDP or the number of the protocol.
 | -               | -:                                                                     |
 | Format          | `/^(TCP|UDP|tcp|udp|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/` |
 | Required        | `true`                                                                 |
-| Filterable      | `true`                                                                 |
 
 #### `updateTime (time)`
 
@@ -3999,7 +3941,6 @@ AllowsExecute allows to execute the files.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `allowsRead (boolean)`
 
@@ -4008,7 +3949,6 @@ AllowsRead allows to read the files.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `allowsWrite (boolean)`
 
@@ -4017,7 +3957,6 @@ AllowsWrite allows to write the files.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `annotations (external:annotations)`
 
@@ -4053,7 +3992,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `encryptionEnabled (boolean)`
 
@@ -4062,7 +4000,6 @@ EncryptionEnabled will enable the automatic encryption.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -4082,7 +4019,6 @@ LogsEnabled will enable logging when this policy is used.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -4151,7 +4087,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -4160,7 +4095,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -4271,7 +4205,6 @@ FilePath refer to the file mount path.
 | Characteristics | Value  |
 | -               | -:     |
 | Required        | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -4322,7 +4255,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `server (string)`
 
@@ -4331,7 +4263,6 @@ server is the server name/ID/IP associated with the file path.
 | Characteristics | Value  |
 | -               | -:     |
 | Creation only   | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -4826,7 +4757,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `endpoint (string)`
 
@@ -4836,7 +4766,6 @@ Endpoint contains the full address of the remote processor endoint.
 | -               | -:     |
 | Required        | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -4868,7 +4797,6 @@ Mode define the type of the hook.
 | Allowed Value   | `Both, Post, Pre` |
 | Default         | `"Pre"`           |
 | Orderable       | `true`            |
-| Filterable      | `true`            |
 
 #### `name (string)`
 
@@ -4919,7 +4847,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -4928,7 +4855,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -5022,7 +4948,6 @@ ID is the identifier of the object.
 | -               | -:     |
 | Identifier      | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `accountName (string)`
 
@@ -5031,7 +4956,6 @@ AccountName that should be installed.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ## InstalledApp
 
@@ -5079,7 +5003,6 @@ ID of the installed app.
 | Identifier      | `true` |
 | Autogenerated   | `true` |
 | Read only       | `true` |
-| Filterable      | `true` |
 
 #### `accountName (string)`
 
@@ -5097,7 +5020,6 @@ CategoryID of the app.
 | -               | -:     |
 | Read only       | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `currentVersion (string)`
 
@@ -5111,7 +5033,6 @@ Name of the installed app.
 | -               | -:     |
 | Creation only   | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `namespace (string)`
 
@@ -5120,7 +5041,6 @@ Namespace in which the app is running.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `parameters (external:app_parameters)`
 
@@ -5136,7 +5056,6 @@ Status of the app.
 | Default         | `"Pending"`               |
 | Read only       | `true`                    |
 | Orderable       | `true`                    |
-| Filterable      | `true`                    |
 
 ## Invoice
 
@@ -5165,7 +5084,6 @@ ID is the id of the invoice.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `accountID (string)`
 
@@ -5174,7 +5092,6 @@ AccountID references the id of the customer that this invoice belongs to.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `billedToProvider (enum)`
 
@@ -5203,7 +5120,6 @@ EndDate holds the end date for this invoice.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `startDate (time)`
 
@@ -5212,7 +5128,6 @@ StartDate holds the start date for this invoice.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -5252,7 +5167,6 @@ ID is the id of this invoice record.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `createTime (time)`
 
@@ -5273,7 +5187,6 @@ details for.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `invoiceRecords (external:invoicerecord_list)`
 
@@ -5282,7 +5195,6 @@ InvoiceRecords provides details about billing units.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -5364,7 +5276,6 @@ from the processing unit.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `createTime (time)`
 
@@ -5439,7 +5350,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `syscallRules (external:syscall_rules)`
 
@@ -5449,7 +5359,6 @@ syscalls.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `targetArchitectures (external:arch_list)`
 
@@ -5459,7 +5368,6 @@ be applied. Default all.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -5502,7 +5410,6 @@ Data contains additional data. The value depends on the issuer type.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata)`
 
@@ -5540,7 +5447,6 @@ configured max validity, it will be capped.
 | Format          | `/^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$/` |
 | Default         | `"24h"`                                                                                                           |
 | Orderable       | `true`                                                                                                            |
-| Filterable      | `true`                                                                                                            |
 
 ## Jaegerbatch
 
@@ -5625,7 +5531,6 @@ Defines the mode of activation on the KubernetesCluster.
 | Allowed Value   | `KubeSquall, PodAtomic, PodContainers` |
 | Default         | `"KubeSquall"`                         |
 | Orderable       | `true`                                 |
-| Filterable      | `true`                                 |
 
 #### `adminEmail (string)`
 
@@ -5635,7 +5540,6 @@ definition.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `annotations (external:annotations)`
 
@@ -5728,7 +5632,6 @@ consistent policies in Squall.
 | Allowed Value   | `Kubernetes, NoPolicy` |
 | Default         | `"Kubernetes"`         |
 | Orderable       | `true`                 |
-| Filterable      | `true`                 |
 
 #### `normalizedTags (external:tags_list)`
 
@@ -5746,7 +5649,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `regenerate (boolean)`
 
@@ -6004,7 +5906,6 @@ expirationTime is the time after which the message will be deleted.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `level (enum)`
 
@@ -6015,7 +5916,6 @@ Level defines how the message is important.
 | Allowed Value   | `Danger, Info, Warning` |
 | Default         | `"Info"`                |
 | Orderable       | `true`                  |
-| Filterable      | `true`                  |
 
 #### `local (boolean)`
 
@@ -6024,7 +5924,6 @@ If local is set, the message will only be visible in the current namespace.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `name (string)`
 
@@ -6066,7 +5965,6 @@ annotations.
 | Characteristics | Value  |
 | -               | -:     |
 | Creation only   | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -6075,7 +5973,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -6196,7 +6093,6 @@ Authority. Switching it off and on again will regenerate a new CA.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -6253,7 +6149,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -6372,7 +6267,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `mappedNamespace (string)`
 
@@ -6433,7 +6327,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -6535,7 +6428,6 @@ Action defines the action to apply to a flow.
 | Allowed Value   | `Allow, Reject, Continue` |
 | Default         | `"Allow"`                 |
 | Orderable       | `true`                    |
-| Filterable      | `true`                    |
 
 #### `activeDuration (string)`
 
@@ -6585,7 +6477,6 @@ DestinationPorts contains the list of allowed ports and ranges.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `disabled (boolean)`
 
@@ -6594,7 +6485,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `encryptionEnabled (boolean)`
 
@@ -6603,7 +6493,6 @@ EncryptionEnabled defines if the flow has to be encrypted.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -6623,7 +6512,6 @@ LogsEnabled defines if the flow has to be logged.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `metadata (external:metadata_list)`
 
@@ -6690,7 +6578,6 @@ If set to true, the flow will be in observation mode.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `observedTrafficAction (enum)`
 
@@ -6702,7 +6589,6 @@ packets.
 | Allowed Value   | `Apply, Continue` |
 | Default         | `"Continue"`      |
 | Orderable       | `true`            |
-| Filterable      | `true`            |
 
 #### `propagate (boolean)`
 
@@ -6721,7 +6607,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -6730,7 +6615,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -6988,7 +6872,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -7065,7 +6948,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -7074,7 +6956,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `relation (external:relations_list)`
 
@@ -7095,7 +6976,6 @@ Type of the policy.
 | -               | -:                                                                                                                                                 |
 | Allowed Value   | `APIAuthorization, EnforcerProfile, File, Hook, NamespaceMapping, Network, ProcessingUnit, Quota, Service, Syscall, TokenScope, ServiceDependency` |
 | Creation only   | `true`                                                                                                                                             |
-| Filterable      | `true`                                                                                                                                             |
 
 #### `updateTime (time)`
 
@@ -7426,10 +7306,6 @@ Namespace tag attached to an entity.
 
 NativeContextID is the Docker UUID or service PID.
 
-| Characteristics | Value  |
-| -               | -:     |
-| Filterable      | `true` |
-
 #### `networkServices (external:processing_unit_services_list)`
 
 NetworkServices is the list of services that this processing unit has declared
@@ -7439,7 +7315,6 @@ or by exposing the ports in a container manifest.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `normalizedTags (external:tags_list)`
 
@@ -7467,7 +7342,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `type (enum)`
 
@@ -7602,7 +7476,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -7679,7 +7552,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -7688,7 +7560,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -7799,7 +7670,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -7879,7 +7749,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -7888,7 +7757,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `quota (integer)`
 
@@ -8001,7 +7869,6 @@ RequestID gives the id of the request coming from the main server.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `targetIdentity (string)`
 
@@ -8328,7 +8195,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -8337,7 +8203,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -8662,7 +8527,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `redirectOnFail (boolean)`
 
@@ -8674,7 +8538,6 @@ to HTTP services and it is only send for APIs that are not public.
 | -               | -:      |
 | Default         | `false` |
 | Orderable       | `true`  |
-| Filterable      | `true`  |
 
 #### `redirectOnNoToken (boolean)`
 
@@ -8686,7 +8549,6 @@ HTTP services and it is only send for APIs that are not public.
 | -               | -:      |
 | Default         | `false` |
 | Orderable       | `true`  |
-| Filterable      | `true`  |
 
 #### `redirectURL (string)`
 
@@ -8836,7 +8698,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -8916,7 +8777,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -8925,7 +8785,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -8999,7 +8858,17 @@ Retrieves a list of network policy suggestion.
 
 ##### Parameters
 
-- `excludeTagPrefix` (string): Tags to exclude from the suggestions.
+- `filterAction` (enum): Action to take with the filter tags.
+- `filterTags` (string): Tags to filter in the policy suggestions.
+- `endAbsolute` (time): Set the absolute end of the time window.
+- `endRelative` (duration): Set the relative end of the time window.
+- `flowOffset` (duration): Apply an offset to the time window for flows.
+- `startAbsolute` (time): Set the absolute start of the time window.
+- `startRelative` (duration): Set the relative start of the time window.
+
+##### Mandatory Parameters
+
+(`endRelative`) or (`startRelative`) or (`startRelative` and `endRelative`) or (`startRelative` and `endAbsolute`) or (`startAbsolute` and `endRelative`) or (`startAbsolute` and `endAbsolute`)
 
 ### Attributes
 
@@ -9010,7 +8879,6 @@ List of suggested network access policies.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 ## Tabulation
 
@@ -9207,7 +9075,6 @@ AssignedScopes is the the list of scopes that the policiy will assigns.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `associatedTags (external:tags_list)`
 
@@ -9239,7 +9106,6 @@ Disabled defines if the propert is disabled.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `fallback (boolean)`
 
@@ -9311,7 +9177,6 @@ namespace, but still used for policy resolution.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `protected (boolean)`
 
@@ -9320,7 +9185,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `subject (external:policies_list)`
 
@@ -9330,7 +9194,6 @@ and scope request information.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 
@@ -9409,7 +9272,6 @@ CVSS v2 score.
 | Characteristics | Value  |
 | -               | -:     |
 | Creation only   | `true` |
-| Filterable      | `true` |
 
 #### `ID (string)`
 
@@ -9460,7 +9322,6 @@ Link is the URL that refers to the vulnerability.
 | Required        | `true` |
 | Creation only   | `true` |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `name (string)`
 
@@ -9501,7 +9362,6 @@ Protected defines if the object is protected.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
-| Filterable      | `true` |
 
 #### `severity (external:vulnerability_level)`
 
@@ -9511,7 +9371,6 @@ Severity refers to the security vulnerability level.
 | -               | -:     |
 | Required        | `true` |
 | Creation only   | `true` |
-| Filterable      | `true` |
 
 #### `updateTime (time)`
 

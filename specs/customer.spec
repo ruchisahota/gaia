@@ -38,7 +38,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: state

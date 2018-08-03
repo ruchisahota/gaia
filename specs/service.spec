@@ -174,7 +174,6 @@ attributes:
     exposed: true
     stored: true
     default_value: false
-    filterable: true
     orderable: true
 
   - name: redirectOnNoToken
@@ -186,7 +185,6 @@ attributes:
     exposed: true
     stored: true
     default_value: false
-    filterable: true
     orderable: true
 
   - name: redirectURL

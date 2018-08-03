@@ -35,7 +35,6 @@ attributes:
     - PodAtomic
     - PodContainers
     default_value: KubeSquall
-    filterable: true
     orderable: true
 
   - name: adminEmail
@@ -45,7 +44,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: certificate
@@ -103,7 +101,6 @@ attributes:
     - Kubernetes
     - NoPolicy
     default_value: Kubernetes
-    filterable: true
     orderable: true
 
   - name: regenerate

@@ -49,7 +49,6 @@ attributes:
     type: boolean
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: name

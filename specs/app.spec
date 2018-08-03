@@ -23,7 +23,6 @@ attributes:
     type: string
     exposed: true
     read_only: true
-    filterable: true
 
   - name: icon
     description: Icon contains a base64 image for the app.

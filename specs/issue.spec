@@ -16,7 +16,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    filterable: true
     orderable: true
 
   - name: metadata
@@ -43,5 +42,4 @@ attributes:
     stored: true
     allowed_chars: ^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$
     default_value: 24h
-    filterable: true
     orderable: true
