@@ -66,6 +66,18 @@ attributes:
     stored: true
     read_only: true
 
+  - name: authorizationClaimMappings
+    description: |-
+      authorizationClaimMappings defines a list of mappings between incoming and
+      HTTP headers. When these mappings are defined, the enforcer will copy the
+      values of the claims to the corresponding HTTP headers.
+    type: refList
+    exposed: true
+    subtype: claimmapping
+    stored: true
+    extensions:
+      refMode: pointer
+
   - name: authorizationID
     description: |-
       authorizationID is only valid for OIDC authorization and defines the

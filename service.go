@@ -128,6 +128,11 @@ type Service struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
+	// authorizationClaimMappings defines a list of mappings between incoming and
+	// HTTP headers. When these mappings are defined, the enforcer will copy the
+	// values of the claims to the corresponding HTTP headers.
+	AuthorizationClaimMappings []*ClaimMapping `json:"authorizationClaimMappings" bson:"authorizationclaimmappings" mapstructure:"authorizationClaimMappings,omitempty"`
+
 	// authorizationID is only valid for OIDC authorization and defines the
 	// issuer ID of the OAUTH token.
 	AuthorizationID string `json:"authorizationID" bson:"authorizationid" mapstructure:"authorizationID,omitempty"`
@@ -233,20 +238,21 @@ type Service struct {
 func NewService() *Service {
 
 	return &Service{
-		ModelVersion:      1,
-		AssociatedTags:    []string{},
-		AllAPITags:        []string{},
-		AllServiceTags:    []string{},
-		Annotations:       map[string][]string{},
-		AuthorizationType: ServiceAuthorizationTypeNone,
-		Endpoints:         types.ExposedAPIList{},
-		External:          false,
-		RedirectOnFail:    false,
-		IPs:               types.IPList{},
-		NormalizedTags:    []string{},
-		Metadata:          []string{},
-		RedirectOnNoToken: false,
-		Type:              ServiceTypeHTTP,
+		ModelVersion:               1,
+		AssociatedTags:             []string{},
+		AllAPITags:                 []string{},
+		AuthorizationClaimMappings: []*ClaimMapping{},
+		AllServiceTags:             []string{},
+		Annotations:                map[string][]string{},
+		AuthorizationType:          ServiceAuthorizationTypeNone,
+		Endpoints:                  types.ExposedAPIList{},
+		External:                   false,
+		RedirectOnFail:             false,
+		IPs:                        types.IPList{},
+		NormalizedTags:             []string{},
+		Metadata:                   []string{},
+		RedirectOnNoToken:          false,
+		Type:                       ServiceTypeHTTP,
 	}
 }
 
@@ -415,6 +421,12 @@ func (o *Service) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	for _, sub := range o.AuthorizationClaimMappings {
+		if err := sub.Validate(); err != nil {
+			errors = append(errors, err)
+		}
+	}
+
 	if err := elemental.ValidateStringInList("authorizationType", string(o.AuthorizationType), []string{"PKI", "OIDC", "None"}, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -573,6 +585,18 @@ required for this service. The certificate must be in PEM format.`,
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
+	},
+	"AuthorizationClaimMappings": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AuthorizationClaimMappings",
+		Description: `authorizationClaimMappings defines a list of mappings between incoming and
+HTTP headers. When these mappings are defined, the enforcer will copy the
+values of the claims to the corresponding HTTP headers.`,
+		Exposed: true,
+		Name:    "authorizationClaimMappings",
+		Stored:  true,
+		SubType: "claimmapping",
+		Type:    "refList",
 	},
 	"AuthorizationID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -965,6 +989,18 @@ required for this service. The certificate must be in PEM format.`,
 		Stored:         true,
 		SubType:        "tags_list",
 		Type:           "external",
+	},
+	"authorizationclaimmappings": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AuthorizationClaimMappings",
+		Description: `authorizationClaimMappings defines a list of mappings between incoming and
+HTTP headers. When these mappings are defined, the enforcer will copy the
+values of the claims to the corresponding HTTP headers.`,
+		Exposed: true,
+		Name:    "authorizationClaimMappings",
+		Stored:  true,
+		SubType: "claimmapping",
+		Type:    "refList",
 	},
 	"authorizationid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
