@@ -2241,9 +2241,9 @@ Retrieves the dependencymap of a namespace.
 - `viewSuggestions` (boolean): Also return the view suggestions.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
-- `flowOffset` (duration): Apply an offset to the time window for flows.
 - `startAbsolute` (time): Set the absolute start of the time window.
 - `startRelative` (duration): Set the relative start of the time window.
+- `flowOffset` (duration): Apply an offset to the time window for flows.
 
 ##### Mandatory Parameters
 
@@ -3404,15 +3404,16 @@ Retrieves the list of external access according to parameters.
 
 - `destinationID` (string): IDs of the destinations.
 - `destinationType` (enum): Type of the destination.
+- `flowMode` (enum): Choose if observed, applied to all flows.
 - `geoloc` (boolean): Geolocalize the the flow.
 - `resolve` (boolean): Resolve the IPs to dns.
 - `sourceID` (string): IDs of the sources.
 - `sourceType` (enum): Type of the source.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
-- `flowOffset` (duration): Apply an offset to the time window for flows.
 - `startAbsolute` (time): Set the absolute start of the time window.
 - `startRelative` (duration): Set the relative start of the time window.
+- `flowOffset` (duration): Apply an offset to the time window for flows.
 
 ##### Mandatory Parameters
 
@@ -3794,7 +3795,6 @@ Retrieves the list of file access according to parameters.
 - `puID` (string): ID of the processing unit.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
-- `flowOffset` (duration): Apply an offset to the time window for flows.
 - `startAbsolute` (time): Set the absolute start of the time window.
 - `startRelative` (duration): Set the relative start of the time window.
 
@@ -4348,7 +4348,7 @@ Type of the source.
 
 | Characteristics | Value                                     |
 | -               | -:                                        |
-| Allowed Value   | `ProcessingUnit, ExternalService, Claims` |
+| Allowed Value   | `ProcessingUnit, ExternalNetwork, Claims` |
 | Required        | `true`                                    |
 
 #### `dropReason (string)`
@@ -4460,7 +4460,7 @@ Type of the source.
 
 | Characteristics | Value                                     |
 | -               | -:                                        |
-| Allowed Value   | `ProcessingUnit, ExternalService, Claims` |
+| Allowed Value   | `ProcessingUnit, ExternalNetwork, Claims` |
 | Required        | `true`                                    |
 
 #### `timestamp (time)`
@@ -4501,9 +4501,9 @@ Retrieves the flow statistics according to parameters.
 - `userIdentifier` (string): User string that will be returned with the query.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
-- `flowOffset` (duration): Apply an offset to the time window for flows.
 - `startAbsolute` (time): Set the absolute start of the time window.
 - `startRelative` (duration): Set the relative start of the time window.
+- `flowOffset` (duration): Apply an offset to the time window for flows.
 
 ##### Mandatory Parameters
 
@@ -4622,14 +4622,6 @@ Represents an edge from the dependency map.
 
 Identifier of the edge.
 
-#### `ObservedEncrypted (integer)`
-
-Number of encrypted observed flows.
-
-#### `ObservedServiceIDs (external:map_string_int)`
-
-Map of ints...
-
 #### `acceptedFlows (integer)`
 
 Number of accepted flows in the edge.
@@ -4658,9 +4650,27 @@ Name of the edge.
 
 Number of accepted observed flows.
 
+#### `observedEncrypted (integer)`
+
+Number of encrypted observed flows.
+
+#### `observedPolicyIDs (refMap)`
+
+Information about the observation policies that was hit in the flows
+represented by that edge.
+
 #### `observedRejectedFlows (integer)`
 
 Number of rejected observed flows.
+
+#### `observedServiceIDs (external:map_string_int)`
+
+Map of ints...
+
+#### `policyIDs (refMap)`
+
+Information about the policies that was hit in the flows represented by that
+edge.
 
 #### `rejectedFlows (integer)`
 
@@ -6587,6 +6597,10 @@ Deletes the object with the given ID.
 #### `GET /networkaccesspolicies/:id`
 
 Retrieves the object with the given ID.
+
+##### Parameters
+
+- `propagated` (boolean): Also retrieve the objects that propagate down.
 
 #### `PUT /networkaccesspolicies/:id`
 
@@ -9030,7 +9044,6 @@ Retrieves statistics information based on parameters.
 - `where` (string): list of where clauses.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
-- `flowOffset` (duration): Apply an offset to the time window for flows.
 - `startAbsolute` (time): Set the absolute start of the time window.
 - `startRelative` (duration): Set the relative start of the time window.
 
@@ -9065,7 +9078,6 @@ Retrieves a list of network policy suggestion.
 - `filterTags` (string): Tags to filter in the policy suggestions.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
-- `flowOffset` (duration): Apply an offset to the time window for flows.
 - `startAbsolute` (time): Set the absolute start of the time window.
 - `startRelative` (duration): Set the relative start of the time window.
 
