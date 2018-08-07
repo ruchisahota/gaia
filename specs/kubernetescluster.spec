@@ -11,6 +11,8 @@ model:
     description: Updates the object with the given ID.
   delete:
     description: Deletes the object with the given ID.
+    global_parameters:
+    - $filtering
   extends:
   - '@identifiable-pk-stored'
   - '@timeable'

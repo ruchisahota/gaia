@@ -21,7 +21,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -85,7 +98,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -129,7 +155,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -193,7 +232,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -355,7 +407,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -440,7 +505,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -508,7 +586,20 @@ func init() {
 			},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 	}
 
@@ -523,7 +614,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -587,7 +691,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -634,7 +751,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -806,6 +936,16 @@ func init() {
 						Type:     "string",
 						Multiple: true,
 					},
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
 				},
 			},
 		},
@@ -859,7 +999,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -913,7 +1066,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1234,7 +1400,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -1299,7 +1478,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -1513,7 +1705,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1571,7 +1776,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1836,7 +2054,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1900,7 +2131,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1924,7 +2168,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1971,7 +2228,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -1986,7 +2256,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2075,7 +2358,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2127,7 +2423,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2186,7 +2495,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2236,7 +2558,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2286,7 +2621,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2336,7 +2684,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -2491,7 +2852,20 @@ func init() {
 
 	relationshipsRegistry[PolicyIdentity] = &elemental.Relationship{
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2560,7 +2934,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2578,7 +2965,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -2699,7 +3099,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2763,7 +3176,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -2821,7 +3247,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -2993,7 +3432,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -3062,7 +3514,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -3563,7 +4028,20 @@ func init() {
 			"root": &elemental.RelationshipInfo{},
 		},
 		Delete: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+					elemental.ParameterDefinition{
+						Name:     "tag",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
 		},
 		Retrieve: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},

@@ -10,6 +10,8 @@ model:
   private: true
   delete:
     description: Deletes the object with the given ID.
+    global_parameters:
+    - $filtering
 
 # Attributes
 attributes:

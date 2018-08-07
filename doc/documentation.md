@@ -118,6 +118,11 @@ Creates a new Account.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /accounts/:id`
 
 Retrieves the object with the given ID.
@@ -593,6 +598,11 @@ Creates a new alarm.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /alarms/:id`
 
 Retrieves the object with the given ID.
@@ -776,6 +786,11 @@ Creates a new API authorization policies.
 #### `DELETE /apiauthorizationpolicies/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /apiauthorizationpolicies/:id`
 
@@ -1153,6 +1168,11 @@ Creates a new audit profile.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /auditprofiles/:id`
 
 Retrieves the object with the given ID.
@@ -1326,6 +1346,11 @@ Creates a new Automation.
 #### `DELETE /automations/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /automations/:id`
 
@@ -1630,6 +1655,11 @@ Creates a new aws account binding.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /awsaccounts/:id`
 
 Retrieves the object with the given ID.
@@ -1771,6 +1801,11 @@ Manages the AWS API Gateway.
 #### `DELETE /awsapigateways/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /awsapigateways/:id`
 
@@ -2050,6 +2085,11 @@ Creates a new user certificate.
 #### `DELETE /certificates/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /certificates/:id`
 
@@ -2346,6 +2386,8 @@ Deletes the object with the given ID.
 
 - `q` (string): Backward compat for enforcer <=v2.2.1. does not have any effect.
 - `tag` (string): Backward compat for enforcer <=v2.2.1. does not have any effect.
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /enforcers/:id`
 
@@ -2640,6 +2682,11 @@ Creates a new enforcer profile.
 #### `DELETE /enforcerprofiles/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /enforcerprofiles/:id`
 
@@ -3059,6 +3106,11 @@ Creates a new enforcer profile mapping policies.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /enforcerprofilemappingpolicies/:id`
 
 Retrieves the object with the given ID.
@@ -3467,6 +3519,11 @@ Creates a new external network.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /externalnetworks/:id`
 
 Retrieves the object with the given ID.
@@ -3635,6 +3692,11 @@ Creates a new external service.
 #### `DELETE /externalservices/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /externalservices/:id`
 
@@ -3903,6 +3965,11 @@ Creates a new file access policies.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /fileaccesspolicies/:id`
 
 Retrieves the object with the given ID.
@@ -4153,6 +4220,11 @@ Create a new file path.
 #### `DELETE /filepaths/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /filepaths/:id`
 
@@ -4839,6 +4911,11 @@ Creates a new hook policy.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /hookpolicies/:id`
 
 Retrieves the object with the given ID.
@@ -5097,6 +5174,11 @@ Creates a new installation.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /installations/:id`
 
 Retrieves the object with the given ID.
@@ -5146,6 +5228,11 @@ Installs a new app.
 #### `DELETE /installedapps/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /installedapps/:id`
 
@@ -5234,6 +5321,11 @@ This api allows to view invoices for Aporeto customers.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /invoices/:id`
 
 Retrieves the object with the given ID.
@@ -5316,6 +5408,11 @@ This api allows to view detailed records of invoices for Aporeto customers.
 #### `DELETE /invoicerecords/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /invoicerecords/:id`
 
@@ -5713,6 +5810,11 @@ Creates a new kubernetes cluster.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /k8sclusters/:id`
 
 Retrieves the object with the given ID.
@@ -5900,6 +6002,11 @@ Creates a new kubernetes cluster.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /kubernetesclusters/:id`
 
 Retrieves the object with the given ID.
@@ -6062,6 +6169,11 @@ Creates a new message.
 #### `DELETE /messages/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /messages/:id`
 
@@ -6239,6 +6351,11 @@ Creates a new namespace.
 #### `DELETE /namespaces/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /namespaces/:id`
 
@@ -6424,6 +6541,11 @@ Creates a new namespace mapping policy.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /namespacemappingpolicies/:id`
 
 Retrieves the object with the given ID.
@@ -6593,6 +6715,11 @@ Creates a new network access policy.
 #### `DELETE /networkaccesspolicies/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /networkaccesspolicies/:id`
 
@@ -7019,6 +7146,11 @@ Retrieves the list of policy primitives.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /policies/:id`
 
 Retrieves the object with the given ID.
@@ -7362,6 +7494,11 @@ Creates a new processing unit.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /processingunits/:id`
 
 Retrieves the object with the given ID.
@@ -7613,6 +7750,11 @@ Creates a new processing unit policy.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /processingunitpolicies/:id`
 
 Retrieves the object with the given ID.
@@ -7830,6 +7972,11 @@ Creates a new quota policy.
 #### `DELETE /quotapolicies/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /quotapolicies/:id`
 
@@ -8292,6 +8439,11 @@ Creates a new REST API specification.
 
 Deletes the object with the given ID.
 
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
+
 #### `GET /restapispecs/:id`
 
 Retrieves the object with the given ID.
@@ -8526,6 +8678,11 @@ Creates a new Service.
 #### `DELETE /services/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /services/:id`
 
@@ -8836,6 +8993,11 @@ Creates a new service dependency.
 #### `DELETE /servicedependencies/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /servicedependencies/:id`
 
@@ -9242,6 +9404,11 @@ Creates a new token scope policy.
 #### `DELETE /tokenscopepolicies/:id`
 
 Deletes the object with the given ID.
+
+##### Parameters
+
+- `q` (string): Filtering query. Consequent `q` parameters will form an or.
+- `tag` (string): List of tags to filter on. This parameter is deprecated.
 
 #### `GET /tokenscopepolicies/:id`
 
