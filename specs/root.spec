@@ -111,6 +111,12 @@ relations:
 - rest_name: auth
   get:
     description: Verify the validity of a token.
+    parameters:
+      entries:
+      - name: token
+        description: token to validate.
+        type: string
+        example_value: abc.def.ghi
 
 - rest_name: authority
   create:
