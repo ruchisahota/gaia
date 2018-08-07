@@ -1305,6 +1305,10 @@ This API verifies if the given token is valid or not.
 
 Verify the validity of a token.
 
+##### Parameters
+
+- `token` (string): token to validate.
+
 ### Attributes
 
 #### `claims (external:claims)`
