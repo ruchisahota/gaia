@@ -22,6 +22,7 @@
 | [AWSRegister](#awsregister)                                   | This api allows AWS customer to register with Aporeto SaaS for billing.             |
 | [Category](#category)                                         | Category allows to categorized services.                                            |
 | [Certificate](#certificate)                                   | A User represents the owner of some certificates.                                   |
+| [ClaimMapping](#claimmapping)                                 | Represents a mapping from a claim name to an HTTP header.                           |
 | [DependencyMap](#dependencymap)                               | This api returns a data structure representing the graph of all processing units... |
 | [Enforcer](#enforcer)                                         | An Enforcer Profile contains a configuration for a Enforcer. It contains various... |
 | [EnforcerProfile](#enforcerprofile)                           | Allows to create reusable configuration profile for your enforcers. Enforcer        |
@@ -2217,6 +2218,39 @@ Last update date of the object.
 | Read only       | `true` |
 | Orderable       | `true` |
 | Filterable      | `true` |
+
+## ClaimMapping
+
+Represents a mapping from a claim name to an HTTP header.
+
+### Example
+
+```json
+{
+  "claimName": "email",
+  "targetHTTPHeader": "X-Username"
+}
+```
+
+### Attributes
+
+#### `claimName (string)`
+
+Claim name is the name of the claim that must be mapped to an HTTP header.
+
+| Characteristics | Value                           |
+| -               | -:                              |
+| Format          | `/^[a-zA-Z0-9-_/*#&@\+\$~:]+$/` |
+| Required        | `true`                          |
+
+#### `targetHTTPHeader (string)`
+
+The target HTTP header where this claim name must be mapped.
+
+| Characteristics | Value                           |
+| -               | -:                              |
+| Format          | `/^[a-zA-Z0-9-_/*#&@\+\$~:]+$/` |
+| Required        | `true`                          |
 
 ## DependencyMap
 
@@ -8593,6 +8627,12 @@ Annotation stores additional information about an entity.
 #### `associatedTags (external:tags_list)`
 
 AssociatedTags are the list of tags attached to an entity.
+
+#### `authorizationClaimMappings (refList)`
+
+authorizationClaimMappings defines a list of mappings between incoming and
+HTTP headers. When these mappings are defined, the enforcer will copy the
+values of the claims to the corresponding HTTP headers.
 
 #### `authorizationID (string)`
 
