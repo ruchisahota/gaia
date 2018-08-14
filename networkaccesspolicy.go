@@ -26,6 +26,20 @@ const (
 	NetworkAccessPolicyActionReject NetworkAccessPolicyActionValue = "Reject"
 )
 
+// NetworkAccessPolicyApplyPolicyModeValue represents the possible values for attribute "applyPolicyMode".
+type NetworkAccessPolicyApplyPolicyModeValue string
+
+const (
+	// NetworkAccessPolicyApplyPolicyModeBidirectional represents the value Bidirectional.
+	NetworkAccessPolicyApplyPolicyModeBidirectional NetworkAccessPolicyApplyPolicyModeValue = "Bidirectional"
+
+	// NetworkAccessPolicyApplyPolicyModeIncomingTraffic represents the value IncomingTraffic.
+	NetworkAccessPolicyApplyPolicyModeIncomingTraffic NetworkAccessPolicyApplyPolicyModeValue = "IncomingTraffic"
+
+	// NetworkAccessPolicyApplyPolicyModeOutgoingTraffic represents the value OutgoingTraffic.
+	NetworkAccessPolicyApplyPolicyModeOutgoingTraffic NetworkAccessPolicyApplyPolicyModeValue = "OutgoingTraffic"
+)
+
 // NetworkAccessPolicyObservedTrafficActionValue represents the possible values for attribute "observedTrafficAction".
 type NetworkAccessPolicyObservedTrafficActionValue string
 
@@ -115,6 +129,11 @@ type NetworkAccessPolicy struct {
 	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
 
+	// applyPolicyMode determines if the policy has to be applied to the
+	// outgoing traffic of a PU or the incoming traffic of a PU or in both directions.
+	// Default is both directions.
+	ApplyPolicyMode NetworkAccessPolicyApplyPolicyModeValue `json:"applyPolicyMode" bson:"-" mapstructure:"applyPolicyMode,omitempty"`
+
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
@@ -197,8 +216,9 @@ func NewNetworkAccessPolicy() *NetworkAccessPolicy {
 	return &NetworkAccessPolicy{
 		ModelVersion:          1,
 		Action:                NetworkAccessPolicyActionAllow,
-		Annotations:           map[string][]string{},
 		AssociatedTags:        []string{},
+		Annotations:           map[string][]string{},
+		ApplyPolicyMode:       NetworkAccessPolicyApplyPolicyModeBidirectional,
 		DestinationPorts:      []string{},
 		Metadata:              []string{},
 		NormalizedTags:        []string{},
@@ -462,6 +482,10 @@ func (o *NetworkAccessPolicy) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateStringInList("applyPolicyMode", string(o.ApplyPolicyMode), []string{"OutgoingTraffic", "IncomingTraffic", "Bidirectional"}, false); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -568,6 +592,18 @@ The policy will be active for the given activeDuration.`,
 		Stored:         true,
 		SubType:        "annotations",
 		Type:           "external",
+	},
+	"ApplyPolicyMode": elemental.AttributeSpecification{
+		AllowedChoices: []string{"OutgoingTraffic", "IncomingTraffic", "Bidirectional"},
+		ConvertedName:  "ApplyPolicyMode",
+		DefaultValue:   NetworkAccessPolicyApplyPolicyModeBidirectional,
+		Description: `applyPolicyMode determines if the policy has to be applied to the
+outgoing traffic of a PU or the incoming traffic of a PU or in both directions.
+Default is both directions.`,
+		Exposed:   true,
+		Name:      "applyPolicyMode",
+		Orderable: true,
+		Type:      "enum",
 	},
 	"AssociatedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -901,6 +937,18 @@ The policy will be active for the given activeDuration.`,
 		Stored:         true,
 		SubType:        "annotations",
 		Type:           "external",
+	},
+	"applypolicymode": elemental.AttributeSpecification{
+		AllowedChoices: []string{"OutgoingTraffic", "IncomingTraffic", "Bidirectional"},
+		ConvertedName:  "ApplyPolicyMode",
+		DefaultValue:   NetworkAccessPolicyApplyPolicyModeBidirectional,
+		Description: `applyPolicyMode determines if the policy has to be applied to the
+outgoing traffic of a PU or the incoming traffic of a PU or in both directions.
+Default is both directions.`,
+		Exposed:   true,
+		Name:      "applyPolicyMode",
+		Orderable: true,
+		Type:      "enum",
 	},
 	"associatedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
