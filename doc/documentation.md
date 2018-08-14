@@ -6829,6 +6829,18 @@ The policy will be active for the given activeDuration.
 
 Annotation stores additional information about an entity.
 
+#### `applyPolicyMode (enum)`
+
+applyPolicyMode determines if the policy has to be applied to the
+outgoing traffic of a PU or the incoming traffic of a PU or in both directions.
+Default is both directions.
+
+| Characteristics | Value                                             |
+| -               | -:                                                |
+| Allowed Value   | `OutgoingTraffic, IncomingTraffic, Bidirectional` |
+| Default         | `"Bidirectional"`                                 |
+| Orderable       | `true`                                            |
+
 #### `associatedTags (external:tags_list)`
 
 AssociatedTags are the list of tags attached to an entity.

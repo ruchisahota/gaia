@@ -48,6 +48,20 @@ attributes:
     default_value: Allow
     orderable: true
 
+  - name: applyPolicyMode
+    description: |-
+      applyPolicyMode determines if the policy has to be applied to the
+      outgoing traffic of a PU or the incoming traffic of a PU or in both directions.
+      Default is both directions.
+    type: enum
+    exposed: true
+    allowed_choices:
+    - OutgoingTraffic
+    - IncomingTraffic
+    - Bidirectional
+    default_value: Bidirectional
+    orderable: true
+
   - name: destinationPorts
     description: DestinationPorts contains the list of allowed ports and ranges.
     type: external
