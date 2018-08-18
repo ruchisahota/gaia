@@ -210,8 +210,7 @@ type Service struct {
 
 	// RedirectURL is the URL that will be send back to the user to
 	// redirect for authentication if there is no user authorization information in
-	// the API request. If the redirect flag is not set, this field has no meaning.The
-	// template is a Go Lang template where specific functions are supported.
+	// the API request. URL can be defined if a redirection is requested only.
 	RedirectURL string `json:"redirectURL" bson:"redirecturl" mapstructure:"redirectURL,omitempty"`
 
 	// Selectors contains the tag expression that an a processing unit
@@ -840,8 +839,7 @@ HTTP services and it is only send for APIs that are not public.`,
 		ConvertedName:  "RedirectURL",
 		Description: `RedirectURL is the URL that will be send back to the user to
 redirect for authentication if there is no user authorization information in
-the API request. If the redirect flag is not set, this field has no meaning.The
-template is a Go Lang template where specific functions are supported.`,
+the API request. URL can be defined if a redirection is requested only.`,
 		Exposed: true,
 		Name:    "redirectURL",
 		Stored:  true,
@@ -1244,8 +1242,7 @@ HTTP services and it is only send for APIs that are not public.`,
 		ConvertedName:  "RedirectURL",
 		Description: `RedirectURL is the URL that will be send back to the user to
 redirect for authentication if there is no user authorization information in
-the API request. If the redirect flag is not set, this field has no meaning.The
-template is a Go Lang template where specific functions are supported.`,
+the API request. URL can be defined if a redirection is requested only.`,
 		Exposed: true,
 		Name:    "redirectURL",
 		Stored:  true,
