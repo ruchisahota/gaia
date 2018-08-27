@@ -231,6 +231,8 @@ relations:
 - rest_name: eventlog
   get:
     description: Retrieves the eventlogs for one or multiple entities.
+    global_parameters:
+    - $timewindow
     parameters:
       entries:
       - name: category

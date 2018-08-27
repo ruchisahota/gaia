@@ -3348,6 +3348,14 @@ Retrieves the eventlogs for one or multiple entities.
 - `id` (string): Show event logs on given ID.
 - `identity` (string): Show event logs on given identity.
 - `level` (string): Show event logs of the given level.
+- `endAbsolute` (time): Set the absolute end of the time window.
+- `endRelative` (duration): Set the relative end of the time window.
+- `startAbsolute` (time): Set the absolute start of the time window.
+- `startRelative` (duration): Set the relative start of the time window.
+
+##### Mandatory Parameters
+
+(`endRelative`) or (`startRelative`) or (`startRelative` and `endRelative`) or (`startRelative` and `endAbsolute`) or (`startAbsolute` and `endRelative`) or (`startAbsolute` and `endAbsolute`)
 
 #### `POST /eventlogs`
 
