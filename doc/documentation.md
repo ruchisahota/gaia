@@ -6387,6 +6387,7 @@ Retrieves the list of namespaces.
 
 ##### Parameters
 
+- `authorized` (boolean): Returns all namespaces the token bearer has the right to read. If set, other parameters like `recursive` or `q` will have no effect.
 - `q` (string): Filtering query. Consequent `q` parameters will form an or.
 - `tag` (string): List of tags to filter on. This parameter is deprecated.
 
