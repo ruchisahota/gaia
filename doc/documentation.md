@@ -3348,6 +3348,14 @@ Retrieves the eventlogs for one or multiple entities.
 - `id` (string): Show event logs on given ID.
 - `identity` (string): Show event logs on given identity.
 - `level` (string): Show event logs of the given level.
+- `endAbsolute` (time): Set the absolute end of the time window.
+- `endRelative` (duration): Set the relative end of the time window.
+- `startAbsolute` (time): Set the absolute start of the time window.
+- `startRelative` (duration): Set the relative start of the time window.
+
+##### Mandatory Parameters
+
+(`endRelative`) or (`startRelative`) or (`startRelative` and `endRelative`) or (`startRelative` and `endAbsolute`) or (`startAbsolute` and `endRelative`) or (`startAbsolute` and `endAbsolute`)
 
 #### `POST /eventlogs`
 
@@ -5771,10 +5779,10 @@ Metadata contains various additional information. Meaning depends on the realm.
 
 Realm is the authentication realm.
 
-| Characteristics | Value                                                                              |
-| -               | -:                                                                                 |
-| Allowed Value   | `AWSIdentityDocument, Certificate, Facebook, Github, Google, LDAP, Twitter, Vince` |
-| Required        | `true`                                                                             |
+| Characteristics | Value                                                                                                                          |
+| -               | -:                                                                                                                             |
+| Allowed Value   | `AWSIdentityDocument, Certificate, Facebook, Github, Google, LDAP, Twitter, Vince, GCPIdentityDocument, AzureIdentityDocument` |
+| Required        | `true`                                                                                                                         |
 
 #### `token (string)`
 
@@ -6379,6 +6387,7 @@ Retrieves the list of namespaces.
 
 ##### Parameters
 
+- `authorized` (boolean): Returns all namespaces the token bearer has the right to read. If set, other parameters like `recursive` or `q` will have no effect.
 - `q` (string): Filtering query. Consequent `q` parameters will form an or.
 - `tag` (string): List of tags to filter on. This parameter is deprecated.
 
