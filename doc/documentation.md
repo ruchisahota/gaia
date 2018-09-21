@@ -8945,6 +8945,20 @@ Protected defines if the object is protected.
 | -               | -:     |
 | Orderable       | `true` |
 
+#### `publicApplicationPort (integer)`
+
+PublicApplicationPort is a new virtual port that the service can
+be accessed, using HTTPs. Since the enforcer transparently inserts TLS in the
+application path, you might want to declare a new port where the enforcer
+listens for TLS. However, the application does not need to be modified and
+the enforcer will map the traffic to the correct application port. This useful
+when an application is being accessed from a public network.
+
+| Characteristics | Value   |
+| -               | -:      |
+| Default         | `0`     |
+| Max length      | `65535` |
+
 #### `redirectOnFail (boolean)`
 
 RedirectOnFail is a boolean that forces a redirect response if an API request
