@@ -4779,6 +4779,10 @@ Action observed on the flow.
 | Allowed Value   | `Accept, Reject, NotApplicable` |
 | Default         | `"NotApplicable"`               |
 
+#### `observedEncrypted (boolean)`
+
+Value of the encryption of the network policy that observed the flow.
+
 #### `observedPolicyID (string)`
 
 ID of the network policy that observed the flow.
