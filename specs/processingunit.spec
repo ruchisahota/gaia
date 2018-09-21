@@ -54,7 +54,6 @@ attributes:
     type: string
     exposed: true
     stored: true
-    creation_only: true
     filterable: true
 
   - name: lastSyncTime
