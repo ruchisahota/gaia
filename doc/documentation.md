@@ -3060,6 +3060,11 @@ enforcers matching this profile.
 IgnoreExpression allows to set a tag expression that will make Aporeto to ignore
 docker container started with labels matching the rule.
 
+#### `killContainersOnFailure (boolean)`
+
+KillContainersOnFailure will configure the enforcers to kill any containers if
+there are policy failures.
+
 #### `kubernetesMetadataExtractor (enum)`
 
 Select which metadata extractor to use to process new processing units from
@@ -7154,6 +7159,7 @@ database.
 
 ##### Parameters
 
+- `enforcementStatus` (enum): If set, changes the enforcement status of the processing unit alongside with the poke.
 - `status` (enum): If set, changes the status of the processing unit alongside with the poke.
 - `ts` (time): time of report. If not set, local server time will be used.
 
@@ -7583,6 +7589,7 @@ database.
 
 ##### Parameters
 
+- `enforcementStatus` (enum): If set, changes the enforcement status of the processing unit alongside with the poke.
 - `status` (enum): If set, changes the status of the processing unit alongside with the poke.
 - `ts` (time): time of report. If not set, local server time will be used.
 
@@ -7642,6 +7649,16 @@ Description is the description of the object.
 | -               | -:     |
 | Max length      | `1024` |
 | Orderable       | `true` |
+
+#### `enforcementStatus (enum)`
+
+EnforcementStatus communicates the state of the enforcer for that PU.
+
+| Characteristics | Value                         |
+| -               | -:                            |
+| Allowed Value   | `Protected, Failed, Inactive` |
+| Default         | `"Inactive"`                  |
+| Filterable      | `true`                        |
 
 #### `enforcerID (string)`
 
@@ -8689,6 +8706,7 @@ units.
   "exposedPort": 443,
   "name": "the name",
   "port": 443,
+  "publicApplicationPort": 443,
   "selectors": [
     [
       "$identity=processingunit"
@@ -8965,7 +8983,6 @@ when an application is being accessed from a public network.
 
 | Characteristics | Value   |
 | -               | -:      |
-| Default         | `0`     |
 | Max length      | `65535` |
 
 #### `redirectOnFail (boolean)`
