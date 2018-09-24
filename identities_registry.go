@@ -322,11 +322,13 @@ var (
 			[]string{"namespace", "normalizedTags"},
 			[]string{"archived"},
 		},
-		"flowreport":    nil,
-		"hookpolicy":    nil,
-		"import":        nil,
-		"installation":  nil,
-		"installedapp":  nil,
+		"flowreport":   nil,
+		"hookpolicy":   nil,
+		"import":       nil,
+		"installation": nil,
+		"installedapp": [][]string{
+			[]string{"accountname", "name"},
+		},
 		"invoice":       nil,
 		"invoicerecord": nil,
 		"isolationprofile": [][]string{
