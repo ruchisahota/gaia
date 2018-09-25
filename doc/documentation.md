@@ -2615,6 +2615,13 @@ Returns the enforcer profile that must be used by an enforcer.
 
 Sends a poke empty object. This is used to ensure an enforcer is up and running.
 
+##### Parameters
+
+- `cpuload` (float): If set, provides the total cpu usage in percentage of vCPUs.
+- `memory` (integer): If set, provides the total resident memory used in bytes.
+- `processes` (integer): If set, defines the number of current processes.
+- `ts` (time): time of report. If not set, local server time will be used.
+
 ### Attributes
 
 #### `FQDN (string)`
@@ -3508,9 +3515,12 @@ Post a new enforcer statistics report.
 
 ```json
 {
+  "CPULoad": 10,
   "ID": "xxx-xxx-xxx-xxx",
+  "memory": 10000,
   "name": "aporeto-enforcerd-xxx",
   "namespace": "/my/ns",
+  "processes": 10,
   "timestamp": "2018-06-14T23:10:46.420397985Z"
 }
 ```
@@ -3523,6 +3533,10 @@ Create a enforcer statistics report.
 
 ### Attributes
 
+#### `CPULoad (float)`
+
+Total CPU utilization of the enforcer as a percentage of vCPUs.
+
 #### `ID (string)`
 
 ID of the enforcer to report.
@@ -3530,6 +3544,10 @@ ID of the enforcer to report.
 | Characteristics | Value  |
 | -               | -:     |
 | Required        | `true` |
+
+#### `memory (integer)`
+
+Total resident memory used by the enforcer in bytes.
 
 #### `name (string)`
 
@@ -3546,6 +3564,10 @@ Namespace of the enforcer to report.
 | Characteristics | Value  |
 | -               | -:     |
 | Required        | `true` |
+
+#### `processes (integer)`
+
+Number of active processes of the enforcer.
 
 #### `timestamp (time)`
 
@@ -7155,6 +7177,13 @@ For instance, for enforcers, poke will be use as the heartbeat.
 #### `GET /enforcers/:id/poke`
 
 Sends a poke empty object. This is used to ensure an enforcer is up and running.
+
+##### Parameters
+
+- `cpuload` (float): If set, provides the total cpu usage in percentage of vCPUs.
+- `memory` (integer): If set, provides the total resident memory used in bytes.
+- `processes` (integer): If set, defines the number of current processes.
+- `ts` (time): time of report. If not set, local server time will be used.
 
 #### `GET /processingunits/:id/poke`
 
