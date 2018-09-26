@@ -372,7 +372,8 @@ var (
 		"processingunit": [][]string{
 			[]string{"namespace"},
 			[]string{"namespace", "archived"},
-			[]string{"namespace", "status"},
+			[]string{"namespace", "operationalStatus", "archived"},
+			[]string{"namespace", "normalizedTags", "archived"},
 		},
 		"processingunitpolicy": nil,
 		"punode":               nil,

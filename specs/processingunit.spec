@@ -19,7 +19,11 @@ model:
   - - namespace
     - archived
   - - namespace
-    - status
+    - operationalStatus
+    - archived
+  - - namespace
+    - normalizedTags
+    - archived
   get:
     description: Retrieves the object with the given ID.
     global_parameters:
