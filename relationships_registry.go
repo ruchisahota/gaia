@@ -3561,6 +3561,7 @@ func init() {
 							"audit",
 							"enforcers",
 							"files",
+							"eventlogs",
 						},
 					},
 					elemental.ParameterDefinition{
@@ -3665,6 +3666,7 @@ func init() {
 							"audit",
 							"enforcers",
 							"files",
+							"eventlogs",
 						},
 					},
 					elemental.ParameterDefinition{
