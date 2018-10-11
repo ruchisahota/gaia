@@ -630,6 +630,8 @@ relations:
 - rest_name: tabulation
   get:
     description: Retrieves tabulated informations based on parameters.
+    global_parameters:
+    - $filtering
     parameters:
       required:
       - - - identity
@@ -699,3 +701,22 @@ relations:
         description: Search for all the tags used for the this identity.
         type: string
         example_value: processingunit
+
+- rest_name: oidcprovider
+  get:
+    description: Retrieves the list of the account OIDC provider.
+    global_parameters:
+    - $filtering
+    parameters:
+      entries:
+      - name: OIDCProviderName
+        description: OIDCProvider name.
+        type: string
+        example_value: okta
+
+      - name: accountID
+        description: Aporeto Account ID.
+        type: string
+        example_value: aporeto
+  create:
+    description: Creates a new OIDC provider.
