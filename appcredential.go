@@ -9,57 +9,43 @@ import (
 	"go.aporeto.io/elemental"
 )
 
-// AlarmStatusValue represents the possible values for attribute "status".
-type AlarmStatusValue string
-
-const (
-	// AlarmStatusAcknowledged represents the value Acknowledged.
-	AlarmStatusAcknowledged AlarmStatusValue = "Acknowledged"
-
-	// AlarmStatusOpen represents the value Open.
-	AlarmStatusOpen AlarmStatusValue = "Open"
-
-	// AlarmStatusResolved represents the value Resolved.
-	AlarmStatusResolved AlarmStatusValue = "Resolved"
-)
-
-// AlarmIdentity represents the Identity of the object.
-var AlarmIdentity = elemental.Identity{
-	Name:     "alarm",
-	Category: "alarms",
-	Package:  "sephiroth",
+// AppCredentialIdentity represents the Identity of the object.
+var AppCredentialIdentity = elemental.Identity{
+	Name:     "appcredential",
+	Category: "appcredentials",
+	Package:  "cactuar",
 	Private:  false,
 }
 
-// AlarmsList represents a list of Alarms
-type AlarmsList []*Alarm
+// AppCredentialsList represents a list of AppCredentials
+type AppCredentialsList []*AppCredential
 
 // Identity returns the identity of the objects in the list.
-func (o AlarmsList) Identity() elemental.Identity {
+func (o AppCredentialsList) Identity() elemental.Identity {
 
-	return AlarmIdentity
+	return AppCredentialIdentity
 }
 
-// Copy returns a pointer to a copy the AlarmsList.
-func (o AlarmsList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the AppCredentialsList.
+func (o AppCredentialsList) Copy() elemental.Identifiables {
 
-	copy := append(AlarmsList{}, o...)
+	copy := append(AppCredentialsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the AlarmsList.
-func (o AlarmsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the AppCredentialsList.
+func (o AppCredentialsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(AlarmsList{}, o...)
+	out := append(AppCredentialsList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*Alarm))
+		out = append(out, obj.(*AppCredential))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o AlarmsList) List() elemental.IdentifiablesList {
+func (o AppCredentialsList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -70,16 +56,17 @@ func (o AlarmsList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o AlarmsList) DefaultOrder() []string {
+func (o AppCredentialsList) DefaultOrder() []string {
 
 	return []string{
+		"roles",
 		"name",
 	}
 }
 
-// ToSparse returns the AlarmsList converted to SparseAlarmsList.
+// ToSparse returns the AppCredentialsList converted to SparseAppCredentialsList.
 // Objects in the list will only contain the given fields. No field means entire field set.
-func (o AlarmsList) ToSparse(fields ...string) elemental.IdentifiablesList {
+func (o AppCredentialsList) ToSparse(fields ...string) elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -90,13 +77,13 @@ func (o AlarmsList) ToSparse(fields ...string) elemental.IdentifiablesList {
 }
 
 // Version returns the version of the content.
-func (o AlarmsList) Version() int {
+func (o AppCredentialsList) Version() int {
 
 	return 1
 }
 
-// Alarm represents the model of a alarm
-type Alarm struct {
+// AppCredential represents the model of a appcredential
+type AppCredential struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" bson:"_id" mapstructure:"ID,omitempty"`
 
@@ -106,21 +93,27 @@ type Alarm struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
-	// Content of the alarm.
-	Content string `json:"content" bson:"content" mapstructure:"content,omitempty"`
+	// The string representation of the Certificate used by the application.
+	Certificate string `json:"certificate" bson:"certificate" mapstructure:"certificate,omitempty"`
+
+	// Link to the certificate created for this application.
+	CertificateSN string `json:"-" bson:"certificatesn" mapstructure:"-,omitempty"`
 
 	// CreatedTime is the time at which the object was created.
 	CreateTime time.Time `json:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
 
-	// Data represent user data related to the alams.
-	Data []map[string]string `json:"data" bson:"data" mapstructure:"data,omitempty"`
+	// The credential data.
+	Credentials *Credential `json:"credentials" bson:"-" mapstructure:"credentials,omitempty"`
 
 	// Description is the description of the object.
 	Description string `json:"description" bson:"description" mapstructure:"description,omitempty"`
 
-	// Kind identifies the kind of alarms. If two alarms are created with the same
-	// identifier, then only the occurrence will be incremented.
-	Kind string `json:"kind" bson:"kind" mapstructure:"kind,omitempty"`
+	// The email address that will receive a copy of the application credentials.
+	Email string `json:"email" bson:"email" mapstructure:"email,omitempty"`
+
+	// Metadata contains tags that can only be set during creation. They must all start
+	// with the '@' prefix, and should only be used by external systems.
+	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -131,14 +124,14 @@ type Alarm struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// Number of time this alarm have been seen.
-	Occurrences []time.Time `json:"occurrences" bson:"occurrences" mapstructure:"occurrences,omitempty"`
-
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// Status of the alarm.
-	Status AlarmStatusValue `json:"status" bson:"status" mapstructure:"status,omitempty"`
+	// Regenerates the credentials files and certificates.
+	Regenerate bool `json:"regenerate" bson:"-" mapstructure:"regenerate,omitempty"`
+
+	// List of roles to give the credentials.
+	Roles []string `json:"roles" bson:"roles" mapstructure:"roles,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime time.Time `json:"updateTime" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -148,178 +141,191 @@ type Alarm struct {
 	sync.Mutex `json:"-" bson:"-"`
 }
 
-// NewAlarm returns a new *Alarm
-func NewAlarm() *Alarm {
+// NewAppCredential returns a new *AppCredential
+func NewAppCredential() *AppCredential {
 
-	return &Alarm{
+	return &AppCredential{
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
-		Data:           []map[string]string{},
+		Metadata:       []string{},
 		NormalizedTags: []string{},
-		Occurrences:    []time.Time{},
-		Status:         AlarmStatusOpen,
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *Alarm) Identity() elemental.Identity {
+func (o *AppCredential) Identity() elemental.Identity {
 
-	return AlarmIdentity
+	return AppCredentialIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Alarm) Identifier() string {
+func (o *AppCredential) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Alarm) SetIdentifier(id string) {
+func (o *AppCredential) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *Alarm) Version() int {
+func (o *AppCredential) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *Alarm) DefaultOrder() []string {
+func (o *AppCredential) DefaultOrder() []string {
 
 	return []string{
+		"roles",
 		"name",
 	}
 }
 
 // Doc returns the documentation for the object
-func (o *Alarm) Doc() string {
-	return `An alarm represents an event requiring attention.`
+func (o *AppCredential) Doc() string {
+	return `Create a credential for an application.`
 }
 
-func (o *Alarm) String() string {
+func (o *AppCredential) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *Alarm) GetAnnotations() map[string][]string {
+func (o *AppCredential) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the given Annotations of the receiver.
-func (o *Alarm) SetAnnotations(annotations map[string][]string) {
+func (o *AppCredential) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *Alarm) GetAssociatedTags() []string {
+func (o *AppCredential) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the given AssociatedTags of the receiver.
-func (o *Alarm) SetAssociatedTags(associatedTags []string) {
+func (o *AppCredential) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *Alarm) GetCreateTime() time.Time {
+func (o *AppCredential) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the given CreateTime of the receiver.
-func (o *Alarm) SetCreateTime(createTime time.Time) {
+func (o *AppCredential) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
+// GetMetadata returns the Metadata of the receiver.
+func (o *AppCredential) GetMetadata() []string {
+
+	return o.Metadata
+}
+
+// SetMetadata sets the given Metadata of the receiver.
+func (o *AppCredential) SetMetadata(metadata []string) {
+
+	o.Metadata = metadata
+}
+
 // GetName returns the Name of the receiver.
-func (o *Alarm) GetName() string {
+func (o *AppCredential) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the given Name of the receiver.
-func (o *Alarm) SetName(name string) {
+func (o *AppCredential) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *Alarm) GetNamespace() string {
+func (o *AppCredential) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the given Namespace of the receiver.
-func (o *Alarm) SetNamespace(namespace string) {
+func (o *AppCredential) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *Alarm) GetNormalizedTags() []string {
+func (o *AppCredential) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the given NormalizedTags of the receiver.
-func (o *Alarm) SetNormalizedTags(normalizedTags []string) {
+func (o *AppCredential) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *Alarm) GetProtected() bool {
+func (o *AppCredential) GetProtected() bool {
 
 	return o.Protected
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *Alarm) GetUpdateTime() time.Time {
+func (o *AppCredential) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the given UpdateTime of the receiver.
-func (o *Alarm) SetUpdateTime(updateTime time.Time) {
+func (o *AppCredential) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // ToSparse returns the sparse version of the model.
 // The returned object will only contain the given fields. No field means entire field set.
-func (o *Alarm) ToSparse(fields ...string) elemental.SparseIdentifiable {
+func (o *AppCredential) ToSparse(fields ...string) elemental.SparseIdentifiable {
 
 	if len(fields) == 0 {
 		// nolint: goimports
-		return &SparseAlarm{
+		return &SparseAppCredential{
 			ID:             &o.ID,
 			Annotations:    &o.Annotations,
 			AssociatedTags: &o.AssociatedTags,
-			Content:        &o.Content,
+			Certificate:    &o.Certificate,
+			CertificateSN:  &o.CertificateSN,
 			CreateTime:     &o.CreateTime,
-			Data:           &o.Data,
+			Credentials:    &o.Credentials,
 			Description:    &o.Description,
-			Kind:           &o.Kind,
+			Email:          &o.Email,
+			Metadata:       &o.Metadata,
 			Name:           &o.Name,
 			Namespace:      &o.Namespace,
 			NormalizedTags: &o.NormalizedTags,
-			Occurrences:    &o.Occurrences,
 			Protected:      &o.Protected,
-			Status:         &o.Status,
+			Regenerate:     &o.Regenerate,
+			Roles:          &o.Roles,
 			UpdateTime:     &o.UpdateTime,
 		}
 	}
 
-	sp := &SparseAlarm{}
+	sp := &SparseAppCredential{}
 	for _, f := range fields {
 		switch f {
 		case "ID":
@@ -328,28 +334,32 @@ func (o *Alarm) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			sp.Annotations = &(o.Annotations)
 		case "associatedTags":
 			sp.AssociatedTags = &(o.AssociatedTags)
-		case "content":
-			sp.Content = &(o.Content)
+		case "certificate":
+			sp.Certificate = &(o.Certificate)
+		case "certificateSN":
+			sp.CertificateSN = &(o.CertificateSN)
 		case "createTime":
 			sp.CreateTime = &(o.CreateTime)
-		case "data":
-			sp.Data = &(o.Data)
+		case "credentials":
+			sp.Credentials = &(o.Credentials)
 		case "description":
 			sp.Description = &(o.Description)
-		case "kind":
-			sp.Kind = &(o.Kind)
+		case "email":
+			sp.Email = &(o.Email)
+		case "metadata":
+			sp.Metadata = &(o.Metadata)
 		case "name":
 			sp.Name = &(o.Name)
 		case "namespace":
 			sp.Namespace = &(o.Namespace)
 		case "normalizedTags":
 			sp.NormalizedTags = &(o.NormalizedTags)
-		case "occurrences":
-			sp.Occurrences = &(o.Occurrences)
 		case "protected":
 			sp.Protected = &(o.Protected)
-		case "status":
-			sp.Status = &(o.Status)
+		case "regenerate":
+			sp.Regenerate = &(o.Regenerate)
+		case "roles":
+			sp.Roles = &(o.Roles)
 		case "updateTime":
 			sp.UpdateTime = &(o.UpdateTime)
 		}
@@ -358,13 +368,13 @@ func (o *Alarm) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	return sp
 }
 
-// Patch apply the non nil value of a *SparseAlarm to the object.
-func (o *Alarm) Patch(sparse elemental.SparseIdentifiable) {
+// Patch apply the non nil value of a *SparseAppCredential to the object.
+func (o *AppCredential) Patch(sparse elemental.SparseIdentifiable) {
 	if !sparse.Identity().IsEqual(o.Identity()) {
 		panic("cannot patch from a parse with different identity")
 	}
 
-	so := sparse.(*SparseAlarm)
+	so := sparse.(*SparseAppCredential)
 	if so.ID != nil {
 		o.ID = *so.ID
 	}
@@ -374,20 +384,26 @@ func (o *Alarm) Patch(sparse elemental.SparseIdentifiable) {
 	if so.AssociatedTags != nil {
 		o.AssociatedTags = *so.AssociatedTags
 	}
-	if so.Content != nil {
-		o.Content = *so.Content
+	if so.Certificate != nil {
+		o.Certificate = *so.Certificate
+	}
+	if so.CertificateSN != nil {
+		o.CertificateSN = *so.CertificateSN
 	}
 	if so.CreateTime != nil {
 		o.CreateTime = *so.CreateTime
 	}
-	if so.Data != nil {
-		o.Data = *so.Data
+	if so.Credentials != nil {
+		o.Credentials = *so.Credentials
 	}
 	if so.Description != nil {
 		o.Description = *so.Description
 	}
-	if so.Kind != nil {
-		o.Kind = *so.Kind
+	if so.Email != nil {
+		o.Email = *so.Email
+	}
+	if so.Metadata != nil {
+		o.Metadata = *so.Metadata
 	}
 	if so.Name != nil {
 		o.Name = *so.Name
@@ -398,14 +414,14 @@ func (o *Alarm) Patch(sparse elemental.SparseIdentifiable) {
 	if so.NormalizedTags != nil {
 		o.NormalizedTags = *so.NormalizedTags
 	}
-	if so.Occurrences != nil {
-		o.Occurrences = *so.Occurrences
-	}
 	if so.Protected != nil {
 		o.Protected = *so.Protected
 	}
-	if so.Status != nil {
-		o.Status = *so.Status
+	if so.Regenerate != nil {
+		o.Regenerate = *so.Regenerate
+	}
+	if so.Roles != nil {
+		o.Roles = *so.Roles
 	}
 	if so.UpdateTime != nil {
 		o.UpdateTime = *so.UpdateTime
@@ -413,21 +429,17 @@ func (o *Alarm) Patch(sparse elemental.SparseIdentifiable) {
 }
 
 // Validate valides the current information stored into the structure.
-func (o *Alarm) Validate() error {
+func (o *AppCredential) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
-		requiredErrors = append(requiredErrors, err)
+	if err := o.Credentials.Validate(); err != nil {
+		errors = append(errors, err)
 	}
 
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
 		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateRequiredString("kind", o.Kind); err != nil {
-		requiredErrors = append(requiredErrors, err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
@@ -435,10 +447,6 @@ func (o *Alarm) Validate() error {
 	}
 
 	if err := elemental.ValidateMaximumLength("name", o.Name, 256, false); err != nil {
-		errors = append(errors, err)
-	}
-
-	if err := elemental.ValidateStringInList("status", string(o.Status), []string{"Acknowledged", "Open", "Resolved"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -454,24 +462,24 @@ func (o *Alarm) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*Alarm) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*AppCredential) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := AlarmAttributesMap[name]; ok {
+	if v, ok := AppCredentialAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return AlarmLowerCaseAttributesMap[name]
+	return AppCredentialLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*Alarm) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*AppCredential) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return AlarmAttributesMap
+	return AppCredentialAttributesMap
 }
 
-// AlarmAttributesMap represents the map of attribute for Alarm.
-var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
+// AppCredentialAttributesMap represents the map of attribute for AppCredential.
+var AppCredentialAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -511,14 +519,21 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"Content": elemental.AttributeSpecification{
+	"Certificate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Content",
-		CreationOnly:   true,
-		Description:    `Content of the alarm.`,
+		ConvertedName:  "Certificate",
+		Description:    `The string representation of the Certificate used by the application.`,
 		Exposed:        true,
-		Name:           "content",
-		Required:       true,
+		Name:           "certificate",
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"CertificateSN": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CertificateSN",
+		Description:    `Link to the certificate created for this application.`,
+		Name:           "certificateSN",
 		Stored:         true,
 		Type:           "string",
 	},
@@ -536,15 +551,17 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"Data": elemental.AttributeSpecification{
+	"Credentials": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Data",
-		Description:    `Data represent user data related to the alams.`,
+		Autogenerated:  true,
+		ConvertedName:  "Credentials",
+		Description:    `The credential data.`,
 		Exposed:        true,
-		Name:           "data",
-		Stored:         true,
-		SubType:        "alarm_data",
-		Type:           "external",
+		Name:           "credentials",
+		Orderable:      true,
+		ReadOnly:       true,
+		SubType:        "credential",
+		Type:           "ref",
 	},
 	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -557,18 +574,30 @@ var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Kind": elemental.AttributeSpecification{
+	"Email": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Kind",
+		ConvertedName:  "Email",
+		Description:    `The email address that will receive a copy of the application credentials.`,
+		Exposed:        true,
+		Name:           "email",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Metadata",
 		CreationOnly:   true,
-		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
-identifier, then only the occurrence will be incremented.`,
-		Exposed:   true,
-		Name:      "kind",
-		Orderable: true,
-		Required:  true,
-		Stored:    true,
-		Type:      "string",
+		Description: `Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.`,
+		Exposed:    true,
+		Filterable: true,
+		Getter:     true,
+		Name:       "metadata",
+		Setter:     true,
+		Stored:     true,
+		SubType:    "metadata_list",
+		Type:       "external",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -618,18 +647,6 @@ identifier, then only the occurrence will be incremented.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"Occurrences": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "Occurrences",
-		CreationOnly:   true,
-		Description:    `Number of time this alarm have been seen.`,
-		Exposed:        true,
-		Name:           "occurrences",
-		Stored:         true,
-		SubType:        "alarm_occurrences",
-		Type:           "external",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -641,16 +658,25 @@ identifier, then only the occurrence will be incremented.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Status": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Acknowledged", "Open", "Resolved"},
-		ConvertedName:  "Status",
-		DefaultValue:   AlarmStatusOpen,
-		Description:    `Status of the alarm.`,
+	"Regenerate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Regenerate",
+		Description:    `Regenerates the credentials files and certificates.`,
 		Exposed:        true,
-		Name:           "status",
-		Orderable:      true,
+		Name:           "regenerate",
+		Type:           "boolean",
+	},
+	"Roles": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Roles",
+		DefaultOrder:   true,
+		Description:    `List of roles to give the credentials.`,
+		Exposed:        true,
+		Name:           "roles",
+		Required:       true,
 		Stored:         true,
-		Type:           "enum",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"UpdateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -668,8 +694,8 @@ identifier, then only the occurrence will be incremented.`,
 	},
 }
 
-// AlarmLowerCaseAttributesMap represents the map of attribute for Alarm.
-var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// AppCredentialLowerCaseAttributesMap represents the map of attribute for AppCredential.
+var AppCredentialLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -709,14 +735,21 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "tags_list",
 		Type:           "external",
 	},
-	"content": elemental.AttributeSpecification{
+	"certificate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Content",
-		CreationOnly:   true,
-		Description:    `Content of the alarm.`,
+		ConvertedName:  "Certificate",
+		Description:    `The string representation of the Certificate used by the application.`,
 		Exposed:        true,
-		Name:           "content",
-		Required:       true,
+		Name:           "certificate",
+		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"certificatesn": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CertificateSN",
+		Description:    `Link to the certificate created for this application.`,
+		Name:           "certificateSN",
 		Stored:         true,
 		Type:           "string",
 	},
@@ -734,15 +767,17 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"data": elemental.AttributeSpecification{
+	"credentials": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Data",
-		Description:    `Data represent user data related to the alams.`,
+		Autogenerated:  true,
+		ConvertedName:  "Credentials",
+		Description:    `The credential data.`,
 		Exposed:        true,
-		Name:           "data",
-		Stored:         true,
-		SubType:        "alarm_data",
-		Type:           "external",
+		Name:           "credentials",
+		Orderable:      true,
+		ReadOnly:       true,
+		SubType:        "credential",
+		Type:           "ref",
 	},
 	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -755,18 +790,30 @@ var AlarmLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"kind": elemental.AttributeSpecification{
+	"email": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Kind",
+		ConvertedName:  "Email",
+		Description:    `The email address that will receive a copy of the application credentials.`,
+		Exposed:        true,
+		Name:           "email",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"metadata": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Metadata",
 		CreationOnly:   true,
-		Description: `Kind identifies the kind of alarms. If two alarms are created with the same
-identifier, then only the occurrence will be incremented.`,
-		Exposed:   true,
-		Name:      "kind",
-		Orderable: true,
-		Required:  true,
-		Stored:    true,
-		Type:      "string",
+		Description: `Metadata contains tags that can only be set during creation. They must all start
+with the '@' prefix, and should only be used by external systems.`,
+		Exposed:    true,
+		Filterable: true,
+		Getter:     true,
+		Name:       "metadata",
+		Setter:     true,
+		Stored:     true,
+		SubType:    "metadata_list",
+		Type:       "external",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -816,18 +863,6 @@ identifier, then only the occurrence will be incremented.`,
 		Transient:      true,
 		Type:           "external",
 	},
-	"occurrences": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "Occurrences",
-		CreationOnly:   true,
-		Description:    `Number of time this alarm have been seen.`,
-		Exposed:        true,
-		Name:           "occurrences",
-		Stored:         true,
-		SubType:        "alarm_occurrences",
-		Type:           "external",
-	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -839,16 +874,25 @@ identifier, then only the occurrence will be incremented.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"status": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Acknowledged", "Open", "Resolved"},
-		ConvertedName:  "Status",
-		DefaultValue:   AlarmStatusOpen,
-		Description:    `Status of the alarm.`,
+	"regenerate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Regenerate",
+		Description:    `Regenerates the credentials files and certificates.`,
 		Exposed:        true,
-		Name:           "status",
-		Orderable:      true,
+		Name:           "regenerate",
+		Type:           "boolean",
+	},
+	"roles": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Roles",
+		DefaultOrder:   true,
+		Description:    `List of roles to give the credentials.`,
+		Exposed:        true,
+		Name:           "roles",
+		Required:       true,
 		Stored:         true,
-		Type:           "enum",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"updatetime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -866,35 +910,35 @@ identifier, then only the occurrence will be incremented.`,
 	},
 }
 
-// SparseAlarmsList represents a list of SparseAlarms
-type SparseAlarmsList []*SparseAlarm
+// SparseAppCredentialsList represents a list of SparseAppCredentials
+type SparseAppCredentialsList []*SparseAppCredential
 
 // Identity returns the identity of the objects in the list.
-func (o SparseAlarmsList) Identity() elemental.Identity {
+func (o SparseAppCredentialsList) Identity() elemental.Identity {
 
-	return AlarmIdentity
+	return AppCredentialIdentity
 }
 
-// Copy returns a pointer to a copy the SparseAlarmsList.
-func (o SparseAlarmsList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SparseAppCredentialsList.
+func (o SparseAppCredentialsList) Copy() elemental.Identifiables {
 
-	copy := append(SparseAlarmsList{}, o...)
+	copy := append(SparseAppCredentialsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SparseAlarmsList.
-func (o SparseAlarmsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SparseAppCredentialsList.
+func (o SparseAppCredentialsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SparseAlarmsList{}, o...)
+	out := append(SparseAppCredentialsList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*SparseAlarm))
+		out = append(out, obj.(*SparseAppCredential))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SparseAlarmsList) List() elemental.IdentifiablesList {
+func (o SparseAppCredentialsList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -905,15 +949,16 @@ func (o SparseAlarmsList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SparseAlarmsList) DefaultOrder() []string {
+func (o SparseAppCredentialsList) DefaultOrder() []string {
 
 	return []string{
+		"roles",
 		"name",
 	}
 }
 
-// ToPlain returns the SparseAlarmsList converted to AlarmsList.
-func (o SparseAlarmsList) ToPlain() elemental.IdentifiablesList {
+// ToPlain returns the SparseAppCredentialsList converted to AppCredentialsList.
+func (o SparseAppCredentialsList) ToPlain() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -924,13 +969,13 @@ func (o SparseAlarmsList) ToPlain() elemental.IdentifiablesList {
 }
 
 // Version returns the version of the content.
-func (o SparseAlarmsList) Version() int {
+func (o SparseAppCredentialsList) Version() int {
 
 	return 1
 }
 
-// SparseAlarm represents the sparse version of a alarm.
-type SparseAlarm struct {
+// SparseAppCredential represents the sparse version of a appcredential.
+type SparseAppCredential struct {
 	// ID is the identifier of the object.
 	ID *string `json:"ID,omitempty" bson:"_id" mapstructure:"ID,omitempty"`
 
@@ -940,21 +985,27 @@ type SparseAlarm struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags *[]string `json:"associatedTags,omitempty" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
-	// Content of the alarm.
-	Content *string `json:"content,omitempty" bson:"content" mapstructure:"content,omitempty"`
+	// The string representation of the Certificate used by the application.
+	Certificate *string `json:"certificate,omitempty" bson:"certificate" mapstructure:"certificate,omitempty"`
+
+	// Link to the certificate created for this application.
+	CertificateSN *string `json:"-,omitempty" bson:"certificatesn" mapstructure:"-,omitempty"`
 
 	// CreatedTime is the time at which the object was created.
 	CreateTime *time.Time `json:"createTime,omitempty" bson:"createtime" mapstructure:"createTime,omitempty"`
 
-	// Data represent user data related to the alams.
-	Data *[]map[string]string `json:"data,omitempty" bson:"data" mapstructure:"data,omitempty"`
+	// The credential data.
+	Credentials **Credential `json:"credentials,omitempty" bson:"-" mapstructure:"credentials,omitempty"`
 
 	// Description is the description of the object.
 	Description *string `json:"description,omitempty" bson:"description" mapstructure:"description,omitempty"`
 
-	// Kind identifies the kind of alarms. If two alarms are created with the same
-	// identifier, then only the occurrence will be incremented.
-	Kind *string `json:"kind,omitempty" bson:"kind" mapstructure:"kind,omitempty"`
+	// The email address that will receive a copy of the application credentials.
+	Email *string `json:"email,omitempty" bson:"email" mapstructure:"email,omitempty"`
+
+	// Metadata contains tags that can only be set during creation. They must all start
+	// with the '@' prefix, and should only be used by external systems.
+	Metadata *[]string `json:"metadata,omitempty" bson:"metadata" mapstructure:"metadata,omitempty"`
 
 	// Name is the name of the entity.
 	Name *string `json:"name,omitempty" bson:"name" mapstructure:"name,omitempty"`
@@ -965,14 +1016,14 @@ type SparseAlarm struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags *[]string `json:"normalizedTags,omitempty" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// Number of time this alarm have been seen.
-	Occurrences *[]time.Time `json:"occurrences,omitempty" bson:"occurrences" mapstructure:"occurrences,omitempty"`
-
 	// Protected defines if the object is protected.
 	Protected *bool `json:"protected,omitempty" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// Status of the alarm.
-	Status *AlarmStatusValue `json:"status,omitempty" bson:"status" mapstructure:"status,omitempty"`
+	// Regenerates the credentials files and certificates.
+	Regenerate *bool `json:"regenerate,omitempty" bson:"-" mapstructure:"regenerate,omitempty"`
+
+	// List of roles to give the credentials.
+	Roles *[]string `json:"roles,omitempty" bson:"roles" mapstructure:"roles,omitempty"`
 
 	// UpdateTime is the time at which an entity was updated.
 	UpdateTime *time.Time `json:"updateTime,omitempty" bson:"updatetime" mapstructure:"updateTime,omitempty"`
@@ -982,19 +1033,19 @@ type SparseAlarm struct {
 	sync.Mutex `json:"-" bson:"-"`
 }
 
-// NewSparseAlarm returns a new  SparseAlarm.
-func NewSparseAlarm() *SparseAlarm {
-	return &SparseAlarm{}
+// NewSparseAppCredential returns a new  SparseAppCredential.
+func NewSparseAppCredential() *SparseAppCredential {
+	return &SparseAppCredential{}
 }
 
 // Identity returns the Identity of the sparse object.
-func (o *SparseAlarm) Identity() elemental.Identity {
+func (o *SparseAppCredential) Identity() elemental.Identity {
 
-	return AlarmIdentity
+	return AppCredentialIdentity
 }
 
 // Identifier returns the value of the sparse object's unique identifier.
-func (o *SparseAlarm) Identifier() string {
+func (o *SparseAppCredential) Identifier() string {
 
 	if o.ID == nil {
 		return ""
@@ -1003,21 +1054,21 @@ func (o *SparseAlarm) Identifier() string {
 }
 
 // SetIdentifier sets the value of the sparse object's unique identifier.
-func (o *SparseAlarm) SetIdentifier(id string) {
+func (o *SparseAppCredential) SetIdentifier(id string) {
 
 	o.ID = &id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *SparseAlarm) Version() int {
+func (o *SparseAppCredential) Version() int {
 
 	return 1
 }
 
 // ToPlain returns the plain version of the sparse model.
-func (o *SparseAlarm) ToPlain() elemental.PlainIdentifiable {
+func (o *SparseAppCredential) ToPlain() elemental.PlainIdentifiable {
 
-	out := NewAlarm()
+	out := NewAppCredential()
 	if o.ID != nil {
 		out.ID = *o.ID
 	}
@@ -1027,20 +1078,26 @@ func (o *SparseAlarm) ToPlain() elemental.PlainIdentifiable {
 	if o.AssociatedTags != nil {
 		out.AssociatedTags = *o.AssociatedTags
 	}
-	if o.Content != nil {
-		out.Content = *o.Content
+	if o.Certificate != nil {
+		out.Certificate = *o.Certificate
+	}
+	if o.CertificateSN != nil {
+		out.CertificateSN = *o.CertificateSN
 	}
 	if o.CreateTime != nil {
 		out.CreateTime = *o.CreateTime
 	}
-	if o.Data != nil {
-		out.Data = *o.Data
+	if o.Credentials != nil {
+		out.Credentials = *o.Credentials
 	}
 	if o.Description != nil {
 		out.Description = *o.Description
 	}
-	if o.Kind != nil {
-		out.Kind = *o.Kind
+	if o.Email != nil {
+		out.Email = *o.Email
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Name != nil {
 		out.Name = *o.Name
@@ -1051,14 +1108,14 @@ func (o *SparseAlarm) ToPlain() elemental.PlainIdentifiable {
 	if o.NormalizedTags != nil {
 		out.NormalizedTags = *o.NormalizedTags
 	}
-	if o.Occurrences != nil {
-		out.Occurrences = *o.Occurrences
-	}
 	if o.Protected != nil {
 		out.Protected = *o.Protected
 	}
-	if o.Status != nil {
-		out.Status = *o.Status
+	if o.Regenerate != nil {
+		out.Regenerate = *o.Regenerate
+	}
+	if o.Roles != nil {
+		out.Roles = *o.Roles
 	}
 	if o.UpdateTime != nil {
 		out.UpdateTime = *o.UpdateTime
