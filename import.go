@@ -14,6 +14,9 @@ const (
 	// ImportModeAppend represents the value Append.
 	ImportModeAppend ImportModeValue = "Append"
 
+	// ImportModeRemove represents the value Remove.
+	ImportModeRemove ImportModeValue = "Remove"
+
 	// ImportModeReplaceFull represents the value ReplaceFull.
 	ImportModeReplaceFull ImportModeValue = "ReplaceFull"
 
@@ -202,7 +205,7 @@ func (o *Import) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
-	if err := elemental.ValidateStringInList("mode", string(o.Mode), []string{"Append", "ReplacePartial", "ReplaceFull"}, false); err != nil {
+	if err := elemental.ValidateStringInList("mode", string(o.Mode), []string{"Append", "ReplacePartial", "ReplaceFull", "Remove"}, false); err != nil {
 		errors = append(errors, err)
 	}
 
@@ -247,7 +250,7 @@ var ImportAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Mode": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Append", "ReplacePartial", "ReplaceFull"},
+		AllowedChoices: []string{"Append", "ReplacePartial", "ReplaceFull", "Remove"},
 		ConvertedName:  "Mode",
 		Description:    `How to import the data.`,
 		Exposed:        true,
@@ -269,7 +272,7 @@ var ImportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"mode": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Append", "ReplacePartial", "ReplaceFull"},
+		AllowedChoices: []string{"Append", "ReplacePartial", "ReplaceFull", "Remove"},
 		ConvertedName:  "Mode",
 		Description:    `How to import the data.`,
 		Exposed:        true,

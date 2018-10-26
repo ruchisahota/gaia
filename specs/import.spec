@@ -25,4 +25,5 @@ attributes:
     - Append
     - ReplacePartial
     - ReplaceFull
+    - Remove
     example_value: ReplacePartial

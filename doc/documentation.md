@@ -5649,9 +5649,9 @@ The data to import.
 
 How to import the data.
 
-| Characteristics | Value                                 |
-| -               | -:                                    |
-| Allowed Value   | `Append, ReplacePartial, ReplaceFull` |
+| Characteristics | Value                                         |
+| -               | -:                                            |
+| Allowed Value   | `Append, ReplacePartial, ReplaceFull, Remove` |
 
 ## Installation
 
