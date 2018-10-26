@@ -26,4 +26,4 @@ attributes:
     - ReplacePartial
     - ReplaceFull
     - Remove
-    example_value: ReplacePartial
+    default_value: ReplacePartial

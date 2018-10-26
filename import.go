@@ -113,6 +113,7 @@ func NewImport() *Import {
 	return &Import{
 		ModelVersion: 1,
 		Data:         NewExport(),
+		Mode:         ImportModeReplacePartial,
 	}
 }
 
@@ -252,6 +253,7 @@ var ImportAttributesMap = map[string]elemental.AttributeSpecification{
 	"Mode": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Append", "ReplacePartial", "ReplaceFull", "Remove"},
 		ConvertedName:  "Mode",
+		DefaultValue:   ImportModeReplacePartial,
 		Description:    `How to import the data.`,
 		Exposed:        true,
 		Name:           "mode",
@@ -274,6 +276,7 @@ var ImportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"mode": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Append", "ReplacePartial", "ReplaceFull", "Remove"},
 		ConvertedName:  "Mode",
+		DefaultValue:   ImportModeReplacePartial,
 		Description:    `How to import the data.`,
 		Exposed:        true,
 		Name:           "mode",

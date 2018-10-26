@@ -5624,8 +5624,7 @@ Imports an export of policies and related objects into the namespace.
 
 ```json
 {
-  "data": "previous output of export",
-  "mode": "ReplacePartial"
+  "data": "previous output of export"
 }
 ```
 
@@ -5652,6 +5651,7 @@ How to import the data.
 | Characteristics | Value                                         |
 | -               | -:                                            |
 | Allowed Value   | `Append, ReplacePartial, ReplaceFull, Remove` |
+| Default         | `"ReplacePartial"`                            |
 
 ## Installation
 
