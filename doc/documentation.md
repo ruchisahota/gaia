@@ -2946,6 +2946,7 @@ to this object.
 | Characteristics | Value  |
 | -               | -:     |
 | Orderable       | `true` |
+| Filterable      | `true` |
 
 #### `description (string)`
 
