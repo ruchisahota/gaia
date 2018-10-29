@@ -8,6 +8,9 @@ import (
 
 // Credential represents the model of a credential
 type Credential struct {
+	// The Aporeto API URL.
+	APIURL string `json:"APIURL" bson:"-" mapstructure:"APIURL,omitempty"`
+
 	// The ID of app credential.
 	ID string `json:"ID" bson:"-" mapstructure:"ID,omitempty"`
 

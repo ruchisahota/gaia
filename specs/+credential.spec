@@ -10,6 +10,11 @@ model:
 # Attributes
 attributes:
   v1:
+  - name: APIURL
+    description: The Aporeto API URL.
+    type: string
+    exposed: true
+
   - name: ID
     description: The ID of app credential.
     type: string
