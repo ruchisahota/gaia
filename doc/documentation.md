@@ -2674,6 +2674,10 @@ Represents an application credential data.
 
 ### Attributes
 
+#### `APIURL (string)`
+
+The Aporeto API URL.
+
 #### `ID (string)`
 
 The ID of app credential.
