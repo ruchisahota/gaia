@@ -231,6 +231,25 @@ func (*Role) AttributeSpecifications() map[string]elemental.AttributeSpecificati
 	return RoleAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Role) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "authorizations":
+		return o.Authorizations
+	case "description":
+		return o.Description
+	case "key":
+		return o.Key
+	case "name":
+		return o.Name
+	}
+
+	return nil
+}
+
 // RoleAttributesMap represents the map of attribute for Role.
 var RoleAttributesMap = map[string]elemental.AttributeSpecification{
 	"Authorizations": elemental.AttributeSpecification{

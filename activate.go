@@ -202,6 +202,19 @@ func (*Activate) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return ActivateAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Activate) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "token":
+		return o.Token
+	}
+
+	return nil
+}
+
 // ActivateAttributesMap represents the map of attribute for Activate.
 var ActivateAttributesMap = map[string]elemental.AttributeSpecification{
 	"Token": elemental.AttributeSpecification{

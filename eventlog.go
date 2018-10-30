@@ -324,6 +324,33 @@ func (*EventLog) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return EventLogAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *EventLog) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "category":
+		return o.Category
+	case "content":
+		return o.Content
+	case "date":
+		return o.Date
+	case "level":
+		return o.Level
+	case "namespace":
+		return o.Namespace
+	case "targetID":
+		return o.TargetID
+	case "targetIdentity":
+		return o.TargetIdentity
+	case "title":
+		return o.Title
+	}
+
+	return nil
+}
+
 // EventLogAttributesMap represents the map of attribute for EventLog.
 var EventLogAttributesMap = map[string]elemental.AttributeSpecification{
 	"Category": elemental.AttributeSpecification{

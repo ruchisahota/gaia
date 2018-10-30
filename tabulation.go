@@ -222,6 +222,23 @@ func (*Tabulation) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return TabulationAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Tabulation) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "headers":
+		return o.Headers
+	case "rows":
+		return o.Rows
+	case "targetIdentity":
+		return o.TargetIdentity
+	}
+
+	return nil
+}
+
 // TabulationAttributesMap represents the map of attribute for Tabulation.
 var TabulationAttributesMap = map[string]elemental.AttributeSpecification{
 	"Headers": elemental.AttributeSpecification{

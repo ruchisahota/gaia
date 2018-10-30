@@ -188,6 +188,17 @@ func (*Poke) AttributeSpecifications() map[string]elemental.AttributeSpecificati
 	return PokeAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Poke) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	}
+
+	return nil
+}
+
 // PokeAttributesMap represents the map of attribute for Poke.
 var PokeAttributesMap = map[string]elemental.AttributeSpecification{}
 

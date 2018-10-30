@@ -623,6 +623,65 @@ func (*FileAccessPolicy) AttributeSpecifications() map[string]elemental.Attribut
 	return FileAccessPolicyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *FileAccessPolicy) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "activeDuration":
+		return o.ActiveDuration
+	case "activeSchedule":
+		return o.ActiveSchedule
+	case "allowsExecute":
+		return o.AllowsExecute
+	case "allowsRead":
+		return o.AllowsRead
+	case "allowsWrite":
+		return o.AllowsWrite
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "disabled":
+		return o.Disabled
+	case "encryptionEnabled":
+		return o.EncryptionEnabled
+	case "fallback":
+		return o.Fallback
+	case "logsEnabled":
+		return o.LogsEnabled
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "object":
+		return o.Object
+	case "propagate":
+		return o.Propagate
+	case "propagationHidden":
+		return o.PropagationHidden
+	case "protected":
+		return o.Protected
+	case "subject":
+		return o.Subject
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // FileAccessPolicyAttributesMap represents the map of attribute for FileAccessPolicy.
 var FileAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

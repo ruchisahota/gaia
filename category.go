@@ -249,6 +249,23 @@ func (*Category) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return CategoryAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Category) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "description":
+		return o.Description
+	case "name":
+		return o.Name
+	}
+
+	return nil
+}
+
 // CategoryAttributesMap represents the map of attribute for Category.
 var CategoryAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

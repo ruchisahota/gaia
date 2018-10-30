@@ -477,6 +477,51 @@ func (*AppCredential) AttributeSpecifications() map[string]elemental.AttributeSp
 	return AppCredentialAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *AppCredential) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "certificate":
+		return o.Certificate
+	case "certificateSN":
+		return o.CertificateSN
+	case "createTime":
+		return o.CreateTime
+	case "credentials":
+		return o.Credentials
+	case "description":
+		return o.Description
+	case "email":
+		return o.Email
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "protected":
+		return o.Protected
+	case "regenerate":
+		return o.Regenerate
+	case "roles":
+		return o.Roles
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AppCredentialAttributesMap represents the map of attribute for AppCredential.
 var AppCredentialAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

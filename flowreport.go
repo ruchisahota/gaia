@@ -577,6 +577,75 @@ func (*FlowReport) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return FlowReportAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *FlowReport) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "action":
+		return o.Action
+	case "destinationID":
+		return o.DestinationID
+	case "destinationIP":
+		return o.DestinationIP
+	case "destinationNamespace":
+		return o.DestinationNamespace
+	case "destinationPort":
+		return o.DestinationPort
+	case "destinationType":
+		return o.DestinationType
+	case "dropReason":
+		return o.DropReason
+	case "encrypted":
+		return o.Encrypted
+	case "namespace":
+		return o.Namespace
+	case "observed":
+		return o.Observed
+	case "observedAction":
+		return o.ObservedAction
+	case "observedDropReason":
+		return o.ObservedDropReason
+	case "observedEncrypted":
+		return o.ObservedEncrypted
+	case "observedPolicyID":
+		return o.ObservedPolicyID
+	case "observedPolicyNamespace":
+		return o.ObservedPolicyNamespace
+	case "policyID":
+		return o.PolicyID
+	case "policyNamespace":
+		return o.PolicyNamespace
+	case "protocol":
+		return o.Protocol
+	case "serviceClaimHash":
+		return o.ServiceClaimHash
+	case "serviceID":
+		return o.ServiceID
+	case "serviceNamespace":
+		return o.ServiceNamespace
+	case "serviceType":
+		return o.ServiceType
+	case "serviceURL":
+		return o.ServiceURL
+	case "sourceID":
+		return o.SourceID
+	case "sourceIP":
+		return o.SourceIP
+	case "sourceNamespace":
+		return o.SourceNamespace
+	case "sourceType":
+		return o.SourceType
+	case "timestamp":
+		return o.Timestamp
+	case "value":
+		return o.Value
+	}
+
+	return nil
+}
+
 // FlowReportAttributesMap represents the map of attribute for FlowReport.
 var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"Action": elemental.AttributeSpecification{

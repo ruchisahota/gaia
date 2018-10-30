@@ -212,6 +212,21 @@ func (*PolicyRefresh) AttributeSpecifications() map[string]elemental.AttributeSp
 	return PolicyRefreshAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *PolicyRefresh) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "sourceNamespace":
+		return o.SourceNamespace
+	case "type":
+		return o.Type
+	}
+
+	return nil
+}
+
 // PolicyRefreshAttributesMap represents the map of attribute for PolicyRefresh.
 var PolicyRefreshAttributesMap = map[string]elemental.AttributeSpecification{
 	"SourceNamespace": elemental.AttributeSpecification{

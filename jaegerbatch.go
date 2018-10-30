@@ -205,6 +205,19 @@ func (*Jaegerbatch) AttributeSpecifications() map[string]elemental.AttributeSpec
 	return JaegerbatchAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Jaegerbatch) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "batch":
+		return o.Batch
+	}
+
+	return nil
+}
+
 // JaegerbatchAttributesMap represents the map of attribute for Jaegerbatch.
 var JaegerbatchAttributesMap = map[string]elemental.AttributeSpecification{
 	"Batch": elemental.AttributeSpecification{

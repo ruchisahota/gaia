@@ -278,6 +278,27 @@ func (*Issue) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 	return IssueAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Issue) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "data":
+		return o.Data
+	case "metadata":
+		return o.Metadata
+	case "realm":
+		return o.Realm
+	case "token":
+		return o.Token
+	case "validity":
+		return o.Validity
+	}
+
+	return nil
+}
+
 // IssueAttributesMap represents the map of attribute for Issue.
 var IssueAttributesMap = map[string]elemental.AttributeSpecification{
 	"Data": elemental.AttributeSpecification{

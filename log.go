@@ -203,6 +203,19 @@ func (*Log) AttributeSpecifications() map[string]elemental.AttributeSpecificatio
 	return LogAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Log) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "data":
+		return o.Data
+	}
+
+	return nil
+}
+
 // LogAttributesMap represents the map of attribute for Log.
 var LogAttributesMap = map[string]elemental.AttributeSpecification{
 	"Data": elemental.AttributeSpecification{

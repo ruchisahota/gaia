@@ -538,6 +538,57 @@ func (*K8SCluster) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return K8SClusterAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *K8SCluster) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "APIAuthorizationPolicyID":
+		return o.APIAuthorizationPolicyID
+	case "ID":
+		return o.ID
+	case "activationType":
+		return o.ActivationType
+	case "adminEmail":
+		return o.AdminEmail
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "certificate":
+		return o.Certificate
+	case "certificateSN":
+		return o.CertificateSN
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "kubernetesDefinitions":
+		return o.KubernetesDefinitions
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "namespaceID":
+		return o.NamespaceID
+	case "networkPolicyType":
+		return o.NetworkPolicyType
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "protected":
+		return o.Protected
+	case "regenerate":
+		return o.Regenerate
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // K8SClusterAttributesMap represents the map of attribute for K8SCluster.
 var K8SClusterAttributesMap = map[string]elemental.AttributeSpecification{
 	"APIAuthorizationPolicyID": elemental.AttributeSpecification{

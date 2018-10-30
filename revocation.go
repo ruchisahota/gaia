@@ -241,6 +241,27 @@ func (*Revocation) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return RevocationAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Revocation) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "expirationDate":
+		return o.ExpirationDate
+	case "revokeDate":
+		return o.RevokeDate
+	case "serialNumber":
+		return o.SerialNumber
+	case "subject":
+		return o.Subject
+	}
+
+	return nil
+}
+
 // RevocationAttributesMap represents the map of attribute for Revocation.
 var RevocationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

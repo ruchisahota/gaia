@@ -224,6 +224,23 @@ func (*TagInject) AttributeSpecifications() map[string]elemental.AttributeSpecif
 	return TagInjectAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *TagInject) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "addedTags":
+		return o.AddedTags
+	case "removedTags":
+		return o.RemovedTags
+	case "targetNamespace":
+		return o.TargetNamespace
+	}
+
+	return nil
+}
+
 // TagInjectAttributesMap represents the map of attribute for TagInject.
 var TagInjectAttributesMap = map[string]elemental.AttributeSpecification{
 	"AddedTags": elemental.AttributeSpecification{

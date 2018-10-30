@@ -461,6 +461,47 @@ func (*IsolationProfile) AttributeSpecifications() map[string]elemental.Attribut
 	return IsolationProfileAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *IsolationProfile) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "capabilitiesActions":
+		return o.CapabilitiesActions
+	case "createTime":
+		return o.CreateTime
+	case "defaultSyscallAction":
+		return o.DefaultSyscallAction
+	case "description":
+		return o.Description
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "protected":
+		return o.Protected
+	case "syscallRules":
+		return o.SyscallRules
+	case "targetArchitectures":
+		return o.TargetArchitectures
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // IsolationProfileAttributesMap represents the map of attribute for IsolationProfile.
 var IsolationProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

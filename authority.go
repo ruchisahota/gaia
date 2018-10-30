@@ -253,6 +253,29 @@ func (*Authority) AttributeSpecifications() map[string]elemental.AttributeSpecif
 	return AuthorityAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Authority) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "certificate":
+		return o.Certificate
+	case "commonName":
+		return o.CommonName
+	case "expirationDate":
+		return o.ExpirationDate
+	case "key":
+		return o.Key
+	case "serialNumber":
+		return o.SerialNumber
+	}
+
+	return nil
+}
+
 // AuthorityAttributesMap represents the map of attribute for Authority.
 var AuthorityAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

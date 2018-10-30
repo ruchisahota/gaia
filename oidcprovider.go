@@ -302,6 +302,37 @@ func (*OIDCProvider) AttributeSpecifications() map[string]elemental.AttributeSpe
 	return OIDCProviderAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *OIDCProvider) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "clientID":
+		return o.ClientID
+	case "clientSecret":
+		return o.ClientSecret
+	case "createTime":
+		return o.CreateTime
+	case "endpoint":
+		return o.Endpoint
+	case "name":
+		return o.Name
+	case "parentID":
+		return o.ParentID
+	case "parentName":
+		return o.ParentName
+	case "scopes":
+		return o.Scopes
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // OIDCProviderAttributesMap represents the map of attribute for OIDCProvider.
 var OIDCProviderAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

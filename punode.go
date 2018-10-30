@@ -276,6 +276,35 @@ func (*PUNode) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 	return PUNodeAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *PUNode) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "enforcementStatus":
+		return o.EnforcementStatus
+	case "image":
+		return o.Image
+	case "lastPokeTime":
+		return o.LastPokeTime
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "status":
+		return o.Status
+	case "tags":
+		return o.Tags
+	case "type":
+		return o.Type
+	}
+
+	return nil
+}
+
 // PUNodeAttributesMap represents the map of attribute for PUNode.
 var PUNodeAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

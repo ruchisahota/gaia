@@ -835,6 +835,93 @@ func (*Service) AttributeSpecifications() map[string]elemental.AttributeSpecific
 	return ServiceAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Service) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "IPs":
+		return o.IPs
+	case "JWTSigningCertificate":
+		return o.JWTSigningCertificate
+	case "MTLSCertificateAuthority":
+		return o.MTLSCertificateAuthority
+	case "OIDCCallbackURL":
+		return o.OIDCCallbackURL
+	case "OIDCClientID":
+		return o.OIDCClientID
+	case "OIDCClientSecret":
+		return o.OIDCClientSecret
+	case "OIDCProviderURL":
+		return o.OIDCProviderURL
+	case "OIDCScopes":
+		return o.OIDCScopes
+	case "TLSCertificate":
+		return o.TLSCertificate
+	case "TLSCertificateKey":
+		return o.TLSCertificateKey
+	case "TLSType":
+		return o.TLSType
+	case "allAPITags":
+		return o.AllAPITags
+	case "allServiceTags":
+		return o.AllServiceTags
+	case "annotations":
+		return o.Annotations
+	case "archived":
+		return o.Archived
+	case "associatedTags":
+		return o.AssociatedTags
+	case "authorizationType":
+		return o.AuthorizationType
+	case "claimsToHTTPHeaderMappings":
+		return o.ClaimsToHTTPHeaderMappings
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "endpoints":
+		return o.Endpoints
+	case "exposedAPIs":
+		return o.ExposedAPIs
+	case "exposedPort":
+		return o.ExposedPort
+	case "external":
+		return o.External
+	case "hosts":
+		return o.Hosts
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "port":
+		return o.Port
+	case "protected":
+		return o.Protected
+	case "publicApplicationPort":
+		return o.PublicApplicationPort
+	case "redirectURLOnAuthorizationFailure":
+		return o.RedirectURLOnAuthorizationFailure
+	case "selectors":
+		return o.Selectors
+	case "trustedCertificateAuthorities":
+		return o.TrustedCertificateAuthorities
+	case "type":
+		return o.Type
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // ServiceAttributesMap represents the map of attribute for Service.
 var ServiceAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

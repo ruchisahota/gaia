@@ -202,6 +202,19 @@ func (*Trigger) AttributeSpecifications() map[string]elemental.AttributeSpecific
 	return TriggerAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Trigger) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "payload":
+		return o.Payload
+	}
+
+	return nil
+}
+
 // TriggerAttributesMap represents the map of attribute for Trigger.
 var TriggerAttributesMap = map[string]elemental.AttributeSpecification{
 	"Payload": elemental.AttributeSpecification{

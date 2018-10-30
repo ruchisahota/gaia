@@ -297,6 +297,33 @@ func (*RemoteProcessor) AttributeSpecifications() map[string]elemental.Attribute
 	return RemoteProcessorAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *RemoteProcessor) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "claims":
+		return o.Claims
+	case "input":
+		return o.Input
+	case "mode":
+		return o.Mode
+	case "namespace":
+		return o.Namespace
+	case "operation":
+		return o.Operation
+	case "output":
+		return o.Output
+	case "requestID":
+		return o.RequestID
+	case "targetIdentity":
+		return o.TargetIdentity
+	}
+
+	return nil
+}
+
 // RemoteProcessorAttributesMap represents the map of attribute for RemoteProcessor.
 var RemoteProcessorAttributesMap = map[string]elemental.AttributeSpecification{
 	"Claims": elemental.AttributeSpecification{

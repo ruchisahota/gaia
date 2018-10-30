@@ -241,6 +241,27 @@ func (*InvoiceRecord) AttributeSpecifications() map[string]elemental.AttributeSp
 	return InvoiceRecordAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *InvoiceRecord) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "createTime":
+		return o.CreateTime
+	case "invoiceID":
+		return o.InvoiceID
+	case "invoiceRecords":
+		return o.InvoiceRecords
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // InvoiceRecordAttributesMap represents the map of attribute for InvoiceRecord.
 var InvoiceRecordAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

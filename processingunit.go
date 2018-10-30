@@ -605,6 +605,59 @@ func (*ProcessingUnit) AttributeSpecifications() map[string]elemental.AttributeS
 	return ProcessingUnitAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *ProcessingUnit) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "archived":
+		return o.Archived
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "enforcementStatus":
+		return o.EnforcementStatus
+	case "enforcerID":
+		return o.EnforcerID
+	case "image":
+		return o.Image
+	case "lastPokeTime":
+		return o.LastPokeTime
+	case "lastSyncTime":
+		return o.LastSyncTime
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "nativeContextID":
+		return o.NativeContextID
+	case "networkServices":
+		return o.NetworkServices
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "operationalStatus":
+		return o.OperationalStatus
+	case "protected":
+		return o.Protected
+	case "type":
+		return o.Type
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // ProcessingUnitAttributesMap represents the map of attribute for ProcessingUnit.
 var ProcessingUnitAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

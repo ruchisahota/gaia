@@ -285,6 +285,33 @@ func (*Email) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 	return EmailAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Email) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "attachments":
+		return o.Attachments
+	case "bcc":
+		return o.Bcc
+	case "cc":
+		return o.Cc
+	case "content":
+		return o.Content
+	case "from":
+		return o.From
+	case "subject":
+		return o.Subject
+	case "to":
+		return o.To
+	case "type":
+		return o.Type
+	}
+
+	return nil
+}
+
 // EmailAttributesMap represents the map of attribute for Email.
 var EmailAttributesMap = map[string]elemental.AttributeSpecification{
 	"Attachments": elemental.AttributeSpecification{

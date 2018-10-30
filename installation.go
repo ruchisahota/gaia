@@ -212,6 +212,21 @@ func (*Installation) AttributeSpecifications() map[string]elemental.AttributeSpe
 	return InstallationAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Installation) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "accountName":
+		return o.AccountName
+	}
+
+	return nil
+}
+
 // InstallationAttributesMap represents the map of attribute for Installation.
 var InstallationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

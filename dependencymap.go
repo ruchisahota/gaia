@@ -267,6 +267,27 @@ func (*DependencyMap) AttributeSpecifications() map[string]elemental.AttributeSp
 	return DependencyMapAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *DependencyMap) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "claims":
+		return o.Claims
+	case "edges":
+		return o.Edges
+	case "groups":
+		return o.Groups
+	case "nodes":
+		return o.Nodes
+	case "viewSuggestions":
+		return o.ViewSuggestions
+	}
+
+	return nil
+}
+
 // DependencyMapAttributesMap represents the map of attribute for DependencyMap.
 var DependencyMapAttributesMap = map[string]elemental.AttributeSpecification{
 	"Claims": elemental.AttributeSpecification{

@@ -574,6 +574,55 @@ func (*TokenScopePolicy) AttributeSpecifications() map[string]elemental.Attribut
 	return TokenScopePolicyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *TokenScopePolicy) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "activeDuration":
+		return o.ActiveDuration
+	case "activeSchedule":
+		return o.ActiveSchedule
+	case "annotations":
+		return o.Annotations
+	case "assignedScopes":
+		return o.AssignedScopes
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "disabled":
+		return o.Disabled
+	case "fallback":
+		return o.Fallback
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "propagate":
+		return o.Propagate
+	case "propagationHidden":
+		return o.PropagationHidden
+	case "protected":
+		return o.Protected
+	case "subject":
+		return o.Subject
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // TokenScopePolicyAttributesMap represents the map of attribute for TokenScopePolicy.
 var TokenScopePolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

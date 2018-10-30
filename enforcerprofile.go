@@ -848,6 +848,97 @@ func (*EnforcerProfile) AttributeSpecifications() map[string]elemental.Attribute
 	return EnforcerProfileAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *EnforcerProfile) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "IPTablesMarkValue":
+		return o.IPTablesMarkValue
+	case "PUBookkeepingInterval":
+		return o.PUBookkeepingInterval
+	case "PUHeartbeatInterval":
+		return o.PUHeartbeatInterval
+	case "annotations":
+		return o.Annotations
+	case "applicationProxyPort":
+		return o.ApplicationProxyPort
+	case "associatedTags":
+		return o.AssociatedTags
+	case "auditProfileSelectors":
+		return o.AuditProfileSelectors
+	case "auditProfiles":
+		return o.AuditProfiles
+	case "auditSocketBufferSize":
+		return o.AuditSocketBufferSize
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "dockerSocketAddress":
+		return o.DockerSocketAddress
+	case "excludedInterfaces":
+		return o.ExcludedInterfaces
+	case "excludedNetworks":
+		return o.ExcludedNetworks
+	case "hostModeEnabled":
+		return o.HostModeEnabled
+	case "hostServices":
+		return o.HostServices
+	case "ignoreExpression":
+		return o.IgnoreExpression
+	case "killContainersOnFailure":
+		return o.KillContainersOnFailure
+	case "kubernetesMetadataExtractor":
+		return o.KubernetesMetadataExtractor
+	case "kubernetesSupportEnabled":
+		return o.KubernetesSupportEnabled
+	case "linuxProcessesSupportEnabled":
+		return o.LinuxProcessesSupportEnabled
+	case "metadataExtractor":
+		return o.MetadataExtractor
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "policySynchronizationInterval":
+		return o.PolicySynchronizationInterval
+	case "protected":
+		return o.Protected
+	case "proxyListenAddress":
+		return o.ProxyListenAddress
+	case "receiverNumberOfQueues":
+		return o.ReceiverNumberOfQueues
+	case "receiverQueue":
+		return o.ReceiverQueue
+	case "receiverQueueSize":
+		return o.ReceiverQueueSize
+	case "remoteEnforcerEnabled":
+		return o.RemoteEnforcerEnabled
+	case "targetNetworks":
+		return o.TargetNetworks
+	case "targetUDPNetworks":
+		return o.TargetUDPNetworks
+	case "transmitterNumberOfQueues":
+		return o.TransmitterNumberOfQueues
+	case "transmitterQueue":
+		return o.TransmitterQueue
+	case "transmitterQueueSize":
+		return o.TransmitterQueueSize
+	case "trustedCAs":
+		return o.TrustedCAs
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // EnforcerProfileAttributesMap represents the map of attribute for EnforcerProfile.
 var EnforcerProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

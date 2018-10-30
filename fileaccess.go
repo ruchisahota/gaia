@@ -265,6 +265,29 @@ func (*FileAccess) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return FileAccessAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *FileAccess) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "action":
+		return o.Action
+	case "count":
+		return o.Count
+	case "host":
+		return o.Host
+	case "mode":
+		return o.Mode
+	case "path":
+		return o.Path
+	case "protocol":
+		return o.Protocol
+	}
+
+	return nil
+}
+
 // FileAccessAttributesMap represents the map of attribute for FileAccess.
 var FileAccessAttributesMap = map[string]elemental.AttributeSpecification{
 	"Action": elemental.AttributeSpecification{

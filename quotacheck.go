@@ -229,6 +229,23 @@ func (*QuotaCheck) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return QuotaCheckAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *QuotaCheck) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "quota":
+		return o.Quota
+	case "targetIdentity":
+		return o.TargetIdentity
+	case "targetNamespace":
+		return o.TargetNamespace
+	}
+
+	return nil
+}
+
 // QuotaCheckAttributesMap represents the map of attribute for QuotaCheck.
 var QuotaCheckAttributesMap = map[string]elemental.AttributeSpecification{
 	"Quota": elemental.AttributeSpecification{

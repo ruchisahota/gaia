@@ -602,6 +602,59 @@ func (*HookPolicy) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return HookPolicyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *HookPolicy) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "certificateAuthority":
+		return o.CertificateAuthority
+	case "clientCertificate":
+		return o.ClientCertificate
+	case "clientCertificateKey":
+		return o.ClientCertificateKey
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "disabled":
+		return o.Disabled
+	case "endpoint":
+		return o.Endpoint
+	case "fallback":
+		return o.Fallback
+	case "metadata":
+		return o.Metadata
+	case "mode":
+		return o.Mode
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "propagate":
+		return o.Propagate
+	case "propagationHidden":
+		return o.PropagationHidden
+	case "protected":
+		return o.Protected
+	case "subject":
+		return o.Subject
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // HookPolicyAttributesMap represents the map of attribute for HookPolicy.
 var HookPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

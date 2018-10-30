@@ -585,6 +585,89 @@ func (*Account) AttributeSpecifications() map[string]elemental.AttributeSpecific
 	return AccountAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Account) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "LDAPAddress":
+		return o.LDAPAddress
+	case "LDAPBaseDN":
+		return o.LDAPBaseDN
+	case "LDAPBindDN":
+		return o.LDAPBindDN
+	case "LDAPBindPassword":
+		return o.LDAPBindPassword
+	case "LDAPBindSearchFilter":
+		return o.LDAPBindSearchFilter
+	case "LDAPCertificateAuthority":
+		return o.LDAPCertificateAuthority
+	case "LDAPConnSecurityProtocol":
+		return o.LDAPConnSecurityProtocol
+	case "LDAPEnabled":
+		return o.LDAPEnabled
+	case "LDAPIgnoredKeys":
+		return o.LDAPIgnoredKeys
+	case "LDAPSubjectKey":
+		return o.LDAPSubjectKey
+	case "OTPEnabled":
+		return o.OTPEnabled
+	case "OTPQRCode":
+		return o.OTPQRCode
+	case "OTPSecret":
+		return o.OTPSecret
+	case "accessEnabled":
+		return o.AccessEnabled
+	case "activationExpiration":
+		return o.ActivationExpiration
+	case "activationToken":
+		return o.ActivationToken
+	case "associatedAPIAuthPolicyID":
+		return o.AssociatedAPIAuthPolicyID
+	case "associatedAWSPolicies":
+		return o.AssociatedAWSPolicies
+	case "associatedBillingID":
+		return o.AssociatedBillingID
+	case "associatedGCPPolicies":
+		return o.AssociatedGCPPolicies
+	case "associatedNamespaceID":
+		return o.AssociatedNamespaceID
+	case "associatedPlanKey":
+		return o.AssociatedPlanKey
+	case "associatedQuotaPolicies":
+		return o.AssociatedQuotaPolicies
+	case "company":
+		return o.Company
+	case "createTime":
+		return o.CreateTime
+	case "email":
+		return o.Email
+	case "firstName":
+		return o.FirstName
+	case "lastName":
+		return o.LastName
+	case "name":
+		return o.Name
+	case "password":
+		return o.Password
+	case "reCAPTCHAKey":
+		return o.ReCAPTCHAKey
+	case "resetPasswordExpiration":
+		return o.ResetPasswordExpiration
+	case "resetPasswordToken":
+		return o.ResetPasswordToken
+	case "status":
+		return o.Status
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AccountAttributesMap represents the map of attribute for Account.
 var AccountAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
