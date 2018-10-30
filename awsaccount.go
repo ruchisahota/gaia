@@ -301,6 +301,37 @@ func (*AWSAccount) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return AWSAccountAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *AWSAccount) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "accessKeyID":
+		return o.AccessKeyID
+	case "accessToken":
+		return o.AccessToken
+	case "accountID":
+		return o.AccountID
+	case "createTime":
+		return o.CreateTime
+	case "parentID":
+		return o.ParentID
+	case "parentName":
+		return o.ParentName
+	case "region":
+		return o.Region
+	case "secretAccessKey":
+		return o.SecretAccessKey
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AWSAccountAttributesMap represents the map of attribute for AWSAccount.
 var AWSAccountAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

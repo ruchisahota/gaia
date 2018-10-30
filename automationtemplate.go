@@ -303,6 +303,31 @@ func (*AutomationTemplate) AttributeSpecifications() map[string]elemental.Attrib
 	return AutomationTemplateAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *AutomationTemplate) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "description":
+		return o.Description
+	case "entitlements":
+		return o.Entitlements
+	case "function":
+		return o.Function
+	case "key":
+		return o.Key
+	case "kind":
+		return o.Kind
+	case "name":
+		return o.Name
+	case "parameters":
+		return o.Parameters
+	}
+
+	return nil
+}
+
 // AutomationTemplateAttributesMap represents the map of attribute for AutomationTemplate.
 var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecification{
 	"Description": elemental.AttributeSpecification{

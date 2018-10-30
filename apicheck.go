@@ -294,6 +294,29 @@ func (*APICheck) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return APICheckAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *APICheck) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "authorized":
+		return o.Authorized
+	case "claims":
+		return o.Claims
+	case "namespace":
+		return o.Namespace
+	case "operation":
+		return o.Operation
+	case "targetIdentities":
+		return o.TargetIdentities
+	case "token":
+		return o.Token
+	}
+
+	return nil
+}
+
 // APICheckAttributesMap represents the map of attribute for APICheck.
 var APICheckAttributesMap = map[string]elemental.AttributeSpecification{
 	"Authorized": elemental.AttributeSpecification{

@@ -735,6 +735,73 @@ func (*NetworkAccessPolicy) AttributeSpecifications() map[string]elemental.Attri
 	return NetworkAccessPolicyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *NetworkAccessPolicy) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "action":
+		return o.Action
+	case "activeDuration":
+		return o.ActiveDuration
+	case "activeSchedule":
+		return o.ActiveSchedule
+	case "annotations":
+		return o.Annotations
+	case "applyPolicyMode":
+		return o.ApplyPolicyMode
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "destinationPorts":
+		return o.DestinationPorts
+	case "disabled":
+		return o.Disabled
+	case "encryptionEnabled":
+		return o.EncryptionEnabled
+	case "fallback":
+		return o.Fallback
+	case "logsEnabled":
+		return o.LogsEnabled
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "negateObject":
+		return o.NegateObject
+	case "negateSubject":
+		return o.NegateSubject
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "object":
+		return o.Object
+	case "observationEnabled":
+		return o.ObservationEnabled
+	case "observedTrafficAction":
+		return o.ObservedTrafficAction
+	case "propagate":
+		return o.Propagate
+	case "propagationHidden":
+		return o.PropagationHidden
+	case "protected":
+		return o.Protected
+	case "subject":
+		return o.Subject
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // NetworkAccessPolicyAttributesMap represents the map of attribute for NetworkAccessPolicy.
 var NetworkAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

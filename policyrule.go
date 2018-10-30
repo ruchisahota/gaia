@@ -354,6 +354,45 @@ func (*PolicyRule) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return PolicyRuleAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *PolicyRule) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "action":
+		return o.Action
+	case "enforcerProfiles":
+		return o.EnforcerProfiles
+	case "externalNetworks":
+		return o.ExternalNetworks
+	case "externalServices":
+		return o.ExternalServices
+	case "filePaths":
+		return o.FilePaths
+	case "isolationProfiles":
+		return o.IsolationProfiles
+	case "name":
+		return o.Name
+	case "namespaces":
+		return o.Namespaces
+	case "policyNamespace":
+		return o.PolicyNamespace
+	case "propagated":
+		return o.Propagated
+	case "relation":
+		return o.Relation
+	case "services":
+		return o.Services
+	case "tagClauses":
+		return o.TagClauses
+	}
+
+	return nil
+}
+
 // PolicyRuleAttributesMap represents the map of attribute for PolicyRule.
 var PolicyRuleAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

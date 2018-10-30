@@ -498,6 +498,57 @@ func (*AWSAPIGateway) AttributeSpecifications() map[string]elemental.AttributeSp
 	return AWSAPIGatewayAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *AWSAPIGateway) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "APIID":
+		return o.APIID
+	case "ID":
+		return o.ID
+	case "accountID":
+		return o.AccountID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "authorized":
+		return o.Authorized
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "metadata":
+		return o.Metadata
+	case "method":
+		return o.Method
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "namespaceID":
+		return o.NamespaceID
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "protected":
+		return o.Protected
+	case "resource":
+		return o.Resource
+	case "sourceIP":
+		return o.SourceIP
+	case "stage":
+		return o.Stage
+	case "token":
+		return o.Token
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AWSAPIGatewayAttributesMap represents the map of attribute for AWSAPIGateway.
 var AWSAPIGatewayAttributesMap = map[string]elemental.AttributeSpecification{
 	"APIID": elemental.AttributeSpecification{

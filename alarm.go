@@ -469,6 +469,47 @@ func (*Alarm) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 	return AlarmAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Alarm) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "content":
+		return o.Content
+	case "createTime":
+		return o.CreateTime
+	case "data":
+		return o.Data
+	case "description":
+		return o.Description
+	case "kind":
+		return o.Kind
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "occurrences":
+		return o.Occurrences
+	case "protected":
+		return o.Protected
+	case "status":
+		return o.Status
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AlarmAttributesMap represents the map of attribute for Alarm.
 var AlarmAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

@@ -222,6 +222,23 @@ func (*PrivateKey) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return PrivateKeyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *PrivateKey) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "certificateSerialNumber":
+		return o.CertificateSerialNumber
+	case "data":
+		return o.Data
+	}
+
+	return nil
+}
+
 // PrivateKeyAttributesMap represents the map of attribute for PrivateKey.
 var PrivateKeyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

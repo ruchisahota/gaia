@@ -295,6 +295,33 @@ func (*App) AttributeSpecifications() map[string]elemental.AttributeSpecificatio
 	return AppAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *App) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "beta":
+		return o.Beta
+	case "categoryID":
+		return o.CategoryID
+	case "description":
+		return o.Description
+	case "icon":
+		return o.Icon
+	case "longDescription":
+		return o.LongDescription
+	case "name":
+		return o.Name
+	case "title":
+		return o.Title
+	case "versionParameters":
+		return o.VersionParameters
+	}
+
+	return nil
+}
+
 // AppAttributesMap represents the map of attribute for App.
 var AppAttributesMap = map[string]elemental.AttributeSpecification{
 	"Beta": elemental.AttributeSpecification{

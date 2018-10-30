@@ -442,6 +442,43 @@ func (*FilePath) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return FilePathAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *FilePath) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "filepath":
+		return o.Filepath
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "protected":
+		return o.Protected
+	case "server":
+		return o.Server
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // FilePathAttributesMap represents the map of attribute for FilePath.
 var FilePathAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

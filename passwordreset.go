@@ -219,6 +219,21 @@ func (*PasswordReset) AttributeSpecifications() map[string]elemental.AttributeSp
 	return PasswordResetAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *PasswordReset) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "password":
+		return o.Password
+	case "token":
+		return o.Token
+	}
+
+	return nil
+}
+
 // PasswordResetAttributesMap represents the map of attribute for PasswordReset.
 var PasswordResetAttributesMap = map[string]elemental.AttributeSpecification{
 	"Password": elemental.AttributeSpecification{

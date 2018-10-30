@@ -221,6 +221,23 @@ func (*SquallTag) AttributeSpecifications() map[string]elemental.AttributeSpecif
 	return SquallTagAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *SquallTag) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "count":
+		return o.Count
+	case "namespace":
+		return o.Namespace
+	case "value":
+		return o.Value
+	}
+
+	return nil
+}
+
 // SquallTagAttributesMap represents the map of attribute for SquallTag.
 var SquallTagAttributesMap = map[string]elemental.AttributeSpecification{
 	"Count": elemental.AttributeSpecification{

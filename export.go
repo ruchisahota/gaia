@@ -232,6 +232,25 @@ func (*Export) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 	return ExportAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Export) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "APIVersion":
+		return o.APIVersion
+	case "data":
+		return o.Data
+	case "identities":
+		return o.Identities
+	case "label":
+		return o.Label
+	}
+
+	return nil
+}
+
 // ExportAttributesMap represents the map of attribute for Export.
 var ExportAttributesMap = map[string]elemental.AttributeSpecification{
 	"APIVersion": elemental.AttributeSpecification{

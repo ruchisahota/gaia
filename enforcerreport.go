@@ -273,6 +273,31 @@ func (*EnforcerReport) AttributeSpecifications() map[string]elemental.AttributeS
 	return EnforcerReportAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *EnforcerReport) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "CPULoad":
+		return o.CPULoad
+	case "ID":
+		return o.ID
+	case "memory":
+		return o.Memory
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "processes":
+		return o.Processes
+	case "timestamp":
+		return o.Timestamp
+	}
+
+	return nil
+}
+
 // EnforcerReportAttributesMap represents the map of attribute for EnforcerReport.
 var EnforcerReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"CPULoad": elemental.AttributeSpecification{

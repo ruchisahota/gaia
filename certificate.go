@@ -364,6 +364,47 @@ func (*Certificate) AttributeSpecifications() map[string]elemental.AttributeSpec
 	return CertificateAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Certificate) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "admin":
+		return o.Admin
+	case "commonName":
+		return o.CommonName
+	case "createTime":
+		return o.CreateTime
+	case "data":
+		return o.Data
+	case "email":
+		return o.Email
+	case "expirationDate":
+		return o.ExpirationDate
+	case "key":
+		return o.Key
+	case "name":
+		return o.Name
+	case "organizationalUnits":
+		return o.OrganizationalUnits
+	case "parentID":
+		return o.ParentID
+	case "passphrase":
+		return o.Passphrase
+	case "serialNumber":
+		return o.SerialNumber
+	case "status":
+		return o.Status
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // CertificateAttributesMap represents the map of attribute for Certificate.
 var CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

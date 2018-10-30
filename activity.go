@@ -298,6 +298,39 @@ func (*Activity) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return ActivityAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Activity) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "claims":
+		return o.Claims
+	case "data":
+		return o.Data
+	case "date":
+		return o.Date
+	case "error":
+		return o.Error
+	case "message":
+		return o.Message
+	case "namespace":
+		return o.Namespace
+	case "operation":
+		return o.Operation
+	case "originalData":
+		return o.OriginalData
+	case "source":
+		return o.Source
+	case "targetIdentity":
+		return o.TargetIdentity
+	}
+
+	return nil
+}
+
 // ActivityAttributesMap represents the map of attribute for Activity.
 var ActivityAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

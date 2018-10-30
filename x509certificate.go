@@ -299,6 +299,31 @@ func (*X509Certificate) AttributeSpecifications() map[string]elemental.Attribute
 	return X509CertificateAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *X509Certificate) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "CSR":
+		return o.CSR
+	case "ID":
+		return o.ID
+	case "certificate":
+		return o.Certificate
+	case "expirationDate":
+		return o.ExpirationDate
+	case "extensions":
+		return o.Extensions
+	case "signer":
+		return o.Signer
+	case "usage":
+		return o.Usage
+	}
+
+	return nil
+}
+
 // X509CertificateAttributesMap represents the map of attribute for X509Certificate.
 var X509CertificateAttributesMap = map[string]elemental.AttributeSpecification{
 	"CSR": elemental.AttributeSpecification{

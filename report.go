@@ -271,6 +271,27 @@ func (*Report) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 	return ReportAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Report) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "fields":
+		return o.Fields
+	case "kind":
+		return o.Kind
+	case "tags":
+		return o.Tags
+	case "timestamp":
+		return o.Timestamp
+	case "value":
+		return o.Value
+	}
+
+	return nil
+}
+
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"Fields": elemental.AttributeSpecification{

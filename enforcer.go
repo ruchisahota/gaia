@@ -611,6 +611,73 @@ func (*Enforcer) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return EnforcerAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Enforcer) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "FQDN":
+		return o.FQDN
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "certificate":
+		return o.Certificate
+	case "certificateExpirationDate":
+		return o.CertificateExpirationDate
+	case "certificateKey":
+		return o.CertificateKey
+	case "certificateRequest":
+		return o.CertificateRequest
+	case "certificateRequestEnabled":
+		return o.CertificateRequestEnabled
+	case "collectInfo":
+		return o.CollectInfo
+	case "collectedInfo":
+		return o.CollectedInfo
+	case "createTime":
+		return o.CreateTime
+	case "currentVersion":
+		return o.CurrentVersion
+	case "description":
+		return o.Description
+	case "enforcerProfileID":
+		return o.EnforcerProfileID
+	case "lastCollectionTime":
+		return o.LastCollectionTime
+	case "lastSyncTime":
+		return o.LastSyncTime
+	case "localCA":
+		return o.LocalCA
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "operationalStatus":
+		return o.OperationalStatus
+	case "protected":
+		return o.Protected
+	case "publicToken":
+		return o.PublicToken
+	case "startTime":
+		return o.StartTime
+	case "updateAvailable":
+		return o.UpdateAvailable
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // EnforcerAttributesMap represents the map of attribute for Enforcer.
 var EnforcerAttributesMap = map[string]elemental.AttributeSpecification{
 	"FQDN": elemental.AttributeSpecification{

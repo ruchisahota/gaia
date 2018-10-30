@@ -238,6 +238,21 @@ func (*Import) AttributeSpecifications() map[string]elemental.AttributeSpecifica
 	return ImportAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Import) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "data":
+		return o.Data
+	case "mode":
+		return o.Mode
+	}
+
+	return nil
+}
+
 // ImportAttributesMap represents the map of attribute for Import.
 var ImportAttributesMap = map[string]elemental.AttributeSpecification{
 	"Data": elemental.AttributeSpecification{

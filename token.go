@@ -233,6 +233,25 @@ func (*Token) AttributeSpecifications() map[string]elemental.AttributeSpecificat
 	return TokenAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Token) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "certificate":
+		return o.Certificate
+	case "signingKeyID":
+		return o.SigningKeyID
+	case "token":
+		return o.Token
+	case "validity":
+		return o.Validity
+	}
+
+	return nil
+}
+
 // TokenAttributesMap represents the map of attribute for Token.
 var TokenAttributesMap = map[string]elemental.AttributeSpecification{
 	"Certificate": elemental.AttributeSpecification{

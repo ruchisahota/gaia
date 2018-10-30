@@ -247,6 +247,29 @@ func (*Plan) AttributeSpecifications() map[string]elemental.AttributeSpecificati
 	return PlanAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Plan) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "description":
+		return o.Description
+	case "enforcersQuota":
+		return o.EnforcersQuota
+	case "key":
+		return o.Key
+	case "name":
+		return o.Name
+	case "policiesQuota":
+		return o.PoliciesQuota
+	case "processingUnitsQuota":
+		return o.ProcessingUnitsQuota
+	}
+
+	return nil
+}
+
 // PlanAttributesMap represents the map of attribute for Plan.
 var PlanAttributesMap = map[string]elemental.AttributeSpecification{
 	"Description": elemental.AttributeSpecification{

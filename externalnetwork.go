@@ -488,6 +488,47 @@ func (*ExternalNetwork) AttributeSpecifications() map[string]elemental.Attribute
 	return ExternalNetworkAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *ExternalNetwork) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "archived":
+		return o.Archived
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "entries":
+		return o.Entries
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "ports":
+		return o.Ports
+	case "protected":
+		return o.Protected
+	case "protocols":
+		return o.Protocols
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // ExternalNetworkAttributesMap represents the map of attribute for ExternalNetwork.
 var ExternalNetworkAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

@@ -231,6 +231,25 @@ func (*AWSRegister) AttributeSpecifications() map[string]elemental.AttributeSpec
 	return AWSRegisterAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *AWSRegister) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "createTime":
+		return o.CreateTime
+	case "provider":
+		return o.Provider
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AWSRegisterAttributesMap represents the map of attribute for AWSRegister.
 var AWSRegisterAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

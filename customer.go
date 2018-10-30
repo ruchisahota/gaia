@@ -292,6 +292,29 @@ func (*Customer) AttributeSpecifications() map[string]elemental.AttributeSpecifi
 	return CustomerAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Customer) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "createTime":
+		return o.CreateTime
+	case "provider":
+		return o.Provider
+	case "providerCustomerID":
+		return o.ProviderCustomerID
+	case "state":
+		return o.State
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // CustomerAttributesMap represents the map of attribute for Customer.
 var CustomerAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

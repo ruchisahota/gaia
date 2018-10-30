@@ -519,6 +519,81 @@ func (*AuditReport) AttributeSpecifications() map[string]elemental.AttributeSpec
 	return AuditReportAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *AuditReport) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "AUID":
+		return o.AUID
+	case "CWD":
+		return o.CWD
+	case "EGID":
+		return o.EGID
+	case "EUID":
+		return o.EUID
+	case "EXE":
+		return o.EXE
+	case "FSGID":
+		return o.FSGID
+	case "FSUID":
+		return o.FSUID
+	case "GID":
+		return o.GID
+	case "PER":
+		return o.PER
+	case "PID":
+		return o.PID
+	case "PPID":
+		return o.PPID
+	case "SGID":
+		return o.SGID
+	case "SUID":
+		return o.SUID
+	case "UID":
+		return o.UID
+	case "a0":
+		return o.A0
+	case "a1":
+		return o.A1
+	case "a2":
+		return o.A2
+	case "a3":
+		return o.A3
+	case "arch":
+		return o.Arch
+	case "auditProfileID":
+		return o.AuditProfileID
+	case "auditProfileNamespace":
+		return o.AuditProfileNamespace
+	case "command":
+		return o.Command
+	case "enforcerID":
+		return o.EnforcerID
+	case "enforcerNamespace":
+		return o.EnforcerNamespace
+	case "exit":
+		return o.Exit
+	case "processingUnitID":
+		return o.ProcessingUnitID
+	case "processingUnitNamespace":
+		return o.ProcessingUnitNamespace
+	case "recordType":
+		return o.RecordType
+	case "sequence":
+		return o.Sequence
+	case "success":
+		return o.Success
+	case "syscall":
+		return o.Syscall
+	case "timestamp":
+		return o.Timestamp
+	}
+
+	return nil
+}
+
 // AuditReportAttributesMap represents the map of attribute for AuditReport.
 var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"AUID": elemental.AttributeSpecification{

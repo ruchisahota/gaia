@@ -553,6 +553,63 @@ func (*Automation) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return AutomationAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Automation) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "actions":
+		return o.Actions
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "condition":
+		return o.Condition
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "disabled":
+		return o.Disabled
+	case "entitlements":
+		return o.Entitlements
+	case "errors":
+		return o.Errors
+	case "events":
+		return o.Events
+	case "lastExecTime":
+		return o.LastExecTime
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "parameters":
+		return o.Parameters
+	case "protected":
+		return o.Protected
+	case "schedule":
+		return o.Schedule
+	case "stdout":
+		return o.Stdout
+	case "token":
+		return o.Token
+	case "tokenRenew":
+		return o.TokenRenew
+	case "trigger":
+		return o.Trigger
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // AutomationAttributesMap represents the map of attribute for Automation.
 var AutomationAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

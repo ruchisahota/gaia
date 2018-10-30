@@ -316,6 +316,39 @@ func (*InstalledApp) AttributeSpecifications() map[string]elemental.AttributeSpe
 	return InstalledAppAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *InstalledApp) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "accountName":
+		return o.AccountName
+	case "categoryID":
+		return o.CategoryID
+	case "currentVersion":
+		return o.CurrentVersion
+	case "data":
+		return o.Data
+	case "k8sIdentifier":
+		return o.K8sIdentifier
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "parameters":
+		return o.Parameters
+	case "relatedObjects":
+		return o.RelatedObjects
+	case "status":
+		return o.Status
+	}
+
+	return nil
+}
+
 // InstalledAppAttributesMap represents the map of attribute for InstalledApp.
 var InstalledAppAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

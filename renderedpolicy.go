@@ -316,6 +316,39 @@ func (*RenderedPolicy) AttributeSpecifications() map[string]elemental.AttributeS
 	return RenderedPolicyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *RenderedPolicy) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "certificate":
+		return o.Certificate
+	case "dependendServices":
+		return o.DependendServices
+	case "egressPolicies":
+		return o.EgressPolicies
+	case "exposedServices":
+		return o.ExposedServices
+	case "hashedTags":
+		return o.HashedTags
+	case "ingressPolicies":
+		return o.IngressPolicies
+	case "matchingTags":
+		return o.MatchingTags
+	case "processingUnit":
+		return o.ProcessingUnit
+	case "processingUnitID":
+		return o.ProcessingUnitID
+	case "profile":
+		return o.Profile
+	case "scopes":
+		return o.Scopes
+	}
+
+	return nil
+}
+
 // RenderedPolicyAttributesMap represents the map of attribute for RenderedPolicy.
 var RenderedPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"Certificate": elemental.AttributeSpecification{

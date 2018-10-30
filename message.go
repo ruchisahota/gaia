@@ -465,6 +465,47 @@ func (*Message) AttributeSpecifications() map[string]elemental.AttributeSpecific
 	return MessageAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Message) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "expirationTime":
+		return o.ExpirationTime
+	case "level":
+		return o.Level
+	case "local":
+		return o.Local
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "notifyByEmail":
+		return o.NotifyByEmail
+	case "protected":
+		return o.Protected
+	case "updateTime":
+		return o.UpdateTime
+	case "validity":
+		return o.Validity
+	}
+
+	return nil
+}
+
 // MessageAttributesMap represents the map of attribute for Message.
 var MessageAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

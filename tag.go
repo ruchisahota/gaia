@@ -243,6 +243,25 @@ func (*Tag) AttributeSpecifications() map[string]elemental.AttributeSpecificatio
 	return TagAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *Tag) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "count":
+		return o.Count
+	case "namespace":
+		return o.Namespace
+	case "value":
+		return o.Value
+	}
+
+	return nil
+}
+
 // TagAttributesMap represents the map of attribute for Tag.
 var TagAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{

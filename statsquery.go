@@ -206,6 +206,19 @@ func (*StatsQuery) AttributeSpecifications() map[string]elemental.AttributeSpeci
 	return StatsQueryAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *StatsQuery) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "results":
+		return o.Results
+	}
+
+	return nil
+}
+
 // StatsQueryAttributesMap represents the map of attribute for StatsQuery.
 var StatsQueryAttributesMap = map[string]elemental.AttributeSpecification{
 	"Results": elemental.AttributeSpecification{

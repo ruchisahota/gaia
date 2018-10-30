@@ -537,6 +537,53 @@ func (*QuotaPolicy) AttributeSpecifications() map[string]elemental.AttributeSpec
 	return QuotaPolicyAttributesMap
 }
 
+// ValueForAttribute returns the value for the given attribute.
+// This is a very advanced function that you should not need but in some
+// very specific use cases.
+func (o *QuotaPolicy) ValueForAttribute(name string) interface{} {
+
+	switch name {
+	case "ID":
+		return o.ID
+	case "annotations":
+		return o.Annotations
+	case "associatedTags":
+		return o.AssociatedTags
+	case "createTime":
+		return o.CreateTime
+	case "description":
+		return o.Description
+	case "disabled":
+		return o.Disabled
+	case "fallback":
+		return o.Fallback
+	case "identities":
+		return o.Identities
+	case "metadata":
+		return o.Metadata
+	case "name":
+		return o.Name
+	case "namespace":
+		return o.Namespace
+	case "normalizedTags":
+		return o.NormalizedTags
+	case "propagate":
+		return o.Propagate
+	case "propagationHidden":
+		return o.PropagationHidden
+	case "protected":
+		return o.Protected
+	case "quota":
+		return o.Quota
+	case "targetNamespace":
+		return o.TargetNamespace
+	case "updateTime":
+		return o.UpdateTime
+	}
+
+	return nil
+}
+
 // QuotaPolicyAttributesMap represents the map of attribute for QuotaPolicy.
 var QuotaPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
