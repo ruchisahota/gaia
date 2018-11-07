@@ -1233,6 +1233,14 @@ Description is the description of the object.
 | Max length      | `1024` |
 | Orderable       | `true` |
 
+#### `disabled (boolean)`
+
+Disabled defines if the propert is disabled.
+
+| Characteristics | Value  |
+| -               | -:     |
+| Orderable       | `true` |
+
 #### `email (string)`
 
 The email address that will receive a copy of the application credentials.
