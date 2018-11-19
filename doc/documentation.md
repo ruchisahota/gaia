@@ -9845,7 +9845,7 @@ Retrieves statistics information based on parameters.
 - `measurement` (enum): Name of the measurement to query.
 - `query` (string): Raw InfluxDB query. This query will be applied to an immutable subquery that will bound the data to your namespace. You must pass the measurement parameter and use `from _dataset_` in your query. The dataset will be bound to the timing parameter you pass.
 - `tag` (string): list of tags to query.
-- `where` (string): list of where clauses.
+- `where` (string): list of where clauses. If `query` is given, this where clause will be applied to the controlled subquery as additional `and` clauses to the internally computed where clause.
 - `endAbsolute` (time): Set the absolute end of the time window.
 - `endRelative` (duration): Set the relative end of the time window.
 - `startAbsolute` (time): Set the absolute start of the time window.
