@@ -95,17 +95,20 @@ type App struct {
 	// Icon contains a base64 image for the app.
 	Icon string `json:"icon" bson:"-" mapstructure:"icon,omitempty"`
 
+	// LatestVersion represents the latest version available of the app.
+	LatestVersion string `json:"latestVersion" bson:"-" mapstructure:"latestVersion,omitempty"`
+
 	// LongDescription contains a more detailed description of the app.
 	LongDescription string `json:"longDescription" bson:"-" mapstructure:"longDescription,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
 
+	// Parameters is a list of parameters available for the app.
+	Parameters []*types.AppParameter `json:"parameters" bson:"parameters" mapstructure:"parameters,omitempty"`
+
 	// Title represents the title of the app.
 	Title string `json:"title" bson:"-" mapstructure:"title,omitempty"`
-
-	// VersionParameters contains parameters for each available version.
-	VersionParameters map[string][]*types.AppParameter `json:"versionParameters" bson:"-" mapstructure:"versionParameters,omitempty"`
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
@@ -124,8 +127,8 @@ type App struct {
 func NewApp() *App {
 
 	return &App{
-		ModelVersion:      1,
-		VersionParameters: map[string][]*types.AppParameter{},
+		ModelVersion: 1,
+		Parameters:   []*types.AppParameter{},
 	}
 }
 
@@ -225,16 +228,17 @@ func (o *App) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	if len(fields) == 0 {
 		// nolint: goimports
 		return &SparseApp{
-			Beta:              &o.Beta,
-			CategoryID:        &o.CategoryID,
-			Description:       &o.Description,
-			Icon:              &o.Icon,
-			LongDescription:   &o.LongDescription,
-			Name:              &o.Name,
-			Title:             &o.Title,
-			VersionParameters: &o.VersionParameters,
-			ZHash:             &o.ZHash,
-			Zone:              &o.Zone,
+			Beta:            &o.Beta,
+			CategoryID:      &o.CategoryID,
+			Description:     &o.Description,
+			Icon:            &o.Icon,
+			LatestVersion:   &o.LatestVersion,
+			LongDescription: &o.LongDescription,
+			Name:            &o.Name,
+			Parameters:      &o.Parameters,
+			Title:           &o.Title,
+			ZHash:           &o.ZHash,
+			Zone:            &o.Zone,
 		}
 	}
 
@@ -249,14 +253,16 @@ func (o *App) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			sp.Description = &(o.Description)
 		case "icon":
 			sp.Icon = &(o.Icon)
+		case "latestVersion":
+			sp.LatestVersion = &(o.LatestVersion)
 		case "longDescription":
 			sp.LongDescription = &(o.LongDescription)
 		case "name":
 			sp.Name = &(o.Name)
+		case "parameters":
+			sp.Parameters = &(o.Parameters)
 		case "title":
 			sp.Title = &(o.Title)
-		case "versionParameters":
-			sp.VersionParameters = &(o.VersionParameters)
 		case "zHash":
 			sp.ZHash = &(o.ZHash)
 		case "zone":
@@ -286,17 +292,20 @@ func (o *App) Patch(sparse elemental.SparseIdentifiable) {
 	if so.Icon != nil {
 		o.Icon = *so.Icon
 	}
+	if so.LatestVersion != nil {
+		o.LatestVersion = *so.LatestVersion
+	}
 	if so.LongDescription != nil {
 		o.LongDescription = *so.LongDescription
 	}
 	if so.Name != nil {
 		o.Name = *so.Name
 	}
+	if so.Parameters != nil {
+		o.Parameters = *so.Parameters
+	}
 	if so.Title != nil {
 		o.Title = *so.Title
-	}
-	if so.VersionParameters != nil {
-		o.VersionParameters = *so.VersionParameters
 	}
 	if so.ZHash != nil {
 		o.ZHash = *so.ZHash
@@ -390,14 +399,16 @@ func (o *App) ValueForAttribute(name string) interface{} {
 		return o.Description
 	case "icon":
 		return o.Icon
+	case "latestVersion":
+		return o.LatestVersion
 	case "longDescription":
 		return o.LongDescription
 	case "name":
 		return o.Name
+	case "parameters":
+		return o.Parameters
 	case "title":
 		return o.Title
-	case "versionParameters":
-		return o.VersionParameters
 	case "zHash":
 		return o.ZHash
 	case "zone":
@@ -449,6 +460,14 @@ var AppAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 	},
+	"LatestVersion": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "LatestVersion",
+		Description:    `LatestVersion represents the latest version available of the app.`,
+		Exposed:        true,
+		Name:           "latestVersion",
+		Type:           "string",
+	},
 	"LongDescription": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "LongDescription",
@@ -473,6 +492,16 @@ var AppAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"Parameters": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Parameters",
+		Description:    `Parameters is a list of parameters available for the app.`,
+		Exposed:        true,
+		Name:           "parameters",
+		Stored:         true,
+		SubType:        "app_parameters",
+		Type:           "external",
+	},
 	"Title": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Title",
@@ -480,15 +509,6 @@ var AppAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "title",
 		Type:           "string",
-	},
-	"VersionParameters": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "VersionParameters",
-		Description:    `VersionParameters contains parameters for each available version.`,
-		Exposed:        true,
-		Name:           "versionParameters",
-		SubType:        "app_versionparameters",
-		Type:           "external",
 	},
 	"ZHash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -560,6 +580,14 @@ var AppLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		ReadOnly:       true,
 		Type:           "string",
 	},
+	"latestversion": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "LatestVersion",
+		Description:    `LatestVersion represents the latest version available of the app.`,
+		Exposed:        true,
+		Name:           "latestVersion",
+		Type:           "string",
+	},
 	"longdescription": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "LongDescription",
@@ -584,6 +612,16 @@ var AppLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
+	"parameters": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Parameters",
+		Description:    `Parameters is a list of parameters available for the app.`,
+		Exposed:        true,
+		Name:           "parameters",
+		Stored:         true,
+		SubType:        "app_parameters",
+		Type:           "external",
+	},
 	"title": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Title",
@@ -591,15 +629,6 @@ var AppLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Name:           "title",
 		Type:           "string",
-	},
-	"versionparameters": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "VersionParameters",
-		Description:    `VersionParameters contains parameters for each available version.`,
-		Exposed:        true,
-		Name:           "versionParameters",
-		SubType:        "app_versionparameters",
-		Type:           "external",
 	},
 	"zhash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -706,17 +735,20 @@ type SparseApp struct {
 	// Icon contains a base64 image for the app.
 	Icon *string `json:"icon,omitempty" bson:"-" mapstructure:"icon,omitempty"`
 
+	// LatestVersion represents the latest version available of the app.
+	LatestVersion *string `json:"latestVersion,omitempty" bson:"-" mapstructure:"latestVersion,omitempty"`
+
 	// LongDescription contains a more detailed description of the app.
 	LongDescription *string `json:"longDescription,omitempty" bson:"-" mapstructure:"longDescription,omitempty"`
 
 	// Name is the name of the entity.
 	Name *string `json:"name,omitempty" bson:"name" mapstructure:"name,omitempty"`
 
+	// Parameters is a list of parameters available for the app.
+	Parameters *[]*types.AppParameter `json:"parameters,omitempty" bson:"parameters" mapstructure:"parameters,omitempty"`
+
 	// Title represents the title of the app.
 	Title *string `json:"title,omitempty" bson:"-" mapstructure:"title,omitempty"`
-
-	// VersionParameters contains parameters for each available version.
-	VersionParameters *map[string][]*types.AppParameter `json:"versionParameters,omitempty" bson:"-" mapstructure:"versionParameters,omitempty"`
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
@@ -775,17 +807,20 @@ func (o *SparseApp) ToPlain() elemental.PlainIdentifiable {
 	if o.Icon != nil {
 		out.Icon = *o.Icon
 	}
+	if o.LatestVersion != nil {
+		out.LatestVersion = *o.LatestVersion
+	}
 	if o.LongDescription != nil {
 		out.LongDescription = *o.LongDescription
 	}
 	if o.Name != nil {
 		out.Name = *o.Name
 	}
+	if o.Parameters != nil {
+		out.Parameters = *o.Parameters
+	}
 	if o.Title != nil {
 		out.Title = *o.Title
-	}
-	if o.VersionParameters != nil {
-		out.VersionParameters = *o.VersionParameters
 	}
 	if o.ZHash != nil {
 		out.ZHash = *o.ZHash

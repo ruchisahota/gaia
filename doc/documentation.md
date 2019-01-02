@@ -49,7 +49,6 @@
 | [HostService](#hostservice)                                   | Represents a service of the enforcer's host.                                        |
 | [HTTPResourceSpec](#httpresourcespec)                         | HTTPResourceSpec descibes an HTTP resource exposed by a service. These APIs         |
 | [Import](#import)                                             | Imports an export of policies and related objects into the namespace.               |
-| [Installation](#installation)                                 | Installation represents an installation for a given account.                        |
 | [InstalledApp](#installedapp)                                 | InstalledApps represents an installed application.                                  |
 | [Invoice](#invoice)                                           | This api allows to view invoices for Aporeto customers.                             |
 | [InvoiceRecord](#invoicerecord)                               | This api allows to view detailed records of invoices for Aporeto customers.         |
@@ -1106,6 +1105,10 @@ Icon contains a base64 image for the app.
 | -               | -:     |
 | Read only       | `true` |
 
+#### `latestVersion (string)`
+
+LatestVersion represents the latest version available of the app.
+
 #### `longDescription (string)`
 
 LongDescription contains a more detailed description of the app.
@@ -1121,13 +1124,13 @@ Name is the name of the entity.
 | Orderable       | `true` |
 | Filterable      | `true` |
 
+#### `parameters (external:app_parameters)`
+
+Parameters is a list of parameters available for the app.
+
 #### `title (string)`
 
 Title represents the title of the app.
-
-#### `versionParameters (external:app_versionparameters)`
-
-VersionParameters contains parameters for each available version.
 
 ## AppCredential
 
@@ -5896,56 +5899,6 @@ now the API considers both equivalent.
 | Allowed Value   | `ReplacePartial, Import, Remove` |
 | Default         | `"Import"`                       |
 
-## Installation
-
-Installation represents an installation for a given account.
-
-### Relations
-
-#### `GET /installations`
-
-Retrieves the list of installations.
-
-#### `POST /installations`
-
-Creates a new installation.
-
-#### `DELETE /installations/:id`
-
-Deletes the object with the given ID.
-
-##### Parameters
-
-- `q` (string): Filtering query. Consequent `q` parameters will form an or.
-- `tag` (string): List of tags to filter on. This parameter is deprecated.
-
-#### `GET /installations/:id`
-
-Retrieves the object with the given ID.
-
-#### `PUT /installations/:id`
-
-Updates the object with the given ID.
-
-### Attributes
-
-#### `ID (string)`
-
-ID is the identifier of the object.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Identifier      | `true` |
-| Orderable       | `true` |
-
-#### `accountName (string)`
-
-AccountName that should be installed.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Orderable       | `true` |
-
 ## InstalledApp
 
 InstalledApps represents an installed application.
@@ -6034,6 +5987,7 @@ Namespace in which the app is running.
 
 | Characteristics | Value  |
 | -               | -:     |
+| Read only       | `true` |
 | Orderable       | `true` |
 
 #### `parameters (external:app_parameters)`
