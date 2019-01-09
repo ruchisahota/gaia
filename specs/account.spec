@@ -258,6 +258,7 @@ attributes:
     required: true
     creation_only: true
     allowed_chars: ^[^\*\=]*$
+    allowed_chars_message: Must not contain a * or an =
     example_value: acme
     filterable: true
     orderable: true
