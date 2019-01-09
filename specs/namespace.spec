@@ -69,8 +69,7 @@ attributes:
     required: true
     creation_only: true
     allowed_chars: ^[a-zA-Z0-9-_/]+$
-    allowed_chars_message: Must not only contain alpha numerical characters or -,
-      _
+    allowed_chars_message: must only contain alpha numerical characters, '-' or '_'
     example_value: mynamespace
     filterable: true
     getter: true
