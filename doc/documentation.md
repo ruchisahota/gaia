@@ -9975,6 +9975,10 @@ Sends a query on statistical data.
 
 ### Attributes
 
+#### `descending (boolean)`
+
+If set, the results will be order by time from the most recent to the oldest.
+
 #### `fields (list)`
 
 List of fields to extract. If you don't pass anything, all available fields will

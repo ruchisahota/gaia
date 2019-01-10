@@ -14,6 +14,12 @@ model:
 # Attributes
 attributes:
   v1:
+  - name: descending
+    description: If set, the results will be order by time from the most recent to
+      the oldest.
+    type: boolean
+    exposed: true
+
   - name: fields
     description: |-
       List of fields to extract. If you don't pass anything, all available fields will

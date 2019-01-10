@@ -101,6 +101,9 @@ func (o StatsQueriesList) Version() int {
 
 // StatsQuery represents the model of a statsquery
 type StatsQuery struct {
+	// If set, the results will be order by time from the most recent to the oldest.
+	Descending bool `json:"descending" bson:"-" mapstructure:"descending,omitempty"`
+
 	// List of fields to extract. If you don't pass anything, all available fields will
 	// be returned. It is also possible to use function like `+"`"+`sum(value)`+"`"+`.
 	Fields []string `json:"fields" bson:"-" mapstructure:"fields,omitempty"`
@@ -189,6 +192,7 @@ func (o *StatsQuery) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	if len(fields) == 0 {
 		// nolint: goimports
 		return &SparseStatsQuery{
+			Descending:  &o.Descending,
 			Fields:      &o.Fields,
 			Filter:      &o.Filter,
 			Groups:      &o.Groups,
@@ -202,6 +206,8 @@ func (o *StatsQuery) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	sp := &SparseStatsQuery{}
 	for _, f := range fields {
 		switch f {
+		case "descending":
+			sp.Descending = &(o.Descending)
 		case "fields":
 			sp.Fields = &(o.Fields)
 		case "filter":
@@ -229,6 +235,9 @@ func (o *StatsQuery) Patch(sparse elemental.SparseIdentifiable) {
 	}
 
 	so := sparse.(*SparseStatsQuery)
+	if so.Descending != nil {
+		o.Descending = *so.Descending
+	}
 	if so.Fields != nil {
 		o.Fields = *so.Fields
 	}
@@ -320,6 +329,8 @@ func (*StatsQuery) AttributeSpecifications() map[string]elemental.AttributeSpeci
 func (o *StatsQuery) ValueForAttribute(name string) interface{} {
 
 	switch name {
+	case "descending":
+		return o.Descending
 	case "fields":
 		return o.Fields
 	case "filter":
@@ -341,6 +352,14 @@ func (o *StatsQuery) ValueForAttribute(name string) interface{} {
 
 // StatsQueryAttributesMap represents the map of attribute for StatsQuery.
 var StatsQueryAttributesMap = map[string]elemental.AttributeSpecification{
+	"Descending": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Descending",
+		Description:    `If set, the results will be order by time from the most recent to the oldest.`,
+		Exposed:        true,
+		Name:           "descending",
+		Type:           "boolean",
+	},
 	"Fields": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Fields",
@@ -411,6 +430,14 @@ group the results.`,
 
 // StatsQueryLowerCaseAttributesMap represents the map of attribute for StatsQuery.
 var StatsQueryLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+	"descending": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Descending",
+		Description:    `If set, the results will be order by time from the most recent to the oldest.`,
+		Exposed:        true,
+		Name:           "descending",
+		Type:           "boolean",
+	},
 	"fields": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Fields",
@@ -542,6 +569,9 @@ func (o SparseStatsQueriesList) Version() int {
 
 // SparseStatsQuery represents the sparse version of a statsquery.
 type SparseStatsQuery struct {
+	// If set, the results will be order by time from the most recent to the oldest.
+	Descending *bool `json:"descending,omitempty" bson:"-" mapstructure:"descending,omitempty"`
+
 	// List of fields to extract. If you don't pass anything, all available fields will
 	// be returned. It is also possible to use function like `+"`"+`sum(value)`+"`"+`.
 	Fields *[]string `json:"fields,omitempty" bson:"-" mapstructure:"fields,omitempty"`
@@ -602,6 +632,9 @@ func (o *SparseStatsQuery) Version() int {
 func (o *SparseStatsQuery) ToPlain() elemental.PlainIdentifiable {
 
 	out := NewStatsQuery()
+	if o.Descending != nil {
+		out.Descending = *o.Descending
+	}
 	if o.Fields != nil {
 		out.Fields = *o.Fields
 	}
