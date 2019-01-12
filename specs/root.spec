@@ -576,6 +576,10 @@ relations:
     - $timewindow
     - $filtering
 
+- rest_name: statsinfo
+  create:
+    description: Retrieves information about the content of the stats measurement.
+
 - rest_name: servicedependency
   get:
     description: Retrieves the list of service dependencies.
