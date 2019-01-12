@@ -3403,7 +3403,7 @@ Kubernetes.
 | Characteristics | Value                                  |
 | -               | -:                                     |
 | Allowed Value   | `KubeSquall, PodAtomic, PodContainers` |
-| Default         | `"KubeSquall"`                         |
+| Default         | `"PodAtomic"`                          |
 | Orderable       | `true`                                 |
 
 #### `kubernetesSupportEnabled (boolean)`
