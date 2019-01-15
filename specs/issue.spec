@@ -15,7 +15,6 @@ attributes:
     description: Data contains additional data. The value depends on the issuer type.
     type: string
     exposed: true
-    stored: true
     orderable: true
 
   - name: metadata
@@ -25,6 +24,11 @@ attributes:
     exposed: true
     subtype: metadata
     orderable: true
+
+  - name: quota
+    description: Restricts the number of time the issued token should be used.
+    type: integer
+    exposed: true
 
   - name: token
     description: Token is the token to use for the registration.
@@ -39,7 +43,6 @@ attributes:
       configured max validity, it will be capped.
     type: string
     exposed: true
-    stored: true
     allowed_chars: ^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$
     allowed_chars_message: must be a valid duration like <n>s or <n>s or <n>h
     default_value: 24h

@@ -6346,6 +6346,10 @@ Metadata contains various additional information. Meaning depends on the realm.
 | -               | -:     |
 | Orderable       | `true` |
 
+#### `quota (integer)`
+
+Restricts the number of time the issued token should be used.
+
 #### `realm (enum)`
 
 Realm is the authentication realm.
