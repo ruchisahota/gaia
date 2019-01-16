@@ -79,6 +79,7 @@ attributes:
     exposed: true
     read_only: true
     orderable: true
+    secret: true
 
   - name: name
     description: Name is the name of the entity.
