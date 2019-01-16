@@ -18,6 +18,10 @@ $networks:
   elemental:
     name: ValidateNetworkList
 
+$optionalnetworks:
+  elemental:
+    name: ValidateOptionalNetworkList
+
 $port:
   elemental:
     name: ValidatePortString

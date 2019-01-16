@@ -56,6 +56,16 @@ attributes:
     required: true
     example_value: /namespace
 
+  - name: authorizedSubnets
+    description: |-
+      If set, the api authorization will only be valid if the request comes from one
+      the declared subnets.
+    type: list
+    exposed: true
+    subtype: string
+    validations:
+    - $optionalnetworks
+
   - name: subject
     description: Subject is the subject.
     type: external

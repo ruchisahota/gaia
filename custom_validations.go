@@ -85,11 +85,19 @@ func ValidateNetwork(attribute string, network string) error {
 }
 
 // ValidateNetworkList validates a list of networks.
+// The list cannot be empty
 func ValidateNetworkList(attribute string, networks []string) error {
 
 	if len(networks) == 0 {
 		return makeValidationError(attribute, fmt.Sprintf("Attribute '%s' must not be empty", attribute))
 	}
+
+	return ValidateOptionalNetworkList(attribute, networks)
+}
+
+// ValidateOptionalNetworkList validates a list of networks.
+// It can be empty/
+func ValidateOptionalNetworkList(attribute string, networks []string) error {
 
 	for _, network := range networks {
 		if err := ValidateNetwork(attribute, network); err != nil {

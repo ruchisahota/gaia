@@ -106,6 +106,10 @@ type APIAuthorizationPolicy struct {
 	// AuthorizedNamespace defines on what namespace the policy applies.
 	AuthorizedNamespace string `json:"authorizedNamespace" bson:"-" mapstructure:"authorizedNamespace,omitempty"`
 
+	// If set, the api authorization will only be valid if the request comes from one
+	// the declared subnets.
+	AuthorizedSubnets []string `json:"authorizedSubnets" bson:"-" mapstructure:"authorizedSubnets,omitempty"`
+
 	// CreatedTime is the time at which the object was created.
 	CreateTime time.Time `json:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
 
@@ -447,6 +451,7 @@ func (o *APIAuthorizationPolicy) ToSparse(fields ...string) elemental.SparseIden
 			AssociatedTags:       &o.AssociatedTags,
 			AuthorizedIdentities: &o.AuthorizedIdentities,
 			AuthorizedNamespace:  &o.AuthorizedNamespace,
+			AuthorizedSubnets:    &o.AuthorizedSubnets,
 			CreateTime:           &o.CreateTime,
 			Description:          &o.Description,
 			Disabled:             &o.Disabled,
@@ -482,6 +487,8 @@ func (o *APIAuthorizationPolicy) ToSparse(fields ...string) elemental.SparseIden
 			sp.AuthorizedIdentities = &(o.AuthorizedIdentities)
 		case "authorizedNamespace":
 			sp.AuthorizedNamespace = &(o.AuthorizedNamespace)
+		case "authorizedSubnets":
+			sp.AuthorizedSubnets = &(o.AuthorizedSubnets)
 		case "createTime":
 			sp.CreateTime = &(o.CreateTime)
 		case "description":
@@ -545,6 +552,9 @@ func (o *APIAuthorizationPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.AuthorizedNamespace != nil {
 		o.AuthorizedNamespace = *so.AuthorizedNamespace
+	}
+	if so.AuthorizedSubnets != nil {
+		o.AuthorizedSubnets = *so.AuthorizedSubnets
 	}
 	if so.CreateTime != nil {
 		o.CreateTime = *so.CreateTime
@@ -635,6 +645,10 @@ func (o *APIAuthorizationPolicy) Validate() error {
 		requiredErrors = append(requiredErrors, err)
 	}
 
+	if err := ValidateOptionalNetworkList("authorizedSubnets", o.AuthorizedSubnets); err != nil {
+		errors = append(errors, err)
+	}
+
 	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
 		errors = append(errors, err)
 	}
@@ -695,6 +709,8 @@ func (o *APIAuthorizationPolicy) ValueForAttribute(name string) interface{} {
 		return o.AuthorizedIdentities
 	case "authorizedNamespace":
 		return o.AuthorizedNamespace
+	case "authorizedSubnets":
+		return o.AuthorizedSubnets
 	case "createTime":
 		return o.CreateTime
 	case "description":
@@ -813,6 +829,16 @@ The policy will be active for the given activeDuration.`,
 		Name:           "authorizedNamespace",
 		Required:       true,
 		Type:           "string",
+	},
+	"AuthorizedSubnets": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AuthorizedSubnets",
+		Description: `If set, the api authorization will only be valid if the request comes from one
+the declared subnets.`,
+		Exposed: true,
+		Name:    "authorizedSubnets",
+		SubType: "string",
+		Type:    "list",
 	},
 	"CreateTime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1101,6 +1127,16 @@ The policy will be active for the given activeDuration.`,
 		Name:           "authorizedNamespace",
 		Required:       true,
 		Type:           "string",
+	},
+	"authorizedsubnets": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AuthorizedSubnets",
+		Description: `If set, the api authorization will only be valid if the request comes from one
+the declared subnets.`,
+		Exposed: true,
+		Name:    "authorizedSubnets",
+		SubType: "string",
+		Type:    "list",
 	},
 	"createtime": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1394,6 +1430,10 @@ type SparseAPIAuthorizationPolicy struct {
 	// AuthorizedNamespace defines on what namespace the policy applies.
 	AuthorizedNamespace *string `json:"authorizedNamespace,omitempty" bson:"-" mapstructure:"authorizedNamespace,omitempty"`
 
+	// If set, the api authorization will only be valid if the request comes from one
+	// the declared subnets.
+	AuthorizedSubnets *[]string `json:"authorizedSubnets,omitempty" bson:"-" mapstructure:"authorizedSubnets,omitempty"`
+
 	// CreatedTime is the time at which the object was created.
 	CreateTime *time.Time `json:"createTime,omitempty" bson:"createtime" mapstructure:"createTime,omitempty"`
 
@@ -1506,6 +1546,9 @@ func (o *SparseAPIAuthorizationPolicy) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.AuthorizedNamespace != nil {
 		out.AuthorizedNamespace = *o.AuthorizedNamespace
+	}
+	if o.AuthorizedSubnets != nil {
+		out.AuthorizedSubnets = *o.AuthorizedSubnets
 	}
 	if o.CreateTime != nil {
 		out.CreateTime = *o.CreateTime

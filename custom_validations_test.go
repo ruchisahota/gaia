@@ -932,3 +932,47 @@ func TestValidateHTTPMethods(t *testing.T) {
 		})
 	}
 }
+
+func TestValidateOptionalNetworkList(t *testing.T) {
+	type args struct {
+		attribute string
+		networks  []string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			"valid list",
+			args{
+				"nets",
+				[]string{"10.0.0.0/8", "google.com"},
+			},
+			false,
+		},
+		{
+			"invalid list",
+			args{
+				"nets",
+				[]string{"10.0.0.0/8", "google@com"},
+			},
+			true,
+		},
+		{
+			"empty list",
+			args{
+				"nets",
+				[]string{},
+			},
+			false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ValidateOptionalNetworkList(tt.args.attribute, tt.args.networks); (err != nil) != tt.wantErr {
+				t.Errorf("ValidateOptionalNetworkList() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}

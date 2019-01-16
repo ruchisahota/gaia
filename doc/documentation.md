@@ -846,6 +846,11 @@ AuthorizedNamespace defines on what namespace the policy applies.
 | -               | -:     |
 | Required        | `true` |
 
+#### `authorizedSubnets (list)`
+
+If set, the api authorization will only be valid if the request comes from one
+the declared subnets.
+
 #### `createTime (time)`
 
 CreatedTime is the time at which the object was created.
