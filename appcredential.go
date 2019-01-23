@@ -170,6 +170,8 @@ func NewAppCredential() *AppCredential {
 		AssociatedTags: []string{},
 		NormalizedTags: []string{},
 		Metadata:       []string{},
+		ParentIDs:      []string{},
+		Roles:          []string{},
 	}
 }
 

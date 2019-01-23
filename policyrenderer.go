@@ -135,6 +135,7 @@ func NewPolicyRenderer() *PolicyRenderer {
 	return &PolicyRenderer{
 		ModelVersion: 1,
 		Policies:     PolicyRulesList{},
+		Tags:         []string{},
 	}
 }
 
