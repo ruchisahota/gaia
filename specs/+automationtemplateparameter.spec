@@ -30,7 +30,7 @@ attributes:
     exposed: true
 
   - name: position
-    description: Prefered position for the parameter.
+    description: Preferred position for the parameter.
     type: integer
     exposed: true
 

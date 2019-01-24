@@ -2100,7 +2100,7 @@ Name is the name of the entity.
 
 #### `position (integer)`
 
-Prefered position for the parameter.
+Preferred position for the parameter.
 
 #### `required (boolean)`
 

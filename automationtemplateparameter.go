@@ -51,7 +51,7 @@ type AutomationTemplateParameter struct {
 	// Name is the name of the entity.
 	Name string `json:"name" bson:"name" mapstructure:"name,omitempty"`
 
-	// Prefered position for the parameter.
+	// Preferred position for the parameter.
 	Position int `json:"position" bson:"-" mapstructure:"position,omitempty"`
 
 	// Set if the parameter must be set.
