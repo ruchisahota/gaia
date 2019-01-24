@@ -22,12 +22,6 @@ _audit_profile_rule_list:
     init: types.AuditProfileRuleList{}
     import: go.aporeto.io/gaia/types
 
-_automation_template_parameters:
-  elemental:
-    type: map[string]types.AutomationTemplateParameter
-    init: map[string]types.AutomationTemplateParameter{}
-    import: go.aporeto.io/gaia/types
-
 _cap_map:
   elemental:
     type: types.CapabilitiesTypeMap
@@ -55,12 +49,6 @@ _syscall_rules:
   elemental:
     type: types.SyscallEnforcementRulesMap
     init: types.SyscallEnforcementRulesMap{}
-    import: go.aporeto.io/gaia/types
-
-_time_series_results:
-  elemental:
-    type: '[]*types.TimeSeriesQueryResults'
-    init: '[]*types.TimeSeriesQueryResults{}'
     import: go.aporeto.io/gaia/types
 
 _vulnerability_level:
@@ -92,6 +80,11 @@ elemental_identitifable:
 elemental_operation:
   elemental:
     type: elemental.Operation
+
+list_of_list_of_objects:
+  elemental:
+    type: '[][]interface{}'
+    init: '[][]interface{}{}'
 
 list_of_lists_of_objects:
   elemental:

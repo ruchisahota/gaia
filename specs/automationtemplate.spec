@@ -43,6 +43,8 @@ attributes:
 
   - name: parameters
     description: Parameters contains the parameter description of the function.
-    type: external
+    type: refMap
     exposed: true
-    subtype: _automation_template_parameters
+    subtype: automationtemplateparameter
+    extensions:
+      refMode: pointer
