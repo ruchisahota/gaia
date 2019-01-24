@@ -391,7 +391,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Description:    `Entitlements contains the entitlements needed for executing the function.`,
 		Exposed:        true,
 		Name:           "entitlements",
-		SubType:        "automation_entitlements",
+		SubType:        "_automation_entitlements",
 		Type:           "external",
 	},
 	"Function": elemental.AttributeSpecification{
@@ -467,7 +467,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Description:    `Entitlements contains the entitlements needed for executing the function.`,
 		Exposed:        true,
 		Name:           "entitlements",
-		SubType:        "automation_entitlements",
+		SubType:        "_automation_entitlements",
 		Type:           "external",
 	},
 	"function": elemental.AttributeSpecification{

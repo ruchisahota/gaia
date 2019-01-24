@@ -31,4 +31,4 @@ attributes:
     description: List of tags.
     type: external
     exposed: true
-    subtype: list_of_list_of_objects
+    subtype: list_of_lists_of_objects

@@ -20,7 +20,7 @@ attributes:
     description: Entitlements contains the entitlements needed for executing the function.
     type: external
     exposed: true
-    subtype: automation_entitlements
+    subtype: _automation_entitlements
 
   - name: function
     description: Function contains the code.
