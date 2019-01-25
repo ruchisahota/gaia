@@ -4,15 +4,16 @@ import "go.aporeto.io/elemental"
 
 var (
 	identityNamesMap = map[string]elemental.Identity{
-		"account":                   AccountIdentity,
-		"accountcheck":              AccountCheckIdentity,
-		"activate":                  ActivateIdentity,
-		"activity":                  ActivityIdentity,
-		"alarm":                     AlarmIdentity,
-		"apiauthorizationpolicy":    APIAuthorizationPolicyIdentity,
-		"apicheck":                  APICheckIdentity,
-		"app":                       AppIdentity,
-		"appcredential":             AppCredentialIdentity,
+		"account":                AccountIdentity,
+		"accountcheck":           AccountCheckIdentity,
+		"activate":               ActivateIdentity,
+		"activity":               ActivityIdentity,
+		"alarm":                  AlarmIdentity,
+		"apiauthorizationpolicy": APIAuthorizationPolicyIdentity,
+		"apicheck":               APICheckIdentity,
+		"app":                    AppIdentity,
+		"appcredential":          AppCredentialIdentity,
+
 		"auditprofile":              AuditProfileIdentity,
 		"auditprofilemappingpolicy": AuditProfileMappingPolicyIdentity,
 		"auditreport":               AuditReportIdentity,
@@ -107,15 +108,16 @@ var (
 	}
 
 	identitycategoriesMap = map[string]elemental.Identity{
-		"accounts":                    AccountIdentity,
-		"accountchecks":               AccountCheckIdentity,
-		"activate":                    ActivateIdentity,
-		"activities":                  ActivityIdentity,
-		"alarms":                      AlarmIdentity,
-		"apiauthorizationpolicies":    APIAuthorizationPolicyIdentity,
-		"apichecks":                   APICheckIdentity,
-		"apps":                        AppIdentity,
-		"appcredentials":              AppCredentialIdentity,
+		"accounts":                 AccountIdentity,
+		"accountchecks":            AccountCheckIdentity,
+		"activate":                 ActivateIdentity,
+		"activities":               ActivityIdentity,
+		"alarms":                   AlarmIdentity,
+		"apiauthorizationpolicies": APIAuthorizationPolicyIdentity,
+		"apichecks":                APICheckIdentity,
+		"apps":                     AppIdentity,
+		"appcredentials":           AppCredentialIdentity,
+
 		"auditprofiles":               AuditProfileIdentity,
 		"auditprofilemappingpolicies": AuditProfileMappingPolicyIdentity,
 		"auditreports":                AuditReportIdentity,
