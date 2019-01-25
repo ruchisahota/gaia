@@ -222,13 +222,6 @@ attributes:
     default_value: Docker
     orderable: true
 
-  - name: migrated
-    description: |-
-      Migrated indicated if the object has been migrated to hostservices and
-      auditprofiles.
-    type: boolean
-    stored: true
-
   - name: policySynchronizationInterval
     description: |-
       PolicySynchronizationInterval configures how often the policy will be
