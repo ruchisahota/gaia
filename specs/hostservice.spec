@@ -52,7 +52,7 @@ attributes:
       subject constraints.
     type: boolean
     exposed: true
-    default_value: false
+    stored: true
     orderable: true
 
   - name: services

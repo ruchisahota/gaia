@@ -6115,10 +6115,9 @@ be monitored. Flows will be allowed if and only if a network policy has been
 created to allow the flow. The option applies to all enforcers that match the
 subject constraints.
 
-| Characteristics | Value   |
-| -               | -:      |
-| Default         | `false` |
-| Orderable       | `true`  |
+| Characteristics | Value  |
+| -               | -:     |
+| Orderable       | `true` |
 
 #### `metadata (list)`
 

@@ -106,7 +106,7 @@ type HostService struct {
 	// be monitored. Flows will be allowed if and only if a network policy has been
 	// created to allow the flow. The option applies to all enforcers that match the
 	// subject constraints.
-	HostModeEnabled bool `json:"hostModeEnabled" bson:"-" mapstructure:"hostModeEnabled,omitempty"`
+	HostModeEnabled bool `json:"hostModeEnabled" bson:"hostmodeenabled" mapstructure:"hostModeEnabled,omitempty"`
 
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
@@ -150,13 +150,12 @@ type HostService struct {
 func NewHostService() *HostService {
 
 	return &HostService{
-		ModelVersion:    1,
-		Annotations:     map[string][]string{},
-		HostModeEnabled: false,
-		AssociatedTags:  []string{},
-		Metadata:        []string{},
-		NormalizedTags:  []string{},
-		Services:        []string{},
+		ModelVersion:   1,
+		Annotations:    map[string][]string{},
+		AssociatedTags: []string{},
+		Metadata:       []string{},
+		NormalizedTags: []string{},
+		Services:       []string{},
 	}
 }
 
@@ -690,6 +689,7 @@ subject constraints.`,
 		Exposed:   true,
 		Name:      "hostModeEnabled",
 		Orderable: true,
+		Stored:    true,
 		Type:      "boolean",
 	},
 	"Metadata": elemental.AttributeSpecification{
@@ -910,6 +910,7 @@ subject constraints.`,
 		Exposed:   true,
 		Name:      "hostModeEnabled",
 		Orderable: true,
+		Stored:    true,
 		Type:      "boolean",
 	},
 	"metadata": elemental.AttributeSpecification{
@@ -1129,7 +1130,7 @@ type SparseHostService struct {
 	// be monitored. Flows will be allowed if and only if a network policy has been
 	// created to allow the flow. The option applies to all enforcers that match the
 	// subject constraints.
-	HostModeEnabled *bool `json:"hostModeEnabled,omitempty" bson:"-" mapstructure:"hostModeEnabled,omitempty"`
+	HostModeEnabled *bool `json:"hostModeEnabled,omitempty" bson:"hostmodeenabled" mapstructure:"hostModeEnabled,omitempty"`
 
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
