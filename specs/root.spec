@@ -717,6 +717,14 @@ relations:
         multiple: true
         example_value: 1.2.3.4
 
+- rest_name: packetreport
+  create:
+    description: Create a packet trace report.
+
+- rest_name: enforcertracereport
+  create:
+    description: Create an enforcer trace report.
+
 - rest_name: hostservicemappingpolicy
   get:
     description: Retrieves the list of host service mapping policies.

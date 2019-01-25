@@ -36,6 +36,7 @@ var (
 		"enforcerprofile":              EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicy": EnforcerProfileMappingPolicyIdentity,
 		"enforcerreport":               EnforcerReportIdentity,
+		"enforcertracereport":          EnforcerTraceReportIdentity,
 		"eventlog":                     EventLogIdentity,
 		"export":                       ExportIdentity,
 		"externalnetwork":              ExternalNetworkIdentity,
@@ -64,6 +65,7 @@ var (
 		"namespacemappingpolicy":   NamespaceMappingPolicyIdentity,
 		"networkaccesspolicy":      NetworkAccessPolicyIdentity,
 		"oidcprovider":             OIDCProviderIdentity,
+		"packetreport":             PacketReportIdentity,
 		"passwordreset":            PasswordResetIdentity,
 		"plan":                     PlanIdentity,
 		"poke":                     PokeIdentity,
@@ -95,8 +97,9 @@ var (
 		"taginject":         TagInjectIdentity,
 		"tagvalue":          TagValueIdentity,
 
-		"token":                TokenIdentity,
-		"tokenscopepolicy":     TokenScopePolicyIdentity,
+		"token":            TokenIdentity,
+		"tokenscopepolicy": TokenScopePolicyIdentity,
+
 		"trigger":              TriggerIdentity,
 		"vulnerability":        VulnerabilityIdentity,
 		"x509certificate":      X509CertificateIdentity,
@@ -136,6 +139,7 @@ var (
 		"enforcerprofiles":               EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicies": EnforcerProfileMappingPolicyIdentity,
 		"enforcerreports":                EnforcerReportIdentity,
+		"enforcertracereports":           EnforcerTraceReportIdentity,
 		"eventlogs":                      EventLogIdentity,
 		"export":                         ExportIdentity,
 		"externalnetworks":               ExternalNetworkIdentity,
@@ -164,6 +168,7 @@ var (
 		"namespacemappingpolicies":   NamespaceMappingPolicyIdentity,
 		"networkaccesspolicies":      NetworkAccessPolicyIdentity,
 		"oidcproviders":              OIDCProviderIdentity,
+		"packetreports":              PacketReportIdentity,
 		"passwordreset":              PasswordResetIdentity,
 		"plans":                      PlanIdentity,
 		"poke":                       PokeIdentity,
@@ -195,8 +200,9 @@ var (
 		"taginjects":          TagInjectIdentity,
 		"tagvalues":           TagValueIdentity,
 
-		"tokens":                TokenIdentity,
-		"tokenscopepolicies":    TokenScopePolicyIdentity,
+		"tokens":             TokenIdentity,
+		"tokenscopepolicies": TokenScopePolicyIdentity,
+
 		"triggers":              TriggerIdentity,
 		"vulnerabilities":       VulnerabilityIdentity,
 		"x509certificates":      X509CertificateIdentity,
@@ -360,6 +366,7 @@ var (
 		},
 		"enforcerprofilemappingpolicy": nil,
 		"enforcerreport":               nil,
+		"enforcertracereport":          nil,
 		"eventlog":                     nil,
 		"export":                       nil,
 		"externalnetwork": [][]string{
@@ -434,6 +441,7 @@ var (
 		"oidcprovider": [][]string{
 			[]string{":unique", "parentID", "name"},
 		},
+		"packetreport":  nil,
 		"passwordreset": nil,
 		"plan":          nil,
 		"poke":          nil,
@@ -602,6 +610,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewEnforcerProfileMappingPolicy()
 	case EnforcerReportIdentity:
 		return NewEnforcerReport()
+	case EnforcerTraceReportIdentity:
+		return NewEnforcerTraceReport()
 	case EventLogIdentity:
 		return NewEventLog()
 	case ExportIdentity:
@@ -656,6 +666,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewNetworkAccessPolicy()
 	case OIDCProviderIdentity:
 		return NewOIDCProvider()
+	case PacketReportIdentity:
+		return NewPacketReport()
 	case PasswordResetIdentity:
 		return NewPasswordReset()
 	case PlanIdentity:
@@ -791,6 +803,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseEnforcerProfileMappingPolicy()
 	case EnforcerReportIdentity:
 		return NewSparseEnforcerReport()
+	case EnforcerTraceReportIdentity:
+		return NewSparseEnforcerTraceReport()
 	case EventLogIdentity:
 		return NewSparseEventLog()
 	case ExportIdentity:
@@ -845,6 +859,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseNetworkAccessPolicy()
 	case OIDCProviderIdentity:
 		return NewSparseOIDCProvider()
+	case PacketReportIdentity:
+		return NewSparsePacketReport()
 	case PasswordResetIdentity:
 		return NewSparsePasswordReset()
 	case PlanIdentity:
@@ -988,6 +1004,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &EnforcerProfileMappingPoliciesList{}
 	case EnforcerReportIdentity:
 		return &EnforcerReportsList{}
+	case EnforcerTraceReportIdentity:
+		return &EnforcerTraceReportsList{}
 	case EventLogIdentity:
 		return &EventLogsList{}
 	case ExportIdentity:
@@ -1042,6 +1060,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &NetworkAccessPoliciesList{}
 	case OIDCProviderIdentity:
 		return &OIDCProvidersList{}
+	case PacketReportIdentity:
+		return &PacketReportsList{}
 	case PasswordResetIdentity:
 		return &PasswordResetsList{}
 	case PlanIdentity:
@@ -1175,6 +1195,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseEnforcerProfileMappingPoliciesList{}
 	case EnforcerReportIdentity:
 		return &SparseEnforcerReportsList{}
+	case EnforcerTraceReportIdentity:
+		return &SparseEnforcerTraceReportsList{}
 	case EventLogIdentity:
 		return &SparseEventLogsList{}
 	case ExportIdentity:
@@ -1229,6 +1251,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseNetworkAccessPoliciesList{}
 	case OIDCProviderIdentity:
 		return &SparseOIDCProvidersList{}
+	case PacketReportIdentity:
+		return &SparsePacketReportsList{}
 	case PasswordResetIdentity:
 		return &SparsePasswordResetsList{}
 	case PlanIdentity:
@@ -1349,6 +1373,7 @@ func AllIdentities() []elemental.Identity {
 		EnforcerProfileIdentity,
 		EnforcerProfileMappingPolicyIdentity,
 		EnforcerReportIdentity,
+		EnforcerTraceReportIdentity,
 		EventLogIdentity,
 		ExportIdentity,
 		ExternalNetworkIdentity,
@@ -1376,6 +1401,7 @@ func AllIdentities() []elemental.Identity {
 		NamespaceMappingPolicyIdentity,
 		NetworkAccessPolicyIdentity,
 		OIDCProviderIdentity,
+		PacketReportIdentity,
 		PasswordResetIdentity,
 		PlanIdentity,
 		PokeIdentity,
@@ -1506,6 +1532,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case EnforcerReportIdentity:
 		return []string{}
+	case EnforcerTraceReportIdentity:
+		return []string{}
 	case EventLogIdentity:
 		return []string{}
 	case ExportIdentity:
@@ -1602,6 +1630,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"netpols",
 		}
 	case OIDCProviderIdentity:
+		return []string{}
+	case PacketReportIdentity:
 		return []string{}
 	case PasswordResetIdentity:
 		return []string{}
