@@ -7017,6 +7017,10 @@ Metadata contains various additional information. Meaning depends on the realm.
 | -               | -:     |
 | Orderable       | `true` |
 
+#### `opaque (external:map_of_string_of_strings)`
+
+Opaque data that will be included in the issued token.
+
 #### `quota (integer)`
 
 Restricts the number of time the issued token should be used.
