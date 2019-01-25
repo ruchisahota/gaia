@@ -58,7 +58,9 @@ func (o NamespacesList) List() elemental.IdentifiablesList {
 // DefaultOrder returns the default ordering fields of the content.
 func (o NamespacesList) DefaultOrder() []string {
 
-	return []string{}
+	return []string{
+		"name",
+	}
 }
 
 // ToSparse returns the NamespacesList converted to SparseNamespacesList.
@@ -179,7 +181,9 @@ func (o *Namespace) Version() int {
 // DefaultOrder returns the list of default ordering fields.
 func (o *Namespace) DefaultOrder() []string {
 
-	return []string{}
+	return []string{
+		"name",
+	}
 }
 
 // Doc returns the documentation for the object
@@ -662,6 +666,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		CreationOnly:   true,
+		DefaultOrder:   true,
 		Description:    `Name is the name of the namespace.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -872,6 +877,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		CreationOnly:   true,
+		DefaultOrder:   true,
 		Description:    `Name is the name of the namespace.`,
 		Exposed:        true,
 		Filterable:     true,
@@ -1005,7 +1011,9 @@ func (o SparseNamespacesList) List() elemental.IdentifiablesList {
 // DefaultOrder returns the default ordering fields of the content.
 func (o SparseNamespacesList) DefaultOrder() []string {
 
-	return []string{}
+	return []string{
+		"name",
+	}
 }
 
 // ToPlain returns the SparseNamespacesList converted to NamespacesList.
