@@ -164,7 +164,7 @@ type Enforcer struct {
 	// services that have been applied to this enforcer. This list might be different
 	// from the list retrieved through policy, if the dynamically calculated list leads
 	// into conflicts.
-	LastValidHostServices HostServicesList `json:"lastValidHostServices" bson:"lastvalidhostservices" mapstructure:"lastValidHostServices,omitempty"`
+	LastValidHostServices HostServicesList `json:"-" bson:"lastvalidhostservices" mapstructure:"-,omitempty"`
 
 	// LocalCA contains the initial chain of trust for the enforcer. This valud is only
 	// given when you retrieve a single enforcer.
@@ -676,12 +676,6 @@ func (o *Enforcer) Validate() error {
 		errors = append(errors, err)
 	}
 
-	for _, sub := range o.LastValidHostServices {
-		if err := sub.Validate(); err != nil {
-			errors = append(errors, err)
-		}
-	}
-
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = append(requiredErrors, err)
 	}
@@ -1002,13 +996,10 @@ collected.`,
 services that have been applied to this enforcer. This list might be different
 from the list retrieved through policy, if the dynamically calculated list leads
 into conflicts.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "lastValidHostServices",
-		ReadOnly:   true,
-		Stored:     true,
-		SubType:    "hostservice",
-		Type:       "refList",
+		Name:    "lastValidHostServices",
+		Stored:  true,
+		SubType: "hostservice",
+		Type:    "refList",
 	},
 	"LocalCA": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1399,13 +1390,10 @@ collected.`,
 services that have been applied to this enforcer. This list might be different
 from the list retrieved through policy, if the dynamically calculated list leads
 into conflicts.`,
-		Exposed:    true,
-		Filterable: true,
-		Name:       "lastValidHostServices",
-		ReadOnly:   true,
-		Stored:     true,
-		SubType:    "hostservice",
-		Type:       "refList",
+		Name:    "lastValidHostServices",
+		Stored:  true,
+		SubType: "hostservice",
+		Type:    "refList",
 	},
 	"localca": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1717,7 +1705,7 @@ type SparseEnforcer struct {
 	// services that have been applied to this enforcer. This list might be different
 	// from the list retrieved through policy, if the dynamically calculated list leads
 	// into conflicts.
-	LastValidHostServices *HostServicesList `json:"lastValidHostServices,omitempty" bson:"lastvalidhostservices" mapstructure:"lastValidHostServices,omitempty"`
+	LastValidHostServices *HostServicesList `json:"-,omitempty" bson:"lastvalidhostservices" mapstructure:"-,omitempty"`
 
 	// LocalCA contains the initial chain of trust for the enforcer. This valud is only
 	// given when you retrieve a single enforcer.
