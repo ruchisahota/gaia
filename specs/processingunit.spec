@@ -174,6 +174,7 @@ attributes:
     - RKT
     - User
     - APIGateway
+    - HostService
     example_value: Docker
     filterable: true
 
