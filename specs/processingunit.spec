@@ -169,12 +169,13 @@ attributes:
     required: true
     creation_only: true
     allowed_choices:
+    - APIGateway
     - Docker
+    - Host
+    - HostService
     - LinuxService
     - RKT
     - User
-    - APIGateway
-    - HostService
     example_value: Docker
     filterable: true
 
