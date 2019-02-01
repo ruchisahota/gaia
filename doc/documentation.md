@@ -8367,6 +8367,12 @@ Creation date of the object.
 | Read only       | `true` |
 | Orderable       | `true` |
 
+#### `default (boolean)`
+
+If set, this will be the default OIDCProvider. There can be only one default
+provider in your account. When logging in with OIDC, if not provider name is
+given, the default will be used.
+
 #### `endpoint (string)`
 
 OIDC information endpoint.
@@ -8407,10 +8413,6 @@ ParentName contains the name of the Vince parent Account.
 #### `scopes (list)`
 
 List of scopes to allow.
-
-| Characteristics | Value  |
-| -               | -:     |
-| Required        | `true` |
 
 #### `updateTime (time)`
 
