@@ -4,6 +4,7 @@ model:
   resource_name: ipinfos
   entity_name: IPInfo
   package: canyon
+  group: visualization/depmaps
   description: This apis allows to resolve information from an IP address.
 
 # Attributes

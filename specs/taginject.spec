@@ -4,6 +4,7 @@ model:
   resource_name: taginjects
   entity_name: TagInject
   package: tagle
+  group: core/internal
   description: This internal api is used to inject a new tag in the database.
   private: true
 

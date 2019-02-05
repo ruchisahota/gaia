@@ -4,6 +4,7 @@ model:
   resource_name: auditreports
   entity_name: AuditReport
   package: zack
+  group: policy/audit
   description: Post a new audit statistics report.
 
 # Attributes

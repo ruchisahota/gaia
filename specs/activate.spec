@@ -4,6 +4,7 @@ model:
   resource_name: activate
   entity_name: Activate
   package: vince
+  group: core/account
   description: Used to activate a pending account.
 
 # Attributes

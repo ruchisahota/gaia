@@ -4,6 +4,7 @@ model:
   resource_name: privatekeys
   entity_name: PrivateKey
   package: barret
+  group: internal/x509
   description: Internal representation of an private key.
   private: true
   get:

@@ -4,6 +4,7 @@ model:
   resource_name: installedapps
   entity_name: InstalledApp
   package: highwind
+  group: integration/app
   description: InstalledApps represents an installed application.
   aliases:
   - iapps
@@ -40,6 +41,11 @@ attributes:
     stored: true
     creation_only: true
 
+  - name: appIdentifier
+    description: AppIdentifier retains the identifier for the app.
+    type: string
+    stored: true
+
   - name: categoryID
     description: CategoryID of the app.
     type: string
@@ -60,11 +66,6 @@ attributes:
     type: integer
     stored: true
     read_only: true
-
-  - name: appIdentifier
-    description: AppIdentifier retains the identifier for the app.
-    type: string
-    stored: true
 
   - name: name
     description: Name of the installed app.

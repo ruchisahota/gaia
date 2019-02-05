@@ -4,6 +4,7 @@ model:
   resource_name: flowreports
   entity_name: FlowReport
   package: zack
+  group: policy/networking
   description: Post a new flow statistics report.
 
 # Attributes

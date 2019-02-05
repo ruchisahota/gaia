@@ -4,6 +4,7 @@ model:
   resource_name: remoteprocessors
   entity_name: RemoteProcessor
   package: rufus
+  group: policy/hooks
   description: Hook to integrate an Aporeto service.
   aliases:
   - hks

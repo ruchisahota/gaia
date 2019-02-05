@@ -4,6 +4,7 @@ model:
   resource_name: endpoints
   entity_name: Endpoint
   package: squall
+  group: policy/services
   description: Represents an HTTP endpoint.
   detached: true
 

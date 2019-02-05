@@ -4,6 +4,7 @@ model:
   resource_name: claimmappings
   entity_name: ClaimMapping
   package: squall
+  group: policy/services
   description: Represents a mapping from a claim name to an HTTP header.
   detached: true
 

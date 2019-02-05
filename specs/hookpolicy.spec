@@ -4,6 +4,7 @@ model:
   resource_name: hookpolicies
   entity_name: HookPolicy
   package: squall
+  group: policy/hooks
   description: |-
     Hook allows to to define hooks to the write operations in squall. Hooks are sent
     to an external Rufus server that will do the processing and eventually return a

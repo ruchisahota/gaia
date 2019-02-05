@@ -4,6 +4,7 @@ model:
   resource_name: tracemode
   entity_name: TraceMode
   package: squall
+  group: core/enforcer
   description: TraceMode is the tracing mode that must be applied to a PU.
   detached: true
 

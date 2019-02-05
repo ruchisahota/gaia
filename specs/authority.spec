@@ -4,6 +4,7 @@ model:
   resource_name: authorities
   entity_name: Authority
   package: barret
+  group: internal/x509
   description: Authority represents a certificate authority.
   aliases:
   - ca

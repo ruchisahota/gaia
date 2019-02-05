@@ -4,6 +4,7 @@ model:
   resource_name: squalltags
   entity_name: SquallTag
   package: squall
+  group: core/internal
   description: |-
     Internal api that retrieve all tags from squall and their count for given
     `?identity=<identity>` parameter with their counts.

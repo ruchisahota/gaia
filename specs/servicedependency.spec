@@ -4,6 +4,7 @@ model:
   resource_name: servicedependencies
   entity_name: ServiceDependency
   package: squall
+  group: policy/services
   description: |-
     Allows to define a service dependency where a set of processing units as defined
     by their tags require access to specific services.

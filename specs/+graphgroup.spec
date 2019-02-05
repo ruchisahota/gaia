@@ -4,6 +4,7 @@ model:
   resource_name: graphgroups
   entity_name: GraphGroup
   package: jenova
+  group: visualization/depmaps
   description: Represents an group of nodes from the dependency map.
   detached: true
 

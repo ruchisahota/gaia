@@ -4,6 +4,7 @@ model:
   resource_name: policyrules
   entity_name: PolicyRule
   package: squall
+  group: core/policy
   description: |-
     PolicyRule is an internal policy resolution API. Services can use this API to
     retrieve a policy resolution.

@@ -4,6 +4,7 @@ model:
   resource_name: awsaccounts
   entity_name: AWSAccount
   package: vince
+  group: core/authentication
   description: |-
     Allows to bind an AWS account to your Aporeto account to allow auto registration
     of enforcers running on EC2.

@@ -4,6 +4,7 @@ model:
   resource_name: reports
   entity_name: Report
   package: zack
+  group: none
   description: Post a new statistics report.
 
 # Attributes

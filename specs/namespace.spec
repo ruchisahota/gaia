@@ -4,6 +4,7 @@ model:
   resource_name: namespaces
   entity_name: Namespace
   package: squall
+  group: core/namespace
   description: |-
     A Namespace represents the core organizational unit of the system. All objects
     always exists in a single namespace. A Namespace can also have child namespaces.

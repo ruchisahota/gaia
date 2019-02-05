@@ -4,6 +4,7 @@ model:
   resource_name: appcredentials
   entity_name: AppCredential
   package: cactuar
+  group: policy/authorization
   description: Create a credential for an application.
   aliases:
   - appcred

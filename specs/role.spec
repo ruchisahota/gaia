@@ -4,6 +4,7 @@ model:
   resource_name: roles
   entity_name: Role
   package: squall
+  group: policy/authorization
   description: |-
     Roles returns the available roles that can be used with API Authorization
     Policies.

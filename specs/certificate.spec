@@ -4,6 +4,7 @@ model:
   resource_name: certificates
   entity_name: Certificate
   package: vince
+  group: none
   description: A User represents the owner of some certificates.
   indexes:
   - - commonName

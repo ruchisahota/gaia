@@ -4,6 +4,7 @@ model:
   resource_name: graphedges
   entity_name: GraphEdge
   package: jenova
+  group: visualization/depmaps
   description: Represents an edge from the dependency map.
   detached: true
 

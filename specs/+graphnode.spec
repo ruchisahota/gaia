@@ -4,6 +4,7 @@ model:
   resource_name: graphnodes
   entity_name: GraphNode
   package: jenova
+  group: visualization/depmaps
   description: Represents an node from the dependency map.
   detached: true
 

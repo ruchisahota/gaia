@@ -4,6 +4,7 @@ model:
   resource_name: messages
   entity_name: Message
   package: squall
+  group: core/monitoring
   description: |-
     The Message API allows to post public messages that will be visible through all
     children namespaces.

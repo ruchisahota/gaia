@@ -4,6 +4,7 @@ model:
   resource_name: dependencymaps
   entity_name: DependencyMap
   package: jenova
+  group: visualization/depmaps
   description: |-
     This api returns a data structure representing the graph of all processing units
     and their connections in a particular namespace, in a given time window. To pass

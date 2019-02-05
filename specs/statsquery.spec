@@ -4,6 +4,7 @@ model:
   resource_name: statsqueries
   entity_name: StatsQuery
   package: jenova
+  group: visualization/statsquery
   description: |-
     StatsQuery is a generic API to retrieve time series data stored by the Aporeto
     system. The API allows different types of queries that are all protected within

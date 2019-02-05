@@ -4,6 +4,7 @@ model:
   resource_name: enforcerreports
   entity_name: EnforcerReport
   package: zack
+  group: core/enforcer
   description: Post a new enforcer statistics report.
 
 # Attributes

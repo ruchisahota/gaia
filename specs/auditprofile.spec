@@ -4,6 +4,7 @@ model:
   resource_name: auditprofiles
   entity_name: AuditProfile
   package: squall
+  group: policy/audit
   description: |-
     AuditProfile is an audit policy that consists of a set of audit rules. An audit
     policy will determine that types of events that must be captured in the kernel.

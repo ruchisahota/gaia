@@ -4,6 +4,7 @@ model:
   resource_name: auditprofilemappingpolicies
   entity_name: AuditProfileMappingPolicy
   package: squall
+  group: policy/audit
   description: |-
     Defines an audit policy that determine the sets of enforcers that must implement
     a specific audit profile.

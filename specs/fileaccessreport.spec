@@ -4,6 +4,7 @@ model:
   resource_name: fileaccessreports
   entity_name: FileAccessReport
   package: zack
+  group: policy/files
   description: Post a new file access statistics report.
 
 # Attributes

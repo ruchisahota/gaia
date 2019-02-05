@@ -4,6 +4,7 @@ model:
   resource_name: processingunits
   entity_name: ProcessingUnit
   package: squall
+  group: core/processingunit
   description: |-
     A Processing Unit reprents anything that can compute. It can be a Docker
     container, or a simple Unix process. They are created, updated and deleted by

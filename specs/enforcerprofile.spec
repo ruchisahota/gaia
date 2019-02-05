@@ -4,6 +4,7 @@ model:
   resource_name: enforcerprofiles
   entity_name: EnforcerProfile
   package: squall
+  group: policy/enforcerconfig
   description: |-
     Allows to create reusable configuration profile for your enforcers. Enforcer
     Profiles contains various startup information that can (for some) be updated

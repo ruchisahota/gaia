@@ -4,6 +4,7 @@ model:
   resource_name: customers
   entity_name: Customer
   package: bill
+  group: core/billing
   description: |-
     This api allows to view and manage basic information about customer profile for
     billing purposes.

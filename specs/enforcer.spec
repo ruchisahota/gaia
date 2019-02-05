@@ -4,6 +4,7 @@ model:
   resource_name: enforcers
   entity_name: Enforcer
   package: squall
+  group: core/enforcer
   description: |-
     An Enforcer contains all parameters associated with a registered enforcer. The
     object is mainly by maintained by the enforcers themselves. Users can read the

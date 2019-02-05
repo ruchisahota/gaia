@@ -4,6 +4,7 @@ model:
   resource_name: tokens
   entity_name: Token
   package: barret
+  group: internal/x509
   description: This api issue signed token from the given certificate.
   private: true
 

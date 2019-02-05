@@ -4,6 +4,7 @@ model:
   resource_name: awsapigateways
   entity_name: AWSAPIGateway
   package: goldrush
+  group: none
   description: managed API decisions for the AWS API Gateway.
   get:
     description: Retrieves the object with the given ID.

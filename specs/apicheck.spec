@@ -4,6 +4,7 @@ model:
   resource_name: apichecks
   entity_name: APICheck
   package: squall
+  group: policy/authorization
   description: |-
     This API allows to verify is a client identitied by his token is allowed to do
     some operations on some apis. For example, it allows third party system to

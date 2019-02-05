@@ -4,6 +4,7 @@ model:
   resource_name: eventlogs
   entity_name: EventLog
   package: leon
+  group: core/monitoring
   description: This api allows to report various event on any objects.
 
 # Attributes

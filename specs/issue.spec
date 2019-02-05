@@ -4,6 +4,7 @@ model:
   resource_name: issue
   entity_name: Issue
   package: midgard
+  group: core/authentication
   description: This API issues a new token according to given data.
   extends:
   - '@realm'

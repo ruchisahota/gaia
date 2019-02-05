@@ -4,6 +4,7 @@ model:
   resource_name: hostservices
   entity_name: HostService
   package: squall
+  group: policy/hosts
   description: Represents a set of services that a host must expose and protect.
   aliases:
   - hostsrv

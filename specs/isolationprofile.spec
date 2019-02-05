@@ -4,6 +4,7 @@ model:
   resource_name: isolationprofiles
   entity_name: IsolationProfile
   package: squall
+  group: policy/processingunits
   description: An IsolationProfile needs documentation.
   aliases:
   - ip

@@ -4,6 +4,7 @@ model:
   resource_name: renderedpolicies
   entity_name: RenderedPolicy
   package: squall
+  group: core/policy
   description: Retrieve the aggregated policies applied to a particular processing
     unit.
   aliases:

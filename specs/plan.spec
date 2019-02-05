@@ -4,6 +4,7 @@ model:
   resource_name: plans
   entity_name: Plan
   package: vince
+  group: core/billing
   description: Plan contains the various billing plans available.
   get:
     description: Retrieves the object with the given ID.

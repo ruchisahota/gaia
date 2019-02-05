@@ -4,6 +4,7 @@ model:
   resource_name: awsregister
   entity_name: AWSRegister
   package: bill
+  group: none
   description: This api allows AWS customer to register with Aporeto SaaS for billing.
   extends:
   - '@identifiable-pk-stored'

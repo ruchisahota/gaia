@@ -4,6 +4,7 @@ model:
   resource_name: automationtemplateparameters
   entity_name: AutomationTemplateParameter
   package: sephiroth
+  group: integration/automation
   description: Represents an Automation template parameter.
   extends:
   - '@named'

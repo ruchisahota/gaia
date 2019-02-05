@@ -4,6 +4,7 @@ model:
   resource_name: import
   entity_name: Import
   package: squall
+  group: core
   description: Imports an export of policies and related objects into the namespace.
 
 # Attributes

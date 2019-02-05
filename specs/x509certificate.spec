@@ -4,6 +4,7 @@ model:
   resource_name: x509certificates
   entity_name: X509Certificate
   package: barret
+  group: internal/x509
   description: This API allows to retrieve an client certifcate for api authentication.
   private: true
 

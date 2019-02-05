@@ -4,6 +4,7 @@ model:
   resource_name: fileaccesspolicies
   entity_name: FileAccessPolicy
   package: squall
+  group: policy/files
   description: |-
     A File Access Policy allows Processing Units to access various folder and files.
     It will use the tags of a File Path to know what is the path of the file or

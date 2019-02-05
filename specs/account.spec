@@ -4,6 +4,7 @@ model:
   resource_name: accounts
   entity_name: Account
   package: vince
+  group: core/account
   description: |-
     This api allows to view and manage basic information about your account like
     your name, password, enable 2 factor authentication.

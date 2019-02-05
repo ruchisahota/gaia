@@ -4,6 +4,7 @@ model:
   resource_name: policyrenderers
   entity_name: PolicyRenderer
   package: squall
+  group: core
   description: Returns the list of hook policies that matches the given set of tags.
   private: true
 

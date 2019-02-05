@@ -4,6 +4,7 @@ model:
   resource_name: apps
   entity_name: App
   package: highwind
+  group: integration/app
   description: App represents an application that can be installed.
   extends:
   - '@described'

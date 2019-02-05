@@ -4,6 +4,7 @@ model:
   resource_name: namespacemappingpolicies
   entity_name: NamespaceMappingPolicy
   package: squall
+  group: core/namespace
   description: |-
     A Namespace Mapping Policy defines in which namespace a Processing Unit should
     be placed when it is created, based on its tags.  When an Aporeto Agent creates

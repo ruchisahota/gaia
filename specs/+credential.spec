@@ -4,6 +4,7 @@ model:
   resource_name: credentials
   entity_name: Credential
   package: cactuar
+  group: policy/authorization
   description: Represents an application credential data.
   detached: true
 

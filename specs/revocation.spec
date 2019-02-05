@@ -4,6 +4,7 @@ model:
   resource_name: revocations
   entity_name: Revocation
   package: barret
+  group: internal/x509
   description: Used to revoke a certificate.
   private: true
   indexes:

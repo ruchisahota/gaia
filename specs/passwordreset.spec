@@ -4,6 +4,7 @@ model:
   resource_name: passwordreset
   entity_name: PasswordReset
   package: vince
+  group: core/account
   description: Used to reset an account password.
 
 # Attributes

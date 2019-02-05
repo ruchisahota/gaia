@@ -4,6 +4,7 @@ model:
   resource_name: k8sclusters
   entity_name: K8SCluster
   package: cactuar
+  group: none
   description: Create a remote Kubernetes Cluster integration.
   indexes:
   - - :shard

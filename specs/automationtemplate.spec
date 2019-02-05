@@ -4,6 +4,7 @@ model:
   resource_name: automationtemplates
   entity_name: AutomationTemplate
   package: sephiroth
+  group: integration/automation
   description: Templates that ca be used in automations.
   aliases:
   - autotmpl

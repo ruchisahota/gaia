@@ -4,6 +4,7 @@ model:
   resource_name: emails
   entity_name: Email
   package: yuffie
+  group: core
   description: Email is a message that can be send via email.
   private: true
 

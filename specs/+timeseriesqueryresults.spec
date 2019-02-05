@@ -4,6 +4,7 @@ model:
   resource_name: timeseriesqueryresults
   entity_name: TimeSeriesQueryResults
   package: jenova
+  group: visualization/statsquery
   description: Represent the results of a stats query.
   detached: true
 

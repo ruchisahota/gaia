@@ -4,6 +4,7 @@ model:
   resource_name: automations
   entity_name: Automation
   package: sephiroth
+  group: integration/automation
   description: An automation needs documentation.
   aliases:
   - autos

@@ -4,6 +4,7 @@ model:
   resource_name: processingunitservices
   entity_name: ProcessingUnitService
   package: squall
+  group: policy/processingunits
   description: Represents a service attached to a processing unit.
   detached: true
 

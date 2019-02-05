@@ -4,6 +4,7 @@ model:
   resource_name: apiauthorizationpolicies
   entity_name: APIAuthorizationPolicy
   package: squall
+  group: policy/authorization
   description: |-
     An API Authorization Policy defines what kind of operations a user of a system
     can do in a namespace. The operations can be any combination of GET, POST, PUT,

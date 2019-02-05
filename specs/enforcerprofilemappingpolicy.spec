@@ -4,6 +4,7 @@ model:
   resource_name: enforcerprofilemappingpolicies
   entity_name: EnforcerProfileMappingPolicy
   package: squall
+  group: policy/enforcerconfig
   description: |-
     A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used
     by and Aporeto Agent based on the Enforcer that have been used during the

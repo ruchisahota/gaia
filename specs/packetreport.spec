@@ -4,6 +4,7 @@ model:
   resource_name: packetreports
   entity_name: PacketReport
   package: zack
+  group: core/enforcer
   description: Post a new packet tracing report.
 
 # Attributes

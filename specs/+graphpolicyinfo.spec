@@ -4,6 +4,7 @@ model:
   resource_name: graphpolicyinfos
   entity_name: GraphPolicyInfo
   package: jenova
+  group: visualization/depmaps
   description: Represents a policy information.
   detached: true
 

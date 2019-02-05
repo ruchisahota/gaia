@@ -4,6 +4,7 @@ model:
   resource_name: export
   entity_name: Export
   package: yuna
+  group: core
   description: Export the policies and related objects in a given namespace.
 
 # Attributes

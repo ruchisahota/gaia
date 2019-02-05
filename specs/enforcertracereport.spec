@@ -4,6 +4,7 @@ model:
   resource_name: enforcertracereports
   entity_name: EnforcerTraceReport
   package: zack
+  group: core/enforcer
   description: Post a new enforcer trace that determines how packets are.
 
 # Attributes

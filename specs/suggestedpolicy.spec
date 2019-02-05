@@ -4,6 +4,7 @@ model:
   resource_name: suggestedpolicies
   entity_name: SuggestedPolicy
   package: jenova
+  group: visualization/depmaps
   description: Allows to get policy suggestions.
   aliases:
   - sugpol

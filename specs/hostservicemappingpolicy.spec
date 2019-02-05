@@ -4,6 +4,7 @@ model:
   resource_name: hostservicemappingpolicies
   entity_name: HostServiceMappingPolicy
   package: squall
+  group: policy/hosts
   description: |-
     Defines a host service mapping policy that provides the relation between
     enforcers and host services that they must implement.

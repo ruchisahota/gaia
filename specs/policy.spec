@@ -4,6 +4,7 @@ model:
   resource_name: policies
   entity_name: Policy
   package: squall
+  group: core/policy
   description: Policy represents the policy primitive used by all aporeto policies.
   indexes:
   - - :shard

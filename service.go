@@ -182,10 +182,10 @@ type Service struct {
 
 	// Set how to provide a server certificate to the service.
 	//
-	// * `+"`"+`Aporeto`+"`"+`: Generate a certificate issued from Aporeto public CA.
-	// * `+"`"+`LetsEncrypt`+"`"+`: Issue a certificate from letsencrypt.
-	// * `+"`"+`External`+"`"+`: : Let you define your own certificate and key to use.
-	// * `+"`"+`None`+"`"+`: : TLS is disabled (not recommended).
+	// - `+"`"+`Aporeto`+"`"+`: Generate a certificate issued from Aporeto public CA.
+	// - `+"`"+`LetsEncrypt`+"`"+`: Issue a certificate from letsencrypt.
+	// - `+"`"+`External`+"`"+`: : Let you define your own certificate and key to use.
+	// - `+"`"+`None`+"`"+`: : TLS is disabled (not recommended).
 	TLSType ServiceTLSTypeValue `json:"TLSType" bson:"tlstype" mapstructure:"TLSType,omitempty"`
 
 	// This is a set of all API tags for matching in the DB.
@@ -205,12 +205,12 @@ type Service struct {
 
 	// AuthorizationType defines the user authorization type that should be used.
 	//
-	// * `+"`"+`None`+"`"+`: No auhtorization.
-	// * `+"`"+`JWT`+"`"+`:  Configures a simple JWT verification from the HTTP `+"`"+`Auhorization`+"`"+`
+	// - `+"`"+`None`+"`"+`: No auhtorization.
+	// - `+"`"+`JWT`+"`"+`:  Configures a simple JWT verification from the HTTP `+"`"+`Auhorization`+"`"+`
 	// Header
-	// * `+"`"+`OIDC`+"`"+`: Configures OIDC authorization. You must then set `+"`"+`OIDCClientID`+"`"+`,
+	// - `+"`"+`OIDC`+"`"+`: Configures OIDC authorization. You must then set `+"`"+`OIDCClientID`+"`"+`,
 	// `+"`"+`OIDCClientSecret`+"`"+`, OIDCProviderURL`+"`"+`.
-	// * `+"`"+`MTLS`+"`"+`: Configures Client Certificate authorization. Then you can optionaly
+	// - `+"`"+`MTLS`+"`"+`: Configures Client Certificate authorization. Then you can optionaly
 	// `+"`"+`MTLSCertificateAuthority`+"`"+` otherwise Aporeto Public Signing Certificate will be
 	// used.
 	AuthorizationType ServiceAuthorizationTypeValue `json:"authorizationType" bson:"authorizationtype" mapstructure:"authorizationType,omitempty"`
@@ -1181,10 +1181,10 @@ required if ` + "`" + `TLSType` + "`" + ` is set to ` + "`" + `External` + "`" +
 		DefaultValue:   ServiceTLSTypeAporeto,
 		Description: `Set how to provide a server certificate to the service.
 
-* ` + "`" + `Aporeto` + "`" + `: Generate a certificate issued from Aporeto public CA.
-* ` + "`" + `LetsEncrypt` + "`" + `: Issue a certificate from letsencrypt.
-* ` + "`" + `External` + "`" + `: : Let you define your own certificate and key to use.
-* ` + "`" + `None` + "`" + `: : TLS is disabled (not recommended).`,
+- ` + "`" + `Aporeto` + "`" + `: Generate a certificate issued from Aporeto public CA.
+- ` + "`" + `LetsEncrypt` + "`" + `: Issue a certificate from letsencrypt.
+- ` + "`" + `External` + "`" + `: : Let you define your own certificate and key to use.
+- ` + "`" + `None` + "`" + `: : TLS is disabled (not recommended).`,
 		Exposed: true,
 		Name:    "TLSType",
 		Stored:  true,
@@ -1250,12 +1250,12 @@ required if ` + "`" + `TLSType` + "`" + ` is set to ` + "`" + `External` + "`" +
 		DefaultValue:   ServiceAuthorizationTypeNone,
 		Description: `AuthorizationType defines the user authorization type that should be used.
 
-* ` + "`" + `None` + "`" + `: No auhtorization.
-* ` + "`" + `JWT` + "`" + `:  Configures a simple JWT verification from the HTTP ` + "`" + `Auhorization` + "`" + `
+- ` + "`" + `None` + "`" + `: No auhtorization.
+- ` + "`" + `JWT` + "`" + `:  Configures a simple JWT verification from the HTTP ` + "`" + `Auhorization` + "`" + `
 Header
-* ` + "`" + `OIDC` + "`" + `: Configures OIDC authorization. You must then set ` + "`" + `OIDCClientID` + "`" + `,
+- ` + "`" + `OIDC` + "`" + `: Configures OIDC authorization. You must then set ` + "`" + `OIDCClientID` + "`" + `,
 ` + "`" + `OIDCClientSecret` + "`" + `, OIDCProviderURL` + "`" + `.
-* ` + "`" + `MTLS` + "`" + `: Configures Client Certificate authorization. Then you can optionaly
+- ` + "`" + `MTLS` + "`" + `: Configures Client Certificate authorization. Then you can optionaly
 ` + "`" + `MTLSCertificateAuthority` + "`" + ` otherwise Aporeto Public Signing Certificate will be
 used.`,
 		Exposed: true,
@@ -1703,10 +1703,10 @@ required if ` + "`" + `TLSType` + "`" + ` is set to ` + "`" + `External` + "`" +
 		DefaultValue:   ServiceTLSTypeAporeto,
 		Description: `Set how to provide a server certificate to the service.
 
-* ` + "`" + `Aporeto` + "`" + `: Generate a certificate issued from Aporeto public CA.
-* ` + "`" + `LetsEncrypt` + "`" + `: Issue a certificate from letsencrypt.
-* ` + "`" + `External` + "`" + `: : Let you define your own certificate and key to use.
-* ` + "`" + `None` + "`" + `: : TLS is disabled (not recommended).`,
+- ` + "`" + `Aporeto` + "`" + `: Generate a certificate issued from Aporeto public CA.
+- ` + "`" + `LetsEncrypt` + "`" + `: Issue a certificate from letsencrypt.
+- ` + "`" + `External` + "`" + `: : Let you define your own certificate and key to use.
+- ` + "`" + `None` + "`" + `: : TLS is disabled (not recommended).`,
 		Exposed: true,
 		Name:    "TLSType",
 		Stored:  true,
@@ -1772,12 +1772,12 @@ required if ` + "`" + `TLSType` + "`" + ` is set to ` + "`" + `External` + "`" +
 		DefaultValue:   ServiceAuthorizationTypeNone,
 		Description: `AuthorizationType defines the user authorization type that should be used.
 
-* ` + "`" + `None` + "`" + `: No auhtorization.
-* ` + "`" + `JWT` + "`" + `:  Configures a simple JWT verification from the HTTP ` + "`" + `Auhorization` + "`" + `
+- ` + "`" + `None` + "`" + `: No auhtorization.
+- ` + "`" + `JWT` + "`" + `:  Configures a simple JWT verification from the HTTP ` + "`" + `Auhorization` + "`" + `
 Header
-* ` + "`" + `OIDC` + "`" + `: Configures OIDC authorization. You must then set ` + "`" + `OIDCClientID` + "`" + `,
+- ` + "`" + `OIDC` + "`" + `: Configures OIDC authorization. You must then set ` + "`" + `OIDCClientID` + "`" + `,
 ` + "`" + `OIDCClientSecret` + "`" + `, OIDCProviderURL` + "`" + `.
-* ` + "`" + `MTLS` + "`" + `: Configures Client Certificate authorization. Then you can optionaly
+- ` + "`" + `MTLS` + "`" + `: Configures Client Certificate authorization. Then you can optionaly
 ` + "`" + `MTLSCertificateAuthority` + "`" + ` otherwise Aporeto Public Signing Certificate will be
 used.`,
 		Exposed: true,
@@ -2210,10 +2210,10 @@ type SparseService struct {
 
 	// Set how to provide a server certificate to the service.
 	//
-	// * `+"`"+`Aporeto`+"`"+`: Generate a certificate issued from Aporeto public CA.
-	// * `+"`"+`LetsEncrypt`+"`"+`: Issue a certificate from letsencrypt.
-	// * `+"`"+`External`+"`"+`: : Let you define your own certificate and key to use.
-	// * `+"`"+`None`+"`"+`: : TLS is disabled (not recommended).
+	// - `+"`"+`Aporeto`+"`"+`: Generate a certificate issued from Aporeto public CA.
+	// - `+"`"+`LetsEncrypt`+"`"+`: Issue a certificate from letsencrypt.
+	// - `+"`"+`External`+"`"+`: : Let you define your own certificate and key to use.
+	// - `+"`"+`None`+"`"+`: : TLS is disabled (not recommended).
 	TLSType *ServiceTLSTypeValue `json:"TLSType,omitempty" bson:"tlstype" mapstructure:"TLSType,omitempty"`
 
 	// This is a set of all API tags for matching in the DB.
@@ -2233,12 +2233,12 @@ type SparseService struct {
 
 	// AuthorizationType defines the user authorization type that should be used.
 	//
-	// * `+"`"+`None`+"`"+`: No auhtorization.
-	// * `+"`"+`JWT`+"`"+`:  Configures a simple JWT verification from the HTTP `+"`"+`Auhorization`+"`"+`
+	// - `+"`"+`None`+"`"+`: No auhtorization.
+	// - `+"`"+`JWT`+"`"+`:  Configures a simple JWT verification from the HTTP `+"`"+`Auhorization`+"`"+`
 	// Header
-	// * `+"`"+`OIDC`+"`"+`: Configures OIDC authorization. You must then set `+"`"+`OIDCClientID`+"`"+`,
+	// - `+"`"+`OIDC`+"`"+`: Configures OIDC authorization. You must then set `+"`"+`OIDCClientID`+"`"+`,
 	// `+"`"+`OIDCClientSecret`+"`"+`, OIDCProviderURL`+"`"+`.
-	// * `+"`"+`MTLS`+"`"+`: Configures Client Certificate authorization. Then you can optionaly
+	// - `+"`"+`MTLS`+"`"+`: Configures Client Certificate authorization. Then you can optionaly
 	// `+"`"+`MTLSCertificateAuthority`+"`"+` otherwise Aporeto Public Signing Certificate will be
 	// used.
 	AuthorizationType *ServiceAuthorizationTypeValue `json:"authorizationType,omitempty" bson:"authorizationtype" mapstructure:"authorizationType,omitempty"`

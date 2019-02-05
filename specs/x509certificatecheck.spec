@@ -4,6 +4,7 @@ model:
   resource_name: x509certificatechecks
   entity_name: X509CertificateCheck
   package: barret
+  group: internal/x509
   description: Verifies a certificate has not been revoked.
   private: true
   get:

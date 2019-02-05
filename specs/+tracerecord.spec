@@ -4,6 +4,7 @@ model:
   resource_name: tracerecords
   entity_name: TraceRecord
   package: zack
+  group: core/enforcer
   description: Represents a single trace record from the enforcer.
   detached: true
 

@@ -4,6 +4,7 @@ model:
   resource_name: appparameters
   entity_name: AppParameter
   package: highwind
+  group: integration/app
   description: Represents a parameter that can be passed to an app.
   detached: true
 

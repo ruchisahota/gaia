@@ -4,6 +4,7 @@ model:
   resource_name: networkaccesspolicies
   entity_name: NetworkAccessPolicy
   package: squall
+  group: policy/networking
   description: |-
     Allows to define networking policies to allow or prevent processing units
     identitied by their tags to talk to other processing units or external services

@@ -4,6 +4,7 @@ model:
   resource_name: invoices
   entity_name: Invoice
   package: bill
+  group: core/billing
   description: This api allows to view invoices for Aporeto customers.
   get:
     description: Retrieves the object with the given ID.

@@ -4,6 +4,7 @@ model:
   resource_name: punodes
   entity_name: PUNode
   package: squall
+  group: visualization/depmaps
   description: Internal scaling down of a pu for dep map representation.
   private: true
 

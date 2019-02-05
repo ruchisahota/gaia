@@ -4,6 +4,7 @@ model:
   resource_name: services
   entity_name: Service
   package: squall
+  group: policy/services
   description: |-
     A Service defines a generic service object at L4 or L7 that encapsulates the
     description of a micro-service. A service exposes APIs and can be implemented
@@ -146,10 +147,10 @@ attributes:
     description: |-
       Set how to provide a server certificate to the service.
 
-      * `Aporeto`: Generate a certificate issued from Aporeto public CA.
-      * `LetsEncrypt`: Issue a certificate from letsencrypt.
-      * `External`: : Let you define your own certificate and key to use.
-      * `None`: : TLS is disabled (not recommended).
+      - `Aporeto`: Generate a certificate issued from Aporeto public CA.
+      - `LetsEncrypt`: Issue a certificate from letsencrypt.
+      - `External`: : Let you define your own certificate and key to use.
+      - `None`: : TLS is disabled (not recommended).
     type: enum
     exposed: true
     stored: true
@@ -178,12 +179,12 @@ attributes:
     description: |-
       AuthorizationType defines the user authorization type that should be used.
 
-      * `None`: No auhtorization.
-      * `JWT`:  Configures a simple JWT verification from the HTTP `Auhorization`
+      - `None`: No auhtorization.
+      - `JWT`:  Configures a simple JWT verification from the HTTP `Auhorization`
       Header
-      * `OIDC`: Configures OIDC authorization. You must then set `OIDCClientID`,
+      - `OIDC`: Configures OIDC authorization. You must then set `OIDCClientID`,
       `OIDCClientSecret`, OIDCProviderURL`.
-      * `MTLS`: Configures Client Certificate authorization. Then you can optionaly
+      - `MTLS`: Configures Client Certificate authorization. Then you can optionaly
       `MTLSCertificateAuthority` otherwise Aporeto Public Signing Certificate will be
       used.
     type: enum

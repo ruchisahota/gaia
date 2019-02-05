@@ -4,6 +4,7 @@ model:
   resource_name: tags
   entity_name: Tag
   package: tagle
+  group: core/tag
   description: |-
     A tag is a string in the form of "key=value" that can applied to all objects in
     the system. They are used for policy resolution. Tags starting by a "$" are

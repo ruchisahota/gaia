@@ -4,6 +4,7 @@ model:
   resource_name: oidcproviders
   entity_name: OIDCProvider
   package: vince
+  group: core/authentication
   description: |-
     Allows to declare a generic OpenID Connect provider that can be used in exchange
     for a Midgard token.

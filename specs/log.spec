@@ -4,6 +4,7 @@ model:
   resource_name: logs
   entity_name: Log
   package: highwind
+  group: integration/app
   description: Retrieves the log of a deployed app.
 
 # Attributes

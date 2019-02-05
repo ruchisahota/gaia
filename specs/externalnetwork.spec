@@ -4,6 +4,7 @@ model:
   resource_name: externalnetworks
   entity_name: ExternalNetwork
   package: squall
+  group: policy/networking
   description: |-
     An External Network represents a random network or ip that is not managed by the
     system. They can be used in Network Access Policies in order to allow traffic

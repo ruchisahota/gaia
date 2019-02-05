@@ -4,6 +4,7 @@ model:
   resource_name: httpresourcespecs
   entity_name: HTTPResourceSpec
   package: squall
+  group: policy/services
   description: |-
     HTTPResourceSpec descibes an HTTP resource exposed by a service. These APIs
     can be associated with one or more services.

@@ -4,6 +4,7 @@ model:
   resource_name: policyrefreshs
   entity_name: PolicyRefresh
   package: squall
+  group: core/policy
   description: |-
     PolicyRefresh is sent to client when as a push event when a policy refresh is
     needed on their side.

@@ -4,6 +4,7 @@ model:
   resource_name: timeseriesrows
   entity_name: TimeSeriesRow
   package: jenova
+  group: visualization/statsquery
   description: Represent a time series row.
   detached: true
 

@@ -4,6 +4,7 @@ model:
   resource_name: processingunitpolicies
   entity_name: ProcessingUnitPolicy
   package: squall
+  group: policy/processingunits
   description: A ProcessingUnitPolicies needs a better description.
   aliases:
   - pup

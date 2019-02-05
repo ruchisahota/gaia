@@ -4,6 +4,7 @@ model:
   resource_name: alarms
   entity_name: Alarm
   package: sephiroth
+  group: core/monitoring
   description: An alarm represents an event requiring attention.
   indexes:
   - - :shard
