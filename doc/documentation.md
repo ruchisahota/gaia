@@ -6,7 +6,7 @@
 
 ## `core`
 
-| Group             | Description                                                                         |
+| Resource          | Description                                                                         |
 | -                 | -                                                                                   |
 | [Export](#export) | Export the policies and related objects in a given namespace.                       |
 | [Import](#import) | Imports an export of policies and related objects into the namespace.               |
@@ -131,7 +131,7 @@ database.
 
 ## `core/account`
 
-| Group                           | Description                                                                  |
+| Resource                        | Description                                                                  |
 | -                               | -                                                                            |
 | [Account](#account)             | This api allows to view and manage basic information about your account like |
 | [Activate](#activate)           | Used to activate a pending account.                                          |
@@ -519,7 +519,7 @@ Token contains the reset password token.
 
 ## `core/authentication`
 
-| Group                         | Description                                                                         |
+| Resource                      | Description                                                                         |
 | -                             | -                                                                                   |
 | [Auth](#auth)                 | This API verifies if the given token is valid or not.                               |
 | [AWSAccount](#awsaccount)     | Allows to bind an AWS account to your Aporeto account to allow auto registration... |
@@ -935,7 +935,7 @@ Last update date of the object.
 
 ## `core/billing`
 
-| Group                           | Description                                                                 |
+| Resource                        | Description                                                                 |
 | -                               | -                                                                           |
 | [Invoice](#invoice)             | This api allows to view invoices for Aporeto customers.                     |
 | [InvoiceRecord](#invoicerecord) | This api allows to view detailed records of invoices for Aporeto customers. |
@@ -1169,7 +1169,7 @@ ProcessingUnitsQuota contains the maximum PUs available in the Plan.
 
 ## `core/enforcer`
 
-| Group                                       | Description                                                                    |
+| Resource                                    | Description                                                                    |
 | -                                           | -                                                                              |
 | [Enforcer](#enforcer)                       | An Enforcer contains all parameters associated with a registered enforcer. The |
 | [EnforcerReport](#enforcerreport)           | Post a new enforcer statistics report.                                         |
@@ -1927,7 +1927,7 @@ Timestamp is the date of the report.
 
 ## `core/monitoring`
 
-| Group                     | Description                                                                     |
+| Resource                  | Description                                                                     |
 | -                         | -                                                                               |
 | [Activity](#activity)     | Contains all the activity log that happened in a namespace. All successful or   |
 | [Alarm](#alarm)           | An alarm represents an event requiring attention.                               |
@@ -2596,7 +2596,7 @@ TargetIdentity contains the requested target identity.
 
 ## `core/namespace`
 
-| Group                                             | Description                                                                    |
+| Resource                                          | Description                                                                    |
 | -                                                 | -                                                                              |
 | [Namespace](#namespace)                           | A Namespace represents the core organizational unit of the system. All objects |
 | [NamespaceMappingPolicy](#namespacemappingpolicy) | A Namespace Mapping Policy defines in which namespace a Processing Unit should |
@@ -2971,7 +2971,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `core/policy`
 
-| Group                             | Description                                                                   |
+| Resource                          | Description                                                                   |
 | -                                 | -                                                                             |
 | [Policy](#policy)                 | Policy represents the policy primitive used by all aporeto policies.          |
 | [PolicyRefresh](#policyrefresh)   | PolicyRefresh is sent to client when as a push event when a policy refresh is |
@@ -3455,7 +3455,7 @@ present in HTTP requests.
 
 ## `core/processingunit`
 
-| Group                             | Description                                                              |
+| Resource                          | Description                                                              |
 | -                                 | -                                                                        |
 | [ProcessingUnit](#processingunit) | A Processing Unit reprents anything that can compute. It can be a Docker |
 | [Vulnerability](#vulnerability)   | A vulnerabily represents a particular CVE.                               |
@@ -3928,7 +3928,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `core/tag`
 
-| Group                 | Description                                                                     |
+| Resource              | Description                                                                     |
 | -                     | -                                                                               |
 | [Tag](#tag)           | A tag is a string in the form of "key=value" that can applied to all objects in |
 | [TagValue](#tagvalue) | Represents all values associated to tag key.                                    |
@@ -4038,7 +4038,7 @@ List of all values.
 
 ## `integration/app`
 
-| Group                         | Description                                          |
+| Resource                      | Description                                          |
 | -                             | -                                                    |
 | [App](#app)                   | App represents an application that can be installed. |
 | [AppParameter](#appparameter) | Represents a parameter that can be passed to an app. |
@@ -4356,7 +4356,7 @@ Data contains all logs data.
 
 ## `integration/automation`
 
-| Group                                                       | Description                                            |
+| Resource                                                    | Description                                            |
 | -                                                           | -                                                      |
 | [Automation](#automation)                                   | An automation needs documentation.                     |
 | [AutomationTemplate](#automationtemplate)                   | Templates that ca be used in automations.              |
@@ -4741,7 +4741,7 @@ to `RemoteCall`.
 
 ## `policy/audit`
 
-| Group                                                   | Description                                                                         |
+| Resource                                                | Description                                                                         |
 | -                                                       | -                                                                                   |
 | [AuditProfile](#auditprofile)                           | AuditProfile is an audit policy that consists of a set of audit rules. An audit     |
 | [AuditProfileMappingPolicy](#auditprofilemappingpolicy) | Defines an audit policy that determine the sets of enforcers that must implement... |
@@ -5326,7 +5326,7 @@ Date of the report.
 
 ## `policy/authorization`
 
-| Group                                             | Description                                                                    |
+| Resource                                          | Description                                                                    |
 | -                                                 | -                                                                              |
 | [APIAuthorizationPolicy](#apiauthorizationpolicy) | An API Authorization Policy defines what kind of operations a user of a system |
 | [APICheck](#apicheck)                             | This API allows to verify is a client identitied by his token is allowed to do |
@@ -5959,7 +5959,7 @@ Name of the role.
 
 ## `policy/enforcerconfig`
 
-| Group                                                         | Description                                                                         |
+| Resource                                                      | Description                                                                         |
 | -                                                             | -                                                                                   |
 | [EnforcerProfile](#enforcerprofile)                           | Allows to create reusable configuration profile for your enforcers. Enforcer        |
 | [EnforcerProfileMappingPolicy](#enforcerprofilemappingpolicy) | A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used... |
@@ -6615,7 +6615,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `policy/files`
 
-| Group                                 | Description                                                                         |
+| Resource                              | Description                                                                         |
 | -                                     | -                                                                                   |
 | [FileAccessPolicy](#fileaccesspolicy) | A File Access Policy allows Processing Units to access various folder and files.... |
 | [FileAccessReport](#fileaccessreport) | Post a new file access statistics report.                                           |
@@ -7126,7 +7126,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `policy/hooks`
 
-| Group                               | Description                                                                         |
+| Resource                            | Description                                                                         |
 | -                                   | -                                                                                   |
 | [HookPolicy](#hookpolicy)           | Hook allows to to define hooks to the write operations in squall. Hooks are sent... |
 | [RemoteProcessor](#remoteprocessor) | Hook to integrate an Aporeto service.                                               |
@@ -7501,7 +7501,7 @@ Represents the Identity name of the managed object.
 
 ## `policy/hosts`
 
-| Group                                                 | Description                                                              |
+| Resource                                              | Description                                                              |
 | -                                                     | -                                                                        |
 | [HostService](#hostservice)                           | Represents a set of services that a host must expose and protect.        |
 | [HostServiceMappingPolicy](#hostservicemappingpolicy) | Defines a host service mapping policy that provides the relation between |
@@ -7903,7 +7903,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `policy/networking`
 
-| Group                                       | Description                                                                         |
+| Resource                                    | Description                                                                         |
 | -                                           | -                                                                                   |
 | [ExternalNetwork](#externalnetwork)         | An External Network represents a random network or ip that is not managed by the... |
 | [FlowReport](#flowreport)                   | Post a new flow statistics report.                                                  |
@@ -8605,7 +8605,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `policy/processingunits`
 
-| Group                                           | Description                                          |
+| Resource                                        | Description                                          |
 | -                                               | -                                                    |
 | [IsolationProfile](#isolationprofile)           | An IsolationProfile needs documentation.             |
 | [ProcessingUnitPolicy](#processingunitpolicy)   | A ProcessingUnitPolicies needs a better description. |
@@ -9015,7 +9015,7 @@ List of single ports or range (xx:yy).
 
 ## `policy/quota`
 
-| Group                       | Description                                                               |
+| Resource                    | Description                                                               |
 | -                           | -                                                                         |
 | [QuotaPolicy](#quotapolicy) | Quotas Policies allows to set quotas on the number of objects that can be |
 
@@ -9229,7 +9229,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `policy/services`
 
-| Group                                   | Description                                                                         |
+| Resource                                | Description                                                                         |
 | -                                       | -                                                                                   |
 | [ClaimMapping](#claimmapping)           | Represents a mapping from a claim name to an HTTP header.                           |
 | [Endpoint](#endpoint)                   | Represents an HTTP endpoint.                                                        |
@@ -10301,7 +10301,7 @@ UpdateTime is the time at which an entity was updated.
 
 ## `visualization/depmaps`
 
-| Group                               | Description                                                                         |
+| Resource                            | Description                                                                         |
 | -                                   | -                                                                                   |
 | [DependencyMap](#dependencymap)     | This api returns a data structure representing the graph of all processing units... |
 | [GraphEdge](#graphedge)             | Represents an edge from the dependency map.                                         |
@@ -10633,7 +10633,7 @@ List of suggested network access policies.
 
 ## `visualization/statsquery`
 
-| Group                                             | Description                                                                    |
+| Resource                                          | Description                                                                    |
 | -                                                 | -                                                                              |
 | [StatsInfo](#statsinfo)                           | StatsInfo API can be used to list the fields and tags available in a           |
 | [StatsQuery](#statsquery)                         | StatsQuery is a generic API to retrieve time series data stored by the Aporeto |
