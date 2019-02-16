@@ -5766,6 +5766,11 @@ Annotation stores additional information about an entity.
 
 AssociatedTags are the list of tags attached to an entity.
 
+##### `authorizedSubnets (list)`
+
+If set, the it will only be valid if the request comes from one
+the declared subnets.
+
 ##### `certificate (string)`
 
 The string representation of the Certificate used by the application.
