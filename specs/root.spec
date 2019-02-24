@@ -452,6 +452,10 @@ relations:
     - $filtering
     - $propagatable
 
+- rest_name: policygraph
+  create:
+    description: Retrieve a policy graph.
+
 - rest_name: policyrenderer
   create:
     description: Render a policy of a given type for a given set of tags.
