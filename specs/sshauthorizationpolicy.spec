@@ -16,6 +16,8 @@ model:
   - sshpols
   get:
     description: Retrieves the SSHAuthorizationPolicy with the given ID.
+    global_parameters:
+    - $propagatable
   update:
     description: Updates the SSHAuthorizationPolicy with the given ID.
   delete:

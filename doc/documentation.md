@@ -7388,6 +7388,10 @@ Parameters:
 
 Retrieves the SSHAuthorizationPolicy with the given ID.
 
+Parameters:
+
+- `propagated` (`boolean`): Also retrieve the objects that propagate down.
+
 ##### `PUT /sshauthorizationpolicies/:id`
 
 Updates the SSHAuthorizationPolicy with the given ID.
