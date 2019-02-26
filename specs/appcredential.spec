@@ -128,7 +128,6 @@ attributes:
     subtype: string
     stored: true
     required: true
-    default_order: true
     example_value:
     - '@auth:role=enforcer'
     - '@auth:role=kubesquall'
