@@ -48,9 +48,9 @@ attributes:
 
   - name: tags
     description: Tags of the pu.
-    type: external
+    type: list
     exposed: true
-    subtype: map[string]string
+    subtype: string
 
   - name: type
     description: Type of the pu.

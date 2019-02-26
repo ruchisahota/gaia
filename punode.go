@@ -103,7 +103,7 @@ type PUNode struct {
 	Status string `json:"status" bson:"-" mapstructure:"status,omitempty"`
 
 	// Tags of the pu.
-	Tags map[string]string `json:"tags" bson:"-" mapstructure:"tags,omitempty"`
+	Tags []string `json:"tags" bson:"-" mapstructure:"tags,omitempty"`
 
 	// Type of the pu.
 	Type string `json:"type" bson:"-" mapstructure:"type,omitempty"`
@@ -118,7 +118,7 @@ func NewPUNode() *PUNode {
 
 	return &PUNode{
 		ModelVersion: 1,
-		Tags:         map[string]string{},
+		Tags:         []string{},
 	}
 }
 
@@ -394,8 +394,8 @@ var PUNodeAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Tags of the pu.`,
 		Exposed:        true,
 		Name:           "tags",
-		SubType:        "map[string]string",
-		Type:           "external",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"Type": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -471,8 +471,8 @@ var PUNodeLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Tags of the pu.`,
 		Exposed:        true,
 		Name:           "tags",
-		SubType:        "map[string]string",
-		Type:           "external",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"type": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -569,7 +569,7 @@ type SparsePUNode struct {
 	Status *string `json:"status,omitempty" bson:"-" mapstructure:"status,omitempty"`
 
 	// Tags of the pu.
-	Tags *map[string]string `json:"tags,omitempty" bson:"-" mapstructure:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty" bson:"-" mapstructure:"tags,omitempty"`
 
 	// Type of the pu.
 	Type *string `json:"type,omitempty" bson:"-" mapstructure:"type,omitempty"`
