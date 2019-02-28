@@ -491,6 +491,7 @@ relations:
     global_parameters:
     - $timewindow
     - $archivable
+    - $filtering
 
 - rest_name: quotacheck
   create:

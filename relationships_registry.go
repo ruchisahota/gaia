@@ -2091,6 +2091,11 @@ func init() {
 						Name: "archived",
 						Type: "boolean",
 					},
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
 				},
 			},
 		},
@@ -2144,6 +2149,11 @@ func init() {
 					elemental.ParameterDefinition{
 						Name: "archived",
 						Type: "boolean",
+					},
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
 					},
 				},
 			},
