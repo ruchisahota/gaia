@@ -5844,6 +5844,7 @@ Services tags to set some policies.
   "ports": [
     "1:65535"
   ],
+  "propagate": false,
   "protected": false,
   "protocols": [
     "tcp"
@@ -5950,6 +5951,10 @@ Default value:
   "1:65535"
 ]
 ```
+
+##### `propagate` `boolean`
+
+Propagate will propagate the policy to all of its children.
 
 ##### `protected` `boolean`
 
