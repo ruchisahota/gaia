@@ -71,7 +71,7 @@ attributes:
     stored: true
 
   - name: kubernetesMetadataExtractor
-    description: This field is kept for backward compatibiliy for enforcers <= 3.5.
+    description: This field is kept for backward compatibility for enforcers <= 3.5.
     type: enum
     exposed: true
     stored: true
@@ -83,14 +83,14 @@ attributes:
     deprecated: true
 
   - name: kubernetesSupportEnabled
-    description: This field is kept for backward compatibiliy for enforcers <= 3.5.
+    description: This field is kept for backward compatibility for enforcers <= 3.5.
     type: boolean
     exposed: true
     stored: true
     deprecated: true
 
   - name: metadataExtractor
-    description: This field is kept for backward compatibiliy for enforcers <= 3.5.
+    description: This field is kept for backward compatibility for enforcers <= 3.5.
     type: enum
     exposed: true
     stored: true
