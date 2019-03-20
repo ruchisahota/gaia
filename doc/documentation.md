@@ -4759,7 +4759,7 @@ docker container started with labels matching the rule.
 
 _This attribute is deprecated_.
 
-This field is kept for backward compatibiliy for enforcers <= 3.5.
+This field is kept for backward compatibility for enforcers <= 3.5.
 
 Default value:
 
@@ -4771,7 +4771,7 @@ Default value:
 
 _This attribute is deprecated_.
 
-This field is kept for backward compatibiliy for enforcers <= 3.5.
+This field is kept for backward compatibility for enforcers <= 3.5.
 
 ##### `metadata` `[]string` [`creation_only`]
 
@@ -4782,7 +4782,7 @@ with the '@' prefix, and should only be used by external systems.
 
 _This attribute is deprecated_.
 
-This field is kept for backward compatibiliy for enforcers <= 3.5.
+This field is kept for backward compatibility for enforcers <= 3.5.
 
 Default value:
 

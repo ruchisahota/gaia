@@ -138,17 +138,17 @@ type EnforcerProfile struct {
 	// docker container started with labels matching the rule.
 	IgnoreExpression [][]string `json:"ignoreExpression" bson:"ignoreexpression" mapstructure:"ignoreExpression,omitempty"`
 
-	// This field is kept for backward compatibiliy for enforcers <= 3.5.
+	// This field is kept for backward compatibility for enforcers <= 3.5.
 	KubernetesMetadataExtractor EnforcerProfileKubernetesMetadataExtractorValue `json:"kubernetesMetadataExtractor" bson:"kubernetesmetadataextractor" mapstructure:"kubernetesMetadataExtractor,omitempty"`
 
-	// This field is kept for backward compatibiliy for enforcers <= 3.5.
+	// This field is kept for backward compatibility for enforcers <= 3.5.
 	KubernetesSupportEnabled bool `json:"kubernetesSupportEnabled" bson:"kubernetessupportenabled" mapstructure:"kubernetesSupportEnabled,omitempty"`
 
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
 
-	// This field is kept for backward compatibiliy for enforcers <= 3.5.
+	// This field is kept for backward compatibility for enforcers <= 3.5.
 	MetadataExtractor EnforcerProfileMetadataExtractorValue `json:"metadataExtractor" bson:"metadataextractor" mapstructure:"metadataExtractor,omitempty"`
 
 	// Name is the name of the entity.
@@ -827,7 +827,7 @@ docker container started with labels matching the rule.`,
 		ConvertedName:  "KubernetesMetadataExtractor",
 		DefaultValue:   EnforcerProfileKubernetesMetadataExtractorPodAtomic,
 		Deprecated:     true,
-		Description:    `This field is kept for backward compatibiliy for enforcers <= 3.5.`,
+		Description:    `This field is kept for backward compatibility for enforcers <= 3.5.`,
 		Exposed:        true,
 		Name:           "kubernetesMetadataExtractor",
 		Stored:         true,
@@ -837,7 +837,7 @@ docker container started with labels matching the rule.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "KubernetesSupportEnabled",
 		Deprecated:     true,
-		Description:    `This field is kept for backward compatibiliy for enforcers <= 3.5.`,
+		Description:    `This field is kept for backward compatibility for enforcers <= 3.5.`,
 		Exposed:        true,
 		Name:           "kubernetesSupportEnabled",
 		Stored:         true,
@@ -863,7 +863,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		ConvertedName:  "MetadataExtractor",
 		DefaultValue:   EnforcerProfileMetadataExtractorDocker,
 		Deprecated:     true,
-		Description:    `This field is kept for backward compatibiliy for enforcers <= 3.5.`,
+		Description:    `This field is kept for backward compatibility for enforcers <= 3.5.`,
 		Exposed:        true,
 		Name:           "metadataExtractor",
 		Stored:         true,
@@ -1122,7 +1122,7 @@ docker container started with labels matching the rule.`,
 		ConvertedName:  "KubernetesMetadataExtractor",
 		DefaultValue:   EnforcerProfileKubernetesMetadataExtractorPodAtomic,
 		Deprecated:     true,
-		Description:    `This field is kept for backward compatibiliy for enforcers <= 3.5.`,
+		Description:    `This field is kept for backward compatibility for enforcers <= 3.5.`,
 		Exposed:        true,
 		Name:           "kubernetesMetadataExtractor",
 		Stored:         true,
@@ -1132,7 +1132,7 @@ docker container started with labels matching the rule.`,
 		AllowedChoices: []string{},
 		ConvertedName:  "KubernetesSupportEnabled",
 		Deprecated:     true,
-		Description:    `This field is kept for backward compatibiliy for enforcers <= 3.5.`,
+		Description:    `This field is kept for backward compatibility for enforcers <= 3.5.`,
 		Exposed:        true,
 		Name:           "kubernetesSupportEnabled",
 		Stored:         true,
@@ -1158,7 +1158,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		ConvertedName:  "MetadataExtractor",
 		DefaultValue:   EnforcerProfileMetadataExtractorDocker,
 		Deprecated:     true,
-		Description:    `This field is kept for backward compatibiliy for enforcers <= 3.5.`,
+		Description:    `This field is kept for backward compatibility for enforcers <= 3.5.`,
 		Exposed:        true,
 		Name:           "metadataExtractor",
 		Stored:         true,
@@ -1403,17 +1403,17 @@ type SparseEnforcerProfile struct {
 	// docker container started with labels matching the rule.
 	IgnoreExpression *[][]string `json:"ignoreExpression,omitempty" bson:"ignoreexpression" mapstructure:"ignoreExpression,omitempty"`
 
-	// This field is kept for backward compatibiliy for enforcers <= 3.5.
+	// This field is kept for backward compatibility for enforcers <= 3.5.
 	KubernetesMetadataExtractor *EnforcerProfileKubernetesMetadataExtractorValue `json:"kubernetesMetadataExtractor,omitempty" bson:"kubernetesmetadataextractor" mapstructure:"kubernetesMetadataExtractor,omitempty"`
 
-	// This field is kept for backward compatibiliy for enforcers <= 3.5.
+	// This field is kept for backward compatibility for enforcers <= 3.5.
 	KubernetesSupportEnabled *bool `json:"kubernetesSupportEnabled,omitempty" bson:"kubernetessupportenabled" mapstructure:"kubernetesSupportEnabled,omitempty"`
 
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
 	Metadata *[]string `json:"metadata,omitempty" bson:"metadata" mapstructure:"metadata,omitempty"`
 
-	// This field is kept for backward compatibiliy for enforcers <= 3.5.
+	// This field is kept for backward compatibility for enforcers <= 3.5.
 	MetadataExtractor *EnforcerProfileMetadataExtractorValue `json:"metadataExtractor,omitempty" bson:"metadataextractor" mapstructure:"metadataExtractor,omitempty"`
 
 	// Name is the name of the entity.
