@@ -4594,6 +4594,9 @@ Mapping Policy.
 
 ```json
 {
+  "kubernetesMetadataExtractor": "PodAtomic",
+  "kubernetesSupportEnabled": false,
+  "metadataExtractor": "Docker",
   "name": "the name",
   "protected": false
 }
@@ -4674,10 +4677,40 @@ enforcer.
 IgnoreExpression allows to set a tag expression that will make Aporeto to ignore
 docker container started with labels matching the rule.
 
+##### `kubernetesMetadataExtractor` `emum(KubeSquall | PodAtomic | PodContainers)`
+
+_This attribute is deprecated_.
+
+This field is kept for backward compatibiliy for enforcers <= 3.5.
+
+Default value:
+
+```json
+"PodAtomic"
+```
+
+##### `kubernetesSupportEnabled` `boolean`
+
+_This attribute is deprecated_.
+
+This field is kept for backward compatibiliy for enforcers <= 3.5.
+
 ##### `metadata` `[]string` [`creation_only`]
 
 Metadata contains tags that can only be set during creation. They must all start
 with the '@' prefix, and should only be used by external systems.
+
+##### `metadataExtractor` `emum(Docker | ECS | Kubernetes)`
+
+_This attribute is deprecated_.
+
+This field is kept for backward compatibiliy for enforcers <= 3.5.
+
+Default value:
+
+```json
+"Docker"
+```
 
 ##### `name` `string` [`required`,`max_length=256`]
 
