@@ -277,6 +277,12 @@ func (o *Namespace) GetName() string {
 	return o.Name
 }
 
+// SetName sets the property Name of the receiver using the given value.
+func (o *Namespace) SetName(name string) {
+
+	o.Name = name
+}
+
 // GetNamespace returns the Namespace of the receiver.
 func (o *Namespace) GetNamespace() string {
 
@@ -743,6 +749,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Orderable:      true,
 		PrimaryKey:     true,
 		Required:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -987,6 +994,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Orderable:      true,
 		PrimaryKey:     true,
 		Required:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -1366,6 +1374,12 @@ func (o *SparseNamespace) SetMetadata(metadata []string) {
 func (o *SparseNamespace) GetName() string {
 
 	return *o.Name
+}
+
+// SetName sets the property Name of the receiver using the address of the given value.
+func (o *SparseNamespace) SetName(name string) {
+
+	o.Name = &name
 }
 
 // GetNamespace returns the Namespace of the receiver.

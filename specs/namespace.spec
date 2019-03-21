@@ -98,6 +98,7 @@ attributes:
     example_value: mynamespace
     filterable: true
     getter: true
+    setter: true
     orderable: true
     primary_key: true
 
