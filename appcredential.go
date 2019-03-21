@@ -162,7 +162,7 @@ type AppCredential struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAppCredential returns a new *AppCredential
@@ -1328,7 +1328,7 @@ type SparseAppCredential struct {
 	Certificate *string `json:"certificate,omitempty" bson:"certificate" mapstructure:"certificate,omitempty"`
 
 	// Link to the certificate created for this application.
-	CertificateSN *string `json:"-,omitempty" bson:"certificatesn" mapstructure:"-,omitempty"`
+	CertificateSN *string `json:"-" bson:"certificatesn" mapstructure:"-,omitempty"`
 
 	// CreatedTime is the time at which the object was created.
 	CreateTime *time.Time `json:"createTime,omitempty" bson:"createtime" mapstructure:"createTime,omitempty"`
@@ -1372,15 +1372,15 @@ type SparseAppCredential struct {
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
-	ZHash *int `json:"-,omitempty" bson:"zhash" mapstructure:"-,omitempty"`
+	ZHash *int `json:"-" bson:"zhash" mapstructure:"-,omitempty"`
 
 	// geographical zone. This is used for sharding and
 	// georedundancy.
-	Zone *int `json:"-,omitempty" bson:"zone" mapstructure:"-,omitempty"`
+	Zone *int `json:"-" bson:"zone" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseAppCredential returns a new  SparseAppCredential.

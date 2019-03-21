@@ -232,7 +232,7 @@ type Enforcer struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEnforcer returns a new *Enforcer
@@ -1672,11 +1672,11 @@ type SparseEnforcer struct {
 
 	// CertificateExpirationDate is the expiration date of the certificate. This is an
 	// internal attribute, not exposed in the API.
-	CertificateExpirationDate *time.Time `json:"-,omitempty" bson:"-" mapstructure:"-,omitempty"`
+	CertificateExpirationDate *time.Time `json:"-" bson:"-" mapstructure:"-,omitempty"`
 
 	// CertificateKey is the certificate key of the enforcer. This is an internal
 	// attribute, not exposed in the API.
-	CertificateKey *string `json:"-,omitempty" bson:"-" mapstructure:"-,omitempty"`
+	CertificateKey *string `json:"-" bson:"-" mapstructure:"-,omitempty"`
 
 	// If not empty during a create or update generation, the provided CSR will be
 	// validated and signed by the backend providing a renewed certificate.
@@ -1706,7 +1706,7 @@ type SparseEnforcer struct {
 	LastCollectionTime *time.Time `json:"lastCollectionTime,omitempty" bson:"lastcollectiontime" mapstructure:"lastCollectionTime,omitempty"`
 
 	// Last poke is the time when the enforcer got last poked.
-	LastPokeTime *time.Time `json:"-,omitempty" bson:"lastpoketime" mapstructure:"-,omitempty"`
+	LastPokeTime *time.Time `json:"-" bson:"lastpoketime" mapstructure:"-,omitempty"`
 
 	// LastSyncTime holds the last heart beat time.
 	LastSyncTime *time.Time `json:"lastSyncTime,omitempty" bson:"lastsynctime" mapstructure:"lastSyncTime,omitempty"`
@@ -1715,7 +1715,7 @@ type SparseEnforcer struct {
 	// services that have been applied to this enforcer. This list might be different
 	// from the list retrieved through policy, if the dynamically calculated list leads
 	// into conflicts.
-	LastValidHostServices *HostServicesList `json:"-,omitempty" bson:"lastvalidhostservices" mapstructure:"-,omitempty"`
+	LastValidHostServices *HostServicesList `json:"-" bson:"lastvalidhostservices" mapstructure:"-,omitempty"`
 
 	// LocalCA contains the initial chain of trust for the enforcer. This valud is only
 	// given when you retrieve a single enforcer.
@@ -1761,15 +1761,15 @@ type SparseEnforcer struct {
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
-	ZHash *int `json:"-,omitempty" bson:"zhash" mapstructure:"-,omitempty"`
+	ZHash *int `json:"-" bson:"zhash" mapstructure:"-,omitempty"`
 
 	// geographical zone. This is used for sharding and
 	// georedundancy.
-	Zone *int `json:"-,omitempty" bson:"zone" mapstructure:"-,omitempty"`
+	Zone *int `json:"-" bson:"zone" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseEnforcer returns a new  SparseEnforcer.

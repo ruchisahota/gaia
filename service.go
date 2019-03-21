@@ -317,7 +317,7 @@ type Service struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewService returns a new *Service
@@ -2220,16 +2220,16 @@ type SparseService struct {
 	TLSType *ServiceTLSTypeValue `json:"TLSType,omitempty" bson:"tlstype" mapstructure:"TLSType,omitempty"`
 
 	// This is a set of all API tags for matching in the DB.
-	AllAPITags *[]string `json:"-,omitempty" bson:"allapitags" mapstructure:"-,omitempty"`
+	AllAPITags *[]string `json:"-" bson:"allapitags" mapstructure:"-,omitempty"`
 
 	// This is a set of all selector tags for matching in the DB.
-	AllServiceTags *[]string `json:"-,omitempty" bson:"allservicetags" mapstructure:"-,omitempty"`
+	AllServiceTags *[]string `json:"-" bson:"allservicetags" mapstructure:"-,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations *map[string][]string `json:"annotations,omitempty" bson:"annotations" mapstructure:"annotations,omitempty"`
 
 	// Archived defines if the object is archived.
-	Archived *bool `json:"-,omitempty" bson:"archived" mapstructure:"-,omitempty"`
+	Archived *bool `json:"-" bson:"archived" mapstructure:"-,omitempty"`
 
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags *[]string `json:"associatedTags,omitempty" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
@@ -2339,15 +2339,15 @@ type SparseService struct {
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
-	ZHash *int `json:"-,omitempty" bson:"zhash" mapstructure:"-,omitempty"`
+	ZHash *int `json:"-" bson:"zhash" mapstructure:"-,omitempty"`
 
 	// geographical zone. This is used for sharding and
 	// georedundancy.
-	Zone *int `json:"-,omitempty" bson:"zone" mapstructure:"-,omitempty"`
+	Zone *int `json:"-" bson:"zone" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseService returns a new  SparseService.

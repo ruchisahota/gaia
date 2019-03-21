@@ -148,7 +148,7 @@ type Namespace struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewNamespace returns a new *Namespace
@@ -1160,7 +1160,7 @@ type SparseNamespace struct {
 	Annotations *map[string][]string `json:"annotations,omitempty" bson:"annotations" mapstructure:"annotations,omitempty"`
 
 	// AssociatedLocalCAID holds the remote ID of the certificate authority to use.
-	AssociatedLocalCAID *string `json:"-,omitempty" bson:"associatedlocalcaid" mapstructure:"-,omitempty"`
+	AssociatedLocalCAID *string `json:"-" bson:"associatedlocalcaid" mapstructure:"-,omitempty"`
 
 	// associatedSSHCAID holds the remote ID of the SSH authority to use.
 	AssociatedSSHCAID *string `json:"associatedSSHCAID,omitempty" bson:"associatedsshcaid" mapstructure:"associatedSSHCAID,omitempty"`
@@ -1210,7 +1210,7 @@ type SparseNamespace struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseNamespace returns a new  SparseNamespace.

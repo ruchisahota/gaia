@@ -97,7 +97,7 @@ type EnforcerTraceReport struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEnforcerTraceReport returns a new *EnforcerTraceReport
@@ -483,11 +483,11 @@ type SparseEnforcerTraceReport struct {
 	PuID *string `json:"puID,omitempty" bson:"puid" mapstructure:"puID,omitempty"`
 
 	// List of iptables trace records collected.
-	Records *[]*TraceRecord `json:"-,omitempty" bson:"records" mapstructure:"-,omitempty"`
+	Records *[]*TraceRecord `json:"-" bson:"records" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseEnforcerTraceReport returns a new  SparseEnforcerTraceReport.

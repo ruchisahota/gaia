@@ -157,7 +157,7 @@ type InstalledApp struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewInstalledApp returns a new *InstalledApp
@@ -1020,7 +1020,7 @@ type SparseInstalledApp struct {
 	Annotations *map[string][]string `json:"annotations,omitempty" bson:"annotations" mapstructure:"annotations,omitempty"`
 
 	// AppIdentifier retains the identifier for the app.
-	AppIdentifier *string `json:"-,omitempty" bson:"appidentifier" mapstructure:"-,omitempty"`
+	AppIdentifier *string `json:"-" bson:"appidentifier" mapstructure:"-,omitempty"`
 
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags *[]string `json:"associatedTags,omitempty" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
@@ -1035,7 +1035,7 @@ type SparseInstalledApp struct {
 	CurrentVersion *string `json:"currentVersion,omitempty" bson:"currentversion" mapstructure:"currentVersion,omitempty"`
 
 	// DeploymentCount represents the number of expected deployment for this app.
-	DeploymentCount *int `json:"-,omitempty" bson:"deploymentcount" mapstructure:"-,omitempty"`
+	DeploymentCount *int `json:"-" bson:"deploymentcount" mapstructure:"-,omitempty"`
 
 	// Name is the name of the entity.
 	Name *string `json:"name,omitempty" bson:"name" mapstructure:"name,omitempty"`
@@ -1063,7 +1063,7 @@ type SparseInstalledApp struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseInstalledApp returns a new  SparseInstalledApp.

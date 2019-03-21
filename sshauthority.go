@@ -117,7 +117,7 @@ type SSHAuthority struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSSHAuthority returns a new *SSHAuthority
@@ -604,7 +604,7 @@ type SparseSSHAuthority struct {
 	Name *string `json:"name,omitempty" bson:"name" mapstructure:"name,omitempty"`
 
 	// Contains the private key of the CA.
-	PrivateKey *string `json:"-,omitempty" bson:"privatekey" mapstructure:"-,omitempty"`
+	PrivateKey *string `json:"-" bson:"privatekey" mapstructure:"-,omitempty"`
 
 	// Contains the public key of the CA.
 	PublicKey *string `json:"publicKey,omitempty" bson:"publickey" mapstructure:"publicKey,omitempty"`
@@ -614,7 +614,7 @@ type SparseSSHAuthority struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseSSHAuthority returns a new  SparseSSHAuthority.

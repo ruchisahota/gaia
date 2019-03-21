@@ -99,7 +99,7 @@ type Revocation struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewRevocation returns a new *Revocation
@@ -463,7 +463,7 @@ func (o SparseRevocationsList) Version() int {
 // SparseRevocation represents the sparse version of a revocation.
 type SparseRevocation struct {
 	// ID contains the ID of the revocation.
-	ID *string `json:"-,omitempty" bson:"_id" mapstructure:"-,omitempty"`
+	ID *string `json:"-" bson:"_id" mapstructure:"-,omitempty"`
 
 	// Contains the certificate expiration date. This will be used to clean up revoked
 	// certificates that have expired.
@@ -480,7 +480,7 @@ type SparseRevocation struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseRevocation returns a new  SparseRevocation.

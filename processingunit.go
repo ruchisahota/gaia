@@ -241,7 +241,7 @@ type ProcessingUnit struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewProcessingUnit returns a new *ProcessingUnit
@@ -1571,7 +1571,7 @@ type SparseProcessingUnit struct {
 	Annotations *map[string][]string `json:"annotations,omitempty" bson:"annotations" mapstructure:"annotations,omitempty"`
 
 	// Archived defines if the object is archived.
-	Archived *bool `json:"-,omitempty" bson:"archived" mapstructure:"-,omitempty"`
+	Archived *bool `json:"-" bson:"archived" mapstructure:"-,omitempty"`
 
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags *[]string `json:"associatedTags,omitempty" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
@@ -1607,7 +1607,7 @@ type SparseProcessingUnit struct {
 	LastCollectionTime *time.Time `json:"lastCollectionTime,omitempty" bson:"lastcollectiontime" mapstructure:"lastCollectionTime,omitempty"`
 
 	// Last poke is the time when the pu got last poked.
-	LastPokeTime *time.Time `json:"-,omitempty" bson:"lastpoketime" mapstructure:"-,omitempty"`
+	LastPokeTime *time.Time `json:"-" bson:"lastpoketime" mapstructure:"-,omitempty"`
 
 	// LastSyncTime is the time when the policy was last resolved.
 	LastSyncTime *time.Time `json:"lastSyncTime,omitempty" bson:"lastsynctime" mapstructure:"lastSyncTime,omitempty"`
@@ -1650,15 +1650,15 @@ type SparseProcessingUnit struct {
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
-	ZHash *int `json:"-,omitempty" bson:"zhash" mapstructure:"-,omitempty"`
+	ZHash *int `json:"-" bson:"zhash" mapstructure:"-,omitempty"`
 
 	// geographical zone. This is used for sharding and
 	// georedundancy.
-	Zone *int `json:"-,omitempty" bson:"zone" mapstructure:"-,omitempty"`
+	Zone *int `json:"-" bson:"zone" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseProcessingUnit returns a new  SparseProcessingUnit.

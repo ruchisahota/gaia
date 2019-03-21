@@ -189,7 +189,7 @@ type EnforcerProfile struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewEnforcerProfile returns a new *EnforcerProfile
@@ -1446,15 +1446,15 @@ type SparseEnforcerProfile struct {
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
-	ZHash *int `json:"-,omitempty" bson:"zhash" mapstructure:"-,omitempty"`
+	ZHash *int `json:"-" bson:"zhash" mapstructure:"-,omitempty"`
 
 	// geographical zone. This is used for sharding and
 	// georedundancy.
-	Zone *int `json:"-,omitempty" bson:"zone" mapstructure:"-,omitempty"`
+	Zone *int `json:"-" bson:"zone" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseEnforcerProfile returns a new  SparseEnforcerProfile.

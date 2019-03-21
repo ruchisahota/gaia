@@ -170,7 +170,7 @@ type ImportRequest struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewImportRequest returns a new *ImportRequest
@@ -1241,7 +1241,7 @@ type SparseImportRequest struct {
 	Status *ImportRequestStatusValue `json:"status,omitempty" bson:"status" mapstructure:"status,omitempty"`
 
 	// Internal field to know if the request has been submit once.
-	SubmittedOnce *bool `json:"-,omitempty" bson:"submittedonce" mapstructure:"-,omitempty"`
+	SubmittedOnce *bool `json:"-" bson:"submittedonce" mapstructure:"-,omitempty"`
 
 	// The namespace where the request will be sent. The requester can set any
 	// namespace but he needs to have an autorization to post the request in that
@@ -1253,15 +1253,15 @@ type SparseImportRequest struct {
 
 	// geographical hash of the data. This is used for sharding and
 	// georedundancy.
-	ZHash *int `json:"-,omitempty" bson:"zhash" mapstructure:"-,omitempty"`
+	ZHash *int `json:"-" bson:"zhash" mapstructure:"-,omitempty"`
 
 	// geographical zone. This is used for sharding and
 	// georedundancy.
-	Zone *int `json:"-,omitempty" bson:"zone" mapstructure:"-,omitempty"`
+	Zone *int `json:"-" bson:"zone" mapstructure:"-,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseImportRequest returns a new  SparseImportRequest.

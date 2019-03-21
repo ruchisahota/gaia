@@ -101,7 +101,7 @@ type Authority struct {
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewAuthority returns a new *Authority
@@ -513,14 +513,14 @@ type SparseAuthority struct {
 	ExpirationDate *time.Time `json:"expirationDate,omitempty" bson:"expirationdate" mapstructure:"expirationDate,omitempty"`
 
 	// Encrypted private key of the Authority.
-	Key *string `json:"-,omitempty" bson:"key" mapstructure:"-,omitempty"`
+	Key *string `json:"-" bson:"key" mapstructure:"-,omitempty"`
 
 	// serialNumber of the certificate.
 	SerialNumber *string `json:"serialNumber,omitempty" bson:"serialnumber" mapstructure:"serialNumber,omitempty"`
 
 	ModelVersion int `json:"-" bson:"_modelversion"`
 
-	sync.Mutex `json:"-" bson:"-"`
+	*sync.Mutex `json:"-" bson:"-"`
 }
 
 // NewSparseAuthority returns a new  SparseAuthority.
