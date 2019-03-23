@@ -366,6 +366,10 @@ func (o *PacketReport) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredString("event", string(o.Event)); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
 	if err := elemental.ValidateStringInList("event", string(o.Event), []string{"Received", "Transmitted", "Dropped"}, false); err != nil {
 		errors = append(errors, err)
 	}

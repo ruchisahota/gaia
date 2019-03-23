@@ -293,6 +293,30 @@ func (o *Account) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
+// GetCreateTime returns the CreateTime of the receiver.
+func (o *Account) GetCreateTime() time.Time {
+
+	return o.CreateTime
+}
+
+// SetCreateTime sets the property CreateTime of the receiver using the given value.
+func (o *Account) SetCreateTime(createTime time.Time) {
+
+	o.CreateTime = createTime
+}
+
+// GetUpdateTime returns the UpdateTime of the receiver.
+func (o *Account) GetUpdateTime() time.Time {
+
+	return o.UpdateTime
+}
+
+// SetUpdateTime sets the property UpdateTime of the receiver using the given value.
+func (o *Account) SetUpdateTime(updateTime time.Time) {
+
+	o.UpdateTime = updateTime
+}
+
 // GetZHash returns the ZHash of the receiver.
 func (o *Account) GetZHash() int {
 
@@ -992,9 +1016,11 @@ also use any alternate key.`,
 		ConvertedName:  "CreateTime",
 		Description:    `Creation date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "createTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -1103,9 +1129,11 @@ also use any alternate key.`,
 		ConvertedName:  "UpdateTime",
 		Description:    `Last update date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "updateTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -1399,9 +1427,11 @@ also use any alternate key.`,
 		ConvertedName:  "CreateTime",
 		Description:    `Creation date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "createTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -1510,9 +1540,11 @@ also use any alternate key.`,
 		ConvertedName:  "UpdateTime",
 		Description:    `Last update date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "updateTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -1882,6 +1914,30 @@ func (o *SparseAccount) ToPlain() elemental.PlainIdentifiable {
 	}
 
 	return out
+}
+
+// GetCreateTime returns the CreateTime of the receiver.
+func (o *SparseAccount) GetCreateTime() time.Time {
+
+	return *o.CreateTime
+}
+
+// SetCreateTime sets the property CreateTime of the receiver using the address of the given value.
+func (o *SparseAccount) SetCreateTime(createTime time.Time) {
+
+	o.CreateTime = &createTime
+}
+
+// GetUpdateTime returns the UpdateTime of the receiver.
+func (o *SparseAccount) GetUpdateTime() time.Time {
+
+	return *o.UpdateTime
+}
+
+// SetUpdateTime sets the property UpdateTime of the receiver using the address of the given value.
+func (o *SparseAccount) SetUpdateTime(updateTime time.Time) {
+
+	o.UpdateTime = &updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.

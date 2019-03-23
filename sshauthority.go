@@ -172,6 +172,18 @@ func (o *SSHAuthority) String() string {
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
+// GetCreateTime returns the CreateTime of the receiver.
+func (o *SSHAuthority) GetCreateTime() time.Time {
+
+	return o.CreateTime
+}
+
+// SetCreateTime sets the property CreateTime of the receiver using the given value.
+func (o *SSHAuthority) SetCreateTime(createTime time.Time) {
+
+	o.CreateTime = createTime
+}
+
 // GetName returns the Name of the receiver.
 func (o *SSHAuthority) GetName() string {
 
@@ -182,6 +194,18 @@ func (o *SSHAuthority) GetName() string {
 func (o *SSHAuthority) SetName(name string) {
 
 	o.Name = name
+}
+
+// GetUpdateTime returns the UpdateTime of the receiver.
+func (o *SSHAuthority) GetUpdateTime() time.Time {
+
+	return o.UpdateTime
+}
+
+// SetUpdateTime sets the property UpdateTime of the receiver using the given value.
+func (o *SSHAuthority) SetUpdateTime(updateTime time.Time) {
+
+	o.UpdateTime = updateTime
 }
 
 // ToSparse returns the sparse version of the model.
@@ -381,9 +405,11 @@ var SSHAuthorityAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "CreateTime",
 		Description:    `Creation date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "createTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -430,9 +456,11 @@ var SSHAuthorityAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "UpdateTime",
 		Description:    `Last update date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "updateTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -470,9 +498,11 @@ var SSHAuthorityLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		ConvertedName:  "CreateTime",
 		Description:    `Creation date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "createTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -519,9 +549,11 @@ var SSHAuthorityLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		ConvertedName:  "UpdateTime",
 		Description:    `Last update date of the object.`,
 		Exposed:        true,
+		Getter:         true,
 		Name:           "updateTime",
 		Orderable:      true,
 		ReadOnly:       true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "time",
 	},
@@ -679,6 +711,18 @@ func (o *SparseSSHAuthority) ToPlain() elemental.PlainIdentifiable {
 	return out
 }
 
+// GetCreateTime returns the CreateTime of the receiver.
+func (o *SparseSSHAuthority) GetCreateTime() time.Time {
+
+	return *o.CreateTime
+}
+
+// SetCreateTime sets the property CreateTime of the receiver using the address of the given value.
+func (o *SparseSSHAuthority) SetCreateTime(createTime time.Time) {
+
+	o.CreateTime = &createTime
+}
+
 // GetName returns the Name of the receiver.
 func (o *SparseSSHAuthority) GetName() string {
 
@@ -689,6 +733,18 @@ func (o *SparseSSHAuthority) GetName() string {
 func (o *SparseSSHAuthority) SetName(name string) {
 
 	o.Name = &name
+}
+
+// GetUpdateTime returns the UpdateTime of the receiver.
+func (o *SparseSSHAuthority) GetUpdateTime() time.Time {
+
+	return *o.UpdateTime
+}
+
+// SetUpdateTime sets the property UpdateTime of the receiver using the address of the given value.
+func (o *SparseSSHAuthority) SetUpdateTime(updateTime time.Time) {
+
+	o.UpdateTime = &updateTime
 }
 
 // DeepCopy returns a deep copy if the SparseSSHAuthority.

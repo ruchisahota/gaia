@@ -125,6 +125,10 @@ func (o *AutomationTemplateParameter) Validate() error {
 		errors = append(errors, err)
 	}
 
+	if err := elemental.ValidateRequiredString("type", string(o.Type)); err != nil {
+		requiredErrors = append(requiredErrors, err)
+	}
+
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Array", "Boolean", "Enum", "Filter", "Float", "Integer", "Object", "String"}, false); err != nil {
 		errors = append(errors, err)
 	}
