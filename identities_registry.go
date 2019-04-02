@@ -27,6 +27,8 @@ var (
 		"awsregister":   AWSRegisterIdentity,
 		"category":      CategoryIdentity,
 
+		"claims": ClaimsIdentity,
+
 		"customer":            CustomerIdentity,
 		"datapathcertificate": DataPathCertificateIdentity,
 		"dependencymap":       DependencyMapIdentity,
@@ -134,6 +136,8 @@ var (
 		"awsapigateways": AWSAPIGatewayIdentity,
 		"awsregister":    AWSRegisterIdentity,
 		"categories":     CategoryIdentity,
+
+		"claims": ClaimsIdentity,
 
 		"customers":            CustomerIdentity,
 		"datapathcertificates": DataPathCertificateIdentity,
@@ -358,6 +362,11 @@ var (
 		"awsapigateway":      nil,
 		"awsregister":        nil,
 		"category":           nil,
+		"claims": [][]string{
+			[]string{":shard", "zone", "zHash"},
+			[]string{"namespace"},
+			[]string{"namespace", "normalizedTags"},
+		},
 		"customer": [][]string{
 			[]string{"providerCustomerID"},
 		},
@@ -610,6 +619,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewAWSRegister()
 	case CategoryIdentity:
 		return NewCategory()
+	case ClaimsIdentity:
+		return NewClaims()
 	case CustomerIdentity:
 		return NewCustomer()
 	case DataPathCertificateIdentity:
@@ -813,6 +824,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseAWSRegister()
 	case CategoryIdentity:
 		return NewSparseCategory()
+	case ClaimsIdentity:
+		return NewSparseClaims()
 	case CustomerIdentity:
 		return NewSparseCustomer()
 	case DataPathCertificateIdentity:
@@ -1024,6 +1037,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &AWSRegistersList{}
 	case CategoryIdentity:
 		return &CategoriesList{}
+	case ClaimsIdentity:
+		return &ClaimsList{}
 	case CustomerIdentity:
 		return &CustomersList{}
 	case DataPathCertificateIdentity:
@@ -1225,6 +1240,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseAWSRegistersList{}
 	case CategoryIdentity:
 		return &SparseCategoriesList{}
+	case ClaimsIdentity:
+		return &SparseClaimsList{}
 	case CustomerIdentity:
 		return &SparseCustomersList{}
 	case DataPathCertificateIdentity:
@@ -1421,6 +1438,7 @@ func AllIdentities() []elemental.Identity {
 		AWSAPIGatewayIdentity,
 		AWSRegisterIdentity,
 		CategoryIdentity,
+		ClaimsIdentity,
 		CustomerIdentity,
 		DataPathCertificateIdentity,
 		DependencyMapIdentity,
@@ -1566,6 +1584,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case AWSRegisterIdentity:
 		return []string{}
 	case CategoryIdentity:
+		return []string{}
+	case ClaimsIdentity:
 		return []string{}
 	case CustomerIdentity:
 		return []string{}
