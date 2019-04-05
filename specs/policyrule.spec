@@ -121,3 +121,5 @@ attributes:
     type: external
     exposed: true
     subtype: '[][]string'
+    validations:
+    - $tagsExpression
