@@ -318,11 +318,11 @@ func ValidateProcessingUnitServicesListWithoutOverlap(svcs []*ProcessingUnitServ
 				}
 
 				if pr.HasOverlapWithPortsRanges(cpr) {
-					return nil, nil, fmt.Errorf("Port range overlaps with another range")
+					return nil, nil, fmt.Errorf("port range overlaps with another range")
 				}
 
 				if pr.HasOverlapWithPortsList(cpl) {
-					return nil, nil, fmt.Errorf("Port range overlaps with another port")
+					return nil, nil, fmt.Errorf("port range overlaps with another port")
 				}
 
 				*cpr = append(*cpr, pr)
@@ -338,11 +338,11 @@ func ValidateProcessingUnitServicesListWithoutOverlap(svcs []*ProcessingUnitServ
 			}
 
 			if pl.HasOverlapWithPortsList(cpl) {
-				return nil, nil, fmt.Errorf("Port overlaps with another port")
+				return nil, nil, fmt.Errorf("port overlaps with another port")
 			}
 
 			if pl.HasOverlapWithPortsRanges(cpr) {
-				return nil, nil, fmt.Errorf("Port overlaps with another port range")
+				return nil, nil, fmt.Errorf("port overlaps with another port range")
 			}
 
 			*cpl = append(*cpl, *pl...)
