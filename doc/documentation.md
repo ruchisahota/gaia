@@ -904,7 +904,7 @@ Realm is the authentication realm.
 
 Token is the token to use for the registration.
 
-##### `validity` `string` [`format=^([0-9]+h[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+s|[0-9]+h[0-9]+m|[0-9]+s|[0-9]+h|[0-9]+m)$`]
+##### `validity` `string`
 
 Validity configures the max validity time for a token. If it is bigger than the
 configured max validity, it will be capped.
