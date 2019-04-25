@@ -1178,7 +1178,7 @@ func TestValidateTag(t *testing.T) {
 		{
 			"tag value is utf8 character",
 			args{
-				`name=utf8-_!@#%&" (*)+.,/$!:;<>=?{}~"`,
+				"name=utf8-_!@#%&\" (*)+.,/$!:;<>=?{}~",
 			},
 			false,
 		},
