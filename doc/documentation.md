@@ -2267,6 +2267,8 @@ Namespace tag attached to an entity.
 
 ##### `networkAccessPolicyTags` `[]string`
 
+_This attribute is deprecated_.
+
 List of tags that will be added to every `or` clause of all network access
 policies in the namespace and its children.
 
@@ -3237,7 +3239,7 @@ Count represents the number of time the tag is used.
 
 Namespace represents the namespace of the counted tag.
 
-##### `value` `string` [`required`,`creation_only`,`format=^[\w\d\*\$\+\.:,|@<>/-]+=[= \/\"\!\?\{\}\(\)\w\d\*\$\+\.:;,|@%&~<>#/-]+$`]
+##### `value` `string` [`required`,`creation_only`]
 
 Value represents the value of the tag.
 
