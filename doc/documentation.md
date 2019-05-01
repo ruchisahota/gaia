@@ -4302,17 +4302,11 @@ Type of record.
 
 Needs documentation.
 
-##### `success` `boolean` [`required`]
+##### `success` `boolean`
 
 Tells if the operation has been a success of a failure.
 
-Default value:
-
-```json
-false
-```
-
-##### `syscall` `string` [`required`]
+##### `syscall` `string`
 
 Syscall name.
 
