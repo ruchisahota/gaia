@@ -329,6 +329,8 @@ var (
 			[]string{"namespace", "operation"},
 			[]string{"namespace", "error.code"},
 			[]string{"namespace", "targetIdentity"},
+			[]string{"namespace", "data.ID"},
+			[]string{"namespace", "originalData.ID"},
 			[]string{":shard", "zone", "zHash"},
 		},
 		"alarm": [][]string{
