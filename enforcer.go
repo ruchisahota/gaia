@@ -37,9 +37,6 @@ const (
 
 	// EnforcerOperationalStatusRegistered represents the value Registered.
 	EnforcerOperationalStatusRegistered EnforcerOperationalStatusValue = "Registered"
-
-	// EnforcerOperationalStatusUnknown represents the value Unknown.
-	EnforcerOperationalStatusUnknown EnforcerOperationalStatusValue = "Unknown"
 )
 
 // EnforcerIdentity represents the Identity of the object.
@@ -768,7 +765,7 @@ func (o *Enforcer) Validate() error {
 		errors = errors.Append(err)
 	}
 
-	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Registered", "Connected", "Disconnected", "Initialized", "Unknown"}, false); err != nil {
+	if err := elemental.ValidateStringInList("operationalStatus", string(o.OperationalStatus), []string{"Registered", "Connected", "Disconnected", "Initialized"}, false); err != nil {
 		errors = errors.Append(err)
 	}
 
@@ -1184,7 +1181,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Type:           "list",
 	},
 	"OperationalStatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Registered", "Connected", "Disconnected", "Initialized", "Unknown"},
+		AllowedChoices: []string{"Registered", "Connected", "Disconnected", "Initialized"},
 		ConvertedName:  "OperationalStatus",
 		DefaultValue:   EnforcerOperationalStatusRegistered,
 		Description:    `OperationalStatus tells the status of the enforcer.`,
@@ -1609,7 +1606,7 @@ with the '@' prefix, and should only be used by external systems.`,
 		Type:           "list",
 	},
 	"operationalstatus": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Registered", "Connected", "Disconnected", "Initialized", "Unknown"},
+		AllowedChoices: []string{"Registered", "Connected", "Disconnected", "Initialized"},
 		ConvertedName:  "OperationalStatus",
 		DefaultValue:   EnforcerOperationalStatusRegistered,
 		Description:    `OperationalStatus tells the status of the enforcer.`,
