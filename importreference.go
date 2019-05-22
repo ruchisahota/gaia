@@ -12,7 +12,7 @@ import (
 var ImportReferenceIdentity = elemental.Identity{
 	Name:     "importreference",
 	Category: "importreferences",
-	Package:  "Yuna",
+	Package:  "yuna",
 	Private:  false,
 }
 
