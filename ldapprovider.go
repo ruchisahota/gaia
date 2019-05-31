@@ -8,43 +8,54 @@ import (
 	"go.aporeto.io/elemental"
 )
 
-// OIDCProviderIdentity represents the Identity of the object.
-var OIDCProviderIdentity = elemental.Identity{
-	Name:     "oidcprovider",
-	Category: "oidcproviders",
+// LDAPProviderConnSecurityProtocolValue represents the possible values for attribute "connSecurityProtocol".
+type LDAPProviderConnSecurityProtocolValue string
+
+const (
+	// LDAPProviderConnSecurityProtocolInbandTLS represents the value InbandTLS.
+	LDAPProviderConnSecurityProtocolInbandTLS LDAPProviderConnSecurityProtocolValue = "InbandTLS"
+
+	// LDAPProviderConnSecurityProtocolTLS represents the value TLS.
+	LDAPProviderConnSecurityProtocolTLS LDAPProviderConnSecurityProtocolValue = "TLS"
+)
+
+// LDAPProviderIdentity represents the Identity of the object.
+var LDAPProviderIdentity = elemental.Identity{
+	Name:     "ldapprovider",
+	Category: "ldapproviders",
 	Package:  "cactuar",
 	Private:  false,
 }
 
-// OIDCProvidersList represents a list of OIDCProviders
-type OIDCProvidersList []*OIDCProvider
+// LDAPProvidersList represents a list of LDAPProviders
+type LDAPProvidersList []*LDAPProvider
 
 // Identity returns the identity of the objects in the list.
-func (o OIDCProvidersList) Identity() elemental.Identity {
+func (o LDAPProvidersList) Identity() elemental.Identity {
 
-	return OIDCProviderIdentity
+	return LDAPProviderIdentity
 }
 
-// Copy returns a pointer to a copy the OIDCProvidersList.
-func (o OIDCProvidersList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the LDAPProvidersList.
+func (o LDAPProvidersList) Copy() elemental.Identifiables {
 
-	copy := append(OIDCProvidersList{}, o...)
+	copy := append(LDAPProvidersList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the OIDCProvidersList.
-func (o OIDCProvidersList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the LDAPProvidersList.
+func (o LDAPProvidersList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(OIDCProvidersList{}, o...)
+	out := append(LDAPProvidersList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*OIDCProvider))
+		out = append(out, obj.(*LDAPProvider))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o OIDCProvidersList) List() elemental.IdentifiablesList {
+func (o LDAPProvidersList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -55,7 +66,7 @@ func (o OIDCProvidersList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o OIDCProvidersList) DefaultOrder() []string {
+func (o LDAPProvidersList) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -63,28 +74,31 @@ func (o OIDCProvidersList) DefaultOrder() []string {
 	}
 }
 
-// ToSparse returns the OIDCProvidersList converted to SparseOIDCProvidersList.
+// ToSparse returns the LDAPProvidersList converted to SparseLDAPProvidersList.
 // Objects in the list will only contain the given fields. No field means entire field set.
-func (o OIDCProvidersList) ToSparse(fields ...string) elemental.Identifiables {
+func (o LDAPProvidersList) ToSparse(fields ...string) elemental.Identifiables {
 
-	out := make(SparseOIDCProvidersList, len(o))
+	out := make(SparseLDAPProvidersList, len(o))
 	for i := 0; i < len(o); i++ {
-		out[i] = o[i].ToSparse(fields...).(*SparseOIDCProvider)
+		out[i] = o[i].ToSparse(fields...).(*SparseLDAPProvider)
 	}
 
 	return out
 }
 
 // Version returns the version of the content.
-func (o OIDCProvidersList) Version() int {
+func (o LDAPProvidersList) Version() int {
 
 	return 1
 }
 
-// OIDCProvider represents the model of a oidcprovider
-type OIDCProvider struct {
+// LDAPProvider represents the model of a ldapprovider
+type LDAPProvider struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" msgpack:"ID" bson:"_id" mapstructure:"ID,omitempty"`
+
+	// Address holds the account authentication account's private LDAP server.
+	Address string `json:"address" msgpack:"address" bson:"address" mapstructure:"address,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" msgpack:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
@@ -92,11 +106,27 @@ type OIDCProvider struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags []string `json:"associatedTags" msgpack:"associatedTags" bson:"associatedtags" mapstructure:"associatedTags,omitempty"`
 
-	// Unique client ID.
-	ClientID string `json:"clientID" msgpack:"clientID" bson:"clientid" mapstructure:"clientID,omitempty"`
+	// BaseDN holds the base DN to use to LDAP queries.
+	BaseDN string `json:"baseDN" msgpack:"baseDN" bson:"basedn" mapstructure:"baseDN,omitempty"`
 
-	// Client secret associated with the client ID.
-	ClientSecret string `json:"clientSecret" msgpack:"clientSecret" bson:"clientsecret" mapstructure:"clientSecret,omitempty"`
+	// BindDN holds the account's internal LDAP bind DN for querying auth.
+	BindDN string `json:"bindDN" msgpack:"bindDN" bson:"binddn" mapstructure:"bindDN,omitempty"`
+
+	// BindPassword holds the password to the LDAP bind DN.
+	BindPassword string `json:"bindPassword" msgpack:"bindPassword" bson:"bindpassword" mapstructure:"bindPassword,omitempty"`
+
+	// BindSearchFilter holds filter to be used to uniquely search a user. For
+	// Windows based systems, value may be `+"`"+`sAMAccountName={USERNAME}`+"`"+`. For Linux and
+	// other systems, value may be `+"`"+`uid={USERNAME}`+"`"+`.
+	BindSearchFilter string `json:"bindSearchFilter" msgpack:"bindSearchFilter" bson:"bindsearchfilter" mapstructure:"bindSearchFilter,omitempty"`
+
+	// CertificateAuthority contains the optional certificate authority that will
+	// be used to connect to the LDAP server. It is not needed if the TLS certificate
+	// of the LDAP is issued from a public truster CA.
+	CertificateAuthority string `json:"certificateAuthority" msgpack:"certificateAuthority" bson:"certificateauthority" mapstructure:"certificateAuthority,omitempty"`
+
+	// ConnSecurityProtocol holds the connection type for the LDAP provider.
+	ConnSecurityProtocol LDAPProviderConnSecurityProtocolValue `json:"connSecurityProtocol" msgpack:"connSecurityProtocol" bson:"connsecurityprotocol" mapstructure:"connSecurityProtocol,omitempty"`
 
 	// internal idempotency key for a create operation.
 	CreateIdempotencyKey string `json:"-" msgpack:"-" bson:"createidempotencykey" mapstructure:"-,omitempty"`
@@ -104,13 +134,17 @@ type OIDCProvider struct {
 	// Creation date of the object.
 	CreateTime time.Time `json:"createTime" msgpack:"createTime" bson:"createtime" mapstructure:"createTime,omitempty"`
 
-	// If set, this will be the default OIDCProvider. There can be only one default
-	// provider in your account. When logging in with OIDC, if not provider name is
+	// If set, this will be the default LDAP provider. There can be only one default
+	// provider in your account. When logging in with LDAP, if no provider name is
 	// given, the default will be used.
 	Default bool `json:"default" msgpack:"default" bson:"default" mapstructure:"default,omitempty"`
 
-	// OIDC information endpoint.
-	Endpoint string `json:"endpoint" msgpack:"endpoint" bson:"endpoint" mapstructure:"endpoint,omitempty"`
+	// Description is the description of the object.
+	Description string `json:"description" msgpack:"description" bson:"description" mapstructure:"description,omitempty"`
+
+	// IgnoredKeys holds a list of keys that must not be imported into Aporeto
+	// authorization system.
+	IgnoredKeys []string `json:"ignoredKeys" msgpack:"ignoredKeys" bson:"ignoredkeys" mapstructure:"ignoredKeys,omitempty"`
 
 	// Name is the name of the entity.
 	Name string `json:"name" msgpack:"name" bson:"name" mapstructure:"name,omitempty"`
@@ -121,20 +155,14 @@ type OIDCProvider struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" msgpack:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// ParentID contains the parent Vince account ID.
-	ParentID string `json:"parentID" msgpack:"parentID" bson:"parentid" mapstructure:"parentID,omitempty"`
-
-	// ParentName contains the name of the Vince parent Account.
-	ParentName string `json:"parentName" msgpack:"parentName" bson:"parentname" mapstructure:"parentName,omitempty"`
-
 	// Protected defines if the object is protected.
 	Protected bool `json:"protected" msgpack:"protected" bson:"protected" mapstructure:"protected,omitempty"`
 
-	// List of scopes to allow.
-	Scopes []string `json:"scopes" msgpack:"scopes" bson:"scopes" mapstructure:"scopes,omitempty"`
-
-	// Subjects is the list of claims that will provide the subject.
-	Subjects []string `json:"subjects" msgpack:"subjects" bson:"subjects" mapstructure:"subjects,omitempty"`
+	// SubjectKey holds key to be used to populate the subject. If you want to
+	// use the user as a subject, for Windows based systems you may use
+	// 'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+	// also use any alternate key.
+	SubjectKey string `json:"subjectKey" msgpack:"subjectKey" bson:"subjectkey" mapstructure:"subjectKey,omitempty"`
 
 	// internal idempotency key for a update operation.
 	UpdateIdempotencyKey string `json:"-" msgpack:"-" bson:"updateidempotencykey" mapstructure:"-,omitempty"`
@@ -153,45 +181,47 @@ type OIDCProvider struct {
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
-// NewOIDCProvider returns a new *OIDCProvider
-func NewOIDCProvider() *OIDCProvider {
+// NewLDAPProvider returns a new *LDAPProvider
+func NewLDAPProvider() *LDAPProvider {
 
-	return &OIDCProvider{
-		ModelVersion:   1,
-		Annotations:    map[string][]string{},
-		AssociatedTags: []string{},
-		NormalizedTags: []string{},
-		Scopes:         []string{},
-		Subjects:       []string{},
+	return &LDAPProvider{
+		ModelVersion:         1,
+		Annotations:          map[string][]string{},
+		AssociatedTags:       []string{},
+		BindSearchFilter:     "uid={USERNAME}",
+		ConnSecurityProtocol: LDAPProviderConnSecurityProtocolInbandTLS,
+		IgnoredKeys:          []string{},
+		NormalizedTags:       []string{},
+		SubjectKey:           "uid",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *OIDCProvider) Identity() elemental.Identity {
+func (o *LDAPProvider) Identity() elemental.Identity {
 
-	return OIDCProviderIdentity
+	return LDAPProviderIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *OIDCProvider) Identifier() string {
+func (o *LDAPProvider) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *OIDCProvider) SetIdentifier(id string) {
+func (o *LDAPProvider) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *OIDCProvider) Version() int {
+func (o *LDAPProvider) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *OIDCProvider) DefaultOrder() []string {
+func (o *LDAPProvider) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -200,185 +230,200 @@ func (o *OIDCProvider) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *OIDCProvider) Doc() string {
+func (o *LDAPProvider) Doc() string {
 
-	return `Allows to declare a generic OpenID Connect provider that can be used in exchange
+	return `Allows to declare a generic LDAP provider that can be used in exchange
 for a Midgard token.`
 }
 
-func (o *OIDCProvider) String() string {
+func (o *LDAPProvider) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *OIDCProvider) GetAnnotations() map[string][]string {
+func (o *LDAPProvider) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the property Annotations of the receiver using the given value.
-func (o *OIDCProvider) SetAnnotations(annotations map[string][]string) {
+func (o *LDAPProvider) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *OIDCProvider) GetAssociatedTags() []string {
+func (o *LDAPProvider) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the property AssociatedTags of the receiver using the given value.
-func (o *OIDCProvider) SetAssociatedTags(associatedTags []string) {
+func (o *LDAPProvider) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *OIDCProvider) GetCreateIdempotencyKey() string {
+func (o *LDAPProvider) GetCreateIdempotencyKey() string {
 
 	return o.CreateIdempotencyKey
 }
 
 // SetCreateIdempotencyKey sets the property CreateIdempotencyKey of the receiver using the given value.
-func (o *OIDCProvider) SetCreateIdempotencyKey(createIdempotencyKey string) {
+func (o *LDAPProvider) SetCreateIdempotencyKey(createIdempotencyKey string) {
 
 	o.CreateIdempotencyKey = createIdempotencyKey
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *OIDCProvider) GetCreateTime() time.Time {
+func (o *LDAPProvider) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the property CreateTime of the receiver using the given value.
-func (o *OIDCProvider) SetCreateTime(createTime time.Time) {
+func (o *LDAPProvider) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
+// GetDescription returns the Description of the receiver.
+func (o *LDAPProvider) GetDescription() string {
+
+	return o.Description
+}
+
+// SetDescription sets the property Description of the receiver using the given value.
+func (o *LDAPProvider) SetDescription(description string) {
+
+	o.Description = description
+}
+
 // GetName returns the Name of the receiver.
-func (o *OIDCProvider) GetName() string {
+func (o *LDAPProvider) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the property Name of the receiver using the given value.
-func (o *OIDCProvider) SetName(name string) {
+func (o *LDAPProvider) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *OIDCProvider) GetNamespace() string {
+func (o *LDAPProvider) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the property Namespace of the receiver using the given value.
-func (o *OIDCProvider) SetNamespace(namespace string) {
+func (o *LDAPProvider) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *OIDCProvider) GetNormalizedTags() []string {
+func (o *LDAPProvider) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the property NormalizedTags of the receiver using the given value.
-func (o *OIDCProvider) SetNormalizedTags(normalizedTags []string) {
+func (o *LDAPProvider) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *OIDCProvider) GetProtected() bool {
+func (o *LDAPProvider) GetProtected() bool {
 
 	return o.Protected
 }
 
 // SetProtected sets the property Protected of the receiver using the given value.
-func (o *OIDCProvider) SetProtected(protected bool) {
+func (o *LDAPProvider) SetProtected(protected bool) {
 
 	o.Protected = protected
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *OIDCProvider) GetUpdateIdempotencyKey() string {
+func (o *LDAPProvider) GetUpdateIdempotencyKey() string {
 
 	return o.UpdateIdempotencyKey
 }
 
 // SetUpdateIdempotencyKey sets the property UpdateIdempotencyKey of the receiver using the given value.
-func (o *OIDCProvider) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
+func (o *LDAPProvider) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 
 	o.UpdateIdempotencyKey = updateIdempotencyKey
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *OIDCProvider) GetUpdateTime() time.Time {
+func (o *LDAPProvider) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the property UpdateTime of the receiver using the given value.
-func (o *OIDCProvider) SetUpdateTime(updateTime time.Time) {
+func (o *LDAPProvider) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *OIDCProvider) GetZHash() int {
+func (o *LDAPProvider) GetZHash() int {
 
 	return o.ZHash
 }
 
 // SetZHash sets the property ZHash of the receiver using the given value.
-func (o *OIDCProvider) SetZHash(zHash int) {
+func (o *LDAPProvider) SetZHash(zHash int) {
 
 	o.ZHash = zHash
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *OIDCProvider) GetZone() int {
+func (o *LDAPProvider) GetZone() int {
 
 	return o.Zone
 }
 
 // SetZone sets the property Zone of the receiver using the given value.
-func (o *OIDCProvider) SetZone(zone int) {
+func (o *LDAPProvider) SetZone(zone int) {
 
 	o.Zone = zone
 }
 
 // ToSparse returns the sparse version of the model.
 // The returned object will only contain the given fields. No field means entire field set.
-func (o *OIDCProvider) ToSparse(fields ...string) elemental.SparseIdentifiable {
+func (o *LDAPProvider) ToSparse(fields ...string) elemental.SparseIdentifiable {
 
 	if len(fields) == 0 {
 		// nolint: goimports
-		return &SparseOIDCProvider{
+		return &SparseLDAPProvider{
 			ID:                   &o.ID,
+			Address:              &o.Address,
 			Annotations:          &o.Annotations,
 			AssociatedTags:       &o.AssociatedTags,
-			ClientID:             &o.ClientID,
-			ClientSecret:         &o.ClientSecret,
+			BaseDN:               &o.BaseDN,
+			BindDN:               &o.BindDN,
+			BindPassword:         &o.BindPassword,
+			BindSearchFilter:     &o.BindSearchFilter,
+			CertificateAuthority: &o.CertificateAuthority,
+			ConnSecurityProtocol: &o.ConnSecurityProtocol,
 			CreateIdempotencyKey: &o.CreateIdempotencyKey,
 			CreateTime:           &o.CreateTime,
 			Default:              &o.Default,
-			Endpoint:             &o.Endpoint,
+			Description:          &o.Description,
+			IgnoredKeys:          &o.IgnoredKeys,
 			Name:                 &o.Name,
 			Namespace:            &o.Namespace,
 			NormalizedTags:       &o.NormalizedTags,
-			ParentID:             &o.ParentID,
-			ParentName:           &o.ParentName,
 			Protected:            &o.Protected,
-			Scopes:               &o.Scopes,
-			Subjects:             &o.Subjects,
+			SubjectKey:           &o.SubjectKey,
 			UpdateIdempotencyKey: &o.UpdateIdempotencyKey,
 			UpdateTime:           &o.UpdateTime,
 			ZHash:                &o.ZHash,
@@ -386,43 +431,49 @@ func (o *OIDCProvider) ToSparse(fields ...string) elemental.SparseIdentifiable {
 		}
 	}
 
-	sp := &SparseOIDCProvider{}
+	sp := &SparseLDAPProvider{}
 	for _, f := range fields {
 		switch f {
 		case "ID":
 			sp.ID = &(o.ID)
+		case "address":
+			sp.Address = &(o.Address)
 		case "annotations":
 			sp.Annotations = &(o.Annotations)
 		case "associatedTags":
 			sp.AssociatedTags = &(o.AssociatedTags)
-		case "clientID":
-			sp.ClientID = &(o.ClientID)
-		case "clientSecret":
-			sp.ClientSecret = &(o.ClientSecret)
+		case "baseDN":
+			sp.BaseDN = &(o.BaseDN)
+		case "bindDN":
+			sp.BindDN = &(o.BindDN)
+		case "bindPassword":
+			sp.BindPassword = &(o.BindPassword)
+		case "bindSearchFilter":
+			sp.BindSearchFilter = &(o.BindSearchFilter)
+		case "certificateAuthority":
+			sp.CertificateAuthority = &(o.CertificateAuthority)
+		case "connSecurityProtocol":
+			sp.ConnSecurityProtocol = &(o.ConnSecurityProtocol)
 		case "createIdempotencyKey":
 			sp.CreateIdempotencyKey = &(o.CreateIdempotencyKey)
 		case "createTime":
 			sp.CreateTime = &(o.CreateTime)
 		case "default":
 			sp.Default = &(o.Default)
-		case "endpoint":
-			sp.Endpoint = &(o.Endpoint)
+		case "description":
+			sp.Description = &(o.Description)
+		case "ignoredKeys":
+			sp.IgnoredKeys = &(o.IgnoredKeys)
 		case "name":
 			sp.Name = &(o.Name)
 		case "namespace":
 			sp.Namespace = &(o.Namespace)
 		case "normalizedTags":
 			sp.NormalizedTags = &(o.NormalizedTags)
-		case "parentID":
-			sp.ParentID = &(o.ParentID)
-		case "parentName":
-			sp.ParentName = &(o.ParentName)
 		case "protected":
 			sp.Protected = &(o.Protected)
-		case "scopes":
-			sp.Scopes = &(o.Scopes)
-		case "subjects":
-			sp.Subjects = &(o.Subjects)
+		case "subjectKey":
+			sp.SubjectKey = &(o.SubjectKey)
 		case "updateIdempotencyKey":
 			sp.UpdateIdempotencyKey = &(o.UpdateIdempotencyKey)
 		case "updateTime":
@@ -437,15 +488,18 @@ func (o *OIDCProvider) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	return sp
 }
 
-// Patch apply the non nil value of a *SparseOIDCProvider to the object.
-func (o *OIDCProvider) Patch(sparse elemental.SparseIdentifiable) {
+// Patch apply the non nil value of a *SparseLDAPProvider to the object.
+func (o *LDAPProvider) Patch(sparse elemental.SparseIdentifiable) {
 	if !sparse.Identity().IsEqual(o.Identity()) {
 		panic("cannot patch from a parse with different identity")
 	}
 
-	so := sparse.(*SparseOIDCProvider)
+	so := sparse.(*SparseLDAPProvider)
 	if so.ID != nil {
 		o.ID = *so.ID
+	}
+	if so.Address != nil {
+		o.Address = *so.Address
 	}
 	if so.Annotations != nil {
 		o.Annotations = *so.Annotations
@@ -453,11 +507,23 @@ func (o *OIDCProvider) Patch(sparse elemental.SparseIdentifiable) {
 	if so.AssociatedTags != nil {
 		o.AssociatedTags = *so.AssociatedTags
 	}
-	if so.ClientID != nil {
-		o.ClientID = *so.ClientID
+	if so.BaseDN != nil {
+		o.BaseDN = *so.BaseDN
 	}
-	if so.ClientSecret != nil {
-		o.ClientSecret = *so.ClientSecret
+	if so.BindDN != nil {
+		o.BindDN = *so.BindDN
+	}
+	if so.BindPassword != nil {
+		o.BindPassword = *so.BindPassword
+	}
+	if so.BindSearchFilter != nil {
+		o.BindSearchFilter = *so.BindSearchFilter
+	}
+	if so.CertificateAuthority != nil {
+		o.CertificateAuthority = *so.CertificateAuthority
+	}
+	if so.ConnSecurityProtocol != nil {
+		o.ConnSecurityProtocol = *so.ConnSecurityProtocol
 	}
 	if so.CreateIdempotencyKey != nil {
 		o.CreateIdempotencyKey = *so.CreateIdempotencyKey
@@ -468,8 +534,11 @@ func (o *OIDCProvider) Patch(sparse elemental.SparseIdentifiable) {
 	if so.Default != nil {
 		o.Default = *so.Default
 	}
-	if so.Endpoint != nil {
-		o.Endpoint = *so.Endpoint
+	if so.Description != nil {
+		o.Description = *so.Description
+	}
+	if so.IgnoredKeys != nil {
+		o.IgnoredKeys = *so.IgnoredKeys
 	}
 	if so.Name != nil {
 		o.Name = *so.Name
@@ -480,20 +549,11 @@ func (o *OIDCProvider) Patch(sparse elemental.SparseIdentifiable) {
 	if so.NormalizedTags != nil {
 		o.NormalizedTags = *so.NormalizedTags
 	}
-	if so.ParentID != nil {
-		o.ParentID = *so.ParentID
-	}
-	if so.ParentName != nil {
-		o.ParentName = *so.ParentName
-	}
 	if so.Protected != nil {
 		o.Protected = *so.Protected
 	}
-	if so.Scopes != nil {
-		o.Scopes = *so.Scopes
-	}
-	if so.Subjects != nil {
-		o.Subjects = *so.Subjects
+	if so.SubjectKey != nil {
+		o.SubjectKey = *so.SubjectKey
 	}
 	if so.UpdateIdempotencyKey != nil {
 		o.UpdateIdempotencyKey = *so.UpdateIdempotencyKey
@@ -509,50 +569,62 @@ func (o *OIDCProvider) Patch(sparse elemental.SparseIdentifiable) {
 	}
 }
 
-// DeepCopy returns a deep copy if the OIDCProvider.
-func (o *OIDCProvider) DeepCopy() *OIDCProvider {
+// DeepCopy returns a deep copy if the LDAPProvider.
+func (o *LDAPProvider) DeepCopy() *LDAPProvider {
 
 	if o == nil {
 		return nil
 	}
 
-	out := &OIDCProvider{}
+	out := &LDAPProvider{}
 	o.DeepCopyInto(out)
 
 	return out
 }
 
-// DeepCopyInto copies the receiver into the given *OIDCProvider.
-func (o *OIDCProvider) DeepCopyInto(out *OIDCProvider) {
+// DeepCopyInto copies the receiver into the given *LDAPProvider.
+func (o *LDAPProvider) DeepCopyInto(out *LDAPProvider) {
 
 	target, err := copystructure.Copy(o)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to deepcopy OIDCProvider: %s", err))
+		panic(fmt.Sprintf("Unable to deepcopy LDAPProvider: %s", err))
 	}
 
-	*out = *target.(*OIDCProvider)
+	*out = *target.(*LDAPProvider)
 }
 
 // Validate valides the current information stored into the structure.
-func (o *OIDCProvider) Validate() error {
+func (o *LDAPProvider) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
+
+	if err := elemental.ValidateRequiredString("address", o.Address); err != nil {
+		requiredErrors = requiredErrors.Append(err)
+	}
 
 	if err := ValidateTagsWithoutReservedPrefixes("associatedTags", o.AssociatedTags); err != nil {
 		errors = errors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("clientID", o.ClientID); err != nil {
+	if err := elemental.ValidateRequiredString("baseDN", o.BaseDN); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("clientSecret", o.ClientSecret); err != nil {
+	if err := elemental.ValidateRequiredString("bindDN", o.BindDN); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("endpoint", o.Endpoint); err != nil {
+	if err := elemental.ValidateRequiredString("bindPassword", o.BindPassword); err != nil {
 		requiredErrors = requiredErrors.Append(err)
+	}
+
+	if err := elemental.ValidateStringInList("connSecurityProtocol", string(o.ConnSecurityProtocol), []string{"TLS", "InbandTLS"}, false); err != nil {
+		errors = errors.Append(err)
+	}
+
+	if err := elemental.ValidateMaximumLength("description", o.Description, 1024, false); err != nil {
+		errors = errors.Append(err)
 	}
 
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
@@ -575,62 +647,68 @@ func (o *OIDCProvider) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*OIDCProvider) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*LDAPProvider) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := OIDCProviderAttributesMap[name]; ok {
+	if v, ok := LDAPProviderAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return OIDCProviderLowerCaseAttributesMap[name]
+	return LDAPProviderLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*OIDCProvider) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*LDAPProvider) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return OIDCProviderAttributesMap
+	return LDAPProviderAttributesMap
 }
 
 // ValueForAttribute returns the value for the given attribute.
 // This is a very advanced function that you should not need but in some
 // very specific use cases.
-func (o *OIDCProvider) ValueForAttribute(name string) interface{} {
+func (o *LDAPProvider) ValueForAttribute(name string) interface{} {
 
 	switch name {
 	case "ID":
 		return o.ID
+	case "address":
+		return o.Address
 	case "annotations":
 		return o.Annotations
 	case "associatedTags":
 		return o.AssociatedTags
-	case "clientID":
-		return o.ClientID
-	case "clientSecret":
-		return o.ClientSecret
+	case "baseDN":
+		return o.BaseDN
+	case "bindDN":
+		return o.BindDN
+	case "bindPassword":
+		return o.BindPassword
+	case "bindSearchFilter":
+		return o.BindSearchFilter
+	case "certificateAuthority":
+		return o.CertificateAuthority
+	case "connSecurityProtocol":
+		return o.ConnSecurityProtocol
 	case "createIdempotencyKey":
 		return o.CreateIdempotencyKey
 	case "createTime":
 		return o.CreateTime
 	case "default":
 		return o.Default
-	case "endpoint":
-		return o.Endpoint
+	case "description":
+		return o.Description
+	case "ignoredKeys":
+		return o.IgnoredKeys
 	case "name":
 		return o.Name
 	case "namespace":
 		return o.Namespace
 	case "normalizedTags":
 		return o.NormalizedTags
-	case "parentID":
-		return o.ParentID
-	case "parentName":
-		return o.ParentName
 	case "protected":
 		return o.Protected
-	case "scopes":
-		return o.Scopes
-	case "subjects":
-		return o.Subjects
+	case "subjectKey":
+		return o.SubjectKey
 	case "updateIdempotencyKey":
 		return o.UpdateIdempotencyKey
 	case "updateTime":
@@ -644,8 +722,8 @@ func (o *OIDCProvider) ValueForAttribute(name string) interface{} {
 	return nil
 }
 
-// OIDCProviderAttributesMap represents the map of attribute for OIDCProvider.
-var OIDCProviderAttributesMap = map[string]elemental.AttributeSpecification{
+// LDAPProviderAttributesMap represents the map of attribute for LDAPProvider.
+var LDAPProviderAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -657,6 +735,18 @@ var OIDCProviderAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "ID",
 		Orderable:      true,
 		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"Address": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Address",
+		Description:    `Address holds the account authentication account's private LDAP server.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "address",
+		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -684,25 +774,77 @@ var OIDCProviderAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "string",
 		Type:           "list",
 	},
-	"ClientID": elemental.AttributeSpecification{
+	"BaseDN": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "ClientID",
-		Description:    `Unique client ID.`,
+		ConvertedName:  "BaseDN",
+		Description:    `BaseDN holds the base DN to use to LDAP queries.`,
 		Exposed:        true,
-		Name:           "clientID",
+		Filterable:     true,
+		Name:           "baseDN",
+		Orderable:      true,
 		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
-	"ClientSecret": elemental.AttributeSpecification{
+	"BindDN": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "ClientSecret",
-		Description:    `Client secret associated with the client ID.`,
+		ConvertedName:  "BindDN",
+		Description:    `BindDN holds the account's internal LDAP bind DN for querying auth.`,
 		Exposed:        true,
-		Name:           "clientSecret",
+		Filterable:     true,
+		Name:           "bindDN",
+		Orderable:      true,
 		Required:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"BindPassword": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "BindPassword",
+		Description:    `BindPassword holds the password to the LDAP bind DN.`,
+		Exposed:        true,
+		Name:           "bindPassword",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"BindSearchFilter": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "BindSearchFilter",
+		DefaultValue:   "uid={USERNAME}",
+		Description: `BindSearchFilter holds filter to be used to uniquely search a user. For
+Windows based systems, value may be ` + "`" + `sAMAccountName={USERNAME}` + "`" + `. For Linux and
+other systems, value may be ` + "`" + `uid={USERNAME}` + "`" + `.`,
+		Exposed:   true,
+		Name:      "bindSearchFilter",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
+	},
+	"CertificateAuthority": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CertificateAuthority",
+		Description: `CertificateAuthority contains the optional certificate authority that will
+be used to connect to the LDAP server. It is not needed if the TLS certificate
+of the LDAP is issued from a public truster CA.`,
+		Exposed:   true,
+		Name:      "certificateAuthority",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
+	},
+	"ConnSecurityProtocol": elemental.AttributeSpecification{
+		AllowedChoices: []string{"TLS", "InbandTLS"},
+		ConvertedName:  "ConnSecurityProtocol",
+		DefaultValue:   LDAPProviderConnSecurityProtocolInbandTLS,
+		Description:    `ConnSecurityProtocol holds the connection type for the LDAP provider.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "connSecurityProtocol",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"CreateIdempotencyKey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -733,23 +875,38 @@ var OIDCProviderAttributesMap = map[string]elemental.AttributeSpecification{
 	"Default": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Default",
-		Description: `If set, this will be the default OIDCProvider. There can be only one default
-provider in your account. When logging in with OIDC, if not provider name is
+		Description: `If set, this will be the default LDAP provider. There can be only one default
+provider in your account. When logging in with LDAP, if no provider name is
 given, the default will be used.`,
 		Exposed: true,
 		Name:    "default",
 		Stored:  true,
 		Type:    "boolean",
 	},
-	"Endpoint": elemental.AttributeSpecification{
+	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Endpoint",
-		Description:    `OIDC information endpoint.`,
+		ConvertedName:  "Description",
+		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Name:           "endpoint",
-		Required:       true,
+		Getter:         true,
+		MaxLength:      1024,
+		Name:           "description",
+		Orderable:      true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"IgnoredKeys": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "IgnoredKeys",
+		Description: `IgnoredKeys holds a list of keys that must not be imported into Aporeto
+authorization system.`,
+		Exposed:   true,
+		Name:      "ignoredKeys",
+		Orderable: true,
+		Stored:    true,
+		SubType:   "string",
+		Type:      "list",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -799,30 +956,6 @@ given, the default will be used.`,
 		Transient:      true,
 		Type:           "list",
 	},
-	"ParentID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "ParentID",
-		Description:    `ParentID contains the parent Vince account ID.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "parentID",
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"ParentName": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "ParentName",
-		Description:    `ParentName contains the name of the Vince parent Account.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "parentName",
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"Protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -835,25 +968,19 @@ given, the default will be used.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"Scopes": elemental.AttributeSpecification{
+	"SubjectKey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Scopes",
-		Description:    `List of scopes to allow.`,
-		Exposed:        true,
-		Name:           "scopes",
-		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
-	},
-	"Subjects": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Subjects",
-		Description:    `Subjects is the list of claims that will provide the subject.`,
-		Exposed:        true,
-		Name:           "subjects",
-		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
+		ConvertedName:  "SubjectKey",
+		DefaultValue:   "uid",
+		Description: `SubjectKey holds key to be used to populate the subject. If you want to
+use the user as a subject, for Windows based systems you may use
+'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+also use any alternate key.`,
+		Exposed:   true,
+		Name:      "subjectKey",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
 	},
 	"UpdateIdempotencyKey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -909,8 +1036,8 @@ georedundancy.`,
 	},
 }
 
-// OIDCProviderLowerCaseAttributesMap represents the map of attribute for OIDCProvider.
-var OIDCProviderLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// LDAPProviderLowerCaseAttributesMap represents the map of attribute for LDAPProvider.
+var LDAPProviderLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -922,6 +1049,18 @@ var OIDCProviderLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Name:           "ID",
 		Orderable:      true,
 		ReadOnly:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"address": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Address",
+		Description:    `Address holds the account authentication account's private LDAP server.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "address",
+		Orderable:      true,
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -949,25 +1088,77 @@ var OIDCProviderLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		SubType:        "string",
 		Type:           "list",
 	},
-	"clientid": elemental.AttributeSpecification{
+	"basedn": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "ClientID",
-		Description:    `Unique client ID.`,
+		ConvertedName:  "BaseDN",
+		Description:    `BaseDN holds the base DN to use to LDAP queries.`,
 		Exposed:        true,
-		Name:           "clientID",
+		Filterable:     true,
+		Name:           "baseDN",
+		Orderable:      true,
 		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
-	"clientsecret": elemental.AttributeSpecification{
+	"binddn": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "ClientSecret",
-		Description:    `Client secret associated with the client ID.`,
+		ConvertedName:  "BindDN",
+		Description:    `BindDN holds the account's internal LDAP bind DN for querying auth.`,
 		Exposed:        true,
-		Name:           "clientSecret",
+		Filterable:     true,
+		Name:           "bindDN",
+		Orderable:      true,
 		Required:       true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"bindpassword": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "BindPassword",
+		Description:    `BindPassword holds the password to the LDAP bind DN.`,
+		Exposed:        true,
+		Name:           "bindPassword",
+		Orderable:      true,
+		Required:       true,
+		Stored:         true,
+		Type:           "string",
+	},
+	"bindsearchfilter": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "BindSearchFilter",
+		DefaultValue:   "uid={USERNAME}",
+		Description: `BindSearchFilter holds filter to be used to uniquely search a user. For
+Windows based systems, value may be ` + "`" + `sAMAccountName={USERNAME}` + "`" + `. For Linux and
+other systems, value may be ` + "`" + `uid={USERNAME}` + "`" + `.`,
+		Exposed:   true,
+		Name:      "bindSearchFilter",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
+	},
+	"certificateauthority": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CertificateAuthority",
+		Description: `CertificateAuthority contains the optional certificate authority that will
+be used to connect to the LDAP server. It is not needed if the TLS certificate
+of the LDAP is issued from a public truster CA.`,
+		Exposed:   true,
+		Name:      "certificateAuthority",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
+	},
+	"connsecurityprotocol": elemental.AttributeSpecification{
+		AllowedChoices: []string{"TLS", "InbandTLS"},
+		ConvertedName:  "ConnSecurityProtocol",
+		DefaultValue:   LDAPProviderConnSecurityProtocolInbandTLS,
+		Description:    `ConnSecurityProtocol holds the connection type for the LDAP provider.`,
+		Exposed:        true,
+		Filterable:     true,
+		Name:           "connSecurityProtocol",
+		Orderable:      true,
+		Stored:         true,
+		Type:           "enum",
 	},
 	"createidempotencykey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -998,23 +1189,38 @@ var OIDCProviderLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 	"default": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Default",
-		Description: `If set, this will be the default OIDCProvider. There can be only one default
-provider in your account. When logging in with OIDC, if not provider name is
+		Description: `If set, this will be the default LDAP provider. There can be only one default
+provider in your account. When logging in with LDAP, if no provider name is
 given, the default will be used.`,
 		Exposed: true,
 		Name:    "default",
 		Stored:  true,
 		Type:    "boolean",
 	},
-	"endpoint": elemental.AttributeSpecification{
+	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Endpoint",
-		Description:    `OIDC information endpoint.`,
+		ConvertedName:  "Description",
+		Description:    `Description is the description of the object.`,
 		Exposed:        true,
-		Name:           "endpoint",
-		Required:       true,
+		Getter:         true,
+		MaxLength:      1024,
+		Name:           "description",
+		Orderable:      true,
+		Setter:         true,
 		Stored:         true,
 		Type:           "string",
+	},
+	"ignoredkeys": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "IgnoredKeys",
+		Description: `IgnoredKeys holds a list of keys that must not be imported into Aporeto
+authorization system.`,
+		Exposed:   true,
+		Name:      "ignoredKeys",
+		Orderable: true,
+		Stored:    true,
+		SubType:   "string",
+		Type:      "list",
 	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1064,30 +1270,6 @@ given, the default will be used.`,
 		Transient:      true,
 		Type:           "list",
 	},
-	"parentid": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "ParentID",
-		Description:    `ParentID contains the parent Vince account ID.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "parentID",
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
-	"parentname": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		Autogenerated:  true,
-		ConvertedName:  "ParentName",
-		Description:    `ParentName contains the name of the Vince parent Account.`,
-		Exposed:        true,
-		Filterable:     true,
-		Name:           "parentName",
-		ReadOnly:       true,
-		Stored:         true,
-		Type:           "string",
-	},
 	"protected": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protected",
@@ -1100,25 +1282,19 @@ given, the default will be used.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"scopes": elemental.AttributeSpecification{
+	"subjectkey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Scopes",
-		Description:    `List of scopes to allow.`,
-		Exposed:        true,
-		Name:           "scopes",
-		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
-	},
-	"subjects": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Subjects",
-		Description:    `Subjects is the list of claims that will provide the subject.`,
-		Exposed:        true,
-		Name:           "subjects",
-		Stored:         true,
-		SubType:        "string",
-		Type:           "list",
+		ConvertedName:  "SubjectKey",
+		DefaultValue:   "uid",
+		Description: `SubjectKey holds key to be used to populate the subject. If you want to
+use the user as a subject, for Windows based systems you may use
+'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+also use any alternate key.`,
+		Exposed:   true,
+		Name:      "subjectKey",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
 	},
 	"updateidempotencykey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1174,35 +1350,35 @@ georedundancy.`,
 	},
 }
 
-// SparseOIDCProvidersList represents a list of SparseOIDCProviders
-type SparseOIDCProvidersList []*SparseOIDCProvider
+// SparseLDAPProvidersList represents a list of SparseLDAPProviders
+type SparseLDAPProvidersList []*SparseLDAPProvider
 
 // Identity returns the identity of the objects in the list.
-func (o SparseOIDCProvidersList) Identity() elemental.Identity {
+func (o SparseLDAPProvidersList) Identity() elemental.Identity {
 
-	return OIDCProviderIdentity
+	return LDAPProviderIdentity
 }
 
-// Copy returns a pointer to a copy the SparseOIDCProvidersList.
-func (o SparseOIDCProvidersList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SparseLDAPProvidersList.
+func (o SparseLDAPProvidersList) Copy() elemental.Identifiables {
 
-	copy := append(SparseOIDCProvidersList{}, o...)
+	copy := append(SparseLDAPProvidersList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SparseOIDCProvidersList.
-func (o SparseOIDCProvidersList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SparseLDAPProvidersList.
+func (o SparseLDAPProvidersList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SparseOIDCProvidersList{}, o...)
+	out := append(SparseLDAPProvidersList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*SparseOIDCProvider))
+		out = append(out, obj.(*SparseLDAPProvider))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SparseOIDCProvidersList) List() elemental.IdentifiablesList {
+func (o SparseLDAPProvidersList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -1213,7 +1389,7 @@ func (o SparseOIDCProvidersList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SparseOIDCProvidersList) DefaultOrder() []string {
+func (o SparseLDAPProvidersList) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -1221,8 +1397,8 @@ func (o SparseOIDCProvidersList) DefaultOrder() []string {
 	}
 }
 
-// ToPlain returns the SparseOIDCProvidersList converted to OIDCProvidersList.
-func (o SparseOIDCProvidersList) ToPlain() elemental.IdentifiablesList {
+// ToPlain returns the SparseLDAPProvidersList converted to LDAPProvidersList.
+func (o SparseLDAPProvidersList) ToPlain() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -1233,15 +1409,18 @@ func (o SparseOIDCProvidersList) ToPlain() elemental.IdentifiablesList {
 }
 
 // Version returns the version of the content.
-func (o SparseOIDCProvidersList) Version() int {
+func (o SparseLDAPProvidersList) Version() int {
 
 	return 1
 }
 
-// SparseOIDCProvider represents the sparse version of a oidcprovider.
-type SparseOIDCProvider struct {
+// SparseLDAPProvider represents the sparse version of a ldapprovider.
+type SparseLDAPProvider struct {
 	// ID is the identifier of the object.
 	ID *string `json:"ID,omitempty" msgpack:"ID,omitempty" bson:"_id" mapstructure:"ID,omitempty"`
+
+	// Address holds the account authentication account's private LDAP server.
+	Address *string `json:"address,omitempty" msgpack:"address,omitempty" bson:"address,omitempty" mapstructure:"address,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations *map[string][]string `json:"annotations,omitempty" msgpack:"annotations,omitempty" bson:"annotations,omitempty" mapstructure:"annotations,omitempty"`
@@ -1249,11 +1428,27 @@ type SparseOIDCProvider struct {
 	// AssociatedTags are the list of tags attached to an entity.
 	AssociatedTags *[]string `json:"associatedTags,omitempty" msgpack:"associatedTags,omitempty" bson:"associatedtags,omitempty" mapstructure:"associatedTags,omitempty"`
 
-	// Unique client ID.
-	ClientID *string `json:"clientID,omitempty" msgpack:"clientID,omitempty" bson:"clientid,omitempty" mapstructure:"clientID,omitempty"`
+	// BaseDN holds the base DN to use to LDAP queries.
+	BaseDN *string `json:"baseDN,omitempty" msgpack:"baseDN,omitempty" bson:"basedn,omitempty" mapstructure:"baseDN,omitempty"`
 
-	// Client secret associated with the client ID.
-	ClientSecret *string `json:"clientSecret,omitempty" msgpack:"clientSecret,omitempty" bson:"clientsecret,omitempty" mapstructure:"clientSecret,omitempty"`
+	// BindDN holds the account's internal LDAP bind DN for querying auth.
+	BindDN *string `json:"bindDN,omitempty" msgpack:"bindDN,omitempty" bson:"binddn,omitempty" mapstructure:"bindDN,omitempty"`
+
+	// BindPassword holds the password to the LDAP bind DN.
+	BindPassword *string `json:"bindPassword,omitempty" msgpack:"bindPassword,omitempty" bson:"bindpassword,omitempty" mapstructure:"bindPassword,omitempty"`
+
+	// BindSearchFilter holds filter to be used to uniquely search a user. For
+	// Windows based systems, value may be `+"`"+`sAMAccountName={USERNAME}`+"`"+`. For Linux and
+	// other systems, value may be `+"`"+`uid={USERNAME}`+"`"+`.
+	BindSearchFilter *string `json:"bindSearchFilter,omitempty" msgpack:"bindSearchFilter,omitempty" bson:"bindsearchfilter,omitempty" mapstructure:"bindSearchFilter,omitempty"`
+
+	// CertificateAuthority contains the optional certificate authority that will
+	// be used to connect to the LDAP server. It is not needed if the TLS certificate
+	// of the LDAP is issued from a public truster CA.
+	CertificateAuthority *string `json:"certificateAuthority,omitempty" msgpack:"certificateAuthority,omitempty" bson:"certificateauthority,omitempty" mapstructure:"certificateAuthority,omitempty"`
+
+	// ConnSecurityProtocol holds the connection type for the LDAP provider.
+	ConnSecurityProtocol *LDAPProviderConnSecurityProtocolValue `json:"connSecurityProtocol,omitempty" msgpack:"connSecurityProtocol,omitempty" bson:"connsecurityprotocol,omitempty" mapstructure:"connSecurityProtocol,omitempty"`
 
 	// internal idempotency key for a create operation.
 	CreateIdempotencyKey *string `json:"-" msgpack:"-" bson:"createidempotencykey,omitempty" mapstructure:"-,omitempty"`
@@ -1261,13 +1456,17 @@ type SparseOIDCProvider struct {
 	// Creation date of the object.
 	CreateTime *time.Time `json:"createTime,omitempty" msgpack:"createTime,omitempty" bson:"createtime,omitempty" mapstructure:"createTime,omitempty"`
 
-	// If set, this will be the default OIDCProvider. There can be only one default
-	// provider in your account. When logging in with OIDC, if not provider name is
+	// If set, this will be the default LDAP provider. There can be only one default
+	// provider in your account. When logging in with LDAP, if no provider name is
 	// given, the default will be used.
 	Default *bool `json:"default,omitempty" msgpack:"default,omitempty" bson:"default,omitempty" mapstructure:"default,omitempty"`
 
-	// OIDC information endpoint.
-	Endpoint *string `json:"endpoint,omitempty" msgpack:"endpoint,omitempty" bson:"endpoint,omitempty" mapstructure:"endpoint,omitempty"`
+	// Description is the description of the object.
+	Description *string `json:"description,omitempty" msgpack:"description,omitempty" bson:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// IgnoredKeys holds a list of keys that must not be imported into Aporeto
+	// authorization system.
+	IgnoredKeys *[]string `json:"ignoredKeys,omitempty" msgpack:"ignoredKeys,omitempty" bson:"ignoredkeys,omitempty" mapstructure:"ignoredKeys,omitempty"`
 
 	// Name is the name of the entity.
 	Name *string `json:"name,omitempty" msgpack:"name,omitempty" bson:"name,omitempty" mapstructure:"name,omitempty"`
@@ -1278,20 +1477,14 @@ type SparseOIDCProvider struct {
 	// NormalizedTags contains the list of normalized tags of the entities.
 	NormalizedTags *[]string `json:"normalizedTags,omitempty" msgpack:"normalizedTags,omitempty" bson:"normalizedtags,omitempty" mapstructure:"normalizedTags,omitempty"`
 
-	// ParentID contains the parent Vince account ID.
-	ParentID *string `json:"parentID,omitempty" msgpack:"parentID,omitempty" bson:"parentid,omitempty" mapstructure:"parentID,omitempty"`
-
-	// ParentName contains the name of the Vince parent Account.
-	ParentName *string `json:"parentName,omitempty" msgpack:"parentName,omitempty" bson:"parentname,omitempty" mapstructure:"parentName,omitempty"`
-
 	// Protected defines if the object is protected.
 	Protected *bool `json:"protected,omitempty" msgpack:"protected,omitempty" bson:"protected,omitempty" mapstructure:"protected,omitempty"`
 
-	// List of scopes to allow.
-	Scopes *[]string `json:"scopes,omitempty" msgpack:"scopes,omitempty" bson:"scopes,omitempty" mapstructure:"scopes,omitempty"`
-
-	// Subjects is the list of claims that will provide the subject.
-	Subjects *[]string `json:"subjects,omitempty" msgpack:"subjects,omitempty" bson:"subjects,omitempty" mapstructure:"subjects,omitempty"`
+	// SubjectKey holds key to be used to populate the subject. If you want to
+	// use the user as a subject, for Windows based systems you may use
+	// 'sAMAccountName' and for Linux and other systems, value may be 'uid'. You can
+	// also use any alternate key.
+	SubjectKey *string `json:"subjectKey,omitempty" msgpack:"subjectKey,omitempty" bson:"subjectkey,omitempty" mapstructure:"subjectKey,omitempty"`
 
 	// internal idempotency key for a update operation.
 	UpdateIdempotencyKey *string `json:"-" msgpack:"-" bson:"updateidempotencykey,omitempty" mapstructure:"-,omitempty"`
@@ -1310,19 +1503,19 @@ type SparseOIDCProvider struct {
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
-// NewSparseOIDCProvider returns a new  SparseOIDCProvider.
-func NewSparseOIDCProvider() *SparseOIDCProvider {
-	return &SparseOIDCProvider{}
+// NewSparseLDAPProvider returns a new  SparseLDAPProvider.
+func NewSparseLDAPProvider() *SparseLDAPProvider {
+	return &SparseLDAPProvider{}
 }
 
 // Identity returns the Identity of the sparse object.
-func (o *SparseOIDCProvider) Identity() elemental.Identity {
+func (o *SparseLDAPProvider) Identity() elemental.Identity {
 
-	return OIDCProviderIdentity
+	return LDAPProviderIdentity
 }
 
 // Identifier returns the value of the sparse object's unique identifier.
-func (o *SparseOIDCProvider) Identifier() string {
+func (o *SparseLDAPProvider) Identifier() string {
 
 	if o.ID == nil {
 		return ""
@@ -1331,23 +1524,26 @@ func (o *SparseOIDCProvider) Identifier() string {
 }
 
 // SetIdentifier sets the value of the sparse object's unique identifier.
-func (o *SparseOIDCProvider) SetIdentifier(id string) {
+func (o *SparseLDAPProvider) SetIdentifier(id string) {
 
 	o.ID = &id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *SparseOIDCProvider) Version() int {
+func (o *SparseLDAPProvider) Version() int {
 
 	return 1
 }
 
 // ToPlain returns the plain version of the sparse model.
-func (o *SparseOIDCProvider) ToPlain() elemental.PlainIdentifiable {
+func (o *SparseLDAPProvider) ToPlain() elemental.PlainIdentifiable {
 
-	out := NewOIDCProvider()
+	out := NewLDAPProvider()
 	if o.ID != nil {
 		out.ID = *o.ID
+	}
+	if o.Address != nil {
+		out.Address = *o.Address
 	}
 	if o.Annotations != nil {
 		out.Annotations = *o.Annotations
@@ -1355,11 +1551,23 @@ func (o *SparseOIDCProvider) ToPlain() elemental.PlainIdentifiable {
 	if o.AssociatedTags != nil {
 		out.AssociatedTags = *o.AssociatedTags
 	}
-	if o.ClientID != nil {
-		out.ClientID = *o.ClientID
+	if o.BaseDN != nil {
+		out.BaseDN = *o.BaseDN
 	}
-	if o.ClientSecret != nil {
-		out.ClientSecret = *o.ClientSecret
+	if o.BindDN != nil {
+		out.BindDN = *o.BindDN
+	}
+	if o.BindPassword != nil {
+		out.BindPassword = *o.BindPassword
+	}
+	if o.BindSearchFilter != nil {
+		out.BindSearchFilter = *o.BindSearchFilter
+	}
+	if o.CertificateAuthority != nil {
+		out.CertificateAuthority = *o.CertificateAuthority
+	}
+	if o.ConnSecurityProtocol != nil {
+		out.ConnSecurityProtocol = *o.ConnSecurityProtocol
 	}
 	if o.CreateIdempotencyKey != nil {
 		out.CreateIdempotencyKey = *o.CreateIdempotencyKey
@@ -1370,8 +1578,11 @@ func (o *SparseOIDCProvider) ToPlain() elemental.PlainIdentifiable {
 	if o.Default != nil {
 		out.Default = *o.Default
 	}
-	if o.Endpoint != nil {
-		out.Endpoint = *o.Endpoint
+	if o.Description != nil {
+		out.Description = *o.Description
+	}
+	if o.IgnoredKeys != nil {
+		out.IgnoredKeys = *o.IgnoredKeys
 	}
 	if o.Name != nil {
 		out.Name = *o.Name
@@ -1382,20 +1593,11 @@ func (o *SparseOIDCProvider) ToPlain() elemental.PlainIdentifiable {
 	if o.NormalizedTags != nil {
 		out.NormalizedTags = *o.NormalizedTags
 	}
-	if o.ParentID != nil {
-		out.ParentID = *o.ParentID
-	}
-	if o.ParentName != nil {
-		out.ParentName = *o.ParentName
-	}
 	if o.Protected != nil {
 		out.Protected = *o.Protected
 	}
-	if o.Scopes != nil {
-		out.Scopes = *o.Scopes
-	}
-	if o.Subjects != nil {
-		out.Subjects = *o.Subjects
+	if o.SubjectKey != nil {
+		out.SubjectKey = *o.SubjectKey
 	}
 	if o.UpdateIdempotencyKey != nil {
 		out.UpdateIdempotencyKey = *o.UpdateIdempotencyKey
@@ -1414,169 +1616,181 @@ func (o *SparseOIDCProvider) ToPlain() elemental.PlainIdentifiable {
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *SparseOIDCProvider) GetAnnotations() map[string][]string {
+func (o *SparseLDAPProvider) GetAnnotations() map[string][]string {
 
 	return *o.Annotations
 }
 
 // SetAnnotations sets the property Annotations of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetAnnotations(annotations map[string][]string) {
+func (o *SparseLDAPProvider) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = &annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *SparseOIDCProvider) GetAssociatedTags() []string {
+func (o *SparseLDAPProvider) GetAssociatedTags() []string {
 
 	return *o.AssociatedTags
 }
 
 // SetAssociatedTags sets the property AssociatedTags of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetAssociatedTags(associatedTags []string) {
+func (o *SparseLDAPProvider) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = &associatedTags
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *SparseOIDCProvider) GetCreateIdempotencyKey() string {
+func (o *SparseLDAPProvider) GetCreateIdempotencyKey() string {
 
 	return *o.CreateIdempotencyKey
 }
 
 // SetCreateIdempotencyKey sets the property CreateIdempotencyKey of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetCreateIdempotencyKey(createIdempotencyKey string) {
+func (o *SparseLDAPProvider) SetCreateIdempotencyKey(createIdempotencyKey string) {
 
 	o.CreateIdempotencyKey = &createIdempotencyKey
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *SparseOIDCProvider) GetCreateTime() time.Time {
+func (o *SparseLDAPProvider) GetCreateTime() time.Time {
 
 	return *o.CreateTime
 }
 
 // SetCreateTime sets the property CreateTime of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetCreateTime(createTime time.Time) {
+func (o *SparseLDAPProvider) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = &createTime
 }
 
+// GetDescription returns the Description of the receiver.
+func (o *SparseLDAPProvider) GetDescription() string {
+
+	return *o.Description
+}
+
+// SetDescription sets the property Description of the receiver using the address of the given value.
+func (o *SparseLDAPProvider) SetDescription(description string) {
+
+	o.Description = &description
+}
+
 // GetName returns the Name of the receiver.
-func (o *SparseOIDCProvider) GetName() string {
+func (o *SparseLDAPProvider) GetName() string {
 
 	return *o.Name
 }
 
 // SetName sets the property Name of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetName(name string) {
+func (o *SparseLDAPProvider) SetName(name string) {
 
 	o.Name = &name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *SparseOIDCProvider) GetNamespace() string {
+func (o *SparseLDAPProvider) GetNamespace() string {
 
 	return *o.Namespace
 }
 
 // SetNamespace sets the property Namespace of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetNamespace(namespace string) {
+func (o *SparseLDAPProvider) SetNamespace(namespace string) {
 
 	o.Namespace = &namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *SparseOIDCProvider) GetNormalizedTags() []string {
+func (o *SparseLDAPProvider) GetNormalizedTags() []string {
 
 	return *o.NormalizedTags
 }
 
 // SetNormalizedTags sets the property NormalizedTags of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetNormalizedTags(normalizedTags []string) {
+func (o *SparseLDAPProvider) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = &normalizedTags
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *SparseOIDCProvider) GetProtected() bool {
+func (o *SparseLDAPProvider) GetProtected() bool {
 
 	return *o.Protected
 }
 
 // SetProtected sets the property Protected of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetProtected(protected bool) {
+func (o *SparseLDAPProvider) SetProtected(protected bool) {
 
 	o.Protected = &protected
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *SparseOIDCProvider) GetUpdateIdempotencyKey() string {
+func (o *SparseLDAPProvider) GetUpdateIdempotencyKey() string {
 
 	return *o.UpdateIdempotencyKey
 }
 
 // SetUpdateIdempotencyKey sets the property UpdateIdempotencyKey of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
+func (o *SparseLDAPProvider) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 
 	o.UpdateIdempotencyKey = &updateIdempotencyKey
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *SparseOIDCProvider) GetUpdateTime() time.Time {
+func (o *SparseLDAPProvider) GetUpdateTime() time.Time {
 
 	return *o.UpdateTime
 }
 
 // SetUpdateTime sets the property UpdateTime of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetUpdateTime(updateTime time.Time) {
+func (o *SparseLDAPProvider) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = &updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *SparseOIDCProvider) GetZHash() int {
+func (o *SparseLDAPProvider) GetZHash() int {
 
 	return *o.ZHash
 }
 
 // SetZHash sets the property ZHash of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetZHash(zHash int) {
+func (o *SparseLDAPProvider) SetZHash(zHash int) {
 
 	o.ZHash = &zHash
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *SparseOIDCProvider) GetZone() int {
+func (o *SparseLDAPProvider) GetZone() int {
 
 	return *o.Zone
 }
 
 // SetZone sets the property Zone of the receiver using the address of the given value.
-func (o *SparseOIDCProvider) SetZone(zone int) {
+func (o *SparseLDAPProvider) SetZone(zone int) {
 
 	o.Zone = &zone
 }
 
-// DeepCopy returns a deep copy if the SparseOIDCProvider.
-func (o *SparseOIDCProvider) DeepCopy() *SparseOIDCProvider {
+// DeepCopy returns a deep copy if the SparseLDAPProvider.
+func (o *SparseLDAPProvider) DeepCopy() *SparseLDAPProvider {
 
 	if o == nil {
 		return nil
 	}
 
-	out := &SparseOIDCProvider{}
+	out := &SparseLDAPProvider{}
 	o.DeepCopyInto(out)
 
 	return out
 }
 
-// DeepCopyInto copies the receiver into the given *SparseOIDCProvider.
-func (o *SparseOIDCProvider) DeepCopyInto(out *SparseOIDCProvider) {
+// DeepCopyInto copies the receiver into the given *SparseLDAPProvider.
+func (o *SparseLDAPProvider) DeepCopyInto(out *SparseLDAPProvider) {
 
 	target, err := copystructure.Copy(o)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to deepcopy SparseOIDCProvider: %s", err))
+		panic(fmt.Sprintf("Unable to deepcopy SparseLDAPProvider: %s", err))
 	}
 
-	*out = *target.(*SparseOIDCProvider)
+	*out = *target.(*SparseLDAPProvider)
 }

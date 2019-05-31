@@ -29,6 +29,7 @@ var (
 
 		"customer":            CustomerIdentity,
 		"datapathcertificate": DataPathCertificateIdentity,
+		"dbversion":           DBVersionIdentity,
 		"dependencymap":       DependencyMapIdentity,
 		"email":               EmailIdentity,
 
@@ -59,6 +60,7 @@ var (
 		"isolationprofile":         IsolationProfileIdentity,
 		"issue":                    IssueIdentity,
 		"jaegerbatch":              JaegerbatchIdentity,
+		"ldapprovider":             LDAPProviderIdentity,
 		"log":                      LogIdentity,
 		"message":                  MessageIdentity,
 		"namespace":                NamespaceIdentity,
@@ -145,6 +147,7 @@ var (
 
 		"customers":            CustomerIdentity,
 		"datapathcertificates": DataPathCertificateIdentity,
+		"dbversions":           DBVersionIdentity,
 		"dependencymaps":       DependencyMapIdentity,
 		"emails":               EmailIdentity,
 
@@ -175,6 +178,7 @@ var (
 		"isolationprofiles":          IsolationProfileIdentity,
 		"issue":                      IssueIdentity,
 		"jaegerbatchs":               JaegerbatchIdentity,
+		"ldapproviders":              LDAPProviderIdentity,
 		"logs":                       LogIdentity,
 		"messages":                   MessageIdentity,
 		"namespaces":                 NamespaceIdentity,
@@ -250,6 +254,7 @@ var (
 		"aws":            AWSAccountIdentity,
 		"awsaccs":        AWSAccountIdentity,
 		"awsacc":         AWSAccountIdentity,
+		"dbvers":         DBVersionIdentity,
 		"depmaps":        DependencyMapIdentity,
 		"depmap":         DependencyMapIdentity,
 		"profile":        EnforcerProfileIdentity,
@@ -423,6 +428,7 @@ var (
 			[]string{"providerCustomerID"},
 		},
 		"datapathcertificate": nil,
+		"dbversion":           nil,
 		"dependencymap":       nil,
 		"email":               nil,
 		"enforcer": [][]string{
@@ -542,7 +548,16 @@ var (
 		},
 		"issue":       nil,
 		"jaegerbatch": nil,
-		"log":         nil,
+		"ldapprovider": [][]string{
+			[]string{"updateIdempotencyKey"},
+			[]string{"namespace", "normalizedTags"},
+			[]string{"namespace", "name"},
+			[]string{"namespace"},
+			[]string{"name"},
+			[]string{"createIdempotencyKey"},
+			[]string{":shard", "zone", "zHash"},
+		},
+		"log": nil,
 		"message": [][]string{
 			[]string{":shard", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -564,7 +579,13 @@ var (
 		"namespacemappingpolicy": nil,
 		"networkaccesspolicy":    nil,
 		"oidcprovider": [][]string{
-			[]string{":unique", "parentID", "name"},
+			[]string{"updateIdempotencyKey"},
+			[]string{"namespace", "normalizedTags"},
+			[]string{"namespace", "name"},
+			[]string{"namespace"},
+			[]string{"name"},
+			[]string{"createIdempotencyKey"},
+			[]string{":shard", "zone", "zHash"},
 		},
 		"packetreport":  nil,
 		"passwordreset": nil,
@@ -775,6 +796,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewCustomer()
 	case DataPathCertificateIdentity:
 		return NewDataPathCertificate()
+	case DBVersionIdentity:
+		return NewDBVersion()
 	case DependencyMapIdentity:
 		return NewDependencyMap()
 	case EmailIdentity:
@@ -831,6 +854,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewIssue()
 	case JaegerbatchIdentity:
 		return NewJaegerbatch()
+	case LDAPProviderIdentity:
+		return NewLDAPProvider()
 	case LogIdentity:
 		return NewLog()
 	case MessageIdentity:
@@ -990,6 +1015,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseCustomer()
 	case DataPathCertificateIdentity:
 		return NewSparseDataPathCertificate()
+	case DBVersionIdentity:
+		return NewSparseDBVersion()
 	case DependencyMapIdentity:
 		return NewSparseDependencyMap()
 	case EmailIdentity:
@@ -1046,6 +1073,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseIssue()
 	case JaegerbatchIdentity:
 		return NewSparseJaegerbatch()
+	case LDAPProviderIdentity:
+		return NewSparseLDAPProvider()
 	case LogIdentity:
 		return NewSparseLog()
 	case MessageIdentity:
@@ -1213,6 +1242,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &CustomersList{}
 	case DataPathCertificateIdentity:
 		return &DataPathCertificatesList{}
+	case DBVersionIdentity:
+		return &DBVersionsList{}
 	case DependencyMapIdentity:
 		return &DependencyMapsList{}
 	case EmailIdentity:
@@ -1269,6 +1300,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &IssuesList{}
 	case JaegerbatchIdentity:
 		return &JaegerbatchsList{}
+	case LDAPProviderIdentity:
+		return &LDAPProvidersList{}
 	case LogIdentity:
 		return &LogsList{}
 	case MessageIdentity:
@@ -1426,6 +1459,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseCustomersList{}
 	case DataPathCertificateIdentity:
 		return &SparseDataPathCertificatesList{}
+	case DBVersionIdentity:
+		return &SparseDBVersionsList{}
 	case DependencyMapIdentity:
 		return &SparseDependencyMapsList{}
 	case EmailIdentity:
@@ -1482,6 +1517,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseIssuesList{}
 	case JaegerbatchIdentity:
 		return &SparseJaegerbatchsList{}
+	case LDAPProviderIdentity:
+		return &SparseLDAPProvidersList{}
 	case LogIdentity:
 		return &SparseLogsList{}
 	case MessageIdentity:
@@ -1631,6 +1668,7 @@ func AllIdentities() []elemental.Identity {
 		ClaimsIdentity,
 		CustomerIdentity,
 		DataPathCertificateIdentity,
+		DBVersionIdentity,
 		DependencyMapIdentity,
 		EmailIdentity,
 		EnforcerIdentity,
@@ -1659,6 +1697,7 @@ func AllIdentities() []elemental.Identity {
 		IsolationProfileIdentity,
 		IssueIdentity,
 		JaegerbatchIdentity,
+		LDAPProviderIdentity,
 		LogIdentity,
 		MessageIdentity,
 		NamespaceIdentity,
@@ -1786,6 +1825,10 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case DataPathCertificateIdentity:
 		return []string{}
+	case DBVersionIdentity:
+		return []string{
+			"dbvers",
+		}
 	case DependencyMapIdentity:
 		return []string{
 			"depmaps",
@@ -1888,6 +1931,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{
 			"sp",
 		}
+	case LDAPProviderIdentity:
+		return []string{}
 	case LogIdentity:
 		return []string{}
 	case MessageIdentity:

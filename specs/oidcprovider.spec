@@ -3,7 +3,7 @@ model:
   rest_name: oidcprovider
   resource_name: oidcproviders
   entity_name: OIDCProvider
-  package: vince
+  package: cactuar
   group: core/authentication
   description: |-
     Allows to declare a generic OpenID Connect provider that can be used in exchange
@@ -19,12 +19,9 @@ model:
   extends:
   - '@identifiable-stored'
   - '@timeable'
-
-# Indexes
-indexes:
-- - :unique
-  - parentID
-  - name
+  - '@base'
+  - '@named'
+  - '@zonable'
 
 # Attributes
 attributes:
@@ -61,15 +58,6 @@ attributes:
     stored: true
     required: true
     example_value: https://accounts.google.com
-
-  - name: name
-    description: Name of the provider.
-    type: string
-    exposed: true
-    stored: true
-    required: true
-    creation_only: true
-    example_value: google
 
   - name: parentID
     description: ParentID contains the parent Vince account ID.

@@ -184,6 +184,10 @@ relations:
   create:
     description: Creates a new Certificate for datapath.
 
+- rest_name: dbversion
+  get:
+    description: Retrieves the list of db versions.
+
 - rest_name: dependencymap
   get:
     description: Retrieves the dependencymap of a namespace.
@@ -406,6 +410,14 @@ relations:
   create:
     description: Sends a jaeger tracing batch.
 
+- rest_name: ldapprovider
+  get:
+    description: Retrieves the list of the account LDAP providers.
+    global_parameters:
+    - $filtering
+  create:
+    description: Creates a new LDAP provider.
+
 - rest_name: message
   get:
     description: Retrieves the list of messages.
@@ -451,17 +463,6 @@ relations:
     description: Retrieves the list of the account OIDC provider.
     global_parameters:
     - $filtering
-    parameters:
-      entries:
-      - name: OIDCProviderName
-        description: OIDCProvider name.
-        type: string
-        example_value: okta
-
-      - name: accountID
-        description: Aporeto Account ID.
-        type: string
-        example_value: aporeto
   create:
     description: Creates a new OIDC provider.
 
