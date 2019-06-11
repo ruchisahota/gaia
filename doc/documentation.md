@@ -8637,6 +8637,19 @@ on a linux system.
 
 #### Relations
 
+##### `GET /privilegeescalationpolicies`
+
+Retrieves the list of privilege escalation policies.
+
+Parameters:
+
+- `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
+- `propagated` (`boolean`): Also retrieve the objects that propagate down.
+
+##### `POST /privilegeescalationpolicies`
+
+Creates a new privilege escalation policy.
+
 ##### `DELETE /privilegeescalationpolicies/:id`
 
 Deletes the PrivilegeEscalationPolicy with the given ID.
