@@ -70,18 +70,19 @@ var (
 		"packetreport":             PacketReportIdentity,
 		"passwordreset":            PasswordResetIdentity,
 
-		"plan":                  PlanIdentity,
-		"poke":                  PokeIdentity,
-		"policy":                PolicyIdentity,
-		"policygraph":           PolicyGraphIdentity,
-		"policyrefresh":         PolicyRefreshIdentity,
-		"policyrenderer":        PolicyRendererIdentity,
-		"policyrule":            PolicyRuleIdentity,
-		"policyttl":             PolicyTTLIdentity,
-		"privatekey":            PrivateKeyIdentity,
-		"processingunit":        ProcessingUnitIdentity,
-		"processingunitpolicy":  ProcessingUnitPolicyIdentity,
-		"processingunitrefresh": ProcessingUnitRefreshIdentity,
+		"plan":                      PlanIdentity,
+		"poke":                      PokeIdentity,
+		"policy":                    PolicyIdentity,
+		"policygraph":               PolicyGraphIdentity,
+		"policyrefresh":             PolicyRefreshIdentity,
+		"policyrenderer":            PolicyRendererIdentity,
+		"policyrule":                PolicyRuleIdentity,
+		"policyttl":                 PolicyTTLIdentity,
+		"privatekey":                PrivateKeyIdentity,
+		"privilegeescalationpolicy": PrivilegeEscalationPolicyIdentity,
+		"processingunit":            ProcessingUnitIdentity,
+		"processingunitpolicy":      ProcessingUnitPolicyIdentity,
+		"processingunitrefresh":     ProcessingUnitRefreshIdentity,
 
 		"punode":      PUNodeIdentity,
 		"quotacheck":  QuotaCheckIdentity,
@@ -188,18 +189,19 @@ var (
 		"packetreports":              PacketReportIdentity,
 		"passwordreset":              PasswordResetIdentity,
 
-		"plans":                  PlanIdentity,
-		"poke":                   PokeIdentity,
-		"policies":               PolicyIdentity,
-		"policygraphs":           PolicyGraphIdentity,
-		"policyrefreshs":         PolicyRefreshIdentity,
-		"policyrenderers":        PolicyRendererIdentity,
-		"policyrules":            PolicyRuleIdentity,
-		"policyttls":             PolicyTTLIdentity,
-		"privatekeys":            PrivateKeyIdentity,
-		"processingunits":        ProcessingUnitIdentity,
-		"processingunitpolicies": ProcessingUnitPolicyIdentity,
-		"processingunitrefreshs": ProcessingUnitRefreshIdentity,
+		"plans":                       PlanIdentity,
+		"poke":                        PokeIdentity,
+		"policies":                    PolicyIdentity,
+		"policygraphs":                PolicyGraphIdentity,
+		"policyrefreshs":              PolicyRefreshIdentity,
+		"policyrenderers":             PolicyRendererIdentity,
+		"policyrules":                 PolicyRuleIdentity,
+		"policyttls":                  PolicyTTLIdentity,
+		"privatekeys":                 PrivateKeyIdentity,
+		"privilegeescalationpolicies": PrivilegeEscalationPolicyIdentity,
+		"processingunits":             ProcessingUnitIdentity,
+		"processingunitpolicies":      ProcessingUnitPolicyIdentity,
+		"processingunitrefreshs":      ProcessingUnitRefreshIdentity,
 
 		"punodes":       PUNodeIdentity,
 		"quotacheck":    QuotaCheckIdentity,
@@ -296,6 +298,8 @@ var (
 		"netpol":         NetworkAccessPolicyIdentity,
 		"netpols":        NetworkAccessPolicyIdentity,
 		"polgraph":       PolicyGraphIdentity,
+		"privescpol":     PrivilegeEscalationPolicyIdentity,
+		"privescpols":    PrivilegeEscalationPolicyIdentity,
 		"pu":             ProcessingUnitIdentity,
 		"pus":            ProcessingUnitIdentity,
 		"pup":            ProcessingUnitPolicyIdentity,
@@ -612,12 +616,13 @@ var (
 			[]string{"disabled"},
 			[]string{"createIdempotencyKey"},
 		},
-		"policygraph":    nil,
-		"policyrefresh":  nil,
-		"policyrenderer": nil,
-		"policyrule":     nil,
-		"policyttl":      nil,
-		"privatekey":     nil,
+		"policygraph":               nil,
+		"policyrefresh":             nil,
+		"policyrenderer":            nil,
+		"policyrule":                nil,
+		"policyttl":                 nil,
+		"privatekey":                nil,
+		"privilegeescalationpolicy": nil,
 		"processingunit": [][]string{
 			[]string{":shard", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -890,6 +895,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewPolicyTTL()
 	case PrivateKeyIdentity:
 		return NewPrivateKey()
+	case PrivilegeEscalationPolicyIdentity:
+		return NewPrivilegeEscalationPolicy()
 	case ProcessingUnitIdentity:
 		return NewProcessingUnit()
 	case ProcessingUnitPolicyIdentity:
@@ -1109,6 +1116,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparsePolicyTTL()
 	case PrivateKeyIdentity:
 		return NewSparsePrivateKey()
+	case PrivilegeEscalationPolicyIdentity:
+		return NewSparsePrivilegeEscalationPolicy()
 	case ProcessingUnitIdentity:
 		return NewSparseProcessingUnit()
 	case ProcessingUnitPolicyIdentity:
@@ -1336,6 +1345,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &PolicyTTLsList{}
 	case PrivateKeyIdentity:
 		return &PrivateKeysList{}
+	case PrivilegeEscalationPolicyIdentity:
+		return &PrivilegeEscalationPoliciesList{}
 	case ProcessingUnitIdentity:
 		return &ProcessingUnitsList{}
 	case ProcessingUnitPolicyIdentity:
@@ -1553,6 +1564,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparsePolicyTTLsList{}
 	case PrivateKeyIdentity:
 		return &SparsePrivateKeysList{}
+	case PrivilegeEscalationPolicyIdentity:
+		return &SparsePrivilegeEscalationPoliciesList{}
 	case ProcessingUnitIdentity:
 		return &SparseProcessingUnitsList{}
 	case ProcessingUnitPolicyIdentity:
@@ -1715,6 +1728,7 @@ func AllIdentities() []elemental.Identity {
 		PolicyRuleIdentity,
 		PolicyTTLIdentity,
 		PrivateKeyIdentity,
+		PrivilegeEscalationPolicyIdentity,
 		ProcessingUnitIdentity,
 		ProcessingUnitPolicyIdentity,
 		ProcessingUnitRefreshIdentity,
@@ -1981,6 +1995,11 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case PrivateKeyIdentity:
 		return []string{}
+	case PrivilegeEscalationPolicyIdentity:
+		return []string{
+			"privescpol",
+			"privescpols",
+		}
 	case ProcessingUnitIdentity:
 		return []string{
 			"pu",
