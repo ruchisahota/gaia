@@ -8614,14 +8614,13 @@ key with the standard `ssh-keygen` tool.
 
 ## `policy/sudo`
 
-| Resource                                                | Description                                                                    |
-| -                                                       | -                                                                              |
-| [PrivilegeEscalationPolicy](#privilegeescalationpolicy) | The privilege escalation policy controls which PU/users can escalate privilege |
+| Resource                          | Description                                              |
+| -                                 | -                                                        |
+| [EnforcerPolicy](#enforcerpolicy) | The enforcer policy controls who can access to the host. |
 
-### PrivilegeEscalationPolicy
+### EnforcerPolicy
 
-The privilege escalation policy controls which PU/users can escalate privilege
-on a linux system.
+The enforcer policy controls who can access to the host.
 
 #### Example
 
@@ -8637,38 +8636,38 @@ on a linux system.
 
 #### Relations
 
-##### `GET /privilegeescalationpolicies`
+##### `GET /enforcerpolicies`
 
-Retrieves the list of privilege escalation policies.
+Retrieves the list of enforcer policies.
 
 Parameters:
 
 - `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
 - `propagated` (`boolean`): Also retrieve the objects that propagate down.
 
-##### `POST /privilegeescalationpolicies`
+##### `POST /enforcerpolicies`
 
-Creates a new privilege escalation policy.
+Creates a new enforcer policy.
 
-##### `DELETE /privilegeescalationpolicies/:id`
+##### `DELETE /enforcerpolicies/:id`
 
-Deletes the PrivilegeEscalationPolicy with the given ID.
+Deletes the EnforcerPolicy with the given ID.
 
 Parameters:
 
 - `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
 
-##### `GET /privilegeescalationpolicies/:id`
+##### `GET /enforcerpolicies/:id`
 
-Retrives the PrivilegeEscalationPolicy with the given ID.
+Retrives the EnforcerPolicy with the given ID.
 
 Parameters:
 
 - `propagated` (`boolean`): Also retrieve the objects that propagate down.
 
-##### `PUT /privilegeescalationpolicies/:id`
+##### `PUT /enforcerpolicies/:id`
 
-Updates the PrivilegeEscalationPolicy with the given ID.
+Updates the EnforcerPolicy with the given ID.
 
 #### Attributes
 

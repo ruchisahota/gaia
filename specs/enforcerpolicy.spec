@@ -1,24 +1,22 @@
 # Model
 model:
-  rest_name: privilegeescalationpolicy
-  resource_name: privilegeescalationpolicies
-  entity_name: PrivilegeEscalationPolicy
+  rest_name: enforcerpolicy
+  resource_name: enforcerpolicies
+  entity_name: EnforcerPolicy
   package: squall
   group: policy/sudo
-  description: |-
-    The privilege escalation policy controls which PU/users can escalate privilege
-    on a linux system.
+  description: The enforcer policy controls who can access to the host.
   aliases:
-  - privescpol
-  - privescpols
+  - enfpol
+  - enfpols
   get:
-    description: Retrives the PrivilegeEscalationPolicy with the given ID.
+    description: Retrives the EnforcerPolicy with the given ID.
     global_parameters:
     - $propagatable
   update:
-    description: Updates the PrivilegeEscalationPolicy with the given ID.
+    description: Updates the EnforcerPolicy with the given ID.
   delete:
-    description: Deletes the PrivilegeEscalationPolicy with the given ID.
+    description: Deletes the EnforcerPolicy with the given ID.
     global_parameters:
     - $filtering
   extends:

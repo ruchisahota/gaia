@@ -8,43 +8,43 @@ import (
 	"go.aporeto.io/elemental"
 )
 
-// PrivilegeEscalationPolicyIdentity represents the Identity of the object.
-var PrivilegeEscalationPolicyIdentity = elemental.Identity{
-	Name:     "privilegeescalationpolicy",
-	Category: "privilegeescalationpolicies",
+// EnforcerPolicyIdentity represents the Identity of the object.
+var EnforcerPolicyIdentity = elemental.Identity{
+	Name:     "enforcerpolicy",
+	Category: "enforcerpolicies",
 	Package:  "squall",
 	Private:  false,
 }
 
-// PrivilegeEscalationPoliciesList represents a list of PrivilegeEscalationPolicies
-type PrivilegeEscalationPoliciesList []*PrivilegeEscalationPolicy
+// EnforcerPoliciesList represents a list of EnforcerPolicies
+type EnforcerPoliciesList []*EnforcerPolicy
 
 // Identity returns the identity of the objects in the list.
-func (o PrivilegeEscalationPoliciesList) Identity() elemental.Identity {
+func (o EnforcerPoliciesList) Identity() elemental.Identity {
 
-	return PrivilegeEscalationPolicyIdentity
+	return EnforcerPolicyIdentity
 }
 
-// Copy returns a pointer to a copy the PrivilegeEscalationPoliciesList.
-func (o PrivilegeEscalationPoliciesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the EnforcerPoliciesList.
+func (o EnforcerPoliciesList) Copy() elemental.Identifiables {
 
-	copy := append(PrivilegeEscalationPoliciesList{}, o...)
+	copy := append(EnforcerPoliciesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the PrivilegeEscalationPoliciesList.
-func (o PrivilegeEscalationPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the EnforcerPoliciesList.
+func (o EnforcerPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(PrivilegeEscalationPoliciesList{}, o...)
+	out := append(EnforcerPoliciesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*PrivilegeEscalationPolicy))
+		out = append(out, obj.(*EnforcerPolicy))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o PrivilegeEscalationPoliciesList) List() elemental.IdentifiablesList {
+func (o EnforcerPoliciesList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -55,7 +55,7 @@ func (o PrivilegeEscalationPoliciesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o PrivilegeEscalationPoliciesList) DefaultOrder() []string {
+func (o EnforcerPoliciesList) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -63,26 +63,26 @@ func (o PrivilegeEscalationPoliciesList) DefaultOrder() []string {
 	}
 }
 
-// ToSparse returns the PrivilegeEscalationPoliciesList converted to SparsePrivilegeEscalationPoliciesList.
+// ToSparse returns the EnforcerPoliciesList converted to SparseEnforcerPoliciesList.
 // Objects in the list will only contain the given fields. No field means entire field set.
-func (o PrivilegeEscalationPoliciesList) ToSparse(fields ...string) elemental.Identifiables {
+func (o EnforcerPoliciesList) ToSparse(fields ...string) elemental.Identifiables {
 
-	out := make(SparsePrivilegeEscalationPoliciesList, len(o))
+	out := make(SparseEnforcerPoliciesList, len(o))
 	for i := 0; i < len(o); i++ {
-		out[i] = o[i].ToSparse(fields...).(*SparsePrivilegeEscalationPolicy)
+		out[i] = o[i].ToSparse(fields...).(*SparseEnforcerPolicy)
 	}
 
 	return out
 }
 
 // Version returns the version of the content.
-func (o PrivilegeEscalationPoliciesList) Version() int {
+func (o EnforcerPoliciesList) Version() int {
 
 	return 1
 }
 
-// PrivilegeEscalationPolicy represents the model of a privilegeescalationpolicy
-type PrivilegeEscalationPolicy struct {
+// EnforcerPolicy represents the model of a enforcerpolicy
+type EnforcerPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" msgpack:"ID" bson:"-" mapstructure:"ID,omitempty"`
 
@@ -159,10 +159,10 @@ type PrivilegeEscalationPolicy struct {
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
-// NewPrivilegeEscalationPolicy returns a new *PrivilegeEscalationPolicy
-func NewPrivilegeEscalationPolicy() *PrivilegeEscalationPolicy {
+// NewEnforcerPolicy returns a new *EnforcerPolicy
+func NewEnforcerPolicy() *EnforcerPolicy {
 
-	return &PrivilegeEscalationPolicy{
+	return &EnforcerPolicy{
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
@@ -174,31 +174,31 @@ func NewPrivilegeEscalationPolicy() *PrivilegeEscalationPolicy {
 }
 
 // Identity returns the Identity of the object.
-func (o *PrivilegeEscalationPolicy) Identity() elemental.Identity {
+func (o *EnforcerPolicy) Identity() elemental.Identity {
 
-	return PrivilegeEscalationPolicyIdentity
+	return EnforcerPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *PrivilegeEscalationPolicy) Identifier() string {
+func (o *EnforcerPolicy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *PrivilegeEscalationPolicy) SetIdentifier(id string) {
+func (o *EnforcerPolicy) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *PrivilegeEscalationPolicy) Version() int {
+func (o *EnforcerPolicy) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *PrivilegeEscalationPolicy) DefaultOrder() []string {
+func (o *EnforcerPolicy) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -207,240 +207,239 @@ func (o *PrivilegeEscalationPolicy) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *PrivilegeEscalationPolicy) Doc() string {
+func (o *EnforcerPolicy) Doc() string {
 
-	return `The privilege escalation policy controls which PU/users can escalate privilege
-on a linux system.`
+	return `The enforcer policy controls who can access to the host.`
 }
 
-func (o *PrivilegeEscalationPolicy) String() string {
+func (o *EnforcerPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetActiveDuration returns the ActiveDuration of the receiver.
-func (o *PrivilegeEscalationPolicy) GetActiveDuration() string {
+func (o *EnforcerPolicy) GetActiveDuration() string {
 
 	return o.ActiveDuration
 }
 
 // SetActiveDuration sets the property ActiveDuration of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetActiveDuration(activeDuration string) {
+func (o *EnforcerPolicy) SetActiveDuration(activeDuration string) {
 
 	o.ActiveDuration = activeDuration
 }
 
 // GetActiveSchedule returns the ActiveSchedule of the receiver.
-func (o *PrivilegeEscalationPolicy) GetActiveSchedule() string {
+func (o *EnforcerPolicy) GetActiveSchedule() string {
 
 	return o.ActiveSchedule
 }
 
 // SetActiveSchedule sets the property ActiveSchedule of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetActiveSchedule(activeSchedule string) {
+func (o *EnforcerPolicy) SetActiveSchedule(activeSchedule string) {
 
 	o.ActiveSchedule = activeSchedule
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *PrivilegeEscalationPolicy) GetAnnotations() map[string][]string {
+func (o *EnforcerPolicy) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the property Annotations of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetAnnotations(annotations map[string][]string) {
+func (o *EnforcerPolicy) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *PrivilegeEscalationPolicy) GetAssociatedTags() []string {
+func (o *EnforcerPolicy) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the property AssociatedTags of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *EnforcerPolicy) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *PrivilegeEscalationPolicy) GetCreateIdempotencyKey() string {
+func (o *EnforcerPolicy) GetCreateIdempotencyKey() string {
 
 	return o.CreateIdempotencyKey
 }
 
 // SetCreateIdempotencyKey sets the property CreateIdempotencyKey of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
+func (o *EnforcerPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
 
 	o.CreateIdempotencyKey = createIdempotencyKey
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *PrivilegeEscalationPolicy) GetCreateTime() time.Time {
+func (o *EnforcerPolicy) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the property CreateTime of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetCreateTime(createTime time.Time) {
+func (o *EnforcerPolicy) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
 // GetDescription returns the Description of the receiver.
-func (o *PrivilegeEscalationPolicy) GetDescription() string {
+func (o *EnforcerPolicy) GetDescription() string {
 
 	return o.Description
 }
 
 // SetDescription sets the property Description of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetDescription(description string) {
+func (o *EnforcerPolicy) SetDescription(description string) {
 
 	o.Description = description
 }
 
 // GetDisabled returns the Disabled of the receiver.
-func (o *PrivilegeEscalationPolicy) GetDisabled() bool {
+func (o *EnforcerPolicy) GetDisabled() bool {
 
 	return o.Disabled
 }
 
 // SetDisabled sets the property Disabled of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetDisabled(disabled bool) {
+func (o *EnforcerPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = disabled
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *PrivilegeEscalationPolicy) GetMetadata() []string {
+func (o *EnforcerPolicy) GetMetadata() []string {
 
 	return o.Metadata
 }
 
 // SetMetadata sets the property Metadata of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetMetadata(metadata []string) {
+func (o *EnforcerPolicy) SetMetadata(metadata []string) {
 
 	o.Metadata = metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *PrivilegeEscalationPolicy) GetName() string {
+func (o *EnforcerPolicy) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the property Name of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetName(name string) {
+func (o *EnforcerPolicy) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *PrivilegeEscalationPolicy) GetNamespace() string {
+func (o *EnforcerPolicy) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the property Namespace of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetNamespace(namespace string) {
+func (o *EnforcerPolicy) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *PrivilegeEscalationPolicy) GetNormalizedTags() []string {
+func (o *EnforcerPolicy) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the property NormalizedTags of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *EnforcerPolicy) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetPropagate returns the Propagate of the receiver.
-func (o *PrivilegeEscalationPolicy) GetPropagate() bool {
+func (o *EnforcerPolicy) GetPropagate() bool {
 
 	return o.Propagate
 }
 
 // SetPropagate sets the property Propagate of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetPropagate(propagate bool) {
+func (o *EnforcerPolicy) SetPropagate(propagate bool) {
 
 	o.Propagate = propagate
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *PrivilegeEscalationPolicy) GetProtected() bool {
+func (o *EnforcerPolicy) GetProtected() bool {
 
 	return o.Protected
 }
 
 // SetProtected sets the property Protected of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetProtected(protected bool) {
+func (o *EnforcerPolicy) SetProtected(protected bool) {
 
 	o.Protected = protected
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *PrivilegeEscalationPolicy) GetUpdateIdempotencyKey() string {
+func (o *EnforcerPolicy) GetUpdateIdempotencyKey() string {
 
 	return o.UpdateIdempotencyKey
 }
 
 // SetUpdateIdempotencyKey sets the property UpdateIdempotencyKey of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
+func (o *EnforcerPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 
 	o.UpdateIdempotencyKey = updateIdempotencyKey
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *PrivilegeEscalationPolicy) GetUpdateTime() time.Time {
+func (o *EnforcerPolicy) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the property UpdateTime of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetUpdateTime(updateTime time.Time) {
+func (o *EnforcerPolicy) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *PrivilegeEscalationPolicy) GetZHash() int {
+func (o *EnforcerPolicy) GetZHash() int {
 
 	return o.ZHash
 }
 
 // SetZHash sets the property ZHash of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetZHash(zHash int) {
+func (o *EnforcerPolicy) SetZHash(zHash int) {
 
 	o.ZHash = zHash
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *PrivilegeEscalationPolicy) GetZone() int {
+func (o *EnforcerPolicy) GetZone() int {
 
 	return o.Zone
 }
 
 // SetZone sets the property Zone of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetZone(zone int) {
+func (o *EnforcerPolicy) SetZone(zone int) {
 
 	o.Zone = zone
 }
 
 // ToSparse returns the sparse version of the model.
 // The returned object will only contain the given fields. No field means entire field set.
-func (o *PrivilegeEscalationPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable {
+func (o *EnforcerPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable {
 
 	if len(fields) == 0 {
 		// nolint: goimports
-		return &SparsePrivilegeEscalationPolicy{
+		return &SparseEnforcerPolicy{
 			ID:                   &o.ID,
 			ActiveDuration:       &o.ActiveDuration,
 			ActiveSchedule:       &o.ActiveSchedule,
@@ -466,7 +465,7 @@ func (o *PrivilegeEscalationPolicy) ToSparse(fields ...string) elemental.SparseI
 		}
 	}
 
-	sp := &SparsePrivilegeEscalationPolicy{}
+	sp := &SparseEnforcerPolicy{}
 	for _, f := range fields {
 		switch f {
 		case "ID":
@@ -519,13 +518,13 @@ func (o *PrivilegeEscalationPolicy) ToSparse(fields ...string) elemental.SparseI
 	return sp
 }
 
-// Patch apply the non nil value of a *SparsePrivilegeEscalationPolicy to the object.
-func (o *PrivilegeEscalationPolicy) Patch(sparse elemental.SparseIdentifiable) {
+// Patch apply the non nil value of a *SparseEnforcerPolicy to the object.
+func (o *EnforcerPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	if !sparse.Identity().IsEqual(o.Identity()) {
 		panic("cannot patch from a parse with different identity")
 	}
 
-	so := sparse.(*SparsePrivilegeEscalationPolicy)
+	so := sparse.(*SparseEnforcerPolicy)
 	if so.ID != nil {
 		o.ID = *so.ID
 	}
@@ -594,32 +593,32 @@ func (o *PrivilegeEscalationPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	}
 }
 
-// DeepCopy returns a deep copy if the PrivilegeEscalationPolicy.
-func (o *PrivilegeEscalationPolicy) DeepCopy() *PrivilegeEscalationPolicy {
+// DeepCopy returns a deep copy if the EnforcerPolicy.
+func (o *EnforcerPolicy) DeepCopy() *EnforcerPolicy {
 
 	if o == nil {
 		return nil
 	}
 
-	out := &PrivilegeEscalationPolicy{}
+	out := &EnforcerPolicy{}
 	o.DeepCopyInto(out)
 
 	return out
 }
 
-// DeepCopyInto copies the receiver into the given *PrivilegeEscalationPolicy.
-func (o *PrivilegeEscalationPolicy) DeepCopyInto(out *PrivilegeEscalationPolicy) {
+// DeepCopyInto copies the receiver into the given *EnforcerPolicy.
+func (o *EnforcerPolicy) DeepCopyInto(out *EnforcerPolicy) {
 
 	target, err := copystructure.Copy(o)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to deepcopy PrivilegeEscalationPolicy: %s", err))
+		panic(fmt.Sprintf("Unable to deepcopy EnforcerPolicy: %s", err))
 	}
 
-	*out = *target.(*PrivilegeEscalationPolicy)
+	*out = *target.(*EnforcerPolicy)
 }
 
 // Validate valides the current information stored into the structure.
-func (o *PrivilegeEscalationPolicy) Validate() error {
+func (o *EnforcerPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -668,26 +667,26 @@ func (o *PrivilegeEscalationPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*PrivilegeEscalationPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*EnforcerPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := PrivilegeEscalationPolicyAttributesMap[name]; ok {
+	if v, ok := EnforcerPolicyAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return PrivilegeEscalationPolicyLowerCaseAttributesMap[name]
+	return EnforcerPolicyLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*PrivilegeEscalationPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*EnforcerPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return PrivilegeEscalationPolicyAttributesMap
+	return EnforcerPolicyAttributesMap
 }
 
 // ValueForAttribute returns the value for the given attribute.
 // This is a very advanced function that you should not need but in some
 // very specific use cases.
-func (o *PrivilegeEscalationPolicy) ValueForAttribute(name string) interface{} {
+func (o *EnforcerPolicy) ValueForAttribute(name string) interface{} {
 
 	switch name {
 	case "ID":
@@ -739,8 +738,8 @@ func (o *PrivilegeEscalationPolicy) ValueForAttribute(name string) interface{} {
 	return nil
 }
 
-// PrivilegeEscalationPolicyAttributesMap represents the map of attribute for PrivilegeEscalationPolicy.
-var PrivilegeEscalationPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// EnforcerPolicyAttributesMap represents the map of attribute for EnforcerPolicy.
+var EnforcerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -1025,8 +1024,8 @@ georedundancy.`,
 	},
 }
 
-// PrivilegeEscalationPolicyLowerCaseAttributesMap represents the map of attribute for PrivilegeEscalationPolicy.
-var PrivilegeEscalationPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// EnforcerPolicyLowerCaseAttributesMap represents the map of attribute for EnforcerPolicy.
+var EnforcerPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -1311,35 +1310,35 @@ georedundancy.`,
 	},
 }
 
-// SparsePrivilegeEscalationPoliciesList represents a list of SparsePrivilegeEscalationPolicies
-type SparsePrivilegeEscalationPoliciesList []*SparsePrivilegeEscalationPolicy
+// SparseEnforcerPoliciesList represents a list of SparseEnforcerPolicies
+type SparseEnforcerPoliciesList []*SparseEnforcerPolicy
 
 // Identity returns the identity of the objects in the list.
-func (o SparsePrivilegeEscalationPoliciesList) Identity() elemental.Identity {
+func (o SparseEnforcerPoliciesList) Identity() elemental.Identity {
 
-	return PrivilegeEscalationPolicyIdentity
+	return EnforcerPolicyIdentity
 }
 
-// Copy returns a pointer to a copy the SparsePrivilegeEscalationPoliciesList.
-func (o SparsePrivilegeEscalationPoliciesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SparseEnforcerPoliciesList.
+func (o SparseEnforcerPoliciesList) Copy() elemental.Identifiables {
 
-	copy := append(SparsePrivilegeEscalationPoliciesList{}, o...)
+	copy := append(SparseEnforcerPoliciesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SparsePrivilegeEscalationPoliciesList.
-func (o SparsePrivilegeEscalationPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SparseEnforcerPoliciesList.
+func (o SparseEnforcerPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SparsePrivilegeEscalationPoliciesList{}, o...)
+	out := append(SparseEnforcerPoliciesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*SparsePrivilegeEscalationPolicy))
+		out = append(out, obj.(*SparseEnforcerPolicy))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SparsePrivilegeEscalationPoliciesList) List() elemental.IdentifiablesList {
+func (o SparseEnforcerPoliciesList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -1350,7 +1349,7 @@ func (o SparsePrivilegeEscalationPoliciesList) List() elemental.IdentifiablesLis
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SparsePrivilegeEscalationPoliciesList) DefaultOrder() []string {
+func (o SparseEnforcerPoliciesList) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -1358,8 +1357,8 @@ func (o SparsePrivilegeEscalationPoliciesList) DefaultOrder() []string {
 	}
 }
 
-// ToPlain returns the SparsePrivilegeEscalationPoliciesList converted to PrivilegeEscalationPoliciesList.
-func (o SparsePrivilegeEscalationPoliciesList) ToPlain() elemental.IdentifiablesList {
+// ToPlain returns the SparseEnforcerPoliciesList converted to EnforcerPoliciesList.
+func (o SparseEnforcerPoliciesList) ToPlain() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -1370,13 +1369,13 @@ func (o SparsePrivilegeEscalationPoliciesList) ToPlain() elemental.Identifiables
 }
 
 // Version returns the version of the content.
-func (o SparsePrivilegeEscalationPoliciesList) Version() int {
+func (o SparseEnforcerPoliciesList) Version() int {
 
 	return 1
 }
 
-// SparsePrivilegeEscalationPolicy represents the sparse version of a privilegeescalationpolicy.
-type SparsePrivilegeEscalationPolicy struct {
+// SparseEnforcerPolicy represents the sparse version of a enforcerpolicy.
+type SparseEnforcerPolicy struct {
 	// ID is the identifier of the object.
 	ID *string `json:"ID,omitempty" msgpack:"ID,omitempty" bson:"-" mapstructure:"ID,omitempty"`
 
@@ -1453,19 +1452,19 @@ type SparsePrivilegeEscalationPolicy struct {
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
-// NewSparsePrivilegeEscalationPolicy returns a new  SparsePrivilegeEscalationPolicy.
-func NewSparsePrivilegeEscalationPolicy() *SparsePrivilegeEscalationPolicy {
-	return &SparsePrivilegeEscalationPolicy{}
+// NewSparseEnforcerPolicy returns a new  SparseEnforcerPolicy.
+func NewSparseEnforcerPolicy() *SparseEnforcerPolicy {
+	return &SparseEnforcerPolicy{}
 }
 
 // Identity returns the Identity of the sparse object.
-func (o *SparsePrivilegeEscalationPolicy) Identity() elemental.Identity {
+func (o *SparseEnforcerPolicy) Identity() elemental.Identity {
 
-	return PrivilegeEscalationPolicyIdentity
+	return EnforcerPolicyIdentity
 }
 
 // Identifier returns the value of the sparse object's unique identifier.
-func (o *SparsePrivilegeEscalationPolicy) Identifier() string {
+func (o *SparseEnforcerPolicy) Identifier() string {
 
 	if o.ID == nil {
 		return ""
@@ -1474,21 +1473,21 @@ func (o *SparsePrivilegeEscalationPolicy) Identifier() string {
 }
 
 // SetIdentifier sets the value of the sparse object's unique identifier.
-func (o *SparsePrivilegeEscalationPolicy) SetIdentifier(id string) {
+func (o *SparseEnforcerPolicy) SetIdentifier(id string) {
 
 	o.ID = &id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *SparsePrivilegeEscalationPolicy) Version() int {
+func (o *SparseEnforcerPolicy) Version() int {
 
 	return 1
 }
 
 // ToPlain returns the plain version of the sparse model.
-func (o *SparsePrivilegeEscalationPolicy) ToPlain() elemental.PlainIdentifiable {
+func (o *SparseEnforcerPolicy) ToPlain() elemental.PlainIdentifiable {
 
-	out := NewPrivilegeEscalationPolicy()
+	out := NewEnforcerPolicy()
 	if o.ID != nil {
 		out.ID = *o.ID
 	}
@@ -1560,241 +1559,241 @@ func (o *SparsePrivilegeEscalationPolicy) ToPlain() elemental.PlainIdentifiable 
 }
 
 // GetActiveDuration returns the ActiveDuration of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetActiveDuration() string {
+func (o *SparseEnforcerPolicy) GetActiveDuration() string {
 
 	return *o.ActiveDuration
 }
 
 // SetActiveDuration sets the property ActiveDuration of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetActiveDuration(activeDuration string) {
+func (o *SparseEnforcerPolicy) SetActiveDuration(activeDuration string) {
 
 	o.ActiveDuration = &activeDuration
 }
 
 // GetActiveSchedule returns the ActiveSchedule of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetActiveSchedule() string {
+func (o *SparseEnforcerPolicy) GetActiveSchedule() string {
 
 	return *o.ActiveSchedule
 }
 
 // SetActiveSchedule sets the property ActiveSchedule of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetActiveSchedule(activeSchedule string) {
+func (o *SparseEnforcerPolicy) SetActiveSchedule(activeSchedule string) {
 
 	o.ActiveSchedule = &activeSchedule
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetAnnotations() map[string][]string {
+func (o *SparseEnforcerPolicy) GetAnnotations() map[string][]string {
 
 	return *o.Annotations
 }
 
 // SetAnnotations sets the property Annotations of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetAnnotations(annotations map[string][]string) {
+func (o *SparseEnforcerPolicy) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = &annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetAssociatedTags() []string {
+func (o *SparseEnforcerPolicy) GetAssociatedTags() []string {
 
 	return *o.AssociatedTags
 }
 
 // SetAssociatedTags sets the property AssociatedTags of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *SparseEnforcerPolicy) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = &associatedTags
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetCreateIdempotencyKey() string {
+func (o *SparseEnforcerPolicy) GetCreateIdempotencyKey() string {
 
 	return *o.CreateIdempotencyKey
 }
 
 // SetCreateIdempotencyKey sets the property CreateIdempotencyKey of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
+func (o *SparseEnforcerPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
 
 	o.CreateIdempotencyKey = &createIdempotencyKey
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetCreateTime() time.Time {
+func (o *SparseEnforcerPolicy) GetCreateTime() time.Time {
 
 	return *o.CreateTime
 }
 
 // SetCreateTime sets the property CreateTime of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetCreateTime(createTime time.Time) {
+func (o *SparseEnforcerPolicy) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = &createTime
 }
 
 // GetDescription returns the Description of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetDescription() string {
+func (o *SparseEnforcerPolicy) GetDescription() string {
 
 	return *o.Description
 }
 
 // SetDescription sets the property Description of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetDescription(description string) {
+func (o *SparseEnforcerPolicy) SetDescription(description string) {
 
 	o.Description = &description
 }
 
 // GetDisabled returns the Disabled of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetDisabled() bool {
+func (o *SparseEnforcerPolicy) GetDisabled() bool {
 
 	return *o.Disabled
 }
 
 // SetDisabled sets the property Disabled of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetDisabled(disabled bool) {
+func (o *SparseEnforcerPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = &disabled
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetMetadata() []string {
+func (o *SparseEnforcerPolicy) GetMetadata() []string {
 
 	return *o.Metadata
 }
 
 // SetMetadata sets the property Metadata of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetMetadata(metadata []string) {
+func (o *SparseEnforcerPolicy) SetMetadata(metadata []string) {
 
 	o.Metadata = &metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetName() string {
+func (o *SparseEnforcerPolicy) GetName() string {
 
 	return *o.Name
 }
 
 // SetName sets the property Name of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetName(name string) {
+func (o *SparseEnforcerPolicy) SetName(name string) {
 
 	o.Name = &name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetNamespace() string {
+func (o *SparseEnforcerPolicy) GetNamespace() string {
 
 	return *o.Namespace
 }
 
 // SetNamespace sets the property Namespace of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetNamespace(namespace string) {
+func (o *SparseEnforcerPolicy) SetNamespace(namespace string) {
 
 	o.Namespace = &namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetNormalizedTags() []string {
+func (o *SparseEnforcerPolicy) GetNormalizedTags() []string {
 
 	return *o.NormalizedTags
 }
 
 // SetNormalizedTags sets the property NormalizedTags of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *SparseEnforcerPolicy) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = &normalizedTags
 }
 
 // GetPropagate returns the Propagate of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetPropagate() bool {
+func (o *SparseEnforcerPolicy) GetPropagate() bool {
 
 	return *o.Propagate
 }
 
 // SetPropagate sets the property Propagate of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetPropagate(propagate bool) {
+func (o *SparseEnforcerPolicy) SetPropagate(propagate bool) {
 
 	o.Propagate = &propagate
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetProtected() bool {
+func (o *SparseEnforcerPolicy) GetProtected() bool {
 
 	return *o.Protected
 }
 
 // SetProtected sets the property Protected of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetProtected(protected bool) {
+func (o *SparseEnforcerPolicy) SetProtected(protected bool) {
 
 	o.Protected = &protected
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetUpdateIdempotencyKey() string {
+func (o *SparseEnforcerPolicy) GetUpdateIdempotencyKey() string {
 
 	return *o.UpdateIdempotencyKey
 }
 
 // SetUpdateIdempotencyKey sets the property UpdateIdempotencyKey of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
+func (o *SparseEnforcerPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 
 	o.UpdateIdempotencyKey = &updateIdempotencyKey
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetUpdateTime() time.Time {
+func (o *SparseEnforcerPolicy) GetUpdateTime() time.Time {
 
 	return *o.UpdateTime
 }
 
 // SetUpdateTime sets the property UpdateTime of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetUpdateTime(updateTime time.Time) {
+func (o *SparseEnforcerPolicy) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = &updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetZHash() int {
+func (o *SparseEnforcerPolicy) GetZHash() int {
 
 	return *o.ZHash
 }
 
 // SetZHash sets the property ZHash of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetZHash(zHash int) {
+func (o *SparseEnforcerPolicy) SetZHash(zHash int) {
 
 	o.ZHash = &zHash
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetZone() int {
+func (o *SparseEnforcerPolicy) GetZone() int {
 
 	return *o.Zone
 }
 
 // SetZone sets the property Zone of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetZone(zone int) {
+func (o *SparseEnforcerPolicy) SetZone(zone int) {
 
 	o.Zone = &zone
 }
 
-// DeepCopy returns a deep copy if the SparsePrivilegeEscalationPolicy.
-func (o *SparsePrivilegeEscalationPolicy) DeepCopy() *SparsePrivilegeEscalationPolicy {
+// DeepCopy returns a deep copy if the SparseEnforcerPolicy.
+func (o *SparseEnforcerPolicy) DeepCopy() *SparseEnforcerPolicy {
 
 	if o == nil {
 		return nil
 	}
 
-	out := &SparsePrivilegeEscalationPolicy{}
+	out := &SparseEnforcerPolicy{}
 	o.DeepCopyInto(out)
 
 	return out
 }
 
-// DeepCopyInto copies the receiver into the given *SparsePrivilegeEscalationPolicy.
-func (o *SparsePrivilegeEscalationPolicy) DeepCopyInto(out *SparsePrivilegeEscalationPolicy) {
+// DeepCopyInto copies the receiver into the given *SparseEnforcerPolicy.
+func (o *SparseEnforcerPolicy) DeepCopyInto(out *SparseEnforcerPolicy) {
 
 	target, err := copystructure.Copy(o)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to deepcopy SparsePrivilegeEscalationPolicy: %s", err))
+		panic(fmt.Sprintf("Unable to deepcopy SparseEnforcerPolicy: %s", err))
 	}
 
-	*out = *target.(*SparsePrivilegeEscalationPolicy)
+	*out = *target.(*SparseEnforcerPolicy)
 }

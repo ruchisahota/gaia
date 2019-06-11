@@ -34,6 +34,7 @@ var (
 		"email":               EmailIdentity,
 
 		"enforcer":                     EnforcerIdentity,
+		"enforcerpolicy":               EnforcerPolicyIdentity,
 		"enforcerprofile":              EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicy": EnforcerProfileMappingPolicyIdentity,
 		"enforcerreport":               EnforcerReportIdentity,
@@ -70,19 +71,18 @@ var (
 		"packetreport":             PacketReportIdentity,
 		"passwordreset":            PasswordResetIdentity,
 
-		"plan":                      PlanIdentity,
-		"poke":                      PokeIdentity,
-		"policy":                    PolicyIdentity,
-		"policygraph":               PolicyGraphIdentity,
-		"policyrefresh":             PolicyRefreshIdentity,
-		"policyrenderer":            PolicyRendererIdentity,
-		"policyrule":                PolicyRuleIdentity,
-		"policyttl":                 PolicyTTLIdentity,
-		"privatekey":                PrivateKeyIdentity,
-		"privilegeescalationpolicy": PrivilegeEscalationPolicyIdentity,
-		"processingunit":            ProcessingUnitIdentity,
-		"processingunitpolicy":      ProcessingUnitPolicyIdentity,
-		"processingunitrefresh":     ProcessingUnitRefreshIdentity,
+		"plan":                  PlanIdentity,
+		"poke":                  PokeIdentity,
+		"policy":                PolicyIdentity,
+		"policygraph":           PolicyGraphIdentity,
+		"policyrefresh":         PolicyRefreshIdentity,
+		"policyrenderer":        PolicyRendererIdentity,
+		"policyrule":            PolicyRuleIdentity,
+		"policyttl":             PolicyTTLIdentity,
+		"privatekey":            PrivateKeyIdentity,
+		"processingunit":        ProcessingUnitIdentity,
+		"processingunitpolicy":  ProcessingUnitPolicyIdentity,
+		"processingunitrefresh": ProcessingUnitRefreshIdentity,
 
 		"punode":      PUNodeIdentity,
 		"quotacheck":  QuotaCheckIdentity,
@@ -153,6 +153,7 @@ var (
 		"emails":               EmailIdentity,
 
 		"enforcers":                      EnforcerIdentity,
+		"enforcerpolicies":               EnforcerPolicyIdentity,
 		"enforcerprofiles":               EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicies": EnforcerProfileMappingPolicyIdentity,
 		"enforcerreports":                EnforcerReportIdentity,
@@ -189,19 +190,18 @@ var (
 		"packetreports":              PacketReportIdentity,
 		"passwordreset":              PasswordResetIdentity,
 
-		"plans":                       PlanIdentity,
-		"poke":                        PokeIdentity,
-		"policies":                    PolicyIdentity,
-		"policygraphs":                PolicyGraphIdentity,
-		"policyrefreshs":              PolicyRefreshIdentity,
-		"policyrenderers":             PolicyRendererIdentity,
-		"policyrules":                 PolicyRuleIdentity,
-		"policyttls":                  PolicyTTLIdentity,
-		"privatekeys":                 PrivateKeyIdentity,
-		"privilegeescalationpolicies": PrivilegeEscalationPolicyIdentity,
-		"processingunits":             ProcessingUnitIdentity,
-		"processingunitpolicies":      ProcessingUnitPolicyIdentity,
-		"processingunitrefreshs":      ProcessingUnitRefreshIdentity,
+		"plans":                  PlanIdentity,
+		"poke":                   PokeIdentity,
+		"policies":               PolicyIdentity,
+		"policygraphs":           PolicyGraphIdentity,
+		"policyrefreshs":         PolicyRefreshIdentity,
+		"policyrenderers":        PolicyRendererIdentity,
+		"policyrules":            PolicyRuleIdentity,
+		"policyttls":             PolicyTTLIdentity,
+		"privatekeys":            PrivateKeyIdentity,
+		"processingunits":        ProcessingUnitIdentity,
+		"processingunitpolicies": ProcessingUnitPolicyIdentity,
+		"processingunitrefreshs": ProcessingUnitRefreshIdentity,
 
 		"punodes":       PUNodeIdentity,
 		"quotacheck":    QuotaCheckIdentity,
@@ -259,6 +259,8 @@ var (
 		"dbvers":         DBVersionIdentity,
 		"depmaps":        DependencyMapIdentity,
 		"depmap":         DependencyMapIdentity,
+		"enfpol":         EnforcerPolicyIdentity,
+		"enfpols":        EnforcerPolicyIdentity,
 		"profile":        EnforcerProfileIdentity,
 		"profiles":       EnforcerProfileIdentity,
 		"enfpols":        EnforcerProfileMappingPolicyIdentity,
@@ -298,8 +300,6 @@ var (
 		"netpol":         NetworkAccessPolicyIdentity,
 		"netpols":        NetworkAccessPolicyIdentity,
 		"polgraph":       PolicyGraphIdentity,
-		"privescpol":     PrivilegeEscalationPolicyIdentity,
-		"privescpols":    PrivilegeEscalationPolicyIdentity,
 		"pu":             ProcessingUnitIdentity,
 		"pus":            ProcessingUnitIdentity,
 		"pup":            ProcessingUnitPolicyIdentity,
@@ -444,6 +444,7 @@ var (
 			[]string{"createIdempotencyKey"},
 			[]string{":shard", "zone", "zHash"},
 		},
+		"enforcerpolicy": nil,
 		"enforcerprofile": [][]string{
 			[]string{":shard", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -616,13 +617,12 @@ var (
 			[]string{"disabled"},
 			[]string{"createIdempotencyKey"},
 		},
-		"policygraph":               nil,
-		"policyrefresh":             nil,
-		"policyrenderer":            nil,
-		"policyrule":                nil,
-		"policyttl":                 nil,
-		"privatekey":                nil,
-		"privilegeescalationpolicy": nil,
+		"policygraph":    nil,
+		"policyrefresh":  nil,
+		"policyrenderer": nil,
+		"policyrule":     nil,
+		"policyttl":      nil,
+		"privatekey":     nil,
 		"processingunit": [][]string{
 			[]string{":shard", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -809,6 +809,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewEmail()
 	case EnforcerIdentity:
 		return NewEnforcer()
+	case EnforcerPolicyIdentity:
+		return NewEnforcerPolicy()
 	case EnforcerProfileIdentity:
 		return NewEnforcerProfile()
 	case EnforcerProfileMappingPolicyIdentity:
@@ -895,8 +897,6 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewPolicyTTL()
 	case PrivateKeyIdentity:
 		return NewPrivateKey()
-	case PrivilegeEscalationPolicyIdentity:
-		return NewPrivilegeEscalationPolicy()
 	case ProcessingUnitIdentity:
 		return NewProcessingUnit()
 	case ProcessingUnitPolicyIdentity:
@@ -1030,6 +1030,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseEmail()
 	case EnforcerIdentity:
 		return NewSparseEnforcer()
+	case EnforcerPolicyIdentity:
+		return NewSparseEnforcerPolicy()
 	case EnforcerProfileIdentity:
 		return NewSparseEnforcerProfile()
 	case EnforcerProfileMappingPolicyIdentity:
@@ -1116,8 +1118,6 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparsePolicyTTL()
 	case PrivateKeyIdentity:
 		return NewSparsePrivateKey()
-	case PrivilegeEscalationPolicyIdentity:
-		return NewSparsePrivilegeEscalationPolicy()
 	case ProcessingUnitIdentity:
 		return NewSparseProcessingUnit()
 	case ProcessingUnitPolicyIdentity:
@@ -1259,6 +1259,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &EmailsList{}
 	case EnforcerIdentity:
 		return &EnforcersList{}
+	case EnforcerPolicyIdentity:
+		return &EnforcerPoliciesList{}
 	case EnforcerProfileIdentity:
 		return &EnforcerProfilesList{}
 	case EnforcerProfileMappingPolicyIdentity:
@@ -1345,8 +1347,6 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &PolicyTTLsList{}
 	case PrivateKeyIdentity:
 		return &PrivateKeysList{}
-	case PrivilegeEscalationPolicyIdentity:
-		return &PrivilegeEscalationPoliciesList{}
 	case ProcessingUnitIdentity:
 		return &ProcessingUnitsList{}
 	case ProcessingUnitPolicyIdentity:
@@ -1478,6 +1478,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseEmailsList{}
 	case EnforcerIdentity:
 		return &SparseEnforcersList{}
+	case EnforcerPolicyIdentity:
+		return &SparseEnforcerPoliciesList{}
 	case EnforcerProfileIdentity:
 		return &SparseEnforcerProfilesList{}
 	case EnforcerProfileMappingPolicyIdentity:
@@ -1564,8 +1566,6 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparsePolicyTTLsList{}
 	case PrivateKeyIdentity:
 		return &SparsePrivateKeysList{}
-	case PrivilegeEscalationPolicyIdentity:
-		return &SparsePrivilegeEscalationPoliciesList{}
 	case ProcessingUnitIdentity:
 		return &SparseProcessingUnitsList{}
 	case ProcessingUnitPolicyIdentity:
@@ -1685,6 +1685,7 @@ func AllIdentities() []elemental.Identity {
 		DependencyMapIdentity,
 		EmailIdentity,
 		EnforcerIdentity,
+		EnforcerPolicyIdentity,
 		EnforcerProfileIdentity,
 		EnforcerProfileMappingPolicyIdentity,
 		EnforcerReportIdentity,
@@ -1728,7 +1729,6 @@ func AllIdentities() []elemental.Identity {
 		PolicyRuleIdentity,
 		PolicyTTLIdentity,
 		PrivateKeyIdentity,
-		PrivilegeEscalationPolicyIdentity,
 		ProcessingUnitIdentity,
 		ProcessingUnitPolicyIdentity,
 		ProcessingUnitRefreshIdentity,
@@ -1852,6 +1852,11 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case EnforcerIdentity:
 		return []string{}
+	case EnforcerPolicyIdentity:
+		return []string{
+			"enfpol",
+			"enfpols",
+		}
 	case EnforcerProfileIdentity:
 		return []string{
 			"profile",
@@ -1995,11 +2000,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case PrivateKeyIdentity:
 		return []string{}
-	case PrivilegeEscalationPolicyIdentity:
-		return []string{
-			"privescpol",
-			"privescpols",
-		}
 	case ProcessingUnitIdentity:
 		return []string{
 			"pu",

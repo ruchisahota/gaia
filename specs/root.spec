@@ -223,6 +223,15 @@ relations:
   create:
     description: Creates a new enforcer.
 
+- rest_name: enforcerpolicy
+  get:
+    description: Retrieves the list of enforcer policies.
+    global_parameters:
+    - $filtering
+    - $propagatable
+  create:
+    description: Creates a new enforcer policy.
+
 - rest_name: enforcerprofile
   get:
     description: Retrieves the list of enforcer profiles.
@@ -502,15 +511,6 @@ relations:
 - rest_name: policyrenderer
   create:
     description: Render a policy of a given type for a given set of tags.
-
-- rest_name: privilegeescalationpolicy
-  get:
-    description: Retrieves the list of privilege escalation policies.
-    global_parameters:
-    - $filtering
-    - $propagatable
-  create:
-    description: Creates a new privilege escalation policy.
 
 - rest_name: processingunit
   get:
