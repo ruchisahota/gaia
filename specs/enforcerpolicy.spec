@@ -7,8 +7,8 @@ model:
   group: policy/sudo
   description: The enforcer policy controls who can access to the host.
   aliases:
-  - enfpol
-  - enfpols
+  - epol
+  - epols
   get:
     description: Retrives the EnforcerPolicy with the given ID.
     global_parameters:

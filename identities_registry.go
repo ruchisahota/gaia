@@ -259,8 +259,8 @@ var (
 		"dbvers":         DBVersionIdentity,
 		"depmaps":        DependencyMapIdentity,
 		"depmap":         DependencyMapIdentity,
-		"enfpol":         EnforcerPolicyIdentity,
-		"enfpols":        EnforcerPolicyIdentity,
+		"epol":           EnforcerPolicyIdentity,
+		"epols":          EnforcerPolicyIdentity,
 		"profile":        EnforcerProfileIdentity,
 		"profiles":       EnforcerProfileIdentity,
 		"enfpols":        EnforcerProfileMappingPolicyIdentity,
@@ -1854,8 +1854,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case EnforcerPolicyIdentity:
 		return []string{
-			"enfpol",
-			"enfpols",
+			"epol",
+			"epols",
 		}
 	case EnforcerProfileIdentity:
 		return []string{
