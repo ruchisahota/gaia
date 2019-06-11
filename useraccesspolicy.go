@@ -94,8 +94,8 @@ type UserAccessPolicy struct {
 	// The policy will be active for the given activeDuration.
 	ActiveSchedule string `json:"activeSchedule" msgpack:"activeSchedule" bson:"activeschedule" mapstructure:"activeSchedule,omitempty"`
 
-	// allowSudoUsers indicates the list of user who can use sudo commands.
-	AllowSudoUsers []string `json:"allowSudoUsers" msgpack:"allowSudoUsers" bson:"-" mapstructure:"allowSudoUsers,omitempty"`
+	// AllowedSudoUsers indicates the list of user who can use sudo commands.
+	AllowedSudoUsers []string `json:"allowedSudoUsers" msgpack:"allowedSudoUsers" bson:"-" mapstructure:"allowedSudoUsers,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" msgpack:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
@@ -163,8 +163,10 @@ type UserAccessPolicy struct {
 func NewUserAccessPolicy() *UserAccessPolicy {
 
 	return &UserAccessPolicy{
-		ModelVersion:   1,
-		AllowSudoUsers: []string{},
+		ModelVersion: 1,
+		AllowedSudoUsers: []string{
+			"root",
+		},
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -444,7 +446,7 @@ func (o *UserAccessPolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			ID:                   &o.ID,
 			ActiveDuration:       &o.ActiveDuration,
 			ActiveSchedule:       &o.ActiveSchedule,
-			AllowSudoUsers:       &o.AllowSudoUsers,
+			AllowedSudoUsers:     &o.AllowedSudoUsers,
 			Annotations:          &o.Annotations,
 			AssociatedTags:       &o.AssociatedTags,
 			CreateIdempotencyKey: &o.CreateIdempotencyKey,
@@ -475,8 +477,8 @@ func (o *UserAccessPolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			sp.ActiveDuration = &(o.ActiveDuration)
 		case "activeSchedule":
 			sp.ActiveSchedule = &(o.ActiveSchedule)
-		case "allowSudoUsers":
-			sp.AllowSudoUsers = &(o.AllowSudoUsers)
+		case "allowedSudoUsers":
+			sp.AllowedSudoUsers = &(o.AllowedSudoUsers)
 		case "annotations":
 			sp.Annotations = &(o.Annotations)
 		case "associatedTags":
@@ -535,8 +537,8 @@ func (o *UserAccessPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	if so.ActiveSchedule != nil {
 		o.ActiveSchedule = *so.ActiveSchedule
 	}
-	if so.AllowSudoUsers != nil {
-		o.AllowSudoUsers = *so.AllowSudoUsers
+	if so.AllowedSudoUsers != nil {
+		o.AllowedSudoUsers = *so.AllowedSudoUsers
 	}
 	if so.Annotations != nil {
 		o.Annotations = *so.Annotations
@@ -696,8 +698,8 @@ func (o *UserAccessPolicy) ValueForAttribute(name string) interface{} {
 		return o.ActiveDuration
 	case "activeSchedule":
 		return o.ActiveSchedule
-	case "allowSudoUsers":
-		return o.AllowSudoUsers
+	case "allowedSudoUsers":
+		return o.AllowedSudoUsers
 	case "annotations":
 		return o.Annotations
 	case "associatedTags":
@@ -779,14 +781,17 @@ The policy will be active for the given activeDuration.`,
 		Stored:  true,
 		Type:    "string",
 	},
-	"AllowSudoUsers": elemental.AttributeSpecification{
+	"AllowedSudoUsers": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "AllowSudoUsers",
-		Description:    `allowSudoUsers indicates the list of user who can use sudo commands.`,
-		Exposed:        true,
-		Name:           "allowSudoUsers",
-		SubType:        "string",
-		Type:           "list",
+		ConvertedName:  "AllowedSudoUsers",
+		DefaultValue: []string{
+			"root",
+		},
+		Description: `AllowedSudoUsers indicates the list of user who can use sudo commands.`,
+		Exposed:     true,
+		Name:        "allowedSudoUsers",
+		SubType:     "string",
+		Type:        "list",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1066,14 +1071,17 @@ The policy will be active for the given activeDuration.`,
 		Stored:  true,
 		Type:    "string",
 	},
-	"allowsudousers": elemental.AttributeSpecification{
+	"allowedsudousers": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "AllowSudoUsers",
-		Description:    `allowSudoUsers indicates the list of user who can use sudo commands.`,
-		Exposed:        true,
-		Name:           "allowSudoUsers",
-		SubType:        "string",
-		Type:           "list",
+		ConvertedName:  "AllowedSudoUsers",
+		DefaultValue: []string{
+			"root",
+		},
+		Description: `AllowedSudoUsers indicates the list of user who can use sudo commands.`,
+		Exposed:     true,
+		Name:        "allowedSudoUsers",
+		SubType:     "string",
+		Type:        "list",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1390,8 +1398,8 @@ type SparseUserAccessPolicy struct {
 	// The policy will be active for the given activeDuration.
 	ActiveSchedule *string `json:"activeSchedule,omitempty" msgpack:"activeSchedule,omitempty" bson:"activeschedule,omitempty" mapstructure:"activeSchedule,omitempty"`
 
-	// allowSudoUsers indicates the list of user who can use sudo commands.
-	AllowSudoUsers *[]string `json:"allowSudoUsers,omitempty" msgpack:"allowSudoUsers,omitempty" bson:"-" mapstructure:"allowSudoUsers,omitempty"`
+	// AllowedSudoUsers indicates the list of user who can use sudo commands.
+	AllowedSudoUsers *[]string `json:"allowedSudoUsers,omitempty" msgpack:"allowedSudoUsers,omitempty" bson:"-" mapstructure:"allowedSudoUsers,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations *map[string][]string `json:"annotations,omitempty" msgpack:"annotations,omitempty" bson:"annotations,omitempty" mapstructure:"annotations,omitempty"`
@@ -1500,8 +1508,8 @@ func (o *SparseUserAccessPolicy) ToPlain() elemental.PlainIdentifiable {
 	if o.ActiveSchedule != nil {
 		out.ActiveSchedule = *o.ActiveSchedule
 	}
-	if o.AllowSudoUsers != nil {
-		out.AllowSudoUsers = *o.AllowSudoUsers
+	if o.AllowedSudoUsers != nil {
+		out.AllowedSudoUsers = *o.AllowedSudoUsers
 	}
 	if o.Annotations != nil {
 		out.Annotations = *o.Annotations

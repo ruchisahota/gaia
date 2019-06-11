@@ -10,7 +10,7 @@ model:
   - usrpol
   - usrpols
   get:
-    description: Retrives the UserAccessPolicy with the given ID.
+    description: Retrieves the UserAccessPolicy with the given ID.
     global_parameters:
     - $propagatable
   update:
@@ -38,13 +38,15 @@ indexes:
 # Attributes
 attributes:
   v1:
-  - name: allowSudoUsers
-    description: allowSudoUsers indicates the list of user who can use sudo commands.
+  - name: allowedSudoUsers
+    description: AllowedSudoUsers indicates the list of user who can use sudo commands.
     type: list
     exposed: true
     subtype: string
+    default_value:
+    - root
     example_value:
-    - ubuntu
+    - root
 
   - name: object
     description: |-

@@ -4485,8 +4485,8 @@ The enforcer policy controls user access.
 
 ```json
 {
-  "allowSudoUsers": [
-    "ubuntu"
+  "allowedSudoUsers": [
+    "root"
   ],
   "disabled": false,
   "name": "the name",
@@ -4520,7 +4520,7 @@ Parameters:
 
 ##### `GET /useraccesspolicies/:id`
 
-Retrives the UserAccessPolicy with the given ID.
+Retrieves the UserAccessPolicy with the given ID.
 
 Parameters:
 
@@ -4546,9 +4546,17 @@ activeSchedule.
 ActiveSchedule defines when the policy should be active using the cron notation.
 The policy will be active for the given activeDuration.
 
-##### `allowSudoUsers` `[]string`
+##### `allowedSudoUsers` `[]string`
 
-allowSudoUsers indicates the list of user who can use sudo commands.
+AllowedSudoUsers indicates the list of user who can use sudo commands.
+
+Default value:
+
+```json
+[
+  "root"
+]
+```
 
 ##### `annotations` `map[string][]string`
 
