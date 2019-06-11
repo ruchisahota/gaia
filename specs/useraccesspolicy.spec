@@ -45,8 +45,6 @@ attributes:
     subtype: string
     default_value:
     - root
-    example_value:
-    - root
 
   - name: object
     description: |-
