@@ -223,15 +223,6 @@ relations:
   create:
     description: Creates a new enforcer.
 
-- rest_name: enforcerpolicy
-  get:
-    description: Retrieves the list of enforcer policies.
-    global_parameters:
-    - $filtering
-    - $propagatable
-  create:
-    description: Creates a new enforcer policy.
-
 - rest_name: enforcerprofile
   get:
     description: Retrieves the list of enforcer profiles.
@@ -733,6 +724,15 @@ relations:
     - $propagatable
   create:
     description: Creates a new token scope policy.
+
+- rest_name: useraccesspolicy
+  get:
+    description: Retrieves the list of user access policies.
+    global_parameters:
+    - $filtering
+    - $propagatable
+  create:
+    description: Creates a new enforcer policy.
 
 - rest_name: validateuiparameter
   create:

@@ -8,43 +8,43 @@ import (
 	"go.aporeto.io/elemental"
 )
 
-// EnforcerPolicyIdentity represents the Identity of the object.
-var EnforcerPolicyIdentity = elemental.Identity{
-	Name:     "enforcerpolicy",
-	Category: "enforcerpolicies",
+// UserAccessPolicyIdentity represents the Identity of the object.
+var UserAccessPolicyIdentity = elemental.Identity{
+	Name:     "useraccesspolicy",
+	Category: "useraccesspolicies",
 	Package:  "squall",
 	Private:  false,
 }
 
-// EnforcerPoliciesList represents a list of EnforcerPolicies
-type EnforcerPoliciesList []*EnforcerPolicy
+// UserAccessPoliciesList represents a list of UserAccessPolicies
+type UserAccessPoliciesList []*UserAccessPolicy
 
 // Identity returns the identity of the objects in the list.
-func (o EnforcerPoliciesList) Identity() elemental.Identity {
+func (o UserAccessPoliciesList) Identity() elemental.Identity {
 
-	return EnforcerPolicyIdentity
+	return UserAccessPolicyIdentity
 }
 
-// Copy returns a pointer to a copy the EnforcerPoliciesList.
-func (o EnforcerPoliciesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the UserAccessPoliciesList.
+func (o UserAccessPoliciesList) Copy() elemental.Identifiables {
 
-	copy := append(EnforcerPoliciesList{}, o...)
+	copy := append(UserAccessPoliciesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the EnforcerPoliciesList.
-func (o EnforcerPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the UserAccessPoliciesList.
+func (o UserAccessPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(EnforcerPoliciesList{}, o...)
+	out := append(UserAccessPoliciesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*EnforcerPolicy))
+		out = append(out, obj.(*UserAccessPolicy))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o EnforcerPoliciesList) List() elemental.IdentifiablesList {
+func (o UserAccessPoliciesList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -55,7 +55,7 @@ func (o EnforcerPoliciesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o EnforcerPoliciesList) DefaultOrder() []string {
+func (o UserAccessPoliciesList) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -63,26 +63,26 @@ func (o EnforcerPoliciesList) DefaultOrder() []string {
 	}
 }
 
-// ToSparse returns the EnforcerPoliciesList converted to SparseEnforcerPoliciesList.
+// ToSparse returns the UserAccessPoliciesList converted to SparseUserAccessPoliciesList.
 // Objects in the list will only contain the given fields. No field means entire field set.
-func (o EnforcerPoliciesList) ToSparse(fields ...string) elemental.Identifiables {
+func (o UserAccessPoliciesList) ToSparse(fields ...string) elemental.Identifiables {
 
-	out := make(SparseEnforcerPoliciesList, len(o))
+	out := make(SparseUserAccessPoliciesList, len(o))
 	for i := 0; i < len(o); i++ {
-		out[i] = o[i].ToSparse(fields...).(*SparseEnforcerPolicy)
+		out[i] = o[i].ToSparse(fields...).(*SparseUserAccessPolicy)
 	}
 
 	return out
 }
 
 // Version returns the version of the content.
-func (o EnforcerPoliciesList) Version() int {
+func (o UserAccessPoliciesList) Version() int {
 
 	return 1
 }
 
-// EnforcerPolicy represents the model of a enforcerpolicy
-type EnforcerPolicy struct {
+// UserAccessPolicy represents the model of a useraccesspolicy
+type UserAccessPolicy struct {
 	// ID is the identifier of the object.
 	ID string `json:"ID" msgpack:"ID" bson:"-" mapstructure:"ID,omitempty"`
 
@@ -94,8 +94,8 @@ type EnforcerPolicy struct {
 	// The policy will be active for the given activeDuration.
 	ActiveSchedule string `json:"activeSchedule" msgpack:"activeSchedule" bson:"activeschedule" mapstructure:"activeSchedule,omitempty"`
 
-	// AllowSudoAccess indicates if the user is allowed to use sudo commands.
-	AllowSudoAccess bool `json:"allowSudoAccess" msgpack:"allowSudoAccess" bson:"-" mapstructure:"allowSudoAccess,omitempty"`
+	// allowSudoUsers indicates the list of user who can use sudo commands.
+	AllowSudoUsers []string `json:"allowSudoUsers" msgpack:"allowSudoUsers" bson:"-" mapstructure:"allowSudoUsers,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" msgpack:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
@@ -159,11 +159,12 @@ type EnforcerPolicy struct {
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
-// NewEnforcerPolicy returns a new *EnforcerPolicy
-func NewEnforcerPolicy() *EnforcerPolicy {
+// NewUserAccessPolicy returns a new *UserAccessPolicy
+func NewUserAccessPolicy() *UserAccessPolicy {
 
-	return &EnforcerPolicy{
+	return &UserAccessPolicy{
 		ModelVersion:   1,
+		AllowSudoUsers: []string{},
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
 		Metadata:       []string{},
@@ -174,31 +175,31 @@ func NewEnforcerPolicy() *EnforcerPolicy {
 }
 
 // Identity returns the Identity of the object.
-func (o *EnforcerPolicy) Identity() elemental.Identity {
+func (o *UserAccessPolicy) Identity() elemental.Identity {
 
-	return EnforcerPolicyIdentity
+	return UserAccessPolicyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *EnforcerPolicy) Identifier() string {
+func (o *UserAccessPolicy) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *EnforcerPolicy) SetIdentifier(id string) {
+func (o *UserAccessPolicy) SetIdentifier(id string) {
 
 	o.ID = id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *EnforcerPolicy) Version() int {
+func (o *UserAccessPolicy) Version() int {
 
 	return 1
 }
 
 // DefaultOrder returns the list of default ordering fields.
-func (o *EnforcerPolicy) DefaultOrder() []string {
+func (o *UserAccessPolicy) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -207,243 +208,243 @@ func (o *EnforcerPolicy) DefaultOrder() []string {
 }
 
 // Doc returns the documentation for the object
-func (o *EnforcerPolicy) Doc() string {
+func (o *UserAccessPolicy) Doc() string {
 
-	return `The enforcer policy controls who can access to the host.`
+	return `The enforcer policy controls user access.`
 }
 
-func (o *EnforcerPolicy) String() string {
+func (o *UserAccessPolicy) String() string {
 
 	return fmt.Sprintf("<%s:%s>", o.Identity().Name, o.Identifier())
 }
 
 // GetActiveDuration returns the ActiveDuration of the receiver.
-func (o *EnforcerPolicy) GetActiveDuration() string {
+func (o *UserAccessPolicy) GetActiveDuration() string {
 
 	return o.ActiveDuration
 }
 
 // SetActiveDuration sets the property ActiveDuration of the receiver using the given value.
-func (o *EnforcerPolicy) SetActiveDuration(activeDuration string) {
+func (o *UserAccessPolicy) SetActiveDuration(activeDuration string) {
 
 	o.ActiveDuration = activeDuration
 }
 
 // GetActiveSchedule returns the ActiveSchedule of the receiver.
-func (o *EnforcerPolicy) GetActiveSchedule() string {
+func (o *UserAccessPolicy) GetActiveSchedule() string {
 
 	return o.ActiveSchedule
 }
 
 // SetActiveSchedule sets the property ActiveSchedule of the receiver using the given value.
-func (o *EnforcerPolicy) SetActiveSchedule(activeSchedule string) {
+func (o *UserAccessPolicy) SetActiveSchedule(activeSchedule string) {
 
 	o.ActiveSchedule = activeSchedule
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *EnforcerPolicy) GetAnnotations() map[string][]string {
+func (o *UserAccessPolicy) GetAnnotations() map[string][]string {
 
 	return o.Annotations
 }
 
 // SetAnnotations sets the property Annotations of the receiver using the given value.
-func (o *EnforcerPolicy) SetAnnotations(annotations map[string][]string) {
+func (o *UserAccessPolicy) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *EnforcerPolicy) GetAssociatedTags() []string {
+func (o *UserAccessPolicy) GetAssociatedTags() []string {
 
 	return o.AssociatedTags
 }
 
 // SetAssociatedTags sets the property AssociatedTags of the receiver using the given value.
-func (o *EnforcerPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *UserAccessPolicy) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = associatedTags
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *EnforcerPolicy) GetCreateIdempotencyKey() string {
+func (o *UserAccessPolicy) GetCreateIdempotencyKey() string {
 
 	return o.CreateIdempotencyKey
 }
 
 // SetCreateIdempotencyKey sets the property CreateIdempotencyKey of the receiver using the given value.
-func (o *EnforcerPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
+func (o *UserAccessPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
 
 	o.CreateIdempotencyKey = createIdempotencyKey
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *EnforcerPolicy) GetCreateTime() time.Time {
+func (o *UserAccessPolicy) GetCreateTime() time.Time {
 
 	return o.CreateTime
 }
 
 // SetCreateTime sets the property CreateTime of the receiver using the given value.
-func (o *EnforcerPolicy) SetCreateTime(createTime time.Time) {
+func (o *UserAccessPolicy) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = createTime
 }
 
 // GetDescription returns the Description of the receiver.
-func (o *EnforcerPolicy) GetDescription() string {
+func (o *UserAccessPolicy) GetDescription() string {
 
 	return o.Description
 }
 
 // SetDescription sets the property Description of the receiver using the given value.
-func (o *EnforcerPolicy) SetDescription(description string) {
+func (o *UserAccessPolicy) SetDescription(description string) {
 
 	o.Description = description
 }
 
 // GetDisabled returns the Disabled of the receiver.
-func (o *EnforcerPolicy) GetDisabled() bool {
+func (o *UserAccessPolicy) GetDisabled() bool {
 
 	return o.Disabled
 }
 
 // SetDisabled sets the property Disabled of the receiver using the given value.
-func (o *EnforcerPolicy) SetDisabled(disabled bool) {
+func (o *UserAccessPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = disabled
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *EnforcerPolicy) GetMetadata() []string {
+func (o *UserAccessPolicy) GetMetadata() []string {
 
 	return o.Metadata
 }
 
 // SetMetadata sets the property Metadata of the receiver using the given value.
-func (o *EnforcerPolicy) SetMetadata(metadata []string) {
+func (o *UserAccessPolicy) SetMetadata(metadata []string) {
 
 	o.Metadata = metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *EnforcerPolicy) GetName() string {
+func (o *UserAccessPolicy) GetName() string {
 
 	return o.Name
 }
 
 // SetName sets the property Name of the receiver using the given value.
-func (o *EnforcerPolicy) SetName(name string) {
+func (o *UserAccessPolicy) SetName(name string) {
 
 	o.Name = name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *EnforcerPolicy) GetNamespace() string {
+func (o *UserAccessPolicy) GetNamespace() string {
 
 	return o.Namespace
 }
 
 // SetNamespace sets the property Namespace of the receiver using the given value.
-func (o *EnforcerPolicy) SetNamespace(namespace string) {
+func (o *UserAccessPolicy) SetNamespace(namespace string) {
 
 	o.Namespace = namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *EnforcerPolicy) GetNormalizedTags() []string {
+func (o *UserAccessPolicy) GetNormalizedTags() []string {
 
 	return o.NormalizedTags
 }
 
 // SetNormalizedTags sets the property NormalizedTags of the receiver using the given value.
-func (o *EnforcerPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *UserAccessPolicy) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = normalizedTags
 }
 
 // GetPropagate returns the Propagate of the receiver.
-func (o *EnforcerPolicy) GetPropagate() bool {
+func (o *UserAccessPolicy) GetPropagate() bool {
 
 	return o.Propagate
 }
 
 // SetPropagate sets the property Propagate of the receiver using the given value.
-func (o *EnforcerPolicy) SetPropagate(propagate bool) {
+func (o *UserAccessPolicy) SetPropagate(propagate bool) {
 
 	o.Propagate = propagate
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *EnforcerPolicy) GetProtected() bool {
+func (o *UserAccessPolicy) GetProtected() bool {
 
 	return o.Protected
 }
 
 // SetProtected sets the property Protected of the receiver using the given value.
-func (o *EnforcerPolicy) SetProtected(protected bool) {
+func (o *UserAccessPolicy) SetProtected(protected bool) {
 
 	o.Protected = protected
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *EnforcerPolicy) GetUpdateIdempotencyKey() string {
+func (o *UserAccessPolicy) GetUpdateIdempotencyKey() string {
 
 	return o.UpdateIdempotencyKey
 }
 
 // SetUpdateIdempotencyKey sets the property UpdateIdempotencyKey of the receiver using the given value.
-func (o *EnforcerPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
+func (o *UserAccessPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 
 	o.UpdateIdempotencyKey = updateIdempotencyKey
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *EnforcerPolicy) GetUpdateTime() time.Time {
+func (o *UserAccessPolicy) GetUpdateTime() time.Time {
 
 	return o.UpdateTime
 }
 
 // SetUpdateTime sets the property UpdateTime of the receiver using the given value.
-func (o *EnforcerPolicy) SetUpdateTime(updateTime time.Time) {
+func (o *UserAccessPolicy) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *EnforcerPolicy) GetZHash() int {
+func (o *UserAccessPolicy) GetZHash() int {
 
 	return o.ZHash
 }
 
 // SetZHash sets the property ZHash of the receiver using the given value.
-func (o *EnforcerPolicy) SetZHash(zHash int) {
+func (o *UserAccessPolicy) SetZHash(zHash int) {
 
 	o.ZHash = zHash
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *EnforcerPolicy) GetZone() int {
+func (o *UserAccessPolicy) GetZone() int {
 
 	return o.Zone
 }
 
 // SetZone sets the property Zone of the receiver using the given value.
-func (o *EnforcerPolicy) SetZone(zone int) {
+func (o *UserAccessPolicy) SetZone(zone int) {
 
 	o.Zone = zone
 }
 
 // ToSparse returns the sparse version of the model.
 // The returned object will only contain the given fields. No field means entire field set.
-func (o *EnforcerPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable {
+func (o *UserAccessPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable {
 
 	if len(fields) == 0 {
 		// nolint: goimports
-		return &SparseEnforcerPolicy{
+		return &SparseUserAccessPolicy{
 			ID:                   &o.ID,
 			ActiveDuration:       &o.ActiveDuration,
 			ActiveSchedule:       &o.ActiveSchedule,
-			AllowSudoAccess:      &o.AllowSudoAccess,
+			AllowSudoUsers:       &o.AllowSudoUsers,
 			Annotations:          &o.Annotations,
 			AssociatedTags:       &o.AssociatedTags,
 			CreateIdempotencyKey: &o.CreateIdempotencyKey,
@@ -465,7 +466,7 @@ func (o *EnforcerPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable
 		}
 	}
 
-	sp := &SparseEnforcerPolicy{}
+	sp := &SparseUserAccessPolicy{}
 	for _, f := range fields {
 		switch f {
 		case "ID":
@@ -474,8 +475,8 @@ func (o *EnforcerPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable
 			sp.ActiveDuration = &(o.ActiveDuration)
 		case "activeSchedule":
 			sp.ActiveSchedule = &(o.ActiveSchedule)
-		case "allowSudoAccess":
-			sp.AllowSudoAccess = &(o.AllowSudoAccess)
+		case "allowSudoUsers":
+			sp.AllowSudoUsers = &(o.AllowSudoUsers)
 		case "annotations":
 			sp.Annotations = &(o.Annotations)
 		case "associatedTags":
@@ -518,13 +519,13 @@ func (o *EnforcerPolicy) ToSparse(fields ...string) elemental.SparseIdentifiable
 	return sp
 }
 
-// Patch apply the non nil value of a *SparseEnforcerPolicy to the object.
-func (o *EnforcerPolicy) Patch(sparse elemental.SparseIdentifiable) {
+// Patch apply the non nil value of a *SparseUserAccessPolicy to the object.
+func (o *UserAccessPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	if !sparse.Identity().IsEqual(o.Identity()) {
 		panic("cannot patch from a parse with different identity")
 	}
 
-	so := sparse.(*SparseEnforcerPolicy)
+	so := sparse.(*SparseUserAccessPolicy)
 	if so.ID != nil {
 		o.ID = *so.ID
 	}
@@ -534,8 +535,8 @@ func (o *EnforcerPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	if so.ActiveSchedule != nil {
 		o.ActiveSchedule = *so.ActiveSchedule
 	}
-	if so.AllowSudoAccess != nil {
-		o.AllowSudoAccess = *so.AllowSudoAccess
+	if so.AllowSudoUsers != nil {
+		o.AllowSudoUsers = *so.AllowSudoUsers
 	}
 	if so.Annotations != nil {
 		o.Annotations = *so.Annotations
@@ -593,32 +594,32 @@ func (o *EnforcerPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	}
 }
 
-// DeepCopy returns a deep copy if the EnforcerPolicy.
-func (o *EnforcerPolicy) DeepCopy() *EnforcerPolicy {
+// DeepCopy returns a deep copy if the UserAccessPolicy.
+func (o *UserAccessPolicy) DeepCopy() *UserAccessPolicy {
 
 	if o == nil {
 		return nil
 	}
 
-	out := &EnforcerPolicy{}
+	out := &UserAccessPolicy{}
 	o.DeepCopyInto(out)
 
 	return out
 }
 
-// DeepCopyInto copies the receiver into the given *EnforcerPolicy.
-func (o *EnforcerPolicy) DeepCopyInto(out *EnforcerPolicy) {
+// DeepCopyInto copies the receiver into the given *UserAccessPolicy.
+func (o *UserAccessPolicy) DeepCopyInto(out *UserAccessPolicy) {
 
 	target, err := copystructure.Copy(o)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to deepcopy EnforcerPolicy: %s", err))
+		panic(fmt.Sprintf("Unable to deepcopy UserAccessPolicy: %s", err))
 	}
 
-	*out = *target.(*EnforcerPolicy)
+	*out = *target.(*UserAccessPolicy)
 }
 
 // Validate valides the current information stored into the structure.
-func (o *EnforcerPolicy) Validate() error {
+func (o *UserAccessPolicy) Validate() error {
 
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
@@ -667,26 +668,26 @@ func (o *EnforcerPolicy) Validate() error {
 }
 
 // SpecificationForAttribute returns the AttributeSpecification for the given attribute name key.
-func (*EnforcerPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
+func (*UserAccessPolicy) SpecificationForAttribute(name string) elemental.AttributeSpecification {
 
-	if v, ok := EnforcerPolicyAttributesMap[name]; ok {
+	if v, ok := UserAccessPolicyAttributesMap[name]; ok {
 		return v
 	}
 
 	// We could not find it, so let's check on the lower case indexed spec map
-	return EnforcerPolicyLowerCaseAttributesMap[name]
+	return UserAccessPolicyLowerCaseAttributesMap[name]
 }
 
 // AttributeSpecifications returns the full attribute specifications map.
-func (*EnforcerPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
+func (*UserAccessPolicy) AttributeSpecifications() map[string]elemental.AttributeSpecification {
 
-	return EnforcerPolicyAttributesMap
+	return UserAccessPolicyAttributesMap
 }
 
 // ValueForAttribute returns the value for the given attribute.
 // This is a very advanced function that you should not need but in some
 // very specific use cases.
-func (o *EnforcerPolicy) ValueForAttribute(name string) interface{} {
+func (o *UserAccessPolicy) ValueForAttribute(name string) interface{} {
 
 	switch name {
 	case "ID":
@@ -695,8 +696,8 @@ func (o *EnforcerPolicy) ValueForAttribute(name string) interface{} {
 		return o.ActiveDuration
 	case "activeSchedule":
 		return o.ActiveSchedule
-	case "allowSudoAccess":
-		return o.AllowSudoAccess
+	case "allowSudoUsers":
+		return o.AllowSudoUsers
 	case "annotations":
 		return o.Annotations
 	case "associatedTags":
@@ -738,8 +739,8 @@ func (o *EnforcerPolicy) ValueForAttribute(name string) interface{} {
 	return nil
 }
 
-// EnforcerPolicyAttributesMap represents the map of attribute for EnforcerPolicy.
-var EnforcerPolicyAttributesMap = map[string]elemental.AttributeSpecification{
+// UserAccessPolicyAttributesMap represents the map of attribute for UserAccessPolicy.
+var UserAccessPolicyAttributesMap = map[string]elemental.AttributeSpecification{
 	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -778,13 +779,14 @@ The policy will be active for the given activeDuration.`,
 		Stored:  true,
 		Type:    "string",
 	},
-	"AllowSudoAccess": elemental.AttributeSpecification{
+	"AllowSudoUsers": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "AllowSudoAccess",
-		Description:    `AllowSudoAccess indicates if the user is allowed to use sudo commands.`,
+		ConvertedName:  "AllowSudoUsers",
+		Description:    `allowSudoUsers indicates the list of user who can use sudo commands.`,
 		Exposed:        true,
-		Name:           "allowSudoAccess",
-		Type:           "boolean",
+		Name:           "allowSudoUsers",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1024,8 +1026,8 @@ georedundancy.`,
 	},
 }
 
-// EnforcerPolicyLowerCaseAttributesMap represents the map of attribute for EnforcerPolicy.
-var EnforcerPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
+// UserAccessPolicyLowerCaseAttributesMap represents the map of attribute for UserAccessPolicy.
+var UserAccessPolicyLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
@@ -1064,13 +1066,14 @@ The policy will be active for the given activeDuration.`,
 		Stored:  true,
 		Type:    "string",
 	},
-	"allowsudoaccess": elemental.AttributeSpecification{
+	"allowsudousers": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "AllowSudoAccess",
-		Description:    `AllowSudoAccess indicates if the user is allowed to use sudo commands.`,
+		ConvertedName:  "AllowSudoUsers",
+		Description:    `allowSudoUsers indicates the list of user who can use sudo commands.`,
 		Exposed:        true,
-		Name:           "allowSudoAccess",
-		Type:           "boolean",
+		Name:           "allowSudoUsers",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1310,35 +1313,35 @@ georedundancy.`,
 	},
 }
 
-// SparseEnforcerPoliciesList represents a list of SparseEnforcerPolicies
-type SparseEnforcerPoliciesList []*SparseEnforcerPolicy
+// SparseUserAccessPoliciesList represents a list of SparseUserAccessPolicies
+type SparseUserAccessPoliciesList []*SparseUserAccessPolicy
 
 // Identity returns the identity of the objects in the list.
-func (o SparseEnforcerPoliciesList) Identity() elemental.Identity {
+func (o SparseUserAccessPoliciesList) Identity() elemental.Identity {
 
-	return EnforcerPolicyIdentity
+	return UserAccessPolicyIdentity
 }
 
-// Copy returns a pointer to a copy the SparseEnforcerPoliciesList.
-func (o SparseEnforcerPoliciesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SparseUserAccessPoliciesList.
+func (o SparseUserAccessPoliciesList) Copy() elemental.Identifiables {
 
-	copy := append(SparseEnforcerPoliciesList{}, o...)
+	copy := append(SparseUserAccessPoliciesList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SparseEnforcerPoliciesList.
-func (o SparseEnforcerPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SparseUserAccessPoliciesList.
+func (o SparseUserAccessPoliciesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SparseEnforcerPoliciesList{}, o...)
+	out := append(SparseUserAccessPoliciesList{}, o...)
 	for _, obj := range objects {
-		out = append(out, obj.(*SparseEnforcerPolicy))
+		out = append(out, obj.(*SparseUserAccessPolicy))
 	}
 
 	return out
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SparseEnforcerPoliciesList) List() elemental.IdentifiablesList {
+func (o SparseUserAccessPoliciesList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -1349,7 +1352,7 @@ func (o SparseEnforcerPoliciesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SparseEnforcerPoliciesList) DefaultOrder() []string {
+func (o SparseUserAccessPoliciesList) DefaultOrder() []string {
 
 	return []string{
 		"namespace",
@@ -1357,8 +1360,8 @@ func (o SparseEnforcerPoliciesList) DefaultOrder() []string {
 	}
 }
 
-// ToPlain returns the SparseEnforcerPoliciesList converted to EnforcerPoliciesList.
-func (o SparseEnforcerPoliciesList) ToPlain() elemental.IdentifiablesList {
+// ToPlain returns the SparseUserAccessPoliciesList converted to UserAccessPoliciesList.
+func (o SparseUserAccessPoliciesList) ToPlain() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -1369,13 +1372,13 @@ func (o SparseEnforcerPoliciesList) ToPlain() elemental.IdentifiablesList {
 }
 
 // Version returns the version of the content.
-func (o SparseEnforcerPoliciesList) Version() int {
+func (o SparseUserAccessPoliciesList) Version() int {
 
 	return 1
 }
 
-// SparseEnforcerPolicy represents the sparse version of a enforcerpolicy.
-type SparseEnforcerPolicy struct {
+// SparseUserAccessPolicy represents the sparse version of a useraccesspolicy.
+type SparseUserAccessPolicy struct {
 	// ID is the identifier of the object.
 	ID *string `json:"ID,omitempty" msgpack:"ID,omitempty" bson:"-" mapstructure:"ID,omitempty"`
 
@@ -1387,8 +1390,8 @@ type SparseEnforcerPolicy struct {
 	// The policy will be active for the given activeDuration.
 	ActiveSchedule *string `json:"activeSchedule,omitempty" msgpack:"activeSchedule,omitempty" bson:"activeschedule,omitempty" mapstructure:"activeSchedule,omitempty"`
 
-	// AllowSudoAccess indicates if the user is allowed to use sudo commands.
-	AllowSudoAccess *bool `json:"allowSudoAccess,omitempty" msgpack:"allowSudoAccess,omitempty" bson:"-" mapstructure:"allowSudoAccess,omitempty"`
+	// allowSudoUsers indicates the list of user who can use sudo commands.
+	AllowSudoUsers *[]string `json:"allowSudoUsers,omitempty" msgpack:"allowSudoUsers,omitempty" bson:"-" mapstructure:"allowSudoUsers,omitempty"`
 
 	// Annotation stores additional information about an entity.
 	Annotations *map[string][]string `json:"annotations,omitempty" msgpack:"annotations,omitempty" bson:"annotations,omitempty" mapstructure:"annotations,omitempty"`
@@ -1452,19 +1455,19 @@ type SparseEnforcerPolicy struct {
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
-// NewSparseEnforcerPolicy returns a new  SparseEnforcerPolicy.
-func NewSparseEnforcerPolicy() *SparseEnforcerPolicy {
-	return &SparseEnforcerPolicy{}
+// NewSparseUserAccessPolicy returns a new  SparseUserAccessPolicy.
+func NewSparseUserAccessPolicy() *SparseUserAccessPolicy {
+	return &SparseUserAccessPolicy{}
 }
 
 // Identity returns the Identity of the sparse object.
-func (o *SparseEnforcerPolicy) Identity() elemental.Identity {
+func (o *SparseUserAccessPolicy) Identity() elemental.Identity {
 
-	return EnforcerPolicyIdentity
+	return UserAccessPolicyIdentity
 }
 
 // Identifier returns the value of the sparse object's unique identifier.
-func (o *SparseEnforcerPolicy) Identifier() string {
+func (o *SparseUserAccessPolicy) Identifier() string {
 
 	if o.ID == nil {
 		return ""
@@ -1473,21 +1476,21 @@ func (o *SparseEnforcerPolicy) Identifier() string {
 }
 
 // SetIdentifier sets the value of the sparse object's unique identifier.
-func (o *SparseEnforcerPolicy) SetIdentifier(id string) {
+func (o *SparseUserAccessPolicy) SetIdentifier(id string) {
 
 	o.ID = &id
 }
 
 // Version returns the hardcoded version of the model.
-func (o *SparseEnforcerPolicy) Version() int {
+func (o *SparseUserAccessPolicy) Version() int {
 
 	return 1
 }
 
 // ToPlain returns the plain version of the sparse model.
-func (o *SparseEnforcerPolicy) ToPlain() elemental.PlainIdentifiable {
+func (o *SparseUserAccessPolicy) ToPlain() elemental.PlainIdentifiable {
 
-	out := NewEnforcerPolicy()
+	out := NewUserAccessPolicy()
 	if o.ID != nil {
 		out.ID = *o.ID
 	}
@@ -1497,8 +1500,8 @@ func (o *SparseEnforcerPolicy) ToPlain() elemental.PlainIdentifiable {
 	if o.ActiveSchedule != nil {
 		out.ActiveSchedule = *o.ActiveSchedule
 	}
-	if o.AllowSudoAccess != nil {
-		out.AllowSudoAccess = *o.AllowSudoAccess
+	if o.AllowSudoUsers != nil {
+		out.AllowSudoUsers = *o.AllowSudoUsers
 	}
 	if o.Annotations != nil {
 		out.Annotations = *o.Annotations
@@ -1559,241 +1562,241 @@ func (o *SparseEnforcerPolicy) ToPlain() elemental.PlainIdentifiable {
 }
 
 // GetActiveDuration returns the ActiveDuration of the receiver.
-func (o *SparseEnforcerPolicy) GetActiveDuration() string {
+func (o *SparseUserAccessPolicy) GetActiveDuration() string {
 
 	return *o.ActiveDuration
 }
 
 // SetActiveDuration sets the property ActiveDuration of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetActiveDuration(activeDuration string) {
+func (o *SparseUserAccessPolicy) SetActiveDuration(activeDuration string) {
 
 	o.ActiveDuration = &activeDuration
 }
 
 // GetActiveSchedule returns the ActiveSchedule of the receiver.
-func (o *SparseEnforcerPolicy) GetActiveSchedule() string {
+func (o *SparseUserAccessPolicy) GetActiveSchedule() string {
 
 	return *o.ActiveSchedule
 }
 
 // SetActiveSchedule sets the property ActiveSchedule of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetActiveSchedule(activeSchedule string) {
+func (o *SparseUserAccessPolicy) SetActiveSchedule(activeSchedule string) {
 
 	o.ActiveSchedule = &activeSchedule
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *SparseEnforcerPolicy) GetAnnotations() map[string][]string {
+func (o *SparseUserAccessPolicy) GetAnnotations() map[string][]string {
 
 	return *o.Annotations
 }
 
 // SetAnnotations sets the property Annotations of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetAnnotations(annotations map[string][]string) {
+func (o *SparseUserAccessPolicy) SetAnnotations(annotations map[string][]string) {
 
 	o.Annotations = &annotations
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *SparseEnforcerPolicy) GetAssociatedTags() []string {
+func (o *SparseUserAccessPolicy) GetAssociatedTags() []string {
 
 	return *o.AssociatedTags
 }
 
 // SetAssociatedTags sets the property AssociatedTags of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetAssociatedTags(associatedTags []string) {
+func (o *SparseUserAccessPolicy) SetAssociatedTags(associatedTags []string) {
 
 	o.AssociatedTags = &associatedTags
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *SparseEnforcerPolicy) GetCreateIdempotencyKey() string {
+func (o *SparseUserAccessPolicy) GetCreateIdempotencyKey() string {
 
 	return *o.CreateIdempotencyKey
 }
 
 // SetCreateIdempotencyKey sets the property CreateIdempotencyKey of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
+func (o *SparseUserAccessPolicy) SetCreateIdempotencyKey(createIdempotencyKey string) {
 
 	o.CreateIdempotencyKey = &createIdempotencyKey
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *SparseEnforcerPolicy) GetCreateTime() time.Time {
+func (o *SparseUserAccessPolicy) GetCreateTime() time.Time {
 
 	return *o.CreateTime
 }
 
 // SetCreateTime sets the property CreateTime of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetCreateTime(createTime time.Time) {
+func (o *SparseUserAccessPolicy) SetCreateTime(createTime time.Time) {
 
 	o.CreateTime = &createTime
 }
 
 // GetDescription returns the Description of the receiver.
-func (o *SparseEnforcerPolicy) GetDescription() string {
+func (o *SparseUserAccessPolicy) GetDescription() string {
 
 	return *o.Description
 }
 
 // SetDescription sets the property Description of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetDescription(description string) {
+func (o *SparseUserAccessPolicy) SetDescription(description string) {
 
 	o.Description = &description
 }
 
 // GetDisabled returns the Disabled of the receiver.
-func (o *SparseEnforcerPolicy) GetDisabled() bool {
+func (o *SparseUserAccessPolicy) GetDisabled() bool {
 
 	return *o.Disabled
 }
 
 // SetDisabled sets the property Disabled of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetDisabled(disabled bool) {
+func (o *SparseUserAccessPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = &disabled
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *SparseEnforcerPolicy) GetMetadata() []string {
+func (o *SparseUserAccessPolicy) GetMetadata() []string {
 
 	return *o.Metadata
 }
 
 // SetMetadata sets the property Metadata of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetMetadata(metadata []string) {
+func (o *SparseUserAccessPolicy) SetMetadata(metadata []string) {
 
 	o.Metadata = &metadata
 }
 
 // GetName returns the Name of the receiver.
-func (o *SparseEnforcerPolicy) GetName() string {
+func (o *SparseUserAccessPolicy) GetName() string {
 
 	return *o.Name
 }
 
 // SetName sets the property Name of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetName(name string) {
+func (o *SparseUserAccessPolicy) SetName(name string) {
 
 	o.Name = &name
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *SparseEnforcerPolicy) GetNamespace() string {
+func (o *SparseUserAccessPolicy) GetNamespace() string {
 
 	return *o.Namespace
 }
 
 // SetNamespace sets the property Namespace of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetNamespace(namespace string) {
+func (o *SparseUserAccessPolicy) SetNamespace(namespace string) {
 
 	o.Namespace = &namespace
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *SparseEnforcerPolicy) GetNormalizedTags() []string {
+func (o *SparseUserAccessPolicy) GetNormalizedTags() []string {
 
 	return *o.NormalizedTags
 }
 
 // SetNormalizedTags sets the property NormalizedTags of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetNormalizedTags(normalizedTags []string) {
+func (o *SparseUserAccessPolicy) SetNormalizedTags(normalizedTags []string) {
 
 	o.NormalizedTags = &normalizedTags
 }
 
 // GetPropagate returns the Propagate of the receiver.
-func (o *SparseEnforcerPolicy) GetPropagate() bool {
+func (o *SparseUserAccessPolicy) GetPropagate() bool {
 
 	return *o.Propagate
 }
 
 // SetPropagate sets the property Propagate of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetPropagate(propagate bool) {
+func (o *SparseUserAccessPolicy) SetPropagate(propagate bool) {
 
 	o.Propagate = &propagate
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *SparseEnforcerPolicy) GetProtected() bool {
+func (o *SparseUserAccessPolicy) GetProtected() bool {
 
 	return *o.Protected
 }
 
 // SetProtected sets the property Protected of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetProtected(protected bool) {
+func (o *SparseUserAccessPolicy) SetProtected(protected bool) {
 
 	o.Protected = &protected
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *SparseEnforcerPolicy) GetUpdateIdempotencyKey() string {
+func (o *SparseUserAccessPolicy) GetUpdateIdempotencyKey() string {
 
 	return *o.UpdateIdempotencyKey
 }
 
 // SetUpdateIdempotencyKey sets the property UpdateIdempotencyKey of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
+func (o *SparseUserAccessPolicy) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 
 	o.UpdateIdempotencyKey = &updateIdempotencyKey
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *SparseEnforcerPolicy) GetUpdateTime() time.Time {
+func (o *SparseUserAccessPolicy) GetUpdateTime() time.Time {
 
 	return *o.UpdateTime
 }
 
 // SetUpdateTime sets the property UpdateTime of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetUpdateTime(updateTime time.Time) {
+func (o *SparseUserAccessPolicy) SetUpdateTime(updateTime time.Time) {
 
 	o.UpdateTime = &updateTime
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *SparseEnforcerPolicy) GetZHash() int {
+func (o *SparseUserAccessPolicy) GetZHash() int {
 
 	return *o.ZHash
 }
 
 // SetZHash sets the property ZHash of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetZHash(zHash int) {
+func (o *SparseUserAccessPolicy) SetZHash(zHash int) {
 
 	o.ZHash = &zHash
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *SparseEnforcerPolicy) GetZone() int {
+func (o *SparseUserAccessPolicy) GetZone() int {
 
 	return *o.Zone
 }
 
 // SetZone sets the property Zone of the receiver using the address of the given value.
-func (o *SparseEnforcerPolicy) SetZone(zone int) {
+func (o *SparseUserAccessPolicy) SetZone(zone int) {
 
 	o.Zone = &zone
 }
 
-// DeepCopy returns a deep copy if the SparseEnforcerPolicy.
-func (o *SparseEnforcerPolicy) DeepCopy() *SparseEnforcerPolicy {
+// DeepCopy returns a deep copy if the SparseUserAccessPolicy.
+func (o *SparseUserAccessPolicy) DeepCopy() *SparseUserAccessPolicy {
 
 	if o == nil {
 		return nil
 	}
 
-	out := &SparseEnforcerPolicy{}
+	out := &SparseUserAccessPolicy{}
 	o.DeepCopyInto(out)
 
 	return out
 }
 
-// DeepCopyInto copies the receiver into the given *SparseEnforcerPolicy.
-func (o *SparseEnforcerPolicy) DeepCopyInto(out *SparseEnforcerPolicy) {
+// DeepCopyInto copies the receiver into the given *SparseUserAccessPolicy.
+func (o *SparseUserAccessPolicy) DeepCopyInto(out *SparseUserAccessPolicy) {
 
 	target, err := copystructure.Copy(o)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to deepcopy SparseEnforcerPolicy: %s", err))
+		panic(fmt.Sprintf("Unable to deepcopy SparseUserAccessPolicy: %s", err))
 	}
 
-	*out = *target.(*SparseEnforcerPolicy)
+	*out = *target.(*SparseUserAccessPolicy)
 }

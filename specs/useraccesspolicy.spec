@@ -1,22 +1,22 @@
 # Model
 model:
-  rest_name: enforcerpolicy
-  resource_name: enforcerpolicies
-  entity_name: EnforcerPolicy
+  rest_name: useraccesspolicy
+  resource_name: useraccesspolicies
+  entity_name: UserAccessPolicy
   package: squall
-  group: policy/sudo
-  description: The enforcer policy controls who can access to the host.
+  group: policy/access
+  description: The enforcer policy controls user access.
   aliases:
-  - epol
-  - epols
+  - usrpol
+  - usrpols
   get:
-    description: Retrives the EnforcerPolicy with the given ID.
+    description: Retrives the UserAccessPolicy with the given ID.
     global_parameters:
     - $propagatable
   update:
-    description: Updates the EnforcerPolicy with the given ID.
+    description: Updates the UserAccessPolicy with the given ID.
   delete:
-    description: Deletes the EnforcerPolicy with the given ID.
+    description: Deletes the UserAccessPolicy with the given ID.
     global_parameters:
     - $filtering
   extends:
@@ -38,10 +38,13 @@ indexes:
 # Attributes
 attributes:
   v1:
-  - name: allowSudoAccess
-    description: AllowSudoAccess indicates if the user is allowed to use sudo commands.
-    type: boolean
+  - name: allowSudoUsers
+    description: allowSudoUsers indicates the list of user who can use sudo commands.
+    type: list
     exposed: true
+    subtype: string
+    example_value:
+    - ubuntu
 
   - name: object
     description: |-

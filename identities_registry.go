@@ -34,7 +34,6 @@ var (
 		"email":               EmailIdentity,
 
 		"enforcer":                     EnforcerIdentity,
-		"enforcerpolicy":               EnforcerPolicyIdentity,
 		"enforcerprofile":              EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicy": EnforcerProfileMappingPolicyIdentity,
 		"enforcerreport":               EnforcerReportIdentity,
@@ -116,6 +115,7 @@ var (
 
 		"trigger": TriggerIdentity,
 
+		"useraccesspolicy":     UserAccessPolicyIdentity,
 		"validateuiparameter":  ValidateUIParameterIdentity,
 		"vulnerability":        VulnerabilityIdentity,
 		"x509certificate":      X509CertificateIdentity,
@@ -153,7 +153,6 @@ var (
 		"emails":               EmailIdentity,
 
 		"enforcers":                      EnforcerIdentity,
-		"enforcerpolicies":               EnforcerPolicyIdentity,
 		"enforcerprofiles":               EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicies": EnforcerProfileMappingPolicyIdentity,
 		"enforcerreports":                EnforcerReportIdentity,
@@ -235,6 +234,7 @@ var (
 
 		"triggers": TriggerIdentity,
 
+		"useraccesspolicies":    UserAccessPolicyIdentity,
 		"validateuiparameters":  ValidateUIParameterIdentity,
 		"vulnerabilities":       VulnerabilityIdentity,
 		"x509certificates":      X509CertificateIdentity,
@@ -259,8 +259,6 @@ var (
 		"dbvers":         DBVersionIdentity,
 		"depmaps":        DependencyMapIdentity,
 		"depmap":         DependencyMapIdentity,
-		"epol":           EnforcerPolicyIdentity,
-		"epols":          EnforcerPolicyIdentity,
 		"profile":        EnforcerProfileIdentity,
 		"profiles":       EnforcerProfileIdentity,
 		"enfpols":        EnforcerProfileMappingPolicyIdentity,
@@ -330,6 +328,8 @@ var (
 		"tabs":           TabulationIdentity,
 		"tab":            TabulationIdentity,
 		"tsp":            TokenScopePolicyIdentity,
+		"usrpol":         UserAccessPolicyIdentity,
+		"usrpols":        UserAccessPolicyIdentity,
 		"validparam":     ValidateUIParameterIdentity,
 		"vulns":          VulnerabilityIdentity,
 		"vul":            VulnerabilityIdentity,
@@ -444,7 +444,6 @@ var (
 			[]string{"createIdempotencyKey"},
 			[]string{":shard", "zone", "zHash"},
 		},
-		"enforcerpolicy": nil,
 		"enforcerprofile": [][]string{
 			[]string{":shard", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -699,6 +698,7 @@ var (
 		"token":                  nil,
 		"tokenscopepolicy":       nil,
 		"trigger":                nil,
+		"useraccesspolicy":       nil,
 		"validateuiparameter":    nil,
 		"vulnerability": [][]string{
 			[]string{":shard", "zone", "zHash"},
@@ -809,8 +809,6 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewEmail()
 	case EnforcerIdentity:
 		return NewEnforcer()
-	case EnforcerPolicyIdentity:
-		return NewEnforcerPolicy()
 	case EnforcerProfileIdentity:
 		return NewEnforcerProfile()
 	case EnforcerProfileMappingPolicyIdentity:
@@ -959,6 +957,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewTokenScopePolicy()
 	case TriggerIdentity:
 		return NewTrigger()
+	case UserAccessPolicyIdentity:
+		return NewUserAccessPolicy()
 	case ValidateUIParameterIdentity:
 		return NewValidateUIParameter()
 	case VulnerabilityIdentity:
@@ -1030,8 +1030,6 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseEmail()
 	case EnforcerIdentity:
 		return NewSparseEnforcer()
-	case EnforcerPolicyIdentity:
-		return NewSparseEnforcerPolicy()
 	case EnforcerProfileIdentity:
 		return NewSparseEnforcerProfile()
 	case EnforcerProfileMappingPolicyIdentity:
@@ -1178,6 +1176,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseTokenScopePolicy()
 	case TriggerIdentity:
 		return NewSparseTrigger()
+	case UserAccessPolicyIdentity:
+		return NewSparseUserAccessPolicy()
 	case ValidateUIParameterIdentity:
 		return NewSparseValidateUIParameter()
 	case VulnerabilityIdentity:
@@ -1259,8 +1259,6 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &EmailsList{}
 	case EnforcerIdentity:
 		return &EnforcersList{}
-	case EnforcerPolicyIdentity:
-		return &EnforcerPoliciesList{}
 	case EnforcerProfileIdentity:
 		return &EnforcerProfilesList{}
 	case EnforcerProfileMappingPolicyIdentity:
@@ -1407,6 +1405,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &TokenScopePoliciesList{}
 	case TriggerIdentity:
 		return &TriggersList{}
+	case UserAccessPolicyIdentity:
+		return &UserAccessPoliciesList{}
 	case ValidateUIParameterIdentity:
 		return &ValidateUIParametersList{}
 	case VulnerabilityIdentity:
@@ -1478,8 +1478,6 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseEmailsList{}
 	case EnforcerIdentity:
 		return &SparseEnforcersList{}
-	case EnforcerPolicyIdentity:
-		return &SparseEnforcerPoliciesList{}
 	case EnforcerProfileIdentity:
 		return &SparseEnforcerProfilesList{}
 	case EnforcerProfileMappingPolicyIdentity:
@@ -1626,6 +1624,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseTokenScopePoliciesList{}
 	case TriggerIdentity:
 		return &SparseTriggersList{}
+	case UserAccessPolicyIdentity:
+		return &SparseUserAccessPoliciesList{}
 	case ValidateUIParameterIdentity:
 		return &SparseValidateUIParametersList{}
 	case VulnerabilityIdentity:
@@ -1685,7 +1685,6 @@ func AllIdentities() []elemental.Identity {
 		DependencyMapIdentity,
 		EmailIdentity,
 		EnforcerIdentity,
-		EnforcerPolicyIdentity,
 		EnforcerProfileIdentity,
 		EnforcerProfileMappingPolicyIdentity,
 		EnforcerReportIdentity,
@@ -1760,6 +1759,7 @@ func AllIdentities() []elemental.Identity {
 		TokenIdentity,
 		TokenScopePolicyIdentity,
 		TriggerIdentity,
+		UserAccessPolicyIdentity,
 		ValidateUIParameterIdentity,
 		VulnerabilityIdentity,
 		X509CertificateIdentity,
@@ -1852,11 +1852,6 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case EnforcerIdentity:
 		return []string{}
-	case EnforcerPolicyIdentity:
-		return []string{
-			"epol",
-			"epols",
-		}
 	case EnforcerProfileIdentity:
 		return []string{
 			"profile",
@@ -2107,6 +2102,11 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		}
 	case TriggerIdentity:
 		return []string{}
+	case UserAccessPolicyIdentity:
+		return []string{
+			"usrpol",
+			"usrpols",
+		}
 	case ValidateUIParameterIdentity:
 		return []string{
 			"validparam",
