@@ -8627,8 +8627,8 @@ on a linux system.
 
 ```json
 {
+  "allowSudoAccess": false,
   "disabled": false,
-  "fallback": false,
   "name": "the name",
   "propagate": false,
   "protected": false
@@ -8673,6 +8673,10 @@ activeSchedule.
 ActiveSchedule defines when the policy should be active using the cron notation.
 The policy will be active for the given activeDuration.
 
+##### `allowSudoAccess` `boolean`
+
+AllowSudoAccess indicates if the user is allowed to use sudo commands.
+
 ##### `annotations` `map[string][]string`
 
 Annotation stores additional information about an entity.
@@ -8692,12 +8696,6 @@ Description is the description of the object.
 ##### `disabled` `boolean`
 
 Disabled defines if the propert is disabled.
-
-##### `fallback` `boolean`
-
-Fallback indicates that this is fallback policy. It will only be
-applied if no other policies have been resolved. If the policy is also
-propagated it will become a fallback for children namespaces.
 
 ##### `metadata` `[]string` [`creation_only`]
 

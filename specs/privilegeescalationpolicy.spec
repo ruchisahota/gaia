@@ -29,7 +29,6 @@ model:
   - '@metadatable'
   - '@named'
   - '@propagated'
-  - '@fallback'
   - '@schedulable'
   - '@zonable'
   - '@timeable'
@@ -41,6 +40,11 @@ indexes:
 # Attributes
 attributes:
   v1:
+  - name: allowSudoAccess
+    description: AllowSudoAccess indicates if the user is allowed to use sudo commands.
+    type: boolean
+    exposed: true
+
   - name: object
     description: |-
       Object contains the tag expression matching the enforcers the subject is allowed

@@ -94,6 +94,9 @@ type PrivilegeEscalationPolicy struct {
 	// The policy will be active for the given activeDuration.
 	ActiveSchedule string `json:"activeSchedule" msgpack:"activeSchedule" bson:"activeschedule" mapstructure:"activeSchedule,omitempty"`
 
+	// AllowSudoAccess indicates if the user is allowed to use sudo commands.
+	AllowSudoAccess bool `json:"allowSudoAccess" msgpack:"allowSudoAccess" bson:"-" mapstructure:"allowSudoAccess,omitempty"`
+
 	// Annotation stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" msgpack:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
 
@@ -111,11 +114,6 @@ type PrivilegeEscalationPolicy struct {
 
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" msgpack:"disabled" bson:"disabled" mapstructure:"disabled,omitempty"`
-
-	// Fallback indicates that this is fallback policy. It will only be
-	// applied if no other policies have been resolved. If the policy is also
-	// propagated it will become a fallback for children namespaces.
-	Fallback bool `json:"fallback" msgpack:"fallback" bson:"fallback" mapstructure:"fallback,omitempty"`
 
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
@@ -316,18 +314,6 @@ func (o *PrivilegeEscalationPolicy) SetDisabled(disabled bool) {
 	o.Disabled = disabled
 }
 
-// GetFallback returns the Fallback of the receiver.
-func (o *PrivilegeEscalationPolicy) GetFallback() bool {
-
-	return o.Fallback
-}
-
-// SetFallback sets the property Fallback of the receiver using the given value.
-func (o *PrivilegeEscalationPolicy) SetFallback(fallback bool) {
-
-	o.Fallback = fallback
-}
-
 // GetMetadata returns the Metadata of the receiver.
 func (o *PrivilegeEscalationPolicy) GetMetadata() []string {
 
@@ -458,13 +444,13 @@ func (o *PrivilegeEscalationPolicy) ToSparse(fields ...string) elemental.SparseI
 			ID:                   &o.ID,
 			ActiveDuration:       &o.ActiveDuration,
 			ActiveSchedule:       &o.ActiveSchedule,
+			AllowSudoAccess:      &o.AllowSudoAccess,
 			Annotations:          &o.Annotations,
 			AssociatedTags:       &o.AssociatedTags,
 			CreateIdempotencyKey: &o.CreateIdempotencyKey,
 			CreateTime:           &o.CreateTime,
 			Description:          &o.Description,
 			Disabled:             &o.Disabled,
-			Fallback:             &o.Fallback,
 			Metadata:             &o.Metadata,
 			Name:                 &o.Name,
 			Namespace:            &o.Namespace,
@@ -489,6 +475,8 @@ func (o *PrivilegeEscalationPolicy) ToSparse(fields ...string) elemental.SparseI
 			sp.ActiveDuration = &(o.ActiveDuration)
 		case "activeSchedule":
 			sp.ActiveSchedule = &(o.ActiveSchedule)
+		case "allowSudoAccess":
+			sp.AllowSudoAccess = &(o.AllowSudoAccess)
 		case "annotations":
 			sp.Annotations = &(o.Annotations)
 		case "associatedTags":
@@ -501,8 +489,6 @@ func (o *PrivilegeEscalationPolicy) ToSparse(fields ...string) elemental.SparseI
 			sp.Description = &(o.Description)
 		case "disabled":
 			sp.Disabled = &(o.Disabled)
-		case "fallback":
-			sp.Fallback = &(o.Fallback)
 		case "metadata":
 			sp.Metadata = &(o.Metadata)
 		case "name":
@@ -549,6 +535,9 @@ func (o *PrivilegeEscalationPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	if so.ActiveSchedule != nil {
 		o.ActiveSchedule = *so.ActiveSchedule
 	}
+	if so.AllowSudoAccess != nil {
+		o.AllowSudoAccess = *so.AllowSudoAccess
+	}
 	if so.Annotations != nil {
 		o.Annotations = *so.Annotations
 	}
@@ -566,9 +555,6 @@ func (o *PrivilegeEscalationPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.Disabled != nil {
 		o.Disabled = *so.Disabled
-	}
-	if so.Fallback != nil {
-		o.Fallback = *so.Fallback
 	}
 	if so.Metadata != nil {
 		o.Metadata = *so.Metadata
@@ -710,6 +696,8 @@ func (o *PrivilegeEscalationPolicy) ValueForAttribute(name string) interface{} {
 		return o.ActiveDuration
 	case "activeSchedule":
 		return o.ActiveSchedule
+	case "allowSudoAccess":
+		return o.AllowSudoAccess
 	case "annotations":
 		return o.Annotations
 	case "associatedTags":
@@ -722,8 +710,6 @@ func (o *PrivilegeEscalationPolicy) ValueForAttribute(name string) interface{} {
 		return o.Description
 	case "disabled":
 		return o.Disabled
-	case "fallback":
-		return o.Fallback
 	case "metadata":
 		return o.Metadata
 	case "name":
@@ -792,6 +778,14 @@ The policy will be active for the given activeDuration.`,
 		Setter:  true,
 		Stored:  true,
 		Type:    "string",
+	},
+	"AllowSudoAccess": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AllowSudoAccess",
+		Description:    `AllowSudoAccess indicates if the user is allowed to use sudo commands.`,
+		Exposed:        true,
+		Name:           "allowSudoAccess",
+		Type:           "boolean",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -867,20 +861,6 @@ The policy will be active for the given activeDuration.`,
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"Fallback": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Fallback",
-		Description: `Fallback indicates that this is fallback policy. It will only be
-applied if no other policies have been resolved. If the policy is also
-propagated it will become a fallback for children namespaces.`,
-		Exposed:   true,
-		Getter:    true,
-		Name:      "fallback",
-		Orderable: true,
-		Setter:    true,
-		Stored:    true,
-		Type:      "boolean",
 	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1085,6 +1065,14 @@ The policy will be active for the given activeDuration.`,
 		Stored:  true,
 		Type:    "string",
 	},
+	"allowsudoaccess": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AllowSudoAccess",
+		Description:    `AllowSudoAccess indicates if the user is allowed to use sudo commands.`,
+		Exposed:        true,
+		Name:           "allowSudoAccess",
+		Type:           "boolean",
+	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
@@ -1159,20 +1147,6 @@ The policy will be active for the given activeDuration.`,
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
-	},
-	"fallback": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Fallback",
-		Description: `Fallback indicates that this is fallback policy. It will only be
-applied if no other policies have been resolved. If the policy is also
-propagated it will become a fallback for children namespaces.`,
-		Exposed:   true,
-		Getter:    true,
-		Name:      "fallback",
-		Orderable: true,
-		Setter:    true,
-		Stored:    true,
-		Type:      "boolean",
 	},
 	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1414,6 +1388,9 @@ type SparsePrivilegeEscalationPolicy struct {
 	// The policy will be active for the given activeDuration.
 	ActiveSchedule *string `json:"activeSchedule,omitempty" msgpack:"activeSchedule,omitempty" bson:"activeschedule,omitempty" mapstructure:"activeSchedule,omitempty"`
 
+	// AllowSudoAccess indicates if the user is allowed to use sudo commands.
+	AllowSudoAccess *bool `json:"allowSudoAccess,omitempty" msgpack:"allowSudoAccess,omitempty" bson:"-" mapstructure:"allowSudoAccess,omitempty"`
+
 	// Annotation stores additional information about an entity.
 	Annotations *map[string][]string `json:"annotations,omitempty" msgpack:"annotations,omitempty" bson:"annotations,omitempty" mapstructure:"annotations,omitempty"`
 
@@ -1431,11 +1408,6 @@ type SparsePrivilegeEscalationPolicy struct {
 
 	// Disabled defines if the propert is disabled.
 	Disabled *bool `json:"disabled,omitempty" msgpack:"disabled,omitempty" bson:"disabled,omitempty" mapstructure:"disabled,omitempty"`
-
-	// Fallback indicates that this is fallback policy. It will only be
-	// applied if no other policies have been resolved. If the policy is also
-	// propagated it will become a fallback for children namespaces.
-	Fallback *bool `json:"fallback,omitempty" msgpack:"fallback,omitempty" bson:"fallback,omitempty" mapstructure:"fallback,omitempty"`
 
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
@@ -1526,6 +1498,9 @@ func (o *SparsePrivilegeEscalationPolicy) ToPlain() elemental.PlainIdentifiable 
 	if o.ActiveSchedule != nil {
 		out.ActiveSchedule = *o.ActiveSchedule
 	}
+	if o.AllowSudoAccess != nil {
+		out.AllowSudoAccess = *o.AllowSudoAccess
+	}
 	if o.Annotations != nil {
 		out.Annotations = *o.Annotations
 	}
@@ -1543,9 +1518,6 @@ func (o *SparsePrivilegeEscalationPolicy) ToPlain() elemental.PlainIdentifiable 
 	}
 	if o.Disabled != nil {
 		out.Disabled = *o.Disabled
-	}
-	if o.Fallback != nil {
-		out.Fallback = *o.Fallback
 	}
 	if o.Metadata != nil {
 		out.Metadata = *o.Metadata
@@ -1681,18 +1653,6 @@ func (o *SparsePrivilegeEscalationPolicy) GetDisabled() bool {
 func (o *SparsePrivilegeEscalationPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = &disabled
-}
-
-// GetFallback returns the Fallback of the receiver.
-func (o *SparsePrivilegeEscalationPolicy) GetFallback() bool {
-
-	return *o.Fallback
-}
-
-// SetFallback sets the property Fallback of the receiver using the address of the given value.
-func (o *SparsePrivilegeEscalationPolicy) SetFallback(fallback bool) {
-
-	o.Fallback = &fallback
 }
 
 // GetMetadata returns the Metadata of the receiver.
