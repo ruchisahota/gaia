@@ -4386,6 +4386,118 @@ Represents the Province field.
 
 Represents the StreetAddress field.
 
+## `policy/access`
+
+| Resource                      | Description               |
+| -                             | -                         |
+| [AccessReport](#accessreport) | Post a new access report. |
+
+### AccessReport
+
+Post a new access report.
+
+#### Example
+
+```json
+{
+  "action": "Accept",
+  "content": "user X has tried to logged in",
+  "destinationID": "xxx-xxx-xxx",
+  "destinationNamespace": "/my/namespace",
+  "destinationType": "ProcessingUnit",
+  "namespace": "/my/namespace",
+  "policyID": "xxx-xxx-xxx",
+  "policyNamespace": "/my/namespace",
+  "sourceID": "xxx-xxx-xxx",
+  "sourceNamespace": "/my/namespace",
+  "sourceType": "ProcessingUnit",
+  "value": 1
+}
+```
+
+#### Relations
+
+##### `POST /accessreports`
+
+Create an access report.
+
+#### Attributes
+
+##### `action` `emum(Accept | Reject)` [`required`]
+
+Action applied to the access.
+
+##### `claimHash` `string`
+
+Hash of the claims used to communicate.
+
+##### `content` `string` [`required`]
+
+content of the report.
+
+##### `destinationID` `string` [`required`]
+
+ID of the destination.
+
+##### `destinationIP` `string`
+
+Type of the destination.
+
+##### `destinationNamespace` `string`
+
+Namespace of the receiver.
+
+##### `destinationPort` `integer`
+
+Port of the destination.
+
+##### `destinationType` `emum(ProcessingUnit | ExternalNetwork | Claims)` [`required`]
+
+Type of the source.
+
+##### `dropReason` `string`
+
+This field is only set if 'action' is set to 'Reject' and specifies the reason
+for the rejection.
+
+##### `namespace` `string` [`required`]
+
+_This attribute is deprecated_.
+
+This is here for backward compatibility.
+
+##### `policyID` `string` [`required`]
+
+ID of the policy that accepted the access.
+
+##### `policyNamespace` `string` [`required`]
+
+Namespace of the policy that accepted the access.
+
+##### `sourceID` `string` [`required`]
+
+ID of the source.
+
+##### `sourceIP` `string`
+
+Type of the source.
+
+##### `sourceNamespace` `string`
+
+Namespace of the receiver.
+
+##### `sourceType` `emum(ProcessingUnit | ExternalNetwork | Claims)` [`required`]
+
+Type of the source.
+
+##### `timestamp` `time`
+
+Date of the report.
+
+##### `value` `integer` [`required`]
+
+Number of access in the report.
+
 ## `policy/audit`
 
 | Resource                                                | Description                                                                         |
