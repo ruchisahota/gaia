@@ -43,8 +43,6 @@ attributes:
     type: list
     exposed: true
     subtype: string
-    default_value:
-    - root
 
   - name: expirationTime
     description: If set the policy will be auto deleted after the given time.

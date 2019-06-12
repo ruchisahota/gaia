@@ -158,16 +158,14 @@ type UserAccessPolicy struct {
 func NewUserAccessPolicy() *UserAccessPolicy {
 
 	return &UserAccessPolicy{
-		ModelVersion: 1,
-		AllowedSudoUsers: []string{
-			"root",
-		},
-		Annotations:    map[string][]string{},
-		AssociatedTags: []string{},
-		Metadata:       []string{},
-		NormalizedTags: []string{},
-		Object:         [][]string{},
-		Subject:        [][]string{},
+		ModelVersion:     1,
+		AllowedSudoUsers: []string{},
+		Annotations:      map[string][]string{},
+		AssociatedTags:   []string{},
+		Metadata:         []string{},
+		NormalizedTags:   []string{},
+		Object:           [][]string{},
+		Subject:          [][]string{},
 	}
 }
 
@@ -759,14 +757,11 @@ The policy will be active for the given activeDuration.`,
 	"AllowedSudoUsers": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllowedSudoUsers",
-		DefaultValue: []string{
-			"root",
-		},
-		Description: `AllowedSudoUsers indicates the list of user who can use sudo commands.`,
-		Exposed:     true,
-		Name:        "allowedSudoUsers",
-		SubType:     "string",
-		Type:        "list",
+		Description:    `AllowedSudoUsers indicates the list of user who can use sudo commands.`,
+		Exposed:        true,
+		Name:           "allowedSudoUsers",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1033,14 +1028,11 @@ The policy will be active for the given activeDuration.`,
 	"allowedsudousers": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AllowedSudoUsers",
-		DefaultValue: []string{
-			"root",
-		},
-		Description: `AllowedSudoUsers indicates the list of user who can use sudo commands.`,
-		Exposed:     true,
-		Name:        "allowedSudoUsers",
-		SubType:     "string",
-		Type:        "list",
+		Description:    `AllowedSudoUsers indicates the list of user who can use sudo commands.`,
+		Exposed:        true,
+		Name:           "allowedSudoUsers",
+		SubType:        "string",
+		Type:           "list",
 	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},

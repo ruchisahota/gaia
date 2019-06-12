@@ -4470,9 +4470,6 @@ The enforcer policy controls user access.
 
 ```json
 {
-  "allowedSudoUsers": [
-    "root"
-  ],
   "disabled": false,
   "name": "the name",
   "propagate": false,
@@ -4534,14 +4531,6 @@ The policy will be active for the given activeDuration.
 ##### `allowedSudoUsers` `[]string`
 
 AllowedSudoUsers indicates the list of user who can use sudo commands.
-
-Default value:
-
-```json
-[
-  "root"
-]
-```
 
 ##### `annotations` `map[string][]string`
 
