@@ -115,6 +115,9 @@ type UserAccessPolicy struct {
 	// Disabled defines if the propert is disabled.
 	Disabled bool `json:"disabled" msgpack:"disabled" bson:"disabled" mapstructure:"disabled,omitempty"`
 
+	// If set the policy will be auto deleted after the given time.
+	ExpirationTime time.Time `json:"expirationTime" msgpack:"expirationTime" bson:"expirationtime" mapstructure:"expirationTime,omitempty"`
+
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
 	Metadata []string `json:"metadata" msgpack:"metadata" bson:"metadata" mapstructure:"metadata,omitempty"`
@@ -316,6 +319,18 @@ func (o *UserAccessPolicy) SetDisabled(disabled bool) {
 	o.Disabled = disabled
 }
 
+// GetExpirationTime returns the ExpirationTime of the receiver.
+func (o *UserAccessPolicy) GetExpirationTime() time.Time {
+
+	return o.ExpirationTime
+}
+
+// SetExpirationTime sets the property ExpirationTime of the receiver using the given value.
+func (o *UserAccessPolicy) SetExpirationTime(expirationTime time.Time) {
+
+	o.ExpirationTime = expirationTime
+}
+
 // GetMetadata returns the Metadata of the receiver.
 func (o *UserAccessPolicy) GetMetadata() []string {
 
@@ -453,6 +468,7 @@ func (o *UserAccessPolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			CreateTime:           &o.CreateTime,
 			Description:          &o.Description,
 			Disabled:             &o.Disabled,
+			ExpirationTime:       &o.ExpirationTime,
 			Metadata:             &o.Metadata,
 			Name:                 &o.Name,
 			Namespace:            &o.Namespace,
@@ -491,6 +507,8 @@ func (o *UserAccessPolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			sp.Description = &(o.Description)
 		case "disabled":
 			sp.Disabled = &(o.Disabled)
+		case "expirationTime":
+			sp.ExpirationTime = &(o.ExpirationTime)
 		case "metadata":
 			sp.Metadata = &(o.Metadata)
 		case "name":
@@ -557,6 +575,9 @@ func (o *UserAccessPolicy) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.Disabled != nil {
 		o.Disabled = *so.Disabled
+	}
+	if so.ExpirationTime != nil {
+		o.ExpirationTime = *so.ExpirationTime
 	}
 	if so.Metadata != nil {
 		o.Metadata = *so.Metadata
@@ -712,6 +733,8 @@ func (o *UserAccessPolicy) ValueForAttribute(name string) interface{} {
 		return o.Description
 	case "disabled":
 		return o.Disabled
+	case "expirationTime":
+		return o.ExpirationTime
 	case "metadata":
 		return o.Metadata
 	case "name":
@@ -867,6 +890,17 @@ The policy will be active for the given activeDuration.`,
 		Setter:         true,
 		Stored:         true,
 		Type:           "boolean",
+	},
+	"ExpirationTime": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "ExpirationTime",
+		Description:    `If set the policy will be auto deleted after the given time.`,
+		Exposed:        true,
+		Getter:         true,
+		Name:           "expirationTime",
+		Setter:         true,
+		Stored:         true,
+		Type:           "time",
 	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1158,6 +1192,17 @@ The policy will be active for the given activeDuration.`,
 		Stored:         true,
 		Type:           "boolean",
 	},
+	"expirationtime": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "ExpirationTime",
+		Description:    `If set the policy will be auto deleted after the given time.`,
+		Exposed:        true,
+		Getter:         true,
+		Name:           "expirationTime",
+		Setter:         true,
+		Stored:         true,
+		Type:           "time",
+	},
 	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Metadata",
@@ -1419,6 +1464,9 @@ type SparseUserAccessPolicy struct {
 	// Disabled defines if the propert is disabled.
 	Disabled *bool `json:"disabled,omitempty" msgpack:"disabled,omitempty" bson:"disabled,omitempty" mapstructure:"disabled,omitempty"`
 
+	// If set the policy will be auto deleted after the given time.
+	ExpirationTime *time.Time `json:"expirationTime,omitempty" msgpack:"expirationTime,omitempty" bson:"expirationtime,omitempty" mapstructure:"expirationTime,omitempty"`
+
 	// Metadata contains tags that can only be set during creation. They must all start
 	// with the '@' prefix, and should only be used by external systems.
 	Metadata *[]string `json:"metadata,omitempty" msgpack:"metadata,omitempty" bson:"metadata,omitempty" mapstructure:"metadata,omitempty"`
@@ -1528,6 +1576,9 @@ func (o *SparseUserAccessPolicy) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.Disabled != nil {
 		out.Disabled = *o.Disabled
+	}
+	if o.ExpirationTime != nil {
+		out.ExpirationTime = *o.ExpirationTime
 	}
 	if o.Metadata != nil {
 		out.Metadata = *o.Metadata
@@ -1663,6 +1714,18 @@ func (o *SparseUserAccessPolicy) GetDisabled() bool {
 func (o *SparseUserAccessPolicy) SetDisabled(disabled bool) {
 
 	o.Disabled = &disabled
+}
+
+// GetExpirationTime returns the ExpirationTime of the receiver.
+func (o *SparseUserAccessPolicy) GetExpirationTime() time.Time {
+
+	return *o.ExpirationTime
+}
+
+// SetExpirationTime sets the property ExpirationTime of the receiver using the address of the given value.
+func (o *SparseUserAccessPolicy) SetExpirationTime(expirationTime time.Time) {
+
+	o.ExpirationTime = &expirationTime
 }
 
 // GetMetadata returns the Metadata of the receiver.

@@ -46,6 +46,14 @@ attributes:
     default_value:
     - root
 
+  - name: expirationTime
+    description: If set the policy will be auto deleted after the given time.
+    type: time
+    exposed: true
+    stored: true
+    getter: true
+    setter: true
+
   - name: object
     description: |-
       Object contains the tag expression matching the enforcers the subject is allowed
