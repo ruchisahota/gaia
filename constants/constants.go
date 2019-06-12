@@ -39,6 +39,8 @@ const (
 	RenderedPolicyTypeFile RenderedPolicyType = "filePolicyRules"
 	// RenderedPolicyTypeIsolation that the RenderedPolicyType for isolation policies
 	RenderedPolicyTypeIsolation RenderedPolicyType = "isolationPolicyRules"
+	// RenderedPolicyTypeUserAccess that the RenderedPolicyType for user access
+	RenderedPolicyTypeUserAccess RenderedPolicyType = "userAccessRules"
 )
 
 const (
