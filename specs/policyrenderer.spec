@@ -58,4 +58,5 @@ attributes:
     - Syscall
     - TokenScope
     - SSHAuthorization
+    - UserAccess
     example_value: APIAuthorization

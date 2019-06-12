@@ -585,7 +585,7 @@ Default value:
 
 List of tags of the object to render the hook policy for.
 
-##### `type` `emum(APIAuthorization | EnforcerProfile | File | Hook | NamespaceMapping | Network | ProcessingUnit | Quota | Syscall | TokenScope | SSHAuthorization)` [`required`]
+##### `type` `emum(APIAuthorization | EnforcerProfile | File | Hook | NamespaceMapping | Network | ProcessingUnit | Quota | Syscall | TokenScope | SSHAuthorization | UserAccess)` [`required`]
 
 Type of the policy to render.
 
