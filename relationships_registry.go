@@ -3945,6 +3945,41 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[TrustedCAIdentity] = &elemental.Relationship{
+		RetrieveMany: map[string]*elemental.RelationshipInfo{
+			"enforcer": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:         "type",
+						Type:         "enum",
+						DefaultValue: "Any",
+						AllowedChoices: []string{
+							"Any",
+							"X509",
+							"SSH",
+						},
+					},
+				},
+			},
+		},
+		Info: map[string]*elemental.RelationshipInfo{
+			"enforcer": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:         "type",
+						Type:         "enum",
+						DefaultValue: "Any",
+						AllowedChoices: []string{
+							"Any",
+							"X509",
+							"SSH",
+						},
+					},
+				},
+			},
+		},
+	}
+
 	relationshipsRegistry[ValidateUIParameterIdentity] = &elemental.Relationship{
 		Create: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
