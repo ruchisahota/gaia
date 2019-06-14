@@ -2776,7 +2776,14 @@ func init() {
 
 	relationshipsRegistry[PolicyGraphIdentity] = &elemental.Relationship{
 		Create: map[string]*elemental.RelationshipInfo{
-			"root": &elemental.RelationshipInfo{},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name: "view",
+						Type: "string",
+					},
+				},
+			},
 		},
 	}
 

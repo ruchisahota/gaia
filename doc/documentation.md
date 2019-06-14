@@ -9161,7 +9161,6 @@ unit that is not yetactivated.
 
 ```json
 {
-  "recursive": false,
   "selectors": [
     [
       "$identity=processingunit"
@@ -9176,6 +9175,10 @@ unit that is not yetactivated.
 
 Retrieve a policy graph.
 
+Parameters:
+
+- `view` (`string`): Set the view query for grouping the dependency map.
+
 #### Attributes
 
 ##### `PUIdentity` `[]string`
@@ -9188,11 +9191,6 @@ user wants to evaluate policies and understand its connectivity options.
 The dependencyMap contains the output of the policy evalation, and it is the
 same
 type of dependency map as created by other APIs.
-
-##### `recursive` `boolean`
-
-Recursive will implement a recursive search through the namespaces for matching
-PUs.
 
 ##### `selectors` `[][]string`
 
