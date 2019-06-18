@@ -43,6 +43,20 @@ attributes:
     type: boolean
     exposed: true
 
+  - name: enforcerID
+    description: Identifier of the enforcer sending the report.
+    type: string
+    exposed: true
+    stored: true
+    default_value: xxxx-xxx-xxxx
+
+  - name: enforcerNamespace
+    description: Namespace of the enforcer sending the report.
+    type: string
+    exposed: true
+    stored: true
+    default_value: /my/namespace
+
   - name: event
     description: Event is the event that triggered the report.
     type: enum
@@ -95,6 +109,13 @@ attributes:
     required: true
     example_value: xxx-xxx-xxx
     filterable: true
+
+  - name: rawPacket
+    description: The first 64 bytes of the packet.
+    type: string
+    exposed: true
+    stored: true
+    default_value: abcd
 
   - name: sourceIP
     description: SourceIP is the source IP address of the packet.

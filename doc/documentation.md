@@ -1841,10 +1841,13 @@ Post a new packet tracing report.
 {
   "destinationPort": 11000,
   "encrypt": false,
+  "enforcerID": "xxxx-xxx-xxxx",
+  "enforcerNamespace": "/my/namespace",
   "event": "Rcv",
   "namespace": "/my/namespace",
   "protocol": 6,
   "puID": "xxx-xxx-xxx",
+  "rawPacket": "abcd",
   "sourcePort": 80,
   "timestamp": "2018-06-14T23:10:46.420397985Z",
   "triremePacket": true
@@ -1876,6 +1879,26 @@ for the drop.
 
 Encrypt indicates that the packet was encrypted.
 
+##### `enforcerID` `string`
+
+Identifier of the enforcer sending the report.
+
+Default value:
+
+```json
+"xxxx-xxx-xxxx"
+```
+
+##### `enforcerNamespace` `string`
+
+Namespace of the enforcer sending the report.
+
+Default value:
+
+```json
+"/my/namespace"
+```
+
 ##### `event` `emum(Received | Transmitted | Dropped)` [`required`]
 
 Event is the event that triggered the report.
@@ -1891,6 +1914,16 @@ Protocol number.
 ##### `puID` `string` [`required`]
 
 PUID is the ID of the PU reporting the packet.
+
+##### `rawPacket` `string`
+
+The first 64 bytes of the packet.
+
+Default value:
+
+```json
+"abcd"
+```
 
 ##### `sourceIP` `string`
 
