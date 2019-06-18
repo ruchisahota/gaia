@@ -355,6 +355,14 @@ relations:
   create:
     description: Creates a new import request.
 
+- rest_name: infrastructurepolicy
+  get:
+    description: Retrieves the list of infrastructure policies.
+    global_parameters:
+    - $filtering
+  create:
+    description: Creates a new infrastructure policy.
+
 - rest_name: installedapp
   get:
     description: Retrieves the list of installed apps.
@@ -494,6 +502,12 @@ relations:
 - rest_name: policygraph
   create:
     description: Retrieve a policy graph.
+    parameters:
+      entries:
+      - name: view
+        description: Set the view query for grouping the dependency map.
+        type: string
+        example_value: $namespace then app
 
 - rest_name: policyrenderer
   create:

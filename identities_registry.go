@@ -52,6 +52,7 @@ var (
 		"import":                   ImportIdentity,
 		"importreference":          ImportReferenceIdentity,
 		"importrequest":            ImportRequestIdentity,
+		"infrastructurepolicy":     InfrastructurePolicyIdentity,
 		"installedapp":             InstalledAppIdentity,
 		"invoice":                  InvoiceIdentity,
 		"invoicerecord":            InvoiceRecordIdentity,
@@ -112,7 +113,8 @@ var (
 		"token":            TokenIdentity,
 		"tokenscopepolicy": TokenScopePolicyIdentity,
 
-		"trigger": TriggerIdentity,
+		"trigger":   TriggerIdentity,
+		"trustedca": TrustedCAIdentity,
 
 		"useraccesspolicy":     UserAccessPolicyIdentity,
 		"validateuiparameter":  ValidateUIParameterIdentity,
@@ -170,6 +172,7 @@ var (
 		"import":                     ImportIdentity,
 		"importreferences":           ImportReferenceIdentity,
 		"importrequests":             ImportRequestIdentity,
+		"infrastructurepolicies":     InfrastructurePolicyIdentity,
 		"installedapps":              InstalledAppIdentity,
 		"invoices":                   InvoiceIdentity,
 		"invoicerecords":             InvoiceRecordIdentity,
@@ -230,7 +233,8 @@ var (
 		"tokens":             TokenIdentity,
 		"tokenscopepolicies": TokenScopePolicyIdentity,
 
-		"triggers": TriggerIdentity,
+		"triggers":   TriggerIdentity,
+		"trustedcas": TrustedCAIdentity,
 
 		"useraccesspolicies":    UserAccessPolicyIdentity,
 		"validateuiparameters":  ValidateUIParameterIdentity,
@@ -282,6 +286,8 @@ var (
 		"reqs":           ImportRequestIdentity,
 		"ireq":           ImportRequestIdentity,
 		"ireqs":          ImportRequestIdentity,
+		"infrapol":       InfrastructurePolicyIdentity,
+		"infrapols":      InfrastructurePolicyIdentity,
 		"iapps":          InstalledAppIdentity,
 		"iapp":           InstalledAppIdentity,
 		"ip":             IsolationProfileIdentity,
@@ -527,6 +533,7 @@ var (
 			[]string{"namespace", "normalizedTags"},
 			[]string{"createIdempotencyKey"},
 		},
+		"infrastructurepolicy": nil,
 		"installedapp": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -698,6 +705,7 @@ var (
 		"token":               nil,
 		"tokenscopepolicy":    nil,
 		"trigger":             nil,
+		"trustedca":           nil,
 		"useraccesspolicy":    nil,
 		"validateuiparameter": nil,
 		"vulnerability": [][]string{
@@ -843,6 +851,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewImportReference()
 	case ImportRequestIdentity:
 		return NewImportRequest()
+	case InfrastructurePolicyIdentity:
+		return NewInfrastructurePolicy()
 	case InstalledAppIdentity:
 		return NewInstalledApp()
 	case InvoiceIdentity:
@@ -955,6 +965,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewTokenScopePolicy()
 	case TriggerIdentity:
 		return NewTrigger()
+	case TrustedCAIdentity:
+		return NewTrustedCA()
 	case UserAccessPolicyIdentity:
 		return NewUserAccessPolicy()
 	case ValidateUIParameterIdentity:
@@ -1062,6 +1074,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseImportReference()
 	case ImportRequestIdentity:
 		return NewSparseImportRequest()
+	case InfrastructurePolicyIdentity:
+		return NewSparseInfrastructurePolicy()
 	case InstalledAppIdentity:
 		return NewSparseInstalledApp()
 	case InvoiceIdentity:
@@ -1172,6 +1186,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseTokenScopePolicy()
 	case TriggerIdentity:
 		return NewSparseTrigger()
+	case TrustedCAIdentity:
+		return NewSparseTrustedCA()
 	case UserAccessPolicyIdentity:
 		return NewSparseUserAccessPolicy()
 	case ValidateUIParameterIdentity:
@@ -1289,6 +1305,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &ImportReferencesList{}
 	case ImportRequestIdentity:
 		return &ImportRequestsList{}
+	case InfrastructurePolicyIdentity:
+		return &InfrastructurePoliciesList{}
 	case InstalledAppIdentity:
 		return &InstalledAppsList{}
 	case InvoiceIdentity:
@@ -1399,6 +1417,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &TokenScopePoliciesList{}
 	case TriggerIdentity:
 		return &TriggersList{}
+	case TrustedCAIdentity:
+		return &TrustedCAsList{}
 	case UserAccessPolicyIdentity:
 		return &UserAccessPoliciesList{}
 	case ValidateUIParameterIdentity:
@@ -1506,6 +1526,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseImportReferencesList{}
 	case ImportRequestIdentity:
 		return &SparseImportRequestsList{}
+	case InfrastructurePolicyIdentity:
+		return &SparseInfrastructurePoliciesList{}
 	case InstalledAppIdentity:
 		return &SparseInstalledAppsList{}
 	case InvoiceIdentity:
@@ -1616,6 +1638,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseTokenScopePoliciesList{}
 	case TriggerIdentity:
 		return &SparseTriggersList{}
+	case TrustedCAIdentity:
+		return &SparseTrustedCAsList{}
 	case UserAccessPolicyIdentity:
 		return &SparseUserAccessPoliciesList{}
 	case ValidateUIParameterIdentity:
@@ -1694,6 +1718,7 @@ func AllIdentities() []elemental.Identity {
 		ImportIdentity,
 		ImportReferenceIdentity,
 		ImportRequestIdentity,
+		InfrastructurePolicyIdentity,
 		InstalledAppIdentity,
 		InvoiceIdentity,
 		InvoiceRecordIdentity,
@@ -1750,6 +1775,7 @@ func AllIdentities() []elemental.Identity {
 		TokenIdentity,
 		TokenScopePolicyIdentity,
 		TriggerIdentity,
+		TrustedCAIdentity,
 		UserAccessPolicyIdentity,
 		ValidateUIParameterIdentity,
 		VulnerabilityIdentity,
@@ -1910,6 +1936,11 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"reqs",
 			"ireq",
 			"ireqs",
+		}
+	case InfrastructurePolicyIdentity:
+		return []string{
+			"infrapol",
+			"infrapols",
 		}
 	case InstalledAppIdentity:
 		return []string{
@@ -2088,6 +2119,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"tsp",
 		}
 	case TriggerIdentity:
+		return []string{}
+	case TrustedCAIdentity:
 		return []string{}
 	case UserAccessPolicyIdentity:
 		return []string{

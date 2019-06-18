@@ -321,3 +321,17 @@ relations:
         description: If set, version of the current running enforcer.
         type: string
         example_value: v1.10
+
+- rest_name: trustedca
+  get:
+    description: Returns the list of CAs that should be trusted by this enforcer.
+    parameters:
+      entries:
+      - name: type
+        description: Type of certificate to get.
+        type: enum
+        allowed_choices:
+        - Any
+        - X509
+        - SSH
+        default_value: Any

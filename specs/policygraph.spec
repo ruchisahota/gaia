@@ -36,12 +36,17 @@ attributes:
     extensions:
       refMode: pointer
 
-  - name: recursive
+  - name: policyType
     description: |-
-      Recursive will implement a recursive search through the namespaces for matching
-      PUs.
-    type: boolean
+      Defines the type of policy that should be analyzed (Network Authorzation
+      Policies, Infrastructure Policies or Combined).
+    type: enum
     exposed: true
+    allowed_choices:
+    - Authorization
+    - Infrastructure
+    - Combined
+    default_value: Authorization
 
   - name: selectors
     description: |-
