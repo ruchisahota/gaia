@@ -6182,21 +6182,19 @@ Annotation stores additional information about an entity.
 
 AssociatedTags are the list of tags attached to an entity.
 
-##### `certificateAuthority` `string`
+##### `certificateAuthority` `string` [`required`]
 
 CertificateAuthority contains the pem block of the certificate authority used by
 the remote endpoint.
 
-##### `clientCertificate` `string`
+##### `clientCertificate` `string` [`required`]
 
 ClientCertificate contains the client certificate that will be used to connect
-to the remote endpoint. If provided, the private key associated with this certificate must
-also be configured.
+to the remote endoint.
 
-##### `clientCertificateKey` `string`
+##### `clientCertificateKey` `string` [`required`]
 
-ClientCertificateKey contains the key associated to the clientCertificate. Must be provided only when
-ClientCertificate has been configured.
+ClientCertificateKey contains the key associated to the clientCertificate.
 
 ##### `continueOnError` `boolean`
 
@@ -6217,7 +6215,7 @@ Disabled defines if the propert is disabled.
 
 ##### `endpoint` `string` [`required`]
 
-Endpoint contains the full address of the remote processor endpoint.
+Endpoint contains the full address of the remote processor endoint.
 
 ##### `expirationTime` `time`
 
