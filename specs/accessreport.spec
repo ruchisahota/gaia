@@ -67,6 +67,7 @@ attributes:
     description: Type of the report.
     type: string
     exposed: true
+    required: true
     allowed_choices:
     - SSHLogin
     - SSHLogout

@@ -4544,7 +4544,7 @@ for the rejection.
 
 Date of the report.
 
-##### `type` `string`
+##### `type` `string` [`required`]
 
 Type of the report.
 

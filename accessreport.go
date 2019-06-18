@@ -298,6 +298,10 @@ func (o *AccessReport) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
+	if err := elemental.ValidateRequiredString("type", o.Type); err != nil {
+		requiredErrors = requiredErrors.Append(err)
+	}
+
 	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"SSHLogin", "SSHLogout", "SudoEnter", "SudoExit"}, false); err != nil {
 		errors = errors.Append(err)
 	}
@@ -435,6 +439,7 @@ for the rejection.`,
 		Description:    `Type of the report.`,
 		Exposed:        true,
 		Name:           "type",
+		Required:       true,
 		Type:           "string",
 	},
 }
@@ -515,6 +520,7 @@ for the rejection.`,
 		Description:    `Type of the report.`,
 		Exposed:        true,
 		Name:           "type",
+		Required:       true,
 		Type:           "string",
 	},
 }
