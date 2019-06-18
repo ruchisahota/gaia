@@ -4482,13 +4482,13 @@ Represents the StreetAddress field.
 
 ## `policy/access`
 
-| Resource                      | Description               |
-| -                             | -                         |
-| [AccessReport](#accessreport) | Post a new access report. |
+| Resource                      | Description                                           |
+| -                             | -                                                     |
+| [AccessReport](#accessreport) | Access report represents any access made by the user. |
 
 ### AccessReport
 
-Post a new access report.
+Access report represents any access made by the user.
 
 #### Example
 
@@ -4497,12 +4497,9 @@ Post a new access report.
   "action": "Accept",
   "enforcerID": "xxx-xxx-xxx",
   "enforcerNamespace": "/my/namespace",
-  "puID": "xxx-xxx-xxx",
-  "puNamespace": "/my/namespace",
-  "type": [
-    "SSHLogIn"
-  ],
-  "value": 1
+  "processingUnitID": "xxx-xxx-xxx-xxx",
+  "processingUnitNamespace": "/my/ns",
+  "type": "SSHLogin"
 }
 ```
 
@@ -4530,13 +4527,13 @@ Identifier of the enforcer.
 
 Namespace of the enforcer.
 
-##### `puID` `string`
+##### `processingUnitID` `string`
 
-ID of the PU.
+ID of the processing unit of the report.
 
-##### `puNamespace` `string`
+##### `processingUnitNamespace` `string`
 
-Namespace of the PU.
+Namespace of the processing unit of the report.
 
 ##### `reason` `string`
 
@@ -4547,21 +4544,9 @@ for the rejection.
 
 Date of the report.
 
-##### `type` `string` [`required`]
+##### `type` `string`
 
 Type of the report.
-
-Default value:
-
-```json
-[
-  "SSHLogIn"
-]
-```
-
-##### `value` `integer` [`required`]
-
-Number of access in the report.
 
 ## `policy/audit`
 

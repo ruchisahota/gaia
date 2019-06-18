@@ -103,11 +103,11 @@ type AccessReport struct {
 	// Namespace of the enforcer.
 	EnforcerNamespace string `json:"enforcerNamespace" msgpack:"enforcerNamespace" bson:"-" mapstructure:"enforcerNamespace,omitempty"`
 
-	// ID of the PU.
-	PuID string `json:"puID" msgpack:"puID" bson:"-" mapstructure:"puID,omitempty"`
+	// ID of the processing unit of the report.
+	ProcessingUnitID string `json:"processingUnitID" msgpack:"processingUnitID" bson:"-" mapstructure:"processingUnitID,omitempty"`
 
-	// Namespace of the PU.
-	PuNamespace string `json:"puNamespace" msgpack:"puNamespace" bson:"-" mapstructure:"puNamespace,omitempty"`
+	// Namespace of the processing unit of the report.
+	ProcessingUnitNamespace string `json:"processingUnitNamespace" msgpack:"processingUnitNamespace" bson:"-" mapstructure:"processingUnitNamespace,omitempty"`
 
 	// This field is only set if 'action' is set to 'Reject' and specifies the reason
 	// for the rejection.
@@ -119,9 +119,6 @@ type AccessReport struct {
 	// Type of the report.
 	Type string `json:"type" msgpack:"type" bson:"-" mapstructure:"type,omitempty"`
 
-	// Number of access in the report.
-	Value int `json:"value" msgpack:"value" bson:"-" mapstructure:"value,omitempty"`
-
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
 
@@ -130,9 +127,6 @@ func NewAccessReport() *AccessReport {
 
 	return &AccessReport{
 		ModelVersion: 1,
-		Type: []string{
-			"SSHLogIn",
-		},
 	}
 }
 
@@ -168,7 +162,7 @@ func (o *AccessReport) DefaultOrder() []string {
 // Doc returns the documentation for the object
 func (o *AccessReport) Doc() string {
 
-	return `Post a new access report.`
+	return `Access report represents any access made by the user.`
 }
 
 func (o *AccessReport) String() string {
@@ -183,16 +177,15 @@ func (o *AccessReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	if len(fields) == 0 {
 		// nolint: goimports
 		return &SparseAccessReport{
-			Action:            &o.Action,
-			ClaimHash:         &o.ClaimHash,
-			EnforcerID:        &o.EnforcerID,
-			EnforcerNamespace: &o.EnforcerNamespace,
-			PuID:              &o.PuID,
-			PuNamespace:       &o.PuNamespace,
-			Reason:            &o.Reason,
-			Timestamp:         &o.Timestamp,
-			Type:              &o.Type,
-			Value:             &o.Value,
+			Action:                  &o.Action,
+			ClaimHash:               &o.ClaimHash,
+			EnforcerID:              &o.EnforcerID,
+			EnforcerNamespace:       &o.EnforcerNamespace,
+			ProcessingUnitID:        &o.ProcessingUnitID,
+			ProcessingUnitNamespace: &o.ProcessingUnitNamespace,
+			Reason:                  &o.Reason,
+			Timestamp:               &o.Timestamp,
+			Type:                    &o.Type,
 		}
 	}
 
@@ -207,18 +200,16 @@ func (o *AccessReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			sp.EnforcerID = &(o.EnforcerID)
 		case "enforcerNamespace":
 			sp.EnforcerNamespace = &(o.EnforcerNamespace)
-		case "puID":
-			sp.PuID = &(o.PuID)
-		case "puNamespace":
-			sp.PuNamespace = &(o.PuNamespace)
+		case "processingUnitID":
+			sp.ProcessingUnitID = &(o.ProcessingUnitID)
+		case "processingUnitNamespace":
+			sp.ProcessingUnitNamespace = &(o.ProcessingUnitNamespace)
 		case "reason":
 			sp.Reason = &(o.Reason)
 		case "timestamp":
 			sp.Timestamp = &(o.Timestamp)
 		case "type":
 			sp.Type = &(o.Type)
-		case "value":
-			sp.Value = &(o.Value)
 		}
 	}
 
@@ -244,11 +235,11 @@ func (o *AccessReport) Patch(sparse elemental.SparseIdentifiable) {
 	if so.EnforcerNamespace != nil {
 		o.EnforcerNamespace = *so.EnforcerNamespace
 	}
-	if so.PuID != nil {
-		o.PuID = *so.PuID
+	if so.ProcessingUnitID != nil {
+		o.ProcessingUnitID = *so.ProcessingUnitID
 	}
-	if so.PuNamespace != nil {
-		o.PuNamespace = *so.PuNamespace
+	if so.ProcessingUnitNamespace != nil {
+		o.ProcessingUnitNamespace = *so.ProcessingUnitNamespace
 	}
 	if so.Reason != nil {
 		o.Reason = *so.Reason
@@ -258,9 +249,6 @@ func (o *AccessReport) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.Type != nil {
 		o.Type = *so.Type
-	}
-	if so.Value != nil {
-		o.Value = *so.Value
 	}
 }
 
@@ -310,16 +298,8 @@ func (o *AccessReport) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("type", o.Type); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"SSHLogIn", "SSHLogOut", "SudoLogIn", "SudoLogOut"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"SSHLogin", "SSHLogout", "SudoEnter", "SudoExit"}, false); err != nil {
 		errors = errors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("value", o.Value); err != nil {
-		requiredErrors = requiredErrors.Append(err)
 	}
 
 	if len(requiredErrors) > 0 {
@@ -364,18 +344,16 @@ func (o *AccessReport) ValueForAttribute(name string) interface{} {
 		return o.EnforcerID
 	case "enforcerNamespace":
 		return o.EnforcerNamespace
-	case "puID":
-		return o.PuID
-	case "puNamespace":
-		return o.PuNamespace
+	case "processingUnitID":
+		return o.ProcessingUnitID
+	case "processingUnitNamespace":
+		return o.ProcessingUnitNamespace
 	case "reason":
 		return o.Reason
 	case "timestamp":
 		return o.Timestamp
 	case "type":
 		return o.Type
-	case "value":
-		return o.Value
 	}
 
 	return nil
@@ -418,20 +396,20 @@ var AccessReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"PuID": elemental.AttributeSpecification{
+	"ProcessingUnitID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "PuID",
-		Description:    `ID of the PU.`,
+		ConvertedName:  "ProcessingUnitID",
+		Description:    `ID of the processing unit of the report.`,
 		Exposed:        true,
-		Name:           "puID",
+		Name:           "processingUnitID",
 		Type:           "string",
 	},
-	"PuNamespace": elemental.AttributeSpecification{
+	"ProcessingUnitNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "PuNamespace",
-		Description:    `Namespace of the PU.`,
+		ConvertedName:  "ProcessingUnitNamespace",
+		Description:    `Namespace of the processing unit of the report.`,
 		Exposed:        true,
-		Name:           "puNamespace",
+		Name:           "processingUnitNamespace",
 		Type:           "string",
 	},
 	"Reason": elemental.AttributeSpecification{
@@ -452,25 +430,12 @@ for the rejection.`,
 		Type:           "time",
 	},
 	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"SSHLogIn", "SSHLogOut", "SudoLogIn", "SudoLogOut"},
+		AllowedChoices: []string{"SSHLogin", "SSHLogout", "SudoEnter", "SudoExit"},
 		ConvertedName:  "Type",
-		DefaultValue: []string{
-			"SSHLogIn",
-		},
-		Description: `Type of the report.`,
-		Exposed:     true,
-		Name:        "type",
-		Required:    true,
-		Type:        "string",
-	},
-	"Value": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Value",
-		Description:    `Number of access in the report.`,
+		Description:    `Type of the report.`,
 		Exposed:        true,
-		Name:           "value",
-		Required:       true,
-		Type:           "integer",
+		Name:           "type",
+		Type:           "string",
 	},
 }
 
@@ -511,20 +476,20 @@ var AccessReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Required:       true,
 		Type:           "string",
 	},
-	"puid": elemental.AttributeSpecification{
+	"processingunitid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "PuID",
-		Description:    `ID of the PU.`,
+		ConvertedName:  "ProcessingUnitID",
+		Description:    `ID of the processing unit of the report.`,
 		Exposed:        true,
-		Name:           "puID",
+		Name:           "processingUnitID",
 		Type:           "string",
 	},
-	"punamespace": elemental.AttributeSpecification{
+	"processingunitnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "PuNamespace",
-		Description:    `Namespace of the PU.`,
+		ConvertedName:  "ProcessingUnitNamespace",
+		Description:    `Namespace of the processing unit of the report.`,
 		Exposed:        true,
-		Name:           "puNamespace",
+		Name:           "processingUnitNamespace",
 		Type:           "string",
 	},
 	"reason": elemental.AttributeSpecification{
@@ -545,25 +510,12 @@ for the rejection.`,
 		Type:           "time",
 	},
 	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"SSHLogIn", "SSHLogOut", "SudoLogIn", "SudoLogOut"},
+		AllowedChoices: []string{"SSHLogin", "SSHLogout", "SudoEnter", "SudoExit"},
 		ConvertedName:  "Type",
-		DefaultValue: []string{
-			"SSHLogIn",
-		},
-		Description: `Type of the report.`,
-		Exposed:     true,
-		Name:        "type",
-		Required:    true,
-		Type:        "string",
-	},
-	"value": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Value",
-		Description:    `Number of access in the report.`,
+		Description:    `Type of the report.`,
 		Exposed:        true,
-		Name:           "value",
-		Required:       true,
-		Type:           "integer",
+		Name:           "type",
+		Type:           "string",
 	},
 }
 
@@ -642,11 +594,11 @@ type SparseAccessReport struct {
 	// Namespace of the enforcer.
 	EnforcerNamespace *string `json:"enforcerNamespace,omitempty" msgpack:"enforcerNamespace,omitempty" bson:"-" mapstructure:"enforcerNamespace,omitempty"`
 
-	// ID of the PU.
-	PuID *string `json:"puID,omitempty" msgpack:"puID,omitempty" bson:"-" mapstructure:"puID,omitempty"`
+	// ID of the processing unit of the report.
+	ProcessingUnitID *string `json:"processingUnitID,omitempty" msgpack:"processingUnitID,omitempty" bson:"-" mapstructure:"processingUnitID,omitempty"`
 
-	// Namespace of the PU.
-	PuNamespace *string `json:"puNamespace,omitempty" msgpack:"puNamespace,omitempty" bson:"-" mapstructure:"puNamespace,omitempty"`
+	// Namespace of the processing unit of the report.
+	ProcessingUnitNamespace *string `json:"processingUnitNamespace,omitempty" msgpack:"processingUnitNamespace,omitempty" bson:"-" mapstructure:"processingUnitNamespace,omitempty"`
 
 	// This field is only set if 'action' is set to 'Reject' and specifies the reason
 	// for the rejection.
@@ -657,9 +609,6 @@ type SparseAccessReport struct {
 
 	// Type of the report.
 	Type *string `json:"type,omitempty" msgpack:"type,omitempty" bson:"-" mapstructure:"type,omitempty"`
-
-	// Number of access in the report.
-	Value *int `json:"value,omitempty" msgpack:"value,omitempty" bson:"-" mapstructure:"value,omitempty"`
 
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
@@ -708,11 +657,11 @@ func (o *SparseAccessReport) ToPlain() elemental.PlainIdentifiable {
 	if o.EnforcerNamespace != nil {
 		out.EnforcerNamespace = *o.EnforcerNamespace
 	}
-	if o.PuID != nil {
-		out.PuID = *o.PuID
+	if o.ProcessingUnitID != nil {
+		out.ProcessingUnitID = *o.ProcessingUnitID
 	}
-	if o.PuNamespace != nil {
-		out.PuNamespace = *o.PuNamespace
+	if o.ProcessingUnitNamespace != nil {
+		out.ProcessingUnitNamespace = *o.ProcessingUnitNamespace
 	}
 	if o.Reason != nil {
 		out.Reason = *o.Reason
@@ -722,9 +671,6 @@ func (o *SparseAccessReport) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.Type != nil {
 		out.Type = *o.Type
-	}
-	if o.Value != nil {
-		out.Value = *o.Value
 	}
 
 	return out

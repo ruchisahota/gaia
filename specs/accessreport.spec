@@ -5,7 +5,7 @@ model:
   entity_name: AccessReport
   package: zack
   group: policy/access
-  description: Post a new access report.
+  description: Access report represents any access made by the user.
 
 # Attributes
 attributes:
@@ -39,17 +39,17 @@ attributes:
     required: true
     example_value: /my/namespace
 
-  - name: puID
-    description: ID of the PU.
+  - name: processingUnitID
+    description: ID of the processing unit of the report.
     type: string
     exposed: true
-    example_value: xxx-xxx-xxx
+    example_value: xxx-xxx-xxx-xxx
 
-  - name: puNamespace
-    description: Namespace of the PU.
+  - name: processingUnitNamespace
+    description: Namespace of the processing unit of the report.
     type: string
     exposed: true
-    example_value: /my/namespace
+    example_value: /my/ns
 
   - name: reason
     description: |-
@@ -67,18 +67,9 @@ attributes:
     description: Type of the report.
     type: string
     exposed: true
-    required: true
     allowed_choices:
-    - SSHLogIn
-    - SSHLogOut
-    - SudoLogIn
-    - SudoLogOut
-    default_value:
-    - SSHLogIn
-
-  - name: value
-    description: Number of access in the report.
-    type: integer
-    exposed: true
-    required: true
-    example_value: 1
+    - SSHLogin
+    - SSHLogout
+    - SudoEnter
+    - SudoExit
+    example_value: SSHLogin
