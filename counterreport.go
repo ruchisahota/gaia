@@ -8,20 +8,6 @@ import (
 	"go.aporeto.io/elemental"
 )
 
-// CounterReportTypeValue represents the possible values for attribute "type".
-type CounterReportTypeValue string
-
-const (
-	// CounterReportTypeDropped represents the value Dropped.
-	CounterReportTypeDropped CounterReportTypeValue = "Dropped"
-
-	// CounterReportTypeReceived represents the value Received.
-	CounterReportTypeReceived CounterReportTypeValue = "Received"
-
-	// CounterReportTypeTransmitted represents the value Transmitted.
-	CounterReportTypeTransmitted CounterReportTypeValue = "Transmitted"
-)
-
 // CounterReportIdentity represents the Identity of the object.
 var CounterReportIdentity = elemental.Identity{
 	Name:     "counterreport",
@@ -97,16 +83,6 @@ type CounterReport struct {
 	// Name of the counter.
 	CounterName string `json:"CounterName" msgpack:"CounterName" bson:"-" mapstructure:"CounterName,omitempty"`
 
-	// DestinationIP is the IP address of the destination.
-	DestinationIP string `json:"destinationIP" msgpack:"destinationIP" bson:"-" mapstructure:"destinationIP,omitempty"`
-
-	// DestinationPort is the destination port of a TCP or UDP counter.
-	DestinationPort int `json:"destinationPort" msgpack:"destinationPort" bson:"-" mapstructure:"destinationPort,omitempty"`
-
-	// This field is only set if 'event' is set to 'Dropped' and specifies the reason
-	// for the drop.
-	DropReason string `json:"dropReason" msgpack:"dropReason" bson:"-" mapstructure:"dropReason,omitempty"`
-
 	// Identifier of the enforcer sending the report.
 	EnforcerID string `json:"enforcerID" msgpack:"enforcerID" bson:"enforcerid" mapstructure:"enforcerID,omitempty"`
 
@@ -122,8 +98,8 @@ type CounterReport struct {
 	// Timestamp is the date of the report.
 	Timestamp time.Time `json:"timestamp" msgpack:"timestamp" bson:"-" mapstructure:"timestamp,omitempty"`
 
-	// Type of counter.
-	Type CounterReportTypeValue `json:"type" msgpack:"type" bson:"-" mapstructure:"type,omitempty"`
+	// Value of the counter.
+	Value int `json:"value" msgpack:"value" bson:"-" mapstructure:"value,omitempty"`
 
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
@@ -186,15 +162,12 @@ func (o *CounterReport) ToSparse(fields ...string) elemental.SparseIdentifiable 
 		// nolint: goimports
 		return &SparseCounterReport{
 			CounterName:             &o.CounterName,
-			DestinationIP:           &o.DestinationIP,
-			DestinationPort:         &o.DestinationPort,
-			DropReason:              &o.DropReason,
 			EnforcerID:              &o.EnforcerID,
 			EnforcerNamespace:       &o.EnforcerNamespace,
 			ProcessingUnitID:        &o.ProcessingUnitID,
 			ProcessingUnitNamespace: &o.ProcessingUnitNamespace,
 			Timestamp:               &o.Timestamp,
-			Type:                    &o.Type,
+			Value:                   &o.Value,
 		}
 	}
 
@@ -203,12 +176,6 @@ func (o *CounterReport) ToSparse(fields ...string) elemental.SparseIdentifiable 
 		switch f {
 		case "CounterName":
 			sp.CounterName = &(o.CounterName)
-		case "destinationIP":
-			sp.DestinationIP = &(o.DestinationIP)
-		case "destinationPort":
-			sp.DestinationPort = &(o.DestinationPort)
-		case "dropReason":
-			sp.DropReason = &(o.DropReason)
 		case "enforcerID":
 			sp.EnforcerID = &(o.EnforcerID)
 		case "enforcerNamespace":
@@ -219,8 +186,8 @@ func (o *CounterReport) ToSparse(fields ...string) elemental.SparseIdentifiable 
 			sp.ProcessingUnitNamespace = &(o.ProcessingUnitNamespace)
 		case "timestamp":
 			sp.Timestamp = &(o.Timestamp)
-		case "type":
-			sp.Type = &(o.Type)
+		case "value":
+			sp.Value = &(o.Value)
 		}
 	}
 
@@ -237,15 +204,6 @@ func (o *CounterReport) Patch(sparse elemental.SparseIdentifiable) {
 	if so.CounterName != nil {
 		o.CounterName = *so.CounterName
 	}
-	if so.DestinationIP != nil {
-		o.DestinationIP = *so.DestinationIP
-	}
-	if so.DestinationPort != nil {
-		o.DestinationPort = *so.DestinationPort
-	}
-	if so.DropReason != nil {
-		o.DropReason = *so.DropReason
-	}
 	if so.EnforcerID != nil {
 		o.EnforcerID = *so.EnforcerID
 	}
@@ -261,8 +219,8 @@ func (o *CounterReport) Patch(sparse elemental.SparseIdentifiable) {
 	if so.Timestamp != nil {
 		o.Timestamp = *so.Timestamp
 	}
-	if so.Type != nil {
-		o.Type = *so.Type
+	if so.Value != nil {
+		o.Value = *so.Value
 	}
 }
 
@@ -300,10 +258,6 @@ func (o *CounterReport) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateMaximumInt("destinationPort", o.DestinationPort, int(65536), false); err != nil {
-		errors = errors.Append(err)
-	}
-
 	if err := elemental.ValidateRequiredString("processingUnitID", o.ProcessingUnitID); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
@@ -316,12 +270,8 @@ func (o *CounterReport) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("type", string(o.Type)); err != nil {
+	if err := elemental.ValidateRequiredInt("value", o.Value); err != nil {
 		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Received", "Transmitted", "Dropped"}, false); err != nil {
-		errors = errors.Append(err)
 	}
 
 	if len(requiredErrors) > 0 {
@@ -360,12 +310,6 @@ func (o *CounterReport) ValueForAttribute(name string) interface{} {
 	switch name {
 	case "CounterName":
 		return o.CounterName
-	case "destinationIP":
-		return o.DestinationIP
-	case "destinationPort":
-		return o.DestinationPort
-	case "dropReason":
-		return o.DropReason
 	case "enforcerID":
 		return o.EnforcerID
 	case "enforcerNamespace":
@@ -376,8 +320,8 @@ func (o *CounterReport) ValueForAttribute(name string) interface{} {
 		return o.ProcessingUnitNamespace
 	case "timestamp":
 		return o.Timestamp
-	case "type":
-		return o.Type
+	case "value":
+		return o.Value
 	}
 
 	return nil
@@ -393,32 +337,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "CounterName",
 		Required:       true,
 		Type:           "string",
-	},
-	"DestinationIP": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DestinationIP",
-		Description:    `DestinationIP is the IP address of the destination.`,
-		Exposed:        true,
-		Name:           "destinationIP",
-		Type:           "string",
-	},
-	"DestinationPort": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DestinationPort",
-		Description:    `DestinationPort is the destination port of a TCP or UDP counter.`,
-		Exposed:        true,
-		MaxValue:       65536,
-		Name:           "destinationPort",
-		Type:           "integer",
-	},
-	"DropReason": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DropReason",
-		Description: `This field is only set if 'event' is set to 'Dropped' and specifies the reason
-for the drop.`,
-		Exposed: true,
-		Name:    "dropReason",
-		Type:    "string",
 	},
 	"EnforcerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -469,14 +387,14 @@ for the drop.`,
 		Required:       true,
 		Type:           "time",
 	},
-	"Type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Received", "Transmitted", "Dropped"},
-		ConvertedName:  "Type",
-		Description:    `Type of counter.`,
+	"Value": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Value",
+		Description:    `Value of the counter.`,
 		Exposed:        true,
-		Name:           "type",
+		Name:           "value",
 		Required:       true,
-		Type:           "enum",
+		Type:           "integer",
 	},
 }
 
@@ -490,32 +408,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Name:           "CounterName",
 		Required:       true,
 		Type:           "string",
-	},
-	"destinationip": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DestinationIP",
-		Description:    `DestinationIP is the IP address of the destination.`,
-		Exposed:        true,
-		Name:           "destinationIP",
-		Type:           "string",
-	},
-	"destinationport": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DestinationPort",
-		Description:    `DestinationPort is the destination port of a TCP or UDP counter.`,
-		Exposed:        true,
-		MaxValue:       65536,
-		Name:           "destinationPort",
-		Type:           "integer",
-	},
-	"dropreason": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DropReason",
-		Description: `This field is only set if 'event' is set to 'Dropped' and specifies the reason
-for the drop.`,
-		Exposed: true,
-		Name:    "dropReason",
-		Type:    "string",
 	},
 	"enforcerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -566,14 +458,14 @@ for the drop.`,
 		Required:       true,
 		Type:           "time",
 	},
-	"type": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Received", "Transmitted", "Dropped"},
-		ConvertedName:  "Type",
-		Description:    `Type of counter.`,
+	"value": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Value",
+		Description:    `Value of the counter.`,
 		Exposed:        true,
-		Name:           "type",
+		Name:           "value",
 		Required:       true,
-		Type:           "enum",
+		Type:           "integer",
 	},
 }
 
@@ -643,16 +535,6 @@ type SparseCounterReport struct {
 	// Name of the counter.
 	CounterName *string `json:"CounterName,omitempty" msgpack:"CounterName,omitempty" bson:"-" mapstructure:"CounterName,omitempty"`
 
-	// DestinationIP is the IP address of the destination.
-	DestinationIP *string `json:"destinationIP,omitempty" msgpack:"destinationIP,omitempty" bson:"-" mapstructure:"destinationIP,omitempty"`
-
-	// DestinationPort is the destination port of a TCP or UDP counter.
-	DestinationPort *int `json:"destinationPort,omitempty" msgpack:"destinationPort,omitempty" bson:"-" mapstructure:"destinationPort,omitempty"`
-
-	// This field is only set if 'event' is set to 'Dropped' and specifies the reason
-	// for the drop.
-	DropReason *string `json:"dropReason,omitempty" msgpack:"dropReason,omitempty" bson:"-" mapstructure:"dropReason,omitempty"`
-
 	// Identifier of the enforcer sending the report.
 	EnforcerID *string `json:"enforcerID,omitempty" msgpack:"enforcerID,omitempty" bson:"enforcerid,omitempty" mapstructure:"enforcerID,omitempty"`
 
@@ -668,8 +550,8 @@ type SparseCounterReport struct {
 	// Timestamp is the date of the report.
 	Timestamp *time.Time `json:"timestamp,omitempty" msgpack:"timestamp,omitempty" bson:"-" mapstructure:"timestamp,omitempty"`
 
-	// Type of counter.
-	Type *CounterReportTypeValue `json:"type,omitempty" msgpack:"type,omitempty" bson:"-" mapstructure:"type,omitempty"`
+	// Value of the counter.
+	Value *int `json:"value,omitempty" msgpack:"value,omitempty" bson:"-" mapstructure:"value,omitempty"`
 
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
@@ -709,15 +591,6 @@ func (o *SparseCounterReport) ToPlain() elemental.PlainIdentifiable {
 	if o.CounterName != nil {
 		out.CounterName = *o.CounterName
 	}
-	if o.DestinationIP != nil {
-		out.DestinationIP = *o.DestinationIP
-	}
-	if o.DestinationPort != nil {
-		out.DestinationPort = *o.DestinationPort
-	}
-	if o.DropReason != nil {
-		out.DropReason = *o.DropReason
-	}
 	if o.EnforcerID != nil {
 		out.EnforcerID = *o.EnforcerID
 	}
@@ -733,8 +606,8 @@ func (o *SparseCounterReport) ToPlain() elemental.PlainIdentifiable {
 	if o.Timestamp != nil {
 		out.Timestamp = *o.Timestamp
 	}
-	if o.Type != nil {
-		out.Type = *o.Type
+	if o.Value != nil {
+		out.Value = *o.Value
 	}
 
 	return out

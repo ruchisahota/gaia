@@ -17,25 +17,6 @@ attributes:
     required: true
     example_value: counter
 
-  - name: destinationIP
-    description: DestinationIP is the IP address of the destination.
-    type: string
-    exposed: true
-
-  - name: destinationPort
-    description: DestinationPort is the destination port of a TCP or UDP counter.
-    type: integer
-    exposed: true
-    example_value: 11000
-    max_value: 65536
-
-  - name: dropReason
-    description: |-
-      This field is only set if 'event' is set to 'Dropped' and specifies the reason
-      for the drop.
-    type: string
-    exposed: true
-
   - name: enforcerID
     description: Identifier of the enforcer sending the report.
     type: string
@@ -73,13 +54,9 @@ attributes:
     required: true
     example_value: "2018-06-14T23:10:46.420397985Z"
 
-  - name: type
-    description: Type of counter.
-    type: enum
+  - name: value
+    description: Value of the counter.
+    type: integer
     exposed: true
     required: true
-    allowed_choices:
-    - Received
-    - Transmitted
-    - Dropped
-    example_value: Rcv
+    example_value: 1

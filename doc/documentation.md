@@ -1485,13 +1485,12 @@ Post a new counter tracing report.
 ```json
 {
   "CounterName": "counter",
-  "destinationPort": 11000,
   "enforcerID": "xxxx-xxx-xxxx",
   "enforcerNamespace": "/my/namespace",
   "processingUnitID": "xxx-xxx-xxx",
   "processingUnitNamespace": "/my/namespace",
   "timestamp": "2018-06-14T23:10:46.420397985Z",
-  "type": "Rcv"
+  "value": 1
 }
 ```
 
@@ -1500,19 +1499,6 @@ Post a new counter tracing report.
 ##### `CounterName` `string` [`required`]
 
 Name of the counter.
-
-##### `destinationIP` `string`
-
-DestinationIP is the IP address of the destination.
-
-##### `destinationPort` `integer` [`max_value=65536.000000`]
-
-DestinationPort is the destination port of a TCP or UDP counter.
-
-##### `dropReason` `string`
-
-This field is only set if 'event' is set to 'Dropped' and specifies the reason
-for the drop.
 
 ##### `enforcerID` `string`
 
@@ -1546,9 +1532,9 @@ Namespace of the PU reporting the counter.
 
 Timestamp is the date of the report.
 
-##### `type` `emum(Received | Transmitted | Dropped)` [`required`]
+##### `value` `integer` [`required`]
 
-Type of counter.
+Value of the counter.
 
 ### Enforcer
 
