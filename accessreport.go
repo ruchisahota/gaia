@@ -19,34 +19,6 @@ const (
 	AccessReportActionReject AccessReportActionValue = "Reject"
 )
 
-// AccessReportDestinationTypeValue represents the possible values for attribute "destinationType".
-type AccessReportDestinationTypeValue string
-
-const (
-	// AccessReportDestinationTypeClaims represents the value Claims.
-	AccessReportDestinationTypeClaims AccessReportDestinationTypeValue = "Claims"
-
-	// AccessReportDestinationTypeExternalNetwork represents the value ExternalNetwork.
-	AccessReportDestinationTypeExternalNetwork AccessReportDestinationTypeValue = "ExternalNetwork"
-
-	// AccessReportDestinationTypeProcessingUnit represents the value ProcessingUnit.
-	AccessReportDestinationTypeProcessingUnit AccessReportDestinationTypeValue = "ProcessingUnit"
-)
-
-// AccessReportSourceTypeValue represents the possible values for attribute "sourceType".
-type AccessReportSourceTypeValue string
-
-const (
-	// AccessReportSourceTypeClaims represents the value Claims.
-	AccessReportSourceTypeClaims AccessReportSourceTypeValue = "Claims"
-
-	// AccessReportSourceTypeExternalNetwork represents the value ExternalNetwork.
-	AccessReportSourceTypeExternalNetwork AccessReportSourceTypeValue = "ExternalNetwork"
-
-	// AccessReportSourceTypeProcessingUnit represents the value ProcessingUnit.
-	AccessReportSourceTypeProcessingUnit AccessReportSourceTypeValue = "ProcessingUnit"
-)
-
 // AccessReportIdentity represents the Identity of the object.
 var AccessReportIdentity = elemental.Identity{
 	Name:     "accessreport",
@@ -125,51 +97,27 @@ type AccessReport struct {
 	// Hash of the claims used to communicate.
 	ClaimHash string `json:"claimHash" msgpack:"claimHash" bson:"-" mapstructure:"claimHash,omitempty"`
 
-	// content of the report.
-	Content string `json:"content" msgpack:"content" bson:"-" mapstructure:"content,omitempty"`
+	// Identifier of the enforcer.
+	EnforcerID string `json:"enforcerID" msgpack:"enforcerID" bson:"-" mapstructure:"enforcerID,omitempty"`
 
-	// ID of the destination.
-	DestinationID string `json:"destinationID" msgpack:"destinationID" bson:"-" mapstructure:"destinationID,omitempty"`
+	// Namespace of the enforcer.
+	EnforcerNamespace string `json:"enforcerNamespace" msgpack:"enforcerNamespace" bson:"-" mapstructure:"enforcerNamespace,omitempty"`
 
-	// Type of the destination.
-	DestinationIP string `json:"destinationIP" msgpack:"destinationIP" bson:"-" mapstructure:"destinationIP,omitempty"`
+	// ID of the PU.
+	PuID string `json:"puID" msgpack:"puID" bson:"-" mapstructure:"puID,omitempty"`
 
-	// Namespace of the receiver.
-	DestinationNamespace string `json:"destinationNamespace" msgpack:"destinationNamespace" bson:"-" mapstructure:"destinationNamespace,omitempty"`
-
-	// Port of the destination.
-	DestinationPort int `json:"destinationPort" msgpack:"destinationPort" bson:"-" mapstructure:"destinationPort,omitempty"`
-
-	// Type of the source.
-	DestinationType AccessReportDestinationTypeValue `json:"destinationType" msgpack:"destinationType" bson:"-" mapstructure:"destinationType,omitempty"`
+	// Namespace of the PU.
+	PuNamespace string `json:"puNamespace" msgpack:"puNamespace" bson:"-" mapstructure:"puNamespace,omitempty"`
 
 	// This field is only set if 'action' is set to 'Reject' and specifies the reason
 	// for the rejection.
-	DropReason string `json:"dropReason" msgpack:"dropReason" bson:"-" mapstructure:"dropReason,omitempty"`
-
-	// This is here for backward compatibility.
-	Namespace string `json:"namespace" msgpack:"namespace" bson:"-" mapstructure:"namespace,omitempty"`
-
-	// ID of the policy that accepted the access.
-	PolicyID string `json:"policyID" msgpack:"policyID" bson:"-" mapstructure:"policyID,omitempty"`
-
-	// Namespace of the policy that accepted the access.
-	PolicyNamespace string `json:"policyNamespace" msgpack:"policyNamespace" bson:"-" mapstructure:"policyNamespace,omitempty"`
-
-	// ID of the source.
-	SourceID string `json:"sourceID" msgpack:"sourceID" bson:"-" mapstructure:"sourceID,omitempty"`
-
-	// Type of the source.
-	SourceIP string `json:"sourceIP" msgpack:"sourceIP" bson:"-" mapstructure:"sourceIP,omitempty"`
-
-	// Namespace of the receiver.
-	SourceNamespace string `json:"sourceNamespace" msgpack:"sourceNamespace" bson:"-" mapstructure:"sourceNamespace,omitempty"`
-
-	// Type of the source.
-	SourceType AccessReportSourceTypeValue `json:"sourceType" msgpack:"sourceType" bson:"-" mapstructure:"sourceType,omitempty"`
+	Reason string `json:"reason" msgpack:"reason" bson:"-" mapstructure:"reason,omitempty"`
 
 	// Date of the report.
 	Timestamp time.Time `json:"timestamp" msgpack:"timestamp" bson:"-" mapstructure:"timestamp,omitempty"`
+
+	// Type of the report.
+	Type string `json:"type" msgpack:"type" bson:"-" mapstructure:"type,omitempty"`
 
 	// Number of access in the report.
 	Value int `json:"value" msgpack:"value" bson:"-" mapstructure:"value,omitempty"`
@@ -182,6 +130,9 @@ func NewAccessReport() *AccessReport {
 
 	return &AccessReport{
 		ModelVersion: 1,
+		Type: []string{
+			"SSHLogIn",
+		},
 	}
 }
 
@@ -232,24 +183,16 @@ func (o *AccessReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 	if len(fields) == 0 {
 		// nolint: goimports
 		return &SparseAccessReport{
-			Action:               &o.Action,
-			ClaimHash:            &o.ClaimHash,
-			Content:              &o.Content,
-			DestinationID:        &o.DestinationID,
-			DestinationIP:        &o.DestinationIP,
-			DestinationNamespace: &o.DestinationNamespace,
-			DestinationPort:      &o.DestinationPort,
-			DestinationType:      &o.DestinationType,
-			DropReason:           &o.DropReason,
-			Namespace:            &o.Namespace,
-			PolicyID:             &o.PolicyID,
-			PolicyNamespace:      &o.PolicyNamespace,
-			SourceID:             &o.SourceID,
-			SourceIP:             &o.SourceIP,
-			SourceNamespace:      &o.SourceNamespace,
-			SourceType:           &o.SourceType,
-			Timestamp:            &o.Timestamp,
-			Value:                &o.Value,
+			Action:            &o.Action,
+			ClaimHash:         &o.ClaimHash,
+			EnforcerID:        &o.EnforcerID,
+			EnforcerNamespace: &o.EnforcerNamespace,
+			PuID:              &o.PuID,
+			PuNamespace:       &o.PuNamespace,
+			Reason:            &o.Reason,
+			Timestamp:         &o.Timestamp,
+			Type:              &o.Type,
+			Value:             &o.Value,
 		}
 	}
 
@@ -260,36 +203,20 @@ func (o *AccessReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			sp.Action = &(o.Action)
 		case "claimHash":
 			sp.ClaimHash = &(o.ClaimHash)
-		case "content":
-			sp.Content = &(o.Content)
-		case "destinationID":
-			sp.DestinationID = &(o.DestinationID)
-		case "destinationIP":
-			sp.DestinationIP = &(o.DestinationIP)
-		case "destinationNamespace":
-			sp.DestinationNamespace = &(o.DestinationNamespace)
-		case "destinationPort":
-			sp.DestinationPort = &(o.DestinationPort)
-		case "destinationType":
-			sp.DestinationType = &(o.DestinationType)
-		case "dropReason":
-			sp.DropReason = &(o.DropReason)
-		case "namespace":
-			sp.Namespace = &(o.Namespace)
-		case "policyID":
-			sp.PolicyID = &(o.PolicyID)
-		case "policyNamespace":
-			sp.PolicyNamespace = &(o.PolicyNamespace)
-		case "sourceID":
-			sp.SourceID = &(o.SourceID)
-		case "sourceIP":
-			sp.SourceIP = &(o.SourceIP)
-		case "sourceNamespace":
-			sp.SourceNamespace = &(o.SourceNamespace)
-		case "sourceType":
-			sp.SourceType = &(o.SourceType)
+		case "enforcerID":
+			sp.EnforcerID = &(o.EnforcerID)
+		case "enforcerNamespace":
+			sp.EnforcerNamespace = &(o.EnforcerNamespace)
+		case "puID":
+			sp.PuID = &(o.PuID)
+		case "puNamespace":
+			sp.PuNamespace = &(o.PuNamespace)
+		case "reason":
+			sp.Reason = &(o.Reason)
 		case "timestamp":
 			sp.Timestamp = &(o.Timestamp)
+		case "type":
+			sp.Type = &(o.Type)
 		case "value":
 			sp.Value = &(o.Value)
 		}
@@ -311,50 +238,26 @@ func (o *AccessReport) Patch(sparse elemental.SparseIdentifiable) {
 	if so.ClaimHash != nil {
 		o.ClaimHash = *so.ClaimHash
 	}
-	if so.Content != nil {
-		o.Content = *so.Content
+	if so.EnforcerID != nil {
+		o.EnforcerID = *so.EnforcerID
 	}
-	if so.DestinationID != nil {
-		o.DestinationID = *so.DestinationID
+	if so.EnforcerNamespace != nil {
+		o.EnforcerNamespace = *so.EnforcerNamespace
 	}
-	if so.DestinationIP != nil {
-		o.DestinationIP = *so.DestinationIP
+	if so.PuID != nil {
+		o.PuID = *so.PuID
 	}
-	if so.DestinationNamespace != nil {
-		o.DestinationNamespace = *so.DestinationNamespace
+	if so.PuNamespace != nil {
+		o.PuNamespace = *so.PuNamespace
 	}
-	if so.DestinationPort != nil {
-		o.DestinationPort = *so.DestinationPort
-	}
-	if so.DestinationType != nil {
-		o.DestinationType = *so.DestinationType
-	}
-	if so.DropReason != nil {
-		o.DropReason = *so.DropReason
-	}
-	if so.Namespace != nil {
-		o.Namespace = *so.Namespace
-	}
-	if so.PolicyID != nil {
-		o.PolicyID = *so.PolicyID
-	}
-	if so.PolicyNamespace != nil {
-		o.PolicyNamespace = *so.PolicyNamespace
-	}
-	if so.SourceID != nil {
-		o.SourceID = *so.SourceID
-	}
-	if so.SourceIP != nil {
-		o.SourceIP = *so.SourceIP
-	}
-	if so.SourceNamespace != nil {
-		o.SourceNamespace = *so.SourceNamespace
-	}
-	if so.SourceType != nil {
-		o.SourceType = *so.SourceType
+	if so.Reason != nil {
+		o.Reason = *so.Reason
 	}
 	if so.Timestamp != nil {
 		o.Timestamp = *so.Timestamp
+	}
+	if so.Type != nil {
+		o.Type = *so.Type
 	}
 	if so.Value != nil {
 		o.Value = *so.Value
@@ -399,43 +302,19 @@ func (o *AccessReport) Validate() error {
 		errors = errors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("content", o.Content); err != nil {
+	if err := elemental.ValidateRequiredString("enforcerID", o.EnforcerID); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("destinationID", o.DestinationID); err != nil {
+	if err := elemental.ValidateRequiredString("enforcerNamespace", o.EnforcerNamespace); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("destinationType", string(o.DestinationType)); err != nil {
+	if err := elemental.ValidateRequiredString("type", o.Type); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateStringInList("destinationType", string(o.DestinationType), []string{"ProcessingUnit", "ExternalNetwork", "Claims"}, false); err != nil {
-		errors = errors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("namespace", o.Namespace); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("policyID", o.PolicyID); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("policyNamespace", o.PolicyNamespace); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("sourceID", o.SourceID); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("sourceType", string(o.SourceType)); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateStringInList("sourceType", string(o.SourceType), []string{"ProcessingUnit", "ExternalNetwork", "Claims"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"SSHLogIn", "SSHLogOut", "SudoLogIn", "SudoLogOut"}, false); err != nil {
 		errors = errors.Append(err)
 	}
 
@@ -481,36 +360,20 @@ func (o *AccessReport) ValueForAttribute(name string) interface{} {
 		return o.Action
 	case "claimHash":
 		return o.ClaimHash
-	case "content":
-		return o.Content
-	case "destinationID":
-		return o.DestinationID
-	case "destinationIP":
-		return o.DestinationIP
-	case "destinationNamespace":
-		return o.DestinationNamespace
-	case "destinationPort":
-		return o.DestinationPort
-	case "destinationType":
-		return o.DestinationType
-	case "dropReason":
-		return o.DropReason
-	case "namespace":
-		return o.Namespace
-	case "policyID":
-		return o.PolicyID
-	case "policyNamespace":
-		return o.PolicyNamespace
-	case "sourceID":
-		return o.SourceID
-	case "sourceIP":
-		return o.SourceIP
-	case "sourceNamespace":
-		return o.SourceNamespace
-	case "sourceType":
-		return o.SourceType
+	case "enforcerID":
+		return o.EnforcerID
+	case "enforcerNamespace":
+		return o.EnforcerNamespace
+	case "puID":
+		return o.PuID
+	case "puNamespace":
+		return o.PuNamespace
+	case "reason":
+		return o.Reason
 	case "timestamp":
 		return o.Timestamp
+	case "type":
+		return o.Type
 	case "value":
 		return o.Value
 	}
@@ -537,127 +400,48 @@ var AccessReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "claimHash",
 		Type:           "string",
 	},
-	"Content": elemental.AttributeSpecification{
+	"EnforcerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Content",
-		Description:    `content of the report.`,
+		ConvertedName:  "EnforcerID",
+		Description:    `Identifier of the enforcer.`,
 		Exposed:        true,
-		Name:           "content",
+		Name:           "enforcerID",
 		Required:       true,
 		Type:           "string",
 	},
-	"DestinationID": elemental.AttributeSpecification{
+	"EnforcerNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationID",
-		Description:    `ID of the destination.`,
+		ConvertedName:  "EnforcerNamespace",
+		Description:    `Namespace of the enforcer.`,
 		Exposed:        true,
-		Name:           "destinationID",
+		Name:           "enforcerNamespace",
 		Required:       true,
 		Type:           "string",
 	},
-	"DestinationIP": elemental.AttributeSpecification{
+	"PuID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationIP",
-		Description:    `Type of the destination.`,
+		ConvertedName:  "PuID",
+		Description:    `ID of the PU.`,
 		Exposed:        true,
-		Name:           "destinationIP",
+		Name:           "puID",
 		Type:           "string",
 	},
-	"DestinationNamespace": elemental.AttributeSpecification{
+	"PuNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationNamespace",
-		Description:    `Namespace of the receiver.`,
+		ConvertedName:  "PuNamespace",
+		Description:    `Namespace of the PU.`,
 		Exposed:        true,
-		Name:           "destinationNamespace",
+		Name:           "puNamespace",
 		Type:           "string",
 	},
-	"DestinationPort": elemental.AttributeSpecification{
+	"Reason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationPort",
-		Description:    `Port of the destination.`,
-		Exposed:        true,
-		Name:           "destinationPort",
-		Type:           "integer",
-	},
-	"DestinationType": elemental.AttributeSpecification{
-		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
-		ConvertedName:  "DestinationType",
-		Description:    `Type of the source.`,
-		Exposed:        true,
-		Name:           "destinationType",
-		Required:       true,
-		Type:           "enum",
-	},
-	"DropReason": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DropReason",
+		ConvertedName:  "Reason",
 		Description: `This field is only set if 'action' is set to 'Reject' and specifies the reason
 for the rejection.`,
 		Exposed: true,
-		Name:    "dropReason",
+		Name:    "reason",
 		Type:    "string",
-	},
-	"Namespace": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Namespace",
-		Deprecated:     true,
-		Description:    `This is here for backward compatibility.`,
-		Exposed:        true,
-		Name:           "namespace",
-		Required:       true,
-		Type:           "string",
-	},
-	"PolicyID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "PolicyID",
-		Description:    `ID of the policy that accepted the access.`,
-		Exposed:        true,
-		Name:           "policyID",
-		Required:       true,
-		Type:           "string",
-	},
-	"PolicyNamespace": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "PolicyNamespace",
-		Description:    `Namespace of the policy that accepted the access.`,
-		Exposed:        true,
-		Name:           "policyNamespace",
-		Required:       true,
-		Type:           "string",
-	},
-	"SourceID": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SourceID",
-		Description:    `ID of the source.`,
-		Exposed:        true,
-		Name:           "sourceID",
-		Required:       true,
-		Type:           "string",
-	},
-	"SourceIP": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SourceIP",
-		Description:    `Type of the source.`,
-		Exposed:        true,
-		Name:           "sourceIP",
-		Type:           "string",
-	},
-	"SourceNamespace": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SourceNamespace",
-		Description:    `Namespace of the receiver.`,
-		Exposed:        true,
-		Name:           "sourceNamespace",
-		Type:           "string",
-	},
-	"SourceType": elemental.AttributeSpecification{
-		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
-		ConvertedName:  "SourceType",
-		Description:    `Type of the source.`,
-		Exposed:        true,
-		Name:           "sourceType",
-		Required:       true,
-		Type:           "enum",
 	},
 	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -666,6 +450,18 @@ for the rejection.`,
 		Exposed:        true,
 		Name:           "timestamp",
 		Type:           "time",
+	},
+	"Type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"SSHLogIn", "SSHLogOut", "SudoLogIn", "SudoLogOut"},
+		ConvertedName:  "Type",
+		DefaultValue: []string{
+			"SSHLogIn",
+		},
+		Description: `Type of the report.`,
+		Exposed:     true,
+		Name:        "type",
+		Required:    true,
+		Type:        "string",
 	},
 	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -697,127 +493,48 @@ var AccessReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		Name:           "claimHash",
 		Type:           "string",
 	},
-	"content": elemental.AttributeSpecification{
+	"enforcerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "Content",
-		Description:    `content of the report.`,
+		ConvertedName:  "EnforcerID",
+		Description:    `Identifier of the enforcer.`,
 		Exposed:        true,
-		Name:           "content",
+		Name:           "enforcerID",
 		Required:       true,
 		Type:           "string",
 	},
-	"destinationid": elemental.AttributeSpecification{
+	"enforcernamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationID",
-		Description:    `ID of the destination.`,
+		ConvertedName:  "EnforcerNamespace",
+		Description:    `Namespace of the enforcer.`,
 		Exposed:        true,
-		Name:           "destinationID",
+		Name:           "enforcerNamespace",
 		Required:       true,
 		Type:           "string",
 	},
-	"destinationip": elemental.AttributeSpecification{
+	"puid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationIP",
-		Description:    `Type of the destination.`,
+		ConvertedName:  "PuID",
+		Description:    `ID of the PU.`,
 		Exposed:        true,
-		Name:           "destinationIP",
+		Name:           "puID",
 		Type:           "string",
 	},
-	"destinationnamespace": elemental.AttributeSpecification{
+	"punamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationNamespace",
-		Description:    `Namespace of the receiver.`,
+		ConvertedName:  "PuNamespace",
+		Description:    `Namespace of the PU.`,
 		Exposed:        true,
-		Name:           "destinationNamespace",
+		Name:           "puNamespace",
 		Type:           "string",
 	},
-	"destinationport": elemental.AttributeSpecification{
+	"reason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
-		ConvertedName:  "DestinationPort",
-		Description:    `Port of the destination.`,
-		Exposed:        true,
-		Name:           "destinationPort",
-		Type:           "integer",
-	},
-	"destinationtype": elemental.AttributeSpecification{
-		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
-		ConvertedName:  "DestinationType",
-		Description:    `Type of the source.`,
-		Exposed:        true,
-		Name:           "destinationType",
-		Required:       true,
-		Type:           "enum",
-	},
-	"dropreason": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "DropReason",
+		ConvertedName:  "Reason",
 		Description: `This field is only set if 'action' is set to 'Reject' and specifies the reason
 for the rejection.`,
 		Exposed: true,
-		Name:    "dropReason",
+		Name:    "reason",
 		Type:    "string",
-	},
-	"namespace": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "Namespace",
-		Deprecated:     true,
-		Description:    `This is here for backward compatibility.`,
-		Exposed:        true,
-		Name:           "namespace",
-		Required:       true,
-		Type:           "string",
-	},
-	"policyid": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "PolicyID",
-		Description:    `ID of the policy that accepted the access.`,
-		Exposed:        true,
-		Name:           "policyID",
-		Required:       true,
-		Type:           "string",
-	},
-	"policynamespace": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "PolicyNamespace",
-		Description:    `Namespace of the policy that accepted the access.`,
-		Exposed:        true,
-		Name:           "policyNamespace",
-		Required:       true,
-		Type:           "string",
-	},
-	"sourceid": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SourceID",
-		Description:    `ID of the source.`,
-		Exposed:        true,
-		Name:           "sourceID",
-		Required:       true,
-		Type:           "string",
-	},
-	"sourceip": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SourceIP",
-		Description:    `Type of the source.`,
-		Exposed:        true,
-		Name:           "sourceIP",
-		Type:           "string",
-	},
-	"sourcenamespace": elemental.AttributeSpecification{
-		AllowedChoices: []string{},
-		ConvertedName:  "SourceNamespace",
-		Description:    `Namespace of the receiver.`,
-		Exposed:        true,
-		Name:           "sourceNamespace",
-		Type:           "string",
-	},
-	"sourcetype": elemental.AttributeSpecification{
-		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
-		ConvertedName:  "SourceType",
-		Description:    `Type of the source.`,
-		Exposed:        true,
-		Name:           "sourceType",
-		Required:       true,
-		Type:           "enum",
 	},
 	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -826,6 +543,18 @@ for the rejection.`,
 		Exposed:        true,
 		Name:           "timestamp",
 		Type:           "time",
+	},
+	"type": elemental.AttributeSpecification{
+		AllowedChoices: []string{"SSHLogIn", "SSHLogOut", "SudoLogIn", "SudoLogOut"},
+		ConvertedName:  "Type",
+		DefaultValue: []string{
+			"SSHLogIn",
+		},
+		Description: `Type of the report.`,
+		Exposed:     true,
+		Name:        "type",
+		Required:    true,
+		Type:        "string",
 	},
 	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -907,51 +636,27 @@ type SparseAccessReport struct {
 	// Hash of the claims used to communicate.
 	ClaimHash *string `json:"claimHash,omitempty" msgpack:"claimHash,omitempty" bson:"-" mapstructure:"claimHash,omitempty"`
 
-	// content of the report.
-	Content *string `json:"content,omitempty" msgpack:"content,omitempty" bson:"-" mapstructure:"content,omitempty"`
+	// Identifier of the enforcer.
+	EnforcerID *string `json:"enforcerID,omitempty" msgpack:"enforcerID,omitempty" bson:"-" mapstructure:"enforcerID,omitempty"`
 
-	// ID of the destination.
-	DestinationID *string `json:"destinationID,omitempty" msgpack:"destinationID,omitempty" bson:"-" mapstructure:"destinationID,omitempty"`
+	// Namespace of the enforcer.
+	EnforcerNamespace *string `json:"enforcerNamespace,omitempty" msgpack:"enforcerNamespace,omitempty" bson:"-" mapstructure:"enforcerNamespace,omitempty"`
 
-	// Type of the destination.
-	DestinationIP *string `json:"destinationIP,omitempty" msgpack:"destinationIP,omitempty" bson:"-" mapstructure:"destinationIP,omitempty"`
+	// ID of the PU.
+	PuID *string `json:"puID,omitempty" msgpack:"puID,omitempty" bson:"-" mapstructure:"puID,omitempty"`
 
-	// Namespace of the receiver.
-	DestinationNamespace *string `json:"destinationNamespace,omitempty" msgpack:"destinationNamespace,omitempty" bson:"-" mapstructure:"destinationNamespace,omitempty"`
-
-	// Port of the destination.
-	DestinationPort *int `json:"destinationPort,omitempty" msgpack:"destinationPort,omitempty" bson:"-" mapstructure:"destinationPort,omitempty"`
-
-	// Type of the source.
-	DestinationType *AccessReportDestinationTypeValue `json:"destinationType,omitempty" msgpack:"destinationType,omitempty" bson:"-" mapstructure:"destinationType,omitempty"`
+	// Namespace of the PU.
+	PuNamespace *string `json:"puNamespace,omitempty" msgpack:"puNamespace,omitempty" bson:"-" mapstructure:"puNamespace,omitempty"`
 
 	// This field is only set if 'action' is set to 'Reject' and specifies the reason
 	// for the rejection.
-	DropReason *string `json:"dropReason,omitempty" msgpack:"dropReason,omitempty" bson:"-" mapstructure:"dropReason,omitempty"`
-
-	// This is here for backward compatibility.
-	Namespace *string `json:"namespace,omitempty" msgpack:"namespace,omitempty" bson:"-" mapstructure:"namespace,omitempty"`
-
-	// ID of the policy that accepted the access.
-	PolicyID *string `json:"policyID,omitempty" msgpack:"policyID,omitempty" bson:"-" mapstructure:"policyID,omitempty"`
-
-	// Namespace of the policy that accepted the access.
-	PolicyNamespace *string `json:"policyNamespace,omitempty" msgpack:"policyNamespace,omitempty" bson:"-" mapstructure:"policyNamespace,omitempty"`
-
-	// ID of the source.
-	SourceID *string `json:"sourceID,omitempty" msgpack:"sourceID,omitempty" bson:"-" mapstructure:"sourceID,omitempty"`
-
-	// Type of the source.
-	SourceIP *string `json:"sourceIP,omitempty" msgpack:"sourceIP,omitempty" bson:"-" mapstructure:"sourceIP,omitempty"`
-
-	// Namespace of the receiver.
-	SourceNamespace *string `json:"sourceNamespace,omitempty" msgpack:"sourceNamespace,omitempty" bson:"-" mapstructure:"sourceNamespace,omitempty"`
-
-	// Type of the source.
-	SourceType *AccessReportSourceTypeValue `json:"sourceType,omitempty" msgpack:"sourceType,omitempty" bson:"-" mapstructure:"sourceType,omitempty"`
+	Reason *string `json:"reason,omitempty" msgpack:"reason,omitempty" bson:"-" mapstructure:"reason,omitempty"`
 
 	// Date of the report.
 	Timestamp *time.Time `json:"timestamp,omitempty" msgpack:"timestamp,omitempty" bson:"-" mapstructure:"timestamp,omitempty"`
+
+	// Type of the report.
+	Type *string `json:"type,omitempty" msgpack:"type,omitempty" bson:"-" mapstructure:"type,omitempty"`
 
 	// Number of access in the report.
 	Value *int `json:"value,omitempty" msgpack:"value,omitempty" bson:"-" mapstructure:"value,omitempty"`
@@ -997,50 +702,26 @@ func (o *SparseAccessReport) ToPlain() elemental.PlainIdentifiable {
 	if o.ClaimHash != nil {
 		out.ClaimHash = *o.ClaimHash
 	}
-	if o.Content != nil {
-		out.Content = *o.Content
+	if o.EnforcerID != nil {
+		out.EnforcerID = *o.EnforcerID
 	}
-	if o.DestinationID != nil {
-		out.DestinationID = *o.DestinationID
+	if o.EnforcerNamespace != nil {
+		out.EnforcerNamespace = *o.EnforcerNamespace
 	}
-	if o.DestinationIP != nil {
-		out.DestinationIP = *o.DestinationIP
+	if o.PuID != nil {
+		out.PuID = *o.PuID
 	}
-	if o.DestinationNamespace != nil {
-		out.DestinationNamespace = *o.DestinationNamespace
+	if o.PuNamespace != nil {
+		out.PuNamespace = *o.PuNamespace
 	}
-	if o.DestinationPort != nil {
-		out.DestinationPort = *o.DestinationPort
-	}
-	if o.DestinationType != nil {
-		out.DestinationType = *o.DestinationType
-	}
-	if o.DropReason != nil {
-		out.DropReason = *o.DropReason
-	}
-	if o.Namespace != nil {
-		out.Namespace = *o.Namespace
-	}
-	if o.PolicyID != nil {
-		out.PolicyID = *o.PolicyID
-	}
-	if o.PolicyNamespace != nil {
-		out.PolicyNamespace = *o.PolicyNamespace
-	}
-	if o.SourceID != nil {
-		out.SourceID = *o.SourceID
-	}
-	if o.SourceIP != nil {
-		out.SourceIP = *o.SourceIP
-	}
-	if o.SourceNamespace != nil {
-		out.SourceNamespace = *o.SourceNamespace
-	}
-	if o.SourceType != nil {
-		out.SourceType = *o.SourceType
+	if o.Reason != nil {
+		out.Reason = *o.Reason
 	}
 	if o.Timestamp != nil {
 		out.Timestamp = *o.Timestamp
+	}
+	if o.Type != nil {
+		out.Type = *o.Type
 	}
 	if o.Value != nil {
 		out.Value = *o.Value

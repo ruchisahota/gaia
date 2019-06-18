@@ -4495,16 +4495,13 @@ Post a new access report.
 ```json
 {
   "action": "Accept",
-  "content": "user X has tried to logged in",
-  "destinationID": "xxx-xxx-xxx",
-  "destinationNamespace": "/my/namespace",
-  "destinationType": "ProcessingUnit",
-  "namespace": "/my/namespace",
-  "policyID": "xxx-xxx-xxx",
-  "policyNamespace": "/my/namespace",
-  "sourceID": "xxx-xxx-xxx",
-  "sourceNamespace": "/my/namespace",
-  "sourceType": "ProcessingUnit",
+  "enforcerID": "xxx-xxx-xxx",
+  "enforcerNamespace": "/my/namespace",
+  "puID": "xxx-xxx-xxx",
+  "puNamespace": "/my/namespace",
+  "type": [
+    "SSHLogIn"
+  ],
   "value": 1
 }
 ```
@@ -4525,68 +4522,42 @@ Action applied to the access.
 
 Hash of the claims used to communicate.
 
-##### `content` `string` [`required`]
+##### `enforcerID` `string` [`required`]
 
-content of the report.
+Identifier of the enforcer.
 
-##### `destinationID` `string` [`required`]
+##### `enforcerNamespace` `string` [`required`]
 
-ID of the destination.
+Namespace of the enforcer.
 
-##### `destinationIP` `string`
+##### `puID` `string`
 
-Type of the destination.
+ID of the PU.
 
-##### `destinationNamespace` `string`
+##### `puNamespace` `string`
 
-Namespace of the receiver.
+Namespace of the PU.
 
-##### `destinationPort` `integer`
-
-Port of the destination.
-
-##### `destinationType` `emum(ProcessingUnit | ExternalNetwork | Claims)` [`required`]
-
-Type of the source.
-
-##### `dropReason` `string`
+##### `reason` `string`
 
 This field is only set if 'action' is set to 'Reject' and specifies the reason
 for the rejection.
 
-##### `namespace` `string` [`required`]
-
-_This attribute is deprecated_.
-
-This is here for backward compatibility.
-
-##### `policyID` `string` [`required`]
-
-ID of the policy that accepted the access.
-
-##### `policyNamespace` `string` [`required`]
-
-Namespace of the policy that accepted the access.
-
-##### `sourceID` `string` [`required`]
-
-ID of the source.
-
-##### `sourceIP` `string`
-
-Type of the source.
-
-##### `sourceNamespace` `string`
-
-Namespace of the receiver.
-
-##### `sourceType` `emum(ProcessingUnit | ExternalNetwork | Claims)` [`required`]
-
-Type of the source.
-
 ##### `timestamp` `time`
 
 Date of the report.
+
+##### `type` `string` [`required`]
+
+Type of the report.
+
+Default value:
+
+```json
+[
+  "SSHLogIn"
+]
+```
 
 ##### `value` `integer` [`required`]
 
