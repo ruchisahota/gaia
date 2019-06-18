@@ -1468,12 +1468,87 @@ Name contains the name of the Plan.
 
 | Resource                                    | Description                                                                    |
 | -                                           | -                                                                              |
+| [CounterReport](#counterreport)             | Post a new counter tracing report.                                             |
 | [Enforcer](#enforcer)                       | An Enforcer contains all parameters associated with a registered enforcer. The |
 | [EnforcerReport](#enforcerreport)           | Post a new enforcer statistics report.                                         |
 | [EnforcerTraceReport](#enforcertracereport) | Post a new enforcer trace that determines how packets are.                     |
 | [PacketReport](#packetreport)               | Post a new packet tracing report.                                              |
 | [TraceMode](#tracemode)                     | TraceMode is the tracing mode that must be applied to a PU.                    |
 | [TraceRecord](#tracerecord)                 | Represents a single trace record from the enforcer.                            |
+
+### CounterReport
+
+Post a new counter tracing report.
+
+#### Example
+
+```json
+{
+  "CounterName": "counter",
+  "destinationPort": 11000,
+  "enforcerID": "xxxx-xxx-xxxx",
+  "enforcerNamespace": "/my/namespace",
+  "processingUnitID": "xxx-xxx-xxx",
+  "processingUnitNamespace": "/my/namespace",
+  "timestamp": "2018-06-14T23:10:46.420397985Z",
+  "type": "Rcv"
+}
+```
+
+#### Attributes
+
+##### `CounterName` `string` [`required`]
+
+Name of the counter.
+
+##### `destinationIP` `string`
+
+DestinationIP is the IP address of the destination.
+
+##### `destinationPort` `integer` [`max_value=65536.000000`]
+
+DestinationPort is the destination port of a TCP or UDP counter.
+
+##### `dropReason` `string`
+
+This field is only set if 'event' is set to 'Dropped' and specifies the reason
+for the drop.
+
+##### `enforcerID` `string`
+
+Identifier of the enforcer sending the report.
+
+Default value:
+
+```json
+"xxxx-xxx-xxxx"
+```
+
+##### `enforcerNamespace` `string`
+
+Namespace of the enforcer sending the report.
+
+Default value:
+
+```json
+"/my/namespace"
+```
+
+##### `processingUnitID` `string` [`required`]
+
+PUID is the ID of the PU reporting the counter.
+
+##### `processingUnitNamespace` `string` [`required`]
+
+Namespace of the PU reporting the counter.
+
+##### `timestamp` `time` [`required`]
+
+Timestamp is the date of the report.
+
+##### `type` `emum(Received | Transmitted | Dropped)` [`required`]
+
+Type of counter.
 
 ### Enforcer
 
