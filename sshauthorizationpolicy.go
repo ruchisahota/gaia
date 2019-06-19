@@ -194,15 +194,13 @@ func NewSSHAuthorizationPolicy() *SSHAuthorizationPolicy {
 		Annotations:       map[string][]string{},
 		AssociatedTags:    []string{},
 		AuthorizedSubnets: []string{},
-		Extensions: []string{
-			"permit-pty",
-		},
-		Metadata:       []string{},
-		NormalizedTags: []string{},
-		Object:         [][]string{},
-		Principals:     []string{},
-		Subject:        [][]string{},
-		Validity:       "1h",
+		Extensions:        []string{},
+		Metadata:          []string{},
+		NormalizedTags:    []string{},
+		Object:            [][]string{},
+		Principals:        []string{},
+		Subject:           [][]string{},
+		Validity:          "1h",
 	}
 }
 
@@ -994,9 +992,6 @@ the declared subnets.`,
 	"Extensions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Extensions",
-		DefaultValue: []string{
-			"permit-pty",
-		},
 		Description: `The list of SSH permissions to apply to SSH certificate. You can check the list
 of standard extensions at
 <https://github.com/openssh/openssh-portable/blob/38e83e4f219c752ebb1560633b73f06f0392018b/PROTOCOL.certkeys#L281>.`,
@@ -1351,9 +1346,6 @@ the declared subnets.`,
 	"extensions": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Extensions",
-		DefaultValue: []string{
-			"permit-pty",
-		},
 		Description: `The list of SSH permissions to apply to SSH certificate. You can check the list
 of standard extensions at
 <https://github.com/openssh/openssh-portable/blob/38e83e4f219c752ebb1560633b73f06f0392018b/PROTOCOL.certkeys#L281>.`,
