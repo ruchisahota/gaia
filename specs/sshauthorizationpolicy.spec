@@ -70,8 +70,6 @@ attributes:
     type: list
     exposed: true
     subtype: string
-    default_value:
-    - permit-pty
 
   - name: forceCommand
     description: |-
