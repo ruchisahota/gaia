@@ -9400,7 +9400,7 @@ Retrieves information about the content of the stats measurement.
 
 Contains the list of fields. You cannot group by these fields.
 
-##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs)`
+##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Counters)`
 
 Name of the measurement.
 
@@ -9479,7 +9479,7 @@ Default value:
 -1
 ```
 
-##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Packets | EnforcerTraces)`
+##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Packets | EnforcerTraces | Counters)`
 
 Name of the measurement.
 

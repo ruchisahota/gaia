@@ -60,6 +60,7 @@ attributes:
     - EventLogs
     - Packets
     - EnforcerTraces
+    - Counters
     default_value: Flows
 
   - name: offset
