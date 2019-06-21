@@ -81,7 +81,7 @@ func (o CounterReportsList) Version() int {
 // CounterReport represents the model of a counterreport
 type CounterReport struct {
 	// Name of the counter.
-	CounterName string `json:"CounterName" msgpack:"CounterName" bson:"-" mapstructure:"CounterName,omitempty"`
+	CounterName string `json:"counterName" msgpack:"counterName" bson:"-" mapstructure:"counterName,omitempty"`
 
 	// Identifier of the enforcer sending the report.
 	EnforcerID string `json:"enforcerID" msgpack:"enforcerID" bson:"enforcerid" mapstructure:"enforcerID,omitempty"`
@@ -174,7 +174,7 @@ func (o *CounterReport) ToSparse(fields ...string) elemental.SparseIdentifiable 
 	sp := &SparseCounterReport{}
 	for _, f := range fields {
 		switch f {
-		case "CounterName":
+		case "counterName":
 			sp.CounterName = &(o.CounterName)
 		case "enforcerID":
 			sp.EnforcerID = &(o.EnforcerID)
@@ -254,19 +254,7 @@ func (o *CounterReport) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredString("CounterName", o.CounterName); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("processingUnitID", o.ProcessingUnitID); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredString("processingUnitNamespace", o.ProcessingUnitNamespace); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredTime("timestamp", o.Timestamp); err != nil {
+	if err := elemental.ValidateRequiredString("counterName", o.CounterName); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
@@ -308,7 +296,7 @@ func (*CounterReport) AttributeSpecifications() map[string]elemental.AttributeSp
 func (o *CounterReport) ValueForAttribute(name string) interface{} {
 
 	switch name {
-	case "CounterName":
+	case "counterName":
 		return o.CounterName
 	case "enforcerID":
 		return o.EnforcerID
@@ -334,7 +322,7 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "CounterName",
 		Description:    `Name of the counter.`,
 		Exposed:        true,
-		Name:           "CounterName",
+		Name:           "counterName",
 		Required:       true,
 		Type:           "string",
 	},
@@ -365,7 +353,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "processingUnitID",
-		Required:       true,
 		Type:           "string",
 	},
 	"ProcessingUnitNamespace": elemental.AttributeSpecification{
@@ -375,7 +362,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "processingUnitNamespace",
-		Required:       true,
 		Type:           "string",
 	},
 	"Timestamp": elemental.AttributeSpecification{
@@ -384,7 +370,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Timestamp is the date of the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
-		Required:       true,
 		Type:           "time",
 	},
 	"Value": elemental.AttributeSpecification{
@@ -405,7 +390,7 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		ConvertedName:  "CounterName",
 		Description:    `Name of the counter.`,
 		Exposed:        true,
-		Name:           "CounterName",
+		Name:           "counterName",
 		Required:       true,
 		Type:           "string",
 	},
@@ -436,7 +421,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "processingUnitID",
-		Required:       true,
 		Type:           "string",
 	},
 	"processingunitnamespace": elemental.AttributeSpecification{
@@ -446,7 +430,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Exposed:        true,
 		Filterable:     true,
 		Name:           "processingUnitNamespace",
-		Required:       true,
 		Type:           "string",
 	},
 	"timestamp": elemental.AttributeSpecification{
@@ -455,7 +438,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Timestamp is the date of the report.`,
 		Exposed:        true,
 		Name:           "timestamp",
-		Required:       true,
 		Type:           "time",
 	},
 	"value": elemental.AttributeSpecification{
@@ -533,7 +515,7 @@ func (o SparseCounterReportsList) Version() int {
 // SparseCounterReport represents the sparse version of a counterreport.
 type SparseCounterReport struct {
 	// Name of the counter.
-	CounterName *string `json:"CounterName,omitempty" msgpack:"CounterName,omitempty" bson:"-" mapstructure:"CounterName,omitempty"`
+	CounterName *string `json:"counterName,omitempty" msgpack:"counterName,omitempty" bson:"-" mapstructure:"counterName,omitempty"`
 
 	// Identifier of the enforcer sending the report.
 	EnforcerID *string `json:"enforcerID,omitempty" msgpack:"enforcerID,omitempty" bson:"enforcerid,omitempty" mapstructure:"enforcerID,omitempty"`

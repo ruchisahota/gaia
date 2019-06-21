@@ -10,7 +10,7 @@ model:
 # Attributes
 attributes:
   v1:
-  - name: CounterName
+  - name: counterName
     description: Name of the counter.
     type: string
     exposed: true
@@ -35,7 +35,6 @@ attributes:
     description: PUID is the ID of the PU reporting the counter.
     type: string
     exposed: true
-    required: true
     example_value: xxx-xxx-xxx
     filterable: true
 
@@ -43,7 +42,6 @@ attributes:
     description: Namespace of the PU reporting the counter.
     type: string
     exposed: true
-    required: true
     example_value: /my/namespace
     filterable: true
 
@@ -51,7 +49,6 @@ attributes:
     description: Timestamp is the date of the report.
     type: time
     exposed: true
-    required: true
     example_value: "2018-06-14T23:10:46.420397985Z"
 
   - name: value

@@ -719,7 +719,11 @@ func init() {
 		},
 	}
 
-	relationshipsRegistry[CounterReportIdentity] = &elemental.Relationship{}
+	relationshipsRegistry[CounterReportIdentity] = &elemental.Relationship{
+		Create: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+	}
 
 	relationshipsRegistry[CustomerIdentity] = &elemental.Relationship{
 		Update: map[string]*elemental.RelationshipInfo{

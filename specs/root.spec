@@ -180,6 +180,10 @@ relations:
   create:
     description: Creates a new claims record.
 
+- rest_name: counterreport
+  create:
+    description: Create a counter report.
+
 - rest_name: datapathcertificate
   create:
     description: Creates a new Certificate for datapath.

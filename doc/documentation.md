@@ -1484,7 +1484,7 @@ Post a new counter tracing report.
 
 ```json
 {
-  "CounterName": "counter",
+  "counterName": "counter",
   "enforcerID": "xxxx-xxx-xxxx",
   "enforcerNamespace": "/my/namespace",
   "processingUnitID": "xxx-xxx-xxx",
@@ -1494,9 +1494,15 @@ Post a new counter tracing report.
 }
 ```
 
+#### Relations
+
+##### `POST /counterreports`
+
+Create a counter report.
+
 #### Attributes
 
-##### `CounterName` `string` [`required`]
+##### `counterName` `string` [`required`]
 
 Name of the counter.
 
@@ -1520,15 +1526,15 @@ Default value:
 "/my/namespace"
 ```
 
-##### `processingUnitID` `string` [`required`]
+##### `processingUnitID` `string`
 
 PUID is the ID of the PU reporting the counter.
 
-##### `processingUnitNamespace` `string` [`required`]
+##### `processingUnitNamespace` `string`
 
 Namespace of the PU reporting the counter.
 
-##### `timestamp` `time` [`required`]
+##### `timestamp` `time`
 
 Timestamp is the date of the report.
 
