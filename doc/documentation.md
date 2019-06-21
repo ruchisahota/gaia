@@ -9099,7 +9099,7 @@ Number of accepted flows in the edge.
 
 ID of the destination GraphNode of the edge.
 
-##### `destinationType` `emum(ProcessingUnit | ExternalNetwork)`
+##### `destinationType` `emum(ProcessingUnit | ExternalNetwork | Node)`
 
 Type of the destination GraphNode of the edge.
 
@@ -9141,7 +9141,7 @@ Number of rejected flows in the edge.
 
 ID of the source GraphNode of the edge.
 
-##### `sourceType` `emum(ProcessingUnit | ExternalNetwork)`
+##### `sourceType` `emum(ProcessingUnit | ExternalNetwork | Node)`
 
 Type of the source GraphNode of the edge.
 
@@ -9218,7 +9218,7 @@ Namespace of object represented by the node.
 
 Status of object represented by the node.
 
-##### `type` `emum(Docker | ExternalNetwork | Volume | Claim)`
+##### `type` `emum(Docker | ExternalNetwork | Volume | Claim | Node)`
 
 Type of object represented by the node.
 
@@ -9288,6 +9288,7 @@ unit that is not yetactivated.
 
 ```json
 {
+  "policyType": "Authorization",
   "selectors": [
     [
       "$identity=processingunit"
@@ -9318,6 +9319,17 @@ user wants to evaluate policies and understand its connectivity options.
 The dependencyMap contains the output of the policy evalation, and it is the
 same
 type of dependency map as created by other APIs.
+
+##### `policyType` `emum(Authorization | Infrastructure | Combined)`
+
+Defines the type of policy that should be analyzed (Network Authorzation
+Policies, Infrastructure Policies or Combined).
+
+Default value:
+
+```json
+"Authorization"
+```
 
 ##### `selectors` `[][]string`
 
