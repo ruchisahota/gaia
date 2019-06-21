@@ -19,6 +19,23 @@ const (
 	AccessReportActionReject AccessReportActionValue = "Reject"
 )
 
+// AccessReportTypeValue represents the possible values for attribute "type".
+type AccessReportTypeValue string
+
+const (
+	// AccessReportTypeSSHLogin represents the value SSHLogin.
+	AccessReportTypeSSHLogin AccessReportTypeValue = "SSHLogin"
+
+	// AccessReportTypeSSHLogout represents the value SSHLogout.
+	AccessReportTypeSSHLogout AccessReportTypeValue = "SSHLogout"
+
+	// AccessReportTypeSudoEnter represents the value SudoEnter.
+	AccessReportTypeSudoEnter AccessReportTypeValue = "SudoEnter"
+
+	// AccessReportTypeSudoExit represents the value SudoExit.
+	AccessReportTypeSudoExit AccessReportTypeValue = "SudoExit"
+)
+
 // AccessReportIdentity represents the Identity of the object.
 var AccessReportIdentity = elemental.Identity{
 	Name:     "accessreport",
@@ -117,7 +134,7 @@ type AccessReport struct {
 	Timestamp time.Time `json:"timestamp" msgpack:"timestamp" bson:"-" mapstructure:"timestamp,omitempty"`
 
 	// Type of the report.
-	Type string `json:"type" msgpack:"type" bson:"-" mapstructure:"type,omitempty"`
+	Type AccessReportTypeValue `json:"type" msgpack:"type" bson:"-" mapstructure:"type,omitempty"`
 
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }
@@ -298,7 +315,7 @@ func (o *AccessReport) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("type", o.Type); err != nil {
+	if err := elemental.ValidateRequiredString("type", string(o.Type)); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
@@ -440,7 +457,7 @@ for the rejection.`,
 		Exposed:        true,
 		Name:           "type",
 		Required:       true,
-		Type:           "string",
+		Type:           "enum",
 	},
 }
 
@@ -521,7 +538,7 @@ for the rejection.`,
 		Exposed:        true,
 		Name:           "type",
 		Required:       true,
-		Type:           "string",
+		Type:           "enum",
 	},
 }
 
@@ -614,7 +631,7 @@ type SparseAccessReport struct {
 	Timestamp *time.Time `json:"timestamp,omitempty" msgpack:"timestamp,omitempty" bson:"-" mapstructure:"timestamp,omitempty"`
 
 	// Type of the report.
-	Type *string `json:"type,omitempty" msgpack:"type,omitempty" bson:"-" mapstructure:"type,omitempty"`
+	Type *AccessReportTypeValue `json:"type,omitempty" msgpack:"type,omitempty" bson:"-" mapstructure:"type,omitempty"`
 
 	ModelVersion int `json:"-" msgpack:"-" bson:"_modelversion"`
 }

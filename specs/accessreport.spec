@@ -65,7 +65,7 @@ attributes:
 
   - name: type
     description: Type of the report.
-    type: string
+    type: enum
     exposed: true
     required: true
     allowed_choices:

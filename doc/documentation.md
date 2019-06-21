@@ -4544,7 +4544,7 @@ for the rejection.
 
 Date of the report.
 
-##### `type` `string` [`required`]
+##### `type` `emum(SSHLogin | SSHLogout | SudoEnter | SudoExit)` [`required`]
 
 Type of the report.
 
