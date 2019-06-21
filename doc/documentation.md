@@ -8834,9 +8834,6 @@ certificates are valid.
 ```json
 {
   "disabled": false,
-  "extensions": [
-    "permit-pty"
-  ],
   "fallback": false,
   "name": "the name",
   "propagate": false,
@@ -8930,14 +8927,6 @@ If set the policy will be auto deleted after the given time.
 The list of SSH permissions to apply to SSH certificate. You can check the list
 of standard extensions at
 <https://github.com/openssh/openssh-portable/blob/38e83e4f219c752ebb1560633b73f06f0392018b/PROTOCOL.certkeys#L281>.
-
-Default value:
-
-```json
-[
-  "permit-pty"
-]
-```
 
 ##### `fallback` `boolean`
 
