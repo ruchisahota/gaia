@@ -293,8 +293,8 @@ const (
 
 // User Access tags
 const (
-	// ActionUserAccesssInfoTagString contains the info of User Access policy.
-	ActionUserAccesssInfoTagString = "action=user-access-info"
+	// ActionRestrictUserAccessTagString contains the info of User Access policy.
+	ActionRestrictUserAccessTagString = "action=restrict-user-access"
 )
 
 // Quota Policies Constants
