@@ -4,6 +4,7 @@ import "go.aporeto.io/elemental"
 
 var (
 	identityNamesMap = map[string]elemental.Identity{
+		"accessreport":              AccessReportIdentity,
 		"account":                   AccountIdentity,
 		"accountcheck":              AccountCheckIdentity,
 		"activate":                  ActivateIdentity,
@@ -97,6 +98,7 @@ var (
 		"revocation":             RevocationIdentity,
 		"role":                   RoleIdentity,
 		"root":                   RootIdentity,
+		"search":                 SearchIdentity,
 		"service":                ServiceIdentity,
 		"servicedependency":      ServiceDependencyIdentity,
 		"squalltag":              SquallTagIdentity,
@@ -125,6 +127,7 @@ var (
 	}
 
 	identitycategoriesMap = map[string]elemental.Identity{
+		"accessreports":               AccessReportIdentity,
 		"accounts":                    AccountIdentity,
 		"accountchecks":               AccountCheckIdentity,
 		"activate":                    ActivateIdentity,
@@ -218,6 +221,7 @@ var (
 		"revocations":              RevocationIdentity,
 		"roles":                    RoleIdentity,
 		"root":                     RootIdentity,
+		"search":                   SearchIdentity,
 		"services":                 ServiceIdentity,
 		"servicedependencies":      ServiceDependencyIdentity,
 		"squalltags":               SquallTagIdentity,
@@ -341,6 +345,7 @@ var (
 	}
 
 	indexesMap = map[string][][]string{
+		"accessreport": nil,
 		"account": [][]string{
 			[]string{"resetPasswordToken"},
 			[]string{"name"},
@@ -664,8 +669,9 @@ var (
 		"revocation": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
 		},
-		"role": nil,
-		"root": nil,
+		"role":   nil,
+		"root":   nil,
+		"search": nil,
 		"service": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -763,6 +769,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return NewAccessReport()
 	case AccountIdentity:
 		return NewAccount()
 	case AccountCheckIdentity:
@@ -933,6 +941,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewRole()
 	case RootIdentity:
 		return NewRoot()
+	case SearchIdentity:
+		return NewSearch()
 	case ServiceIdentity:
 		return NewService()
 	case ServiceDependencyIdentity:
@@ -986,6 +996,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return NewSparseAccessReport()
 	case AccountIdentity:
 		return NewSparseAccount()
 	case AccountCheckIdentity:
@@ -1154,6 +1166,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseRevocation()
 	case RoleIdentity:
 		return NewSparseRole()
+	case SearchIdentity:
+		return NewSparseSearch()
 	case ServiceIdentity:
 		return NewSparseService()
 	case ServiceDependencyIdentity:
@@ -1217,6 +1231,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return &AccessReportsList{}
 	case AccountIdentity:
 		return &AccountsList{}
 	case AccountCheckIdentity:
@@ -1385,6 +1401,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &RevocationsList{}
 	case RoleIdentity:
 		return &RolesList{}
+	case SearchIdentity:
+		return &SearchsList{}
 	case ServiceIdentity:
 		return &ServicesList{}
 	case ServiceDependencyIdentity:
@@ -1438,6 +1456,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return &SparseAccessReportsList{}
 	case AccountIdentity:
 		return &SparseAccountsList{}
 	case AccountCheckIdentity:
@@ -1606,6 +1626,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseRevocationsList{}
 	case RoleIdentity:
 		return &SparseRolesList{}
+	case SearchIdentity:
+		return &SparseSearchsList{}
 	case ServiceIdentity:
 		return &SparseServicesList{}
 	case ServiceDependencyIdentity:
@@ -1674,6 +1696,7 @@ func Manager() elemental.ModelManager { return manager }
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
+		AccessReportIdentity,
 		AccountIdentity,
 		AccountCheckIdentity,
 		ActivateIdentity,
@@ -1759,6 +1782,7 @@ func AllIdentities() []elemental.Identity {
 		RevocationIdentity,
 		RoleIdentity,
 		RootIdentity,
+		SearchIdentity,
 		ServiceIdentity,
 		ServiceDependencyIdentity,
 		SquallTagIdentity,
@@ -1788,6 +1812,8 @@ func AllIdentities() []elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
+	case AccessReportIdentity:
+		return []string{}
 	case AccountIdentity:
 		return []string{}
 	case AccountCheckIdentity:
@@ -2063,6 +2089,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case RoleIdentity:
 		return []string{}
 	case RootIdentity:
+		return []string{}
+	case SearchIdentity:
 		return []string{}
 	case ServiceIdentity:
 		return []string{

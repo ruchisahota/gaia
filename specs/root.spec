@@ -14,6 +14,10 @@ model:
 
 # Relations
 relations:
+- rest_name: accessreport
+  create:
+    description: Create an access report.
+
 - rest_name: account
   get:
     description: |-
@@ -599,6 +603,18 @@ relations:
 - rest_name: role
   get:
     description: Retrieves the list of existing roles.
+
+- rest_name: search
+  get:
+    description: Perform a full text search on the database.
+    parameters:
+      required:
+      - - - q
+      entries:
+      - name: q
+        description: search query.
+        type: string
+        example_value: my enforcer
 
 - rest_name: service
   get:

@@ -33,6 +33,7 @@ attributes:
     - Files
     - EventLogs
     - Counters
+    - Accesses
     default_value: Flows
 
   - name: tags

@@ -11,6 +11,9 @@ import (
 type StatsInfoMeasurementValue string
 
 const (
+	// StatsInfoMeasurementAccesses represents the value Accesses.
+	StatsInfoMeasurementAccesses StatsInfoMeasurementValue = "Accesses"
+
 	// StatsInfoMeasurementAudit represents the value Audit.
 	StatsInfoMeasurementAudit StatsInfoMeasurementValue = "Audit"
 
@@ -242,7 +245,7 @@ func (o *StatsInfo) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateStringInList("measurement", string(o.Measurement), []string{"Flows", "Audit", "Enforcers", "Files", "EventLogs", "Counters"}, false); err != nil {
+	if err := elemental.ValidateStringInList("measurement", string(o.Measurement), []string{"Flows", "Audit", "Enforcers", "Files", "EventLogs", "Counters", "Accesses"}, false); err != nil {
 		errors = errors.Append(err)
 	}
 
@@ -305,7 +308,7 @@ var StatsInfoAttributesMap = map[string]elemental.AttributeSpecification{
 		Type:           "external",
 	},
 	"Measurement": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Flows", "Audit", "Enforcers", "Files", "EventLogs", "Counters"},
+		AllowedChoices: []string{"Flows", "Audit", "Enforcers", "Files", "EventLogs", "Counters", "Accesses"},
 		ConvertedName:  "Measurement",
 		DefaultValue:   StatsInfoMeasurementFlows,
 		Description:    `Name of the measurement.`,
@@ -340,7 +343,7 @@ var StatsInfoLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Type:           "external",
 	},
 	"measurement": elemental.AttributeSpecification{
-		AllowedChoices: []string{"Flows", "Audit", "Enforcers", "Files", "EventLogs", "Counters"},
+		AllowedChoices: []string{"Flows", "Audit", "Enforcers", "Files", "EventLogs", "Counters", "Accesses"},
 		ConvertedName:  "Measurement",
 		DefaultValue:   StatsInfoMeasurementFlows,
 		Description:    `Name of the measurement.`,

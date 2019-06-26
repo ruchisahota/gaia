@@ -61,6 +61,7 @@ attributes:
     - Packets
     - EnforcerTraces
     - Counters
+    - Accesses
     default_value: Flows
 
   - name: offset
