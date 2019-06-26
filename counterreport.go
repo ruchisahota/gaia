@@ -280,6 +280,12 @@ func (o *CounterReport) Version() int {
 	return 1
 }
 
+// BleveType implements the bleve.Classifier Interface.
+func (o *CounterReport) BleveType() string {
+
+	return "counterreport"
+}
+
 // DefaultOrder returns the list of default ordering fields.
 func (o *CounterReport) DefaultOrder() []string {
 
