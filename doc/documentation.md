@@ -4521,6 +4521,74 @@ Represents the Province field.
 
 Represents the StreetAddress field.
 
+## `policy/access`
+
+| Resource                      | Description                                           |
+| -                             | -                                                     |
+| [AccessReport](#accessreport) | Access report represents any access made by the user. |
+
+### AccessReport
+
+Access report represents any access made by the user.
+
+#### Example
+
+```json
+{
+  "action": "Accept",
+  "enforcerID": "xxx-xxx-xxx",
+  "enforcerNamespace": "/my/namespace",
+  "processingUnitID": "xxx-xxx-xxx-xxx",
+  "processingUnitNamespace": "/my/ns",
+  "type": "SSHLogin"
+}
+```
+
+#### Relations
+
+##### `POST /accessreports`
+
+Create an access report.
+
+#### Attributes
+
+##### `action` `emum(Accept | Reject)` [`required`]
+
+Action applied to the access.
+
+##### `claimHash` `string`
+
+Hash of the claims used to communicate.
+
+##### `enforcerID` `string` [`required`]
+
+Identifier of the enforcer.
+
+##### `enforcerNamespace` `string` [`required`]
+
+Namespace of the enforcer.
+
+##### `processingUnitID` `string`
+
+ID of the processing unit of the report.
+
+##### `processingUnitNamespace` `string`
+
+Namespace of the processing unit of the report.
+
+##### `reason` `string`
+
+This field is only set if 'action' is set to 'Reject' and specifies the reason
+for the rejection.
+
+##### `timestamp` `time`
+
+Date of the report.
+
+##### `type` `emum(SSHLogin | SSHLogout | SudoEnter | SudoExit)` [`required`]
+
+Type of the report.
+
 ## `policy/audit`
 
 | Resource                                                | Description                                                                         |
@@ -9347,7 +9415,7 @@ Retrieves information about the content of the stats measurement.
 
 Contains the list of fields. You cannot group by these fields.
 
-##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs)`
+##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Accesses)`
 
 Name of the measurement.
 
@@ -9426,7 +9494,7 @@ Default value:
 -1
 ```
 
-##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Packets | EnforcerTraces)`
+##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Packets | EnforcerTraces | Accesses)`
 
 Name of the measurement.
 

@@ -4,6 +4,7 @@ import "go.aporeto.io/elemental"
 
 var (
 	identityNamesMap = map[string]elemental.Identity{
+		"accessreport":              AccessReportIdentity,
 		"account":                   AccountIdentity,
 		"accountcheck":              AccountCheckIdentity,
 		"activate":                  ActivateIdentity,
@@ -124,6 +125,7 @@ var (
 	}
 
 	identitycategoriesMap = map[string]elemental.Identity{
+		"accessreports":               AccessReportIdentity,
 		"accounts":                    AccountIdentity,
 		"accountchecks":               AccountCheckIdentity,
 		"activate":                    ActivateIdentity,
@@ -339,6 +341,7 @@ var (
 	}
 
 	indexesMap = map[string][][]string{
+		"accessreport": nil,
 		"account": [][]string{
 			[]string{"resetPasswordToken"},
 			[]string{"name"},
@@ -761,6 +764,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return NewAccessReport()
 	case AccountIdentity:
 		return NewAccount()
 	case AccountCheckIdentity:
@@ -984,6 +989,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return NewSparseAccessReport()
 	case AccountIdentity:
 		return NewSparseAccount()
 	case AccountCheckIdentity:
@@ -1215,6 +1222,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return &AccessReportsList{}
 	case AccountIdentity:
 		return &AccountsList{}
 	case AccountCheckIdentity:
@@ -1436,6 +1445,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 
 	switch identity {
 
+	case AccessReportIdentity:
+		return &SparseAccessReportsList{}
 	case AccountIdentity:
 		return &SparseAccountsList{}
 	case AccountCheckIdentity:
@@ -1672,6 +1683,7 @@ func Manager() elemental.ModelManager { return manager }
 func AllIdentities() []elemental.Identity {
 
 	return []elemental.Identity{
+		AccessReportIdentity,
 		AccountIdentity,
 		AccountCheckIdentity,
 		ActivateIdentity,
@@ -1786,6 +1798,8 @@ func AllIdentities() []elemental.Identity {
 func AliasesForIdentity(identity elemental.Identity) []string {
 
 	switch identity {
+	case AccessReportIdentity:
+		return []string{}
 	case AccountIdentity:
 		return []string{}
 	case AccountCheckIdentity:
