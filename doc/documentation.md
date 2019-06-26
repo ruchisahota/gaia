@@ -1578,7 +1578,7 @@ Create a counter report.
 
 #### Attributes
 
-##### `counterAckInUnknownState` `integer` [`required`]
+##### `counterAckInUnknownState` `integer`
 
 Counter for sending finack ack received in uknown connection state.
 
@@ -1588,7 +1588,7 @@ Default value:
 0
 ```
 
-##### `counterAckInvalidFormat` `integer` [`required`]
+##### `counterAckInvalidFormat` `integer`
 
 Counter for ack packet dropped because of invalid format.
 
@@ -1598,7 +1598,7 @@ Default value:
 0
 ```
 
-##### `counterAckRejected` `integer` [`required`]
+##### `counterAckRejected` `integer`
 
 Counter for reject ack packet as per policy.
 
@@ -1608,7 +1608,7 @@ Default value:
 0
 ```
 
-##### `counterAckSigValidationFailed` `integer` [`required`]
+##### `counterAckSigValidationFailed` `integer`
 
 Counter for ack packet dropped because signature validation failed.
 
@@ -1618,7 +1618,7 @@ Default value:
 0
 ```
 
-##### `counterAckTCPNoTCPAuthOption` `integer` [`required`]
+##### `counterAckTCPNoTCPAuthOption` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1628,7 +1628,7 @@ Default value:
 0
 ```
 
-##### `counterConnectionsProcessed` `integer` [`required`]
+##### `counterConnectionsProcessed` `integer`
 
 Counter for ".
 
@@ -1638,7 +1638,7 @@ Default value:
 0
 ```
 
-##### `counterContextIDNotFound` `integer` [`required`]
+##### `counterContextIDNotFound` `integer`
 
 Counter for unable to find contextid.
 
@@ -1648,7 +1648,7 @@ Default value:
 0
 ```
 
-##### `counterDroppedExternalService` `integer` [`required`]
+##### `counterDroppedExternalService` `integer`
 
 Counter for no acls found for external services. dropping application syn
 packet.
@@ -1659,7 +1659,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidConnState` `integer` [`required`]
+##### `counterInvalidConnState` `integer`
 
 Counter for invalid connection state.
 
@@ -1669,7 +1669,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidNetState` `integer` [`required`]
+##### `counterInvalidNetState` `integer`
 
 Counter for invalid net state.
 
@@ -1679,7 +1679,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidProtocol` `integer` [`required`]
+##### `counterInvalidProtocol` `integer`
 
 Counter for invalid protocol.
 
@@ -1689,7 +1689,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidSynAck` `integer` [`required`]
+##### `counterInvalidSynAck` `integer`
 
 Counter for pu is already dead - drop synack packet.
 
@@ -1699,7 +1699,7 @@ Default value:
 0
 ```
 
-##### `counterMarkNotFound` `integer` [`required`]
+##### `counterMarkNotFound` `integer`
 
 Counter for pu mark not found.
 
@@ -1709,7 +1709,7 @@ Default value:
 0
 ```
 
-##### `counterNetSynNotSeen` `integer` [`required`]
+##### `counterNetSynNotSeen` `integer`
 
 Counter for network syn packet was not seen.
 
@@ -1719,7 +1719,7 @@ Default value:
 0
 ```
 
-##### `counterNoConnFound` `integer` [`required`]
+##### `counterNoConnFound` `integer`
 
 Counter for no context or connection found.
 
@@ -1729,7 +1729,7 @@ Default value:
 0
 ```
 
-##### `counterNonPUTraffic` `integer` [`required`]
+##### `counterNonPUTraffic` `integer`
 
 Counter for traffic that belongs to a non PU process.
 
@@ -1739,7 +1739,7 @@ Default value:
 0
 ```
 
-##### `counterOutOfOrderSynAck` `integer` [`required`]
+##### `counterOutOfOrderSynAck` `integer`
 
 Counter for synack for flow with processed finack.
 
@@ -1749,7 +1749,7 @@ Default value:
 0
 ```
 
-##### `counterPortNotFound` `integer` [`required`]
+##### `counterPortNotFound` `integer`
 
 Counter for port not found.
 
@@ -1759,7 +1759,7 @@ Default value:
 0
 ```
 
-##### `counterRejectPacket` `integer` [`required`]
+##### `counterRejectPacket` `integer`
 
 Counter for reject the packet as per policy.
 
@@ -1769,7 +1769,7 @@ Default value:
 0
 ```
 
-##### `counterServicePostprocessorFailed` `integer` [`required`]
+##### `counterServicePostprocessorFailed` `integer`
 
 Counter for post service processing failed for network packet.
 
@@ -1779,7 +1779,7 @@ Default value:
 0
 ```
 
-##### `counterServicePreprocessorFailed` `integer` [`required`]
+##### `counterServicePreprocessorFailed` `integer`
 
 Counter for pre service processing failed for network packet.
 
@@ -1789,7 +1789,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckBadClaims` `integer` [`required`]
+##### `counterSynAckBadClaims` `integer`
 
 Counter for synack packet dropped because of bad claims.
 
@@ -1799,7 +1799,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckClaimsMisMatch` `integer` [`required`]
+##### `counterSynAckClaimsMisMatch` `integer`
 
 Counter for syn/ack packet dropped because of encryption mismatch.
 
@@ -1809,7 +1809,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckDroppedExternalService` `integer` [`required`]
+##### `counterSynAckDroppedExternalService` `integer`
 
 Counter for synack from external service dropped.
 
@@ -1819,7 +1819,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckInvalidFormat` `integer` [`required`]
+##### `counterSynAckInvalidFormat` `integer`
 
 Counter for synack packet dropped because of invalid format.
 
@@ -1829,7 +1829,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckMissingClaims` `integer` [`required`]
+##### `counterSynAckMissingClaims` `integer`
 
 Counter for synack packet dropped because of no claims.
 
@@ -1839,7 +1839,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckMissingToken` `integer` [`required`]
+##### `counterSynAckMissingToken` `integer`
 
 Counter for synack packet dropped because of missing token.
 
@@ -1849,7 +1849,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckNoTCPAuthOption` `integer` [`required`]
+##### `counterSynAckNoTCPAuthOption` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1859,7 +1859,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckRejected` `integer` [`required`]
+##### `counterSynAckRejected` `integer`
 
 Counter for dropping because of reject rule on transmitter.
 
@@ -1869,7 +1869,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedInvalidFormat` `integer` [`required`]
+##### `counterSynDroppedInvalidFormat` `integer`
 
 Counter for syn packet dropped because of invalid format.
 
@@ -1879,7 +1879,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedInvalidToken` `integer` [`required`]
+##### `counterSynDroppedInvalidToken` `integer`
 
 Counter for syn packet dropped because of invalid token.
 
@@ -1889,7 +1889,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedNoClaims` `integer` [`required`]
+##### `counterSynDroppedNoClaims` `integer`
 
 Counter for syn packet dropped because of no claims.
 
@@ -1899,7 +1899,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedTCPOption` `integer` [`required`]
+##### `counterSynDroppedTCPOption` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1909,7 +1909,7 @@ Default value:
 0
 ```
 
-##### `counterSynRejectPacket` `integer` [`required`]
+##### `counterSynRejectPacket` `integer`
 
 Counter for syn dropped due to policy.
 
@@ -1919,7 +1919,7 @@ Default value:
 0
 ```
 
-##### `counterSynUnexpectedPacket` `integer` [`required`]
+##### `counterSynUnexpectedPacket` `integer`
 
 Counter for received syn packet from unknown pu.
 
@@ -1929,7 +1929,7 @@ Default value:
 0
 ```
 
-##### `counterTCPAuthNotFound` `integer` [`required`]
+##### `counterTCPAuthNotFound` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1939,7 +1939,7 @@ Default value:
 0
 ```
 
-##### `counterUnknownError` `integer` [`required`]
+##### `counterUnknownError` `integer`
 
 Counter for unknown error.
 

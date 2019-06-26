@@ -613,154 +613,6 @@ func (o *CounterReport) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
-	if err := elemental.ValidateRequiredInt("counterAckInUnknownState", o.CounterAckInUnknownState); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterAckInvalidFormat", o.CounterAckInvalidFormat); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterAckRejected", o.CounterAckRejected); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterAckSigValidationFailed", o.CounterAckSigValidationFailed); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterAckTCPNoTCPAuthOption", o.CounterAckTCPNoTCPAuthOption); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterConnectionsProcessed", o.CounterConnectionsProcessed); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterContextIDNotFound", o.CounterContextIDNotFound); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterDroppedExternalService", o.CounterDroppedExternalService); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterInvalidConnState", o.CounterInvalidConnState); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterInvalidNetState", o.CounterInvalidNetState); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterInvalidProtocol", o.CounterInvalidProtocol); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterInvalidSynAck", o.CounterInvalidSynAck); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterMarkNotFound", o.CounterMarkNotFound); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterNetSynNotSeen", o.CounterNetSynNotSeen); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterNoConnFound", o.CounterNoConnFound); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterNonPUTraffic", o.CounterNonPUTraffic); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterOutOfOrderSynAck", o.CounterOutOfOrderSynAck); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterPortNotFound", o.CounterPortNotFound); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterRejectPacket", o.CounterRejectPacket); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterServicePostprocessorFailed", o.CounterServicePostprocessorFailed); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterServicePreprocessorFailed", o.CounterServicePreprocessorFailed); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckBadClaims", o.CounterSynAckBadClaims); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckClaimsMisMatch", o.CounterSynAckClaimsMisMatch); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckDroppedExternalService", o.CounterSynAckDroppedExternalService); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckInvalidFormat", o.CounterSynAckInvalidFormat); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckMissingClaims", o.CounterSynAckMissingClaims); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckMissingToken", o.CounterSynAckMissingToken); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckNoTCPAuthOption", o.CounterSynAckNoTCPAuthOption); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynAckRejected", o.CounterSynAckRejected); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynDroppedInvalidFormat", o.CounterSynDroppedInvalidFormat); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynDroppedInvalidToken", o.CounterSynDroppedInvalidToken); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynDroppedNoClaims", o.CounterSynDroppedNoClaims); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynDroppedTCPOption", o.CounterSynDroppedTCPOption); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynRejectPacket", o.CounterSynRejectPacket); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterSynUnexpectedPacket", o.CounterSynUnexpectedPacket); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterTCPAuthNotFound", o.CounterTCPAuthNotFound); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
-	if err := elemental.ValidateRequiredInt("counterUnknownError", o.CounterUnknownError); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -892,7 +744,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for sending finack ack received in uknown connection state.`,
 		Exposed:        true,
 		Name:           "counterAckInUnknownState",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterAckInvalidFormat": elemental.AttributeSpecification{
@@ -901,7 +752,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for ack packet dropped because of invalid format.`,
 		Exposed:        true,
 		Name:           "counterAckInvalidFormat",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterAckRejected": elemental.AttributeSpecification{
@@ -910,7 +760,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for reject ack packet as per policy.`,
 		Exposed:        true,
 		Name:           "counterAckRejected",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterAckSigValidationFailed": elemental.AttributeSpecification{
@@ -919,7 +768,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for ack packet dropped because signature validation failed.`,
 		Exposed:        true,
 		Name:           "counterAckSigValidationFailed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterAckTCPNoTCPAuthOption": elemental.AttributeSpecification{
@@ -928,7 +776,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterAckTCPNoTCPAuthOption",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterConnectionsProcessed": elemental.AttributeSpecification{
@@ -937,7 +784,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for ".`,
 		Exposed:        true,
 		Name:           "counterConnectionsProcessed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterContextIDNotFound": elemental.AttributeSpecification{
@@ -946,7 +792,6 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `Counter for unable to find contextid.`,
 		Exposed:        true,
 		Name:           "counterContextIDNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterDroppedExternalService": elemental.AttributeSpecification{
@@ -954,10 +799,9 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 		ConvertedName:  "CounterDroppedExternalService",
 		Description: `Counter for no acls found for external services. dropping application syn
 packet.`,
-		Exposed:  true,
-		Name:     "counterDroppedExternalService",
-		Required: true,
-		Type:     "integer",
+		Exposed: true,
+		Name:    "counterDroppedExternalService",
+		Type:    "integer",
 	},
 	"CounterInvalidConnState": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -965,7 +809,6 @@ packet.`,
 		Description:    `Counter for invalid connection state.`,
 		Exposed:        true,
 		Name:           "counterInvalidConnState",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterInvalidNetState": elemental.AttributeSpecification{
@@ -974,7 +817,6 @@ packet.`,
 		Description:    `Counter for invalid net state.`,
 		Exposed:        true,
 		Name:           "counterInvalidNetState",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterInvalidProtocol": elemental.AttributeSpecification{
@@ -983,7 +825,6 @@ packet.`,
 		Description:    `Counter for invalid protocol.`,
 		Exposed:        true,
 		Name:           "counterInvalidProtocol",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterInvalidSynAck": elemental.AttributeSpecification{
@@ -992,7 +833,6 @@ packet.`,
 		Description:    `Counter for pu is already dead - drop synack packet.`,
 		Exposed:        true,
 		Name:           "counterInvalidSynAck",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterMarkNotFound": elemental.AttributeSpecification{
@@ -1001,7 +841,6 @@ packet.`,
 		Description:    `Counter for pu mark not found.`,
 		Exposed:        true,
 		Name:           "counterMarkNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterNetSynNotSeen": elemental.AttributeSpecification{
@@ -1010,7 +849,6 @@ packet.`,
 		Description:    `Counter for network syn packet was not seen.`,
 		Exposed:        true,
 		Name:           "counterNetSynNotSeen",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterNoConnFound": elemental.AttributeSpecification{
@@ -1019,7 +857,6 @@ packet.`,
 		Description:    `Counter for no context or connection found.`,
 		Exposed:        true,
 		Name:           "counterNoConnFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterNonPUTraffic": elemental.AttributeSpecification{
@@ -1028,7 +865,6 @@ packet.`,
 		Description:    `Counter for traffic that belongs to a non PU process.`,
 		Exposed:        true,
 		Name:           "counterNonPUTraffic",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterOutOfOrderSynAck": elemental.AttributeSpecification{
@@ -1037,7 +873,6 @@ packet.`,
 		Description:    `Counter for synack for flow with processed finack.`,
 		Exposed:        true,
 		Name:           "counterOutOfOrderSynAck",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterPortNotFound": elemental.AttributeSpecification{
@@ -1046,7 +881,6 @@ packet.`,
 		Description:    `Counter for port not found.`,
 		Exposed:        true,
 		Name:           "counterPortNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterRejectPacket": elemental.AttributeSpecification{
@@ -1055,7 +889,6 @@ packet.`,
 		Description:    `Counter for reject the packet as per policy.`,
 		Exposed:        true,
 		Name:           "counterRejectPacket",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterServicePostprocessorFailed": elemental.AttributeSpecification{
@@ -1064,7 +897,6 @@ packet.`,
 		Description:    `Counter for post service processing failed for network packet.`,
 		Exposed:        true,
 		Name:           "counterServicePostprocessorFailed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterServicePreprocessorFailed": elemental.AttributeSpecification{
@@ -1073,7 +905,6 @@ packet.`,
 		Description:    `Counter for pre service processing failed for network packet.`,
 		Exposed:        true,
 		Name:           "counterServicePreprocessorFailed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckBadClaims": elemental.AttributeSpecification{
@@ -1082,7 +913,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of bad claims.`,
 		Exposed:        true,
 		Name:           "counterSynAckBadClaims",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckClaimsMisMatch": elemental.AttributeSpecification{
@@ -1091,7 +921,6 @@ packet.`,
 		Description:    `Counter for syn/ack packet dropped because of encryption mismatch.`,
 		Exposed:        true,
 		Name:           "counterSynAckClaimsMisMatch",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckDroppedExternalService": elemental.AttributeSpecification{
@@ -1100,7 +929,6 @@ packet.`,
 		Description:    `Counter for synack from external service dropped.`,
 		Exposed:        true,
 		Name:           "counterSynAckDroppedExternalService",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckInvalidFormat": elemental.AttributeSpecification{
@@ -1109,7 +937,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of invalid format.`,
 		Exposed:        true,
 		Name:           "counterSynAckInvalidFormat",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckMissingClaims": elemental.AttributeSpecification{
@@ -1118,7 +945,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of no claims.`,
 		Exposed:        true,
 		Name:           "counterSynAckMissingClaims",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckMissingToken": elemental.AttributeSpecification{
@@ -1127,7 +953,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of missing token.`,
 		Exposed:        true,
 		Name:           "counterSynAckMissingToken",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckNoTCPAuthOption": elemental.AttributeSpecification{
@@ -1136,7 +961,6 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterSynAckNoTCPAuthOption",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynAckRejected": elemental.AttributeSpecification{
@@ -1145,7 +969,6 @@ packet.`,
 		Description:    `Counter for dropping because of reject rule on transmitter.`,
 		Exposed:        true,
 		Name:           "counterSynAckRejected",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynDroppedInvalidFormat": elemental.AttributeSpecification{
@@ -1154,7 +977,6 @@ packet.`,
 		Description:    `Counter for syn packet dropped because of invalid format.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedInvalidFormat",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynDroppedInvalidToken": elemental.AttributeSpecification{
@@ -1163,7 +985,6 @@ packet.`,
 		Description:    `Counter for syn packet dropped because of invalid token.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedInvalidToken",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynDroppedNoClaims": elemental.AttributeSpecification{
@@ -1172,7 +993,6 @@ packet.`,
 		Description:    `Counter for syn packet dropped because of no claims.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedNoClaims",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynDroppedTCPOption": elemental.AttributeSpecification{
@@ -1181,7 +1001,6 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedTCPOption",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynRejectPacket": elemental.AttributeSpecification{
@@ -1190,7 +1009,6 @@ packet.`,
 		Description:    `Counter for syn dropped due to policy.`,
 		Exposed:        true,
 		Name:           "counterSynRejectPacket",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterSynUnexpectedPacket": elemental.AttributeSpecification{
@@ -1199,7 +1017,6 @@ packet.`,
 		Description:    `Counter for received syn packet from unknown pu.`,
 		Exposed:        true,
 		Name:           "counterSynUnexpectedPacket",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterTCPAuthNotFound": elemental.AttributeSpecification{
@@ -1208,7 +1025,6 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterTCPAuthNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"CounterUnknownError": elemental.AttributeSpecification{
@@ -1217,7 +1033,6 @@ packet.`,
 		Description:    `Counter for unknown error.`,
 		Exposed:        true,
 		Name:           "counterUnknownError",
-		Required:       true,
 		Type:           "integer",
 	},
 	"EnforcerID": elemental.AttributeSpecification{
@@ -1276,7 +1091,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for sending finack ack received in uknown connection state.`,
 		Exposed:        true,
 		Name:           "counterAckInUnknownState",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterackinvalidformat": elemental.AttributeSpecification{
@@ -1285,7 +1099,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for ack packet dropped because of invalid format.`,
 		Exposed:        true,
 		Name:           "counterAckInvalidFormat",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterackrejected": elemental.AttributeSpecification{
@@ -1294,7 +1107,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for reject ack packet as per policy.`,
 		Exposed:        true,
 		Name:           "counterAckRejected",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counteracksigvalidationfailed": elemental.AttributeSpecification{
@@ -1303,7 +1115,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for ack packet dropped because signature validation failed.`,
 		Exposed:        true,
 		Name:           "counterAckSigValidationFailed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counteracktcpnotcpauthoption": elemental.AttributeSpecification{
@@ -1312,7 +1123,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterAckTCPNoTCPAuthOption",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterconnectionsprocessed": elemental.AttributeSpecification{
@@ -1321,7 +1131,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for ".`,
 		Exposed:        true,
 		Name:           "counterConnectionsProcessed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countercontextidnotfound": elemental.AttributeSpecification{
@@ -1330,7 +1139,6 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		Description:    `Counter for unable to find contextid.`,
 		Exposed:        true,
 		Name:           "counterContextIDNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterdroppedexternalservice": elemental.AttributeSpecification{
@@ -1338,10 +1146,9 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 		ConvertedName:  "CounterDroppedExternalService",
 		Description: `Counter for no acls found for external services. dropping application syn
 packet.`,
-		Exposed:  true,
-		Name:     "counterDroppedExternalService",
-		Required: true,
-		Type:     "integer",
+		Exposed: true,
+		Name:    "counterDroppedExternalService",
+		Type:    "integer",
 	},
 	"counterinvalidconnstate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1349,7 +1156,6 @@ packet.`,
 		Description:    `Counter for invalid connection state.`,
 		Exposed:        true,
 		Name:           "counterInvalidConnState",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterinvalidnetstate": elemental.AttributeSpecification{
@@ -1358,7 +1164,6 @@ packet.`,
 		Description:    `Counter for invalid net state.`,
 		Exposed:        true,
 		Name:           "counterInvalidNetState",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterinvalidprotocol": elemental.AttributeSpecification{
@@ -1367,7 +1172,6 @@ packet.`,
 		Description:    `Counter for invalid protocol.`,
 		Exposed:        true,
 		Name:           "counterInvalidProtocol",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterinvalidsynack": elemental.AttributeSpecification{
@@ -1376,7 +1180,6 @@ packet.`,
 		Description:    `Counter for pu is already dead - drop synack packet.`,
 		Exposed:        true,
 		Name:           "counterInvalidSynAck",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countermarknotfound": elemental.AttributeSpecification{
@@ -1385,7 +1188,6 @@ packet.`,
 		Description:    `Counter for pu mark not found.`,
 		Exposed:        true,
 		Name:           "counterMarkNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counternetsynnotseen": elemental.AttributeSpecification{
@@ -1394,7 +1196,6 @@ packet.`,
 		Description:    `Counter for network syn packet was not seen.`,
 		Exposed:        true,
 		Name:           "counterNetSynNotSeen",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counternoconnfound": elemental.AttributeSpecification{
@@ -1403,7 +1204,6 @@ packet.`,
 		Description:    `Counter for no context or connection found.`,
 		Exposed:        true,
 		Name:           "counterNoConnFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counternonputraffic": elemental.AttributeSpecification{
@@ -1412,7 +1212,6 @@ packet.`,
 		Description:    `Counter for traffic that belongs to a non PU process.`,
 		Exposed:        true,
 		Name:           "counterNonPUTraffic",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counteroutofordersynack": elemental.AttributeSpecification{
@@ -1421,7 +1220,6 @@ packet.`,
 		Description:    `Counter for synack for flow with processed finack.`,
 		Exposed:        true,
 		Name:           "counterOutOfOrderSynAck",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterportnotfound": elemental.AttributeSpecification{
@@ -1430,7 +1228,6 @@ packet.`,
 		Description:    `Counter for port not found.`,
 		Exposed:        true,
 		Name:           "counterPortNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterrejectpacket": elemental.AttributeSpecification{
@@ -1439,7 +1236,6 @@ packet.`,
 		Description:    `Counter for reject the packet as per policy.`,
 		Exposed:        true,
 		Name:           "counterRejectPacket",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterservicepostprocessorfailed": elemental.AttributeSpecification{
@@ -1448,7 +1244,6 @@ packet.`,
 		Description:    `Counter for post service processing failed for network packet.`,
 		Exposed:        true,
 		Name:           "counterServicePostprocessorFailed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterservicepreprocessorfailed": elemental.AttributeSpecification{
@@ -1457,7 +1252,6 @@ packet.`,
 		Description:    `Counter for pre service processing failed for network packet.`,
 		Exposed:        true,
 		Name:           "counterServicePreprocessorFailed",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackbadclaims": elemental.AttributeSpecification{
@@ -1466,7 +1260,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of bad claims.`,
 		Exposed:        true,
 		Name:           "counterSynAckBadClaims",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackclaimsmismatch": elemental.AttributeSpecification{
@@ -1475,7 +1268,6 @@ packet.`,
 		Description:    `Counter for syn/ack packet dropped because of encryption mismatch.`,
 		Exposed:        true,
 		Name:           "counterSynAckClaimsMisMatch",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackdroppedexternalservice": elemental.AttributeSpecification{
@@ -1484,7 +1276,6 @@ packet.`,
 		Description:    `Counter for synack from external service dropped.`,
 		Exposed:        true,
 		Name:           "counterSynAckDroppedExternalService",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackinvalidformat": elemental.AttributeSpecification{
@@ -1493,7 +1284,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of invalid format.`,
 		Exposed:        true,
 		Name:           "counterSynAckInvalidFormat",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackmissingclaims": elemental.AttributeSpecification{
@@ -1502,7 +1292,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of no claims.`,
 		Exposed:        true,
 		Name:           "counterSynAckMissingClaims",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackmissingtoken": elemental.AttributeSpecification{
@@ -1511,7 +1300,6 @@ packet.`,
 		Description:    `Counter for synack packet dropped because of missing token.`,
 		Exposed:        true,
 		Name:           "counterSynAckMissingToken",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynacknotcpauthoption": elemental.AttributeSpecification{
@@ -1520,7 +1308,6 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterSynAckNoTCPAuthOption",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynackrejected": elemental.AttributeSpecification{
@@ -1529,7 +1316,6 @@ packet.`,
 		Description:    `Counter for dropping because of reject rule on transmitter.`,
 		Exposed:        true,
 		Name:           "counterSynAckRejected",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersyndroppedinvalidformat": elemental.AttributeSpecification{
@@ -1538,7 +1324,6 @@ packet.`,
 		Description:    `Counter for syn packet dropped because of invalid format.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedInvalidFormat",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersyndroppedinvalidtoken": elemental.AttributeSpecification{
@@ -1547,7 +1332,6 @@ packet.`,
 		Description:    `Counter for syn packet dropped because of invalid token.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedInvalidToken",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersyndroppednoclaims": elemental.AttributeSpecification{
@@ -1556,7 +1340,6 @@ packet.`,
 		Description:    `Counter for syn packet dropped because of no claims.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedNoClaims",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersyndroppedtcpoption": elemental.AttributeSpecification{
@@ -1565,7 +1348,6 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterSynDroppedTCPOption",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynrejectpacket": elemental.AttributeSpecification{
@@ -1574,7 +1356,6 @@ packet.`,
 		Description:    `Counter for syn dropped due to policy.`,
 		Exposed:        true,
 		Name:           "counterSynRejectPacket",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countersynunexpectedpacket": elemental.AttributeSpecification{
@@ -1583,7 +1364,6 @@ packet.`,
 		Description:    `Counter for received syn packet from unknown pu.`,
 		Exposed:        true,
 		Name:           "counterSynUnexpectedPacket",
-		Required:       true,
 		Type:           "integer",
 	},
 	"countertcpauthnotfound": elemental.AttributeSpecification{
@@ -1592,7 +1372,6 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterTCPAuthNotFound",
-		Required:       true,
 		Type:           "integer",
 	},
 	"counterunknownerror": elemental.AttributeSpecification{
@@ -1601,7 +1380,6 @@ packet.`,
 		Description:    `Counter for unknown error.`,
 		Exposed:        true,
 		Name:           "counterUnknownError",
-		Required:       true,
 		Type:           "integer",
 	},
 	"enforcerid": elemental.AttributeSpecification{
