@@ -14,6 +14,10 @@ model:
 
 # Relations
 relations:
+- rest_name: accessreport
+  create:
+    description: Create an access report.
+
 - rest_name: account
   get:
     description: |-
