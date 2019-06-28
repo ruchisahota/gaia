@@ -1561,9 +1561,26 @@ Post a new counter tracing report.
   "counterSynRejectPacket": 0,
   "counterSynUnexpectedPacket": 0,
   "counterTCPAuthNotFound": 0,
+  "counterUDPAckInvalidSignature": 0,
+  "counterUDPConnectionsProcessed": 0,
+  "counterUDPDropContextNotFound": 0,
   "counterUDPDropFin": 0,
+  "counterUDPDropInNfQueue": 0,
+  "counterUDPDropNoConnection": 0,
+  "counterUDPDropPacket": 0,
+  "counterUDPDropQueueFull": 0,
   "counterUDPDropSynAck": 0,
   "counterUDPInvalidNetState": 0,
+  "counterUDPPostProcessingFailed": 0,
+  "counterUDPPreProcessingFailed": 0,
+  "counterUDPRejected": 0,
+  "counterUDPSynAckDropBadClaims": 0,
+  "counterUDPSynAckMissingClaims": 0,
+  "counterUDPSynAckPolicy": 0,
+  "counterUDPSynDrop": 0,
+  "counterUDPSynDropPolicy": 0,
+  "counterUDPSynInvalidToken": 0,
+  "counterUDPSynMissingClaims": 0,
   "counterUnknownError": 0,
   "enforcerID": "xxxx-xxx-xxxx",
   "enforcerNamespace": "/my/namespace",
@@ -1942,9 +1959,79 @@ Default value:
 0
 ```
 
+##### `counterUDPAckInvalidSignature` `integer`
+
+Counter for dropped udp ack invalid signature.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPConnectionsProcessed` `integer`
+
+Counter for number of processed UDP connections.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropContextNotFound` `integer`
+
+Counter for dropped UDP data packets with no context.
+
+Default value:
+
+```json
+0
+```
+
 ##### `counterUDPDropFin` `integer`
 
 Counter for dropped udp FIN handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropInNfQueue` `integer`
+
+Counter for dropped UDP in NfQueue.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropNoConnection` `integer`
+
+Counter for dropped UDP data packets with no connection.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropPacket` `integer`
+
+Counter for dropped UDP data packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropQueueFull` `integer`
+
+Counter for dropped UDP Queue Full.
 
 Default value:
 
@@ -1965,6 +2052,106 @@ Default value:
 ##### `counterUDPInvalidNetState` `integer`
 
 Counter for udp packets received in invalid network state.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPPostProcessingFailed` `integer`
+
+Counter for UDP packets failing postprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPPreProcessingFailed` `integer`
+
+Counter for UDP packets failing preprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPRejected` `integer`
+
+Counter for UDP packets dropped due to policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynAckDropBadClaims` `integer`
+
+Counter for dropped udp synack bad claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynAckMissingClaims` `integer`
+
+Counter for dropped udp synack missing claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynAckPolicy` `integer`
+
+Counter for dropped udp synack bad claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynDrop` `integer`
+
+Counter for dropped udp syn transmits.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynDropPolicy` `integer`
+
+Counter for dropped udp syn policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynInvalidToken` `integer`
+
+Counter for dropped udp FIN handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPSynMissingClaims` `integer`
+
+Counter for dropped UDP SYN missing claims.
 
 Default value:
 

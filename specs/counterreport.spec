@@ -228,8 +228,50 @@ attributes:
     exposed: true
     default_value: 0
 
+  - name: counterUDPAckInvalidSignature
+    description: Counter for dropped udp ack invalid signature.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPConnectionsProcessed
+    description: Counter for number of processed UDP connections.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPDropContextNotFound
+    description: Counter for dropped UDP data packets with no context.
+    type: integer
+    exposed: true
+    default_value: 0
+
   - name: counterUDPDropFin
     description: Counter for dropped udp FIN handshake packets.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPDropInNfQueue
+    description: Counter for dropped UDP in NfQueue.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPDropNoConnection
+    description: Counter for dropped UDP data packets with no connection.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPDropPacket
+    description: Counter for dropped UDP data packets.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPDropQueueFull
+    description: Counter for dropped UDP Queue Full.
     type: integer
     exposed: true
     default_value: 0
@@ -242,6 +284,66 @@ attributes:
 
   - name: counterUDPInvalidNetState
     description: Counter for udp packets received in invalid network state.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPPostProcessingFailed
+    description: Counter for UDP packets failing postprocessing.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPPreProcessingFailed
+    description: Counter for UDP packets failing preprocessing.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPRejected
+    description: Counter for UDP packets dropped due to policy.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynAckDropBadClaims
+    description: Counter for dropped udp synack bad claims.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynAckMissingClaims
+    description: Counter for dropped udp synack missing claims.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynAckPolicy
+    description: Counter for dropped udp synack bad claims.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynDrop
+    description: Counter for dropped udp syn transmits.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynDropPolicy
+    description: Counter for dropped udp syn policy.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynInvalidToken
+    description: Counter for dropped udp FIN handshake packets.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPSynMissingClaims
+    description: Counter for dropped UDP SYN missing claims.
     type: integer
     exposed: true
     default_value: 0
