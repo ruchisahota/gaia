@@ -133,12 +133,6 @@ func (o *Plan) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *Plan) BleveType() string {
-
-	return "plan"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *Plan) DefaultOrder() []string {
 

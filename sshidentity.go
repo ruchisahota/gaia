@@ -120,12 +120,6 @@ func (o *SSHIdentity) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *SSHIdentity) BleveType() string {
-
-	return "sshidentity"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *SSHIdentity) DefaultOrder() []string {
 

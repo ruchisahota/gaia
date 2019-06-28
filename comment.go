@@ -31,12 +31,6 @@ func NewComment() *Comment {
 	}
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *Comment) BleveType() string {
-
-	return "comment"
-}
-
 // DeepCopy returns a deep copy if the Comment.
 func (o *Comment) DeepCopy() *Comment {
 

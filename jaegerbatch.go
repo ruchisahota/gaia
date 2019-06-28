@@ -15,26 +15,26 @@ var JaegerbatchIdentity = elemental.Identity{
 	Private:  false,
 }
 
-// JaegerbatchesList represents a list of Jaegerbatches
-type JaegerbatchesList []*Jaegerbatch
+// JaegerbatchsList represents a list of Jaegerbatchs
+type JaegerbatchsList []*Jaegerbatch
 
 // Identity returns the identity of the objects in the list.
-func (o JaegerbatchesList) Identity() elemental.Identity {
+func (o JaegerbatchsList) Identity() elemental.Identity {
 
 	return JaegerbatchIdentity
 }
 
-// Copy returns a pointer to a copy the JaegerbatchesList.
-func (o JaegerbatchesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the JaegerbatchsList.
+func (o JaegerbatchsList) Copy() elemental.Identifiables {
 
-	copy := append(JaegerbatchesList{}, o...)
+	copy := append(JaegerbatchsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the JaegerbatchesList.
-func (o JaegerbatchesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the JaegerbatchsList.
+func (o JaegerbatchsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(JaegerbatchesList{}, o...)
+	out := append(JaegerbatchsList{}, o...)
 	for _, obj := range objects {
 		out = append(out, obj.(*Jaegerbatch))
 	}
@@ -43,7 +43,7 @@ func (o JaegerbatchesList) Append(objects ...elemental.Identifiable) elemental.I
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o JaegerbatchesList) List() elemental.IdentifiablesList {
+func (o JaegerbatchsList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -54,16 +54,16 @@ func (o JaegerbatchesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o JaegerbatchesList) DefaultOrder() []string {
+func (o JaegerbatchsList) DefaultOrder() []string {
 
 	return []string{}
 }
 
-// ToSparse returns the JaegerbatchesList converted to SparseJaegerbatchesList.
+// ToSparse returns the JaegerbatchsList converted to SparseJaegerbatchsList.
 // Objects in the list will only contain the given fields. No field means entire field set.
-func (o JaegerbatchesList) ToSparse(fields ...string) elemental.Identifiables {
+func (o JaegerbatchsList) ToSparse(fields ...string) elemental.Identifiables {
 
-	out := make(SparseJaegerbatchesList, len(o))
+	out := make(SparseJaegerbatchsList, len(o))
 	for i := 0; i < len(o); i++ {
 		out[i] = o[i].ToSparse(fields...).(*SparseJaegerbatch)
 	}
@@ -72,7 +72,7 @@ func (o JaegerbatchesList) ToSparse(fields ...string) elemental.Identifiables {
 }
 
 // Version returns the version of the content.
-func (o JaegerbatchesList) Version() int {
+func (o JaegerbatchsList) Version() int {
 
 	return 1
 }
@@ -114,12 +114,6 @@ func (o *Jaegerbatch) SetIdentifier(id string) {
 func (o *Jaegerbatch) Version() int {
 
 	return 1
-}
-
-// BleveType implements the bleve.Classifier Interface.
-func (o *Jaegerbatch) BleveType() string {
-
-	return "jaegerbatch"
 }
 
 // DefaultOrder returns the list of default ordering fields.
@@ -273,26 +267,26 @@ var JaegerbatchLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 	},
 }
 
-// SparseJaegerbatchesList represents a list of SparseJaegerbatches
-type SparseJaegerbatchesList []*SparseJaegerbatch
+// SparseJaegerbatchsList represents a list of SparseJaegerbatchs
+type SparseJaegerbatchsList []*SparseJaegerbatch
 
 // Identity returns the identity of the objects in the list.
-func (o SparseJaegerbatchesList) Identity() elemental.Identity {
+func (o SparseJaegerbatchsList) Identity() elemental.Identity {
 
 	return JaegerbatchIdentity
 }
 
-// Copy returns a pointer to a copy the SparseJaegerbatchesList.
-func (o SparseJaegerbatchesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SparseJaegerbatchsList.
+func (o SparseJaegerbatchsList) Copy() elemental.Identifiables {
 
-	copy := append(SparseJaegerbatchesList{}, o...)
+	copy := append(SparseJaegerbatchsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SparseJaegerbatchesList.
-func (o SparseJaegerbatchesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SparseJaegerbatchsList.
+func (o SparseJaegerbatchsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SparseJaegerbatchesList{}, o...)
+	out := append(SparseJaegerbatchsList{}, o...)
 	for _, obj := range objects {
 		out = append(out, obj.(*SparseJaegerbatch))
 	}
@@ -301,7 +295,7 @@ func (o SparseJaegerbatchesList) Append(objects ...elemental.Identifiable) eleme
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SparseJaegerbatchesList) List() elemental.IdentifiablesList {
+func (o SparseJaegerbatchsList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -312,13 +306,13 @@ func (o SparseJaegerbatchesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SparseJaegerbatchesList) DefaultOrder() []string {
+func (o SparseJaegerbatchsList) DefaultOrder() []string {
 
 	return []string{}
 }
 
-// ToPlain returns the SparseJaegerbatchesList converted to JaegerbatchesList.
-func (o SparseJaegerbatchesList) ToPlain() elemental.IdentifiablesList {
+// ToPlain returns the SparseJaegerbatchsList converted to JaegerbatchsList.
+func (o SparseJaegerbatchsList) ToPlain() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -329,7 +323,7 @@ func (o SparseJaegerbatchesList) ToPlain() elemental.IdentifiablesList {
 }
 
 // Version returns the version of the content.
-func (o SparseJaegerbatchesList) Version() int {
+func (o SparseJaegerbatchsList) Version() int {
 
 	return 1
 }

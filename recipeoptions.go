@@ -35,12 +35,6 @@ func NewRecipeOptions() *RecipeOptions {
 	}
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *RecipeOptions) BleveType() string {
-
-	return "recipeoptions"
-}
-
 // DeepCopy returns a deep copy if the RecipeOptions.
 func (o *RecipeOptions) DeepCopy() *RecipeOptions {
 

@@ -207,12 +207,6 @@ func (o *FileAccessPolicy) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *FileAccessPolicy) BleveType() string {
-
-	return "fileaccesspolicy"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *FileAccessPolicy) DefaultOrder() []string {
 

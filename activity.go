@@ -159,12 +159,6 @@ func (o *Activity) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *Activity) BleveType() string {
-
-	return "activity"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *Activity) DefaultOrder() []string {
 

@@ -63,12 +63,6 @@ func NewTraceRecord() *TraceRecord {
 	}
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *TraceRecord) BleveType() string {
-
-	return "tracerecord"
-}
-
 // DeepCopy returns a deep copy if the TraceRecord.
 func (o *TraceRecord) DeepCopy() *TraceRecord {
 

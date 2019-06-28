@@ -172,12 +172,6 @@ func (o *NamespaceMappingPolicy) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *NamespaceMappingPolicy) BleveType() string {
-
-	return "namespacemappingpolicy"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *NamespaceMappingPolicy) DefaultOrder() []string {
 

@@ -129,12 +129,6 @@ func (o *DependencyMap) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *DependencyMap) BleveType() string {
-
-	return "dependencymap"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *DependencyMap) DefaultOrder() []string {
 

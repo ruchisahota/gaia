@@ -38,12 +38,6 @@ func NewEndpoint() *Endpoint {
 	}
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *Endpoint) BleveType() string {
-
-	return "endpoint"
-}
-
 // DeepCopy returns a deep copy if the Endpoint.
 func (o *Endpoint) DeepCopy() *Endpoint {
 

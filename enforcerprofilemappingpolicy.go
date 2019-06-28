@@ -181,12 +181,6 @@ func (o *EnforcerProfileMappingPolicy) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *EnforcerProfileMappingPolicy) BleveType() string {
-
-	return "enforcerprofilemappingpolicy"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *EnforcerProfileMappingPolicy) DefaultOrder() []string {
 

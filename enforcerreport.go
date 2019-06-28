@@ -135,12 +135,6 @@ func (o *EnforcerReport) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *EnforcerReport) BleveType() string {
-
-	return "enforcerreport"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *EnforcerReport) DefaultOrder() []string {
 

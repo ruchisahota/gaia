@@ -1509,12 +1509,559 @@ Name contains the name of the Plan.
 
 | Resource                                    | Description                                                                    |
 | -                                           | -                                                                              |
+| [CounterReport](#counterreport)             | Post a new counter tracing report.                                             |
 | [Enforcer](#enforcer)                       | An Enforcer contains all parameters associated with a registered enforcer. The |
 | [EnforcerReport](#enforcerreport)           | Post a new enforcer statistics report.                                         |
 | [EnforcerTraceReport](#enforcertracereport) | Post a new enforcer trace that determines how packets are.                     |
 | [PacketReport](#packetreport)               | Post a new packet tracing report.                                              |
 | [TraceMode](#tracemode)                     | TraceMode is the tracing mode that must be applied to a PU.                    |
 | [TraceRecord](#tracerecord)                 | Represents a single trace record from the enforcer.                            |
+
+### CounterReport
+
+Post a new counter tracing report.
+
+#### Example
+
+```json
+{
+  "counterAckInUnknownState": 0,
+  "counterAckInvalidFormat": 0,
+  "counterAckRejected": 0,
+  "counterAckSigValidationFailed": 0,
+  "counterAckTCPNoTCPAuthOption": 0,
+  "counterConnectionsProcessed": 0,
+  "counterContextIDNotFound": 0,
+  "counterDroppedExternalService": 0,
+  "counterInvalidConnState": 0,
+  "counterInvalidNetState": 0,
+  "counterInvalidProtocol": 0,
+  "counterInvalidSynAck": 0,
+  "counterMarkNotFound": 0,
+  "counterNetSynNotSeen": 0,
+  "counterNoConnFound": 0,
+  "counterNonPUTraffic": 0,
+  "counterOutOfOrderSynAck": 0,
+  "counterPortNotFound": 0,
+  "counterRejectPacket": 0,
+  "counterServicePostprocessorFailed": 0,
+  "counterServicePreprocessorFailed": 0,
+  "counterSynAckBadClaims": 0,
+  "counterSynAckClaimsMisMatch": 0,
+  "counterSynAckDroppedExternalService": 0,
+  "counterSynAckInvalidFormat": 0,
+  "counterSynAckMissingClaims": 0,
+  "counterSynAckMissingToken": 0,
+  "counterSynAckNoTCPAuthOption": 0,
+  "counterSynAckRejected": 0,
+  "counterSynDroppedInvalidFormat": 0,
+  "counterSynDroppedInvalidToken": 0,
+  "counterSynDroppedNoClaims": 0,
+  "counterSynDroppedTCPOption": 0,
+  "counterSynRejectPacket": 0,
+  "counterSynUnexpectedPacket": 0,
+  "counterTCPAuthNotFound": 0,
+  "counterUDPDropFin": 0,
+  "counterUDPDropNoConnection": 0,
+  "counterUDPDropPacket": 0,
+  "counterUDPDropSynAck": 0,
+  "counterUDPInvalidNetState": 0,
+  "counterUDPPostProcessingFailed": 0,
+  "counterUDPPreProcessingFailed": 0,
+  "counterUDPRejected": 0,
+  "counterUnknownError": 0,
+  "enforcerID": "xxxx-xxx-xxxx",
+  "enforcerNamespace": "/my/namespace",
+  "processingUnitID": "xxx-xxx-xxx",
+  "processingUnitNamespace": "/my/namespace",
+  "timestamp": "2018-06-14T23:10:46.420397985Z"
+}
+```
+
+#### Attributes
+
+##### `counterAckInUnknownState` `integer`
+
+Counter for sending finack ack received in uknown connection state.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterAckInvalidFormat` `integer`
+
+Counter for ack packet dropped because of invalid format.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterAckRejected` `integer`
+
+Counter for reject ack packet as per policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterAckSigValidationFailed` `integer`
+
+Counter for ack packet dropped because signature validation failed.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterAckTCPNoTCPAuthOption` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterConnectionsProcessed` `integer`
+
+Counter for ".
+
+Default value:
+
+```json
+0
+```
+
+##### `counterContextIDNotFound` `integer`
+
+Counter for unable to find contextid.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterDroppedExternalService` `integer`
+
+Counter for no acls found for external services. dropping application syn
+packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterInvalidConnState` `integer`
+
+Counter for invalid connection state.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterInvalidNetState` `integer`
+
+Counter for invalid net state.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterInvalidProtocol` `integer`
+
+Counter for invalid protocol.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterInvalidSynAck` `integer`
+
+Counter for pu is already dead - drop synack packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterMarkNotFound` `integer`
+
+Counter for pu mark not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterNetSynNotSeen` `integer`
+
+Counter for network syn packet was not seen.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterNoConnFound` `integer`
+
+Counter for no context or connection found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterNonPUTraffic` `integer`
+
+Counter for traffic that belongs to a non PU process.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterOutOfOrderSynAck` `integer`
+
+Counter for synack for flow with processed finack.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterPortNotFound` `integer`
+
+Counter for port not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterRejectPacket` `integer`
+
+Counter for reject the packet as per policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterServicePostprocessorFailed` `integer`
+
+Counter for post service processing failed for network packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterServicePreprocessorFailed` `integer`
+
+Counter for pre service processing failed for network packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckBadClaims` `integer`
+
+Counter for synack packet dropped because of bad claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckClaimsMisMatch` `integer`
+
+Counter for syn/ack packet dropped because of encryption mismatch.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckDroppedExternalService` `integer`
+
+Counter for synack from external service dropped.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckInvalidFormat` `integer`
+
+Counter for synack packet dropped because of invalid format.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckMissingClaims` `integer`
+
+Counter for synack packet dropped because of no claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckMissingToken` `integer`
+
+Counter for synack packet dropped because of missing token.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckNoTCPAuthOption` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynAckRejected` `integer`
+
+Counter for dropping because of reject rule on transmitter.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynDroppedInvalidFormat` `integer`
+
+Counter for syn packet dropped because of invalid format.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynDroppedInvalidToken` `integer`
+
+Counter for syn packet dropped because of invalid token.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynDroppedNoClaims` `integer`
+
+Counter for syn packet dropped because of no claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynDroppedTCPOption` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynRejectPacket` `integer`
+
+Counter for syn dropped due to policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterSynUnexpectedPacket` `integer`
+
+Counter for received syn packet from unknown pu.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterTCPAuthNotFound` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropFin` `integer`
+
+Counter for dropped udp FIN handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropNoConnection` `integer`
+
+Counter for dropped UDP data packets with no connection.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropPacket` `integer`
+
+Counter for dropped UDP data packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropSynAck` `integer`
+
+Counter for dropped udp synack handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPInvalidNetState` `integer`
+
+Counter for udp packets received in invalid network state.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPPostProcessingFailed` `integer`
+
+Counter for UDP packets failing postprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPPreProcessingFailed` `integer`
+
+Counter for UDP packets failing preprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPRejected` `integer`
+
+Counter for UDP packets dropped due to policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUnknownError` `integer`
+
+Counter for unknown error.
+
+Default value:
+
+```json
+0
+```
+
+##### `enforcerID` `string`
+
+Identifier of the enforcer sending the report.
+
+Default value:
+
+```json
+"xxxx-xxx-xxxx"
+```
+
+##### `enforcerNamespace` `string`
+
+Namespace of the enforcer sending the report.
+
+Default value:
+
+```json
+"/my/namespace"
+```
+
+##### `processingUnitID` `string`
+
+PUID is the ID of the PU reporting the counter.
+
+##### `processingUnitNamespace` `string`
+
+Namespace of the PU reporting the counter.
+
+##### `timestamp` `time`
+
+Timestamp is the date of the report.
 
 ### Enforcer
 
