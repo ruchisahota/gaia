@@ -125,12 +125,6 @@ func (o *Category) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *Category) BleveType() string {
-
-	return "category"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *Category) DefaultOrder() []string {
 

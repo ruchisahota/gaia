@@ -163,12 +163,6 @@ func (o *EventLog) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *EventLog) BleveType() string {
-
-	return "eventlog"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *EventLog) DefaultOrder() []string {
 

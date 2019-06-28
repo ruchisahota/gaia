@@ -1347,7 +1347,7 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 	case IssueIdentity:
 		return &IssuesList{}
 	case JaegerbatchIdentity:
-		return &JaegerbatchesList{}
+		return &JaegerbatchsList{}
 	case LDAPProviderIdentity:
 		return &LDAPProvidersList{}
 	case LogIdentity:
@@ -1411,7 +1411,7 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 	case RoleIdentity:
 		return &RolesList{}
 	case SearchIdentity:
-		return &SearchesList{}
+		return &SearchsList{}
 	case ServiceIdentity:
 		return &ServicesList{}
 	case ServiceDependencyIdentity:
@@ -1574,7 +1574,7 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 	case IssueIdentity:
 		return &SparseIssuesList{}
 	case JaegerbatchIdentity:
-		return &SparseJaegerbatchesList{}
+		return &SparseJaegerbatchsList{}
 	case LDAPProviderIdentity:
 		return &SparseLDAPProvidersList{}
 	case LogIdentity:
@@ -1638,7 +1638,7 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 	case RoleIdentity:
 		return &SparseRolesList{}
 	case SearchIdentity:
-		return &SparseSearchesList{}
+		return &SparseSearchsList{}
 	case ServiceIdentity:
 		return &SparseServicesList{}
 	case ServiceDependencyIdentity:

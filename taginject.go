@@ -124,12 +124,6 @@ func (o *TagInject) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *TagInject) BleveType() string {
-
-	return "taginject"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *TagInject) DefaultOrder() []string {
 

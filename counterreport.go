@@ -189,6 +189,15 @@ type CounterReport struct {
 	// Counter for tcp authentication option not found.
 	CounterTCPAuthNotFound int `json:"counterTCPAuthNotFound" msgpack:"counterTCPAuthNotFound" bson:"-" mapstructure:"counterTCPAuthNotFound,omitempty"`
 
+	// Counter for dropped udp FIN handshake packets.
+	CounterUDPDropFin int `json:"counterUDPDropFin" msgpack:"counterUDPDropFin" bson:"-" mapstructure:"counterUDPDropFin,omitempty"`
+
+	// Counter for dropped udp synack handshake packets.
+	CounterUDPDropSynAck int `json:"counterUDPDropSynAck" msgpack:"counterUDPDropSynAck" bson:"-" mapstructure:"counterUDPDropSynAck,omitempty"`
+
+	// Counter for udp packets received in invalid network state.
+	CounterUDPInvalidNetState int `json:"counterUDPInvalidNetState" msgpack:"counterUDPInvalidNetState" bson:"-" mapstructure:"counterUDPInvalidNetState,omitempty"`
+
 	// Counter for unknown error.
 	CounterUnknownError int `json:"counterUnknownError" msgpack:"counterUnknownError" bson:"-" mapstructure:"counterUnknownError,omitempty"`
 
@@ -215,45 +224,48 @@ func NewCounterReport() *CounterReport {
 
 	return &CounterReport{
 		ModelVersion:                        1,
-		CounterSynAckBadClaims:              0,
-		CounterConnectionsProcessed:         0,
 		CounterSynAckClaimsMisMatch:         0,
-		CounterAckRejected:                  0,
 		CounterSynAckDroppedExternalService: 0,
-		CounterAckTCPNoTCPAuthOption:        0,
+		CounterContextIDNotFound:            0,
 		CounterSynAckInvalidFormat:          0,
-		CounterAckInvalidFormat:             0,
-		CounterSynAckMissingClaims:          0,
 		CounterInvalidConnState:             0,
+		CounterSynAckMissingClaims:          0,
+		CounterAckInUnknownState:            0,
 		CounterSynAckMissingToken:           0,
-		CounterInvalidProtocol:              0,
-		CounterSynDroppedInvalidToken:       0,
-		CounterSynUnexpectedPacket:          0,
-		CounterAckSigValidationFailed:       0,
+		CounterAckRejected:                  0,
+		CounterSynAckNoTCPAuthOption:        0,
+		CounterAckTCPNoTCPAuthOption:        0,
 		CounterSynAckRejected:               0,
-		EnforcerNamespace:                   "/my/namespace",
+		CounterSynDroppedInvalidToken:       0,
+		CounterConnectionsProcessed:         0,
+		CounterInvalidSynAck:                0,
+		CounterUDPInvalidNetState:           0,
 		CounterServicePreprocessorFailed:    0,
 		CounterSynDroppedTCPOption:          0,
 		CounterOutOfOrderSynAck:             0,
-		CounterUnknownError:                 0,
-		CounterDroppedExternalService:       0,
-		CounterSynAckNoTCPAuthOption:        0,
+		CounterUDPDropFin:                   0,
+		CounterInvalidNetState:              0,
+		CounterSynUnexpectedPacket:          0,
+		EnforcerID:                          "xxxx-xxx-xxxx",
 		CounterServicePostprocessorFailed:   0,
 		CounterSynDroppedInvalidFormat:      0,
 		CounterNonPUTraffic:                 0,
 		CounterSynDroppedNoClaims:           0,
-		CounterContextIDNotFound:            0,
+		CounterSynAckBadClaims:              0,
 		CounterSynRejectPacket:              0,
 		CounterNetSynNotSeen:                0,
 		CounterTCPAuthNotFound:              0,
-		CounterAckInUnknownState:            0,
-		EnforcerID:                          "xxxx-xxx-xxxx",
+		CounterDroppedExternalService:       0,
+		CounterUDPDropSynAck:                0,
 		CounterPortNotFound:                 0,
-		CounterInvalidNetState:              0,
+		CounterUnknownError:                 0,
+		CounterAckInvalidFormat:             0,
+		EnforcerNamespace:                   "/my/namespace",
+		CounterInvalidProtocol:              0,
 		CounterMarkNotFound:                 0,
 		CounterNoConnFound:                  0,
 		CounterRejectPacket:                 0,
-		CounterInvalidSynAck:                0,
+		CounterAckSigValidationFailed:       0,
 	}
 }
 
@@ -278,12 +290,6 @@ func (o *CounterReport) SetIdentifier(id string) {
 func (o *CounterReport) Version() int {
 
 	return 1
-}
-
-// BleveType implements the bleve.Classifier Interface.
-func (o *CounterReport) BleveType() string {
-
-	return "counterreport"
 }
 
 // DefaultOrder returns the list of default ordering fields.
@@ -346,6 +352,9 @@ func (o *CounterReport) ToSparse(fields ...string) elemental.SparseIdentifiable 
 			CounterSynRejectPacket:              &o.CounterSynRejectPacket,
 			CounterSynUnexpectedPacket:          &o.CounterSynUnexpectedPacket,
 			CounterTCPAuthNotFound:              &o.CounterTCPAuthNotFound,
+			CounterUDPDropFin:                   &o.CounterUDPDropFin,
+			CounterUDPDropSynAck:                &o.CounterUDPDropSynAck,
+			CounterUDPInvalidNetState:           &o.CounterUDPInvalidNetState,
 			CounterUnknownError:                 &o.CounterUnknownError,
 			EnforcerID:                          &o.EnforcerID,
 			EnforcerNamespace:                   &o.EnforcerNamespace,
@@ -430,6 +439,12 @@ func (o *CounterReport) ToSparse(fields ...string) elemental.SparseIdentifiable 
 			sp.CounterSynUnexpectedPacket = &(o.CounterSynUnexpectedPacket)
 		case "counterTCPAuthNotFound":
 			sp.CounterTCPAuthNotFound = &(o.CounterTCPAuthNotFound)
+		case "counterUDPDropFin":
+			sp.CounterUDPDropFin = &(o.CounterUDPDropFin)
+		case "counterUDPDropSynAck":
+			sp.CounterUDPDropSynAck = &(o.CounterUDPDropSynAck)
+		case "counterUDPInvalidNetState":
+			sp.CounterUDPInvalidNetState = &(o.CounterUDPInvalidNetState)
 		case "counterUnknownError":
 			sp.CounterUnknownError = &(o.CounterUnknownError)
 		case "enforcerID":
@@ -562,6 +577,15 @@ func (o *CounterReport) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.CounterTCPAuthNotFound != nil {
 		o.CounterTCPAuthNotFound = *so.CounterTCPAuthNotFound
+	}
+	if so.CounterUDPDropFin != nil {
+		o.CounterUDPDropFin = *so.CounterUDPDropFin
+	}
+	if so.CounterUDPDropSynAck != nil {
+		o.CounterUDPDropSynAck = *so.CounterUDPDropSynAck
+	}
+	if so.CounterUDPInvalidNetState != nil {
+		o.CounterUDPInvalidNetState = *so.CounterUDPInvalidNetState
 	}
 	if so.CounterUnknownError != nil {
 		o.CounterUnknownError = *so.CounterUnknownError
@@ -719,6 +743,12 @@ func (o *CounterReport) ValueForAttribute(name string) interface{} {
 		return o.CounterSynUnexpectedPacket
 	case "counterTCPAuthNotFound":
 		return o.CounterTCPAuthNotFound
+	case "counterUDPDropFin":
+		return o.CounterUDPDropFin
+	case "counterUDPDropSynAck":
+		return o.CounterUDPDropSynAck
+	case "counterUDPInvalidNetState":
+		return o.CounterUDPInvalidNetState
 	case "counterUnknownError":
 		return o.CounterUnknownError
 	case "enforcerID":
@@ -1025,6 +1055,30 @@ packet.`,
 		Description:    `Counter for tcp authentication option not found.`,
 		Exposed:        true,
 		Name:           "counterTCPAuthNotFound",
+		Type:           "integer",
+	},
+	"CounterUDPDropFin": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CounterUDPDropFin",
+		Description:    `Counter for dropped udp FIN handshake packets.`,
+		Exposed:        true,
+		Name:           "counterUDPDropFin",
+		Type:           "integer",
+	},
+	"CounterUDPDropSynAck": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CounterUDPDropSynAck",
+		Description:    `Counter for dropped udp synack handshake packets.`,
+		Exposed:        true,
+		Name:           "counterUDPDropSynAck",
+		Type:           "integer",
+	},
+	"CounterUDPInvalidNetState": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CounterUDPInvalidNetState",
+		Description:    `Counter for udp packets received in invalid network state.`,
+		Exposed:        true,
+		Name:           "counterUDPInvalidNetState",
 		Type:           "integer",
 	},
 	"CounterUnknownError": elemental.AttributeSpecification{
@@ -1374,6 +1428,30 @@ packet.`,
 		Name:           "counterTCPAuthNotFound",
 		Type:           "integer",
 	},
+	"counterudpdropfin": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CounterUDPDropFin",
+		Description:    `Counter for dropped udp FIN handshake packets.`,
+		Exposed:        true,
+		Name:           "counterUDPDropFin",
+		Type:           "integer",
+	},
+	"counterudpdropsynack": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CounterUDPDropSynAck",
+		Description:    `Counter for dropped udp synack handshake packets.`,
+		Exposed:        true,
+		Name:           "counterUDPDropSynAck",
+		Type:           "integer",
+	},
+	"counterudpinvalidnetstate": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "CounterUDPInvalidNetState",
+		Description:    `Counter for udp packets received in invalid network state.`,
+		Exposed:        true,
+		Name:           "counterUDPInvalidNetState",
+		Type:           "integer",
+	},
 	"counterunknownerror": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "CounterUnknownError",
@@ -1602,6 +1680,15 @@ type SparseCounterReport struct {
 	// Counter for tcp authentication option not found.
 	CounterTCPAuthNotFound *int `json:"counterTCPAuthNotFound,omitempty" msgpack:"counterTCPAuthNotFound,omitempty" bson:"-" mapstructure:"counterTCPAuthNotFound,omitempty"`
 
+	// Counter for dropped udp FIN handshake packets.
+	CounterUDPDropFin *int `json:"counterUDPDropFin,omitempty" msgpack:"counterUDPDropFin,omitempty" bson:"-" mapstructure:"counterUDPDropFin,omitempty"`
+
+	// Counter for dropped udp synack handshake packets.
+	CounterUDPDropSynAck *int `json:"counterUDPDropSynAck,omitempty" msgpack:"counterUDPDropSynAck,omitempty" bson:"-" mapstructure:"counterUDPDropSynAck,omitempty"`
+
+	// Counter for udp packets received in invalid network state.
+	CounterUDPInvalidNetState *int `json:"counterUDPInvalidNetState,omitempty" msgpack:"counterUDPInvalidNetState,omitempty" bson:"-" mapstructure:"counterUDPInvalidNetState,omitempty"`
+
 	// Counter for unknown error.
 	CounterUnknownError *int `json:"counterUnknownError,omitempty" msgpack:"counterUnknownError,omitempty" bson:"-" mapstructure:"counterUnknownError,omitempty"`
 
@@ -1762,6 +1849,15 @@ func (o *SparseCounterReport) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.CounterTCPAuthNotFound != nil {
 		out.CounterTCPAuthNotFound = *o.CounterTCPAuthNotFound
+	}
+	if o.CounterUDPDropFin != nil {
+		out.CounterUDPDropFin = *o.CounterUDPDropFin
+	}
+	if o.CounterUDPDropSynAck != nil {
+		out.CounterUDPDropSynAck = *o.CounterUDPDropSynAck
+	}
+	if o.CounterUDPInvalidNetState != nil {
+		out.CounterUDPInvalidNetState = *o.CounterUDPInvalidNetState
 	}
 	if o.CounterUnknownError != nil {
 		out.CounterUnknownError = *o.CounterUnknownError

@@ -122,12 +122,6 @@ func (o *SquallTag) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *SquallTag) BleveType() string {
-
-	return "squalltag"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *SquallTag) DefaultOrder() []string {
 

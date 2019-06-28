@@ -193,12 +193,6 @@ func (o *IsolationProfile) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *IsolationProfile) BleveType() string {
-
-	return "isolationprofile"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *IsolationProfile) DefaultOrder() []string {
 

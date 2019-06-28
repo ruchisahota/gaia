@@ -1561,6 +1561,9 @@ Post a new counter tracing report.
   "counterSynRejectPacket": 0,
   "counterSynUnexpectedPacket": 0,
   "counterTCPAuthNotFound": 0,
+  "counterUDPDropFin": 0,
+  "counterUDPDropSynAck": 0,
+  "counterUDPInvalidNetState": 0,
   "counterUnknownError": 0,
   "enforcerID": "xxxx-xxx-xxxx",
   "enforcerNamespace": "/my/namespace",
@@ -1932,6 +1935,36 @@ Default value:
 ##### `counterTCPAuthNotFound` `integer`
 
 Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropFin` `integer`
+
+Counter for dropped udp FIN handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPDropSynAck` `integer`
+
+Counter for dropped udp synack handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `counterUDPInvalidNetState` `integer`
+
+Counter for udp packets received in invalid network state.
 
 Default value:
 

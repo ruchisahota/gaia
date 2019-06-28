@@ -15,26 +15,26 @@ var SearchIdentity = elemental.Identity{
 	Private:  false,
 }
 
-// SearchesList represents a list of Searches
-type SearchesList []*Search
+// SearchsList represents a list of Searchs
+type SearchsList []*Search
 
 // Identity returns the identity of the objects in the list.
-func (o SearchesList) Identity() elemental.Identity {
+func (o SearchsList) Identity() elemental.Identity {
 
 	return SearchIdentity
 }
 
-// Copy returns a pointer to a copy the SearchesList.
-func (o SearchesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SearchsList.
+func (o SearchsList) Copy() elemental.Identifiables {
 
-	copy := append(SearchesList{}, o...)
+	copy := append(SearchsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SearchesList.
-func (o SearchesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SearchsList.
+func (o SearchsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SearchesList{}, o...)
+	out := append(SearchsList{}, o...)
 	for _, obj := range objects {
 		out = append(out, obj.(*Search))
 	}
@@ -43,7 +43,7 @@ func (o SearchesList) Append(objects ...elemental.Identifiable) elemental.Identi
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SearchesList) List() elemental.IdentifiablesList {
+func (o SearchsList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -54,16 +54,16 @@ func (o SearchesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SearchesList) DefaultOrder() []string {
+func (o SearchsList) DefaultOrder() []string {
 
 	return []string{}
 }
 
-// ToSparse returns the SearchesList converted to SparseSearchesList.
+// ToSparse returns the SearchsList converted to SparseSearchsList.
 // Objects in the list will only contain the given fields. No field means entire field set.
-func (o SearchesList) ToSparse(fields ...string) elemental.Identifiables {
+func (o SearchsList) ToSparse(fields ...string) elemental.Identifiables {
 
-	out := make(SparseSearchesList, len(o))
+	out := make(SparseSearchsList, len(o))
 	for i := 0; i < len(o); i++ {
 		out[i] = o[i].ToSparse(fields...).(*SparseSearch)
 	}
@@ -72,7 +72,7 @@ func (o SearchesList) ToSparse(fields ...string) elemental.Identifiables {
 }
 
 // Version returns the version of the content.
-func (o SearchesList) Version() int {
+func (o SearchsList) Version() int {
 
 	return 1
 }
@@ -126,12 +126,6 @@ func (o *Search) SetIdentifier(id string) {
 func (o *Search) Version() int {
 
 	return 1
-}
-
-// BleveType implements the bleve.Classifier Interface.
-func (o *Search) BleveType() string {
-
-	return "search"
 }
 
 // DefaultOrder returns the list of default ordering fields.
@@ -396,26 +390,26 @@ var SearchLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	},
 }
 
-// SparseSearchesList represents a list of SparseSearches
-type SparseSearchesList []*SparseSearch
+// SparseSearchsList represents a list of SparseSearchs
+type SparseSearchsList []*SparseSearch
 
 // Identity returns the identity of the objects in the list.
-func (o SparseSearchesList) Identity() elemental.Identity {
+func (o SparseSearchsList) Identity() elemental.Identity {
 
 	return SearchIdentity
 }
 
-// Copy returns a pointer to a copy the SparseSearchesList.
-func (o SparseSearchesList) Copy() elemental.Identifiables {
+// Copy returns a pointer to a copy the SparseSearchsList.
+func (o SparseSearchsList) Copy() elemental.Identifiables {
 
-	copy := append(SparseSearchesList{}, o...)
+	copy := append(SparseSearchsList{}, o...)
 	return &copy
 }
 
-// Append appends the objects to the a new copy of the SparseSearchesList.
-func (o SparseSearchesList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
+// Append appends the objects to the a new copy of the SparseSearchsList.
+func (o SparseSearchsList) Append(objects ...elemental.Identifiable) elemental.Identifiables {
 
-	out := append(SparseSearchesList{}, o...)
+	out := append(SparseSearchsList{}, o...)
 	for _, obj := range objects {
 		out = append(out, obj.(*SparseSearch))
 	}
@@ -424,7 +418,7 @@ func (o SparseSearchesList) Append(objects ...elemental.Identifiable) elemental.
 }
 
 // List converts the object to an elemental.IdentifiablesList.
-func (o SparseSearchesList) List() elemental.IdentifiablesList {
+func (o SparseSearchsList) List() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -435,13 +429,13 @@ func (o SparseSearchesList) List() elemental.IdentifiablesList {
 }
 
 // DefaultOrder returns the default ordering fields of the content.
-func (o SparseSearchesList) DefaultOrder() []string {
+func (o SparseSearchsList) DefaultOrder() []string {
 
 	return []string{}
 }
 
-// ToPlain returns the SparseSearchesList converted to SearchesList.
-func (o SparseSearchesList) ToPlain() elemental.IdentifiablesList {
+// ToPlain returns the SparseSearchsList converted to SearchsList.
+func (o SparseSearchsList) ToPlain() elemental.IdentifiablesList {
 
 	out := make(elemental.IdentifiablesList, len(o))
 	for i := 0; i < len(o); i++ {
@@ -452,7 +446,7 @@ func (o SparseSearchesList) ToPlain() elemental.IdentifiablesList {
 }
 
 // Version returns the version of the content.
-func (o SparseSearchesList) Version() int {
+func (o SparseSearchsList) Version() int {
 
 	return 1
 }

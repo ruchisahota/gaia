@@ -228,6 +228,24 @@ attributes:
     exposed: true
     default_value: 0
 
+  - name: counterUDPDropFin
+    description: Counter for dropped udp FIN handshake packets.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPDropSynAck
+    description: Counter for dropped udp synack handshake packets.
+    type: integer
+    exposed: true
+    default_value: 0
+
+  - name: counterUDPInvalidNetState
+    description: Counter for udp packets received in invalid network state.
+    type: integer
+    exposed: true
+    default_value: 0
+
   - name: counterUnknownError
     description: Counter for unknown error.
     type: integer

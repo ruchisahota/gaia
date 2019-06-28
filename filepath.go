@@ -182,12 +182,6 @@ func (o *FilePath) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *FilePath) BleveType() string {
-
-	return "filepath"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *FilePath) DefaultOrder() []string {
 

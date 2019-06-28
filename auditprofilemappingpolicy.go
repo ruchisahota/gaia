@@ -191,12 +191,6 @@ func (o *AuditProfileMappingPolicy) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *AuditProfileMappingPolicy) BleveType() string {
-
-	return "auditprofilemappingpolicy"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *AuditProfileMappingPolicy) DefaultOrder() []string {
 

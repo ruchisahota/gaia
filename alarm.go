@@ -203,12 +203,6 @@ func (o *Alarm) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *Alarm) BleveType() string {
-
-	return "alarm"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *Alarm) DefaultOrder() []string {
 

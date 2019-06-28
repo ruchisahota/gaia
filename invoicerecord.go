@@ -131,12 +131,6 @@ func (o *InvoiceRecord) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *InvoiceRecord) BleveType() string {
-
-	return "invoicerecord"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *InvoiceRecord) DefaultOrder() []string {
 

@@ -265,12 +265,6 @@ func (o *NetworkAccessPolicy) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *NetworkAccessPolicy) BleveType() string {
-
-	return "networkaccesspolicy"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *NetworkAccessPolicy) DefaultOrder() []string {
 

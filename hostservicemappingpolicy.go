@@ -191,12 +191,6 @@ func (o *HostServiceMappingPolicy) Version() int {
 	return 1
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *HostServiceMappingPolicy) BleveType() string {
-
-	return "hostservicemappingpolicy"
-}
-
 // DefaultOrder returns the list of default ordering fields.
 func (o *HostServiceMappingPolicy) DefaultOrder() []string {
 

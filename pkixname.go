@@ -51,12 +51,6 @@ func NewPKIXName() *PKIXName {
 	}
 }
 
-// BleveType implements the bleve.Classifier Interface.
-func (o *PKIXName) BleveType() string {
-
-	return "pkixname"
-}
-
 // DeepCopy returns a deep copy if the PKIXName.
 func (o *PKIXName) DeepCopy() *PKIXName {
 
