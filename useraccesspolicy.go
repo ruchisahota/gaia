@@ -193,6 +193,12 @@ func (o *UserAccessPolicy) Version() int {
 	return 1
 }
 
+// BleveType implements the bleve.Classifier Interface.
+func (o *UserAccessPolicy) BleveType() string {
+
+	return "useraccesspolicy"
+}
+
 // DefaultOrder returns the list of default ordering fields.
 func (o *UserAccessPolicy) DefaultOrder() []string {
 
