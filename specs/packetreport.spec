@@ -48,14 +48,16 @@ attributes:
     type: string
     exposed: true
     stored: true
-    default_value: xxxx-xxx-xxxx
+    required: true
+    example_value: xxxx-xxx-xxxx
 
   - name: enforcerNamespace
     description: Namespace of the enforcer sending the report.
     type: string
     exposed: true
     stored: true
-    default_value: /my/namespace
+    required: true
+    example_value: /my/namespace
 
   - name: event
     description: Event is the event that triggered the report.

@@ -162,12 +162,10 @@ type PacketReport struct {
 func NewPacketReport() *PacketReport {
 
 	return &PacketReport{
-		ModelVersion:      1,
-		Claims:            []string{},
-		EnforcerID:        "xxxx-xxx-xxxx",
-		EnforcerNamespace: "/my/namespace",
-		RawPacket:         "abcd",
-		TriremePacket:     true,
+		ModelVersion:  1,
+		Claims:        []string{},
+		RawPacket:     "abcd",
+		TriremePacket: true,
 	}
 }
 
@@ -399,6 +397,14 @@ func (o *PacketReport) Validate() error {
 		errors = errors.Append(err)
 	}
 
+	if err := elemental.ValidateRequiredString("enforcerID", o.EnforcerID); err != nil {
+		requiredErrors = requiredErrors.Append(err)
+	}
+
+	if err := elemental.ValidateRequiredString("enforcerNamespace", o.EnforcerNamespace); err != nil {
+		requiredErrors = requiredErrors.Append(err)
+	}
+
 	if err := elemental.ValidateRequiredString("event", string(o.Event)); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
@@ -564,20 +570,20 @@ for the drop.`,
 	"EnforcerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
-		DefaultValue:   "xxxx-xxx-xxxx",
 		Description:    `Identifier of the enforcer sending the report.`,
 		Exposed:        true,
 		Name:           "enforcerID",
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
 	"EnforcerNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
-		DefaultValue:   "/my/namespace",
 		Description:    `Namespace of the enforcer sending the report.`,
 		Exposed:        true,
 		Name:           "enforcerNamespace",
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
@@ -747,20 +753,20 @@ for the drop.`,
 	"enforcerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
-		DefaultValue:   "xxxx-xxx-xxxx",
 		Description:    `Identifier of the enforcer sending the report.`,
 		Exposed:        true,
 		Name:           "enforcerID",
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},
 	"enforcernamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
-		DefaultValue:   "/my/namespace",
 		Description:    `Namespace of the enforcer sending the report.`,
 		Exposed:        true,
 		Name:           "enforcerNamespace",
+		Required:       true,
 		Stored:         true,
 		Type:           "string",
 	},

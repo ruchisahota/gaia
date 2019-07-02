@@ -10,49 +10,49 @@ model:
 # Attributes
 attributes:
   v1:
-  - name: counterAckInUnknownState
+  - name: AckInUnknownState
     description: Counter for sending finack ack received in uknown connection state.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterAckInvalidFormat
+  - name: AckInvalidFormat
     description: Counter for ack packet dropped because of invalid format.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterAckRejected
+  - name: AckRejected
     description: Counter for reject ack packet as per policy.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterAckSigValidationFailed
+  - name: AckSigValidationFailed
     description: Counter for ack packet dropped because signature validation failed.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterAckTCPNoTCPAuthOption
+  - name: AckTCPNoTCPAuthOption
     description: Counter for tcp authentication option not found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterConnectionsProcessed
-    description: Counter for ".
+  - name: ConnectionsProcessed
+    description: Counter for connections processed".
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterContextIDNotFound
+  - name: ContextIDNotFound
     description: Counter for unable to find contextid.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterDroppedExternalService
+  - name: DroppedExternalService
     description: |-
       Counter for no acls found for external services. dropping application syn
       packet.
@@ -60,295 +60,295 @@ attributes:
     exposed: true
     default_value: 0
 
-  - name: counterInvalidConnState
+  - name: InvalidConnState
     description: Counter for invalid connection state.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterInvalidNetState
+  - name: InvalidNetState
     description: Counter for invalid net state.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterInvalidProtocol
+  - name: InvalidProtocol
     description: Counter for invalid protocol.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterInvalidSynAck
+  - name: InvalidSynAck
     description: Counter for pu is already dead - drop synack packet.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterMarkNotFound
+  - name: MarkNotFound
     description: Counter for pu mark not found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterNetSynNotSeen
+  - name: NetSynNotSeen
     description: Counter for network syn packet was not seen.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterNoConnFound
+  - name: NoConnFound
     description: Counter for no context or connection found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterNonPUTraffic
+  - name: NonPUTraffic
     description: Counter for traffic that belongs to a non PU process.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterOutOfOrderSynAck
+  - name: OutOfOrderSynAck
     description: Counter for synack for flow with processed finack.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterPortNotFound
+  - name: PortNotFound
     description: Counter for port not found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterRejectPacket
+  - name: RejectPacket
     description: Counter for reject the packet as per policy.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterServicePostprocessorFailed
+  - name: ServicePostprocessorFailed
     description: Counter for post service processing failed for network packet.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterServicePreprocessorFailed
+  - name: ServicePreprocessorFailed
     description: Counter for pre service processing failed for network packet.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckBadClaims
+  - name: SynAckBadClaims
     description: Counter for synack packet dropped because of bad claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckClaimsMisMatch
+  - name: SynAckClaimsMisMatch
     description: Counter for syn/ack packet dropped because of encryption mismatch.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckDroppedExternalService
+  - name: SynAckDroppedExternalService
     description: Counter for synack from external service dropped.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckInvalidFormat
+  - name: SynAckInvalidFormat
     description: Counter for synack packet dropped because of invalid format.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckMissingClaims
+  - name: SynAckMissingClaims
     description: Counter for synack packet dropped because of no claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckMissingToken
+  - name: SynAckMissingToken
     description: Counter for synack packet dropped because of missing token.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckNoTCPAuthOption
+  - name: SynAckNoTCPAuthOption
     description: Counter for tcp authentication option not found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynAckRejected
+  - name: SynAckRejected
     description: Counter for dropping because of reject rule on transmitter.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynDroppedInvalidFormat
+  - name: SynDroppedInvalidFormat
     description: Counter for syn packet dropped because of invalid format.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynDroppedInvalidToken
+  - name: SynDroppedInvalidToken
     description: Counter for syn packet dropped because of invalid token.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynDroppedNoClaims
+  - name: SynDroppedNoClaims
     description: Counter for syn packet dropped because of no claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynDroppedTCPOption
+  - name: SynDroppedTCPOption
     description: Counter for tcp authentication option not found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynRejectPacket
+  - name: SynRejectPacket
     description: Counter for syn dropped due to policy.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterSynUnexpectedPacket
+  - name: SynUnexpectedPacket
     description: Counter for received syn packet from unknown pu.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterTCPAuthNotFound
+  - name: TCPAuthNotFound
     description: Counter for tcp authentication option not found.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPAckInvalidSignature
+  - name: UDPAckInvalidSignature
     description: Counter for dropped udp ack invalid signature.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPConnectionsProcessed
+  - name: UDPConnectionsProcessed
     description: Counter for number of processed UDP connections.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropContextNotFound
+  - name: UDPDropContextNotFound
     description: Counter for dropped UDP data packets with no context.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropFin
+  - name: UDPDropFin
     description: Counter for dropped udp FIN handshake packets.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropInNfQueue
+  - name: UDPDropInNfQueue
     description: Counter for dropped UDP in NfQueue.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropNoConnection
+  - name: UDPDropNoConnection
     description: Counter for dropped UDP data packets with no connection.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropPacket
+  - name: UDPDropPacket
     description: Counter for dropped UDP data packets.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropQueueFull
+  - name: UDPDropQueueFull
     description: Counter for dropped UDP Queue Full.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPDropSynAck
+  - name: UDPDropSynAck
     description: Counter for dropped udp synack handshake packets.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPInvalidNetState
+  - name: UDPInvalidNetState
     description: Counter for udp packets received in invalid network state.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPPostProcessingFailed
+  - name: UDPPostProcessingFailed
     description: Counter for UDP packets failing postprocessing.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPPreProcessingFailed
+  - name: UDPPreProcessingFailed
     description: Counter for UDP packets failing preprocessing.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPRejected
+  - name: UDPRejected
     description: Counter for UDP packets dropped due to policy.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynAckDropBadClaims
+  - name: UDPSynAckDropBadClaims
     description: Counter for dropped udp synack bad claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynAckMissingClaims
+  - name: UDPSynAckMissingClaims
     description: Counter for dropped udp synack missing claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynAckPolicy
+  - name: UDPSynAckPolicy
     description: Counter for dropped udp synack bad claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynDrop
+  - name: UDPSynDrop
     description: Counter for dropped udp syn transmits.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynDropPolicy
+  - name: UDPSynDropPolicy
     description: Counter for dropped udp syn policy.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynInvalidToken
+  - name: UDPSynInvalidToken
     description: Counter for dropped udp FIN handshake packets.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUDPSynMissingClaims
+  - name: UDPSynMissingClaims
     description: Counter for dropped UDP SYN missing claims.
     type: integer
     exposed: true
     default_value: 0
 
-  - name: counterUnknownError
+  - name: UnknownError
     description: Counter for unknown error.
     type: integer
     exposed: true
@@ -359,14 +359,16 @@ attributes:
     type: string
     exposed: true
     stored: true
-    default_value: xxxx-xxx-xxxx
+    required: true
+    example_value: xxxx-xxx-xxxx
 
   - name: enforcerNamespace
     description: Namespace of the enforcer sending the report.
     type: string
     exposed: true
     stored: true
-    default_value: /my/namespace
+    required: true
+    example_value: /my/namespace
 
   - name: processingUnitID
     description: PUID is the ID of the PU reporting the counter.

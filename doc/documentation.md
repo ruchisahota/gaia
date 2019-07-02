@@ -4,19 +4,7 @@
 
 > Version: 1
 
-## `core`
-
-| Resource                            | Description                                                                         |
-| -                                   | -                                                                                   |
-| [Comment](#comment)                 | Represents a comment from a user.                                                   |
-| [Export](#export)                   | Export the policies and related objects in a given namespace.                       |
-| [Import](#import)                   | Imports an export of policies and related objects into the namespace.               |
-| [ImportReference](#importreference) | Import and keep a reference.                                                        |
-| [ImportRequest](#importrequest)     | This API allows to send an import request to create objects to a namespace where... |
-| [Poke](#poke)                       | When available, poke can be used to update various information about the parent.... |
-| [PolicyRenderer](#policyrenderer)   | Render is a low level api that allows to render policies of given tyoe for a        |
-| [Root](#root)                       | root object.                                                                        |
-| [Search](#search)                   | Perform a full text search on the database.                                         |
+## core
 
 ### Comment
 
@@ -630,13 +618,7 @@ Contains the namespace of the match.
 
 Contains the score of the match.
 
-## `core/account`
-
-| Resource                        | Description                                                                  |
-| -                               | -                                                                            |
-| [Account](#account)             | This api allows to view and manage basic information about your account like |
-| [Activate](#activate)           | Used to activate a pending account.                                          |
-| [PasswordReset](#passwordreset) | Used to reset an account password.                                           |
+## core/account
 
 ### Account
 
@@ -854,15 +836,7 @@ Password contains the new password.
 
 Token contains the reset password token.
 
-## `core/authentication`
-
-| Resource                      | Description                                                                         |
-| -                             | -                                                                                   |
-| [Auth](#auth)                 | This API verifies if the given token is valid or not. If it is valid it will        |
-| [AWSAccount](#awsaccount)     | Allows to bind an AWS account to your Aporeto account to allow auto registration... |
-| [Issue](#issue)               | This API issues a new token according to given data.                                |
-| [LDAPProvider](#ldapprovider) | Allows to declare a generic LDAP provider that can be used in exchange              |
-| [OIDCProvider](#oidcprovider) | Allows to declare a generic OpenID Connect provider that can be used in exchange... |
+## core/authentication
 
 ### Auth
 
@@ -1358,13 +1332,7 @@ Last update date of the object.
 geographical zone. This is used for sharding and
 georedundancy.
 
-## `core/billing`
-
-| Resource                        | Description                                                                 |
-| -                               | -                                                                           |
-| [Invoice](#invoice)             | This api allows to view invoices for Aporeto customers.                     |
-| [InvoiceRecord](#invoicerecord) | This api allows to view detailed records of invoices for Aporeto customers. |
-| [Plan](#plan)                   | Plan contains the various billing plans available.                          |
+## core/billing
 
 ### Invoice
 
@@ -1505,17 +1473,7 @@ Key contains the key identifier of the Plan.
 
 Name contains the name of the Plan.
 
-## `core/enforcer`
-
-| Resource                                    | Description                                                                    |
-| -                                           | -                                                                              |
-| [CounterReport](#counterreport)             | Post a new counter tracing report.                                             |
-| [Enforcer](#enforcer)                       | An Enforcer contains all parameters associated with a registered enforcer. The |
-| [EnforcerReport](#enforcerreport)           | Post a new enforcer statistics report.                                         |
-| [EnforcerTraceReport](#enforcertracereport) | Post a new enforcer trace that determines how packets are.                     |
-| [PacketReport](#packetreport)               | Post a new packet tracing report.                                              |
-| [TraceMode](#tracemode)                     | TraceMode is the tracing mode that must be applied to a PU.                    |
-| [TraceRecord](#tracerecord)                 | Represents a single trace record from the enforcer.                            |
+## core/enforcer
 
 ### CounterReport
 
@@ -1525,63 +1483,63 @@ Post a new counter tracing report.
 
 ```json
 {
-  "counterAckInUnknownState": 0,
-  "counterAckInvalidFormat": 0,
-  "counterAckRejected": 0,
-  "counterAckSigValidationFailed": 0,
-  "counterAckTCPNoTCPAuthOption": 0,
-  "counterConnectionsProcessed": 0,
-  "counterContextIDNotFound": 0,
-  "counterDroppedExternalService": 0,
-  "counterInvalidConnState": 0,
-  "counterInvalidNetState": 0,
-  "counterInvalidProtocol": 0,
-  "counterInvalidSynAck": 0,
-  "counterMarkNotFound": 0,
-  "counterNetSynNotSeen": 0,
-  "counterNoConnFound": 0,
-  "counterNonPUTraffic": 0,
-  "counterOutOfOrderSynAck": 0,
-  "counterPortNotFound": 0,
-  "counterRejectPacket": 0,
-  "counterServicePostprocessorFailed": 0,
-  "counterServicePreprocessorFailed": 0,
-  "counterSynAckBadClaims": 0,
-  "counterSynAckClaimsMisMatch": 0,
-  "counterSynAckDroppedExternalService": 0,
-  "counterSynAckInvalidFormat": 0,
-  "counterSynAckMissingClaims": 0,
-  "counterSynAckMissingToken": 0,
-  "counterSynAckNoTCPAuthOption": 0,
-  "counterSynAckRejected": 0,
-  "counterSynDroppedInvalidFormat": 0,
-  "counterSynDroppedInvalidToken": 0,
-  "counterSynDroppedNoClaims": 0,
-  "counterSynDroppedTCPOption": 0,
-  "counterSynRejectPacket": 0,
-  "counterSynUnexpectedPacket": 0,
-  "counterTCPAuthNotFound": 0,
-  "counterUDPAckInvalidSignature": 0,
-  "counterUDPConnectionsProcessed": 0,
-  "counterUDPDropContextNotFound": 0,
-  "counterUDPDropFin": 0,
-  "counterUDPDropInNfQueue": 0,
-  "counterUDPDropNoConnection": 0,
-  "counterUDPDropPacket": 0,
-  "counterUDPDropQueueFull": 0,
-  "counterUDPDropSynAck": 0,
-  "counterUDPInvalidNetState": 0,
-  "counterUDPPostProcessingFailed": 0,
-  "counterUDPPreProcessingFailed": 0,
-  "counterUDPRejected": 0,
-  "counterUDPSynAckDropBadClaims": 0,
-  "counterUDPSynAckMissingClaims": 0,
-  "counterUDPSynAckPolicy": 0,
-  "counterUDPSynDrop": 0,
-  "counterUDPSynDropPolicy": 0,
-  "counterUDPSynInvalidToken": 0,
-  "counterUDPSynMissingClaims": 0,
-  "counterUnknownError": 0,
+  "AckInUnknownState": 0,
+  "AckInvalidFormat": 0,
+  "AckRejected": 0,
+  "AckSigValidationFailed": 0,
+  "AckTCPNoTCPAuthOption": 0,
+  "ConnectionsProcessed": 0,
+  "ContextIDNotFound": 0,
+  "DroppedExternalService": 0,
+  "InvalidConnState": 0,
+  "InvalidNetState": 0,
+  "InvalidProtocol": 0,
+  "InvalidSynAck": 0,
+  "MarkNotFound": 0,
+  "NetSynNotSeen": 0,
+  "NoConnFound": 0,
+  "NonPUTraffic": 0,
+  "OutOfOrderSynAck": 0,
+  "PortNotFound": 0,
+  "RejectPacket": 0,
+  "ServicePostprocessorFailed": 0,
+  "ServicePreprocessorFailed": 0,
+  "SynAckBadClaims": 0,
+  "SynAckClaimsMisMatch": 0,
+  "SynAckDroppedExternalService": 0,
+  "SynAckInvalidFormat": 0,
+  "SynAckMissingClaims": 0,
+  "SynAckMissingToken": 0,
+  "SynAckNoTCPAuthOption": 0,
+  "SynAckRejected": 0,
+  "SynDroppedInvalidFormat": 0,
+  "SynDroppedInvalidToken": 0,
+  "SynDroppedNoClaims": 0,
+  "SynDroppedTCPOption": 0,
+  "SynRejectPacket": 0,
+  "SynUnexpectedPacket": 0,
+  "TCPAuthNotFound": 0,
+  "UDPAckInvalidSignature": 0,
+  "UDPConnectionsProcessed": 0,
+  "UDPDropContextNotFound": 0,
+  "UDPDropFin": 0,
+  "UDPDropInNfQueue": 0,
+  "UDPDropNoConnection": 0,
+  "UDPDropPacket": 0,
+  "UDPDropQueueFull": 0,
+  "UDPDropSynAck": 0,
+  "UDPInvalidNetState": 0,
+  "UDPPostProcessingFailed": 0,
+  "UDPPreProcessingFailed": 0,
+  "UDPRejected": 0,
+  "UDPSynAckDropBadClaims": 0,
+  "UDPSynAckMissingClaims": 0,
+  "UDPSynAckPolicy": 0,
+  "UDPSynDrop": 0,
+  "UDPSynDropPolicy": 0,
+  "UDPSynInvalidToken": 0,
+  "UDPSynMissingClaims": 0,
+  "UnknownError": 0,
   "enforcerID": "xxxx-xxx-xxxx",
   "enforcerNamespace": "/my/namespace",
   "processingUnitID": "xxx-xxx-xxx",
@@ -1598,7 +1556,7 @@ Create a counter report.
 
 #### Attributes
 
-##### `counterAckInUnknownState` `integer`
+##### `AckInUnknownState` `integer`
 
 Counter for sending finack ack received in uknown connection state.
 
@@ -1608,7 +1566,7 @@ Default value:
 0
 ```
 
-##### `counterAckInvalidFormat` `integer`
+##### `AckInvalidFormat` `integer`
 
 Counter for ack packet dropped because of invalid format.
 
@@ -1618,7 +1576,7 @@ Default value:
 0
 ```
 
-##### `counterAckRejected` `integer`
+##### `AckRejected` `integer`
 
 Counter for reject ack packet as per policy.
 
@@ -1628,7 +1586,7 @@ Default value:
 0
 ```
 
-##### `counterAckSigValidationFailed` `integer`
+##### `AckSigValidationFailed` `integer`
 
 Counter for ack packet dropped because signature validation failed.
 
@@ -1638,7 +1596,7 @@ Default value:
 0
 ```
 
-##### `counterAckTCPNoTCPAuthOption` `integer`
+##### `AckTCPNoTCPAuthOption` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1648,9 +1606,9 @@ Default value:
 0
 ```
 
-##### `counterConnectionsProcessed` `integer`
+##### `ConnectionsProcessed` `integer`
 
-Counter for ".
+Counter for connections processed".
 
 Default value:
 
@@ -1658,7 +1616,7 @@ Default value:
 0
 ```
 
-##### `counterContextIDNotFound` `integer`
+##### `ContextIDNotFound` `integer`
 
 Counter for unable to find contextid.
 
@@ -1668,7 +1626,7 @@ Default value:
 0
 ```
 
-##### `counterDroppedExternalService` `integer`
+##### `DroppedExternalService` `integer`
 
 Counter for no acls found for external services. dropping application syn
 packet.
@@ -1679,7 +1637,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidConnState` `integer`
+##### `InvalidConnState` `integer`
 
 Counter for invalid connection state.
 
@@ -1689,7 +1647,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidNetState` `integer`
+##### `InvalidNetState` `integer`
 
 Counter for invalid net state.
 
@@ -1699,7 +1657,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidProtocol` `integer`
+##### `InvalidProtocol` `integer`
 
 Counter for invalid protocol.
 
@@ -1709,7 +1667,7 @@ Default value:
 0
 ```
 
-##### `counterInvalidSynAck` `integer`
+##### `InvalidSynAck` `integer`
 
 Counter for pu is already dead - drop synack packet.
 
@@ -1719,7 +1677,7 @@ Default value:
 0
 ```
 
-##### `counterMarkNotFound` `integer`
+##### `MarkNotFound` `integer`
 
 Counter for pu mark not found.
 
@@ -1729,7 +1687,7 @@ Default value:
 0
 ```
 
-##### `counterNetSynNotSeen` `integer`
+##### `NetSynNotSeen` `integer`
 
 Counter for network syn packet was not seen.
 
@@ -1739,7 +1697,7 @@ Default value:
 0
 ```
 
-##### `counterNoConnFound` `integer`
+##### `NoConnFound` `integer`
 
 Counter for no context or connection found.
 
@@ -1749,7 +1707,7 @@ Default value:
 0
 ```
 
-##### `counterNonPUTraffic` `integer`
+##### `NonPUTraffic` `integer`
 
 Counter for traffic that belongs to a non PU process.
 
@@ -1759,7 +1717,7 @@ Default value:
 0
 ```
 
-##### `counterOutOfOrderSynAck` `integer`
+##### `OutOfOrderSynAck` `integer`
 
 Counter for synack for flow with processed finack.
 
@@ -1769,7 +1727,7 @@ Default value:
 0
 ```
 
-##### `counterPortNotFound` `integer`
+##### `PortNotFound` `integer`
 
 Counter for port not found.
 
@@ -1779,7 +1737,7 @@ Default value:
 0
 ```
 
-##### `counterRejectPacket` `integer`
+##### `RejectPacket` `integer`
 
 Counter for reject the packet as per policy.
 
@@ -1789,7 +1747,7 @@ Default value:
 0
 ```
 
-##### `counterServicePostprocessorFailed` `integer`
+##### `ServicePostprocessorFailed` `integer`
 
 Counter for post service processing failed for network packet.
 
@@ -1799,7 +1757,7 @@ Default value:
 0
 ```
 
-##### `counterServicePreprocessorFailed` `integer`
+##### `ServicePreprocessorFailed` `integer`
 
 Counter for pre service processing failed for network packet.
 
@@ -1809,7 +1767,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckBadClaims` `integer`
+##### `SynAckBadClaims` `integer`
 
 Counter for synack packet dropped because of bad claims.
 
@@ -1819,7 +1777,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckClaimsMisMatch` `integer`
+##### `SynAckClaimsMisMatch` `integer`
 
 Counter for syn/ack packet dropped because of encryption mismatch.
 
@@ -1829,7 +1787,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckDroppedExternalService` `integer`
+##### `SynAckDroppedExternalService` `integer`
 
 Counter for synack from external service dropped.
 
@@ -1839,7 +1797,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckInvalidFormat` `integer`
+##### `SynAckInvalidFormat` `integer`
 
 Counter for synack packet dropped because of invalid format.
 
@@ -1849,7 +1807,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckMissingClaims` `integer`
+##### `SynAckMissingClaims` `integer`
 
 Counter for synack packet dropped because of no claims.
 
@@ -1859,7 +1817,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckMissingToken` `integer`
+##### `SynAckMissingToken` `integer`
 
 Counter for synack packet dropped because of missing token.
 
@@ -1869,7 +1827,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckNoTCPAuthOption` `integer`
+##### `SynAckNoTCPAuthOption` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1879,7 +1837,7 @@ Default value:
 0
 ```
 
-##### `counterSynAckRejected` `integer`
+##### `SynAckRejected` `integer`
 
 Counter for dropping because of reject rule on transmitter.
 
@@ -1889,7 +1847,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedInvalidFormat` `integer`
+##### `SynDroppedInvalidFormat` `integer`
 
 Counter for syn packet dropped because of invalid format.
 
@@ -1899,7 +1857,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedInvalidToken` `integer`
+##### `SynDroppedInvalidToken` `integer`
 
 Counter for syn packet dropped because of invalid token.
 
@@ -1909,7 +1867,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedNoClaims` `integer`
+##### `SynDroppedNoClaims` `integer`
 
 Counter for syn packet dropped because of no claims.
 
@@ -1919,7 +1877,7 @@ Default value:
 0
 ```
 
-##### `counterSynDroppedTCPOption` `integer`
+##### `SynDroppedTCPOption` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1929,7 +1887,7 @@ Default value:
 0
 ```
 
-##### `counterSynRejectPacket` `integer`
+##### `SynRejectPacket` `integer`
 
 Counter for syn dropped due to policy.
 
@@ -1939,7 +1897,7 @@ Default value:
 0
 ```
 
-##### `counterSynUnexpectedPacket` `integer`
+##### `SynUnexpectedPacket` `integer`
 
 Counter for received syn packet from unknown pu.
 
@@ -1949,7 +1907,7 @@ Default value:
 0
 ```
 
-##### `counterTCPAuthNotFound` `integer`
+##### `TCPAuthNotFound` `integer`
 
 Counter for tcp authentication option not found.
 
@@ -1959,7 +1917,7 @@ Default value:
 0
 ```
 
-##### `counterUDPAckInvalidSignature` `integer`
+##### `UDPAckInvalidSignature` `integer`
 
 Counter for dropped udp ack invalid signature.
 
@@ -1969,7 +1927,7 @@ Default value:
 0
 ```
 
-##### `counterUDPConnectionsProcessed` `integer`
+##### `UDPConnectionsProcessed` `integer`
 
 Counter for number of processed UDP connections.
 
@@ -1979,7 +1937,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropContextNotFound` `integer`
+##### `UDPDropContextNotFound` `integer`
 
 Counter for dropped UDP data packets with no context.
 
@@ -1989,7 +1947,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropFin` `integer`
+##### `UDPDropFin` `integer`
 
 Counter for dropped udp FIN handshake packets.
 
@@ -1999,7 +1957,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropInNfQueue` `integer`
+##### `UDPDropInNfQueue` `integer`
 
 Counter for dropped UDP in NfQueue.
 
@@ -2009,7 +1967,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropNoConnection` `integer`
+##### `UDPDropNoConnection` `integer`
 
 Counter for dropped UDP data packets with no connection.
 
@@ -2019,7 +1977,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropPacket` `integer`
+##### `UDPDropPacket` `integer`
 
 Counter for dropped UDP data packets.
 
@@ -2029,7 +1987,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropQueueFull` `integer`
+##### `UDPDropQueueFull` `integer`
 
 Counter for dropped UDP Queue Full.
 
@@ -2039,7 +1997,7 @@ Default value:
 0
 ```
 
-##### `counterUDPDropSynAck` `integer`
+##### `UDPDropSynAck` `integer`
 
 Counter for dropped udp synack handshake packets.
 
@@ -2049,7 +2007,7 @@ Default value:
 0
 ```
 
-##### `counterUDPInvalidNetState` `integer`
+##### `UDPInvalidNetState` `integer`
 
 Counter for udp packets received in invalid network state.
 
@@ -2059,7 +2017,7 @@ Default value:
 0
 ```
 
-##### `counterUDPPostProcessingFailed` `integer`
+##### `UDPPostProcessingFailed` `integer`
 
 Counter for UDP packets failing postprocessing.
 
@@ -2069,7 +2027,7 @@ Default value:
 0
 ```
 
-##### `counterUDPPreProcessingFailed` `integer`
+##### `UDPPreProcessingFailed` `integer`
 
 Counter for UDP packets failing preprocessing.
 
@@ -2079,7 +2037,7 @@ Default value:
 0
 ```
 
-##### `counterUDPRejected` `integer`
+##### `UDPRejected` `integer`
 
 Counter for UDP packets dropped due to policy.
 
@@ -2089,7 +2047,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynAckDropBadClaims` `integer`
+##### `UDPSynAckDropBadClaims` `integer`
 
 Counter for dropped udp synack bad claims.
 
@@ -2099,7 +2057,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynAckMissingClaims` `integer`
+##### `UDPSynAckMissingClaims` `integer`
 
 Counter for dropped udp synack missing claims.
 
@@ -2109,7 +2067,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynAckPolicy` `integer`
+##### `UDPSynAckPolicy` `integer`
 
 Counter for dropped udp synack bad claims.
 
@@ -2119,7 +2077,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynDrop` `integer`
+##### `UDPSynDrop` `integer`
 
 Counter for dropped udp syn transmits.
 
@@ -2129,7 +2087,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynDropPolicy` `integer`
+##### `UDPSynDropPolicy` `integer`
 
 Counter for dropped udp syn policy.
 
@@ -2139,7 +2097,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynInvalidToken` `integer`
+##### `UDPSynInvalidToken` `integer`
 
 Counter for dropped udp FIN handshake packets.
 
@@ -2149,7 +2107,7 @@ Default value:
 0
 ```
 
-##### `counterUDPSynMissingClaims` `integer`
+##### `UDPSynMissingClaims` `integer`
 
 Counter for dropped UDP SYN missing claims.
 
@@ -2159,7 +2117,7 @@ Default value:
 0
 ```
 
-##### `counterUnknownError` `integer`
+##### `UnknownError` `integer`
 
 Counter for unknown error.
 
@@ -2169,25 +2127,13 @@ Default value:
 0
 ```
 
-##### `enforcerID` `string`
+##### `enforcerID` `string` [`required`]
 
 Identifier of the enforcer sending the report.
 
-Default value:
-
-```json
-"xxxx-xxx-xxxx"
-```
-
-##### `enforcerNamespace` `string`
+##### `enforcerNamespace` `string` [`required`]
 
 Namespace of the enforcer sending the report.
-
-Default value:
-
-```json
-"/my/namespace"
-```
 
 ##### `processingUnitID` `string`
 
@@ -2605,25 +2551,13 @@ for the drop.
 
 Encrypt indicates that the packet was encrypted.
 
-##### `enforcerID` `string`
+##### `enforcerID` `string` [`required`]
 
 Identifier of the enforcer sending the report.
 
-Default value:
-
-```json
-"xxxx-xxx-xxxx"
-```
-
-##### `enforcerNamespace` `string`
+##### `enforcerNamespace` `string` [`required`]
 
 Namespace of the enforcer sending the report.
-
-Default value:
-
-```json
-"/my/namespace"
-```
 
 ##### `event` `emum(Received | Transmitted | Dropped)` [`required`]
 
@@ -2798,15 +2732,7 @@ TableName is the iptable name that the trace was collected.
 
 Timestamp is the date of the report.
 
-## `core/monitoring`
-
-| Resource                  | Description                                                                     |
-| -                         | -                                                                               |
-| [Activity](#activity)     | Contains all the activity log that happened in a namespace. All successful or   |
-| [Alarm](#alarm)           | An alarm represents an event requiring attention.                               |
-| [EventLog](#eventlog)     | This api allows to report various event on any objects.                         |
-| [Message](#message)       | The Message API allows to post public messages that will be visible through all |
-| [Tabulation](#tabulation) | Tabulate API allows you to retrieve a custom table view for any identity using  |
+## core/monitoring
 
 ### Activity
 
@@ -3234,12 +3160,7 @@ Rows contains the tabulated data.
 
 TargetIdentity contains the requested target identity.
 
-## `core/namespace`
-
-| Resource                                          | Description                                                                    |
-| -                                                 | -                                                                              |
-| [Namespace](#namespace)                           | A Namespace represents the core organizational unit of the system. All objects |
-| [NamespaceMappingPolicy](#namespacemappingpolicy) | A Namespace Mapping Policy defines in which namespace a Processing Unit should |
+## core/namespace
 
 ### Namespace
 
@@ -3513,15 +3434,7 @@ Subject is the subject.
 
 Last update date of the object.
 
-## `core/policy`
-
-| Resource                                        | Description                                                                         |
-| -                                               | -                                                                                   |
-| [Policy](#policy)                               | Policy represents the policy primitive used by all aporeto policies.                |
-| [PolicyRefresh](#policyrefresh)                 | PolicyRefresh is sent to client when as a push event when a policy refresh is       |
-| [PolicyRule](#policyrule)                       | PolicyRule is an internal policy resolution API. Services can use this API to       |
-| [ProcessingUnitRefresh](#processingunitrefresh) | ProcessingUnitRefresh is sent to client when a poke has been triggered using the... |
-| [RenderedPolicy](#renderedpolicy)               | Retrieve the aggregated policies applied to a particular processing unit.           |
+## core/policy
 
 ### Policy
 
@@ -3878,13 +3791,7 @@ Identifier of the processing unit.
 Scopes is the set of scopes granted to this processing unit that it has to
 present in HTTP requests.
 
-## `core/processingunit`
-
-| Resource                                    | Description                                                                     |
-| -                                           | -                                                                               |
-| [DataPathCertificate](#datapathcertificate) | This API is used by instance of enforcers to retrieve various certificates used |
-| [ProcessingUnit](#processingunit)           | A Processing Unit reprents anything that can compute. It can be a Docker        |
-| [Vulnerability](#vulnerability)             | A vulnerabily represents a particular CVE.                                      |
+## core/processingunit
 
 ### DataPathCertificate
 
@@ -4315,12 +4222,7 @@ Last update date of the object.
 geographical zone. This is used for sharding and
 georedundancy.
 
-## `core/tag`
-
-| Resource              | Description                                                                     |
-| -                     | -                                                                               |
-| [Tag](#tag)           | A tag is a string in the form of "key=value" that can applied to all objects in |
-| [TagValue](#tagvalue) | Represents all values associated to tag key.                                    |
+## core/tag
 
 ### Tag
 
@@ -4391,15 +4293,7 @@ The requested key.
 
 List of all values.
 
-## `core/workflow`
-
-| Resource                                        | Description                                            |
-| -                                               | -                                                      |
-| [Recipe](#recipe)                               | A Recipe defines a list of steps to define a workflow. |
-| [UIParameter](#uiparameter)                     | Represents a parameter that will be shown in the UI.   |
-| [UIParameterVisibility](#uiparametervisibility) | Represent a visibility condition for a uiparameter.    |
-| [UIStep](#uistep)                               | Represents a parameter that will be shown in the UI.   |
-| [ValidateUIParameter](#validateuiparameter)     | This api validates a list of UIParameters.             |
+## core/workflow
 
 ### Recipe
 
@@ -4712,14 +4606,7 @@ List of parameters to validate.
 
 Values contains the computed values.
 
-## `integration/app`
-
-| Resource                      | Description                                          |
-| -                             | -                                                    |
-| [App](#app)                   | App represents an application that can be installed. |
-| [Category](#category)         | Category allows to categorized services.             |
-| [InstalledApp](#installedapp) | InstalledApps represents an installed application.   |
-| [Log](#log)                   | Retrieves the log of a deployed app.                 |
+## integration/app
 
 ### App
 
@@ -4942,13 +4829,7 @@ Returns the logs for a app.
 
 Data contains all logs data.
 
-## `integration/automation`
-
-| Resource                                  | Description                                            |
-| -                                         | -                                                      |
-| [Automation](#automation)                 | An automation needs documentation.                     |
-| [AutomationTemplate](#automationtemplate) | Templates that ca be used in automations.              |
-| [Trigger](#trigger)                       | Trigger can be used to remotely trigger an automation. |
+## integration/automation
 
 ### Automation
 
@@ -5201,11 +5082,7 @@ to `RemoteCall`.
 Allows a system to trigger the automation if its `triggerType` property is set
 to `RemoteCall`.
 
-## `internal/x509`
-
-| Resource              | Description             |
-| -                     | -                       |
-| [PKIXName](#pkixname) | Represents a PKIX.Name. |
+## internal/x509
 
 ### PKIXName
 
@@ -5245,12 +5122,7 @@ Represents the Province field.
 
 Represents the StreetAddress field.
 
-## `policy/access`
-
-| Resource                              | Description                                           |
-| -                                     | -                                                     |
-| [AccessReport](#accessreport)         | Access report represents any access made by the user. |
-| [UserAccessPolicy](#useraccesspolicy) | The enforcer policy controls user access.             |
+## policy/access
 
 ### AccessReport
 
@@ -5447,13 +5319,7 @@ apply.
 
 Last update date of the object.
 
-## `policy/audit`
-
-| Resource                                                | Description                                                                         |
-| -                                                       | -                                                                                   |
-| [AuditProfile](#auditprofile)                           | AuditProfile is an audit policy that consists of a set of audit rules. An audit     |
-| [AuditProfileMappingPolicy](#auditprofilemappingpolicy) | Defines an audit policy that determine the sets of enforcers that must implement... |
-| [AuditReport](#auditreport)                             | Post a new audit statistics report.                                                 |
+## policy/audit
 
 ### AuditProfile
 
@@ -5884,15 +5750,7 @@ Syscall executed.
 
 Date of the report.
 
-## `policy/authorization`
-
-| Resource                                          | Description                                                                    |
-| -                                                 | -                                                                              |
-| [APIAuthorizationPolicy](#apiauthorizationpolicy) | An API Authorization Policy defines what kind of operations a user of a system |
-| [APICheck](#apicheck)                             | This API allows to verify is a client identitied by his token is allowed to do |
-| [AppCredential](#appcredential)                   | Create a credential for an application.                                        |
-| [Credential](#credential)                         | Represents an application credential data.                                     |
-| [Role](#role)                                     | Roles returns the available roles that can be used with API Authorization      |
+## policy/authorization
 
 ### APIAuthorizationPolicy
 
@@ -6321,13 +6179,7 @@ Key is the of the role.
 
 Name of the role.
 
-## `policy/enforcerconfig`
-
-| Resource                                                      | Description                                                                         |
-| -                                                             | -                                                                                   |
-| [EnforcerProfile](#enforcerprofile)                           | Allows to create reusable configuration profile for your enforcers. Enforcer        |
-| [EnforcerProfileMappingPolicy](#enforcerprofilemappingpolicy) | A Enforcer Profile Mapping Policy will tell what Enforcer Profile should be used... |
-| [TrustedCA](#trustedca)                                       | Represents a trusted Certificate Authority.                                         |
+## policy/enforcerconfig
 
 ### EnforcerProfile
 
@@ -6675,13 +6527,7 @@ The namespace X509 CA the enforcer should use.
 
 Type of the CA.
 
-## `policy/files`
-
-| Resource                              | Description                                                                         |
-| -                                     | -                                                                                   |
-| [FileAccessPolicy](#fileaccesspolicy) | A File Access Policy allows Processing Units to access various folder and files.... |
-| [FileAccessReport](#fileaccessreport) | Post a new file access statistics report.                                           |
-| [FilePath](#filepath)                 | A File Path represents a random path to a file or a folder. They can be used in     |
+## policy/files
 
 ### FileAccessPolicy
 
@@ -7049,12 +6895,7 @@ Last update date of the object.
 geographical zone. This is used for sharding and
 georedundancy.
 
-## `policy/hooks`
-
-| Resource                            | Description                                                                         |
-| -                                   | -                                                                                   |
-| [HookPolicy](#hookpolicy)           | Hook allows to to define hooks to the write operations in squall. Hooks are sent... |
-| [RemoteProcessor](#remoteprocessor) | Hook to integrate an Aporeto service.                                               |
+## policy/hooks
 
 ### HookPolicy
 
@@ -7314,12 +7155,7 @@ RequestID gives the id of the request coming from the main server.
 
 Represents the Identity name of the managed object.
 
-## `policy/hosts`
-
-| Resource                                              | Description                                                              |
-| -                                                     | -                                                                        |
-| [HostService](#hostservice)                           | Represents a set of services that a host must expose and protect.        |
-| [HostServiceMappingPolicy](#hostservicemappingpolicy) | Defines a host service mapping policy that provides the relation between |
+## policy/hosts
 
 ### HostService
 
@@ -7598,15 +7434,7 @@ services must apply to.
 
 Last update date of the object.
 
-## `policy/networking`
-
-| Resource                                      | Description                                                                         |
-| -                                             | -                                                                                   |
-| [Claims](#claims)                             | This API represents the claims that accessed a service.                             |
-| [ExternalNetwork](#externalnetwork)           | An External Network represents a random network or ip that is not managed by the... |
-| [FlowReport](#flowreport)                     | Post a new flow statistics report.                                                  |
-| [InfrastructurePolicy](#infrastructurepolicy) | Infrastructure policies capture the network access rules of the underlying          |
-| [NetworkAccessPolicy](#networkaccesspolicy)   | Allows to define networking policies to allow or prevent processing units           |
+## policy/networking
 
 ### Claims
 
@@ -8412,13 +8240,7 @@ Subject of the policy.
 
 Last update date of the object.
 
-## `policy/processingunits`
-
-| Resource                                        | Description                                          |
-| -                                               | -                                                    |
-| [IsolationProfile](#isolationprofile)           | An IsolationProfile needs documentation.             |
-| [ProcessingUnitPolicy](#processingunitpolicy)   | A ProcessingUnitPolicies needs a better description. |
-| [ProcessingUnitService](#processingunitservice) | Represents a service attached to a processing unit.  |
+## policy/processingunits
 
 ### IsolationProfile
 
@@ -8706,11 +8528,7 @@ Protocol used by the service.
 
 List of single ports or range (xx:yy).
 
-## `policy/quota`
-
-| Resource                    | Description                                                               |
-| -                           | -                                                                         |
-| [QuotaPolicy](#quotapolicy) | Quotas Policies allows to set quotas on the number of objects that can be |
+## policy/quota
 
 ### QuotaPolicy
 
@@ -8849,16 +8667,7 @@ TargetNamespace contains the base namespace from where the count will be done.
 
 Last update date of the object.
 
-## `policy/services`
-
-| Resource                                | Description                                                                         |
-| -                                       | -                                                                                   |
-| [ClaimMapping](#claimmapping)           | Represents a mapping from a claim name to an HTTP header.                           |
-| [Endpoint](#endpoint)                   | Represents an HTTP endpoint.                                                        |
-| [HTTPResourceSpec](#httpresourcespec)   | HTTPResourceSpec descibes an HTTP resource exposed by a service. These APIs         |
-| [Service](#service)                     | A Service defines a generic service object at L4 or L7 that encapsulates the        |
-| [ServiceDependency](#servicedependency) | Allows to define a service dependency where a set of processing units as defined... |
-| [TokenScopePolicy](#tokenscopepolicy)   | The TokenScopePolicy defines a set of policies that allow customization of the      |
+## policy/services
 
 ### ClaimMapping
 
@@ -9650,12 +9459,7 @@ and scope request information.
 
 Last update date of the object.
 
-## `policy/ssh`
-
-| Resource                                          | Description                                                                         |
-| -                                                 | -                                                                                   |
-| [SSHAuthorizationPolicy](#sshauthorizationpolicy) | An SSHAuthorizationPolicy allows to define the permissions for the owner            |
-| [SSHIdentity](#sshidentity)                       | Returns a SSH certificate containing the bearer claims. This SSH Certificate can... |
+## policy/ssh
 
 ### SSHAuthorizationPolicy
 
@@ -9861,11 +9665,7 @@ Contains the signed SSH certificate in OpenSSH Format.
 Contains the public key to sign in OpenSSH Format. You can generate a SSH public
 key with the standard `ssh-keygen` tool.
 
-## `recipes`
-
-| Resource                        | Description                  |
-| -                               | -                            |
-| [RecipeOptions](#recipeoptions) | Represents a Recipe Options. |
+## recipes
 
 ### RecipeOptions
 
@@ -9891,18 +9691,7 @@ Default value:
 "JSON"
 ```
 
-## `visualization/depmaps`
-
-| Resource                            | Description                                                                         |
-| -                                   | -                                                                                   |
-| [DependencyMap](#dependencymap)     | This api returns a data structure representing the graph of all processing units... |
-| [GraphEdge](#graphedge)             | Represents an edge from the dependency map.                                         |
-| [GraphGroup](#graphgroup)           | Represents an group of nodes from the dependency map.                               |
-| [GraphNode](#graphnode)             | Represents an node from the dependency map.                                         |
-| [GraphPolicyInfo](#graphpolicyinfo) | Represents a policy information.                                                    |
-| [IPInfo](#ipinfo)                   | This apis allows to resolve information from an IP address.                         |
-| [PolicyGraph](#policygraph)         | This api returns a data structure representing the policy graph of all selected     |
-| [SuggestedPolicy](#suggestedpolicy) | Allows to get policy suggestions.                                                   |
+## visualization/depmaps
 
 ### DependencyMap
 
@@ -10247,14 +10036,7 @@ Mandatory Parameters
 
 List of suggested network access policies.
 
-## `visualization/statsquery`
-
-| Resource                                          | Description                                                                    |
-| -                                                 | -                                                                              |
-| [StatsInfo](#statsinfo)                           | StatsInfo API can be used to list the fields and tags available in a           |
-| [StatsQuery](#statsquery)                         | StatsQuery is a generic API to retrieve time series data stored by the Aporeto |
-| [TimeSeriesQueryResults](#timeseriesqueryresults) | Represent the results of a stats query.                                        |
-| [TimeSeriesRow](#timeseriesrow)                   | Represent a time series row.                                                   |
+## visualization/statsquery
 
 ### StatsInfo
 
@@ -10416,11 +10198,7 @@ List of tags.
 
 List of tags.
 
-## `workflow`
-
-| Resource                          | Description                                              |
-| -                                 | -                                                        |
-| [RenderTemplate](#rendertemplate) | A RenderTemplate cooks a template based some parameters. |
+## workflow
 
 ### RenderTemplate
 
