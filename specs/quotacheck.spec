@@ -8,7 +8,6 @@ model:
   description: |-
     This api allows to verify the quota for a given identity in a given namespace
     with the given tags.
-  private: true
 
 # Attributes
 attributes:
@@ -31,5 +30,4 @@ attributes:
     description: The namespace from which you want to check the quota on.
     type: string
     exposed: true
-    required: true
     example_value: /my/namespace

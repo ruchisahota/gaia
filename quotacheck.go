@@ -12,7 +12,7 @@ var QuotaCheckIdentity = elemental.Identity{
 	Name:     "quotacheck",
 	Category: "quotacheck",
 	Package:  "squall",
-	Private:  true,
+	Private:  false,
 }
 
 // QuotaChecksList represents a list of QuotaChecks
@@ -226,10 +226,6 @@ func (o *QuotaCheck) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateRequiredString("targetNamespace", o.TargetNamespace); err != nil {
-		requiredErrors = requiredErrors.Append(err)
-	}
-
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -302,7 +298,6 @@ var QuotaCheckAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `The namespace from which you want to check the quota on.`,
 		Exposed:        true,
 		Name:           "targetNamespace",
-		Required:       true,
 		Type:           "string",
 	},
 }
@@ -334,7 +329,6 @@ var QuotaCheckLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Description:    `The namespace from which you want to check the quota on.`,
 		Exposed:        true,
 		Name:           "targetNamespace",
-		Required:       true,
 		Type:           "string",
 	},
 }
