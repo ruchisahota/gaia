@@ -5,9 +5,7 @@ model:
   entity_name: QuotaCheck
   package: squall
   group: policy/quota
-  description: |-
-    This api allows to verify the quota for a given identity in a given namespace
-    with the given tags.
+  description: This api allows to verify the quota.
 
 # Attributes
 attributes:
