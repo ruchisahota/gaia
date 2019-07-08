@@ -11,7 +11,7 @@ model:
 attributes:
   v1:
   - name: AckInUnknownState
-    description: Counter for sending finack ack received in uknown connection state.
+    description: Counter for sending finack ack received in unknown connection state.
     type: integer
     exposed: true
     default_value: 0
@@ -47,7 +47,7 @@ attributes:
     default_value: 0
 
   - name: ContextIDNotFound
-    description: Counter for unable to find contextid.
+    description: Counter for unable to find ContextID.
     type: integer
     exposed: true
     default_value: 0
@@ -145,7 +145,7 @@ attributes:
     default_value: 0
 
   - name: SynAckClaimsMisMatch
-    description: Counter for syn/ack packet dropped because of encryption mismatch.
+    description: Counter for synack packet dropped because of encryption mismatch.
     type: integer
     exposed: true
     default_value: 0

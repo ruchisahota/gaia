@@ -1567,7 +1567,7 @@ Create a counter report.
 
 ##### `AckInUnknownState` `integer`
 
-Counter for sending finack ack received in uknown connection state.
+Counter for sending finack ack received in unknown connection state.
 
 Default value:
 
@@ -1627,7 +1627,7 @@ Default value:
 
 ##### `ContextIDNotFound` `integer`
 
-Counter for unable to find contextid.
+Counter for unable to find ContextID.
 
 Default value:
 
@@ -1788,7 +1788,7 @@ Default value:
 
 ##### `SynAckClaimsMisMatch` `integer`
 
-Counter for syn/ack packet dropped because of encryption mismatch.
+Counter for synack packet dropped because of encryption mismatch.
 
 Default value:
 

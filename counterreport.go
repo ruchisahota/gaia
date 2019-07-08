@@ -80,7 +80,7 @@ func (o CounterReportsList) Version() int {
 
 // CounterReport represents the model of a counterreport
 type CounterReport struct {
-	// Counter for sending finack ack received in uknown connection state.
+	// Counter for sending finack ack received in unknown connection state.
 	AckInUnknownState int `json:"AckInUnknownState" msgpack:"AckInUnknownState" bson:"-" mapstructure:"AckInUnknownState,omitempty"`
 
 	// Counter for ack packet dropped because of invalid format.
@@ -98,7 +98,7 @@ type CounterReport struct {
 	// Counter for connections processed".
 	ConnectionsProcessed int `json:"ConnectionsProcessed" msgpack:"ConnectionsProcessed" bson:"-" mapstructure:"ConnectionsProcessed,omitempty"`
 
-	// Counter for unable to find contextid.
+	// Counter for unable to find ContextID.
 	ContextIDNotFound int `json:"ContextIDNotFound" msgpack:"ContextIDNotFound" bson:"-" mapstructure:"ContextIDNotFound,omitempty"`
 
 	// Counter for no acls found for external services. dropping application syn
@@ -147,7 +147,7 @@ type CounterReport struct {
 	// Counter for synack packet dropped because of bad claims.
 	SynAckBadClaims int `json:"SynAckBadClaims" msgpack:"SynAckBadClaims" bson:"-" mapstructure:"SynAckBadClaims,omitempty"`
 
-	// Counter for syn/ack packet dropped because of encryption mismatch.
+	// Counter for synack packet dropped because of encryption mismatch.
 	SynAckClaimsMisMatch int `json:"SynAckClaimsMisMatch" msgpack:"SynAckClaimsMisMatch" bson:"-" mapstructure:"SynAckClaimsMisMatch,omitempty"`
 
 	// Counter for synack from external service dropped.
@@ -987,7 +987,7 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"AckInUnknownState": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AckInUnknownState",
-		Description:    `Counter for sending finack ack received in uknown connection state.`,
+		Description:    `Counter for sending finack ack received in unknown connection state.`,
 		Exposed:        true,
 		Name:           "AckInUnknownState",
 		Type:           "integer",
@@ -1035,7 +1035,7 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"ContextIDNotFound": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ContextIDNotFound",
-		Description:    `Counter for unable to find contextid.`,
+		Description:    `Counter for unable to find ContextID.`,
 		Exposed:        true,
 		Name:           "ContextIDNotFound",
 		Type:           "integer",
@@ -1164,7 +1164,7 @@ packet.`,
 	"SynAckClaimsMisMatch": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SynAckClaimsMisMatch",
-		Description:    `Counter for syn/ack packet dropped because of encryption mismatch.`,
+		Description:    `Counter for synack packet dropped because of encryption mismatch.`,
 		Exposed:        true,
 		Name:           "SynAckClaimsMisMatch",
 		Type:           "integer",
@@ -1494,7 +1494,7 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"ackinunknownstate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AckInUnknownState",
-		Description:    `Counter for sending finack ack received in uknown connection state.`,
+		Description:    `Counter for sending finack ack received in unknown connection state.`,
 		Exposed:        true,
 		Name:           "AckInUnknownState",
 		Type:           "integer",
@@ -1542,7 +1542,7 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"contextidnotfound": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ContextIDNotFound",
-		Description:    `Counter for unable to find contextid.`,
+		Description:    `Counter for unable to find ContextID.`,
 		Exposed:        true,
 		Name:           "ContextIDNotFound",
 		Type:           "integer",
@@ -1671,7 +1671,7 @@ packet.`,
 	"synackclaimsmismatch": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SynAckClaimsMisMatch",
-		Description:    `Counter for syn/ack packet dropped because of encryption mismatch.`,
+		Description:    `Counter for synack packet dropped because of encryption mismatch.`,
 		Exposed:        true,
 		Name:           "SynAckClaimsMisMatch",
 		Type:           "integer",
@@ -2059,7 +2059,7 @@ func (o SparseCounterReportsList) Version() int {
 
 // SparseCounterReport represents the sparse version of a counterreport.
 type SparseCounterReport struct {
-	// Counter for sending finack ack received in uknown connection state.
+	// Counter for sending finack ack received in unknown connection state.
 	AckInUnknownState *int `json:"AckInUnknownState,omitempty" msgpack:"AckInUnknownState,omitempty" bson:"-" mapstructure:"AckInUnknownState,omitempty"`
 
 	// Counter for ack packet dropped because of invalid format.
@@ -2077,7 +2077,7 @@ type SparseCounterReport struct {
 	// Counter for connections processed".
 	ConnectionsProcessed *int `json:"ConnectionsProcessed,omitempty" msgpack:"ConnectionsProcessed,omitempty" bson:"-" mapstructure:"ConnectionsProcessed,omitempty"`
 
-	// Counter for unable to find contextid.
+	// Counter for unable to find ContextID.
 	ContextIDNotFound *int `json:"ContextIDNotFound,omitempty" msgpack:"ContextIDNotFound,omitempty" bson:"-" mapstructure:"ContextIDNotFound,omitempty"`
 
 	// Counter for no acls found for external services. dropping application syn
@@ -2126,7 +2126,7 @@ type SparseCounterReport struct {
 	// Counter for synack packet dropped because of bad claims.
 	SynAckBadClaims *int `json:"SynAckBadClaims,omitempty" msgpack:"SynAckBadClaims,omitempty" bson:"-" mapstructure:"SynAckBadClaims,omitempty"`
 
-	// Counter for syn/ack packet dropped because of encryption mismatch.
+	// Counter for synack packet dropped because of encryption mismatch.
 	SynAckClaimsMisMatch *int `json:"SynAckClaimsMisMatch,omitempty" msgpack:"SynAckClaimsMisMatch,omitempty" bson:"-" mapstructure:"SynAckClaimsMisMatch,omitempty"`
 
 	// Counter for synack from external service dropped.
