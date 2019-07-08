@@ -141,7 +141,7 @@ type CounterReport struct {
 	// Counter for post service processing failed for network packet.
 	ServicePostprocessorFailed int `json:"ServicePostprocessorFailed" msgpack:"ServicePostprocessorFailed" bson:"-" mapstructure:"ServicePostprocessorFailed,omitempty"`
 
-	// Counter for pre service processing failed for network packet.
+	// Counter for network packets that failed preprocessing.
 	ServicePreprocessorFailed int `json:"ServicePreprocessorFailed" msgpack:"ServicePreprocessorFailed" bson:"-" mapstructure:"ServicePreprocessorFailed,omitempty"`
 
 	// Counter for synack packet dropped because of bad claims.
@@ -1148,7 +1148,7 @@ packet.`,
 	"ServicePreprocessorFailed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServicePreprocessorFailed",
-		Description:    `Counter for pre service processing failed for network packet.`,
+		Description:    `Counter for network packets that failed preprocessing.`,
 		Exposed:        true,
 		Name:           "ServicePreprocessorFailed",
 		Type:           "integer",
@@ -1655,7 +1655,7 @@ packet.`,
 	"servicepreprocessorfailed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServicePreprocessorFailed",
-		Description:    `Counter for pre service processing failed for network packet.`,
+		Description:    `Counter for network packets that failed preprocessing.`,
 		Exposed:        true,
 		Name:           "ServicePreprocessorFailed",
 		Type:           "integer",
@@ -2120,7 +2120,7 @@ type SparseCounterReport struct {
 	// Counter for post service processing failed for network packet.
 	ServicePostprocessorFailed *int `json:"ServicePostprocessorFailed,omitempty" msgpack:"ServicePostprocessorFailed,omitempty" bson:"-" mapstructure:"ServicePostprocessorFailed,omitempty"`
 
-	// Counter for pre service processing failed for network packet.
+	// Counter for network packets that failed preprocessing.
 	ServicePreprocessorFailed *int `json:"ServicePreprocessorFailed,omitempty" msgpack:"ServicePreprocessorFailed,omitempty" bson:"-" mapstructure:"ServicePreprocessorFailed,omitempty"`
 
 	// Counter for synack packet dropped because of bad claims.

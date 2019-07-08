@@ -1768,7 +1768,7 @@ Default value:
 
 ##### `ServicePreprocessorFailed` `integer`
 
-Counter for pre service processing failed for network packet.
+Counter for network packets that failed preprocessing.
 
 Default value:
 

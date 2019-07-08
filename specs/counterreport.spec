@@ -133,7 +133,7 @@ attributes:
     default_value: 0
 
   - name: ServicePreprocessorFailed
-    description: Counter for pre service processing failed for network packet.
+    description: Counter for network packets that failed preprocessing.
     type: integer
     exposed: true
     default_value: 0
