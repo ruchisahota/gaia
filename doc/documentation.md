@@ -8557,7 +8557,8 @@ List of single ports or range (xx:yy).
 
 ### QuotaCheck
 
-This api allows to verify the quota.
+This api allows to verify the quota for a given identity in a given namespace
+with the given tags.
 
 #### Example
 
