@@ -5,7 +5,7 @@ PROJECT_SHA ?= $(shell git rev-parse HEAD)
 PROJECT_VERSION ?= $(lastword $(shell git tag --sort version:refname --merged $(shell git rev-parse --abbrev-ref HEAD)))
 PROJECT_RELEASE ?= dev
 
-ci: init lint test spelling
+ci: init lint test
 
 init:
 	go get -u github.com/aporeto-inc/go-bindata/...
@@ -26,7 +26,7 @@ codegen:
 	data=$$(rego doc -d specs || exit 1) && \
 		echo -e "$${data}" > doc/documentation.md
 
-lint:
+lint: spelling
 	# --enable=unparam
 	golangci-lint run \
 		--disable-all \
