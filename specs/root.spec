@@ -414,6 +414,10 @@ relations:
         type: string
         example_value: xxx.yyyyyyyy.zzzz
 
+- rest_name: issueservicetoken
+  create:
+    description: Internal API to issue service tokens.
+
 - rest_name: ldapprovider
   get:
     description: Retrieves the list of the account LDAP providers.
@@ -632,6 +636,10 @@ relations:
   create:
     description: Creates a new service dependency.
 
+- rest_name: servicetoken
+  create:
+    description: Creates an OAUTH compatible service token.
+
 - rest_name: squalltag
   get:
     description: Retrieves a computed list of tags from squall for caching.
@@ -752,6 +760,21 @@ relations:
     - $propagatable
   create:
     description: Creates a new token scope policy.
+
+- rest_name: trustedca
+  get:
+    description: Retrieves the trusted CAs of a namespace.
+    parameters:
+      entries:
+      - name: type
+        description: The type of certificates that it should return.
+        type: enum
+        allowed_choices:
+        - Any
+        - X509
+        - SSH
+        - JWT
+        default_value: Any
 
 - rest_name: useraccesspolicy
   get:
