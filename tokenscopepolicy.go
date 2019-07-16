@@ -94,8 +94,16 @@ type TokenScopePolicy struct {
 	// The policy will be active for the given `activeDuration`.
 	ActiveSchedule string `json:"activeSchedule" msgpack:"activeSchedule" bson:"activeschedule" mapstructure:"activeSchedule,omitempty"`
 
+	// A list of audience values that are allowed when issuing a service token. An
+	// empty list will allow any audience values.
+	AllowedAudiences []string `json:"allowedAudiences" msgpack:"allowedAudiences" bson:"allowedaudiences" mapstructure:"allowedAudiences,omitempty"`
+
 	// Stores additional information about an entity.
 	Annotations map[string][]string `json:"annotations" msgpack:"annotations" bson:"annotations" mapstructure:"annotations,omitempty"`
+
+	// The audience that should be assigned to a request if the caller is not
+	// requesting any specific audience.
+	AssignedAudience string `json:"assignedAudience" msgpack:"assignedAudience" bson:"assignedaudience" mapstructure:"assignedAudience,omitempty"`
 
 	// The list of scopes that the policy will assign.
 	AssignedScopes []string `json:"assignedScopes" msgpack:"assignedScopes" bson:"assignedscopes" mapstructure:"assignedScopes,omitempty"`
@@ -122,6 +130,11 @@ type TokenScopePolicy struct {
 	// applied if no other policies have been resolved. If the policy is also
 	// propagated it will become a fallback for children namespaces.
 	Fallback bool `json:"fallback" msgpack:"fallback" bson:"fallback" mapstructure:"fallback,omitempty"`
+
+	// A list of claim keys that should be inherited from the claims of the caller to
+	// the assigned token. In this case, some of the caller claims will be propagated
+	// to resolved token.
+	InheritedClaimKeys []string `json:"inheritedClaimKeys" msgpack:"inheritedClaimKeys" bson:"inheritedclaimkeys" mapstructure:"inheritedClaimKeys,omitempty"`
 
 	// Contains tags that can only be set during creation, must all start
 	// with the '@' prefix, and should only be used by external systems.
@@ -159,13 +172,15 @@ type TokenScopePolicy struct {
 func NewTokenScopePolicy() *TokenScopePolicy {
 
 	return &TokenScopePolicy{
-		ModelVersion:   1,
-		Annotations:    map[string][]string{},
-		AssignedScopes: []string{},
-		AssociatedTags: []string{},
-		Metadata:       []string{},
-		NormalizedTags: []string{},
-		Subject:        [][]string{},
+		ModelVersion:       1,
+		AssignedScopes:     []string{},
+		AllowedAudiences:   []string{},
+		Annotations:        map[string][]string{},
+		AssociatedTags:     []string{},
+		InheritedClaimKeys: []string{},
+		Metadata:           []string{},
+		NormalizedTags:     []string{},
+		Subject:            [][]string{},
 	}
 }
 
@@ -447,7 +462,9 @@ func (o *TokenScopePolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			ID:                   &o.ID,
 			ActiveDuration:       &o.ActiveDuration,
 			ActiveSchedule:       &o.ActiveSchedule,
+			AllowedAudiences:     &o.AllowedAudiences,
 			Annotations:          &o.Annotations,
+			AssignedAudience:     &o.AssignedAudience,
 			AssignedScopes:       &o.AssignedScopes,
 			AssociatedTags:       &o.AssociatedTags,
 			CreateIdempotencyKey: &o.CreateIdempotencyKey,
@@ -456,6 +473,7 @@ func (o *TokenScopePolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			Disabled:             &o.Disabled,
 			ExpirationTime:       &o.ExpirationTime,
 			Fallback:             &o.Fallback,
+			InheritedClaimKeys:   &o.InheritedClaimKeys,
 			Metadata:             &o.Metadata,
 			Name:                 &o.Name,
 			Namespace:            &o.Namespace,
@@ -477,8 +495,12 @@ func (o *TokenScopePolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			sp.ActiveDuration = &(o.ActiveDuration)
 		case "activeSchedule":
 			sp.ActiveSchedule = &(o.ActiveSchedule)
+		case "allowedAudiences":
+			sp.AllowedAudiences = &(o.AllowedAudiences)
 		case "annotations":
 			sp.Annotations = &(o.Annotations)
+		case "assignedAudience":
+			sp.AssignedAudience = &(o.AssignedAudience)
 		case "assignedScopes":
 			sp.AssignedScopes = &(o.AssignedScopes)
 		case "associatedTags":
@@ -495,6 +517,8 @@ func (o *TokenScopePolicy) ToSparse(fields ...string) elemental.SparseIdentifiab
 			sp.ExpirationTime = &(o.ExpirationTime)
 		case "fallback":
 			sp.Fallback = &(o.Fallback)
+		case "inheritedClaimKeys":
+			sp.InheritedClaimKeys = &(o.InheritedClaimKeys)
 		case "metadata":
 			sp.Metadata = &(o.Metadata)
 		case "name":
@@ -535,8 +559,14 @@ func (o *TokenScopePolicy) Patch(sparse elemental.SparseIdentifiable) {
 	if so.ActiveSchedule != nil {
 		o.ActiveSchedule = *so.ActiveSchedule
 	}
+	if so.AllowedAudiences != nil {
+		o.AllowedAudiences = *so.AllowedAudiences
+	}
 	if so.Annotations != nil {
 		o.Annotations = *so.Annotations
+	}
+	if so.AssignedAudience != nil {
+		o.AssignedAudience = *so.AssignedAudience
 	}
 	if so.AssignedScopes != nil {
 		o.AssignedScopes = *so.AssignedScopes
@@ -561,6 +591,9 @@ func (o *TokenScopePolicy) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.Fallback != nil {
 		o.Fallback = *so.Fallback
+	}
+	if so.InheritedClaimKeys != nil {
+		o.InheritedClaimKeys = *so.InheritedClaimKeys
 	}
 	if so.Metadata != nil {
 		o.Metadata = *so.Metadata
@@ -689,8 +722,12 @@ func (o *TokenScopePolicy) ValueForAttribute(name string) interface{} {
 		return o.ActiveDuration
 	case "activeSchedule":
 		return o.ActiveSchedule
+	case "allowedAudiences":
+		return o.AllowedAudiences
 	case "annotations":
 		return o.Annotations
+	case "assignedAudience":
+		return o.AssignedAudience
 	case "assignedScopes":
 		return o.AssignedScopes
 	case "associatedTags":
@@ -707,6 +744,8 @@ func (o *TokenScopePolicy) ValueForAttribute(name string) interface{} {
 		return o.ExpirationTime
 	case "fallback":
 		return o.Fallback
+	case "inheritedClaimKeys":
+		return o.InheritedClaimKeys
 	case "metadata":
 		return o.Metadata
 	case "name":
@@ -770,6 +809,18 @@ The policy will be active for the given ` + "`" + `activeDuration` + "`" + `.`,
 		Stored:  true,
 		Type:    "string",
 	},
+	"AllowedAudiences": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AllowedAudiences",
+		Description: `A list of audience values that are allowed when issuing a service token. An
+empty list will allow any audience values.`,
+		Exposed:   true,
+		Name:      "allowedAudiences",
+		Orderable: true,
+		Stored:    true,
+		SubType:   "string",
+		Type:      "list",
+	},
 	"Annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
@@ -781,6 +832,17 @@ The policy will be active for the given ` + "`" + `activeDuration` + "`" + `.`,
 		Stored:         true,
 		SubType:        "map[string][]string",
 		Type:           "external",
+	},
+	"AssignedAudience": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AssignedAudience",
+		Description: `The audience that should be assigned to a request if the caller is not
+requesting any specific audience.`,
+		Exposed:   true,
+		Name:      "assignedAudience",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
 	},
 	"AssignedScopes": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -880,6 +942,19 @@ propagated it will become a fallback for children namespaces.`,
 		Setter:    true,
 		Stored:    true,
 		Type:      "boolean",
+	},
+	"InheritedClaimKeys": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "InheritedClaimKeys",
+		Description: `A list of claim keys that should be inherited from the claims of the caller to
+the assigned token. In this case, some of the caller claims will be propagated
+to resolved token.`,
+		Exposed:   true,
+		Name:      "inheritedClaimKeys",
+		Orderable: true,
+		Stored:    true,
+		SubType:   "string",
+		Type:      "list",
 	},
 	"Metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1047,6 +1122,18 @@ The policy will be active for the given ` + "`" + `activeDuration` + "`" + `.`,
 		Stored:  true,
 		Type:    "string",
 	},
+	"allowedaudiences": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AllowedAudiences",
+		Description: `A list of audience values that are allowed when issuing a service token. An
+empty list will allow any audience values.`,
+		Exposed:   true,
+		Name:      "allowedAudiences",
+		Orderable: true,
+		Stored:    true,
+		SubType:   "string",
+		Type:      "list",
+	},
 	"annotations": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Annotations",
@@ -1058,6 +1145,17 @@ The policy will be active for the given ` + "`" + `activeDuration` + "`" + `.`,
 		Stored:         true,
 		SubType:        "map[string][]string",
 		Type:           "external",
+	},
+	"assignedaudience": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "AssignedAudience",
+		Description: `The audience that should be assigned to a request if the caller is not
+requesting any specific audience.`,
+		Exposed:   true,
+		Name:      "assignedAudience",
+		Orderable: true,
+		Stored:    true,
+		Type:      "string",
 	},
 	"assignedscopes": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1157,6 +1255,19 @@ propagated it will become a fallback for children namespaces.`,
 		Setter:    true,
 		Stored:    true,
 		Type:      "boolean",
+	},
+	"inheritedclaimkeys": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "InheritedClaimKeys",
+		Description: `A list of claim keys that should be inherited from the claims of the caller to
+the assigned token. In this case, some of the caller claims will be propagated
+to resolved token.`,
+		Exposed:   true,
+		Name:      "inheritedClaimKeys",
+		Orderable: true,
+		Stored:    true,
+		SubType:   "string",
+		Type:      "list",
 	},
 	"metadata": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1361,8 +1472,16 @@ type SparseTokenScopePolicy struct {
 	// The policy will be active for the given `activeDuration`.
 	ActiveSchedule *string `json:"activeSchedule,omitempty" msgpack:"activeSchedule,omitempty" bson:"activeschedule,omitempty" mapstructure:"activeSchedule,omitempty"`
 
+	// A list of audience values that are allowed when issuing a service token. An
+	// empty list will allow any audience values.
+	AllowedAudiences *[]string `json:"allowedAudiences,omitempty" msgpack:"allowedAudiences,omitempty" bson:"allowedaudiences,omitempty" mapstructure:"allowedAudiences,omitempty"`
+
 	// Stores additional information about an entity.
 	Annotations *map[string][]string `json:"annotations,omitempty" msgpack:"annotations,omitempty" bson:"annotations,omitempty" mapstructure:"annotations,omitempty"`
+
+	// The audience that should be assigned to a request if the caller is not
+	// requesting any specific audience.
+	AssignedAudience *string `json:"assignedAudience,omitempty" msgpack:"assignedAudience,omitempty" bson:"assignedaudience,omitempty" mapstructure:"assignedAudience,omitempty"`
 
 	// The list of scopes that the policy will assign.
 	AssignedScopes *[]string `json:"assignedScopes,omitempty" msgpack:"assignedScopes,omitempty" bson:"assignedscopes,omitempty" mapstructure:"assignedScopes,omitempty"`
@@ -1389,6 +1508,11 @@ type SparseTokenScopePolicy struct {
 	// applied if no other policies have been resolved. If the policy is also
 	// propagated it will become a fallback for children namespaces.
 	Fallback *bool `json:"fallback,omitempty" msgpack:"fallback,omitempty" bson:"fallback,omitempty" mapstructure:"fallback,omitempty"`
+
+	// A list of claim keys that should be inherited from the claims of the caller to
+	// the assigned token. In this case, some of the caller claims will be propagated
+	// to resolved token.
+	InheritedClaimKeys *[]string `json:"inheritedClaimKeys,omitempty" msgpack:"inheritedClaimKeys,omitempty" bson:"inheritedclaimkeys,omitempty" mapstructure:"inheritedClaimKeys,omitempty"`
 
 	// Contains tags that can only be set during creation, must all start
 	// with the '@' prefix, and should only be used by external systems.
@@ -1467,8 +1591,14 @@ func (o *SparseTokenScopePolicy) ToPlain() elemental.PlainIdentifiable {
 	if o.ActiveSchedule != nil {
 		out.ActiveSchedule = *o.ActiveSchedule
 	}
+	if o.AllowedAudiences != nil {
+		out.AllowedAudiences = *o.AllowedAudiences
+	}
 	if o.Annotations != nil {
 		out.Annotations = *o.Annotations
+	}
+	if o.AssignedAudience != nil {
+		out.AssignedAudience = *o.AssignedAudience
 	}
 	if o.AssignedScopes != nil {
 		out.AssignedScopes = *o.AssignedScopes
@@ -1493,6 +1623,9 @@ func (o *SparseTokenScopePolicy) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.Fallback != nil {
 		out.Fallback = *o.Fallback
+	}
+	if o.InheritedClaimKeys != nil {
+		out.InheritedClaimKeys = *o.InheritedClaimKeys
 	}
 	if o.Metadata != nil {
 		out.Metadata = *o.Metadata
