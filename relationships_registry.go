@@ -1103,7 +1103,7 @@ func init() {
 			"root": &elemental.RelationshipInfo{
 				Parameters: []elemental.ParameterDefinition{
 					elemental.ParameterDefinition{
-						Name:     "ignoredTags",
+						Name:     "q",
 						Type:     "string",
 						Multiple: true,
 					},
@@ -2030,7 +2030,7 @@ func init() {
 		},
 	}
 
-	relationshipsRegistry[JaegerbatchIdentity] = &elemental.Relationship{
+	relationshipsRegistry[IssueServiceTokenIdentity] = &elemental.Relationship{
 		Create: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
 		},
@@ -2317,6 +2317,70 @@ func init() {
 					elemental.ParameterDefinition{
 						Name: "propagated",
 						Type: "boolean",
+					},
+				},
+			},
+		},
+	}
+
+	relationshipsRegistry[OAUTHInfoIdentity] = &elemental.Relationship{
+		Retrieve: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+		RetrieveMany: map[string]*elemental.RelationshipInfo{
+			"namespace": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name: "mode",
+						Type: "enum",
+						AllowedChoices: []string{
+							"oidc",
+						},
+					},
+				},
+			},
+		},
+		Info: map[string]*elemental.RelationshipInfo{
+			"namespace": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name: "mode",
+						Type: "enum",
+						AllowedChoices: []string{
+							"oidc",
+						},
+					},
+				},
+			},
+		},
+	}
+
+	relationshipsRegistry[OAUTHKeyIdentity] = &elemental.Relationship{
+		Retrieve: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+		RetrieveMany: map[string]*elemental.RelationshipInfo{
+			"namespace": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name: "mode",
+						Type: "enum",
+						AllowedChoices: []string{
+							"oidc",
+						},
+					},
+				},
+			},
+		},
+		Info: map[string]*elemental.RelationshipInfo{
+			"namespace": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name: "mode",
+						Type: "enum",
+						AllowedChoices: []string{
+							"oidc",
+						},
 					},
 				},
 			},
@@ -3570,6 +3634,12 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[ServiceTokenIdentity] = &elemental.Relationship{
+		Create: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+	}
+
 	relationshipsRegistry[SquallTagIdentity] = &elemental.Relationship{
 		RetrieveMany: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{
@@ -4021,6 +4091,36 @@ func init() {
 					},
 				},
 			},
+			"namespace": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:         "type",
+						Type:         "enum",
+						DefaultValue: "Any",
+						AllowedChoices: []string{
+							"Any",
+							"X509",
+							"SSH",
+							"JWT",
+						},
+					},
+				},
+			},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:         "type",
+						Type:         "enum",
+						DefaultValue: "Any",
+						AllowedChoices: []string{
+							"Any",
+							"X509",
+							"SSH",
+							"JWT",
+						},
+					},
+				},
+			},
 		},
 		Info: map[string]*elemental.RelationshipInfo{
 			"enforcer": &elemental.RelationshipInfo{
@@ -4033,6 +4133,36 @@ func init() {
 							"Any",
 							"X509",
 							"SSH",
+						},
+					},
+				},
+			},
+			"namespace": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:         "type",
+						Type:         "enum",
+						DefaultValue: "Any",
+						AllowedChoices: []string{
+							"Any",
+							"X509",
+							"SSH",
+							"JWT",
+						},
+					},
+				},
+			},
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:         "type",
+						Type:         "enum",
+						DefaultValue: "Any",
+						AllowedChoices: []string{
+							"Any",
+							"X509",
+							"SSH",
+							"JWT",
 						},
 					},
 				},

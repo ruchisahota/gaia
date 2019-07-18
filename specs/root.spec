@@ -260,13 +260,8 @@ relations:
 - rest_name: export
   create:
     description: Exports all policies and related objects of a namespace.
-    parameters:
-      entries:
-      - name: ignoredTags
-        description: List of tags to ignore from the export.
-        type: string
-        multiple: true
-        example_value: a=a
+    global_parameters:
+    - $filtering
 
 - rest_name: externalnetwork
   get:
@@ -418,9 +413,9 @@ relations:
         type: string
         example_value: xxx.yyyyyyyy.zzzz
 
-- rest_name: jaegerbatch
+- rest_name: issueservicetoken
   create:
-    description: Sends a jaeger tracing batch.
+    description: Internal API to issue service tokens.
 
 - rest_name: ldapprovider
   get:
@@ -640,6 +635,10 @@ relations:
   create:
     description: Creates a new service dependency.
 
+- rest_name: servicetoken
+  create:
+    description: Creates an OAUTH compatible service token.
+
 - rest_name: squalltag
   get:
     description: Retrieves a computed list of tags from squall for caching.
@@ -760,6 +759,21 @@ relations:
     - $propagatable
   create:
     description: Creates a new token scope policy.
+
+- rest_name: trustedca
+  get:
+    description: Retrieves the trusted CAs of a namespace.
+    parameters:
+      entries:
+      - name: type
+        description: The type of certificates that it should return.
+        type: enum
+        allowed_choices:
+        - Any
+        - X509
+        - SSH
+        - JWT
+        default_value: Any
 
 - rest_name: useraccesspolicy
   get:
