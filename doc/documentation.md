@@ -1617,7 +1617,7 @@ Default value:
 
 ##### `ConnectionsProcessed` `integer`
 
-Counter for connections processed".
+Counter for connections processed.
 
 Default value:
 

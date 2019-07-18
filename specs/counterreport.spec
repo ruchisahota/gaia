@@ -41,7 +41,7 @@ attributes:
     default_value: 0
 
   - name: ConnectionsProcessed
-    description: Counter for connections processed".
+    description: Counter for connections processed.
     type: integer
     exposed: true
     default_value: 0

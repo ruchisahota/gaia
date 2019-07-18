@@ -95,7 +95,7 @@ type CounterReport struct {
 	// Counter for tcp authentication option not found.
 	AckTCPNoTCPAuthOption int `json:"AckTCPNoTCPAuthOption" msgpack:"AckTCPNoTCPAuthOption" bson:"-" mapstructure:"AckTCPNoTCPAuthOption,omitempty"`
 
-	// Counter for connections processed".
+	// Counter for connections processed.
 	ConnectionsProcessed int `json:"ConnectionsProcessed" msgpack:"ConnectionsProcessed" bson:"-" mapstructure:"ConnectionsProcessed,omitempty"`
 
 	// Counter for unable to find ContextID.
@@ -1027,7 +1027,7 @@ var CounterReportAttributesMap = map[string]elemental.AttributeSpecification{
 	"ConnectionsProcessed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ConnectionsProcessed",
-		Description:    `Counter for connections processed".`,
+		Description:    `Counter for connections processed.`,
 		Exposed:        true,
 		Name:           "ConnectionsProcessed",
 		Type:           "integer",
@@ -1534,7 +1534,7 @@ var CounterReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecific
 	"connectionsprocessed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ConnectionsProcessed",
-		Description:    `Counter for connections processed".`,
+		Description:    `Counter for connections processed.`,
 		Exposed:        true,
 		Name:           "ConnectionsProcessed",
 		Type:           "integer",
@@ -2074,7 +2074,7 @@ type SparseCounterReport struct {
 	// Counter for tcp authentication option not found.
 	AckTCPNoTCPAuthOption *int `json:"AckTCPNoTCPAuthOption,omitempty" msgpack:"AckTCPNoTCPAuthOption,omitempty" bson:"-" mapstructure:"AckTCPNoTCPAuthOption,omitempty"`
 
-	// Counter for connections processed".
+	// Counter for connections processed.
 	ConnectionsProcessed *int `json:"ConnectionsProcessed,omitempty" msgpack:"ConnectionsProcessed,omitempty" bson:"-" mapstructure:"ConnectionsProcessed,omitempty"`
 
 	// Counter for unable to find ContextID.
