@@ -1519,6 +1519,7 @@ ZDGRs55xuoeLDJ/ZRFf9bI+IaCUd1YrfYcHIl3G87Av+r49YVwqRDT0VDV7uLgqn
 -----END CERTIFICATE REQUEST-----",
   "collectInfo": false,
   "enforcementStatus": "Inactive",
+  "logLevel": "Info",
   "machineID": "3F23E8DF-C56D-45CF-89B8-A867F3956409",
   "name": "the name",
   "operationalStatus": "Registered",
@@ -1683,6 +1684,16 @@ The time and date of the last heartbeat.
 
 Contains the initial chain of trust for the enforcer. This value is only
 given when you retrieve a single enforcer.
+
+##### `logLevel` `emum(Info | Debug | Warn | Error)`
+
+Log level of the enforcer.
+
+Default value:
+
+```json
+"Info"
+```
 
 ##### `machineID` `string`
 
