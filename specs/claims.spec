@@ -39,8 +39,10 @@ attributes:
 
   - name: hash
     description: |-
-      XXH64 hash of the claims content. It will be used as ID. To compute a correct hash,
-      you must first clob `content` as an string array in the form `key=value`, sort it
+      XXH64 hash of the claims content. It will be used as ID. To compute a correct
+      hash,
+      you must first clob `content` as an string array in the form `key=value`, sort
+      it
       then apply the XXH64 function.
     type: string
     exposed: true

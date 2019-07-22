@@ -1489,6 +1489,678 @@ Contains the name of the plan.
 
 ## core/enforcer
 
+### CounterReport
+
+Post a new counter tracing report.
+
+#### Example
+
+```json
+{
+  "AckInUnknownState": 0,
+  "AckInvalidFormat": 0,
+  "AckRejected": 0,
+  "AckSigValidationFailed": 0,
+  "AckTCPNoTCPAuthOption": 0,
+  "ConnectionsProcessed": 0,
+  "ContextIDNotFound": 0,
+  "DroppedExternalService": 0,
+  "InvalidConnState": 0,
+  "InvalidNetState": 0,
+  "InvalidProtocol": 0,
+  "InvalidSynAck": 0,
+  "MarkNotFound": 0,
+  "NetSynNotSeen": 0,
+  "NoConnFound": 0,
+  "NonPUTraffic": 0,
+  "OutOfOrderSynAck": 0,
+  "PortNotFound": 0,
+  "RejectPacket": 0,
+  "ServicePostprocessorFailed": 0,
+  "ServicePreprocessorFailed": 0,
+  "SynAckBadClaims": 0,
+  "SynAckClaimsMisMatch": 0,
+  "SynAckDroppedExternalService": 0,
+  "SynAckInvalidFormat": 0,
+  "SynAckMissingClaims": 0,
+  "SynAckMissingToken": 0,
+  "SynAckNoTCPAuthOption": 0,
+  "SynAckRejected": 0,
+  "SynDroppedInvalidFormat": 0,
+  "SynDroppedInvalidToken": 0,
+  "SynDroppedNoClaims": 0,
+  "SynDroppedTCPOption": 0,
+  "SynRejectPacket": 0,
+  "SynUnexpectedPacket": 0,
+  "TCPAuthNotFound": 0,
+  "UDPAckInvalidSignature": 0,
+  "UDPConnectionsProcessed": 0,
+  "UDPDropContextNotFound": 0,
+  "UDPDropFin": 0,
+  "UDPDropInNfQueue": 0,
+  "UDPDropNoConnection": 0,
+  "UDPDropPacket": 0,
+  "UDPDropQueueFull": 0,
+  "UDPDropSynAck": 0,
+  "UDPInvalidNetState": 0,
+  "UDPPostProcessingFailed": 0,
+  "UDPPreProcessingFailed": 0,
+  "UDPRejected": 0,
+  "UDPSynAckDropBadClaims": 0,
+  "UDPSynAckMissingClaims": 0,
+  "UDPSynAckPolicy": 0,
+  "UDPSynDrop": 0,
+  "UDPSynDropPolicy": 0,
+  "UDPSynInvalidToken": 0,
+  "UDPSynMissingClaims": 0,
+  "UnknownError": 0,
+  "enforcerID": "xxxx-xxx-xxxx",
+  "enforcerNamespace": "/my/namespace",
+  "processingUnitID": "xxx-xxx-xxx",
+  "processingUnitNamespace": "/my/namespace",
+  "timestamp": "2018-06-14T23:10:46.420397985Z"
+}
+```
+
+#### Relations
+
+##### `POST /counterreports`
+
+Create a counter report.
+
+#### Attributes
+
+##### `AckInUnknownState` `integer`
+
+Counter for sending finack ack received in unknown connection state.
+
+Default value:
+
+```json
+0
+```
+
+##### `AckInvalidFormat` `integer`
+
+Counter for ack packet dropped because of invalid format.
+
+Default value:
+
+```json
+0
+```
+
+##### `AckRejected` `integer`
+
+Counter for reject ack packet as per policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `AckSigValidationFailed` `integer`
+
+Counter for ack packet dropped because signature validation failed.
+
+Default value:
+
+```json
+0
+```
+
+##### `AckTCPNoTCPAuthOption` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `ConnectionsProcessed` `integer`
+
+Counter for connections processed.
+
+Default value:
+
+```json
+0
+```
+
+##### `ContextIDNotFound` `integer`
+
+Counter for unable to find ContextID.
+
+Default value:
+
+```json
+0
+```
+
+##### `DroppedExternalService` `integer`
+
+Counter for no acls found for external services. dropping application syn
+packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `InvalidConnState` `integer`
+
+Counter for invalid connection state.
+
+Default value:
+
+```json
+0
+```
+
+##### `InvalidNetState` `integer`
+
+Counter for invalid net state.
+
+Default value:
+
+```json
+0
+```
+
+##### `InvalidProtocol` `integer`
+
+Counter for invalid protocol.
+
+Default value:
+
+```json
+0
+```
+
+##### `InvalidSynAck` `integer`
+
+Counter for pu is already dead - drop synack packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `MarkNotFound` `integer`
+
+Counter for pu mark not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `NetSynNotSeen` `integer`
+
+Counter for network syn packet was not seen.
+
+Default value:
+
+```json
+0
+```
+
+##### `NoConnFound` `integer`
+
+Counter for no context or connection found.
+
+Default value:
+
+```json
+0
+```
+
+##### `NonPUTraffic` `integer`
+
+Counter for traffic that belongs to a non PU process.
+
+Default value:
+
+```json
+0
+```
+
+##### `OutOfOrderSynAck` `integer`
+
+Counter for synack for flow with processed finack.
+
+Default value:
+
+```json
+0
+```
+
+##### `PortNotFound` `integer`
+
+Counter for port not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `RejectPacket` `integer`
+
+Counter for reject the packet as per policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `ServicePostprocessorFailed` `integer`
+
+Counter for post service processing failed for network packet.
+
+Default value:
+
+```json
+0
+```
+
+##### `ServicePreprocessorFailed` `integer`
+
+Counter for network packets that failed preprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckBadClaims` `integer`
+
+Counter for synack packet dropped because of bad claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckClaimsMisMatch` `integer`
+
+Counter for synack packet dropped because of encryption mismatch.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckDroppedExternalService` `integer`
+
+Counter for synack from external service dropped.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckInvalidFormat` `integer`
+
+Counter for synack packet dropped because of invalid format.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckMissingClaims` `integer`
+
+Counter for synack packet dropped because of no claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckMissingToken` `integer`
+
+Counter for synack packet dropped because of missing token.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckNoTCPAuthOption` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynAckRejected` `integer`
+
+Counter for dropping because of reject rule on transmitter.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynDroppedInvalidFormat` `integer`
+
+Counter for syn packet dropped because of invalid format.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynDroppedInvalidToken` `integer`
+
+Counter for syn packet dropped because of invalid token.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynDroppedNoClaims` `integer`
+
+Counter for syn packet dropped because of no claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynDroppedTCPOption` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynRejectPacket` `integer`
+
+Counter for syn dropped due to policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `SynUnexpectedPacket` `integer`
+
+Counter for received syn packet from unknown pu.
+
+Default value:
+
+```json
+0
+```
+
+##### `TCPAuthNotFound` `integer`
+
+Counter for tcp authentication option not found.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPAckInvalidSignature` `integer`
+
+Counter for dropped udp ack invalid signature.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPConnectionsProcessed` `integer`
+
+Counter for number of processed UDP connections.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropContextNotFound` `integer`
+
+Counter for dropped UDP data packets with no context.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropFin` `integer`
+
+Counter for dropped udp FIN handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropInNfQueue` `integer`
+
+Counter for dropped UDP in NfQueue.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropNoConnection` `integer`
+
+Counter for dropped UDP data packets with no connection.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropPacket` `integer`
+
+Counter for dropped UDP data packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropQueueFull` `integer`
+
+Counter for dropped UDP Queue Full.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPDropSynAck` `integer`
+
+Counter for dropped udp synack handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPInvalidNetState` `integer`
+
+Counter for udp packets received in invalid network state.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPPostProcessingFailed` `integer`
+
+Counter for UDP packets failing postprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPPreProcessingFailed` `integer`
+
+Counter for UDP packets failing preprocessing.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPRejected` `integer`
+
+Counter for UDP packets dropped due to policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynAckDropBadClaims` `integer`
+
+Counter for dropped udp synack bad claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynAckMissingClaims` `integer`
+
+Counter for dropped udp synack missing claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynAckPolicy` `integer`
+
+Counter for dropped udp synack bad claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynDrop` `integer`
+
+Counter for dropped udp syn transmits.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynDropPolicy` `integer`
+
+Counter for dropped udp syn policy.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynInvalidToken` `integer`
+
+Counter for dropped udp FIN handshake packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `UDPSynMissingClaims` `integer`
+
+Counter for dropped UDP SYN missing claims.
+
+Default value:
+
+```json
+0
+```
+
+##### `UnknownError` `integer`
+
+Counter for unknown error.
+
+Default value:
+
+```json
+0
+```
+
+##### `enforcerID` `string` [`required`]
+
+Identifier of the enforcer sending the report.
+
+##### `enforcerNamespace` `string` [`required`]
+
+Namespace of the enforcer sending the report.
+
+##### `processingUnitID` `string`
+
+PUID is the ID of the PU reporting the counter.
+
+##### `processingUnitNamespace` `string`
+
+Namespace of the PU reporting the counter.
+
+##### `timestamp` `time`
+
+Timestamp is the date of the report.
+
 ### Enforcer
 
 Contains all parameters associated with a registered enforcer. The
@@ -1866,10 +2538,13 @@ Post a new packet tracing report.
 {
   "destinationPort": 11000,
   "encrypt": false,
+  "enforcerID": "xxxx-xxx-xxxx",
+  "enforcerNamespace": "/my/namespace",
   "event": "Rcv",
   "namespace": "/my/namespace",
   "protocol": 6,
   "puID": "xxx-xxx-xxx",
+  "rawPacket": "abcd",
   "sourcePort": 80,
   "timestamp": "2018-06-14T23:10:46.420397985Z",
   "triremePacket": true
@@ -1901,6 +2576,14 @@ Otherwise empty.
 
 Set to `true` if the packet was encrypted.
 
+##### `enforcerID` `string` [`required`]
+
+Identifier of the enforcer sending the report.
+
+##### `enforcerNamespace` `string` [`required`]
+
+Namespace of the enforcer sending the report.
+
 ##### `event` `emum(Received | Transmitted | Dropped)` [`required`]
 
 The event that triggered the report.
@@ -1916,6 +2599,16 @@ Protocol number.
 ##### `puID` `string` [`required`]
 
 The ID of the processing unit reporting the packet.
+
+##### `rawPacket` `string`
+
+The first 64 bytes of the packet.
+
+Default value:
+
+```json
+"abcd"
+```
 
 ##### `sourceIP` `string`
 
@@ -6981,8 +7674,10 @@ Contains the raw JSON web token (JWT) claims.
 
 ##### `hash` `string` [`required`]
 
-XXH64 hash of the claims content. It will be used as ID. To compute a correct hash,
-you must first clob `content` as an string array in the form `key=value`, sort it
+XXH64 hash of the claims content. It will be used as ID. To compute a correct
+hash,
+you must first clob `content` as an string array in the form `key=value`, sort
+it
 then apply the XXH64 function.
 
 ##### `namespace` `string` [`autogenerated`,`read_only`]
@@ -9717,7 +10412,7 @@ Retrieves information about the content of the stats measurement.
 
 Contains the list of fields. You cannot group by these fields.
 
-##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Accesses)`
+##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Counters | Accesses)`
 
 Name of the measurement.
 
@@ -9796,7 +10491,7 @@ Default value:
 -1
 ```
 
-##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Packets | EnforcerTraces | Accesses)`
+##### `measurement` `emum(Flows | Audit | Enforcers | Files | EventLogs | Packets | EnforcerTraces | Counters | Accesses)`
 
 Name of the measurement.
 
