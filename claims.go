@@ -100,8 +100,10 @@ type Claims struct {
 	// Contains the date of the first appearance of the claims.
 	FirstSeen time.Time `json:"-" msgpack:"-" bson:"firstseen" mapstructure:"-,omitempty"`
 
-	// XXH64 hash of the claims content. It will be used as ID. To compute a correct hash,
-	// you must first clob `content` as an string array in the form `key=value`, sort it
+	// XXH64 hash of the claims content. It will be used as ID. To compute a correct
+	// hash,
+	// you must first clob `content` as an string array in the form `key=value`, sort
+	// it
 	// then apply the XXH64 function.
 	Hash string `json:"hash" msgpack:"hash" bson:"-" mapstructure:"hash,omitempty"`
 
@@ -592,8 +594,10 @@ var ClaimsAttributesMap = map[string]elemental.AttributeSpecification{
 	"Hash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Hash",
-		Description: `XXH64 hash of the claims content. It will be used as ID. To compute a correct hash,
-you must first clob ` + "`" + `content` + "`" + ` as an string array in the form ` + "`" + `key=value` + "`" + `, sort it
+		Description: `XXH64 hash of the claims content. It will be used as ID. To compute a correct
+hash,
+you must first clob ` + "`" + `content` + "`" + ` as an string array in the form ` + "`" + `key=value` + "`" + `, sort
+it
 then apply the XXH64 function.`,
 		Exposed:  true,
 		Name:     "hash",
@@ -770,8 +774,10 @@ var ClaimsLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 	"hash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Hash",
-		Description: `XXH64 hash of the claims content. It will be used as ID. To compute a correct hash,
-you must first clob ` + "`" + `content` + "`" + ` as an string array in the form ` + "`" + `key=value` + "`" + `, sort it
+		Description: `XXH64 hash of the claims content. It will be used as ID. To compute a correct
+hash,
+you must first clob ` + "`" + `content` + "`" + ` as an string array in the form ` + "`" + `key=value` + "`" + `, sort
+it
 then apply the XXH64 function.`,
 		Exposed:  true,
 		Name:     "hash",
@@ -955,8 +961,10 @@ type SparseClaims struct {
 	// Contains the date of the first appearance of the claims.
 	FirstSeen *time.Time `json:"-" msgpack:"-" bson:"firstseen,omitempty" mapstructure:"-,omitempty"`
 
-	// XXH64 hash of the claims content. It will be used as ID. To compute a correct hash,
-	// you must first clob `content` as an string array in the form `key=value`, sort it
+	// XXH64 hash of the claims content. It will be used as ID. To compute a correct
+	// hash,
+	// you must first clob `content` as an string array in the form `key=value`, sort
+	// it
 	// then apply the XXH64 function.
 	Hash *string `json:"hash,omitempty" msgpack:"hash,omitempty" bson:"-" mapstructure:"hash,omitempty"`
 
