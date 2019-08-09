@@ -28,6 +28,13 @@ model:
   - '@named'
   - '@timeable'
 
+# Indexes
+indexes:
+- - namespace
+  - operationalStatus
+- - namespace
+  - machineID
+
 # Attributes
 attributes:
   v1:
