@@ -9,6 +9,8 @@ model:
   private: true
   extends:
   - '@zoned'
+  extensions:
+    forceDocumentation: true
 
 # Indexes
 indexes:

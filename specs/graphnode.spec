@@ -7,6 +7,8 @@ model:
   group: visualization/depmaps
   description: Represents an node from the dependency map.
   private: true
+  extensions:
+    forceDocumentation: true
 
 # Attributes
 attributes:
