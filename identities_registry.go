@@ -519,7 +519,6 @@ var (
 			[]string{"lastSeen", "firstSeen"},
 			[]string{"lastSeen"},
 			[]string{"firstSeen"},
-			[]string{"createTime"},
 			[]string{":shard", ":unique", "zone", "zHash"},
 		},
 		"graphnode":  nil,

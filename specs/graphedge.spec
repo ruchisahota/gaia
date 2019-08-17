@@ -12,7 +12,6 @@ model:
 
 # Indexes
 indexes:
-- - createTime
 - - namespace
   - lastSeen
   - firstSeen
