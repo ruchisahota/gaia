@@ -306,7 +306,7 @@ relations:
 
 - rest_name: graphedge
   get:
-    description: Retrieves the graphedges.
+    description: Retrieves the graph edges.
     global_parameters:
     - $timewindow
     - $filtering

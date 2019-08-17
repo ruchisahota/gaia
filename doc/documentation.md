@@ -10134,7 +10134,7 @@ Represents an edge from the dependency map.
 
 ##### `GET /graphedges`
 
-Retrieves the graphedges.
+Retrieves the graph edges.
 
 Parameters:
 
