@@ -48,6 +48,15 @@ attributes:
     stored: true
     orderable: true
 
+  - name: providerProductID
+    description: |-
+      ProviderProductID holds the product id as used by the provider for this
+      customer to enable provider billing.
+    type: string
+    exposed: true
+    stored: true
+    orderable: true
+
   - name: state
     description: State holds the status of the customer with the provider.
     type: enum
