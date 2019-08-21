@@ -194,6 +194,8 @@ attributes:
     exposed: true
     stored: true
     default_value: 10s
+    validations:
+    - $timeDuration
 
   - name: machineID
     description: |-

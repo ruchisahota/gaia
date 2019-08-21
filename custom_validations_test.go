@@ -913,14 +913,19 @@ func TestValidateOptionalNetworkList(t *testing.T) {
 }
 
 func TestValidateAutomation(t *testing.T) {
-	testCases := []struct {
-		scenario    string
+	testCases := map[string]struct {
 		automation  *Automation
 		shouldError bool
 	}{
-		{
-			scenario: "should not return an error if trigger type is not webhook and multiple actions have been defined",
+		"should not return an error if trigger type is not webhook and multiple actions have been defined": {
 			automation: &Automation{
+				Condition: `
+						function when(api, params) {
+							return {
+								continue: true,
+							};
+						}
+			 	`,
 				Trigger: AutomationTriggerRemoteCall,
 				Actions: []string{
 					"Action 1",
@@ -929,8 +934,7 @@ func TestValidateAutomation(t *testing.T) {
 			},
 			shouldError: false,
 		},
-		{
-			scenario: "should not return an error if trigger type is webhook and one action has been defined",
+		"should not return an error if trigger type is webhook and one action has been defined": {
 			automation: &Automation{
 				Trigger: AutomationTriggerWebhook,
 				Actions: []string{
@@ -939,8 +943,7 @@ func TestValidateAutomation(t *testing.T) {
 			},
 			shouldError: false,
 		},
-		{
-			scenario: "should return an error if trigger type is set to webhook and more than one action has been defined",
+		"should return an error if trigger type is set to webhook and more than one action has been defined": {
 			automation: &Automation{
 				Trigger: AutomationTriggerWebhook,
 				Actions: []string{
@@ -950,8 +953,7 @@ func TestValidateAutomation(t *testing.T) {
 			},
 			shouldError: true,
 		},
-		{
-			scenario: "should return an error if trigger type is set to webhook and no actions have been defined",
+		"should return an error if trigger type is set to webhook and no actions have been defined": {
 			automation: &Automation{
 				Trigger: AutomationTriggerWebhook,
 				Actions: nil,
@@ -960,8 +962,8 @@ func TestValidateAutomation(t *testing.T) {
 		},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.scenario, func(t *testing.T) {
+	for scenario, tc := range testCases {
+		t.Run(scenario, func(t *testing.T) {
 			err := ValidateAutomation(tc.automation)
 			switch {
 			case err != nil && tc.shouldError:
@@ -1445,6 +1447,70 @@ things:
 		t.Run(tt.name, func(t *testing.T) {
 			if err := ValidateYAMLString(tt.args.attribute, tt.args.data); (err != nil) != tt.wantErr {
 				t.Errorf("ValidateYAMLString() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestValidateSAMLProvider(t *testing.T) {
+	type args struct {
+		provider *SAMLProvider
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			"with nothing",
+			args{&SAMLProvider{}},
+			true,
+		},
+		{
+			"with IDP metadata",
+			args{&SAMLProvider{
+				IDPMetadata: "m",
+			}},
+			false,
+		},
+		{
+			"with every other field",
+			args{&SAMLProvider{
+				IDPURL:         "IDPURL",
+				IDPIssuer:      "IDPIssuer",
+				IDPCertificate: "IDPCertificate",
+			}},
+			false,
+		},
+		{
+			"with every other field but IDPURL",
+			args{&SAMLProvider{
+				IDPIssuer:      "IDPIssuer",
+				IDPCertificate: "IDPCertificate",
+			}},
+			true,
+		},
+		{
+			"with every other field but IDPIssuer",
+			args{&SAMLProvider{
+				IDPURL:         "IDPURL",
+				IDPCertificate: "IDPCertificate",
+			}},
+			true,
+		},
+		{
+			"with every other field but IDPCertificate",
+			args{&SAMLProvider{
+				IDPURL:    "IDPURL",
+				IDPIssuer: "IDPIssuer",
+			}},
+			true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ValidateSAMLProvider(tt.args.provider); (err != nil) != tt.wantErr {
+				t.Errorf("ValidateSAMLProvider() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}

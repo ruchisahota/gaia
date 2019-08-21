@@ -41,7 +41,7 @@ attributes:
 
   - name: providerCustomerID
     description: |-
-      ProviderCustomerID holds the customer id as used by the provider for this
+      providerCustomerID holds the customer id as used by the provider for this
       customer to enable provider billing.
     type: string
     exposed: true

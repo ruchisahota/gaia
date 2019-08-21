@@ -120,7 +120,7 @@ type Customer struct {
 	// Provider holds the name of the provider to be billed for this service.
 	Provider CustomerProviderValue `json:"provider" msgpack:"provider" bson:"provider" mapstructure:"provider,omitempty"`
 
-	// ProviderCustomerID holds the customer id as used by the provider for this
+	// providerCustomerID holds the customer id as used by the provider for this
 	// customer to enable provider billing.
 	ProviderCustomerID string `json:"providerCustomerID" msgpack:"providerCustomerID" bson:"providercustomerid" mapstructure:"providerCustomerID,omitempty"`
 
@@ -424,7 +424,7 @@ var CustomerAttributesMap = map[string]elemental.AttributeSpecification{
 	"ProviderCustomerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProviderCustomerID",
-		Description: `ProviderCustomerID holds the customer id as used by the provider for this
+		Description: `providerCustomerID holds the customer id as used by the provider for this
 customer to enable provider billing.`,
 		Exposed:   true,
 		Name:      "providerCustomerID",
@@ -514,7 +514,7 @@ var CustomerLowerCaseAttributesMap = map[string]elemental.AttributeSpecification
 	"providercustomerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProviderCustomerID",
-		Description: `ProviderCustomerID holds the customer id as used by the provider for this
+		Description: `providerCustomerID holds the customer id as used by the provider for this
 customer to enable provider billing.`,
 		Exposed:   true,
 		Name:      "providerCustomerID",
@@ -632,7 +632,7 @@ type SparseCustomer struct {
 	// Provider holds the name of the provider to be billed for this service.
 	Provider *CustomerProviderValue `json:"provider,omitempty" msgpack:"provider,omitempty" bson:"provider,omitempty" mapstructure:"provider,omitempty"`
 
-	// ProviderCustomerID holds the customer id as used by the provider for this
+	// providerCustomerID holds the customer id as used by the provider for this
 	// customer to enable provider billing.
 	ProviderCustomerID *string `json:"providerCustomerID,omitempty" msgpack:"providerCustomerID,omitempty" bson:"providercustomerid,omitempty" mapstructure:"providerCustomerID,omitempty"`
 
