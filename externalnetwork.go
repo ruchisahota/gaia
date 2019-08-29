@@ -162,9 +162,11 @@ func NewExternalNetwork() *ExternalNetwork {
 		Entries:        []string{},
 		MigrationsLog:  map[string]string{},
 		NormalizedTags: []string{},
-		Ports:          []string{},
-		Metadata:       []string{},
-		Protocols:      []string{},
+		Ports: []string{
+			"1:65535",
+		},
+		Metadata:  []string{},
+		Protocols: []string{},
 	}
 }
 
@@ -900,6 +902,9 @@ with the '@' prefix, and should only be used by external systems.`,
 	"Ports": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Ports",
+		DefaultValue: []string{
+			"1:65535",
+		},
 		Description: `List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
 udp/90:900).`,
 		Exposed: true,
@@ -1172,6 +1177,9 @@ with the '@' prefix, and should only be used by external systems.`,
 	"ports": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Ports",
+		DefaultValue: []string{
+			"1:65535",
+		},
 		Description: `List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
 udp/90:900).`,
 		Exposed: true,

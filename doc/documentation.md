@@ -7870,6 +7870,9 @@ reference the external network from your network policies.
 ```json
 {
   "name": "the name",
+  "ports": [
+    "1:65535"
+  ],
   "propagate": false,
   "protected": false
 }
@@ -7975,6 +7978,14 @@ Contains the list of normalized tags of the entities.
 
 List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
 udp/90:900).
+
+Default value:
+
+```json
+[
+  "1:65535"
+]
+```
 
 ##### `propagate` `boolean`
 

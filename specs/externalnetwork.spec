@@ -60,6 +60,8 @@ attributes:
     exposed: true
     subtype: string
     stored: true
+    default_value:
+    - 1:65535
     validations:
     - $portsv2
 
