@@ -71,6 +71,46 @@ func ValidatePortStringList(attribute string, ports []string) error {
 	return nil
 }
 
+// ValidatePortStringListV2 validates a list of ports with new servicePorts validation.
+func ValidatePortStringListV2(attribute string, ports []string) error {
+
+	if len(ports) == 0 {
+		return makeValidationError(attribute, fmt.Sprintf("Attribute '%s' must not be empty", attribute))
+	}
+
+	for _, port := range ports {
+		if err := ValidatePortString(attribute, port); err != nil {
+			return ValidateServicePort(attribute, port)
+		}
+	}
+
+	return nil
+}
+
+// ValidateServicePort validates a single serviceport.
+func ValidateServicePort(attribute string, servicePort string) error {
+
+	parts := strings.SplitN(servicePort, "/", 2)
+	upperProto := strings.ToUpper(parts[0])
+	if protocols.L4ProtocolNumberFromName(upperProto) == -1 {
+		return makeValidationError(attribute, fmt.Sprintf("'%s' is not a valid protocol", upperProto))
+	}
+
+	if len(parts) == 1 {
+		if upperProto == protocols.L4ProtocolTCP || upperProto == protocols.L4ProtocolUDP {
+			return makeValidationError(attribute, fmt.Sprintf("protocol '%s' cannot be used without ports", upperProto))
+		}
+		return nil
+	}
+
+	if upperProto != protocols.L4ProtocolTCP && upperProto != protocols.L4ProtocolUDP {
+		return makeValidationError(attribute, fmt.Sprintf("protocol '%s' cannot be used with ports", upperProto))
+	}
+
+	ports := parts[1]
+	return ValidatePortString(attribute, ports)
+}
+
 var rxDNSName = regexp.MustCompile(`^([a-zA-Z0-9_]{1}[a-zA-Z0-9_-]{0,62}){1}(\.[a-zA-Z0-9_]{1}[a-zA-Z0-9_-]{0,62})*[\._]?$`)
 
 // ValidateNetwork validates a CIDR.
@@ -133,10 +173,6 @@ func ValidateProtocol(attribute string, proto string) error {
 
 // ValidateProtocolList validates a list of protocols.
 func ValidateProtocolList(attribute string, protocols []string) error {
-
-	if len(protocols) == 0 {
-		return makeValidationError(attribute, fmt.Sprintf("Attribute '%s' must not be empty", attribute))
-	}
 
 	for _, proto := range protocols {
 		if err := ValidateProtocol(attribute, proto); err != nil {

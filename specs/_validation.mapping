@@ -46,6 +46,10 @@ $ports:
   elemental:
     name: ValidatePortStringList
 
+$portsv2:
+  elemental:
+    name: ValidatePortStringListV2
+
 $processingunitservices:
   elemental:
     name: ValidateProcessingUnitServicesList

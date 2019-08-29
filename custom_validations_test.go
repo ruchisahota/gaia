@@ -152,6 +152,108 @@ func TestValidatePortString(t *testing.T) {
 	}
 }
 
+func TestValidateServicePort(t *testing.T) {
+	type args struct {
+		servicePort string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			"valid serviceports",
+			args{
+				"tcp/80",
+			},
+			false,
+		},
+		{
+			"invalid tcp serviceports",
+			args{
+				"tcp",
+			},
+			true,
+		},
+		{
+			"invalid udp serviceports",
+			args{
+				"udp/",
+			},
+			true,
+		},
+		{
+			"invalid protocol",
+			args{
+				"nope",
+			},
+			true,
+		},
+		{
+			"invalid serviceports",
+			args{
+				"tcp/80/90",
+			},
+			true,
+		},
+		{
+			"serviceports with protocol with ports not supported",
+			args{
+				"icmp/9090",
+			},
+			true,
+		},
+		{
+			"one serviceport with protocol with ports not supported",
+			args{
+				"isis/9090",
+			},
+			true,
+		},
+		{
+			"serviceports with valid port range",
+			args{
+				"tcp/90:8000",
+			},
+			false,
+		}, {
+			"serviceports with protocol numbers",
+			args{
+				"6/90:8000",
+			},
+			true,
+		},
+		{
+			"serviceports with invalid port range",
+			args{
+				"udp/90:800000",
+			},
+			true,
+		},
+		{
+			"serviceports with just port range",
+			args{
+				"90:8000",
+			},
+			true,
+		},
+		{
+			"empty string serviceports",
+			args{
+				"",
+			},
+			true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ValidateServicePort("serviceport", tt.args.servicePort); (err != nil) != tt.wantErr {
+				t.Errorf("ValidateServicePort() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
 func TestValidatePortStringList(t *testing.T) {
 	type args struct {
 		attribute string
@@ -191,6 +293,66 @@ func TestValidatePortStringList(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if err := ValidatePortStringList(tt.args.attribute, tt.args.ports); (err != nil) != tt.wantErr {
 				t.Errorf("ValidatePortStringList() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestValidatePortStringListV2(t *testing.T) {
+	type args struct {
+		attribute string
+		ports     []string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			"correct list",
+			args{
+				"ports",
+				[]string{"443", "555:666", "80"},
+			},
+			false,
+		},
+		{
+			"correct list with servicePorts",
+			args{
+				"ports",
+				[]string{"443", "555:666", "80", "tcp/80"},
+			},
+			false,
+		},
+		{
+			"correct list with invalid servicePorts",
+			args{
+				"ports",
+				[]string{"443", "555:666", "80", "tcp/80000"},
+			},
+			true,
+		},
+		{
+			"incorrect list",
+			args{
+				"ports",
+				[]string{"443", "555:666", "80", "yo"},
+			},
+			true,
+		},
+		{
+			"empty list",
+			args{
+				"ports",
+				[]string{},
+			},
+			true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ValidatePortStringListV2(tt.args.attribute, tt.args.ports); (err != nil) != tt.wantErr {
+				t.Errorf("ValidatePortStringListV2() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
@@ -463,7 +625,7 @@ func TestValidateProtocolList(t *testing.T) {
 				"proto",
 				[]string{},
 			},
-			true,
+			false,
 		},
 	}
 	for _, tt := range tests {

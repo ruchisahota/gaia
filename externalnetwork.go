@@ -123,7 +123,8 @@ type ExternalNetwork struct {
 	// Contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" msgpack:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// List of single ports or range (xx:yy).
+	// List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
+	// udp/90:900).
 	Ports []string `json:"ports" msgpack:"ports" bson:"ports" mapstructure:"ports,omitempty"`
 
 	// Propagates the policy to all of its children.
@@ -161,13 +162,9 @@ func NewExternalNetwork() *ExternalNetwork {
 		Entries:        []string{},
 		MigrationsLog:  map[string]string{},
 		NormalizedTags: []string{},
-		Ports: []string{
-			"1:65535",
-		},
-		Metadata: []string{},
-		Protocols: []string{
-			"tcp",
-		},
+		Ports:          []string{},
+		Metadata:       []string{},
+		Protocols:      []string{},
 	}
 }
 
@@ -639,7 +636,7 @@ func (o *ExternalNetwork) Validate() error {
 		errors = errors.Append(err)
 	}
 
-	if err := ValidatePortStringList("ports", o.Ports); err != nil {
+	if err := ValidatePortStringListV2("ports", o.Ports); err != nil {
 		errors = errors.Append(err)
 	}
 
@@ -903,15 +900,13 @@ with the '@' prefix, and should only be used by external systems.`,
 	"Ports": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Ports",
-		DefaultValue: []string{
-			"1:65535",
-		},
-		Description: `List of single ports or range (xx:yy).`,
-		Exposed:     true,
-		Name:        "ports",
-		Stored:      true,
-		SubType:     "string",
-		Type:        "list",
+		Description: `List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
+udp/90:900).`,
+		Exposed: true,
+		Name:    "ports",
+		Stored:  true,
+		SubType: "string",
+		Type:    "list",
 	},
 	"Propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -940,15 +935,12 @@ with the '@' prefix, and should only be used by external systems.`,
 	"Protocols": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protocols",
-		DefaultValue: []string{
-			"tcp",
-		},
-		Description: `List of protocols (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, or protocol number).`,
-		Exposed:     true,
-		Name:        "protocols",
-		Stored:      true,
-		SubType:     "string",
-		Type:        "list",
+		Description:    `List of protocols (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, or protocol number).`,
+		Exposed:        true,
+		Name:           "protocols",
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
 	},
 	"UpdateIdempotencyKey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1180,15 +1172,13 @@ with the '@' prefix, and should only be used by external systems.`,
 	"ports": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Ports",
-		DefaultValue: []string{
-			"1:65535",
-		},
-		Description: `List of single ports or range (xx:yy).`,
-		Exposed:     true,
-		Name:        "ports",
-		Stored:      true,
-		SubType:     "string",
-		Type:        "list",
+		Description: `List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
+udp/90:900).`,
+		Exposed: true,
+		Name:    "ports",
+		Stored:  true,
+		SubType: "string",
+		Type:    "list",
 	},
 	"propagate": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1217,15 +1207,12 @@ with the '@' prefix, and should only be used by external systems.`,
 	"protocols": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protocols",
-		DefaultValue: []string{
-			"tcp",
-		},
-		Description: `List of protocols (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, or protocol number).`,
-		Exposed:     true,
-		Name:        "protocols",
-		Stored:      true,
-		SubType:     "string",
-		Type:        "list",
+		Description:    `List of protocols (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, or protocol number).`,
+		Exposed:        true,
+		Name:           "protocols",
+		Stored:         true,
+		SubType:        "string",
+		Type:           "list",
 	},
 	"updateidempotencykey": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1388,7 +1375,8 @@ type SparseExternalNetwork struct {
 	// Contains the list of normalized tags of the entities.
 	NormalizedTags *[]string `json:"normalizedTags,omitempty" msgpack:"normalizedTags,omitempty" bson:"normalizedtags,omitempty" mapstructure:"normalizedTags,omitempty"`
 
-	// List of single ports or range (xx:yy).
+	// List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
+	// udp/90:900).
 	Ports *[]string `json:"ports,omitempty" msgpack:"ports,omitempty" bson:"ports,omitempty" mapstructure:"ports,omitempty"`
 
 	// Propagates the policy to all of its children.

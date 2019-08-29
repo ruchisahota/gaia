@@ -53,15 +53,15 @@ attributes:
     - $networks
 
   - name: ports
-    description: List of single ports or range (xx:yy).
+    description: |-
+      List of single ports or range (xx:yy) or List of protocol/ports (tcp/80,
+      udp/90:900).
     type: list
     exposed: true
     subtype: string
     stored: true
-    default_value:
-    - 1:65535
     validations:
-    - $ports
+    - $portsv2
 
   - name: protocols
     description: List of protocols (`tcp`, `udp`, or protocol number).
@@ -69,7 +69,5 @@ attributes:
     exposed: true
     subtype: string
     stored: true
-    default_value:
-    - tcp
     validations:
     - $protocols
