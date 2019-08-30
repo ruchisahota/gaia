@@ -61,7 +61,7 @@ attributes:
     subtype: string
     stored: true
     default_value:
-    - 1:65535
+    - tcp/65535
     validations:
     - $portsv2
 

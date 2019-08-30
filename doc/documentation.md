@@ -7779,7 +7779,7 @@ reference the external network from your network policies.
 {
   "name": "the name",
   "ports": [
-    "1:65535"
+    "tcp/65535"
   ],
   "propagate": false,
   "protected": false
@@ -7891,7 +7891,7 @@ Default value:
 
 ```json
 [
-  "1:65535"
+  "tcp/65535"
 ]
 ```
 
