@@ -320,7 +320,7 @@ func TestValidatePortStringListV2(t *testing.T) {
 			"correct list with servicePorts",
 			args{
 				"ports",
-				[]string{"443", "555:666", "80", "tcp/80"},
+				[]string{"443", "udp/66", "555:666", "80", "tcp/80"},
 			},
 			false,
 		},
@@ -328,7 +328,7 @@ func TestValidatePortStringListV2(t *testing.T) {
 			"correct list with invalid servicePorts",
 			args{
 				"ports",
-				[]string{"443", "555:666", "80", "tcp/80000"},
+				[]string{"tcp/90", "443", "555:666", "80", "tcp/80000"},
 			},
 			true,
 		},
