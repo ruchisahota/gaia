@@ -80,7 +80,9 @@ func ValidatePortStringListV2(attribute string, ports []string) error {
 
 	for _, port := range ports {
 		if err := ValidatePortString(attribute, port); err != nil {
-			return ValidateServicePort(attribute, port)
+			if err := ValidateServicePort(attribute, port); err != nil {
+				return err
+			}
 		}
 	}
 
