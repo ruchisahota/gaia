@@ -710,6 +710,12 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[DNSLookupReportIdentity] = &elemental.Relationship{
+		Create: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+	}
+
 	relationshipsRegistry[DataPathCertificateIdentity] = &elemental.Relationship{
 		Create: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
@@ -3021,19 +3027,7 @@ func init() {
 					},
 				},
 			},
-			"service": &elemental.RelationshipInfo{
-				Parameters: []elemental.ParameterDefinition{
-					elemental.ParameterDefinition{
-						Name:         "mode",
-						Type:         "enum",
-						DefaultValue: "objects",
-						AllowedChoices: []string{
-							"subjects",
-							"object",
-						},
-					},
-				},
-			},
+			"service":           &elemental.RelationshipInfo{},
 			"servicedependency": &elemental.RelationshipInfo{},
 			"vulnerability":     &elemental.RelationshipInfo{},
 		},
@@ -3079,19 +3073,7 @@ func init() {
 					},
 				},
 			},
-			"service": &elemental.RelationshipInfo{
-				Parameters: []elemental.ParameterDefinition{
-					elemental.ParameterDefinition{
-						Name:         "mode",
-						Type:         "enum",
-						DefaultValue: "objects",
-						AllowedChoices: []string{
-							"subjects",
-							"object",
-						},
-					},
-				},
-			},
+			"service":           &elemental.RelationshipInfo{},
 			"servicedependency": &elemental.RelationshipInfo{},
 			"vulnerability":     &elemental.RelationshipInfo{},
 		},
