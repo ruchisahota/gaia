@@ -158,15 +158,15 @@ func init() {
 			"root": &elemental.RelationshipInfo{
 				Parameters: []elemental.ParameterDefinition{
 					elemental.ParameterDefinition{
+						Name: "associatedBillingID",
+						Type: "string",
+					},
+					elemental.ParameterDefinition{
 						Name: "name",
 						Type: "string",
 					},
 					elemental.ParameterDefinition{
 						Name: "status",
-						Type: "string",
-					},
-					elemental.ParameterDefinition{
-						Name: "associatedBillingID",
 						Type: "string",
 					},
 					elemental.ParameterDefinition{
@@ -181,15 +181,15 @@ func init() {
 			"root": &elemental.RelationshipInfo{
 				Parameters: []elemental.ParameterDefinition{
 					elemental.ParameterDefinition{
+						Name: "associatedBillingID",
+						Type: "string",
+					},
+					elemental.ParameterDefinition{
 						Name: "name",
 						Type: "string",
 					},
 					elemental.ParameterDefinition{
 						Name: "status",
-						Type: "string",
-					},
-					elemental.ParameterDefinition{
-						Name: "associatedBillingID",
 						Type: "string",
 					},
 					elemental.ParameterDefinition{
@@ -2686,6 +2686,34 @@ func init() {
 					elemental.ParameterDefinition{
 						Name: "email",
 						Type: "string",
+					},
+				},
+			},
+		},
+	}
+
+	relationshipsRegistry[PizzaIdentity] = &elemental.Relationship{
+		Create: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+		RetrieveMany: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
+					},
+				},
+			},
+		},
+		Info: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{
+				Parameters: []elemental.ParameterDefinition{
+					elemental.ParameterDefinition{
+						Name:     "q",
+						Type:     "string",
+						Multiple: true,
 					},
 				},
 			},

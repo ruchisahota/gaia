@@ -27,6 +27,11 @@ relations:
     - $filtering
     parameters:
       entries:
+      - name: associatedBillingID
+        description: internal parameters.
+        type: string
+        example_value: billingID
+
       - name: name
         description: internal parameters.
         type: string
@@ -36,11 +41,6 @@ relations:
         description: internal parameters.
         type: string
         example_value: status
-
-      - name: associatedBillingID
-        description: internal parameters.
-        type: string
-        example_value: billingID
   create:
     description: Creates a new account.
 
@@ -507,6 +507,14 @@ relations:
         example_value: user@domain.com
   create:
     description: Resets the password for an account using the provided link.
+
+- rest_name: pizza
+  get:
+    description: Retrieves the list of pizzas.
+    global_parameters:
+    - $filtering
+  create:
+    description: Create a new pizza.
 
 - rest_name: plan
   get:

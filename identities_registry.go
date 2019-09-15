@@ -78,6 +78,7 @@ var (
 		"oidcprovider":           OIDCProviderIdentity,
 		"packetreport":           PacketReportIdentity,
 		"passwordreset":          PasswordResetIdentity,
+		"pizza":                  PizzaIdentity,
 
 		"plan":                  PlanIdentity,
 		"poke":                  PokeIdentity,
@@ -208,6 +209,7 @@ var (
 		"oidcproviders":            OIDCProviderIdentity,
 		"packetreports":            PacketReportIdentity,
 		"passwordreset":            PasswordResetIdentity,
+		"pizzas":                   PizzaIdentity,
 
 		"plans":                  PlanIdentity,
 		"poke":                   PokeIdentity,
@@ -631,8 +633,15 @@ var (
 		},
 		"packetreport":  nil,
 		"passwordreset": nil,
-		"plan":          nil,
-		"poke":          nil,
+		"pizza": [][]string{
+			[]string{":shard", ":unique", "zone", "zHash"},
+			[]string{"updateIdempotencyKey"},
+			[]string{"namespace"},
+			[]string{"namespace", "normalizedTags"},
+			[]string{"createIdempotencyKey"},
+		},
+		"plan": nil,
+		"poke": nil,
 		"policy": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -942,6 +951,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewPacketReport()
 	case PasswordResetIdentity:
 		return NewPasswordReset()
+	case PizzaIdentity:
+		return NewPizza()
 	case PlanIdentity:
 		return NewPlan()
 	case PokeIdentity:
@@ -1181,6 +1192,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparsePacketReport()
 	case PasswordResetIdentity:
 		return NewSparsePasswordReset()
+	case PizzaIdentity:
+		return NewSparsePizza()
 	case PlanIdentity:
 		return NewSparsePlan()
 	case PokeIdentity:
@@ -1428,6 +1441,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &PacketReportsList{}
 	case PasswordResetIdentity:
 		return &PasswordResetsList{}
+	case PizzaIdentity:
+		return &PizzasList{}
 	case PlanIdentity:
 		return &PlansList{}
 	case PokeIdentity:
@@ -1665,6 +1680,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparsePacketReportsList{}
 	case PasswordResetIdentity:
 		return &SparsePasswordResetsList{}
+	case PizzaIdentity:
+		return &SparsePizzasList{}
 	case PlanIdentity:
 		return &SparsePlansList{}
 	case PokeIdentity:
@@ -1849,6 +1866,7 @@ func AllIdentities() []elemental.Identity {
 		OIDCProviderIdentity,
 		PacketReportIdentity,
 		PasswordResetIdentity,
+		PizzaIdentity,
 		PlanIdentity,
 		PokeIdentity,
 		PolicyIdentity,
@@ -2115,6 +2133,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case PacketReportIdentity:
 		return []string{}
 	case PasswordResetIdentity:
+		return []string{}
+	case PizzaIdentity:
 		return []string{}
 	case PlanIdentity:
 		return []string{}
