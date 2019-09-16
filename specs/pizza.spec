@@ -6,6 +6,12 @@ model:
   package: fry
   group: core/thing
   description: These are pizza.
+  get:
+    description: Retrieves one pizza.
+  update:
+    description: Updates one pizza.
+  delete:
+    description: Deletes one pizza.
   extends:
   - '@zoned'
   - '@base'
