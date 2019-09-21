@@ -5954,6 +5954,10 @@ Fourth argument of the executed system call.
 
 Architecture of the system of the monitored process.
 
+##### `arguments` `[]string`
+
+Arguments passed to the command.
+
 ##### `auditProfileID` `string` [`required`]
 
 ID of the audit profile that triggered the report.
