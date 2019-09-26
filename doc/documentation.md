@@ -8109,7 +8109,10 @@ Destination IP address.
 
 ##### `destinationNamespace` `string`
 
-Namespace of the destination.
+_This attribute is deprecated_.
+
+Namespace of the destination. This is deprecated. Use `remoteNamespace`. This
+property does nothing.
 
 ##### `destinationPort` `integer`
 
@@ -8177,6 +8180,10 @@ Namespace of the network policy that accepted the flow.
 
 Protocol number.
 
+##### `remoteNamespace` `string`
+
+Namespace of the object at the other end of the flow.
+
 ##### `serviceClaimHash` `string`
 
 Hash of the claims used to communicate.
@@ -8187,7 +8194,7 @@ ID of the service.
 
 ##### `serviceNamespace` `string`
 
-Service URL accessed.
+Namespace of Service accessed.
 
 ##### `serviceType` `emum(L3 | HTTP | TCP | NotApplicable)`
 
@@ -8213,7 +8220,10 @@ Type of the source.
 
 ##### `sourceNamespace` `string`
 
-Namespace of the source.
+_This attribute is deprecated_.
+
+Namespace of the source. This is deprecated. Use `remoteNamespace`. This
+property does nothing.
 
 ##### `sourceType` `emum(ProcessingUnit | ExternalNetwork | Claims)` [`required`]
 
@@ -10334,7 +10344,7 @@ Number of accepted flows in the edge.
 
 ID of the destination `GraphNode` of the edge.
 
-##### `destinationType` `emum(ProcessingUnit | ExternalNetwork | Node)`
+##### `destinationType` `emum(ProcessingUnit | ExternalNetwork | Namespace | Node)`
 
 Type of the destination `GraphNode` of the edge.
 
@@ -10356,7 +10366,7 @@ Contains the date when the edge was last seen.
 
 ##### `namespace` `string`
 
-Namespace of object represented by the node.
+Namespace of the object that reported the flow.
 
 ##### `observedAcceptedFlows` `integer`
 
@@ -10374,11 +10384,15 @@ Number of rejected observed flows.
 
 Number of rejected flows in the edge.
 
+##### `remoteNamespace` `string`
+
+Namespace of the object that was targeted by the flow.
+
 ##### `sourceID` `string`
 
 ID of the source `GraphNode` of the edge.
 
-##### `sourceType` `emum(ProcessingUnit | ExternalNetwork | Node)`
+##### `sourceType` `emum(ProcessingUnit | ExternalNetwork | Namespace | Node)`
 
 Type of the source `GraphNode` of the edge.
 
