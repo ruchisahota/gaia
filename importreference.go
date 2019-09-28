@@ -624,6 +624,7 @@ func (o *ImportReference) Validate() error {
 	}
 
 	if o.Data != nil {
+		elemental.ResetDefaultForZeroValues(o.Data)
 		if err := o.Data.Validate(); err != nil {
 			errors = errors.Append(err)
 		}

@@ -374,6 +374,7 @@ func (o *RenderedPolicy) Validate() error {
 		if sub == nil {
 			continue
 		}
+		elemental.ResetDefaultForZeroValues(sub)
 		if err := sub.Validate(); err != nil {
 			errors = errors.Append(err)
 		}
@@ -383,12 +384,14 @@ func (o *RenderedPolicy) Validate() error {
 		if sub == nil {
 			continue
 		}
+		elemental.ResetDefaultForZeroValues(sub)
 		if err := sub.Validate(); err != nil {
 			errors = errors.Append(err)
 		}
 	}
 
 	if o.ProcessingUnit != nil {
+		elemental.ResetDefaultForZeroValues(o.ProcessingUnit)
 		if err := o.ProcessingUnit.Validate(); err != nil {
 			errors = errors.Append(err)
 		}

@@ -944,6 +944,7 @@ func (o *ProcessingUnit) Validate() error {
 		if sub == nil {
 			continue
 		}
+		elemental.ResetDefaultForZeroValues(sub)
 		if err := sub.Validate(); err != nil {
 			errors = errors.Append(err)
 		}
@@ -958,6 +959,7 @@ func (o *ProcessingUnit) Validate() error {
 	}
 
 	if o.Tracing != nil {
+		elemental.ResetDefaultForZeroValues(o.Tracing)
 		if err := o.Tracing.Validate(); err != nil {
 			errors = errors.Append(err)
 		}
