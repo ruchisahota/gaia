@@ -52,6 +52,7 @@ var (
 		"graphedge":                    GraphEdgeIdentity,
 
 		"graphnode":                GraphNodeIdentity,
+		"hit":                      HitIdentity,
 		"hookpolicy":               HookPolicyIdentity,
 		"hostservice":              HostServiceIdentity,
 		"hostservicemappingpolicy": HostServiceMappingPolicyIdentity,
@@ -184,6 +185,7 @@ var (
 		"graphedges":                     GraphEdgeIdentity,
 
 		"graphnodes":                 GraphNodeIdentity,
+		"hits":                       HitIdentity,
 		"hookpolicies":               HookPolicyIdentity,
 		"hostservices":               HostServiceIdentity,
 		"hostservicemappingpolicies": HostServiceMappingPolicyIdentity,
@@ -529,6 +531,7 @@ var (
 			[]string{"firstSeen"},
 		},
 		"graphnode":  nil,
+		"hit":        nil,
 		"hookpolicy": nil,
 		"hostservice": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
@@ -901,6 +904,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewGraphEdge()
 	case GraphNodeIdentity:
 		return NewGraphNode()
+	case HitIdentity:
+		return NewHit()
 	case HookPolicyIdentity:
 		return NewHookPolicy()
 	case HostServiceIdentity:
@@ -1144,6 +1149,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseGraphEdge()
 	case GraphNodeIdentity:
 		return NewSparseGraphNode()
+	case HitIdentity:
+		return NewSparseHit()
 	case HookPolicyIdentity:
 		return NewSparseHookPolicy()
 	case HostServiceIdentity:
@@ -1395,6 +1402,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &GraphEdgesList{}
 	case GraphNodeIdentity:
 		return &GraphNodesList{}
+	case HitIdentity:
+		return &HitsList{}
 	case HookPolicyIdentity:
 		return &HookPoliciesList{}
 	case HostServiceIdentity:
@@ -1636,6 +1645,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseGraphEdgesList{}
 	case GraphNodeIdentity:
 		return &SparseGraphNodesList{}
+	case HitIdentity:
+		return &SparseHitsList{}
 	case HookPolicyIdentity:
 		return &SparseHookPoliciesList{}
 	case HostServiceIdentity:
@@ -1849,6 +1860,7 @@ func AllIdentities() []elemental.Identity {
 		FlowReportIdentity,
 		GraphEdgeIdentity,
 		GraphNodeIdentity,
+		HitIdentity,
 		HookPolicyIdentity,
 		HostServiceIdentity,
 		HostServiceMappingPolicyIdentity,
@@ -2049,6 +2061,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case GraphEdgeIdentity:
 		return []string{}
 	case GraphNodeIdentity:
+		return []string{}
+	case HitIdentity:
 		return []string{}
 	case HookPolicyIdentity:
 		return []string{

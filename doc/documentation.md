@@ -72,6 +72,67 @@ Allows you to define a unique label for this export. When importing the
 content of the export, this label will be added as a tag that will be used to
 recognize imported object in a later import.
 
+### Hit
+
+This API allows to retrieve a generic hit counter for a given object.
+
+#### Example
+
+```json
+{
+  "name": "counter",
+  "targetIdentity": "networkaccesspolicy"
+}
+```
+
+#### Relations
+
+##### `GET /hits`
+
+Retrieve a matching hit.
+
+Parameters:
+
+- `name` (`string`): The name of the counter.
+- `targetID` (`string`): The ID of the object associated to the counter.
+- `targetIdentity` (`string`): The identity of the object associated to the counter.
+
+Mandatory Parameters
+
+(`name` and `targetID` and `targetIdentity`) or (`targetID` and `targetIdentity`)
+
+##### `POST /hits`
+
+Manage hits.
+
+Parameters:
+
+- `reset` (`boolean`): If set the hit will reset to 0.
+
+#### Attributes
+
+##### `name` `string` [`required`]
+
+name of the counter.
+
+Default value:
+
+```json
+"counter"
+```
+
+##### `targetID` `string`
+
+The ID of the referenced object..
+
+##### `targetIdentity` `string` [`required`]
+
+The identity of the referenced object.
+
+##### `value` `integer` [`read_only`]
+
+The value of the hit.
+
 ### Import
 
 Imports an export of policies and related objects into the namespace.

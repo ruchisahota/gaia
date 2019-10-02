@@ -321,6 +321,39 @@ relations:
     - $archivable
     - $filtering
 
+- rest_name: hit
+  get:
+    description: Retrieve a matching hit.
+    parameters:
+      required:
+      - - - name
+          - targetID
+          - targetIdentity
+        - - targetID
+          - targetIdentity
+      entries:
+      - name: name
+        description: The name of the counter.
+        type: string
+        default_value: counter
+
+      - name: targetID
+        description: The ID of the object associated to the counter.
+        type: string
+        example_value: xyz
+
+      - name: targetIdentity
+        description: The identity of the object associated to the counter.
+        type: string
+        example_value: processingunit
+  create:
+    description: Manage hits.
+    parameters:
+      entries:
+      - name: reset
+        description: If set the hit will reset to 0.
+        type: boolean
+
 - rest_name: hookpolicy
   get:
     description: Retrieves the list of hooks.
