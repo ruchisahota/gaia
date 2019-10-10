@@ -1,14 +1,9 @@
 MAKEFLAGS += --warn-undefined-variables
 SHELL := /bin/bash -o pipefail
 
-PROJECT_SHA ?= $(shell git rev-parse HEAD)
-PROJECT_VERSION ?= $(lastword $(shell git tag --sort version:refname --merged $(shell git rev-parse --abbrev-ref HEAD)))
-PROJECT_RELEASE ?= dev
-
 export GO111MODULE = on
-export GOPRIVATE = '*'
 
-ci: lint test
+default: lint test
 
 .PHONY:codegen
 codegen:
@@ -46,13 +41,8 @@ lint: spelling
 spelling:
 	docker run --rm -v $$PWD:/workdir tmaier/markdown-spellcheck:latest "doc/*.md" -r -a -n --en-us
 
-.PHONY: test
 test:
-	@ echo 'mode: atomic' > unit_coverage.cov
-	@ for d in $(shell go list ./... | grep -v vendor); do \
-		go test -race -coverprofile=profile.out -covermode=atomic "$$d"; \
-		if [ -f profile.out ]; then tail -q -n +2 profile.out >> unit_coverage.cov; rm -f profile.out; fi; \
-	done;
+	go test ./... -race -cover -covermode=atomic -coverprofile=unit_coverage.cov
 
 codecgen:
 	rm -f values_codecgen.go ; codecgen -o values_codecgen.go *.go;
