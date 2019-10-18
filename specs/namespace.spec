@@ -34,6 +34,12 @@ model:
 default_order:
 - name
 
+# Indexes
+indexes:
+- - name
+- - namespace
+  - name
+
 # Attributes
 attributes:
   v1:

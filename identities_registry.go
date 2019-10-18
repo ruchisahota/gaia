@@ -623,8 +623,10 @@ var (
 		"namespace": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
-			[]string{"namespace"},
 			[]string{"namespace", "normalizedTags"},
+			[]string{"namespace", "name"},
+			[]string{"namespace"},
+			[]string{"name"},
 			[]string{"createIdempotencyKey"},
 		},
 		"namespacemappingpolicy": nil,
