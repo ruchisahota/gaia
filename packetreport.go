@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/globalsign/mgo/bson"
 	"github.com/mitchellh/copystructure"
 	"go.aporeto.io/elemental"
 )
@@ -184,6 +185,75 @@ func (o *PacketReport) Identifier() string {
 // SetIdentifier sets the value of the object's unique identifier.
 func (o *PacketReport) SetIdentifier(id string) {
 
+}
+
+// GetBSON implements the bson marshaling interface.
+// This is used to transparently convert ID to MongoDBID as ObectID.
+func (o *PacketReport) GetBSON() (interface{}, error) {
+
+	if o == nil {
+		return nil, nil
+	}
+
+	s := &mongoAttributesPacketReport{}
+
+	s.TCPFlags = o.TCPFlags
+	s.Claims = o.Claims
+	s.DestinationIP = o.DestinationIP
+	s.DestinationPort = o.DestinationPort
+	s.DropReason = o.DropReason
+	s.Encrypt = o.Encrypt
+	s.EnforcerID = o.EnforcerID
+	s.EnforcerNamespace = o.EnforcerNamespace
+	s.Length = o.Length
+	s.Mark = o.Mark
+	s.Namespace = o.Namespace
+	s.PacketID = o.PacketID
+	s.Protocol = o.Protocol
+	s.PuID = o.PuID
+	s.RawPacket = o.RawPacket
+	s.SourceIP = o.SourceIP
+	s.SourcePort = o.SourcePort
+	s.Timestamp = o.Timestamp
+	s.TriremePacket = o.TriremePacket
+
+	return s, nil
+}
+
+// SetBSON implements the bson marshaling interface.
+// This is used to transparently convert ID to MongoDBID as ObectID.
+func (o *PacketReport) SetBSON(raw bson.Raw) error {
+
+	if o == nil {
+		return nil
+	}
+
+	s := &mongoAttributesPacketReport{}
+	if err := raw.Unmarshal(s); err != nil {
+		return err
+	}
+
+	o.TCPFlags = s.TCPFlags
+	o.Claims = s.Claims
+	o.DestinationIP = s.DestinationIP
+	o.DestinationPort = s.DestinationPort
+	o.DropReason = s.DropReason
+	o.Encrypt = s.Encrypt
+	o.EnforcerID = s.EnforcerID
+	o.EnforcerNamespace = s.EnforcerNamespace
+	o.Length = s.Length
+	o.Mark = s.Mark
+	o.Namespace = s.Namespace
+	o.PacketID = s.PacketID
+	o.Protocol = s.Protocol
+	o.PuID = s.PuID
+	o.RawPacket = s.RawPacket
+	o.SourceIP = s.SourceIP
+	o.SourcePort = s.SourcePort
+	o.Timestamp = s.Timestamp
+	o.TriremePacket = s.TriremePacket
+
+	return nil
 }
 
 // Version returns the hardcoded version of the model.
@@ -1051,6 +1121,151 @@ func (o *SparsePacketReport) SetIdentifier(id string) {
 
 }
 
+// GetBSON implements the bson marshaling interface.
+// This is used to transparently convert ID to MongoDBID as ObectID.
+func (o *SparsePacketReport) GetBSON() (interface{}, error) {
+
+	if o == nil {
+		return nil, nil
+	}
+
+	s := &mongoAttributesSparsePacketReport{}
+
+	if o.TCPFlags != nil {
+		s.TCPFlags = o.TCPFlags
+	}
+	if o.Claims != nil {
+		s.Claims = o.Claims
+	}
+	if o.DestinationIP != nil {
+		s.DestinationIP = o.DestinationIP
+	}
+	if o.DestinationPort != nil {
+		s.DestinationPort = o.DestinationPort
+	}
+	if o.DropReason != nil {
+		s.DropReason = o.DropReason
+	}
+	if o.Encrypt != nil {
+		s.Encrypt = o.Encrypt
+	}
+	if o.EnforcerID != nil {
+		s.EnforcerID = o.EnforcerID
+	}
+	if o.EnforcerNamespace != nil {
+		s.EnforcerNamespace = o.EnforcerNamespace
+	}
+	if o.Length != nil {
+		s.Length = o.Length
+	}
+	if o.Mark != nil {
+		s.Mark = o.Mark
+	}
+	if o.Namespace != nil {
+		s.Namespace = o.Namespace
+	}
+	if o.PacketID != nil {
+		s.PacketID = o.PacketID
+	}
+	if o.Protocol != nil {
+		s.Protocol = o.Protocol
+	}
+	if o.PuID != nil {
+		s.PuID = o.PuID
+	}
+	if o.RawPacket != nil {
+		s.RawPacket = o.RawPacket
+	}
+	if o.SourceIP != nil {
+		s.SourceIP = o.SourceIP
+	}
+	if o.SourcePort != nil {
+		s.SourcePort = o.SourcePort
+	}
+	if o.Timestamp != nil {
+		s.Timestamp = o.Timestamp
+	}
+	if o.TriremePacket != nil {
+		s.TriremePacket = o.TriremePacket
+	}
+
+	return s, nil
+}
+
+// SetBSON implements the bson marshaling interface.
+// This is used to transparently convert ID to MongoDBID as ObectID.
+func (o *SparsePacketReport) SetBSON(raw bson.Raw) error {
+
+	if o == nil {
+		return nil
+	}
+
+	s := &mongoAttributesSparsePacketReport{}
+	if err := raw.Unmarshal(s); err != nil {
+		return err
+	}
+
+	if s.TCPFlags != nil {
+		o.TCPFlags = s.TCPFlags
+	}
+	if s.Claims != nil {
+		o.Claims = s.Claims
+	}
+	if s.DestinationIP != nil {
+		o.DestinationIP = s.DestinationIP
+	}
+	if s.DestinationPort != nil {
+		o.DestinationPort = s.DestinationPort
+	}
+	if s.DropReason != nil {
+		o.DropReason = s.DropReason
+	}
+	if s.Encrypt != nil {
+		o.Encrypt = s.Encrypt
+	}
+	if s.EnforcerID != nil {
+		o.EnforcerID = s.EnforcerID
+	}
+	if s.EnforcerNamespace != nil {
+		o.EnforcerNamespace = s.EnforcerNamespace
+	}
+	if s.Length != nil {
+		o.Length = s.Length
+	}
+	if s.Mark != nil {
+		o.Mark = s.Mark
+	}
+	if s.Namespace != nil {
+		o.Namespace = s.Namespace
+	}
+	if s.PacketID != nil {
+		o.PacketID = s.PacketID
+	}
+	if s.Protocol != nil {
+		o.Protocol = s.Protocol
+	}
+	if s.PuID != nil {
+		o.PuID = s.PuID
+	}
+	if s.RawPacket != nil {
+		o.RawPacket = s.RawPacket
+	}
+	if s.SourceIP != nil {
+		o.SourceIP = s.SourceIP
+	}
+	if s.SourcePort != nil {
+		o.SourcePort = s.SourcePort
+	}
+	if s.Timestamp != nil {
+		o.Timestamp = s.Timestamp
+	}
+	if s.TriremePacket != nil {
+		o.TriremePacket = s.TriremePacket
+	}
+
+	return nil
+}
+
 // Version returns the hardcoded version of the model.
 func (o *SparsePacketReport) Version() int {
 
@@ -1147,4 +1362,47 @@ func (o *SparsePacketReport) DeepCopyInto(out *SparsePacketReport) {
 	}
 
 	*out = *target.(*SparsePacketReport)
+}
+
+type mongoAttributesPacketReport struct {
+	TCPFlags          int       `bson:"tcpflags"`
+	Claims            []string  `bson:"claims"`
+	DestinationIP     string    `bson:"destinationip"`
+	DestinationPort   int       `bson:"destinationport"`
+	DropReason        string    `bson:"dropreason"`
+	Encrypt           bool      `bson:"encrypt"`
+	EnforcerID        string    `bson:"enforcerid"`
+	EnforcerNamespace string    `bson:"enforcernamespace"`
+	Length            int       `bson:"length"`
+	Mark              int       `bson:"mark"`
+	Namespace         string    `bson:"namespace"`
+	PacketID          int       `bson:"packetid"`
+	Protocol          int       `bson:"protocol"`
+	PuID              string    `bson:"puid"`
+	RawPacket         string    `bson:"rawpacket"`
+	SourceIP          string    `bson:"sourceip"`
+	SourcePort        int       `bson:"sourceport"`
+	Timestamp         time.Time `bson:"timestamp"`
+	TriremePacket     bool      `bson:"triremepacket"`
+}
+type mongoAttributesSparsePacketReport struct {
+	TCPFlags          *int       `bson:"tcpflags,omitempty"`
+	Claims            *[]string  `bson:"claims,omitempty"`
+	DestinationIP     *string    `bson:"destinationip,omitempty"`
+	DestinationPort   *int       `bson:"destinationport,omitempty"`
+	DropReason        *string    `bson:"dropreason,omitempty"`
+	Encrypt           *bool      `bson:"encrypt,omitempty"`
+	EnforcerID        *string    `bson:"enforcerid,omitempty"`
+	EnforcerNamespace *string    `bson:"enforcernamespace,omitempty"`
+	Length            *int       `bson:"length,omitempty"`
+	Mark              *int       `bson:"mark,omitempty"`
+	Namespace         *string    `bson:"namespace,omitempty"`
+	PacketID          *int       `bson:"packetid,omitempty"`
+	Protocol          *int       `bson:"protocol,omitempty"`
+	PuID              *string    `bson:"puid,omitempty"`
+	RawPacket         *string    `bson:"rawpacket,omitempty"`
+	SourceIP          *string    `bson:"sourceip,omitempty"`
+	SourcePort        *int       `bson:"sourceport,omitempty"`
+	Timestamp         *time.Time `bson:"timestamp,omitempty"`
+	TriremePacket     *bool      `bson:"triremepacket,omitempty"`
 }

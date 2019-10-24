@@ -27,6 +27,11 @@ relations:
     - $filtering
     parameters:
       entries:
+      - name: associatedBillingID
+        description: internal parameters.
+        type: string
+        example_value: billingID
+
       - name: name
         description: internal parameters.
         type: string
@@ -36,11 +41,6 @@ relations:
         description: internal parameters.
         type: string
         example_value: status
-
-      - name: associatedBillingID
-        description: internal parameters.
-        type: string
-        example_value: billingID
   create:
     description: Creates a new account.
 
@@ -182,6 +182,10 @@ relations:
   create:
     description: Creates a new claims record.
 
+- rest_name: clausesmatch
+  create:
+    description: Performs a clause matching.
+
 - rest_name: counterreport
   create:
     description: Create a counter report.
@@ -316,6 +320,39 @@ relations:
     - $timewindow
     - $archivable
     - $filtering
+
+- rest_name: hit
+  get:
+    description: Retrieve a matching hit.
+    parameters:
+      required:
+      - - - name
+          - targetID
+          - targetIdentity
+        - - targetID
+          - targetIdentity
+      entries:
+      - name: name
+        description: The name of the counter.
+        type: string
+        default_value: counter
+
+      - name: targetID
+        description: The ID of the object associated to the counter.
+        type: string
+        example_value: xyz
+
+      - name: targetIdentity
+        description: The identity of the object associated to the counter.
+        type: string
+        example_value: processingunit
+  create:
+    description: Manage hits.
+    parameters:
+      entries:
+      - name: reset
+        description: If set the hit will reset to 0.
+        type: boolean
 
 - rest_name: hookpolicy
   get:
@@ -621,6 +658,10 @@ relations:
     - $filtering
   create:
     description: Creates a new LDAP provider.
+
+- rest_name: sandbox
+  create:
+    description: Creates a temporary api sandbox.
 
 - rest_name: search
   get:
