@@ -575,6 +575,7 @@ Parameters:
 - `status` (`enum(Registered | Connected | Disconnected)`): If set, changes the status of the enforcer alongside with the poke.
 - `ts` (`time`): time of report. If not set, local server time will be used.
 - `version` (`string`): If set, version of the current running enforcer.
+- `zhash` (`integer`): Can be set to help backend target the correct shard where the enforcer is stored.
 
 ##### `GET /processingunits/:id/poke`
 
@@ -588,6 +589,7 @@ Parameters:
 - `notify` (`boolean`): Can be sent to trigger a `ProcessingUnitRefresh` event that will be handled by the enforcer. If this is set, all other additional parameters will be ignored.
 - `status` (`enum(Initialized | Paused | Running | Stopped)`): If set, changes the status of the processing unit alongside with the poke.
 - `ts` (`time`): time of report. If not set, local server time will be used.
+- `zhash` (`integer`): Can be set to help backend target the correct shard where the processing unit is stored.
 
 ### PolicyRenderer
 
@@ -2421,6 +2423,7 @@ Parameters:
 - `status` (`enum(Registered | Connected | Disconnected)`): If set, changes the status of the enforcer alongside with the poke.
 - `ts` (`time`): time of report. If not set, local server time will be used.
 - `version` (`string`): If set, version of the current running enforcer.
+- `zhash` (`integer`): Can be set to help backend target the correct shard where the enforcer is stored.
 
 ##### `GET /enforcers/:id/trustedcas`
 
@@ -4267,6 +4270,7 @@ Parameters:
 - `notify` (`boolean`): Can be sent to trigger a `ProcessingUnitRefresh` event that will be handled by the enforcer. If this is set, all other additional parameters will be ignored.
 - `status` (`enum(Initialized | Paused | Running | Stopped)`): If set, changes the status of the processing unit alongside with the poke.
 - `ts` (`time`): time of report. If not set, local server time will be used.
+- `zhash` (`integer`): Can be set to help backend target the correct shard where the processing unit is stored.
 
 ##### `GET /processingunits/:id/renderedpolicies`
 

@@ -281,6 +281,11 @@ relations:
         description: time of report. If not set, local server time will be used.
         type: time
 
+      - name: zhash
+        description: Can be set to help backend target the correct shard where the
+          processing unit is stored.
+        type: integer
+
 - rest_name: renderedpolicy
   get:
     description: Retrieves the policies for the processing unit.

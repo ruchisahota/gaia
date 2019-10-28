@@ -352,6 +352,11 @@ relations:
         type: string
         example_value: v1.10
 
+      - name: zhash
+        description: Can be set to help backend target the correct shard where the
+          enforcer is stored.
+        type: integer
+
 - rest_name: trustedca
   get:
     description: |-
