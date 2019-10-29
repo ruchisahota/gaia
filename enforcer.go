@@ -320,7 +320,9 @@ func (o *Enforcer) GetBSON() (interface{}, error) {
 	s := &mongoAttributesEnforcer{}
 
 	s.FQDN = o.FQDN
-	s.ID = bson.ObjectIdHex(o.ID)
+	if o.ID != "" {
+		s.ID = bson.ObjectIdHex(o.ID)
+	}
 	s.Annotations = o.Annotations
 	s.AssociatedTags = o.AssociatedTags
 	s.Certificate = o.Certificate
@@ -1466,11 +1468,12 @@ this and the value is preserved across disconnects.`,
 		ConvertedName:  "Unreachable",
 		Description: `The Aporeto control plane sets this value to ` + "`" + `true` + "`" + ` if it hasn't heard from
 the enforcer in the last five minutes.`,
-		Exposed:  true,
-		Name:     "unreachable",
-		ReadOnly: true,
-		Stored:   true,
-		Type:     "boolean",
+		Exposed:   true,
+		Name:      "unreachable",
+		ReadOnly:  true,
+		Stored:    true,
+		Transient: true,
+		Type:      "boolean",
 	},
 	"UpdateAvailable": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1931,11 +1934,12 @@ this and the value is preserved across disconnects.`,
 		ConvertedName:  "Unreachable",
 		Description: `The Aporeto control plane sets this value to ` + "`" + `true` + "`" + ` if it hasn't heard from
 the enforcer in the last five minutes.`,
-		Exposed:  true,
-		Name:     "unreachable",
-		ReadOnly: true,
-		Stored:   true,
-		Type:     "boolean",
+		Exposed:   true,
+		Name:      "unreachable",
+		ReadOnly:  true,
+		Stored:    true,
+		Transient: true,
+		Type:      "boolean",
 	},
 	"updateavailable": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -2227,7 +2231,11 @@ func (o *SparseEnforcer) Identifier() string {
 // SetIdentifier sets the value of the sparse object's unique identifier.
 func (o *SparseEnforcer) SetIdentifier(id string) {
 
-	o.ID = &id
+	if id != "" {
+		o.ID = &id
+	} else {
+		o.ID = nil
+	}
 }
 
 // GetBSON implements the bson marshaling interface.
@@ -2243,7 +2251,9 @@ func (o *SparseEnforcer) GetBSON() (interface{}, error) {
 	if o.FQDN != nil {
 		s.FQDN = o.FQDN
 	}
-	s.ID = bson.ObjectIdHex(*o.ID)
+	if o.ID != nil {
+		s.ID = bson.ObjectIdHex(*o.ID)
+	}
 	if o.Annotations != nil {
 		s.Annotations = o.Annotations
 	}
@@ -2600,7 +2610,11 @@ func (o *SparseEnforcer) ToPlain() elemental.PlainIdentifiable {
 }
 
 // GetAnnotations returns the Annotations of the receiver.
-func (o *SparseEnforcer) GetAnnotations() map[string][]string {
+func (o *SparseEnforcer) GetAnnotations() (out map[string][]string) {
+
+	if o.Annotations == nil {
+		return
+	}
 
 	return *o.Annotations
 }
@@ -2612,7 +2626,11 @@ func (o *SparseEnforcer) SetAnnotations(annotations map[string][]string) {
 }
 
 // GetAssociatedTags returns the AssociatedTags of the receiver.
-func (o *SparseEnforcer) GetAssociatedTags() []string {
+func (o *SparseEnforcer) GetAssociatedTags() (out []string) {
+
+	if o.AssociatedTags == nil {
+		return
+	}
 
 	return *o.AssociatedTags
 }
@@ -2624,7 +2642,11 @@ func (o *SparseEnforcer) SetAssociatedTags(associatedTags []string) {
 }
 
 // GetCreateIdempotencyKey returns the CreateIdempotencyKey of the receiver.
-func (o *SparseEnforcer) GetCreateIdempotencyKey() string {
+func (o *SparseEnforcer) GetCreateIdempotencyKey() (out string) {
+
+	if o.CreateIdempotencyKey == nil {
+		return
+	}
 
 	return *o.CreateIdempotencyKey
 }
@@ -2636,7 +2658,11 @@ func (o *SparseEnforcer) SetCreateIdempotencyKey(createIdempotencyKey string) {
 }
 
 // GetCreateTime returns the CreateTime of the receiver.
-func (o *SparseEnforcer) GetCreateTime() time.Time {
+func (o *SparseEnforcer) GetCreateTime() (out time.Time) {
+
+	if o.CreateTime == nil {
+		return
+	}
 
 	return *o.CreateTime
 }
@@ -2648,7 +2674,11 @@ func (o *SparseEnforcer) SetCreateTime(createTime time.Time) {
 }
 
 // GetDescription returns the Description of the receiver.
-func (o *SparseEnforcer) GetDescription() string {
+func (o *SparseEnforcer) GetDescription() (out string) {
+
+	if o.Description == nil {
+		return
+	}
 
 	return *o.Description
 }
@@ -2660,7 +2690,11 @@ func (o *SparseEnforcer) SetDescription(description string) {
 }
 
 // GetMetadata returns the Metadata of the receiver.
-func (o *SparseEnforcer) GetMetadata() []string {
+func (o *SparseEnforcer) GetMetadata() (out []string) {
+
+	if o.Metadata == nil {
+		return
+	}
 
 	return *o.Metadata
 }
@@ -2672,7 +2706,11 @@ func (o *SparseEnforcer) SetMetadata(metadata []string) {
 }
 
 // GetMigrationsLog returns the MigrationsLog of the receiver.
-func (o *SparseEnforcer) GetMigrationsLog() map[string]string {
+func (o *SparseEnforcer) GetMigrationsLog() (out map[string]string) {
+
+	if o.MigrationsLog == nil {
+		return
+	}
 
 	return *o.MigrationsLog
 }
@@ -2684,7 +2722,11 @@ func (o *SparseEnforcer) SetMigrationsLog(migrationsLog map[string]string) {
 }
 
 // GetName returns the Name of the receiver.
-func (o *SparseEnforcer) GetName() string {
+func (o *SparseEnforcer) GetName() (out string) {
+
+	if o.Name == nil {
+		return
+	}
 
 	return *o.Name
 }
@@ -2696,7 +2738,11 @@ func (o *SparseEnforcer) SetName(name string) {
 }
 
 // GetNamespace returns the Namespace of the receiver.
-func (o *SparseEnforcer) GetNamespace() string {
+func (o *SparseEnforcer) GetNamespace() (out string) {
+
+	if o.Namespace == nil {
+		return
+	}
 
 	return *o.Namespace
 }
@@ -2708,7 +2754,11 @@ func (o *SparseEnforcer) SetNamespace(namespace string) {
 }
 
 // GetNormalizedTags returns the NormalizedTags of the receiver.
-func (o *SparseEnforcer) GetNormalizedTags() []string {
+func (o *SparseEnforcer) GetNormalizedTags() (out []string) {
+
+	if o.NormalizedTags == nil {
+		return
+	}
 
 	return *o.NormalizedTags
 }
@@ -2720,7 +2770,11 @@ func (o *SparseEnforcer) SetNormalizedTags(normalizedTags []string) {
 }
 
 // GetProtected returns the Protected of the receiver.
-func (o *SparseEnforcer) GetProtected() bool {
+func (o *SparseEnforcer) GetProtected() (out bool) {
+
+	if o.Protected == nil {
+		return
+	}
 
 	return *o.Protected
 }
@@ -2732,7 +2786,11 @@ func (o *SparseEnforcer) SetProtected(protected bool) {
 }
 
 // GetUpdateIdempotencyKey returns the UpdateIdempotencyKey of the receiver.
-func (o *SparseEnforcer) GetUpdateIdempotencyKey() string {
+func (o *SparseEnforcer) GetUpdateIdempotencyKey() (out string) {
+
+	if o.UpdateIdempotencyKey == nil {
+		return
+	}
 
 	return *o.UpdateIdempotencyKey
 }
@@ -2744,7 +2802,11 @@ func (o *SparseEnforcer) SetUpdateIdempotencyKey(updateIdempotencyKey string) {
 }
 
 // GetUpdateTime returns the UpdateTime of the receiver.
-func (o *SparseEnforcer) GetUpdateTime() time.Time {
+func (o *SparseEnforcer) GetUpdateTime() (out time.Time) {
+
+	if o.UpdateTime == nil {
+		return
+	}
 
 	return *o.UpdateTime
 }
@@ -2756,7 +2818,11 @@ func (o *SparseEnforcer) SetUpdateTime(updateTime time.Time) {
 }
 
 // GetZHash returns the ZHash of the receiver.
-func (o *SparseEnforcer) GetZHash() int {
+func (o *SparseEnforcer) GetZHash() (out int) {
+
+	if o.ZHash == nil {
+		return
+	}
 
 	return *o.ZHash
 }
@@ -2768,7 +2834,11 @@ func (o *SparseEnforcer) SetZHash(zHash int) {
 }
 
 // GetZone returns the Zone of the receiver.
-func (o *SparseEnforcer) GetZone() int {
+func (o *SparseEnforcer) GetZone() (out int) {
+
+	if o.Zone == nil {
+		return
+	}
 
 	return *o.Zone
 }
@@ -2805,7 +2875,7 @@ func (o *SparseEnforcer) DeepCopyInto(out *SparseEnforcer) {
 
 type mongoAttributesEnforcer struct {
 	FQDN                  string                         `bson:"fqdn"`
-	ID                    bson.ObjectId                  `bson:"_id"`
+	ID                    bson.ObjectId                  `bson:"_id,omitempty"`
 	Annotations           map[string][]string            `bson:"annotations"`
 	AssociatedTags        []string                       `bson:"associatedtags"`
 	Certificate           string                         `bson:"certificate"`
@@ -2824,7 +2894,7 @@ type mongoAttributesEnforcer struct {
 	LogLevelDuration      string                         `bson:"loglevelduration"`
 	MachineID             string                         `bson:"machineid"`
 	Metadata              []string                       `bson:"metadata"`
-	MigrationsLog         map[string]string              `bson:"migrationslog"`
+	MigrationsLog         map[string]string              `bson:"migrationslog,omitempty"`
 	Name                  string                         `bson:"name"`
 	Namespace             string                         `bson:"namespace"`
 	NormalizedTags        []string                       `bson:"normalizedtags"`
@@ -2842,7 +2912,7 @@ type mongoAttributesEnforcer struct {
 }
 type mongoAttributesSparseEnforcer struct {
 	FQDN                  *string                         `bson:"fqdn,omitempty"`
-	ID                    bson.ObjectId                   `bson:"_id"`
+	ID                    bson.ObjectId                   `bson:"_id,omitempty"`
 	Annotations           *map[string][]string            `bson:"annotations,omitempty"`
 	AssociatedTags        *[]string                       `bson:"associatedtags,omitempty"`
 	Certificate           *string                         `bson:"certificate,omitempty"`

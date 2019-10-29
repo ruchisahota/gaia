@@ -2845,6 +2845,10 @@ func init() {
 						Name: "version",
 						Type: "string",
 					},
+					elemental.ParameterDefinition{
+						Name: "zhash",
+						Type: "integer",
+					},
 				},
 			},
 			"processingunit": &elemental.RelationshipInfo{
@@ -2879,6 +2883,10 @@ func init() {
 					elemental.ParameterDefinition{
 						Name: "ts",
 						Type: "time",
+					},
+					elemental.ParameterDefinition{
+						Name: "zhash",
+						Type: "integer",
 					},
 				},
 			},
@@ -2936,6 +2944,10 @@ func init() {
 						Name: "version",
 						Type: "string",
 					},
+					elemental.ParameterDefinition{
+						Name: "zhash",
+						Type: "integer",
+					},
 				},
 			},
 			"processingunit": &elemental.RelationshipInfo{
@@ -2970,6 +2982,10 @@ func init() {
 					elemental.ParameterDefinition{
 						Name: "ts",
 						Type: "time",
+					},
+					elemental.ParameterDefinition{
+						Name: "zhash",
+						Type: "integer",
 					},
 				},
 			},
