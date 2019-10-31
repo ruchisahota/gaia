@@ -52,6 +52,7 @@ indexes:
   - lastPokeTime
 - - namespace
   - nativeContextID
+- - enforcerID
 
 # Attributes
 attributes:
