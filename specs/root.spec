@@ -233,6 +233,14 @@ relations:
   create:
     description: Creates a new enforcer.
 
+- rest_name: enforcerlog
+  get:
+    description: Retrieves the list of enforcerlogs.
+    global_parameters:
+    - $filtering
+  create:
+    description: Creates a new enforcerlog.
+
 - rest_name: enforcerprofile
   get:
     description: Retrieves the list of enforcer profiles.

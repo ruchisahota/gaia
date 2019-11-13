@@ -114,6 +114,7 @@ attributes:
     exposed: true
     subtype: map[string]string
     stored: true
+    deprecated: true
 
   - name: currentVersion
     description: The version number of the installed enforcer binary.
@@ -134,6 +135,13 @@ attributes:
     - Failed
     default_value: Inactive
     filterable: true
+
+  - name: lastCollectionID
+    description: Identifies the last collection.
+    type: string
+    exposed: true
+    stored: true
+    example_value: xxx-xxx-xxx-xxx -
 
   - name: lastCollectionTime
     description: Identifies when the information was collected.
