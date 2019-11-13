@@ -3,7 +3,7 @@ module go.aporeto.io/gaia
 go 1.13
 
 // Aporeto
-require go.aporeto.io/elemental v1.100.1-0.20191106210659-e203ff490472
+require go.aporeto.io/elemental v1.100.1-0.20191113163130-1a5424313cb3
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
