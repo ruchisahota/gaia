@@ -158,15 +158,16 @@ type IsolationProfile struct {
 func NewIsolationProfile() *IsolationProfile {
 
 	return &IsolationProfile{
-		ModelVersion:        1,
-		Annotations:         map[string][]string{},
-		AssociatedTags:      []string{},
-		CapabilitiesActions: types.CapabilitiesTypeMap{},
-		MigrationsLog:       map[string]string{},
-		NormalizedTags:      []string{},
-		Metadata:            []string{},
-		SyscallRules:        types.SyscallEnforcementRulesMap{},
-		TargetArchitectures: types.ArchitecturesTypeList{},
+		ModelVersion:         1,
+		Annotations:          map[string][]string{},
+		DefaultSyscallAction: 3,
+		AssociatedTags:       []string{},
+		CapabilitiesActions:  types.CapabilitiesTypeMap{},
+		MigrationsLog:        map[string]string{},
+		NormalizedTags:       []string{},
+		Metadata:             []string{},
+		SyscallRules:         types.SyscallEnforcementRulesMap{},
+		TargetArchitectures:  types.ArchitecturesTypeList{},
 	}
 }
 
@@ -852,6 +853,7 @@ var IsolationProfileAttributesMap = map[string]elemental.AttributeSpecification{
 	"DefaultSyscallAction": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DefaultSyscallAction",
+		DefaultValue:   3,
 		Description: `The default action applied to all system calls of this profile.
 Default is ` + "`" + `Allow` + "`" + `.`,
 		Exposed: true,
@@ -1126,6 +1128,7 @@ var IsolationProfileLowerCaseAttributesMap = map[string]elemental.AttributeSpeci
 	"defaultsyscallaction": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DefaultSyscallAction",
+		DefaultValue:   3,
 		Description: `The default action applied to all system calls of this profile.
 Default is ` + "`" + `Allow` + "`" + `.`,
 		Exposed: true,

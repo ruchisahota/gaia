@@ -50,6 +50,7 @@ attributes:
     exposed: true
     subtype: _syscall_action
     stored: true
+    default_value: 3
 
   - name: syscallRules
     description: |-

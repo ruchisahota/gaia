@@ -8965,6 +8965,7 @@ processing unit.
 
 ```json
 {
+  "defaultSyscallAction": 3,
   "name": "the name",
   "propagate": false,
   "protected": false
@@ -9032,6 +9033,12 @@ Creation date of the object.
 
 The default action applied to all system calls of this profile.
 Default is `Allow`.
+
+Default value:
+
+```json
+3
+```
 
 ##### `description` `string` [`max_length=1024`]
 
