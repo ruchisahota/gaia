@@ -1,7 +1,7 @@
 # Model
 model:
   rest_name: processingunitrefresh
-  resource_name: processingunitrefreshs
+  resource_name: processingunitrefreshes
   entity_name: ProcessingUnitRefresh
   package: gaga
   group: core/policy

@@ -11,7 +11,7 @@ import (
 // ProcessingUnitRefreshIdentity represents the Identity of the object.
 var ProcessingUnitRefreshIdentity = elemental.Identity{
 	Name:     "processingunitrefresh",
-	Category: "processingunitrefreshs",
+	Category: "processingunitrefreshes",
 	Package:  "gaga",
 	Private:  false,
 }

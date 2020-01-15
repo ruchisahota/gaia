@@ -4103,7 +4103,7 @@ external change on the processing unit must be processed.
 
 #### Relations
 
-##### `POST /processingunits/:id/processingunitrefreshs`
+##### `POST /processingunits/:id/processingunitrefreshes`
 
 Sends a Processing Unit Refresh command.
 
@@ -4427,7 +4427,7 @@ Parameters:
 - `ts` (`time`): time of report. If not set, local server time will be used.
 - `zhash` (`integer`): Can be set to help backend target the correct shard where the processing unit is stored.
 
-##### `POST /processingunits/:id/processingunitrefreshs`
+##### `POST /processingunits/:id/processingunitrefreshes`
 
 Sends a Processing Unit Refresh command.
 
