@@ -15,6 +15,9 @@ const (
 	// UIParameterTypeBoolean represents the value Boolean.
 	UIParameterTypeBoolean UIParameterTypeValue = "Boolean"
 
+	// UIParameterTypeButton represents the value Button.
+	UIParameterTypeButton UIParameterTypeValue = "Button"
+
 	// UIParameterTypeCVSSThreshold represents the value CVSSThreshold.
 	UIParameterTypeCVSSThreshold UIParameterTypeValue = "CVSSThreshold"
 
@@ -90,8 +93,10 @@ type UIParameter struct {
 	// Value of the parameter.
 	Value interface{} `json:"value" msgpack:"value" bson:"value" mapstructure:"value,omitempty"`
 
-	// A logical expression consisting of one or more [UIParameterVisibility](#uiparametervisibility)
-	// conditions linked together using AND or OR operators. If the expression evaluates to true
+	// A logical expression consisting of one or more
+	// [UIParameterVisibility](#uiparametervisibility)
+	// conditions linked together using AND or OR operators. If the expression
+	// evaluates to true
 	// the parameter is displayed to the user.
 	VisibilityCondition [][]*UIParameterVisibility `json:"visibilityCondition" msgpack:"visibilityCondition" bson:"visibilitycondition" mapstructure:"visibilityCondition,omitempty"`
 
@@ -210,7 +215,7 @@ func (o *UIParameter) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Boolean", "Duration", "Enum", "IntegerSlice", "Integer", "Float", "FloatSlice", "Password", "String", "StringSlice", "CVSSThreshold", "JSON", "TagsExpression"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Boolean", "Duration", "Enum", "IntegerSlice", "Integer", "Float", "FloatSlice", "Password", "String", "StringSlice", "CVSSThreshold", "JSON", "TagsExpression", "Button"}, false); err != nil {
 		errors = errors.Append(err)
 	}
 

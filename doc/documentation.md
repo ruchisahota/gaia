@@ -5033,7 +5033,7 @@ Name of the parameter.
 
 A value of `true` designates the parameter as optional.
 
-##### `type` `emum(Boolean | Duration | Enum | IntegerSlice | Integer | Float | FloatSlice | Password | String | StringSlice | CVSSThreshold | JSON | TagsExpression)` [`required`]
+##### `type` `emum(Boolean | Duration | Enum | IntegerSlice | Integer | Float | FloatSlice | Password | String | StringSlice | CVSSThreshold | JSON | TagsExpression | Button)` [`required`]
 
 The datatype of the parameter.
 
@@ -5049,8 +5049,10 @@ Value of the parameter.
 
 ##### `visibilityCondition` `uiparametersexpression`
 
-A logical expression consisting of one or more [UIParameterVisibility](#uiparametervisibility)
-conditions linked together using AND or OR operators. If the expression evaluates to true
+A logical expression consisting of one or more
+[UIParameterVisibility](#uiparametervisibility)
+conditions linked together using AND or OR operators. If the expression
+evaluates to true
 the parameter is displayed to the user.
 
 ### UIParameterVisibility
