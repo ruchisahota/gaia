@@ -55,6 +55,15 @@ attributes:
     stored: true
     read_only: true
 
+  - name: modifiers
+    description: List of modifiers to display in the UI.
+    type: refList
+    exposed: true
+    subtype: uiparameter
+    stored: true
+    extensions:
+      refMode: pointer
+
   - name: parameters
     description: Contains the computed parameters to start the application.
     type: external

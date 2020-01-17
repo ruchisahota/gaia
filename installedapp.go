@@ -136,6 +136,9 @@ type InstalledApp struct {
 	// Internal property maintaining migrations information.
 	MigrationsLog map[string]string `json:"-" msgpack:"-" bson:"migrationslog" mapstructure:"-,omitempty"`
 
+	// List of modifiers to display in the UI.
+	Modifiers []*UIParameter `json:"modifiers" msgpack:"modifiers" bson:"modifiers" mapstructure:"modifiers,omitempty"`
+
 	// Name of the entity.
 	Name string `json:"name" msgpack:"name" bson:"name" mapstructure:"name,omitempty"`
 
@@ -180,9 +183,10 @@ func NewInstalledApp() *InstalledApp {
 		ModelVersion:   1,
 		Annotations:    map[string][]string{},
 		AssociatedTags: []string{},
-		MigrationsLog:  map[string]string{},
+		Modifiers:      []*UIParameter{},
 		NormalizedTags: []string{},
 		Parameters:     map[string]interface{}{},
+		MigrationsLog:  map[string]string{},
 		Status:         InstalledAppStatusUnknown,
 	}
 }
@@ -227,6 +231,7 @@ func (o *InstalledApp) GetBSON() (interface{}, error) {
 	s.CurrentVersion = o.CurrentVersion
 	s.DeploymentCount = o.DeploymentCount
 	s.MigrationsLog = o.MigrationsLog
+	s.Modifiers = o.Modifiers
 	s.Name = o.Name
 	s.Namespace = o.Namespace
 	s.NormalizedTags = o.NormalizedTags
@@ -265,6 +270,7 @@ func (o *InstalledApp) SetBSON(raw bson.Raw) error {
 	o.CurrentVersion = s.CurrentVersion
 	o.DeploymentCount = s.DeploymentCount
 	o.MigrationsLog = s.MigrationsLog
+	o.Modifiers = s.Modifiers
 	o.Name = s.Name
 	o.Namespace = s.Namespace
 	o.NormalizedTags = s.NormalizedTags
@@ -484,6 +490,7 @@ func (o *InstalledApp) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			CurrentVersion:       &o.CurrentVersion,
 			DeploymentCount:      &o.DeploymentCount,
 			MigrationsLog:        &o.MigrationsLog,
+			Modifiers:            &o.Modifiers,
 			Name:                 &o.Name,
 			Namespace:            &o.Namespace,
 			NormalizedTags:       &o.NormalizedTags,
@@ -521,6 +528,8 @@ func (o *InstalledApp) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			sp.DeploymentCount = &(o.DeploymentCount)
 		case "migrationsLog":
 			sp.MigrationsLog = &(o.MigrationsLog)
+		case "modifiers":
+			sp.Modifiers = &(o.Modifiers)
 		case "name":
 			sp.Name = &(o.Name)
 		case "namespace":
@@ -585,6 +594,9 @@ func (o *InstalledApp) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.MigrationsLog != nil {
 		o.MigrationsLog = *so.MigrationsLog
+	}
+	if so.Modifiers != nil {
+		o.Modifiers = *so.Modifiers
 	}
 	if so.Name != nil {
 		o.Name = *so.Name
@@ -655,6 +667,16 @@ func (o *InstalledApp) Validate() error {
 		errors = errors.Append(err)
 	}
 
+	for _, sub := range o.Modifiers {
+		if sub == nil {
+			continue
+		}
+		elemental.ResetDefaultForZeroValues(sub)
+		if err := sub.Validate(); err != nil {
+			errors = errors.Append(err)
+		}
+	}
+
 	if err := elemental.ValidateRequiredString("name", o.Name); err != nil {
 		requiredErrors = requiredErrors.Append(err)
 	}
@@ -721,6 +743,8 @@ func (o *InstalledApp) ValueForAttribute(name string) interface{} {
 		return o.DeploymentCount
 	case "migrationsLog":
 		return o.MigrationsLog
+	case "modifiers":
+		return o.Modifiers
 	case "name":
 		return o.Name
 	case "namespace":
@@ -861,6 +885,16 @@ var InstalledAppAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		SubType:        "map[string]string",
 		Type:           "external",
+	},
+	"Modifiers": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Modifiers",
+		Description:    `List of modifiers to display in the UI.`,
+		Exposed:        true,
+		Name:           "modifiers",
+		Stored:         true,
+		SubType:        "uiparameter",
+		Type:           "refList",
 	},
 	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -1120,6 +1154,16 @@ var InstalledAppLowerCaseAttributesMap = map[string]elemental.AttributeSpecifica
 		SubType:        "map[string]string",
 		Type:           "external",
 	},
+	"modifiers": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "Modifiers",
+		Description:    `List of modifiers to display in the UI.`,
+		Exposed:        true,
+		Name:           "modifiers",
+		Stored:         true,
+		SubType:        "uiparameter",
+		Type:           "refList",
+	},
 	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
@@ -1359,6 +1403,9 @@ type SparseInstalledApp struct {
 	// Internal property maintaining migrations information.
 	MigrationsLog *map[string]string `json:"-" msgpack:"-" bson:"migrationslog,omitempty" mapstructure:"-,omitempty"`
 
+	// List of modifiers to display in the UI.
+	Modifiers *[]*UIParameter `json:"modifiers,omitempty" msgpack:"modifiers,omitempty" bson:"modifiers,omitempty" mapstructure:"modifiers,omitempty"`
+
 	// Name of the entity.
 	Name *string `json:"name,omitempty" msgpack:"name,omitempty" bson:"name,omitempty" mapstructure:"name,omitempty"`
 
@@ -1466,6 +1513,9 @@ func (o *SparseInstalledApp) GetBSON() (interface{}, error) {
 	if o.MigrationsLog != nil {
 		s.MigrationsLog = o.MigrationsLog
 	}
+	if o.Modifiers != nil {
+		s.Modifiers = o.Modifiers
+	}
 	if o.Name != nil {
 		s.Name = o.Name
 	}
@@ -1545,6 +1595,9 @@ func (o *SparseInstalledApp) SetBSON(raw bson.Raw) error {
 	if s.MigrationsLog != nil {
 		o.MigrationsLog = s.MigrationsLog
 	}
+	if s.Modifiers != nil {
+		o.Modifiers = s.Modifiers
+	}
 	if s.Name != nil {
 		o.Name = s.Name
 	}
@@ -1621,6 +1674,9 @@ func (o *SparseInstalledApp) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.MigrationsLog != nil {
 		out.MigrationsLog = *o.MigrationsLog
+	}
+	if o.Modifiers != nil {
+		out.Modifiers = *o.Modifiers
 	}
 	if o.Name != nil {
 		out.Name = *o.Name
@@ -1902,6 +1958,7 @@ type mongoAttributesInstalledApp struct {
 	CurrentVersion       string                  `bson:"currentversion"`
 	DeploymentCount      int                     `bson:"deploymentcount"`
 	MigrationsLog        map[string]string       `bson:"migrationslog,omitempty"`
+	Modifiers            []*UIParameter          `bson:"modifiers"`
 	Name                 string                  `bson:"name"`
 	Namespace            string                  `bson:"namespace"`
 	NormalizedTags       []string                `bson:"normalizedtags"`
@@ -1925,6 +1982,7 @@ type mongoAttributesSparseInstalledApp struct {
 	CurrentVersion       *string                  `bson:"currentversion,omitempty"`
 	DeploymentCount      *int                     `bson:"deploymentcount,omitempty"`
 	MigrationsLog        *map[string]string       `bson:"migrationslog,omitempty"`
+	Modifiers            *[]*UIParameter          `bson:"modifiers,omitempty"`
 	Name                 *string                  `bson:"name,omitempty"`
 	Namespace            *string                  `bson:"namespace,omitempty"`
 	NormalizedTags       *[]string                `bson:"normalizedtags,omitempty"`

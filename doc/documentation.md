@@ -5514,6 +5514,10 @@ Creation date of the object.
 
 Version of the installed application.
 
+##### `modifiers` [`[]uiparameter`](#uiparameter)
+
+List of modifiers to display in the UI.
+
 ##### `name` `string` [`required`,`max_length=256`]
 
 Name of the entity.
