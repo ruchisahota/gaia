@@ -8,6 +8,23 @@ import (
 	"go.aporeto.io/elemental"
 )
 
+// ProcessingUnitRefreshPingTypeValue represents the possible values for attribute "pingType".
+type ProcessingUnitRefreshPingTypeValue string
+
+const (
+	// ProcessingUnitRefreshPingTypeAporetoIdentity represents the value AporetoIdentity.
+	ProcessingUnitRefreshPingTypeAporetoIdentity ProcessingUnitRefreshPingTypeValue = "AporetoIdentity"
+
+	// ProcessingUnitRefreshPingTypeAporetoIdentityPassthrough represents the value AporetoIdentityPassthrough.
+	ProcessingUnitRefreshPingTypeAporetoIdentityPassthrough ProcessingUnitRefreshPingTypeValue = "AporetoIdentityPassthrough"
+
+	// ProcessingUnitRefreshPingTypeCustomIdentity represents the value CustomIdentity.
+	ProcessingUnitRefreshPingTypeCustomIdentity ProcessingUnitRefreshPingTypeValue = "CustomIdentity"
+
+	// ProcessingUnitRefreshPingTypeNone represents the value None.
+	ProcessingUnitRefreshPingTypeNone ProcessingUnitRefreshPingTypeValue = "None"
+)
+
 // ProcessingUnitRefreshIdentity represents the Identity of the object.
 var ProcessingUnitRefreshIdentity = elemental.Identity{
 	Name:     "processingunitrefresh",
@@ -90,6 +107,18 @@ type ProcessingUnitRefresh struct {
 	// Contains the original namespace of the processing unit.
 	Namespace string `json:"namespace" msgpack:"namespace" bson:"-" mapstructure:"namespace,omitempty"`
 
+	// Destination network to run ping.
+	PingNetwork string `json:"pingNetwork,omitempty" msgpack:"pingNetwork,omitempty" bson:"-" mapstructure:"pingNetwork,omitempty"`
+
+	// Destination port(s) to run ping.
+	PingPorts []string `json:"pingPorts,omitempty" msgpack:"pingPorts,omitempty" bson:"-" mapstructure:"pingPorts,omitempty"`
+
+	// Number of requests to send to the destination.
+	PingRequests int `json:"pingRequests,omitempty" msgpack:"pingRequests,omitempty" bson:"-" mapstructure:"pingRequests,omitempty"`
+
+	// Represents the type of ping to be used.
+	PingType ProcessingUnitRefreshPingTypeValue `json:"pingType" msgpack:"pingType" bson:"-" mapstructure:"pingType,omitempty"`
+
 	// If set to true, the target Processing Unit will refresh its policy immediately.
 	RefreshPolicy bool `json:"refreshPolicy,omitempty" msgpack:"refreshPolicy,omitempty" bson:"-" mapstructure:"refreshPolicy,omitempty"`
 
@@ -118,6 +147,8 @@ func NewProcessingUnitRefresh() *ProcessingUnitRefresh {
 
 	return &ProcessingUnitRefresh{
 		ModelVersion:  1,
+		PingPorts:     []string{},
+		PingType:      ProcessingUnitRefreshPingTypeNone,
 		TraceDuration: "10s",
 	}
 }
@@ -222,6 +253,10 @@ func (o *ProcessingUnitRefresh) ToSparse(fields ...string) elemental.SparseIdent
 			ID:                          &o.ID,
 			Debug:                       &o.Debug,
 			Namespace:                   &o.Namespace,
+			PingNetwork:                 &o.PingNetwork,
+			PingPorts:                   &o.PingPorts,
+			PingRequests:                &o.PingRequests,
+			PingType:                    &o.PingType,
 			RefreshPolicy:               &o.RefreshPolicy,
 			TraceApplicationConnections: &o.TraceApplicationConnections,
 			TraceDuration:               &o.TraceDuration,
@@ -239,6 +274,14 @@ func (o *ProcessingUnitRefresh) ToSparse(fields ...string) elemental.SparseIdent
 			sp.Debug = &(o.Debug)
 		case "namespace":
 			sp.Namespace = &(o.Namespace)
+		case "pingNetwork":
+			sp.PingNetwork = &(o.PingNetwork)
+		case "pingPorts":
+			sp.PingPorts = &(o.PingPorts)
+		case "pingRequests":
+			sp.PingRequests = &(o.PingRequests)
+		case "pingType":
+			sp.PingType = &(o.PingType)
 		case "refreshPolicy":
 			sp.RefreshPolicy = &(o.RefreshPolicy)
 		case "traceApplicationConnections":
@@ -270,6 +313,18 @@ func (o *ProcessingUnitRefresh) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.Namespace != nil {
 		o.Namespace = *so.Namespace
+	}
+	if so.PingNetwork != nil {
+		o.PingNetwork = *so.PingNetwork
+	}
+	if so.PingPorts != nil {
+		o.PingPorts = *so.PingPorts
+	}
+	if so.PingRequests != nil {
+		o.PingRequests = *so.PingRequests
+	}
+	if so.PingType != nil {
+		o.PingType = *so.PingType
 	}
 	if so.RefreshPolicy != nil {
 		o.RefreshPolicy = *so.RefreshPolicy
@@ -318,6 +373,14 @@ func (o *ProcessingUnitRefresh) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := ValidatePortStringList("pingPorts", o.PingPorts); err != nil {
+		errors = errors.Append(err)
+	}
+
+	if err := elemental.ValidateStringInList("pingType", string(o.PingType), []string{"None", "AporetoIdentity", "CustomIdentity", "AporetoIdentityPassthrough"}, false); err != nil {
+		errors = errors.Append(err)
+	}
+
 	if len(requiredErrors) > 0 {
 		return requiredErrors
 	}
@@ -358,6 +421,14 @@ func (o *ProcessingUnitRefresh) ValueForAttribute(name string) interface{} {
 		return o.Debug
 	case "namespace":
 		return o.Namespace
+	case "pingNetwork":
+		return o.PingNetwork
+	case "pingPorts":
+		return o.PingPorts
+	case "pingRequests":
+		return o.PingRequests
+	case "pingType":
+		return o.PingType
 	case "refreshPolicy":
 		return o.RefreshPolicy
 	case "traceApplicationConnections":
@@ -405,6 +476,40 @@ unit.`,
 		Name:           "namespace",
 		ReadOnly:       true,
 		Type:           "string",
+	},
+	"PingNetwork": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PingNetwork",
+		Description:    `Destination network to run ping.`,
+		Exposed:        true,
+		Name:           "pingNetwork",
+		Type:           "string",
+	},
+	"PingPorts": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PingPorts",
+		Description:    `Destination port(s) to run ping.`,
+		Exposed:        true,
+		Name:           "pingPorts",
+		SubType:        "string",
+		Type:           "list",
+	},
+	"PingRequests": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PingRequests",
+		Description:    `Number of requests to send to the destination.`,
+		Exposed:        true,
+		Name:           "pingRequests",
+		Type:           "integer",
+	},
+	"PingType": elemental.AttributeSpecification{
+		AllowedChoices: []string{"None", "AporetoIdentity", "CustomIdentity", "AporetoIdentityPassthrough"},
+		ConvertedName:  "PingType",
+		DefaultValue:   ProcessingUnitRefreshPingTypeNone,
+		Description:    `Represents the type of ping to be used.`,
+		Exposed:        true,
+		Name:           "pingType",
+		Type:           "enum",
 	},
 	"RefreshPolicy": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -486,6 +591,40 @@ unit.`,
 		Name:           "namespace",
 		ReadOnly:       true,
 		Type:           "string",
+	},
+	"pingnetwork": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PingNetwork",
+		Description:    `Destination network to run ping.`,
+		Exposed:        true,
+		Name:           "pingNetwork",
+		Type:           "string",
+	},
+	"pingports": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PingPorts",
+		Description:    `Destination port(s) to run ping.`,
+		Exposed:        true,
+		Name:           "pingPorts",
+		SubType:        "string",
+		Type:           "list",
+	},
+	"pingrequests": elemental.AttributeSpecification{
+		AllowedChoices: []string{},
+		ConvertedName:  "PingRequests",
+		Description:    `Number of requests to send to the destination.`,
+		Exposed:        true,
+		Name:           "pingRequests",
+		Type:           "integer",
+	},
+	"pingtype": elemental.AttributeSpecification{
+		AllowedChoices: []string{"None", "AporetoIdentity", "CustomIdentity", "AporetoIdentityPassthrough"},
+		ConvertedName:  "PingType",
+		DefaultValue:   ProcessingUnitRefreshPingTypeNone,
+		Description:    `Represents the type of ping to be used.`,
+		Exposed:        true,
+		Name:           "pingType",
+		Type:           "enum",
 	},
 	"refreshpolicy": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
@@ -608,6 +747,18 @@ type SparseProcessingUnitRefresh struct {
 	// Contains the original namespace of the processing unit.
 	Namespace *string `json:"namespace,omitempty" msgpack:"namespace,omitempty" bson:"-" mapstructure:"namespace,omitempty"`
 
+	// Destination network to run ping.
+	PingNetwork *string `json:"pingNetwork,omitempty" msgpack:"pingNetwork,omitempty" bson:"-" mapstructure:"pingNetwork,omitempty"`
+
+	// Destination port(s) to run ping.
+	PingPorts *[]string `json:"pingPorts,omitempty" msgpack:"pingPorts,omitempty" bson:"-" mapstructure:"pingPorts,omitempty"`
+
+	// Number of requests to send to the destination.
+	PingRequests *int `json:"pingRequests,omitempty" msgpack:"pingRequests,omitempty" bson:"-" mapstructure:"pingRequests,omitempty"`
+
+	// Represents the type of ping to be used.
+	PingType *ProcessingUnitRefreshPingTypeValue `json:"pingType,omitempty" msgpack:"pingType,omitempty" bson:"-" mapstructure:"pingType,omitempty"`
+
 	// If set to true, the target Processing Unit will refresh its policy immediately.
 	RefreshPolicy *bool `json:"refreshPolicy,omitempty" msgpack:"refreshPolicy,omitempty" bson:"-" mapstructure:"refreshPolicy,omitempty"`
 
@@ -708,6 +859,18 @@ func (o *SparseProcessingUnitRefresh) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.Namespace != nil {
 		out.Namespace = *o.Namespace
+	}
+	if o.PingNetwork != nil {
+		out.PingNetwork = *o.PingNetwork
+	}
+	if o.PingPorts != nil {
+		out.PingPorts = *o.PingPorts
+	}
+	if o.PingRequests != nil {
+		out.PingRequests = *o.PingRequests
+	}
+	if o.PingType != nil {
+		out.PingType = *o.PingType
 	}
 	if o.RefreshPolicy != nil {
 		out.RefreshPolicy = *o.RefreshPolicy

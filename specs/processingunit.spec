@@ -203,7 +203,6 @@ attributes:
     type: ref
     exposed: true
     subtype: tracemode
-    stored: true
     extensions:
       refMode: pointer
 
