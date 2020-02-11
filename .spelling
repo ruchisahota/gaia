@@ -6,6 +6,7 @@ ack
 ACL-based
 acls
 addressers
+aki
 api
 APIAuthorizationPolicy
 APICheck
@@ -48,7 +49,9 @@ clob
 CNs
 collectionID
 CollectionID
+ComplianceIssue
 containerd
+ContainerImage
 ContextID
 CoreOS
 CounterReport
