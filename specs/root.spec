@@ -523,6 +523,10 @@ relations:
   create:
     description: Creates a new LDAP provider.
 
+- rest_name: logout
+  get:
+    description: Performs a logout operation.
+
 - rest_name: message
   get:
     description: Retrieves the list of messages.

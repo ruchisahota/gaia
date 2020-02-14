@@ -1320,6 +1320,17 @@ Last update date of the object.
 
 Geographical zone. Used for sharding and georedundancy.
 
+### Logout
+
+Perform logout operations. This is only used to unset the secure cookie token
+for now.
+
+#### Relations
+
+##### `GET /logout`
+
+Performs a logout operation.
+
 ### OIDCProvider
 
 Allows to declare a generic OpenID Connect (OIDC) provider that can be used in

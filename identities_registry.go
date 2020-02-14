@@ -76,6 +76,7 @@ var (
 
 		"ldapprovider":           LDAPProviderIdentity,
 		"log":                    LogIdentity,
+		"logout":                 LogoutIdentity,
 		"message":                MessageIdentity,
 		"namespace":              NamespaceIdentity,
 		"namespacemappingpolicy": NamespaceMappingPolicyIdentity,
@@ -215,6 +216,7 @@ var (
 
 		"ldapproviders":            LDAPProviderIdentity,
 		"logs":                     LogIdentity,
+		"logout":                   LogoutIdentity,
 		"messages":                 MessageIdentity,
 		"namespaces":               NamespaceIdentity,
 		"namespacemappingpolicies": NamespaceMappingPolicyIdentity,
@@ -673,7 +675,8 @@ var (
 			[]string{"name"},
 			[]string{"createIdempotencyKey"},
 		},
-		"log": nil,
+		"log":    nil,
+		"logout": nil,
 		"message": [][]string{
 			[]string{":shard", ":unique", "zone", "zHash"},
 			[]string{"updateIdempotencyKey"},
@@ -1025,6 +1028,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewLDAPProvider()
 	case LogIdentity:
 		return NewLog()
+	case LogoutIdentity:
+		return NewLogout()
 	case MessageIdentity:
 		return NewMessage()
 	case NamespaceIdentity:
@@ -1282,6 +1287,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseLDAPProvider()
 	case LogIdentity:
 		return NewSparseLog()
+	case LogoutIdentity:
+		return NewSparseLogout()
 	case MessageIdentity:
 		return NewSparseMessage()
 	case NamespaceIdentity:
@@ -1547,6 +1554,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &LDAPProvidersList{}
 	case LogIdentity:
 		return &LogsList{}
+	case LogoutIdentity:
+		return &LogoutsList{}
 	case MessageIdentity:
 		return &MessagesList{}
 	case NamespaceIdentity:
@@ -1802,6 +1811,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseLDAPProvidersList{}
 	case LogIdentity:
 		return &SparseLogsList{}
+	case LogoutIdentity:
+		return &SparseLogoutsList{}
 	case MessageIdentity:
 		return &SparseMessagesList{}
 	case NamespaceIdentity:
@@ -2006,6 +2017,7 @@ func AllIdentities() []elemental.Identity {
 		IssueServiceTokenIdentity,
 		LDAPProviderIdentity,
 		LogIdentity,
+		LogoutIdentity,
 		MessageIdentity,
 		NamespaceIdentity,
 		NamespaceMappingPolicyIdentity,
@@ -2270,6 +2282,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case LDAPProviderIdentity:
 		return []string{}
 	case LogIdentity:
+		return []string{}
+	case LogoutIdentity:
 		return []string{}
 	case MessageIdentity:
 		return []string{

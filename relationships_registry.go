@@ -2604,6 +2604,15 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[LogoutIdentity] = &elemental.Relationship{
+		RetrieveMany: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+		Info: map[string]*elemental.RelationshipInfo{
+			"root": &elemental.RelationshipInfo{},
+		},
+	}
+
 	relationshipsRegistry[MessageIdentity] = &elemental.Relationship{
 		Create: map[string]*elemental.RelationshipInfo{
 			"root": &elemental.RelationshipInfo{},
