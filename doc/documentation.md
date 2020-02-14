@@ -34,14 +34,6 @@ Parameters:
 
 Creates a new compliance issue.
 
-##### `DELETE /complianceissues/:id`
-
-Deletes the compliance issue with the given ID.
-
-Parameters:
-
-- `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
-
 ##### `GET /complianceissues/:id`
 
 Retrieves a compliance issue with a given ID.
@@ -6103,14 +6095,6 @@ Parameters:
 ##### `POST /containerimages`
 
 Creates a new container image.
-
-##### `DELETE /containerimages/:id`
-
-Deletes the container image with the given ID.
-
-Parameters:
-
-- `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
 
 ##### `GET /containerimages/:id`
 
