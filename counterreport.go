@@ -333,6 +333,7 @@ func NewCounterReport() *CounterReport {
 		SynAckMissingToken:           0,
 		ContextIDNotFound:            0,
 		UDPSynAckMissingClaims:       0,
+		DuplicateAckDrop:             0,
 	}
 }
 
