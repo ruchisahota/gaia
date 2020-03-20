@@ -1668,7 +1668,6 @@ Post a new counter tracing report.
   "ConnectionsProcessed": 0,
   "ContextIDNotFound": 0,
   "DroppedExternalService": 0,
-  "DuplicateAckDrop": 0,
   "InvalidConnState": 0,
   "InvalidNetState": 0,
   "InvalidProtocol": 0,
@@ -1718,11 +1717,19 @@ Post a new counter tracing report.
   "UDPSynInvalidToken": 0,
   "UDPSynMissingClaims": 0,
   "UnknownError": 0,
+  "connectionsAnalyzed": 0,
+  "connectionsDropped": 0,
+  "connectionsExpired": 0,
+  "droppedPackets": 0,
+  "encryptionFailures": 0,
   "enforcerID": "xxxx-xxx-xxxx",
   "enforcerNamespace": "/my/namespace",
+  "externalNetworkConnections": 0,
+  "policyDrops": 0,
   "processingUnitID": "xxx-xxx-xxx",
   "processingUnitNamespace": "/my/namespace",
-  "timestamp": "2018-06-14T23:10:46.420397985Z"
+  "timestamp": "2018-06-14T23:10:46.420397985Z",
+  "tokenDrops": 0
 }
 ```
 
@@ -1808,16 +1815,6 @@ Default value:
 
 Counter for no acls found for external services. dropping application syn
 packet.
-
-Default value:
-
-```json
-0
-```
-
-##### `DuplicateAckDrop` `integer`
-
-Counter for duplicate ack drop.
 
 Default value:
 
@@ -2315,6 +2312,61 @@ Default value:
 0
 ```
 
+##### `connectionsAnalyzed` `integer`
+
+Non-zero counter indicates analyzed connections for unencrypted, encrypted and
+as well as when the packet from the endpoint application has tcp fast open
+option set. These are not dropped counter.
+
+Default value:
+
+```json
+0
+```
+
+##### `connectionsDropped` `integer`
+
+Non-zero counter indicates dropped connections because of invalid state or non
+pu traffic or out of order packets.
+
+Default value:
+
+```json
+0
+```
+
+##### `connectionsExpired` `integer`
+
+Non-zero counter indicates expired connections because of response not being
+received within a certain amount of time after the request is made.
+
+Default value:
+
+```json
+0
+```
+
+##### `droppedPackets` `integer`
+
+Non-zero counter indicates dropped packets that did not hit any of our iptables
+rules and queue drops.
+
+Default value:
+
+```json
+0
+```
+
+##### `encryptionFailures` `integer`
+
+Non-zero counter indicates encryption processing failures of data packets.
+
+Default value:
+
+```json
+0
+```
+
 ##### `enforcerID` `string` [`required`]
 
 Identifier of the enforcer sending the report.
@@ -2322,6 +2374,27 @@ Identifier of the enforcer sending the report.
 ##### `enforcerNamespace` `string` [`required`]
 
 Namespace of the enforcer sending the report.
+
+##### `externalNetworkConnections` `integer`
+
+Non-zero counter indicates connections going to and from external networks.
+These may be drops or allowed counters.
+
+Default value:
+
+```json
+0
+```
+
+##### `policyDrops` `integer`
+
+Non-zero counter indicates dropped packets by a reject policy.
+
+Default value:
+
+```json
+0
+```
 
 ##### `processingUnitID` `string`
 
@@ -2334,6 +2407,17 @@ Namespace of the PU reporting the counter.
 ##### `timestamp` `time`
 
 Timestamp is the date of the report.
+
+##### `tokenDrops` `integer`
+
+Non-zero counter indicates rejected packets due to anything related to token
+creation/parsing failures.
+
+Default value:
+
+```json
+0
+```
 
 ### Enforcer
 
