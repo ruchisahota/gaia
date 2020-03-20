@@ -35,6 +35,7 @@ var (
 
 		"customer":            CustomerIdentity,
 		"datapathcertificate": DataPathCertificateIdentity,
+		"debugbundle":         DebugBundleIdentity,
 		"dependencymap":       DependencyMapIdentity,
 		"dnslookupreport":     DNSLookupReportIdentity,
 		"email":               EmailIdentity,
@@ -43,6 +44,7 @@ var (
 		"enforcerlog":                  EnforcerLogIdentity,
 		"enforcerprofile":              EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicy": EnforcerProfileMappingPolicyIdentity,
+		"enforcerrefresh":              EnforcerRefreshIdentity,
 		"enforcerreport":               EnforcerReportIdentity,
 		"enforcertracereport":          EnforcerTraceReportIdentity,
 		"eventlog":                     EventLogIdentity,
@@ -175,6 +177,7 @@ var (
 
 		"customers":            CustomerIdentity,
 		"datapathcertificates": DataPathCertificateIdentity,
+		"debugbundles":         DebugBundleIdentity,
 		"dependencymaps":       DependencyMapIdentity,
 		"dnslookupreports":     DNSLookupReportIdentity,
 		"emails":               EmailIdentity,
@@ -183,6 +186,7 @@ var (
 		"enforcerlog":                    EnforcerLogIdentity,
 		"enforcerprofiles":               EnforcerProfileIdentity,
 		"enforcerprofilemappingpolicies": EnforcerProfileMappingPolicyIdentity,
+		"enforcerrefreshes":              EnforcerRefreshIdentity,
 		"enforcerreports":                EnforcerReportIdentity,
 		"enforcertracereports":           EnforcerTraceReportIdentity,
 		"eventlogs":                      EventLogIdentity,
@@ -487,6 +491,7 @@ var (
 			[]string{"providerCustomerID"},
 		},
 		"datapathcertificate": nil,
+		"debugbundle":         nil,
 		"dependencymap":       nil,
 		"dnslookupreport":     nil,
 		"email":               nil,
@@ -523,6 +528,7 @@ var (
 			[]string{"createIdempotencyKey"},
 		},
 		"enforcerprofilemappingpolicy": nil,
+		"enforcerrefresh":              nil,
 		"enforcerreport":               nil,
 		"enforcertracereport":          nil,
 		"eventlog":                     nil,
@@ -942,6 +948,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewCustomer()
 	case DataPathCertificateIdentity:
 		return NewDataPathCertificate()
+	case DebugBundleIdentity:
+		return NewDebugBundle()
 	case DependencyMapIdentity:
 		return NewDependencyMap()
 	case DNSLookupReportIdentity:
@@ -956,6 +964,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewEnforcerProfile()
 	case EnforcerProfileMappingPolicyIdentity:
 		return NewEnforcerProfileMappingPolicy()
+	case EnforcerRefreshIdentity:
+		return NewEnforcerRefresh()
 	case EnforcerReportIdentity:
 		return NewEnforcerReport()
 	case EnforcerTraceReportIdentity:
@@ -1201,6 +1211,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseCustomer()
 	case DataPathCertificateIdentity:
 		return NewSparseDataPathCertificate()
+	case DebugBundleIdentity:
+		return NewSparseDebugBundle()
 	case DependencyMapIdentity:
 		return NewSparseDependencyMap()
 	case DNSLookupReportIdentity:
@@ -1215,6 +1227,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparseEnforcerProfile()
 	case EnforcerProfileMappingPolicyIdentity:
 		return NewSparseEnforcerProfileMappingPolicy()
+	case EnforcerRefreshIdentity:
+		return NewSparseEnforcerRefresh()
 	case EnforcerReportIdentity:
 		return NewSparseEnforcerReport()
 	case EnforcerTraceReportIdentity:
@@ -1468,6 +1482,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &CustomersList{}
 	case DataPathCertificateIdentity:
 		return &DataPathCertificatesList{}
+	case DebugBundleIdentity:
+		return &DebugBundlesList{}
 	case DependencyMapIdentity:
 		return &DependencyMapsList{}
 	case DNSLookupReportIdentity:
@@ -1482,6 +1498,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &EnforcerProfilesList{}
 	case EnforcerProfileMappingPolicyIdentity:
 		return &EnforcerProfileMappingPoliciesList{}
+	case EnforcerRefreshIdentity:
+		return &EnforcerRefreshsList{}
 	case EnforcerReportIdentity:
 		return &EnforcerReportsList{}
 	case EnforcerTraceReportIdentity:
@@ -1725,6 +1743,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseCustomersList{}
 	case DataPathCertificateIdentity:
 		return &SparseDataPathCertificatesList{}
+	case DebugBundleIdentity:
+		return &SparseDebugBundlesList{}
 	case DependencyMapIdentity:
 		return &SparseDependencyMapsList{}
 	case DNSLookupReportIdentity:
@@ -1739,6 +1759,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparseEnforcerProfilesList{}
 	case EnforcerProfileMappingPolicyIdentity:
 		return &SparseEnforcerProfileMappingPoliciesList{}
+	case EnforcerRefreshIdentity:
+		return &SparseEnforcerRefreshsList{}
 	case EnforcerReportIdentity:
 		return &SparseEnforcerReportsList{}
 	case EnforcerTraceReportIdentity:
@@ -1969,6 +1991,7 @@ func AllIdentities() []elemental.Identity {
 		CounterReportIdentity,
 		CustomerIdentity,
 		DataPathCertificateIdentity,
+		DebugBundleIdentity,
 		DependencyMapIdentity,
 		DNSLookupReportIdentity,
 		EmailIdentity,
@@ -1976,6 +1999,7 @@ func AllIdentities() []elemental.Identity {
 		EnforcerLogIdentity,
 		EnforcerProfileIdentity,
 		EnforcerProfileMappingPolicyIdentity,
+		EnforcerRefreshIdentity,
 		EnforcerReportIdentity,
 		EnforcerTraceReportIdentity,
 		EventLogIdentity,
@@ -2150,6 +2174,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 		return []string{}
 	case DataPathCertificateIdentity:
 		return []string{}
+	case DebugBundleIdentity:
+		return []string{}
 	case DependencyMapIdentity:
 		return []string{
 			"depmaps",
@@ -2174,6 +2200,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 			"enfpol",
 			"epm",
 		}
+	case EnforcerRefreshIdentity:
+		return []string{}
 	case EnforcerReportIdentity:
 		return []string{}
 	case EnforcerTraceReportIdentity:
