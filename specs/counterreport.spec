@@ -60,6 +60,12 @@ attributes:
     exposed: true
     default_value: 0
 
+  - name: DuplicateAckDrop
+    description: Counter for duplicate ack drop.
+    type: integer
+    exposed: true
+    default_value: 0
+
   - name: InvalidConnState
     description: Counter for invalid connection state.
     type: integer
