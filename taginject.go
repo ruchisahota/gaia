@@ -304,7 +304,7 @@ func (o *TagInject) ValueForAttribute(name string) interface{} {
 
 // TagInjectAttributesMap represents the map of attribute for TagInject.
 var TagInjectAttributesMap = map[string]elemental.AttributeSpecification{
-	"AddedTags": {
+	"AddedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AddedTags",
 		Description:    `List of tags to be added.`,
@@ -313,7 +313,7 @@ var TagInjectAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]int",
 		Type:           "external",
 	},
-	"RemovedTags": {
+	"RemovedTags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RemovedTags",
 		Description:    `List of tags to be removed.`,
@@ -322,7 +322,7 @@ var TagInjectAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]int",
 		Type:           "external",
 	},
-	"TargetNamespace": {
+	"TargetNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "TargetNamespace",
 		Description:    `List of tags to inject.`,
@@ -335,7 +335,7 @@ var TagInjectAttributesMap = map[string]elemental.AttributeSpecification{
 
 // TagInjectLowerCaseAttributesMap represents the map of attribute for TagInject.
 var TagInjectLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"addedtags": {
+	"addedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AddedTags",
 		Description:    `List of tags to be added.`,
@@ -344,7 +344,7 @@ var TagInjectLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		SubType:        "map[string]int",
 		Type:           "external",
 	},
-	"removedtags": {
+	"removedtags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RemovedTags",
 		Description:    `List of tags to be removed.`,
@@ -353,7 +353,7 @@ var TagInjectLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		SubType:        "map[string]int",
 		Type:           "external",
 	},
-	"targetnamespace": {
+	"targetnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "TargetNamespace",
 		Description:    `List of tags to inject.`,

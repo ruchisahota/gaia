@@ -299,7 +299,7 @@ func (o *RenderTemplate) ValueForAttribute(name string) interface{} {
 
 // RenderTemplateAttributesMap represents the map of attribute for RenderTemplate.
 var RenderTemplateAttributesMap = map[string]elemental.AttributeSpecification{
-	"Output": {
+	"Output": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Output",
 		Description:    `Holds the rendered template.`,
@@ -307,7 +307,7 @@ var RenderTemplateAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "output",
 		Type:           "string",
 	},
-	"Parameters": {
+	"Parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
 		Description:    `Contains the computed parameters.`,
@@ -316,7 +316,7 @@ var RenderTemplateAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]interface{}",
 		Type:           "external",
 	},
-	"Template": {
+	"Template": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Template",
 		Description:    `Template of the recipe.`,
@@ -328,7 +328,7 @@ var RenderTemplateAttributesMap = map[string]elemental.AttributeSpecification{
 
 // RenderTemplateLowerCaseAttributesMap represents the map of attribute for RenderTemplate.
 var RenderTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"output": {
+	"output": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Output",
 		Description:    `Holds the rendered template.`,
@@ -336,7 +336,7 @@ var RenderTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		Name:           "output",
 		Type:           "string",
 	},
-	"parameters": {
+	"parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
 		Description:    `Contains the computed parameters.`,
@@ -345,7 +345,7 @@ var RenderTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpecifi
 		SubType:        "map[string]interface{}",
 		Type:           "external",
 	},
-	"template": {
+	"template": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Template",
 		Description:    `Template of the recipe.`,

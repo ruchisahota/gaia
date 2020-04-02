@@ -276,7 +276,7 @@ func (o *Call) ValueForAttribute(name string) interface{} {
 
 // CallAttributesMap represents the map of attribute for Call.
 var CallAttributesMap = map[string]elemental.AttributeSpecification{
-	"Payload": {
+	"Payload": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Payload",
 		Description:    `Contains the remote ` + "`" + `POST` + "`" + ` payload.`,
@@ -288,7 +288,7 @@ var CallAttributesMap = map[string]elemental.AttributeSpecification{
 
 // CallLowerCaseAttributesMap represents the map of attribute for Call.
 var CallLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"payload": {
+	"payload": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Payload",
 		Description:    `Contains the remote ` + "`" + `POST` + "`" + ` payload.`,

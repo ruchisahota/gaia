@@ -428,7 +428,7 @@ func (o *AutomationTemplate) ValueForAttribute(name string) interface{} {
 
 // AutomationTemplateAttributesMap represents the map of attribute for AutomationTemplate.
 var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecification{
-	"Description": {
+	"Description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Description",
 		Description:    `Description of the object.`,
@@ -441,7 +441,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"Entitlements": {
+	"Entitlements": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Entitlements",
 		Description:    `Contains the entitlements needed for executing the function.`,
@@ -450,7 +450,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		SubType:        "_automation_entitlements",
 		Type:           "external",
 	},
-	"Function": {
+	"Function": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Function",
 		Description:    `Function contains the code.`,
@@ -458,7 +458,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Name:           "function",
 		Type:           "string",
 	},
-	"Key": {
+	"Key": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Key",
 		Description:    `Contains the unique identifier key for the template.`,
@@ -466,7 +466,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Name:           "key",
 		Type:           "string",
 	},
-	"Kind": {
+	"Kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Action", "Condition"},
 		ConvertedName:  "Kind",
 		DefaultValue:   AutomationTemplateKindCondition,
@@ -475,7 +475,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Name:           "kind",
 		Type:           "enum",
 	},
-	"Name": {
+	"Name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		Description:    `Name of the entity.`,
@@ -490,7 +490,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"Parameters": {
+	"Parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
 		Description:    `Contains the computed parameters.`,
@@ -499,7 +499,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 		SubType:        "map[string]interface{}",
 		Type:           "external",
 	},
-	"Steps": {
+	"Steps": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Steps",
 		Description:    `Contains all the steps with parameters.`,
@@ -512,7 +512,7 @@ var AutomationTemplateAttributesMap = map[string]elemental.AttributeSpecificatio
 
 // AutomationTemplateLowerCaseAttributesMap represents the map of attribute for AutomationTemplate.
 var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"description": {
+	"description": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Description",
 		Description:    `Description of the object.`,
@@ -525,7 +525,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Stored:         true,
 		Type:           "string",
 	},
-	"entitlements": {
+	"entitlements": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Entitlements",
 		Description:    `Contains the entitlements needed for executing the function.`,
@@ -534,7 +534,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		SubType:        "_automation_entitlements",
 		Type:           "external",
 	},
-	"function": {
+	"function": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Function",
 		Description:    `Function contains the code.`,
@@ -542,7 +542,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Name:           "function",
 		Type:           "string",
 	},
-	"key": {
+	"key": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Key",
 		Description:    `Contains the unique identifier key for the template.`,
@@ -550,7 +550,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Name:           "key",
 		Type:           "string",
 	},
-	"kind": {
+	"kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Action", "Condition"},
 		ConvertedName:  "Kind",
 		DefaultValue:   AutomationTemplateKindCondition,
@@ -559,7 +559,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Name:           "kind",
 		Type:           "enum",
 	},
-	"name": {
+	"name": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Name",
 		Description:    `Name of the entity.`,
@@ -574,7 +574,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		Stored:         true,
 		Type:           "string",
 	},
-	"parameters": {
+	"parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
 		Description:    `Contains the computed parameters.`,
@@ -583,7 +583,7 @@ var AutomationTemplateLowerCaseAttributesMap = map[string]elemental.AttributeSpe
 		SubType:        "map[string]interface{}",
 		Type:           "external",
 	},
-	"steps": {
+	"steps": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Steps",
 		Description:    `Contains all the steps with parameters.`,

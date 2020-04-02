@@ -673,7 +673,7 @@ func (o *AuditReport) ValueForAttribute(name string) interface{} {
 
 // AuditReportAttributesMap represents the map of attribute for AuditReport.
 var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"AUID": {
+	"AUID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AUID",
 		Description:    `The login ID of the user who started the audited process.`,
@@ -681,7 +681,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "AUID",
 		Type:           "string",
 	},
-	"CWD": {
+	"CWD": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "CWD",
 		Description:    `Command working directory.`,
@@ -689,7 +689,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "CWD",
 		Type:           "string",
 	},
-	"EGID": {
+	"EGID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EGID",
 		Description:    `Effective group ID of the user who started the audited process.`,
@@ -697,7 +697,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "EGID",
 		Type:           "integer",
 	},
-	"EUID": {
+	"EUID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EUID",
 		Description:    `Effective user ID of the user who started the audited process.`,
@@ -705,7 +705,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "EUID",
 		Type:           "integer",
 	},
-	"EXE": {
+	"EXE": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EXE",
 		Description:    `Path to the executable.`,
@@ -713,7 +713,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "EXE",
 		Type:           "string",
 	},
-	"FSGID": {
+	"FSGID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FSGID",
 		Description:    `File system group ID of the user who started the audited process.`,
@@ -721,7 +721,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "FSGID",
 		Type:           "integer",
 	},
-	"FSUID": {
+	"FSUID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FSUID",
 		Description:    `File system user ID of the user who started the audited process.`,
@@ -729,7 +729,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "FSUID",
 		Type:           "integer",
 	},
-	"FilePath": {
+	"FilePath": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FilePath",
 		Description:    `Full path of the file that was passed to the system call.`,
@@ -737,7 +737,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "FilePath",
 		Type:           "string",
 	},
-	"GID": {
+	"GID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "GID",
 		Description:    `Group ID of the user who started the analyzed process.`,
@@ -745,7 +745,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "GID",
 		Type:           "integer",
 	},
-	"PER": {
+	"PER": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PER",
 		Description:    `File or directory permissions.`,
@@ -753,7 +753,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "PER",
 		Type:           "integer",
 	},
-	"PID": {
+	"PID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PID",
 		Description:    `Process ID of the executable.`,
@@ -761,7 +761,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "PID",
 		Type:           "integer",
 	},
-	"PPID": {
+	"PPID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PPID",
 		Description:    `Process ID of the parent executable.`,
@@ -769,7 +769,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "PPID",
 		Type:           "integer",
 	},
-	"SGID": {
+	"SGID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SGID",
 		Description:    `Set group ID of the user who started the audited process.`,
@@ -777,7 +777,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "SGID",
 		Type:           "integer",
 	},
-	"SUID": {
+	"SUID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SUID",
 		Description:    `Set user ID of the user who started the audited process.`,
@@ -785,7 +785,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "SUID",
 		Type:           "integer",
 	},
-	"UID": {
+	"UID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "UID",
 		Description:    `User ID.`,
@@ -793,7 +793,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "UID",
 		Type:           "integer",
 	},
-	"A0": {
+	"A0": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A0",
 		Description:    `First argument of the executed system call.`,
@@ -801,7 +801,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "a0",
 		Type:           "string",
 	},
-	"A1": {
+	"A1": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A1",
 		Description:    `Second argument of the executed system call.`,
@@ -809,7 +809,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "a1",
 		Type:           "string",
 	},
-	"A2": {
+	"A2": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A2",
 		Description:    `Third argument of the executed system call.`,
@@ -817,7 +817,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "a2",
 		Type:           "string",
 	},
-	"A3": {
+	"A3": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A3",
 		Description:    `Fourth argument of the executed system call.`,
@@ -825,7 +825,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "a3",
 		Type:           "string",
 	},
-	"Arch": {
+	"Arch": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Arch",
 		Description:    `Architecture of the system of the monitored process.`,
@@ -833,7 +833,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "arch",
 		Type:           "string",
 	},
-	"Arguments": {
+	"Arguments": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Arguments",
 		Description:    `Arguments passed to the command.`,
@@ -842,7 +842,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "string",
 		Type:           "list",
 	},
-	"AuditProfileID": {
+	"AuditProfileID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AuditProfileID",
 		Description:    `ID of the audit profile that triggered the report.`,
@@ -851,7 +851,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"AuditProfileNamespace": {
+	"AuditProfileNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AuditProfileNamespace",
 		Description:    `Namespace of the audit profile that triggered the report.`,
@@ -860,7 +860,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"Command": {
+	"Command": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Command",
 		Description:    `Command issued.`,
@@ -868,7 +868,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "command",
 		Type:           "string",
 	},
-	"EnforcerID": {
+	"EnforcerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
 		Description:    `ID of the enforcer reporting.`,
@@ -877,7 +877,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"EnforcerNamespace": {
+	"EnforcerNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
 		Description:    `Namespace of the enforcer reporting.`,
@@ -886,7 +886,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"Exit": {
+	"Exit": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Exit",
 		Description:    `Exit code of the executed system call.`,
@@ -894,7 +894,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "exit",
 		Type:           "integer",
 	},
-	"ProcessingUnitID": {
+	"ProcessingUnitID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitID",
 		Description:    `ID of the processing unit originating the report.`,
@@ -903,7 +903,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"ProcessingUnitNamespace": {
+	"ProcessingUnitNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitNamespace",
 		Description:    `Namespace of the processing unit originating the report.`,
@@ -912,7 +912,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"RecordType": {
+	"RecordType": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RecordType",
 		Description:    `Type of audit record.`,
@@ -921,7 +921,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"Sequence": {
+	"Sequence": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Sequence",
 		Description:    `Needs documentation.`,
@@ -929,7 +929,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "sequence",
 		Type:           "integer",
 	},
-	"Success": {
+	"Success": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Success",
 		Description:    `Tells if the operation has been a success or a failure.`,
@@ -937,7 +937,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "success",
 		Type:           "boolean",
 	},
-	"Syscall": {
+	"Syscall": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Syscall",
 		Description:    `System call executed.`,
@@ -945,7 +945,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "syscall",
 		Type:           "string",
 	},
-	"Timestamp": {
+	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Date of the report.`,
@@ -958,7 +958,7 @@ var AuditReportAttributesMap = map[string]elemental.AttributeSpecification{
 
 // AuditReportLowerCaseAttributesMap represents the map of attribute for AuditReport.
 var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"auid": {
+	"auid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AUID",
 		Description:    `The login ID of the user who started the audited process.`,
@@ -966,7 +966,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "AUID",
 		Type:           "string",
 	},
-	"cwd": {
+	"cwd": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "CWD",
 		Description:    `Command working directory.`,
@@ -974,7 +974,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "CWD",
 		Type:           "string",
 	},
-	"egid": {
+	"egid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EGID",
 		Description:    `Effective group ID of the user who started the audited process.`,
@@ -982,7 +982,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "EGID",
 		Type:           "integer",
 	},
-	"euid": {
+	"euid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EUID",
 		Description:    `Effective user ID of the user who started the audited process.`,
@@ -990,7 +990,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "EUID",
 		Type:           "integer",
 	},
-	"exe": {
+	"exe": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EXE",
 		Description:    `Path to the executable.`,
@@ -998,7 +998,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "EXE",
 		Type:           "string",
 	},
-	"fsgid": {
+	"fsgid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FSGID",
 		Description:    `File system group ID of the user who started the audited process.`,
@@ -1006,7 +1006,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "FSGID",
 		Type:           "integer",
 	},
-	"fsuid": {
+	"fsuid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FSUID",
 		Description:    `File system user ID of the user who started the audited process.`,
@@ -1014,7 +1014,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "FSUID",
 		Type:           "integer",
 	},
-	"filepath": {
+	"filepath": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FilePath",
 		Description:    `Full path of the file that was passed to the system call.`,
@@ -1022,7 +1022,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "FilePath",
 		Type:           "string",
 	},
-	"gid": {
+	"gid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "GID",
 		Description:    `Group ID of the user who started the analyzed process.`,
@@ -1030,7 +1030,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "GID",
 		Type:           "integer",
 	},
-	"per": {
+	"per": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PER",
 		Description:    `File or directory permissions.`,
@@ -1038,7 +1038,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "PER",
 		Type:           "integer",
 	},
-	"pid": {
+	"pid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PID",
 		Description:    `Process ID of the executable.`,
@@ -1046,7 +1046,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "PID",
 		Type:           "integer",
 	},
-	"ppid": {
+	"ppid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PPID",
 		Description:    `Process ID of the parent executable.`,
@@ -1054,7 +1054,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "PPID",
 		Type:           "integer",
 	},
-	"sgid": {
+	"sgid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SGID",
 		Description:    `Set group ID of the user who started the audited process.`,
@@ -1062,7 +1062,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "SGID",
 		Type:           "integer",
 	},
-	"suid": {
+	"suid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SUID",
 		Description:    `Set user ID of the user who started the audited process.`,
@@ -1070,7 +1070,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "SUID",
 		Type:           "integer",
 	},
-	"uid": {
+	"uid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "UID",
 		Description:    `User ID.`,
@@ -1078,7 +1078,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "UID",
 		Type:           "integer",
 	},
-	"a0": {
+	"a0": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A0",
 		Description:    `First argument of the executed system call.`,
@@ -1086,7 +1086,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "a0",
 		Type:           "string",
 	},
-	"a1": {
+	"a1": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A1",
 		Description:    `Second argument of the executed system call.`,
@@ -1094,7 +1094,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "a1",
 		Type:           "string",
 	},
-	"a2": {
+	"a2": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A2",
 		Description:    `Third argument of the executed system call.`,
@@ -1102,7 +1102,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "a2",
 		Type:           "string",
 	},
-	"a3": {
+	"a3": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "A3",
 		Description:    `Fourth argument of the executed system call.`,
@@ -1110,7 +1110,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "a3",
 		Type:           "string",
 	},
-	"arch": {
+	"arch": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Arch",
 		Description:    `Architecture of the system of the monitored process.`,
@@ -1118,7 +1118,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "arch",
 		Type:           "string",
 	},
-	"arguments": {
+	"arguments": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Arguments",
 		Description:    `Arguments passed to the command.`,
@@ -1127,7 +1127,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		SubType:        "string",
 		Type:           "list",
 	},
-	"auditprofileid": {
+	"auditprofileid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AuditProfileID",
 		Description:    `ID of the audit profile that triggered the report.`,
@@ -1136,7 +1136,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"auditprofilenamespace": {
+	"auditprofilenamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AuditProfileNamespace",
 		Description:    `Namespace of the audit profile that triggered the report.`,
@@ -1145,7 +1145,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"command": {
+	"command": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Command",
 		Description:    `Command issued.`,
@@ -1153,7 +1153,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "command",
 		Type:           "string",
 	},
-	"enforcerid": {
+	"enforcerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
 		Description:    `ID of the enforcer reporting.`,
@@ -1162,7 +1162,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"enforcernamespace": {
+	"enforcernamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
 		Description:    `Namespace of the enforcer reporting.`,
@@ -1171,7 +1171,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"exit": {
+	"exit": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Exit",
 		Description:    `Exit code of the executed system call.`,
@@ -1179,7 +1179,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "exit",
 		Type:           "integer",
 	},
-	"processingunitid": {
+	"processingunitid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitID",
 		Description:    `ID of the processing unit originating the report.`,
@@ -1188,7 +1188,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"processingunitnamespace": {
+	"processingunitnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitNamespace",
 		Description:    `Namespace of the processing unit originating the report.`,
@@ -1197,7 +1197,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"recordtype": {
+	"recordtype": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RecordType",
 		Description:    `Type of audit record.`,
@@ -1206,7 +1206,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Required:       true,
 		Type:           "string",
 	},
-	"sequence": {
+	"sequence": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Sequence",
 		Description:    `Needs documentation.`,
@@ -1214,7 +1214,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "sequence",
 		Type:           "integer",
 	},
-	"success": {
+	"success": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Success",
 		Description:    `Tells if the operation has been a success or a failure.`,
@@ -1222,7 +1222,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "success",
 		Type:           "boolean",
 	},
-	"syscall": {
+	"syscall": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Syscall",
 		Description:    `System call executed.`,
@@ -1230,7 +1230,7 @@ var AuditReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificat
 		Name:           "syscall",
 		Type:           "string",
 	},
-	"timestamp": {
+	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Date of the report.`,

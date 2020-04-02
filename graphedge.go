@@ -624,7 +624,7 @@ func (o *GraphEdge) ValueForAttribute(name string) interface{} {
 
 // GraphEdgeAttributesMap represents the map of attribute for GraphEdge.
 var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
-	"ID": {
+	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ID",
 		Description:    `DB Identifier of the edge.`,
@@ -633,7 +633,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"AcceptedFlows": {
+	"AcceptedFlows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AcceptedFlows",
 		Description:    `Number of accepted flows in the edge.`,
@@ -642,7 +642,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"BucketDay": {
+	"BucketDay": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketDay",
 		Description:    `The date for the day bucket.`,
@@ -650,7 +650,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"BucketHour": {
+	"BucketHour": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketHour",
 		Description:    `The date for the hour bucket.`,
@@ -658,7 +658,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"BucketMinute": {
+	"BucketMinute": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketMinute",
 		Description:    `The date for the minute bucket.`,
@@ -666,7 +666,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"BucketMonth": {
+	"BucketMonth": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketMonth",
 		Description:    `The date for the month bucket.`,
@@ -674,7 +674,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"DestinationID": {
+	"DestinationID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationID",
 		Description:    `ID of the destination ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -683,7 +683,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"DestinationType": {
+	"DestinationType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Namespace", "Node"},
 		ConvertedName:  "DestinationType",
 		Description:    `Type of the destination ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -692,7 +692,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "enum",
 	},
-	"Encrypted": {
+	"Encrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Encrypted",
 		Description:    `The number of encrypted flows in the edge.`,
@@ -701,7 +701,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"FirstSeen": {
+	"FirstSeen": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FirstSeen",
 		Description:    `Contains the date when the edge was first seen.`,
@@ -710,7 +710,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"FlowID": {
+	"FlowID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FlowID",
 		Description:    `Identifier of the edge.`,
@@ -719,7 +719,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"LastSeen": {
+	"LastSeen": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "LastSeen",
 		Description:    `Contains the date when the edge was last seen.`,
@@ -728,7 +728,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "time",
 	},
-	"Namespace": {
+	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Namespace",
 		Description:    `Namespace of the object that reported the flow.`,
@@ -737,7 +737,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"ObservedAcceptedFlows": {
+	"ObservedAcceptedFlows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedAcceptedFlows",
 		Description:    `Number of accepted observed flows.`,
@@ -746,7 +746,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"ObservedEncrypted": {
+	"ObservedEncrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedEncrypted",
 		Description:    `Number of encrypted observed flows.`,
@@ -755,7 +755,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"ObservedRejectedFlows": {
+	"ObservedRejectedFlows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedRejectedFlows",
 		Description:    `Number of rejected observed flows.`,
@@ -764,7 +764,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"RejectedFlows": {
+	"RejectedFlows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RejectedFlows",
 		Description:    `Number of rejected flows in the edge.`,
@@ -773,7 +773,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"RemoteNamespace": {
+	"RemoteNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RemoteNamespace",
 		Description:    `Namespace of the object that was targeted by the flow.`,
@@ -782,7 +782,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"SourceID": {
+	"SourceID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
 		Description:    `ID of the source ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -791,7 +791,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"SourceType": {
+	"SourceType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Namespace", "Node"},
 		ConvertedName:  "SourceType",
 		Description:    `Type of the source ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -800,7 +800,7 @@ var GraphEdgeAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "enum",
 	},
-	"ZHash": {
+	"ZHash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "ZHash",
@@ -813,7 +813,7 @@ georedundancy.`,
 		Stored:   true,
 		Type:     "integer",
 	},
-	"Zone": {
+	"Zone": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "Zone",
@@ -831,7 +831,7 @@ georedundancy.`,
 
 // GraphEdgeLowerCaseAttributesMap represents the map of attribute for GraphEdge.
 var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"id": {
+	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ID",
 		Description:    `DB Identifier of the edge.`,
@@ -840,7 +840,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"acceptedflows": {
+	"acceptedflows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "AcceptedFlows",
 		Description:    `Number of accepted flows in the edge.`,
@@ -849,7 +849,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"bucketday": {
+	"bucketday": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketDay",
 		Description:    `The date for the day bucket.`,
@@ -857,7 +857,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "time",
 	},
-	"buckethour": {
+	"buckethour": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketHour",
 		Description:    `The date for the hour bucket.`,
@@ -865,7 +865,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "time",
 	},
-	"bucketminute": {
+	"bucketminute": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketMinute",
 		Description:    `The date for the minute bucket.`,
@@ -873,7 +873,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "time",
 	},
-	"bucketmonth": {
+	"bucketmonth": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "BucketMonth",
 		Description:    `The date for the month bucket.`,
@@ -881,7 +881,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "time",
 	},
-	"destinationid": {
+	"destinationid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationID",
 		Description:    `ID of the destination ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -890,7 +890,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"destinationtype": {
+	"destinationtype": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Namespace", "Node"},
 		ConvertedName:  "DestinationType",
 		Description:    `Type of the destination ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -899,7 +899,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "enum",
 	},
-	"encrypted": {
+	"encrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Encrypted",
 		Description:    `The number of encrypted flows in the edge.`,
@@ -908,7 +908,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"firstseen": {
+	"firstseen": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FirstSeen",
 		Description:    `Contains the date when the edge was first seen.`,
@@ -917,7 +917,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "time",
 	},
-	"flowid": {
+	"flowid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FlowID",
 		Description:    `Identifier of the edge.`,
@@ -926,7 +926,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"lastseen": {
+	"lastseen": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "LastSeen",
 		Description:    `Contains the date when the edge was last seen.`,
@@ -935,7 +935,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "time",
 	},
-	"namespace": {
+	"namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Namespace",
 		Description:    `Namespace of the object that reported the flow.`,
@@ -944,7 +944,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"observedacceptedflows": {
+	"observedacceptedflows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedAcceptedFlows",
 		Description:    `Number of accepted observed flows.`,
@@ -953,7 +953,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"observedencrypted": {
+	"observedencrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedEncrypted",
 		Description:    `Number of encrypted observed flows.`,
@@ -962,7 +962,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"observedrejectedflows": {
+	"observedrejectedflows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedRejectedFlows",
 		Description:    `Number of rejected observed flows.`,
@@ -971,7 +971,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"rejectedflows": {
+	"rejectedflows": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RejectedFlows",
 		Description:    `Number of rejected flows in the edge.`,
@@ -980,7 +980,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "boolean",
 	},
-	"remotenamespace": {
+	"remotenamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RemoteNamespace",
 		Description:    `Namespace of the object that was targeted by the flow.`,
@@ -989,7 +989,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"sourceid": {
+	"sourceid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
 		Description:    `ID of the source ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -998,7 +998,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"sourcetype": {
+	"sourcetype": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Namespace", "Node"},
 		ConvertedName:  "SourceType",
 		Description:    `Type of the source ` + "`" + `GraphNode` + "`" + ` of the edge.`,
@@ -1007,7 +1007,7 @@ var GraphEdgeLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "enum",
 	},
-	"zhash": {
+	"zhash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "ZHash",
@@ -1020,7 +1020,7 @@ georedundancy.`,
 		Stored:   true,
 		Type:     "integer",
 	},
-	"zone": {
+	"zone": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		Autogenerated:  true,
 		ConvertedName:  "Zone",

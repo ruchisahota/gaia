@@ -307,7 +307,7 @@ func (o *SquallTag) ValueForAttribute(name string) interface{} {
 
 // SquallTagAttributesMap represents the map of attribute for SquallTag.
 var SquallTagAttributesMap = map[string]elemental.AttributeSpecification{
-	"Count": {
+	"Count": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Count",
 		Description:    `Number of time this tag is used.`,
@@ -316,7 +316,7 @@ var SquallTagAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "integer",
 	},
-	"Namespace": {
+	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Namespace",
 		Description:    `namespace containing these tags.`,
@@ -325,7 +325,7 @@ var SquallTagAttributesMap = map[string]elemental.AttributeSpecification{
 		Stored:         true,
 		Type:           "string",
 	},
-	"Value": {
+	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Value of the tag.`,
@@ -338,7 +338,7 @@ var SquallTagAttributesMap = map[string]elemental.AttributeSpecification{
 
 // SquallTagLowerCaseAttributesMap represents the map of attribute for SquallTag.
 var SquallTagLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"count": {
+	"count": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Count",
 		Description:    `Number of time this tag is used.`,
@@ -347,7 +347,7 @@ var SquallTagLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "integer",
 	},
-	"namespace": {
+	"namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Namespace",
 		Description:    `namespace containing these tags.`,
@@ -356,7 +356,7 @@ var SquallTagLowerCaseAttributesMap = map[string]elemental.AttributeSpecificatio
 		Stored:         true,
 		Type:           "string",
 	},
-	"value": {
+	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Value of the tag.`,

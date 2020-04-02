@@ -1899,8 +1899,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=certificate", "@auth:claim=a"},
-					{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=certificate", "@auth:claim=a"},
+					[]string{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			false,
@@ -1911,8 +1911,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=certificate", "@auth:claim=a"},
-					{"@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=certificate", "@auth:claim=a"},
+					[]string{"@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			true,
@@ -1923,8 +1923,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=certificate", "@auth:claim=a", "@auth:realm=vince"},
-					{"@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=certificate", "@auth:claim=a", "@auth:realm=vince"},
+					[]string{"@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			true,
@@ -1935,8 +1935,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=certificate", "@auth:claim=a"},
-					{"@auth:realm=certificate"},
+					[]string{"@auth:realm=certificate", "@auth:claim=a"},
+					[]string{"@auth:realm=certificate"},
 				},
 			},
 			true,
@@ -1947,8 +1947,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=certificate", "@auth:claim=a"},
-					{"@auth:claim=a", "@auth:claim=b", "not:good"},
+					[]string{"@auth:realm=certificate", "@auth:claim=a"},
+					[]string{"@auth:claim=a", "@auth:claim=b", "not:good"},
 				},
 			},
 			true,
@@ -1959,8 +1959,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=oidc", "@auth:claim=a", "@auth:namespace=/a/b"},
-					{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=oidc", "@auth:claim=a", "@auth:namespace=/a/b"},
+					[]string{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			false,
@@ -1971,8 +1971,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=oidc", "@auth:claim=a"},
-					{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=oidc", "@auth:claim=a"},
+					[]string{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			true,
@@ -1983,8 +1983,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=saml", "@auth:claim=a", "@auth:namespace=/a/b"},
-					{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=saml", "@auth:claim=a", "@auth:namespace=/a/b"},
+					[]string{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			false,
@@ -1995,8 +1995,8 @@ func TestValidateAPIAuthorizationPolicySubject(t *testing.T) {
 			args{
 				"subject",
 				[][]string{
-					{"@auth:realm=saml", "@auth:claim=a"},
-					{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
+					[]string{"@auth:realm=saml", "@auth:claim=a"},
+					[]string{"@auth:realm=vince", "@auth:claim=a", "@auth:claim=b"},
 				},
 			},
 			true,

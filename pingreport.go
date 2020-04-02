@@ -473,7 +473,7 @@ func (o *PingReport) ValueForAttribute(name string) interface{} {
 
 // PingReportAttributesMap represents the map of attribute for PingReport.
 var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"ID": {
+	"ID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ID",
 		Description:    `ID unique to a single origin and reply report.`,
@@ -482,7 +482,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"DestinationID": {
+	"DestinationID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationID",
 		Description:    `ID of the destination PU.`,
@@ -490,7 +490,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "destinationID",
 		Type:           "string",
 	},
-	"DestinationNamespace": {
+	"DestinationNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationNamespace",
 		Description:    `Namespace of the destination PU.`,
@@ -498,7 +498,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "destinationNamespace",
 		Type:           "string",
 	},
-	"EnforcerID": {
+	"EnforcerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
 		Description:    `ID of the enforcer.`,
@@ -507,7 +507,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"EnforcerNamespace": {
+	"EnforcerNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
 		Description:    `Namespace of the enforcer.`,
@@ -516,7 +516,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"EnforcerVersion": {
+	"EnforcerVersion": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerVersion",
 		Description:    `Semantic version of the enforcer.`,
@@ -524,7 +524,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "enforcerVersion",
 		Type:           "string",
 	},
-	"FlowTuple": {
+	"FlowTuple": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FlowTuple",
 		Description:    `Flow tuple in the format <sip:dip:spt:dpt>.`,
@@ -532,7 +532,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "flowTuple",
 		Type:           "string",
 	},
-	"Latency": {
+	"Latency": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Latency",
 		Description:    `Time taken for a single request to complete.`,
@@ -540,7 +540,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "latency",
 		Type:           "string",
 	},
-	"PayloadSize": {
+	"PayloadSize": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PayloadSize",
 		Description:    `Size of the payload attached to the packet.`,
@@ -548,7 +548,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "payloadSize",
 		Type:           "integer",
 	},
-	"PingType": {
+	"PingType": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PingType",
 		Description:    `Represents the ping type used.`,
@@ -556,7 +556,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "pingType",
 		Type:           "string",
 	},
-	"Protocol": {
+	"Protocol": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protocol",
 		Description:    `Protocol used for the communication.`,
@@ -564,7 +564,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "protocol",
 		Type:           "integer",
 	},
-	"Request": {
+	"Request": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Request",
 		Description:    `Request represents the request number.`,
@@ -572,7 +572,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "request",
 		Type:           "integer",
 	},
-	"ServiceType": {
+	"ServiceType": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceType",
 		Description:    `Type of the service.`,
@@ -580,7 +580,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "serviceType",
 		Type:           "string",
 	},
-	"SourceID": {
+	"SourceID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
 		Description:    `ID of the source PU.`,
@@ -589,7 +589,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"SourceNamespace": {
+	"SourceNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceNamespace",
 		Description:    `Namespace of the source PU.`,
@@ -598,7 +598,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"Stage": {
+	"Stage": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Stage",
 		Description:    `Stage when the packet is received.`,
@@ -606,7 +606,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "stage",
 		Type:           "string",
 	},
-	"Timestamp": {
+	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Date of the report.`,
@@ -618,7 +618,7 @@ var PingReportAttributesMap = map[string]elemental.AttributeSpecification{
 
 // PingReportLowerCaseAttributesMap represents the map of attribute for PingReport.
 var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"id": {
+	"id": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ID",
 		Description:    `ID unique to a single origin and reply report.`,
@@ -627,7 +627,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "string",
 	},
-	"destinationid": {
+	"destinationid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationID",
 		Description:    `ID of the destination PU.`,
@@ -635,7 +635,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "destinationID",
 		Type:           "string",
 	},
-	"destinationnamespace": {
+	"destinationnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationNamespace",
 		Description:    `Namespace of the destination PU.`,
@@ -643,7 +643,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "destinationNamespace",
 		Type:           "string",
 	},
-	"enforcerid": {
+	"enforcerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
 		Description:    `ID of the enforcer.`,
@@ -652,7 +652,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "string",
 	},
-	"enforcernamespace": {
+	"enforcernamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
 		Description:    `Namespace of the enforcer.`,
@@ -661,7 +661,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "string",
 	},
-	"enforcerversion": {
+	"enforcerversion": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerVersion",
 		Description:    `Semantic version of the enforcer.`,
@@ -669,7 +669,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "enforcerVersion",
 		Type:           "string",
 	},
-	"flowtuple": {
+	"flowtuple": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "FlowTuple",
 		Description:    `Flow tuple in the format <sip:dip:spt:dpt>.`,
@@ -677,7 +677,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "flowTuple",
 		Type:           "string",
 	},
-	"latency": {
+	"latency": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Latency",
 		Description:    `Time taken for a single request to complete.`,
@@ -685,7 +685,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "latency",
 		Type:           "string",
 	},
-	"payloadsize": {
+	"payloadsize": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PayloadSize",
 		Description:    `Size of the payload attached to the packet.`,
@@ -693,7 +693,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "payloadSize",
 		Type:           "integer",
 	},
-	"pingtype": {
+	"pingtype": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PingType",
 		Description:    `Represents the ping type used.`,
@@ -701,7 +701,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "pingType",
 		Type:           "string",
 	},
-	"protocol": {
+	"protocol": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protocol",
 		Description:    `Protocol used for the communication.`,
@@ -709,7 +709,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "protocol",
 		Type:           "integer",
 	},
-	"request": {
+	"request": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Request",
 		Description:    `Request represents the request number.`,
@@ -717,7 +717,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "request",
 		Type:           "integer",
 	},
-	"servicetype": {
+	"servicetype": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceType",
 		Description:    `Type of the service.`,
@@ -725,7 +725,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "serviceType",
 		Type:           "string",
 	},
-	"sourceid": {
+	"sourceid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
 		Description:    `ID of the source PU.`,
@@ -734,7 +734,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "string",
 	},
-	"sourcenamespace": {
+	"sourcenamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceNamespace",
 		Description:    `Namespace of the source PU.`,
@@ -743,7 +743,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "string",
 	},
-	"stage": {
+	"stage": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Stage",
 		Description:    `Stage when the packet is received.`,
@@ -751,7 +751,7 @@ var PingReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "stage",
 		Type:           "string",
 	},
-	"timestamp": {
+	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Date of the report.`,

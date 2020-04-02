@@ -732,7 +732,7 @@ func (o *FlowReport) ValueForAttribute(name string) interface{} {
 
 // FlowReportAttributesMap represents the map of attribute for FlowReport.
 var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Action": {
+	"Action": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Accept", "Reject"},
 		ConvertedName:  "Action",
 		Description:    `Action applied to the flow.`,
@@ -741,7 +741,7 @@ var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "enum",
 	},
-	"DestinationID": {
+	"DestinationID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationID",
 		Description:    `ID of the destination.`,
@@ -750,7 +750,7 @@ var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"DestinationIP": {
+	"DestinationIP": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationIP",
 		Description:    `Destination IP address.`,
@@ -758,7 +758,7 @@ var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "destinationIP",
 		Type:           "string",
 	},
-	"DestinationNamespace": {
+	"DestinationNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationNamespace",
 		Deprecated:     true,
@@ -768,7 +768,7 @@ property does nothing.`,
 		Name:    "destinationNamespace",
 		Type:    "string",
 	},
-	"DestinationPort": {
+	"DestinationPort": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationPort",
 		Description:    `Port of the destination.`,
@@ -776,7 +776,7 @@ property does nothing.`,
 		Name:           "destinationPort",
 		Type:           "integer",
 	},
-	"DestinationType": {
+	"DestinationType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
 		ConvertedName:  "DestinationType",
 		Description:    `Destination type.`,
@@ -785,7 +785,7 @@ property does nothing.`,
 		Required:       true,
 		Type:           "enum",
 	},
-	"DropReason": {
+	"DropReason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DropReason",
 		Description: `This field is only set if ` + "`" + `action` + "`" + ` is set to ` + "`" + `Reject` + "`" + `. It specifies the reason
@@ -794,7 +794,7 @@ for the rejection.`,
 		Name:    "dropReason",
 		Type:    "string",
 	},
-	"Encrypted": {
+	"Encrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Encrypted",
 		Description:    `If ` + "`" + `true` + "`" + `, the flow was encrypted.`,
@@ -802,7 +802,7 @@ for the rejection.`,
 		Name:           "encrypted",
 		Type:           "boolean",
 	},
-	"Namespace": {
+	"Namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Namespace",
 		Deprecated:     true,
@@ -812,7 +812,7 @@ for the rejection.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"Observed": {
+	"Observed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Observed",
 		Description:    `If ` + "`" + `true` + "`" + `, design mode is on.`,
@@ -820,7 +820,7 @@ for the rejection.`,
 		Name:           "observed",
 		Type:           "boolean",
 	},
-	"ObservedAction": {
+	"ObservedAction": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Accept", "Reject", "NotApplicable"},
 		ConvertedName:  "ObservedAction",
 		DefaultValue:   FlowReportObservedActionNotApplicable,
@@ -829,7 +829,7 @@ for the rejection.`,
 		Name:           "observedAction",
 		Type:           "enum",
 	},
-	"ObservedDropReason": {
+	"ObservedDropReason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedDropReason",
 		Description: `Specifies the reason for a rejection. Only set if ` + "`" + `observedAction` + "`" + ` is set
@@ -838,7 +838,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:    "observedDropReason",
 		Type:    "string",
 	},
-	"ObservedEncrypted": {
+	"ObservedEncrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedEncrypted",
 		Description:    `Value of the encryption of the network policy that observed the flow.`,
@@ -846,7 +846,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "observedEncrypted",
 		Type:           "boolean",
 	},
-	"ObservedPolicyID": {
+	"ObservedPolicyID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedPolicyID",
 		Description:    `ID of the network policy that observed the flow.`,
@@ -854,7 +854,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "observedPolicyID",
 		Type:           "string",
 	},
-	"ObservedPolicyNamespace": {
+	"ObservedPolicyNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedPolicyNamespace",
 		Description:    `Namespace of the network policy that observed the flow.`,
@@ -862,7 +862,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "observedPolicyNamespace",
 		Type:           "string",
 	},
-	"PolicyID": {
+	"PolicyID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PolicyID",
 		Description:    `ID of the network policy that accepted the flow.`,
@@ -871,7 +871,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"PolicyNamespace": {
+	"PolicyNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PolicyNamespace",
 		Description:    `Namespace of the network policy that accepted the flow.`,
@@ -880,7 +880,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"Protocol": {
+	"Protocol": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protocol",
 		Description:    `Protocol number.`,
@@ -889,7 +889,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "integer",
 	},
-	"RemoteNamespace": {
+	"RemoteNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RemoteNamespace",
 		Description:    `Namespace of the object at the other end of the flow.`,
@@ -897,7 +897,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "remoteNamespace",
 		Type:           "string",
 	},
-	"ServiceClaimHash": {
+	"ServiceClaimHash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceClaimHash",
 		Description:    `Hash of the claims used to communicate.`,
@@ -905,7 +905,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceClaimHash",
 		Type:           "string",
 	},
-	"ServiceID": {
+	"ServiceID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceID",
 		Description:    `ID of the service.`,
@@ -913,7 +913,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceID",
 		Type:           "string",
 	},
-	"ServiceNamespace": {
+	"ServiceNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceNamespace",
 		Description:    `Namespace of Service accessed.`,
@@ -921,7 +921,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceNamespace",
 		Type:           "string",
 	},
-	"ServiceType": {
+	"ServiceType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"L3", "HTTP", "TCP", "NotApplicable"},
 		ConvertedName:  "ServiceType",
 		DefaultValue:   FlowReportServiceTypeNotApplicable,
@@ -930,7 +930,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceType",
 		Type:           "enum",
 	},
-	"ServiceURL": {
+	"ServiceURL": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceURL",
 		Description:    `Service URL accessed.`,
@@ -938,7 +938,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceURL",
 		Type:           "string",
 	},
-	"SourceID": {
+	"SourceID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
 		Description:    `ID of the source.`,
@@ -947,7 +947,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"SourceIP": {
+	"SourceIP": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceIP",
 		Description:    `Type of the source.`,
@@ -955,7 +955,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "sourceIP",
 		Type:           "string",
 	},
-	"SourceNamespace": {
+	"SourceNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceNamespace",
 		Deprecated:     true,
@@ -965,7 +965,7 @@ property does nothing.`,
 		Name:    "sourceNamespace",
 		Type:    "string",
 	},
-	"SourceType": {
+	"SourceType": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
 		ConvertedName:  "SourceType",
 		Description:    `Type of the source.`,
@@ -974,7 +974,7 @@ property does nothing.`,
 		Required:       true,
 		Type:           "enum",
 	},
-	"Timestamp": {
+	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Time and date of the log.`,
@@ -982,7 +982,7 @@ property does nothing.`,
 		Name:           "timestamp",
 		Type:           "time",
 	},
-	"Value": {
+	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Number of flows in the log.`,
@@ -995,7 +995,7 @@ property does nothing.`,
 
 // FlowReportLowerCaseAttributesMap represents the map of attribute for FlowReport.
 var FlowReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"action": {
+	"action": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Accept", "Reject"},
 		ConvertedName:  "Action",
 		Description:    `Action applied to the flow.`,
@@ -1004,7 +1004,7 @@ var FlowReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "enum",
 	},
-	"destinationid": {
+	"destinationid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationID",
 		Description:    `ID of the destination.`,
@@ -1013,7 +1013,7 @@ var FlowReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Required:       true,
 		Type:           "string",
 	},
-	"destinationip": {
+	"destinationip": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationIP",
 		Description:    `Destination IP address.`,
@@ -1021,7 +1021,7 @@ var FlowReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "destinationIP",
 		Type:           "string",
 	},
-	"destinationnamespace": {
+	"destinationnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationNamespace",
 		Deprecated:     true,
@@ -1031,7 +1031,7 @@ property does nothing.`,
 		Name:    "destinationNamespace",
 		Type:    "string",
 	},
-	"destinationport": {
+	"destinationport": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DestinationPort",
 		Description:    `Port of the destination.`,
@@ -1039,7 +1039,7 @@ property does nothing.`,
 		Name:           "destinationPort",
 		Type:           "integer",
 	},
-	"destinationtype": {
+	"destinationtype": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
 		ConvertedName:  "DestinationType",
 		Description:    `Destination type.`,
@@ -1048,7 +1048,7 @@ property does nothing.`,
 		Required:       true,
 		Type:           "enum",
 	},
-	"dropreason": {
+	"dropreason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "DropReason",
 		Description: `This field is only set if ` + "`" + `action` + "`" + ` is set to ` + "`" + `Reject` + "`" + `. It specifies the reason
@@ -1057,7 +1057,7 @@ for the rejection.`,
 		Name:    "dropReason",
 		Type:    "string",
 	},
-	"encrypted": {
+	"encrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Encrypted",
 		Description:    `If ` + "`" + `true` + "`" + `, the flow was encrypted.`,
@@ -1065,7 +1065,7 @@ for the rejection.`,
 		Name:           "encrypted",
 		Type:           "boolean",
 	},
-	"namespace": {
+	"namespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Namespace",
 		Deprecated:     true,
@@ -1075,7 +1075,7 @@ for the rejection.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"observed": {
+	"observed": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Observed",
 		Description:    `If ` + "`" + `true` + "`" + `, design mode is on.`,
@@ -1083,7 +1083,7 @@ for the rejection.`,
 		Name:           "observed",
 		Type:           "boolean",
 	},
-	"observedaction": {
+	"observedaction": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Accept", "Reject", "NotApplicable"},
 		ConvertedName:  "ObservedAction",
 		DefaultValue:   FlowReportObservedActionNotApplicable,
@@ -1092,7 +1092,7 @@ for the rejection.`,
 		Name:           "observedAction",
 		Type:           "enum",
 	},
-	"observeddropreason": {
+	"observeddropreason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedDropReason",
 		Description: `Specifies the reason for a rejection. Only set if ` + "`" + `observedAction` + "`" + ` is set
@@ -1101,7 +1101,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:    "observedDropReason",
 		Type:    "string",
 	},
-	"observedencrypted": {
+	"observedencrypted": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedEncrypted",
 		Description:    `Value of the encryption of the network policy that observed the flow.`,
@@ -1109,7 +1109,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "observedEncrypted",
 		Type:           "boolean",
 	},
-	"observedpolicyid": {
+	"observedpolicyid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedPolicyID",
 		Description:    `ID of the network policy that observed the flow.`,
@@ -1117,7 +1117,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "observedPolicyID",
 		Type:           "string",
 	},
-	"observedpolicynamespace": {
+	"observedpolicynamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ObservedPolicyNamespace",
 		Description:    `Namespace of the network policy that observed the flow.`,
@@ -1125,7 +1125,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "observedPolicyNamespace",
 		Type:           "string",
 	},
-	"policyid": {
+	"policyid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PolicyID",
 		Description:    `ID of the network policy that accepted the flow.`,
@@ -1134,7 +1134,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"policynamespace": {
+	"policynamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "PolicyNamespace",
 		Description:    `Namespace of the network policy that accepted the flow.`,
@@ -1143,7 +1143,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"protocol": {
+	"protocol": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Protocol",
 		Description:    `Protocol number.`,
@@ -1152,7 +1152,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "integer",
 	},
-	"remotenamespace": {
+	"remotenamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "RemoteNamespace",
 		Description:    `Namespace of the object at the other end of the flow.`,
@@ -1160,7 +1160,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "remoteNamespace",
 		Type:           "string",
 	},
-	"serviceclaimhash": {
+	"serviceclaimhash": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceClaimHash",
 		Description:    `Hash of the claims used to communicate.`,
@@ -1168,7 +1168,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceClaimHash",
 		Type:           "string",
 	},
-	"serviceid": {
+	"serviceid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceID",
 		Description:    `ID of the service.`,
@@ -1176,7 +1176,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceID",
 		Type:           "string",
 	},
-	"servicenamespace": {
+	"servicenamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceNamespace",
 		Description:    `Namespace of Service accessed.`,
@@ -1184,7 +1184,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceNamespace",
 		Type:           "string",
 	},
-	"servicetype": {
+	"servicetype": elemental.AttributeSpecification{
 		AllowedChoices: []string{"L3", "HTTP", "TCP", "NotApplicable"},
 		ConvertedName:  "ServiceType",
 		DefaultValue:   FlowReportServiceTypeNotApplicable,
@@ -1193,7 +1193,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceType",
 		Type:           "enum",
 	},
-	"serviceurl": {
+	"serviceurl": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ServiceURL",
 		Description:    `Service URL accessed.`,
@@ -1201,7 +1201,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceURL",
 		Type:           "string",
 	},
-	"sourceid": {
+	"sourceid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
 		Description:    `ID of the source.`,
@@ -1210,7 +1210,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"sourceip": {
+	"sourceip": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceIP",
 		Description:    `Type of the source.`,
@@ -1218,7 +1218,7 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "sourceIP",
 		Type:           "string",
 	},
-	"sourcenamespace": {
+	"sourcenamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceNamespace",
 		Deprecated:     true,
@@ -1228,7 +1228,7 @@ property does nothing.`,
 		Name:    "sourceNamespace",
 		Type:    "string",
 	},
-	"sourcetype": {
+	"sourcetype": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ProcessingUnit", "ExternalNetwork", "Claims"},
 		ConvertedName:  "SourceType",
 		Description:    `Type of the source.`,
@@ -1237,7 +1237,7 @@ property does nothing.`,
 		Required:       true,
 		Type:           "enum",
 	},
-	"timestamp": {
+	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Time and date of the log.`,
@@ -1245,7 +1245,7 @@ property does nothing.`,
 		Name:           "timestamp",
 		Type:           "time",
 	},
-	"value": {
+	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Number of flows in the log.`,

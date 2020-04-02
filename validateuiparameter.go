@@ -315,7 +315,7 @@ func (o *ValidateUIParameter) ValueForAttribute(name string) interface{} {
 
 // ValidateUIParameterAttributesMap represents the map of attribute for ValidateUIParameter.
 var ValidateUIParameterAttributesMap = map[string]elemental.AttributeSpecification{
-	"Errors": {
+	"Errors": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Errors",
 		Description:    `Contains the list of errors.`,
@@ -324,7 +324,7 @@ var ValidateUIParameterAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "map[string]string",
 		Type:           "external",
 	},
-	"Parameters": {
+	"Parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
 		Description:    `List of parameters to validate.`,
@@ -334,7 +334,7 @@ var ValidateUIParameterAttributesMap = map[string]elemental.AttributeSpecificati
 		SubType:        "uiparameter",
 		Type:           "refList",
 	},
-	"Values": {
+	"Values": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Values",
 		Description:    `Contains the computed values.`,
@@ -347,7 +347,7 @@ var ValidateUIParameterAttributesMap = map[string]elemental.AttributeSpecificati
 
 // ValidateUIParameterLowerCaseAttributesMap represents the map of attribute for ValidateUIParameter.
 var ValidateUIParameterLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"errors": {
+	"errors": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Errors",
 		Description:    `Contains the list of errors.`,
@@ -356,7 +356,7 @@ var ValidateUIParameterLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		SubType:        "map[string]string",
 		Type:           "external",
 	},
-	"parameters": {
+	"parameters": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Parameters",
 		Description:    `List of parameters to validate.`,
@@ -366,7 +366,7 @@ var ValidateUIParameterLowerCaseAttributesMap = map[string]elemental.AttributeSp
 		SubType:        "uiparameter",
 		Type:           "refList",
 	},
-	"values": {
+	"values": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Values",
 		Description:    `Contains the computed values.`,

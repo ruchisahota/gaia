@@ -423,7 +423,7 @@ func (o *DNSLookupReport) ValueForAttribute(name string) interface{} {
 
 // DNSLookupReportAttributesMap represents the map of attribute for DNSLookupReport.
 var DNSLookupReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Action": {
+	"Action": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Accept", "Reject"},
 		ConvertedName:  "Action",
 		Description:    `Action of the DNS request.`,
@@ -432,7 +432,7 @@ var DNSLookupReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "enum",
 	},
-	"EnforcerID": {
+	"EnforcerID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
 		Description:    `ID of the enforcer.`,
@@ -440,7 +440,7 @@ var DNSLookupReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "enforcerID",
 		Type:           "string",
 	},
-	"EnforcerNamespace": {
+	"EnforcerNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
 		Description:    `Namespace of the enforcer.`,
@@ -449,7 +449,7 @@ var DNSLookupReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"ProcessingUnitID": {
+	"ProcessingUnitID": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitID",
 		Description:    `ID of the PU.`,
@@ -458,7 +458,7 @@ var DNSLookupReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"ProcessingUnitNamespace": {
+	"ProcessingUnitNamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitNamespace",
 		Description:    `Namespace of the PU.`,
@@ -467,7 +467,7 @@ var DNSLookupReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Required:       true,
 		Type:           "string",
 	},
-	"Reason": {
+	"Reason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Reason",
 		Description: `This field is only set when the lookup fails. It specifies the reason for the
@@ -476,7 +476,7 @@ failure.`,
 		Name:    "reason",
 		Type:    "string",
 	},
-	"ResolvedName": {
+	"ResolvedName": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ResolvedName",
 		Description:    `name used for DNS resolution.`,
@@ -485,7 +485,7 @@ failure.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"SourceIP": {
+	"SourceIP": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceIP",
 		Description:    `Type of the source.`,
@@ -494,7 +494,7 @@ failure.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"Timestamp": {
+	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Time and date of the log.`,
@@ -502,7 +502,7 @@ failure.`,
 		Name:           "timestamp",
 		Type:           "time",
 	},
-	"Value": {
+	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Number of times the client saw this activity.`,
@@ -515,7 +515,7 @@ failure.`,
 
 // DNSLookupReportLowerCaseAttributesMap represents the map of attribute for DNSLookupReport.
 var DNSLookupReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"action": {
+	"action": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Accept", "Reject"},
 		ConvertedName:  "Action",
 		Description:    `Action of the DNS request.`,
@@ -524,7 +524,7 @@ var DNSLookupReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Required:       true,
 		Type:           "enum",
 	},
-	"enforcerid": {
+	"enforcerid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerID",
 		Description:    `ID of the enforcer.`,
@@ -532,7 +532,7 @@ var DNSLookupReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Name:           "enforcerID",
 		Type:           "string",
 	},
-	"enforcernamespace": {
+	"enforcernamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "EnforcerNamespace",
 		Description:    `Namespace of the enforcer.`,
@@ -541,7 +541,7 @@ var DNSLookupReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Required:       true,
 		Type:           "string",
 	},
-	"processingunitid": {
+	"processingunitid": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitID",
 		Description:    `ID of the PU.`,
@@ -550,7 +550,7 @@ var DNSLookupReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Required:       true,
 		Type:           "string",
 	},
-	"processingunitnamespace": {
+	"processingunitnamespace": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ProcessingUnitNamespace",
 		Description:    `Namespace of the PU.`,
@@ -559,7 +559,7 @@ var DNSLookupReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Required:       true,
 		Type:           "string",
 	},
-	"reason": {
+	"reason": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Reason",
 		Description: `This field is only set when the lookup fails. It specifies the reason for the
@@ -568,7 +568,7 @@ failure.`,
 		Name:    "reason",
 		Type:    "string",
 	},
-	"resolvedname": {
+	"resolvedname": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "ResolvedName",
 		Description:    `name used for DNS resolution.`,
@@ -577,7 +577,7 @@ failure.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"sourceip": {
+	"sourceip": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceIP",
 		Description:    `Type of the source.`,
@@ -586,7 +586,7 @@ failure.`,
 		Required:       true,
 		Type:           "string",
 	},
-	"timestamp": {
+	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Time and date of the log.`,
@@ -594,7 +594,7 @@ failure.`,
 		Name:           "timestamp",
 		Type:           "time",
 	},
-	"value": {
+	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Number of times the client saw this activity.`,

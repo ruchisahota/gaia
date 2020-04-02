@@ -316,7 +316,7 @@ func (o *Import) ValueForAttribute(name string) interface{} {
 
 // ImportAttributesMap represents the map of attribute for Import.
 var ImportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Data": {
+	"Data": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Data",
 		Description:    `Data to import.`,
@@ -326,7 +326,7 @@ var ImportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "export",
 		Type:           "ref",
 	},
-	"Mode": {
+	"Mode": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ReplacePartial", "Import", "Remove"},
 		ConvertedName:  "Mode",
 		DefaultValue:   ImportModeImport,
@@ -341,7 +341,7 @@ as ` + "`" + `Import` + "`" + `.`,
 
 // ImportLowerCaseAttributesMap represents the map of attribute for Import.
 var ImportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"data": {
+	"data": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Data",
 		Description:    `Data to import.`,
@@ -351,7 +351,7 @@ var ImportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "export",
 		Type:           "ref",
 	},
-	"mode": {
+	"mode": elemental.AttributeSpecification{
 		AllowedChoices: []string{"ReplacePartial", "Import", "Remove"},
 		ConvertedName:  "Mode",
 		DefaultValue:   ImportModeImport,

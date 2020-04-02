@@ -353,7 +353,7 @@ func (o *Report) ValueForAttribute(name string) interface{} {
 
 // ReportAttributesMap represents the map of attribute for Report.
 var ReportAttributesMap = map[string]elemental.AttributeSpecification{
-	"Fields": {
+	"Fields": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Fields",
 		Description:    `TSDB Fields to set for the report.`,
@@ -362,7 +362,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]interface{}",
 		Type:           "external",
 	},
-	"Kind": {
+	"Kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Audit", "Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall", "Claims"},
 		ConvertedName:  "Kind",
 		Description:    `Kind contains the kind of report.`,
@@ -370,7 +370,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "kind",
 		Type:           "enum",
 	},
-	"Tags": {
+	"Tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Tags",
 		Description:    `Tags contains the tags associated to the data point.`,
@@ -379,7 +379,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]string",
 		Type:           "external",
 	},
-	"Timestamp": {
+	"Timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Timestamp contains the time for the report.`,
@@ -387,7 +387,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "timestamp",
 		Type:           "time",
 	},
-	"Value": {
+	"Value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Value contains the value for the report.`,
@@ -399,7 +399,7 @@ var ReportAttributesMap = map[string]elemental.AttributeSpecification{
 
 // ReportLowerCaseAttributesMap represents the map of attribute for Report.
 var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
-	"fields": {
+	"fields": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Fields",
 		Description:    `TSDB Fields to set for the report.`,
@@ -408,7 +408,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]interface{}",
 		Type:           "external",
 	},
-	"kind": {
+	"kind": elemental.AttributeSpecification{
 		AllowedChoices: []string{"Audit", "Enforcer", "FileAccess", "Flow", "ProcessingUnit", "Syscall", "Claims"},
 		ConvertedName:  "Kind",
 		Description:    `Kind contains the kind of report.`,
@@ -416,7 +416,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "kind",
 		Type:           "enum",
 	},
-	"tags": {
+	"tags": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Tags",
 		Description:    `Tags contains the tags associated to the data point.`,
@@ -425,7 +425,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		SubType:        "map[string]string",
 		Type:           "external",
 	},
-	"timestamp": {
+	"timestamp": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Timestamp",
 		Description:    `Timestamp contains the time for the report.`,
@@ -433,7 +433,7 @@ var ReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "timestamp",
 		Type:           "time",
 	},
-	"value": {
+	"value": elemental.AttributeSpecification{
 		AllowedChoices: []string{},
 		ConvertedName:  "Value",
 		Description:    `Value contains the value for the report.`,
