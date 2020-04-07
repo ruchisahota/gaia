@@ -143,7 +143,8 @@ type APIAuthorizationPolicy struct {
 	// Contains the list of normalized tags of the entities.
 	NormalizedTags []string `json:"normalizedTags" msgpack:"normalizedTags" bson:"normalizedtags" mapstructure:"normalizedTags,omitempty"`
 
-	// If set to `true` while the policy is propagating, it won't be visible to children
+	// If set to `true` while the policy is propagating, it won't be visible to
+	// children
 	// namespace, but still used for policy resolution.
 	PropagationHidden bool `json:"propagationHidden" msgpack:"propagationHidden" bson:"propagationhidden" mapstructure:"propagationHidden,omitempty"`
 
@@ -1069,7 +1070,8 @@ with the '@' prefix, and should only be used by external systems.`,
 	"PropagationHidden": {
 		AllowedChoices: []string{},
 		ConvertedName:  "PropagationHidden",
-		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to children
+		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to
+children
 namespace, but still used for policy resolution.`,
 		Exposed:   true,
 		Getter:    true,
@@ -1361,7 +1363,8 @@ with the '@' prefix, and should only be used by external systems.`,
 	"propagationhidden": {
 		AllowedChoices: []string{},
 		ConvertedName:  "PropagationHidden",
-		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to children
+		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to
+children
 namespace, but still used for policy resolution.`,
 		Exposed:   true,
 		Getter:    true,
@@ -1546,7 +1549,8 @@ type SparseAPIAuthorizationPolicy struct {
 	// Contains the list of normalized tags of the entities.
 	NormalizedTags *[]string `json:"normalizedTags,omitempty" msgpack:"normalizedTags,omitempty" bson:"normalizedtags,omitempty" mapstructure:"normalizedTags,omitempty"`
 
-	// If set to `true` while the policy is propagating, it won't be visible to children
+	// If set to `true` while the policy is propagating, it won't be visible to
+	// children
 	// namespace, but still used for policy resolution.
 	PropagationHidden *bool `json:"propagationHidden,omitempty" msgpack:"propagationHidden,omitempty" bson:"propagationhidden,omitempty" mapstructure:"propagationHidden,omitempty"`
 

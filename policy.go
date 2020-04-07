@@ -208,7 +208,8 @@ type Policy struct {
 	// Propagates the policy to all of its children.
 	Propagate bool `json:"propagate" msgpack:"propagate" bson:"propagate" mapstructure:"propagate,omitempty"`
 
-	// If set to `true` while the policy is propagating, it won't be visible to children
+	// If set to `true` while the policy is propagating, it won't be visible to
+	// children
 	// namespace, but still used for policy resolution.
 	PropagationHidden bool `json:"propagationHidden" msgpack:"propagationHidden" bson:"propagationhidden" mapstructure:"propagationHidden,omitempty"`
 
@@ -1332,7 +1333,8 @@ objects are identified as logical operations on tags when a policy is defined.`,
 	"PropagationHidden": {
 		AllowedChoices: []string{},
 		ConvertedName:  "PropagationHidden",
-		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to children
+		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to
+children
 namespace, but still used for policy resolution.`,
 		Exposed:   true,
 		Getter:    true,
@@ -1713,7 +1715,8 @@ objects are identified as logical operations on tags when a policy is defined.`,
 	"propagationhidden": {
 		AllowedChoices: []string{},
 		ConvertedName:  "PropagationHidden",
-		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to children
+		Description: `If set to ` + "`" + `true` + "`" + ` while the policy is propagating, it won't be visible to
+children
 namespace, but still used for policy resolution.`,
 		Exposed:   true,
 		Getter:    true,
@@ -1960,7 +1963,8 @@ type SparsePolicy struct {
 	// Propagates the policy to all of its children.
 	Propagate *bool `json:"propagate,omitempty" msgpack:"propagate,omitempty" bson:"propagate,omitempty" mapstructure:"propagate,omitempty"`
 
-	// If set to `true` while the policy is propagating, it won't be visible to children
+	// If set to `true` while the policy is propagating, it won't be visible to
+	// children
 	// namespace, but still used for policy resolution.
 	PropagationHidden *bool `json:"propagationHidden,omitempty" msgpack:"propagationHidden,omitempty" bson:"propagationhidden,omitempty" mapstructure:"propagationHidden,omitempty"`
 
