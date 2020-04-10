@@ -8420,12 +8420,18 @@ F9eXFkofGX3UgRtsHe123456789xQ1naSw==
   "continueOnError": false,
   "disabled": false,
   "endpoint": "https://hooks.hookserver.com/remoteprocessors",
+  "endpointType": "URL",
   "fallback": false,
   "mode": "Pre",
   "name": "the name",
   "propagate": false,
   "propagationHidden": false,
   "protected": false,
+  "selectors": [
+    [
+      "automation:name=myautomation"
+    ]
+  ],
   "subject": [
     [
       "$identity=processingunit"
@@ -8512,9 +8518,19 @@ Description of the object.
 
 Defines if the property is disabled.
 
-##### `endpoint` `string` [`required`]
+##### `endpoint` `string`
 
 Contains the full address of the remote processor endpoint.
+
+##### `endpointType` `emum(URL | Automation)`
+
+Defines the type of endpoint for the hook.
+
+Default value:
+
+```json
+"URL"
+```
 
 ##### `expirationTime` `time`
 
@@ -8566,6 +8582,11 @@ namespace, but still used for policy resolution.
 ##### `protected` `boolean`
 
 Defines if the object is protected.
+
+##### `selectors` `[][]string`
+
+A tag or tag expression that identifies the automation that must be run in
+case no endpoint is provided.
 
 ##### `subject` `[][]string`
 
