@@ -582,15 +582,6 @@ var (
 		},
 		"flowreport": {
 			{":shard", ":unique", "zone", "zHash"},
-			{"timestamp"},
-			{"sourcePlatform"},
-			{"remoteNamespace"},
-			{"observedAction"},
-			{"namespace", "timestamp"},
-			{"dropReason"},
-			{"destinationPort"},
-			{"destinationPlatform"},
-			{"action"},
 		},
 		"graphedge": {
 			{":shard", ":unique", "zone", "zHash"},
