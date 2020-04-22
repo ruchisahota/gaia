@@ -103,6 +103,10 @@ macOS
 MessagePack
 Midgard
 MongoDB
+multipart
+metricsquery
+MetricsQuery
+namespace
 NamespaceMappingPolicy
 NamespaceUnique
 NetworkAccessPolicy
@@ -183,6 +187,8 @@ TagValue
 TimeSeriesQueryResults
 TimeSeriesRow
 Timestamp
+timestamp
+TLSType
 TokenEndpointAuthMethodsSupported
 TokenScopePolicy
 TraceMode
