@@ -791,14 +791,6 @@ func TestValidateEnforcerProfile(t *testing.T) {
 			false,
 		},
 		{
-			"valid target network with NOT operator",
-			&EnforcerProfile{
-				Name:           "Valid target network",
-				TargetNetworks: []string{"!10.0.0.0/8"},
-			},
-			false,
-		},
-		{
 			"valid target networks with except condition operator",
 			&EnforcerProfile{
 				Name:           "Valid target network",
@@ -822,20 +814,20 @@ func TestValidateEnforcerProfile(t *testing.T) {
 			},
 			true,
 		},
+		{
+			"valid target network with NOT operator",
+			&EnforcerProfile{
+				Name:           "Valid target network",
+				TargetNetworks: []string{"!10.0.0.0/8"},
+			},
+			true,
+		},
 		// Target UDP Networks
 		{
 			"valid target UDP network",
 			&EnforcerProfile{
 				Name:              "Valid target UDP network",
 				TargetUDPNetworks: []string{"0.0.0.0/0"},
-			},
-			false,
-		},
-		{
-			"valid target UDP network with NOT operator",
-			&EnforcerProfile{
-				Name:              "Valid target UDP network",
-				TargetUDPNetworks: []string{"!10.0.0.0/8"},
 			},
 			false,
 		},
@@ -863,20 +855,20 @@ func TestValidateEnforcerProfile(t *testing.T) {
 			},
 			true,
 		},
+		{
+			"valid target UDP network with NOT operator",
+			&EnforcerProfile{
+				Name:              "Valid target UDP network",
+				TargetUDPNetworks: []string{"!10.0.0.0/8"},
+			},
+			true,
+		},
 		// Excluded Networks
 		{
 			"valid excluded network",
 			&EnforcerProfile{
 				Name:             "Valid excluded network",
 				ExcludedNetworks: []string{"0.0.0.0/0"},
-			},
-			false,
-		},
-		{
-			"valid excluded network with NOT operator",
-			&EnforcerProfile{
-				Name:             "Valid excluded network",
-				ExcludedNetworks: []string{"!10.0.0.0/8"},
 			},
 			false,
 		},
@@ -901,6 +893,14 @@ func TestValidateEnforcerProfile(t *testing.T) {
 			&EnforcerProfile{
 				Name:             "Valid excluded network",
 				ExcludedNetworks: []string{"!!10.0.0.0/8"},
+			},
+			true,
+		},
+		{
+			"valid excluded network with NOT operator",
+			&EnforcerProfile{
+				Name:             "Valid excluded network",
+				ExcludedNetworks: []string{"!10.0.0.0/8"},
 			},
 			true,
 		},
