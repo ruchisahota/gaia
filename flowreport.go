@@ -154,6 +154,9 @@ type FlowReport struct {
 	// Action applied to the flow.
 	Action FlowReportActionValue `json:"action" msgpack:"action" bson:"-" mapstructure:"action,omitempty"`
 
+	// Identifier of the destination controller.
+	DestinationController string `json:"destinationController" msgpack:"destinationController" bson:"-" mapstructure:"destinationController,omitempty"`
+
 	// ID of the destination.
 	DestinationID string `json:"destinationID" msgpack:"destinationID" bson:"-" mapstructure:"destinationID,omitempty"`
 
@@ -225,6 +228,9 @@ type FlowReport struct {
 
 	// Service URL accessed.
 	ServiceURL string `json:"serviceURL" msgpack:"serviceURL" bson:"-" mapstructure:"serviceURL,omitempty"`
+
+	// Identifier of the source controller.
+	SourceController string `json:"sourceController" msgpack:"sourceController" bson:"-" mapstructure:"sourceController,omitempty"`
 
 	// ID of the source.
 	SourceID string `json:"sourceID" msgpack:"sourceID" bson:"-" mapstructure:"sourceID,omitempty"`
@@ -341,6 +347,7 @@ func (o *FlowReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 		// nolint: goimports
 		return &SparseFlowReport{
 			Action:                  &o.Action,
+			DestinationController:   &o.DestinationController,
 			DestinationID:           &o.DestinationID,
 			DestinationIP:           &o.DestinationIP,
 			DestinationNamespace:    &o.DestinationNamespace,
@@ -364,6 +371,7 @@ func (o *FlowReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			ServiceNamespace:        &o.ServiceNamespace,
 			ServiceType:             &o.ServiceType,
 			ServiceURL:              &o.ServiceURL,
+			SourceController:        &o.SourceController,
 			SourceID:                &o.SourceID,
 			SourceIP:                &o.SourceIP,
 			SourceNamespace:         &o.SourceNamespace,
@@ -378,6 +386,8 @@ func (o *FlowReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 		switch f {
 		case "action":
 			sp.Action = &(o.Action)
+		case "destinationController":
+			sp.DestinationController = &(o.DestinationController)
 		case "destinationID":
 			sp.DestinationID = &(o.DestinationID)
 		case "destinationIP":
@@ -424,6 +434,8 @@ func (o *FlowReport) ToSparse(fields ...string) elemental.SparseIdentifiable {
 			sp.ServiceType = &(o.ServiceType)
 		case "serviceURL":
 			sp.ServiceURL = &(o.ServiceURL)
+		case "sourceController":
+			sp.SourceController = &(o.SourceController)
 		case "sourceID":
 			sp.SourceID = &(o.SourceID)
 		case "sourceIP":
@@ -451,6 +463,9 @@ func (o *FlowReport) Patch(sparse elemental.SparseIdentifiable) {
 	so := sparse.(*SparseFlowReport)
 	if so.Action != nil {
 		o.Action = *so.Action
+	}
+	if so.DestinationController != nil {
+		o.DestinationController = *so.DestinationController
 	}
 	if so.DestinationID != nil {
 		o.DestinationID = *so.DestinationID
@@ -520,6 +535,9 @@ func (o *FlowReport) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.ServiceURL != nil {
 		o.ServiceURL = *so.ServiceURL
+	}
+	if so.SourceController != nil {
+		o.SourceController = *so.SourceController
 	}
 	if so.SourceID != nil {
 		o.SourceID = *so.SourceID
@@ -667,6 +685,8 @@ func (o *FlowReport) ValueForAttribute(name string) interface{} {
 	switch name {
 	case "action":
 		return o.Action
+	case "destinationController":
+		return o.DestinationController
 	case "destinationID":
 		return o.DestinationID
 	case "destinationIP":
@@ -713,6 +733,8 @@ func (o *FlowReport) ValueForAttribute(name string) interface{} {
 		return o.ServiceType
 	case "serviceURL":
 		return o.ServiceURL
+	case "sourceController":
+		return o.SourceController
 	case "sourceID":
 		return o.SourceID
 	case "sourceIP":
@@ -740,6 +762,14 @@ var FlowReportAttributesMap = map[string]elemental.AttributeSpecification{
 		Name:           "action",
 		Required:       true,
 		Type:           "enum",
+	},
+	"DestinationController": {
+		AllowedChoices: []string{},
+		ConvertedName:  "DestinationController",
+		Description:    `Identifier of the destination controller.`,
+		Exposed:        true,
+		Name:           "destinationController",
+		Type:           "string",
 	},
 	"DestinationID": {
 		AllowedChoices: []string{},
@@ -938,6 +968,14 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceURL",
 		Type:           "string",
 	},
+	"SourceController": {
+		AllowedChoices: []string{},
+		ConvertedName:  "SourceController",
+		Description:    `Identifier of the source controller.`,
+		Exposed:        true,
+		Name:           "sourceController",
+		Type:           "string",
+	},
 	"SourceID": {
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
@@ -1003,6 +1041,14 @@ var FlowReportLowerCaseAttributesMap = map[string]elemental.AttributeSpecificati
 		Name:           "action",
 		Required:       true,
 		Type:           "enum",
+	},
+	"destinationcontroller": {
+		AllowedChoices: []string{},
+		ConvertedName:  "DestinationController",
+		Description:    `Identifier of the destination controller.`,
+		Exposed:        true,
+		Name:           "destinationController",
+		Type:           "string",
 	},
 	"destinationid": {
 		AllowedChoices: []string{},
@@ -1201,6 +1247,14 @@ to ` + "`" + `Reject` + "`" + `.`,
 		Name:           "serviceURL",
 		Type:           "string",
 	},
+	"sourcecontroller": {
+		AllowedChoices: []string{},
+		ConvertedName:  "SourceController",
+		Description:    `Identifier of the source controller.`,
+		Exposed:        true,
+		Name:           "sourceController",
+		Type:           "string",
+	},
 	"sourceid": {
 		AllowedChoices: []string{},
 		ConvertedName:  "SourceID",
@@ -1322,6 +1376,9 @@ type SparseFlowReport struct {
 	// Action applied to the flow.
 	Action *FlowReportActionValue `json:"action,omitempty" msgpack:"action,omitempty" bson:"-" mapstructure:"action,omitempty"`
 
+	// Identifier of the destination controller.
+	DestinationController *string `json:"destinationController,omitempty" msgpack:"destinationController,omitempty" bson:"-" mapstructure:"destinationController,omitempty"`
+
 	// ID of the destination.
 	DestinationID *string `json:"destinationID,omitempty" msgpack:"destinationID,omitempty" bson:"-" mapstructure:"destinationID,omitempty"`
 
@@ -1393,6 +1450,9 @@ type SparseFlowReport struct {
 
 	// Service URL accessed.
 	ServiceURL *string `json:"serviceURL,omitempty" msgpack:"serviceURL,omitempty" bson:"-" mapstructure:"serviceURL,omitempty"`
+
+	// Identifier of the source controller.
+	SourceController *string `json:"sourceController,omitempty" msgpack:"sourceController,omitempty" bson:"-" mapstructure:"sourceController,omitempty"`
 
 	// ID of the source.
 	SourceID *string `json:"sourceID,omitempty" msgpack:"sourceID,omitempty" bson:"-" mapstructure:"sourceID,omitempty"`
@@ -1480,6 +1540,9 @@ func (o *SparseFlowReport) ToPlain() elemental.PlainIdentifiable {
 	if o.Action != nil {
 		out.Action = *o.Action
 	}
+	if o.DestinationController != nil {
+		out.DestinationController = *o.DestinationController
+	}
 	if o.DestinationID != nil {
 		out.DestinationID = *o.DestinationID
 	}
@@ -1548,6 +1611,9 @@ func (o *SparseFlowReport) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.ServiceURL != nil {
 		out.ServiceURL = *o.ServiceURL
+	}
+	if o.SourceController != nil {
+		out.SourceController = *o.SourceController
 	}
 	if o.SourceID != nil {
 		out.SourceID = *o.SourceID

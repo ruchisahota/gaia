@@ -20,6 +20,12 @@ attributes:
     - Reject
     example_value: Accept
 
+  - name: destinationController
+    description: Identifier of the destination controller.
+    type: string
+    exposed: true
+    example_value: api.east.acme.com
+
   - name: destinationID
     description: ID of the destination.
     type: string
@@ -174,6 +180,12 @@ attributes:
     description: Service URL accessed.
     type: string
     exposed: true
+
+  - name: sourceController
+    description: Identifier of the source controller.
+    type: string
+    exposed: true
+    example_value: api.west.acme.com
 
   - name: sourceID
     description: ID of the source.
