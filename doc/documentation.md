@@ -5590,7 +5590,8 @@ Represents a parameter that will be shown in the web interface.
   "advanced": false,
   "key": "unique_key",
   "optional": false,
-  "type": "String"
+  "type": "String",
+  "width": "100%"
 }
 ```
 
@@ -5632,7 +5633,11 @@ Name of the parameter.
 
 A value of `true` designates the parameter as optional.
 
-##### `type` `emum(Boolean | Duration | Enum | IntegerSlice | Integer | Float | FloatSlice | Password | String | StringSlice | CVSSThreshold | JSON | TagsExpression)` [`required`]
+##### `subtype` `string`
+
+The subtype of a list parameter.
+
+##### `type` `emum(Boolean | Checkbox | CVSSThreshold | DangerMessage | Duration | Enum | FileDrop | Float | FloatSlice | InfoMessage | Integer | IntegerSlice | JSON | List | Message | Namespace | Password | String | StringSlice | Switch | TagsExpression | WarningMessage)` [`required`]
 
 The datatype of the parameter.
 
@@ -5653,6 +5658,16 @@ A logical expression consisting of one or more
 conditions linked together using AND or OR operators. If the expression
 evaluates to true
 the parameter is displayed to the user.
+
+##### `width` `string`
+
+Width of the parameter.
+
+Default value:
+
+```json
+"100%"
+```
 
 ### UIParameterVisibility
 
