@@ -10,20 +10,38 @@ model:
 # Attributes
 attributes:
   v1:
-  - name: ID
-    description: ID unique to a single origin and reply report.
+  - name: RTT
+    description: Time taken for a single request-response to complete.
     type: string
     exposed: true
-    required: true
-    example_value: xxx-xxx-xxx-xxx
+
+  - name: RXFourTuple
+    description: Receiver four tuple in the format <sip:dip:spt:dpt>.
+    type: string
+    exposed: true
+
+  - name: TXController
+    description: Controller of the transmitter.
+    type: string
+    exposed: true
+
+  - name: TXFourTuple
+    description: Transmitter four tuple in the format <sip:dip:spt:dpt>.
+    type: string
+    exposed: true
+
+  - name: TXType
+    description: Type of the transmitter.
+    type: string
+    exposed: true
+
+  - name: applicationListening
+    description: If true, application responded to the request.
+    type: boolean
+    exposed: true
 
   - name: destinationID
     description: ID of the destination processing unit.
-    type: string
-    exposed: true
-
-  - name: destinationNamespace
-    description: Namespace of the destination processing unit.
     type: string
     exposed: true
 
@@ -46,13 +64,15 @@ attributes:
     type: string
     exposed: true
 
-  - name: flowTuple
-    description: Flow tuple in the format <sip:dip:spt:dpt>.
+  - name: iterationID
+    description: IterationID unique to a single ping request-response.
     type: string
     exposed: true
+    required: true
+    example_value: xxx-xxx-xxx-xxx
 
-  - name: latency
-    description: Time taken for a single request to complete.
+  - name: namespace
+    description: Namespace of the reporting processing unit.
     type: string
     exposed: true
 
@@ -61,8 +81,20 @@ attributes:
     type: integer
     exposed: true
 
-  - name: pingType
-    description: Represents the ping type used.
+  - name: pingID
+    description: PingID unique to a single ping control.
+    type: string
+    exposed: true
+    required: true
+    example_value: xxx-xxx-xxx-xxx
+
+  - name: policyAction
+    description: Action of the policy.
+    type: string
+    exposed: true
+
+  - name: policyID
+    description: ID of the policy.
     type: string
     exposed: true
 
@@ -72,9 +104,20 @@ attributes:
     exposed: true
 
   - name: request
-    description: Request represents the request number.
+    description: Request represents the current request.
     type: integer
     exposed: true
+
+  - name: seqNumMatching
+    description: If Equal, transmitter sequence number matches the receiver sequence
+      number.
+    type: enum
+    exposed: true
+    allowed_choices:
+    - Equal
+    - Unequal
+    - Noop
+    default_value: Noop
 
   - name: serviceType
     description: Type of the service.
@@ -85,18 +128,9 @@ attributes:
     description: ID of the source PU.
     type: string
     exposed: true
-    required: true
-    example_value: xxx-xxx-xxx-xxx
-
-  - name: sourceNamespace
-    description: Namespace of the source processing unit.
-    type: string
-    exposed: true
-    required: true
-    example_value: /my/ns
 
   - name: stage
-    description: Stage when the packet is received.
+    description: Current stage when this report has been generated.
     type: string
     exposed: true
 

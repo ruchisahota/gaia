@@ -3195,11 +3195,12 @@ Post a new pu diagnostics report.
 
 ```json
 {
-  "ID": "xxx-xxx-xxx-xxx",
+  "applicationListening": false,
   "enforcerID": "xxx-xxx-xxx-xxx",
   "enforcerNamespace": "/my/ns",
-  "sourceID": "xxx-xxx-xxx-xxx",
-  "sourceNamespace": "/my/ns"
+  "iterationID": "xxx-xxx-xxx-xxx",
+  "pingID": "xxx-xxx-xxx-xxx",
+  "seqNumMatching": "Noop"
 }
 ```
 
@@ -3211,17 +3212,33 @@ Create a ping report.
 
 #### Attributes
 
-##### `ID` `string` [`required`]
+##### `RTT` `string`
 
-ID unique to a single origin and reply report.
+Time taken for a single request-response to complete.
+
+##### `RXFourTuple` `string`
+
+Receiver four tuple in the format <sip:dip:spt:dpt>.
+
+##### `TXController` `string`
+
+Controller of the transmitter.
+
+##### `TXFourTuple` `string`
+
+Transmitter four tuple in the format <sip:dip:spt:dpt>.
+
+##### `TXType` `string`
+
+Type of the transmitter.
+
+##### `applicationListening` `boolean`
+
+If true, application responded to the request.
 
 ##### `destinationID` `string`
 
 ID of the destination processing unit.
-
-##### `destinationNamespace` `string`
-
-Namespace of the destination processing unit.
 
 ##### `enforcerID` `string` [`required`]
 
@@ -3235,21 +3252,29 @@ Namespace of the enforcer.
 
 Semantic version of the enforcer.
 
-##### `flowTuple` `string`
+##### `iterationID` `string` [`required`]
 
-Flow tuple in the format <sip:dip:spt:dpt>.
+IterationID unique to a single ping request-response.
 
-##### `latency` `string`
+##### `namespace` `string`
 
-Time taken for a single request to complete.
+Namespace of the reporting processing unit.
 
 ##### `payloadSize` `integer`
 
 Size of the payload attached to the packet.
 
-##### `pingType` `string`
+##### `pingID` `string` [`required`]
 
-Represents the ping type used.
+PingID unique to a single ping control.
+
+##### `policyAction` `string`
+
+Action of the policy.
+
+##### `policyID` `string`
+
+ID of the policy.
 
 ##### `protocol` `integer`
 
@@ -3257,23 +3282,29 @@ Protocol used for the communication.
 
 ##### `request` `integer`
 
-Request represents the request number.
+Request represents the current request.
+
+##### `seqNumMatching` `emum(Equal | Unequal | Noop)`
+
+If Equal, transmitter sequence number matches the receiver sequence number.
+
+Default value:
+
+```json
+"Noop"
+```
 
 ##### `serviceType` `string`
 
 Type of the service.
 
-##### `sourceID` `string` [`required`]
+##### `sourceID` `string`
 
 ID of the source PU.
 
-##### `sourceNamespace` `string` [`required`]
-
-Namespace of the source processing unit.
-
 ##### `stage` `string`
 
-Stage when the packet is received.
+Current stage when this report has been generated.
 
 ##### `timestamp` `time`
 
@@ -4493,7 +4524,9 @@ external change on the processing unit must be processed.
 ```json
 {
   "debug": false,
-  "pingType": "None",
+  "pingEnabled": false,
+  "pingMode": "Auto",
+  "pingPassthrough": false,
   "refreshPolicy": false,
   "traceApplicationConnections": false,
   "traceDuration": "10s",
@@ -4523,9 +4556,27 @@ unit.
 
 Contains the original namespace of the processing unit.
 
+##### `pingEnabled` `boolean`
+
+If set to true, start ping to the destination.
+
+##### `pingMode` `emum(Auto | L3 | L4 | L7)`
+
+Represents the mode of ping to be used.
+
+Default value:
+
+```json
+"Auto"
+```
+
 ##### `pingNetwork` `string`
 
 Destination network to run ping.
+
+##### `pingPassthrough` `boolean`
+
+If set to true, allows the request pass to the application.
 
 ##### `pingPorts` `[]string`
 
@@ -4535,15 +4586,9 @@ Destination port(s) to run ping.
 
 Number of requests to send to the destination.
 
-##### `pingType` `emum(None | AporetoIdentity | CustomIdentity | AporetoIdentityPassthrough)`
+##### `refreshID` `string` [`read_only`]
 
-Represents the type of ping to be used.
-
-Default value:
-
-```json
-"None"
-```
+ID unique per purefresh event.
 
 ##### `refreshPolicy` `boolean`
 
