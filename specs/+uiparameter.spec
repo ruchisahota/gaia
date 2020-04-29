@@ -90,6 +90,7 @@ attributes:
     - DangerMessage
     - Duration
     - Enum
+    - Endpoint
     - FileDrop
     - Float
     - FloatSlice

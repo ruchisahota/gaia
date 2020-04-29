@@ -5637,7 +5637,7 @@ A value of `true` designates the parameter as optional.
 
 The subtype of a list parameter.
 
-##### `type` `emum(Boolean | Checkbox | CVSSThreshold | DangerMessage | Duration | Enum | FileDrop | Float | FloatSlice | InfoMessage | Integer | IntegerSlice | JSON | List | Message | Namespace | Password | String | StringSlice | Switch | TagsExpression | WarningMessage)` [`required`]
+##### `type` `emum(Boolean | Checkbox | CVSSThreshold | DangerMessage | Duration | Enum | Endpoint | FileDrop | Float | FloatSlice | InfoMessage | Integer | IntegerSlice | JSON | List | Message | Namespace | Password | String | StringSlice | Switch | TagsExpression | WarningMessage)` [`required`]
 
 The datatype of the parameter.
 

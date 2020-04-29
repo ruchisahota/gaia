@@ -27,6 +27,9 @@ const (
 	// UIParameterTypeDuration represents the value Duration.
 	UIParameterTypeDuration UIParameterTypeValue = "Duration"
 
+	// UIParameterTypeEndpoint represents the value Endpoint.
+	UIParameterTypeEndpoint UIParameterTypeValue = "Endpoint"
+
 	// UIParameterTypeEnum represents the value Enum.
 	UIParameterTypeEnum UIParameterTypeValue = "Enum"
 
@@ -250,7 +253,7 @@ func (o *UIParameter) Validate() error {
 		requiredErrors = requiredErrors.Append(err)
 	}
 
-	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Boolean", "Checkbox", "CVSSThreshold", "DangerMessage", "Duration", "Enum", "FileDrop", "Float", "FloatSlice", "InfoMessage", "Integer", "IntegerSlice", "JSON", "List", "Message", "Namespace", "Password", "String", "StringSlice", "Switch", "TagsExpression", "WarningMessage"}, false); err != nil {
+	if err := elemental.ValidateStringInList("type", string(o.Type), []string{"Boolean", "Checkbox", "CVSSThreshold", "DangerMessage", "Duration", "Enum", "Endpoint", "FileDrop", "Float", "FloatSlice", "InfoMessage", "Integer", "IntegerSlice", "JSON", "List", "Message", "Namespace", "Password", "String", "StringSlice", "Switch", "TagsExpression", "WarningMessage"}, false); err != nil {
 		errors = errors.Append(err)
 	}
 
