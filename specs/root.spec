@@ -777,6 +777,13 @@ relations:
   create:
     description: Create a statistics report.
 
+- rest_name: reportsquery
+  create:
+    description: Sends a query on report data.
+    global_parameters:
+    - $timewindow
+    - $filtering
+
 - rest_name: revocation
   get:
     description: Verify the revocation of a certificate according to parameters.
