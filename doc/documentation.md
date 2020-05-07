@@ -8070,6 +8070,7 @@ Retrieves the list of trusted namespaces.
 Parameters:
 
 - `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
+- `propagated` (`boolean`): Also retrieve the objects that propagate down.
 
 ##### `POST /trustednamespaces`
 
