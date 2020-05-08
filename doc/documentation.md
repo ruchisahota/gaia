@@ -5717,7 +5717,7 @@ Represents a visibility condition for a [UIParameter](#uiparameter).
 
 Key holding the value to compare.
 
-##### `operator` `enum(Equal | NotEqual | GreaterThan | LesserThan | Defined | Undefined)`
+##### `operator` `enum(Equal | NotEqual | GreaterThan | LesserThan | Defined | Undefined | Match)`
 
 Operator to apply.
 
