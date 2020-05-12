@@ -109,6 +109,9 @@ type EnforcerRefresh struct {
 	// The duration that certain on-demand debug information is collected.
 	DebugDuration string `json:"debugDuration,omitempty" msgpack:"debugDuration,omitempty" bson:"-" mapstructure:"debugDuration,omitempty"`
 
+	// Isolates debug information to a given processing unit, where possible.
+	DebugProcessingUnitID string `json:"debugProcessingUnitID,omitempty" msgpack:"debugProcessingUnitID,omitempty" bson:"-" mapstructure:"debugProcessingUnitID,omitempty"`
+
 	// Contains the original namespace of the enforcer.
 	Namespace string `json:"namespace" msgpack:"namespace" bson:"-" mapstructure:"namespace,omitempty"`
 
@@ -221,10 +224,11 @@ func (o *EnforcerRefresh) ToSparse(fields ...string) elemental.SparseIdentifiabl
 	if len(fields) == 0 {
 		// nolint: goimports
 		return &SparseEnforcerRefresh{
-			ID:            &o.ID,
-			Debug:         &o.Debug,
-			DebugDuration: &o.DebugDuration,
-			Namespace:     &o.Namespace,
+			ID:                    &o.ID,
+			Debug:                 &o.Debug,
+			DebugDuration:         &o.DebugDuration,
+			DebugProcessingUnitID: &o.DebugProcessingUnitID,
+			Namespace:             &o.Namespace,
 		}
 	}
 
@@ -237,6 +241,8 @@ func (o *EnforcerRefresh) ToSparse(fields ...string) elemental.SparseIdentifiabl
 			sp.Debug = &(o.Debug)
 		case "debugDuration":
 			sp.DebugDuration = &(o.DebugDuration)
+		case "debugProcessingUnitID":
+			sp.DebugProcessingUnitID = &(o.DebugProcessingUnitID)
 		case "namespace":
 			sp.Namespace = &(o.Namespace)
 		}
@@ -260,6 +266,9 @@ func (o *EnforcerRefresh) Patch(sparse elemental.SparseIdentifiable) {
 	}
 	if so.DebugDuration != nil {
 		o.DebugDuration = *so.DebugDuration
+	}
+	if so.DebugProcessingUnitID != nil {
+		o.DebugProcessingUnitID = *so.DebugProcessingUnitID
 	}
 	if so.Namespace != nil {
 		o.Namespace = *so.Namespace
@@ -344,6 +353,8 @@ func (o *EnforcerRefresh) ValueForAttribute(name string) interface{} {
 		return o.Debug
 	case "debugDuration":
 		return o.DebugDuration
+	case "debugProcessingUnitID":
+		return o.DebugProcessingUnitID
 	case "namespace":
 		return o.Namespace
 	}
@@ -380,6 +391,14 @@ var EnforcerRefreshAttributesMap = map[string]elemental.AttributeSpecification{
 		Description:    `The duration that certain on-demand debug information is collected.`,
 		Exposed:        true,
 		Name:           "debugDuration",
+		Type:           "string",
+	},
+	"DebugProcessingUnitID": {
+		AllowedChoices: []string{},
+		ConvertedName:  "DebugProcessingUnitID",
+		Description:    `Isolates debug information to a given processing unit, where possible.`,
+		Exposed:        true,
+		Name:           "debugProcessingUnitID",
 		Type:           "string",
 	},
 	"Namespace": {
@@ -423,6 +442,14 @@ var EnforcerRefreshLowerCaseAttributesMap = map[string]elemental.AttributeSpecif
 		Description:    `The duration that certain on-demand debug information is collected.`,
 		Exposed:        true,
 		Name:           "debugDuration",
+		Type:           "string",
+	},
+	"debugprocessingunitid": {
+		AllowedChoices: []string{},
+		ConvertedName:  "DebugProcessingUnitID",
+		Description:    `Isolates debug information to a given processing unit, where possible.`,
+		Exposed:        true,
+		Name:           "debugProcessingUnitID",
 		Type:           "string",
 	},
 	"namespace": {
@@ -509,6 +536,9 @@ type SparseEnforcerRefresh struct {
 	// The duration that certain on-demand debug information is collected.
 	DebugDuration *string `json:"debugDuration,omitempty" msgpack:"debugDuration,omitempty" bson:"-" mapstructure:"debugDuration,omitempty"`
 
+	// Isolates debug information to a given processing unit, where possible.
+	DebugProcessingUnitID *string `json:"debugProcessingUnitID,omitempty" msgpack:"debugProcessingUnitID,omitempty" bson:"-" mapstructure:"debugProcessingUnitID,omitempty"`
+
 	// Contains the original namespace of the enforcer.
 	Namespace *string `json:"namespace,omitempty" msgpack:"namespace,omitempty" bson:"-" mapstructure:"namespace,omitempty"`
 
@@ -592,6 +622,9 @@ func (o *SparseEnforcerRefresh) ToPlain() elemental.PlainIdentifiable {
 	}
 	if o.DebugDuration != nil {
 		out.DebugDuration = *o.DebugDuration
+	}
+	if o.DebugProcessingUnitID != nil {
+		out.DebugProcessingUnitID = *o.DebugProcessingUnitID
 	}
 	if o.Namespace != nil {
 		out.Namespace = *o.Namespace
