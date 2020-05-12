@@ -3912,11 +3912,6 @@ func init() {
 						Name: "startRelative",
 						Type: "duration",
 					},
-					{
-						Name:     "q",
-						Type:     "string",
-						Multiple: true,
-					},
 				},
 			},
 		},
