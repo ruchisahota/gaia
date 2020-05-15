@@ -4240,9 +4240,9 @@ Default value:
 "Counters"
 ```
 
-##### `debugDuration` `string`
+##### `debugPcapFilter` `string`
 
-The duration that certain on-demand debug information is collected.
+Packet capture filter, syntax varying by platform.
 
 ##### `debugProcessingUnitID` `string`
 
