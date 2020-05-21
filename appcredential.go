@@ -733,7 +733,7 @@ func (o *AppCredential) Validate() error {
 		errors = errors.Append(err)
 	}
 
-	if err := ValidateOptionalNetworkList("authorizedSubnets", o.AuthorizedSubnets); err != nil {
+	if err := ValidateOptionalCIDRList("authorizedSubnets", o.AuthorizedSubnets); err != nil {
 		errors = errors.Append(err)
 	}
 
