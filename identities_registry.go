@@ -407,7 +407,9 @@ var (
 	}
 
 	indexesMap = map[string][][]string{
-		"accessreport": nil,
+		"accessreport": {
+			{":shard", ":unique", "zone", "zHash"},
+		},
 		"account": {
 			{"resetPasswordToken"},
 			{"name"},
