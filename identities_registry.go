@@ -95,6 +95,7 @@ var (
 		"pccprovider":            PCCProviderIdentity,
 
 		"pingprobe":   PingProbeIdentity,
+		"pingreport":  PingReportIdentity,
 		"pingrequest": PingRequestIdentity,
 		"pingresult":  PingResultIdentity,
 
@@ -248,6 +249,7 @@ var (
 		"pccproviders":             PCCProviderIdentity,
 
 		"pingprobes":   PingProbeIdentity,
+		"pingreports":  PingReportIdentity,
 		"pingrequests": PingRequestIdentity,
 		"pingresults":  PingResultIdentity,
 
@@ -776,6 +778,9 @@ var (
 			{"namespace", "normalizedTags"},
 			{":shard", ":unique", "zone", "zHash"},
 		},
+		"pingreport": {
+			{":shard", ":unique", "zone", "zHash"},
+		},
 		"pingrequest": nil,
 		"pingresult": {
 			{"pingID"},
@@ -1148,6 +1153,8 @@ func (f modelManager) Identifiable(identity elemental.Identity) elemental.Identi
 		return NewPCCProvider()
 	case PingProbeIdentity:
 		return NewPingProbe()
+	case PingReportIdentity:
+		return NewPingReport()
 	case PingRequestIdentity:
 		return NewPingRequest()
 	case PingResultIdentity:
@@ -1429,6 +1436,8 @@ func (f modelManager) SparseIdentifiable(identity elemental.Identity) elemental.
 		return NewSparsePCCProvider()
 	case PingProbeIdentity:
 		return NewSparsePingProbe()
+	case PingReportIdentity:
+		return NewSparsePingReport()
 	case PingRequestIdentity:
 		return NewSparsePingRequest()
 	case PingResultIdentity:
@@ -1718,6 +1727,8 @@ func (f modelManager) Identifiables(identity elemental.Identity) elemental.Ident
 		return &PCCProvidersList{}
 	case PingProbeIdentity:
 		return &PingProbesList{}
+	case PingReportIdentity:
+		return &PingReportsList{}
 	case PingRequestIdentity:
 		return &PingRequestsList{}
 	case PingResultIdentity:
@@ -1997,6 +2008,8 @@ func (f modelManager) SparseIdentifiables(identity elemental.Identity) elemental
 		return &SparsePCCProvidersList{}
 	case PingProbeIdentity:
 		return &SparsePingProbesList{}
+	case PingReportIdentity:
+		return &SparsePingReportsList{}
 	case PingRequestIdentity:
 		return &SparsePingRequestsList{}
 	case PingResultIdentity:
@@ -2207,6 +2220,7 @@ func AllIdentities() []elemental.Identity {
 		PasswordResetIdentity,
 		PCCProviderIdentity,
 		PingProbeIdentity,
+		PingReportIdentity,
 		PingRequestIdentity,
 		PingResultIdentity,
 		PlanIdentity,
@@ -2519,6 +2533,8 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case PCCProviderIdentity:
 		return []string{}
 	case PingProbeIdentity:
+		return []string{}
+	case PingReportIdentity:
 		return []string{}
 	case PingRequestIdentity:
 		return []string{}
