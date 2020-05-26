@@ -477,8 +477,10 @@ var (
 			{"createIdempotencyKey"},
 		},
 		"auditprofilemappingpolicy": nil,
-		"auditreport":               nil,
-		"authn":                     nil,
+		"auditreport": {
+			{":shard", ":unique", "zone", "zHash"},
+		},
+		"authn": nil,
 		"authority": {
 			{"commonName"},
 			{":shard", ":unique", "zone", "zHash"},
