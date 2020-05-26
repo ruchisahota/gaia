@@ -564,8 +564,10 @@ var (
 		},
 		"enforcerprofilemappingpolicy": nil,
 		"enforcerrefresh":              nil,
-		"enforcerreport":               nil,
-		"enforcertracereport":          nil,
+		"enforcerreport": {
+			{":shard", ":unique", "zone", "zHash"},
+		},
+		"enforcertracereport": nil,
 		"eventlog": {
 			{":shard", ":unique", "zone", "zHash"},
 		},
