@@ -50,7 +50,15 @@ $networks:
   elemental:
     name: ValidateNetworkList
 
+<<<<<<< HEAD
 $optionalnetworks:
+=======
+$optionalTimeDuration:
+  elemental:
+    name: ValidateOptionalTimeDuration
+
+$optionalcidrs:
+>>>>>>> abe0cd98... new: added maxIssuedTokenValidity to appcred api (#513)
   elemental:
     name: ValidateOptionalNetworkList
 

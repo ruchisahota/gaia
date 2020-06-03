@@ -71,7 +71,7 @@ attributes:
     subtype: string
     stored: true
     validations:
-    - $optionalnetworks
+    - $optionalcidrs
 
   - name: certificate
     description: The string representation of the certificate used by the app credential.
@@ -104,6 +104,18 @@ attributes:
     exposed: true
     stored: true
     orderable: true
+
+  - name: maxIssuedTokenValidity
+    description: |-
+      If set, this will limit the maximum validity of the token issued from this app
+      credential. This information will be embedded into the delivered certificate and
+      cannot be changed once set. In order to change it, you need to renew the
+      certificate.
+    type: string
+    exposed: true
+    stored: true
+    validations:
+    - $optionalTimeDuration
 
   - name: parentIDs
     description: |-
