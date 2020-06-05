@@ -287,7 +287,7 @@ type CounterReport struct {
 	ExternalNetworkConnections int `json:"externalNetworkConnections" msgpack:"externalNetworkConnections" bson:"externalnetworkconnections" mapstructure:"externalNetworkConnections,omitempty"`
 
 	// Internal property maintaining migrations information.
-	MigrationsLog map[string]string `json:"-" msgpack:"-" bson:"migrationslog" mapstructure:"-,omitempty"`
+	MigrationsLog map[string]string `json:"-" msgpack:"-" bson:"migrationslog,omitempty" mapstructure:"-,omitempty"`
 
 	// Non-zero counter indicates packets dropped due to a reject policy.
 	PolicyDrops int `json:"policyDrops" msgpack:"policyDrops" bson:"policydrops" mapstructure:"policyDrops,omitempty"`
