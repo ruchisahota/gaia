@@ -9,6 +9,8 @@ model:
     Contains all parameters associated with a registered enforcer. The
     object is mainly maintained by the enforcers themselves. Users can read the
     object in order to understand the current status of the enforcers.
+  aliases:
+  - defender
   get:
     description: Retrieves the enforcer with the given ID.
   update:

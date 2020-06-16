@@ -317,6 +317,7 @@ var (
 		"autotmpl":       AutomationTemplateIdentity,
 		"depmaps":        DependencyMapIdentity,
 		"depmap":         DependencyMapIdentity,
+		"defender":       EnforcerIdentity,
 		"profile":        EnforcerProfileIdentity,
 		"profiles":       EnforcerProfileIdentity,
 		"enfpols":        EnforcerProfileMappingPolicyIdentity,
@@ -2296,7 +2297,9 @@ func AliasesForIdentity(identity elemental.Identity) []string {
 	case EmailIdentity:
 		return []string{}
 	case EnforcerIdentity:
-		return []string{}
+		return []string{
+			"defender",
+		}
 	case EnforcerLogIdentity:
 		return []string{}
 	case EnforcerProfileIdentity:
