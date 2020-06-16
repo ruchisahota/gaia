@@ -152,9 +152,10 @@ type ProcessingUnitRefresh struct {
 func NewProcessingUnitRefresh() *ProcessingUnitRefresh {
 
 	return &ProcessingUnitRefresh{
-		ModelVersion:  1,
-		PingMode:      ProcessingUnitRefreshPingModeAuto,
-		TraceDuration: "10s",
+		ModelVersion:   1,
+		PingIterations: 1,
+		PingMode:       ProcessingUnitRefreshPingModeAuto,
+		TraceDuration:  "10s",
 	}
 }
 
@@ -390,6 +391,10 @@ func (o *ProcessingUnitRefresh) Validate() error {
 	errors := elemental.Errors{}
 	requiredErrors := elemental.Errors{}
 
+	if err := elemental.ValidateMinimumInt("pingIterations", o.PingIterations, int(1), false); err != nil {
+		errors = errors.Append(err)
+	}
+
 	if err := elemental.ValidateStringInList("pingMode", string(o.PingMode), []string{"Auto", "L3", "L4", "L7"}, false); err != nil {
 		errors = errors.Append(err)
 	}
@@ -513,8 +518,10 @@ unit.`,
 	"PingIterations": {
 		AllowedChoices: []string{},
 		ConvertedName:  "PingIterations",
+		DefaultValue:   1,
 		Description:    `Number of iterations to run a ping probe.`,
 		Exposed:        true,
+		MinValue:       1,
 		Name:           "pingIterations",
 		Type:           "integer",
 	},
@@ -644,8 +651,10 @@ unit.`,
 	"pingiterations": {
 		AllowedChoices: []string{},
 		ConvertedName:  "PingIterations",
+		DefaultValue:   1,
 		Description:    `Number of iterations to run a ping probe.`,
 		Exposed:        true,
+		MinValue:       1,
 		Name:           "pingIterations",
 		Type:           "integer",
 	},
