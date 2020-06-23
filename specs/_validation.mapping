@@ -18,6 +18,14 @@ $capem:
   elemental:
     name: ValidateCA
 
+$cidr:
+  elemental:
+    name: ValidateCIDR
+
+$cidrs:
+  elemental:
+    name: ValidateCIDRList
+
 $enforcerprofile:
   elemental:
     name: ValidateEnforcerProfile
@@ -42,17 +50,25 @@ $metadata:
   elemental:
     name: ValidateMetadata
 
-$network:
+$networkorhostname:
   elemental:
-    name: ValidateNetwork
+    name: ValidateNetworkOrHostname
 
-$networks:
+$networksorhostnames:
   elemental:
-    name: ValidateNetworkList
+    name: ValidateNetworkOrHostnameList
 
-$optionalnetworks:
+$optionalTimeDuration:
   elemental:
-    name: ValidateOptionalNetworkList
+    name: ValidateOptionalTimeDuration
+
+$optionalcidrs:
+  elemental:
+    name: ValidateOptionalCIDRList
+
+$optionalnetworksorhostnames:
+  elemental:
+    name: ValidateOptionalNetworkOrHostnameList
 
 $pem:
   elemental:
