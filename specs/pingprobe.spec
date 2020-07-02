@@ -66,9 +66,12 @@ attributes:
     exposed: true
     subtype: string
     stored: true
+    required: true
     allowed_choices:
     - Transmitted
     - Received
+    example_value:
+    - Transmitted
 
   - name: enforcerID
     description: ID of the defender.
@@ -127,6 +130,19 @@ attributes:
     type: integer
     exposed: true
     stored: true
+
+  - name: payloadSizeType
+    description: Type of the payload size.
+    type: enum
+    exposed: true
+    subtype: string
+    stored: true
+    required: true
+    allowed_choices:
+    - Transmitted
+    - Received
+    example_value:
+    - Transmitted
 
   - name: peerCertExpiry
     description: Represents the expiry of the peer certificate.
@@ -195,8 +211,11 @@ attributes:
     type: enum
     exposed: true
     stored: true
+    required: true
     allowed_choices:
     - ProcessingUnit
+    - External
+    example_value:
     - External
 
   - name: remoteNamespace
@@ -210,9 +229,12 @@ attributes:
     type: enum
     exposed: true
     stored: true
+    required: true
     allowed_choices:
     - Plain
     - Hash
+    example_value:
+    - Plain
 
   - name: remoteProcessingUnitID
     description: ID of the remote processing unit.
@@ -251,6 +273,9 @@ attributes:
     type: enum
     exposed: true
     stored: true
+    required: true
     allowed_choices:
     - Request
     - Response
+    example_value:
+    - Request

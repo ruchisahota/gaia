@@ -3859,16 +3859,27 @@ PingResult.
 ```json
 {
   "applicationListening": false,
-  "claimsType": "Transmitted",
+  "claimsType": [
+    "Transmitted"
+  ],
   "enforcerID": "xxx-xxx-xxx-xxx",
   "enforcerNamespace": "/my/ns",
   "excludedNetworks": false,
   "isServer": false,
+  "payloadSizeType": [
+    "Transmitted"
+  ],
   "pingID": "xxx-xxx-xxx-xxx",
-  "remoteEndpointType": "ProcessingUnit",
-  "remoteNamespaceType": "Plain",
+  "remoteEndpointType": [
+    "External"
+  ],
+  "remoteNamespaceType": [
+    "Plain"
+  ],
   "targetTCPNetworks": false,
-  "type": "Request"
+  "type": [
+    "Request"
+  ]
 }
 ```
 
@@ -3920,7 +3931,7 @@ Type: `[]string`
 
 Claims of the processing unit.
 
-##### `claimsType`
+##### `claimsType` [`required`]
 
 Type: `enum(Transmitted | Received)`
 
@@ -3992,6 +4003,12 @@ Type: `integer`
 
 Size of the payload attached to the packet.
 
+##### `payloadSizeType` [`required`]
+
+Type: `enum(Transmitted | Received)`
+
+Type of the payload size.
+
 ##### `peerCertExpiry`
 
 Type: `string`
@@ -4052,7 +4069,7 @@ Type: `string`
 
 Controller of the remote endpoint.
 
-##### `remoteEndpointType`
+##### `remoteEndpointType` [`required`]
 
 Type: `enum(ProcessingUnit | External)`
 
@@ -4064,7 +4081,7 @@ Type: `string`
 
 Namespace of the remote processing unit.
 
-##### `remoteNamespaceType`
+##### `remoteNamespaceType` [`required`]
 
 Type: `enum(Plain | Hash)`
 
@@ -4100,7 +4117,7 @@ Type: `boolean`
 
 If true, destination IP is in `targetTCPNetworks`.
 
-##### `type`
+##### `type` [`required`]
 
 Type: `enum(Request | Response)`
 
