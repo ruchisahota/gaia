@@ -2815,6 +2815,12 @@ func init() {
 		},
 	}
 
+	relationshipsRegistry[NamespaceRendererIdentity] = &elemental.Relationship{
+		Create: map[string]*elemental.RelationshipInfo{
+			"root": {},
+		},
+	}
+
 	relationshipsRegistry[NetworkAccessPolicyIdentity] = &elemental.Relationship{
 		Create: map[string]*elemental.RelationshipInfo{
 			"root": {},

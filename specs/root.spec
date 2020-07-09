@@ -584,6 +584,10 @@ relations:
   create:
     description: Creates a new namespace mapping.
 
+- rest_name: namespacerenderer
+  create:
+    description: Renders the namespace where an object should reside.
+
 - rest_name: networkaccesspolicy
   get:
     description: Retrieves the list of network policies.
