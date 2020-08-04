@@ -13658,6 +13658,7 @@ units.
   "external": false,
   "name": "the name",
   "port": 443,
+  "propagate": false,
   "protected": false,
   "publicApplicationPort": 443,
   "selectors": [
@@ -13679,6 +13680,7 @@ Parameters:
 
 - `q` (`string`): Filtering query. Consequent `q` parameters will form an or.
 - `archived` (`boolean`): Also retrieve the objects that have been archived.
+- `propagated` (`boolean`): Also retrieve the objects that propagate down.
 
 ##### `POST /services`
 
@@ -13699,6 +13701,7 @@ Retrieves the service with the given ID.
 Parameters:
 
 - `archived` (`boolean`): Also retrieve the objects that have been archived.
+- `propagated` (`boolean`): Also retrieve the objects that propagate down.
 
 ##### `PUT /services/:id`
 
@@ -13996,6 +13999,12 @@ different than
 `exposedPort`. This is needed for port mapping use cases where there are private
 and
 public ports.
+
+##### `propagate`
+
+Type: `boolean`
+
+Propagates the policy to all of its children.
 
 ##### `protected`
 
